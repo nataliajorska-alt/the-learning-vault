@@ -12,6 +12,7 @@
       "collectionGroup": "questions",
       "queryScope": "COLLECTION",
       "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
         { "fieldPath": "topicId", "order": "ASCENDING" },
         { "fieldPath": "order", "order": "ASCENDING" }
       ]

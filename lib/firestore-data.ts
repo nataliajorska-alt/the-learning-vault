@@ -152,9 +152,12 @@ export async function getTopic(id: string): Promise<Topic | null> {
 // --- QUESTIONS -------------------------------------------------------------
 
 export async function getQuestionsForTopic(topicId: string): Promise<Question[]> {
-  const { db } = getFirebase();
+  const { auth, db } = getFirebase();
+  const uid = auth.currentUser?.uid;
+  if (!uid) throw new Error("Nie jesteś zalogowana.");
   const q = query(
     collection(db, "questions"),
+    where("userId", "==", uid),
     where("topicId", "==", topicId),
     orderBy("order", "asc")
   );
