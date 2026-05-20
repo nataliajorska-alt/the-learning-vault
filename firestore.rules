@@ -1,0 +1,66 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner(data) {
+      return request.auth != null && request.auth.uid == data.userId;
+    }
+
+    function willBeOwner() {
+      return request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /vaults/{vaultId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /topics/{topicId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /questions/{questionId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /salon_phrases/{phraseId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /errors/{errorId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /sessions/{sessionId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /attempts/{attemptId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+
+    match /ai_suggestions/{suggestionId} {
+      allow read: if isOwner(resource.data);
+      allow create: if willBeOwner();
+      allow update, delete: if isOwner(resource.data);
+    }
+  }
+}

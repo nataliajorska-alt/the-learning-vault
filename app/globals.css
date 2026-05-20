@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background-color: #F7F2E8;
+    color: #1F2E25;
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: rgba(184, 146, 77, 0.25);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[10px] uppercase tracking-eyebrow text-gold font-medium;
+  }
+
+  .card {
+    @apply bg-cream border border-line rounded p-6 transition-all duration-300 ease-gentle;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-lift;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-forest text-cream px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:bg-forest-2 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border border-line text-ink px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:border-forest/20 hover:-translate-y-0.5;
+  }
+
+  .dot {
+    @apply inline-block w-1.5 h-1.5 rounded-full;
+  }
+
+  .hero-italic {
+    font-style: italic;
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 500;
+  }
+
+  .prose-old-money {
+    @apply text-ink leading-relaxed;
+  }
+  .prose-old-money p {
+    @apply mb-4;
+  }
+}
+
+.bg-grain {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(31,58,46,0.02) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadein {
+  animation: fadein 0.35s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadein {
+    animation: none;
+  }
+  .card-hover {
+    transition: none !important;
+  }
+}
