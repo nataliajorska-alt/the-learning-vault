@@ -48,7 +48,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
       <div className="space-y-6">
         <Link
           href="/salon"
-          className="inline-flex items-center gap-2 text-sm text-muted hover:text-forest"
+          className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold"
         >
           <ArrowLeft className="w-4 h-4" /> Salon
         </Link>
@@ -63,7 +63,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
     <div className="space-y-10">
       <Link
         href="/salon"
-        className="inline-flex items-center gap-2 text-sm text-muted hover:text-forest transition-colors"
+        className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors"
       >
         <ArrowLeft className="w-4 h-4" /> Salon
       </Link>
@@ -76,17 +76,17 @@ export function SalonDetail({ topicId }: { topicId: string }) {
       <article className="card max-w-2xl">
         <div className="space-y-7 text-base">
           <div>
-            <div className="eyebrow text-forest/60">Krótko · 30s</div>
+            <div className="eyebrow text-gold/60">Krótko · 30s</div>
             <p className="prose-old-money hero-italic text-xl mt-3 leading-snug">
               {phrase.short}
             </p>
           </div>
           <div className="border-t border-line pt-7">
-            <div className="eyebrow text-forest/60">Rozbudowanie · 60s</div>
+            <div className="eyebrow text-gold/60">Rozbudowanie · 60s</div>
             <p className="prose-old-money mt-3">{phrase.expand}</p>
           </div>
           <div className="border-t border-line pt-7">
-            <div className="eyebrow text-forest/60">Pułapka</div>
+            <div className="eyebrow text-gold/60">Pułapka</div>
             <p className="prose-old-money mt-3 text-muted">{phrase.trap}</p>
           </div>
         </div>

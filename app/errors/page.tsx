@@ -62,7 +62,7 @@ export default function ErrorsPage() {
             <select
               value={vaultFilter}
               onChange={(e) => setVaultFilter(e.target.value)}
-              className="text-sm border border-line rounded px-3 py-2 bg-cream focus:outline-none focus:border-forest/40"
+              className="text-sm border border-line rounded px-3 py-2 bg-cream focus:outline-none focus:border-gold/40"
             >
               <option value="all">Wszystkie sekcje</option>
               {vaultNames.map((n) => (
@@ -76,7 +76,7 @@ export default function ErrorsPage() {
                 type="checkbox"
                 checked={onlyTough}
                 onChange={(e) => setOnlyTough(e.target.checked)}
-                className="accent-forest"
+                className="accent-gold"
               />
               Tylko uciążliwe (3+ błędy)
             </label>
@@ -105,7 +105,7 @@ export default function ErrorsPage() {
                       {e.context}
                     </div>
                     {e.correctStreak > 0 && (
-                      <div className="text-[10px] uppercase tracking-eyebrow text-forest/60 mt-2">
+                      <div className="text-[10px] uppercase tracking-eyebrow text-gold/60 mt-2">
                         {e.correctStreak}/3 do rehabilitacji
                       </div>
                     )}

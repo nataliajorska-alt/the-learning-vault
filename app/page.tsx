@@ -122,7 +122,7 @@ export default function DashboardPage() {
               Trzy minuty teorii, dziesięć minut testu, dwie minuty korekty.
             </p>
           </div>
-          <div className="flex items-center gap-2 text-forest text-sm mt-6 group-hover:gap-3 transition-all">
+          <div className="flex items-center gap-2 text-gold text-sm mt-6 group-hover:gap-3 transition-all">
             Otwórz <ArrowRight className="w-4 h-4" />
           </div>
         </Link>
@@ -143,7 +143,7 @@ export default function DashboardPage() {
               {salonTopic?.phrase.short ?? "Trzy zdania na temat. Praktyczne obycie, nie egzamin."}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-forest text-sm mt-6 group-hover:gap-3 transition-all">
+          <div className="flex items-center gap-2 text-gold text-sm mt-6 group-hover:gap-3 transition-all">
             Otwórz <ArrowRight className="w-4 h-4" />
           </div>
         </Link>
@@ -160,7 +160,7 @@ export default function DashboardPage() {
             </div>
             <Link
               href="/errors"
-              className="text-sm text-forest hover:text-forest-2 transition-colors"
+              className="text-sm text-gold hover:text-gold-2 transition-colors"
             >
               Wszystkie
             </Link>

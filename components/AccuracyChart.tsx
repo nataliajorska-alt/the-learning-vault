@@ -85,10 +85,10 @@ export function AccuracyChart({ points }: Props) {
                 x2={W - PAD_R}
                 y1={y}
                 y2={y}
-                stroke="rgba(31,58,46,0.08)"
+                stroke="rgba(232,223,204,0.10)"
                 strokeWidth={1}
               />
-              <text x={6} y={y + 3} fontSize={9} fill="#5C6B5F">
+              <text x={6} y={y + 3} fontSize={9} fill="#9AA3A8">
                 {v}%
               </text>
             </g>
@@ -98,7 +98,7 @@ export function AccuracyChart({ points }: Props) {
         <path
           d={path}
           fill="none"
-          stroke="#1F3A2E"
+          stroke="#B8924D"
           strokeWidth={1.5}
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -110,7 +110,7 @@ export function AccuracyChart({ points }: Props) {
             cx={d.x}
             cy={d.y}
             r={2.5}
-            fill="#B8924D"
+            fill="#C9622F"
           >
             <title>
               {d.p.iso} · {d.p.pct}% ({d.p.attempts}{" "}
@@ -126,7 +126,7 @@ export function AccuracyChart({ points }: Props) {
             x={PAD_L + (i / Math.max(1, points.length - 1)) * INNER_W}
             y={H - 6}
             fontSize={9}
-            fill="#5C6B5F"
+            fill="#9AA3A8"
             textAnchor="middle"
           >
             {formatShortDate(points[i]!.iso)}

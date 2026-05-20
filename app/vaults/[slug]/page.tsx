@@ -29,7 +29,7 @@ export default function VaultDetailPage({
       <div className="space-y-6">
         <Link
           href="/vaults"
-          className="inline-flex items-center gap-2 text-sm text-muted hover:text-forest"
+          className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold"
         >
           <ArrowLeft className="w-4 h-4" /> Sekcje
         </Link>
@@ -44,7 +44,7 @@ export default function VaultDetailPage({
     <div className="space-y-10">
       <Link
         href="/vaults"
-        className="inline-flex items-center gap-2 text-sm text-muted hover:text-forest transition-colors"
+        className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors"
       >
         <ArrowLeft className="w-4 h-4" /> Sekcje
       </Link>
@@ -56,7 +56,7 @@ export default function VaultDetailPage({
               ? "bg-gold/10 text-gold"
               : vault.color === "rose"
               ? "bg-rose/10 text-rose"
-              : "bg-forest/10 text-forest"
+              : "bg-gold/10 text-gold"
           }`}
         >
           <VaultIcon name={vault.icon} className="w-6 h-6 stroke-[1.5]" />

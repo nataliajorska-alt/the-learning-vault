@@ -351,10 +351,10 @@ export function SessionRunner({
                     disabled={revealed || submitting}
                     className={`w-full text-left px-4 py-3 rounded border text-sm transition-all duration-200 ${
                       revealed && isCorrect
-                        ? "border-forest/40 bg-forest/5"
+                        ? "border-gold/40 bg-gold/5"
                         : revealed && isPicked
                         ? "border-danger/40 bg-danger/5"
-                        : "border-line hover:border-forest/30"
+                        : "border-line hover:border-gold/30"
                     }`}
                   >
                     {opt}
@@ -375,7 +375,7 @@ export function SessionRunner({
                     onChange={(e) => setInput(e.target.value)}
                     disabled={revealed || submitting}
                     rows={3}
-                    className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-forest/40"
+                    className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40"
                     placeholder="Krótka odpowiedź..."
                   />
                 ) : (
@@ -383,7 +383,7 @@ export function SessionRunner({
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     disabled={revealed || submitting}
-                    className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-forest/40"
+                    className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40"
                     placeholder="Wpisz odpowiedź..."
                   />
                 )}
@@ -400,7 +400,7 @@ export function SessionRunner({
             <div className="mt-6 border-t border-line pt-5">
               <div className="flex items-start gap-3">
                 {lastCorrect ? (
-                  <Check className="w-5 h-5 text-forest stroke-[2] mt-0.5" />
+                  <Check className="w-5 h-5 text-gold stroke-[2] mt-0.5" />
                 ) : (
                   <X className="w-5 h-5 text-danger stroke-[2] mt-0.5" />
                 )}
@@ -465,7 +465,7 @@ export function SessionRunner({
                   className="flex items-start gap-3 border-t border-line pt-3"
                 >
                   {a.correct ? (
-                    <Check className="w-4 h-4 text-forest stroke-[2] mt-1" />
+                    <Check className="w-4 h-4 text-gold stroke-[2] mt-1" />
                   ) : (
                     <X className="w-4 h-4 text-danger stroke-[2] mt-1" />
                   )}

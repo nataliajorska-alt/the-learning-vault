@@ -89,7 +89,7 @@ export default function StudyPage() {
                 className="card opacity-50 cursor-not-allowed"
                 aria-disabled
               >
-                <Icon className="w-5 h-5 stroke-[1.5] text-forest" />
+                <Icon className="w-5 h-5 stroke-[1.5] text-gold" />
                 <div className="hero-italic text-2xl mt-4">{m.title}</div>
                 <p className="text-sm text-muted mt-2">{m.desc}</p>
               </div>
@@ -100,10 +100,10 @@ export default function StudyPage() {
               key={m.title}
               href={m.href}
               className={`card card-hover block ${
-                m.primary ? "ring-1 ring-forest/15" : ""
+                m.primary ? "ring-1 ring-gold/15" : ""
               }`}
             >
-              <Icon className="w-5 h-5 stroke-[1.5] text-forest" />
+              <Icon className="w-5 h-5 stroke-[1.5] text-gold" />
               <div className="hero-italic text-2xl mt-4">{m.title}</div>
               <p className="text-sm text-muted mt-2">{m.desc}</p>
             </Link>
@@ -119,7 +119,7 @@ export default function StudyPage() {
               <Link
                 key={v.id}
                 href={`/vaults/${v.slug}`}
-                className="text-sm border border-line rounded px-3 py-2.5 hover:border-forest/30 hover:-translate-y-0.5 transition-all duration-200"
+                className="text-sm border border-line rounded px-3 py-2.5 hover:border-gold/30 hover:-translate-y-0.5 transition-all duration-200"
               >
                 {v.name}
               </Link>

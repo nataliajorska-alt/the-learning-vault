@@ -34,10 +34,10 @@ export function Sidebar() {
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
 
   return (
-    <aside className="hidden md:flex fixed inset-y-0 left-0 w-sidebar bg-forest text-cream flex-col">
+    <aside className="hidden md:flex fixed inset-y-0 left-0 w-sidebar bg-forest text-paper flex-col">
       <div className="px-7 pt-10 pb-12">
         <div className="eyebrow text-gold-2">The Learning</div>
-        <div className="hero-italic text-3xl text-cream mt-1">Vault</div>
+        <div className="hero-italic text-3xl text-paper mt-1">Vault</div>
       </div>
 
       <nav className="flex-1 px-3">
@@ -52,8 +52,8 @@ export function Sidebar() {
               href={item.href}
               className={`group flex items-center gap-3 px-4 py-2.5 rounded text-sm transition-colors duration-200 ${
                 active
-                  ? "bg-forest-2 text-cream"
-                  : "text-cream/75 hover:text-cream hover:bg-forest-2/60"
+                  ? "bg-forest-2 text-paper"
+                  : "text-paper/75 hover:text-paper hover:bg-forest-2/60"
               }`}
             >
               <Icon className="w-4 h-4 stroke-[1.5]" />
@@ -72,10 +72,10 @@ export function Sidebar() {
           {streak} {streak === 1 ? "dzień" : "dni"}
         </div>
         <div className="flex items-center justify-between mt-4">
-          <div className="text-xs text-cream/60">{displayName}</div>
+          <div className="text-xs text-paper/60">{displayName}</div>
           <button
             onClick={() => signOut()}
-            className="text-cream/40 hover:text-cream/80 transition-colors"
+            className="text-paper/40 hover:text-paper/80 transition-colors"
             aria-label="Wyloguj"
           >
             <LogOut className="w-3.5 h-3.5 stroke-[1.5]" />

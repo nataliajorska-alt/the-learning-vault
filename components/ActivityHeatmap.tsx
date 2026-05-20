@@ -90,11 +90,11 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
   const height = labelH + 7 * (cell + gap);
 
   function shade(count: number): string {
-    if (count === 0) return "rgba(31,58,46,0.06)";
+    if (count === 0) return "rgba(232,223,204,0.05)";
     const t = Math.min(1, count / Math.max(1, maxCount));
-    // forest with varying alpha; bias intensity so 1 session is visible
+    // brass with varying alpha; bias intensity so 1 session is visible
     const alpha = 0.25 + 0.7 * t;
-    return `rgba(31,58,46,${alpha.toFixed(2)})`;
+    return `rgba(184,146,77,${alpha.toFixed(2)})`;
   }
 
   return (
@@ -111,7 +111,7 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
             x={labelW + m.weekIdx * (cell + gap)}
             y={10}
             fontSize={9}
-            fill="#5C6B5F"
+            fill="#9AA3A8"
             letterSpacing="0.1em"
           >
             {m.label}
@@ -125,7 +125,7 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
               x={0}
               y={labelH + i * (cell + gap) + cell - 2}
               fontSize={9}
-              fill="#5C6B5F"
+              fill="#9AA3A8"
             >
               {d}
             </text>

@@ -137,7 +137,7 @@ export function ErrorsQuizRunner() {
     <div className="space-y-10">
       <Link
         href="/errors"
-        className="inline-flex items-center gap-2 text-sm text-muted hover:text-forest transition-colors"
+        className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors"
       >
         <ArrowLeft className="w-4 h-4" /> Error Vault
       </Link>
@@ -166,7 +166,7 @@ export function ErrorsQuizRunner() {
             </div>
           </div>
 
-          <div className="eyebrow text-forest/60">{current.vaultName}</div>
+          <div className="eyebrow text-gold/60">{current.vaultName}</div>
           <p className="hero-italic text-2xl text-ink leading-snug mt-2">
             {current.context}
           </p>
@@ -188,7 +188,7 @@ export function ErrorsQuizRunner() {
               onChange={(e) => setInput(e.target.value)}
               disabled={revealed || submitting}
               autoFocus
-              className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-forest/40"
+              className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40"
               placeholder="Wpisz poprawną wersję..."
             />
             {!revealed && (
@@ -206,7 +206,7 @@ export function ErrorsQuizRunner() {
             <div className="mt-6 border-t border-line pt-5">
               <div className="flex items-start gap-3">
                 {lastCorrect ? (
-                  <Check className="w-5 h-5 text-forest stroke-[2] mt-0.5" />
+                  <Check className="w-5 h-5 text-gold stroke-[2] mt-0.5" />
                 ) : (
                   <X className="w-5 h-5 text-danger stroke-[2] mt-0.5" />
                 )}
@@ -257,7 +257,7 @@ export function ErrorsQuizRunner() {
                   className="flex items-start gap-3 border-t border-line pt-3"
                 >
                   {r.correct ? (
-                    <Check className="w-4 h-4 text-forest stroke-[2] mt-1" />
+                    <Check className="w-4 h-4 text-gold stroke-[2] mt-1" />
                   ) : (
                     <X className="w-4 h-4 text-danger stroke-[2] mt-1" />
                   )}

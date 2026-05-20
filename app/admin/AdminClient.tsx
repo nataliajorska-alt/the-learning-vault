@@ -194,13 +194,13 @@ export function AdminClient() {
       </header>
 
       {saved && (
-        <div className="card bg-forest/5 border-forest/20 flex items-center gap-3">
-          <Check className="w-5 h-5 text-forest" />
+        <div className="card bg-gold/5 border-gold/20 flex items-center gap-3">
+          <Check className="w-5 h-5 text-gold" />
           <div>
             <div className="hero-italic text-xl">Zapisane.</div>
             <Link
               href={`/study/session/new?topic=${saved.topicId}`}
-              className="text-sm text-forest underline mt-1 inline-block"
+              className="text-sm text-gold underline mt-1 inline-block"
             >
               Zrób od razu sesję 15 min →
             </Link>
@@ -215,7 +215,7 @@ export function AdminClient() {
             <select
               value={vaultId}
               onChange={(e) => setVaultId(e.target.value)}
-              className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-forest/40"
+              className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
             >
               <option value="">Wybierz...</option>
               {vaults?.map((v) => (
@@ -232,7 +232,7 @@ export function AdminClient() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={10}
-              className="mt-2 w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-forest/40 font-mono leading-relaxed"
+              className="mt-2 w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40 font-mono leading-relaxed"
               placeholder="Wklej notatki z lekcji, fragmentu książki, filmu, podcastu..."
             />
             <div className="text-xs text-muted mt-2">
@@ -263,7 +263,7 @@ export function AdminClient() {
                 onChange={(e) =>
                   setSuggestion({ ...suggestion, title: e.target.value })
                 }
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 hero-italic text-2xl bg-cream focus:outline-none focus:border-forest/40"
+                className="mt-2 w-full border border-line rounded px-4 py-2.5 hero-italic text-2xl bg-cream focus:outline-none focus:border-gold/40"
               />
             </div>
             <div>
@@ -274,7 +274,7 @@ export function AdminClient() {
                   setSuggestion({ ...suggestion, summary: e.target.value })
                 }
                 rows={3}
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-forest/40"
+                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
               />
             </div>
             <div>
@@ -285,7 +285,7 @@ export function AdminClient() {
                   setSuggestion({ ...suggestion, theory: e.target.value })
                 }
                 rows={6}
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-forest/40"
+                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
               />
             </div>
           </div>
@@ -302,7 +302,7 @@ export function AdminClient() {
                   <X className="w-4 h-4" />
                 </button>
                 <div className="flex items-center gap-3">
-                  <span className="eyebrow text-forest/60">#{i + 1}</span>
+                  <span className="eyebrow text-gold/60">#{i + 1}</span>
                   <span className="text-[10px] uppercase tracking-eyebrow text-gold bg-gold/10 border border-gold/20 rounded-full px-2 py-0.5">
                     {q.type}
                   </span>
@@ -311,7 +311,7 @@ export function AdminClient() {
                   value={q.text}
                   onChange={(e) => updateQuestion(q.id, { text: e.target.value })}
                   rows={2}
-                  className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-forest/40"
+                  className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
                 />
                 {q.options && (
                   <div className="space-y-1.5">
@@ -323,7 +323,7 @@ export function AdminClient() {
                           onChange={() =>
                             updateQuestion(q.id, { correctAnswer: oi })
                           }
-                          className="accent-forest"
+                          className="accent-gold"
                         />
                         <input
                           value={opt}
@@ -332,7 +332,7 @@ export function AdminClient() {
                             next[oi] = e.target.value;
                             updateQuestion(q.id, { options: next });
                           }}
-                          className="flex-1 border border-line rounded px-3 py-1.5 text-xs bg-cream focus:outline-none focus:border-forest/40"
+                          className="flex-1 border border-line rounded px-3 py-1.5 text-xs bg-cream focus:outline-none focus:border-gold/40"
                         />
                       </div>
                     ))}
@@ -345,7 +345,7 @@ export function AdminClient() {
                       updateQuestion(q.id, { correctAnswer: e.target.value })
                     }
                     placeholder="Poprawna odpowiedź"
-                    className="w-full border border-line rounded px-3 py-2 text-xs bg-cream focus:outline-none focus:border-forest/40"
+                    className="w-full border border-line rounded px-3 py-2 text-xs bg-cream focus:outline-none focus:border-gold/40"
                   />
                 )}
                 <input
@@ -354,7 +354,7 @@ export function AdminClient() {
                     updateQuestion(q.id, { explanation: e.target.value })
                   }
                   placeholder="Wyjaśnienie..."
-                  className="w-full border border-line rounded px-3 py-2 text-xs text-muted bg-cream focus:outline-none focus:border-forest/40"
+                  className="w-full border border-line rounded px-3 py-2 text-xs text-muted bg-cream focus:outline-none focus:border-gold/40"
                 />
               </div>
             ))}
@@ -372,7 +372,7 @@ export function AdminClient() {
               }
               rows={2}
               placeholder="Krótko (30s)..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-forest/40"
+              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
             />
             <textarea
               value={suggestion.salon.expand}
@@ -384,7 +384,7 @@ export function AdminClient() {
               }
               rows={3}
               placeholder="Rozbudowanie (60s)..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-forest/40"
+              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
             />
             <textarea
               value={suggestion.salon.trap}
@@ -396,7 +396,7 @@ export function AdminClient() {
               }
               rows={2}
               placeholder="Pułapka..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-forest/40"
+              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
             />
           </div>
 

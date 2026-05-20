@@ -7,7 +7,7 @@ interface Props {
 
 export function StatusDot({ status }: Props) {
   if (status === "mastered") {
-    return <Check className="w-3.5 h-3.5 text-forest stroke-[2]" />;
+    return <Check className="w-3.5 h-3.5 text-gold stroke-[2]" />;
   }
   const color =
     status === "due"

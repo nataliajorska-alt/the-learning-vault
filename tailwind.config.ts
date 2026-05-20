@@ -9,21 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ivory: "#F7F2E8",
-        cream: "#FBF8F2",
+        // Midnight Library palette
+        ivory: "#0E1626",        // main body bg (granat ink)
+        cream: "#1A2438",        // card / surface bg
+        paper: "#E8DFCC",        // light cream text on dark
         forest: {
-          DEFAULT: "#1F3A2E",
-          2: "#2A4A3C",
+          DEFAULT: "#0A111E",    // deepest surface (top nav, modals)
+          2: "#243049",          // hover state
         },
         gold: {
-          DEFAULT: "#B8924D",
-          2: "#C9A961",
+          DEFAULT: "#B8924D",    // brass accent
+          2: "#C9A961",          // brass hover
         },
-        ink: "#1F2E25",
-        muted: "#5C6B5F",
-        line: "rgba(31,58,46,0.08)",
-        rose: "#A8746A",
-        danger: "#8B3A3A",
+        ink: "#E8DFCC",          // primary body text (same as paper)
+        muted: "#9AA3A8",        // muted/secondary text
+        line: "rgba(232,223,204,0.10)",  // borders, subtle on dark
+        rose: "#C9622F",         // burnt orange secondary accent
+        danger: "#D86056",       // soft warm red for dark mode
       },
       fontFamily: {
         display: ["var(--font-cormorant)", "Georgia", "serif"],
@@ -36,8 +38,8 @@ const config: Config = {
         DEFAULT: "4px",
       },
       boxShadow: {
-        lift: "0 8px 24px -12px rgba(31,58,46,0.18)",
-        soft: "0 2px 8px -2px rgba(31,58,46,0.08)",
+        lift: "0 12px 32px -16px rgba(0,0,0,0.4)",
+        soft: "0 4px 12px -4px rgba(0,0,0,0.25)",
       },
       transitionTimingFunction: {
         gentle: "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -47,6 +49,7 @@ const config: Config = {
       },
       spacing: {
         sidebar: "256px",
+        topnav: "64px",
       },
     },
   },

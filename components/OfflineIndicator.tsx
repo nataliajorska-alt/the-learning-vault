@@ -21,7 +21,7 @@ export function OfflineIndicator() {
   if (online) return null;
 
   return (
-    <div className="fixed top-0 inset-x-0 z-50 bg-forest/95 text-cream text-xs tracking-wide py-1.5 px-4 flex items-center justify-center gap-2 backdrop-blur">
+    <div className="fixed top-0 inset-x-0 z-50 bg-forest/95 text-paper text-xs tracking-wide py-1.5 px-4 flex items-center justify-center gap-2 backdrop-blur">
       <WifiOff className="w-3 h-3 stroke-[1.5]" />
       Offline — pracujesz na podręcznej kopii.
     </div>

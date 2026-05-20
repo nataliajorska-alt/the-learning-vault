@@ -99,7 +99,7 @@ export default function SalonPage() {
                 <p className="text-muted text-sm mt-3 max-w-xl">
                   {topicOfDay.phrase.short}
                 </p>
-                <div className="flex items-center gap-2 text-forest text-sm mt-5 group-hover:gap-3 transition-all">
+                <div className="flex items-center gap-2 text-gold text-sm mt-5 group-hover:gap-3 transition-all">
                   Otwórz <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>
@@ -123,7 +123,7 @@ export default function SalonPage() {
                     <p className="text-sm text-muted mt-2 line-clamp-2">
                       {e.phrase.short}
                     </p>
-                    <div className="flex items-center gap-2 text-forest text-xs mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-2 text-gold text-xs mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
                       3 zdania <ArrowRight className="w-3 h-3" />
                     </div>
                   </Link>

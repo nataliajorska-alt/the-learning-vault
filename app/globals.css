@@ -4,8 +4,8 @@
 
 @layer base {
   html, body {
-    background-color: #F7F2E8;
-    color: #1F2E25;
+    background-color: #0E1626;
+    color: #E8DFCC;
     font-family: var(--font-manrope), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -18,7 +18,23 @@
   }
 
   ::selection {
-    background-color: rgba(184, 146, 77, 0.25);
+    background-color: rgba(184, 146, 77, 0.35);
+    color: #E8DFCC;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(232, 223, 204, 0.08);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 223, 204, 0.15);
   }
 }
 
@@ -32,15 +48,15 @@
   }
 
   .card-hover {
-    @apply hover:-translate-y-0.5 hover:shadow-lift;
+    @apply hover:-translate-y-0.5 hover:shadow-lift hover:border-gold/20;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-forest text-cream px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:bg-forest-2 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-ivory px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:bg-gold-2 hover:-translate-y-0.5;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-line text-ink px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:border-forest/20 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 border border-line text-ink px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:border-gold/40 hover:text-gold hover:-translate-y-0.5;
   }
 
   .dot {
@@ -63,7 +79,7 @@
 
 .bg-grain {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(31,58,46,0.02) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(232,223,204,0.025) 1px, transparent 0);
   background-size: 24px 24px;
 }
 

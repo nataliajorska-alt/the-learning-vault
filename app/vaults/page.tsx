@@ -77,13 +77,13 @@ export default function VaultsPage() {
                       ? "bg-gold/10 text-gold"
                       : v.color === "rose"
                       ? "bg-rose/10 text-rose"
-                      : "bg-forest/10 text-forest"
+                      : "bg-gold/10 text-gold"
                   }`}
                 >
                   <VaultIcon name={v.icon} />
                 </div>
                 {dueCount > 0 && (
-                  <span className="text-[10px] uppercase tracking-eyebrow text-forest bg-gold/20 border border-gold/30 rounded-full px-2.5 py-1">
+                  <span className="text-[10px] uppercase tracking-eyebrow text-gold bg-gold/20 border border-gold/30 rounded-full px-2.5 py-1">
                     {dueCount} dziś
                   </span>
                 )}

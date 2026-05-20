@@ -188,11 +188,11 @@ export default function StatsPage() {
             <div className="flex items-center gap-3 mt-5 text-xs text-muted">
               <span>mniej</span>
               <div className="flex gap-1">
-                {[0.06, 0.3, 0.55, 0.8, 0.95].map((a) => (
+                {[0.05, 0.3, 0.55, 0.8, 0.95].map((a) => (
                   <span
                     key={a}
                     className="inline-block w-2.5 h-2.5 rounded-[2px]"
-                    style={{ background: `rgba(31,58,46,${a})` }}
+                    style={{ background: `rgba(184,146,77,${a})` }}
                   />
                 ))}
               </div>
