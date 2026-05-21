@@ -4,42 +4,73 @@ import { getAnthropic, MODEL_GENERATE } from "@/lib/anthropic";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const SYSTEM_PROMPT = `Jesteś asystentem nauki Natalii. Ona uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Cel: rozumienie, nie pamięciówka. Ton: konkretny, elegancki, bez infantylizacji, bez wykrzykników, bez emoji. Po polsku.
+// ---- system prompts ------------------------------------------------------
 
-Z notatek użytkowniczki wygeneruj strukturę nauki. Wywołaj narzędzie save_topic z odpowiednimi argumentami.
+const META_PROMPT = `Jesteś asystentem nauki Natalii. Uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Ton: konkretny, elegancki, bez wykrzykników, bez emoji. Po polsku.
 
-WAŻNE — questions ARRAY MUSI zawierać DOKŁADNIE 8 obiektów-pytań. Nigdy nie zwracaj pustego array. To najważniejsze pole w odpowiedzi.
+Z notatek użytkowniczki wygeneruj metadane tematu i frazy do Salonu. Wywołaj save_meta.
 
-Wymagania pytań:
-- DOKŁADNIE 8 pytań w array: 3 ABC, 2 fill, 2 open, 1 spot_error
-- Dla typu "abc" i "spot_error": pole correctAnswer = liczba (indeks 0-based z options). Pole options = lista 3-4 stringów
-- Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null lub pominięte
-- W spot_error opcje to fragmenty zdania + ostatnia opcja "wszystko OK"
-- "explanation": jedno krótkie zdanie, najlepiej w stylu "pułapka jest taka..."
-
-Inne pola:
+Wymagania:
 - title: 3-6 słów
-- summary: 3-4 zdania, krótkie
-- theory: 1-2 paragrafy, ale POMIŃ jeśli musisz wybrać między teorią a pytaniami — pytania ważniejsze
-- salon.short: 2-3 zdania (30s), salon.expand: 60s, salon.trap: czego nie mówić
+- summary: 3-4 zdania w stylu eleganckim
+- theory: 1-2 paragrafy treści teoretycznej (proza, bez bullet points)
+- salon.short: 2-3 zdania (30 sekund mówienia przy stole)
+- salon.expand: 60 sekund rozwinięcia
+- salon.trap: czego nie mówić, w co nie wchodzić
 
-Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty.`;
+Przerób treść notatek na własne sformułowania, ale zachowaj fakty.`;
 
-const SAVE_TOPIC_TOOL = {
-  name: "save_topic",
-  description:
-    "Zapisuje wygenerowany temat nauki. WAŻNE: questions array musi mieć dokładnie 8 obiektów, nigdy pusty.",
+const QUESTIONS_PROMPT = `Jesteś asystentem nauki Natalii. Uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Ton: konkretny, elegancki, bez emoji. Po polsku.
+
+Wywołaj save_questions z DOKŁADNIE 8 pytaniami testowymi do notatek:
+- 3 pytania typu "abc" (jednokrotny wybór z 3 opcji)
+- 2 pytania typu "fill" (uzupełnij lukę)
+- 2 pytania typu "open" (krótka odpowiedź otwarta)
+- 1 pytanie typu "spot_error" (znajdź błąd w zdaniu)
+
+Zasady:
+- Dla abc i spot_error: correctAnswer = liczba (indeks 0-based z options), options = lista stringów (dla spot_error ostatnia opcja "wszystko OK")
+- Dla fill i open: correctAnswer = string (wzorcowa odpowiedź), options pomiń
+- explanation: jedno krótkie zdanie, najlepiej "pułapka jest taka..."
+- Pytania mają sprawdzać ROZUMIENIE i pułapki, nie pamiętanie dat`;
+
+// ---- tool schemas --------------------------------------------------------
+
+const SAVE_META_TOOL = {
+  name: "save_meta",
+  description: "Zapisuje metadane tematu i frazy do Salonu.",
   input_schema: {
     type: "object" as const,
     properties: {
-      // questions umieszczone PIERWSZE — żeby model wypełnił najważniejsze pole
-      // zanim ewentualnie ucznie się max_tokens
+      title: { type: "string" },
+      summary: { type: "string" },
+      theory: { type: "string" },
+      salon: {
+        type: "object",
+        properties: {
+          short: { type: "string" },
+          expand: { type: "string" },
+          trap: { type: "string" },
+        },
+        required: ["short", "expand", "trap"],
+      },
+    },
+    required: ["title", "summary", "theory", "salon"],
+  },
+};
+
+const SAVE_QUESTIONS_TOOL = {
+  name: "save_questions",
+  description:
+    "Zapisuje 8 pytań testowych. questions array MUSI zawierać dokładnie 8 obiektów, nigdy pusty.",
+  input_schema: {
+    type: "object" as const,
+    properties: {
       questions: {
         type: "array",
         minItems: 8,
         maxItems: 8,
-        description:
-          "DOKŁADNIE 8 obiektów-pytań. 3 ABC, 2 fill, 2 open, 1 spot_error. Nigdy pusty array.",
+        description: "Dokładnie 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error",
         items: {
           type: "object",
           properties: {
@@ -51,44 +82,21 @@ const SAVE_TOPIC_TOOL = {
             options: {
               type: "array",
               items: { type: "string" },
-              description:
-                "Lista opcji dla ABC i spot_error. Dla fill/open pomiń to pole.",
             },
             correctAnswer: {
               type: ["string", "number"],
-              description:
-                "Liczba (indeks 0-based) dla ABC/spot_error. String dla fill/open.",
             },
             explanation: { type: "string" },
           },
           required: ["type", "text", "correctAnswer", "explanation"],
         },
       },
-      title: {
-        type: "string",
-        description: "Krótki tytuł tematu, 3-6 słów",
-      },
-      summary: {
-        type: "string",
-        description: "3-4 zdania podsumowania w stylu eleganckim",
-      },
-      salon: {
-        type: "object",
-        properties: {
-          short: { type: "string", description: "2-3 zdania, 30s mówienia" },
-          expand: { type: "string", description: "60s rozwinięcia" },
-          trap: { type: "string", description: "Czego nie mówić" },
-        },
-        required: ["short", "expand", "trap"],
-      },
-      theory: {
-        type: "string",
-        description: "1-2 paragrafy treści teoretycznej, proza",
-      },
     },
-    required: ["title", "summary", "theory", "questions", "salon"],
+    required: ["questions"],
   },
 };
+
+// ---- handler -------------------------------------------------------------
 
 interface GenerateRequest {
   notes: string;
@@ -106,66 +114,100 @@ export async function POST(req: Request) {
   const { notes, vaultName } = body;
   if (!notes || notes.trim().length < 20) {
     return NextResponse.json(
-      { error: "Notatki za krótkie. Wklej co najmniej kilka zdań." },
+      { error: "Notatki za krótkie." },
       { status: 400 }
     );
   }
 
   const client = getAnthropic();
+  const userContent = `Sekcja: ${vaultName}\n\nNotatki:\n${notes}`;
 
   try {
-    const response = await client.messages.create({
-      model: MODEL_GENERATE,
-      max_tokens: 16384,
-      system: [
-        {
-          type: "text",
-          text: SYSTEM_PROMPT,
-          cache_control: { type: "ephemeral" },
-        },
-      ],
-      tools: [SAVE_TOPIC_TOOL],
-      tool_choice: { type: "tool", name: "save_topic" },
-      messages: [
-        {
-          role: "user",
-          content: `Sekcja: ${vaultName}\n\nNotatki:\n${notes}`,
-        },
-      ],
-    });
+    // Parallel calls — meta and questions independently.
+    // Each call has smaller scope -> fits in 60s window comfortably.
+    const [metaResp, questionsResp] = await Promise.all([
+      client.messages.create({
+        model: MODEL_GENERATE,
+        max_tokens: 4096,
+        system: [
+          {
+            type: "text",
+            text: META_PROMPT,
+            cache_control: { type: "ephemeral" },
+          },
+        ],
+        tools: [SAVE_META_TOOL],
+        tool_choice: { type: "tool", name: "save_meta" },
+        messages: [{ role: "user", content: userContent }],
+      }),
+      client.messages.create({
+        model: MODEL_GENERATE,
+        max_tokens: 8192,
+        system: [
+          {
+            type: "text",
+            text: QUESTIONS_PROMPT,
+            cache_control: { type: "ephemeral" },
+          },
+        ],
+        tools: [SAVE_QUESTIONS_TOOL],
+        tool_choice: { type: "tool", name: "save_questions" },
+        messages: [{ role: "user", content: userContent }],
+      }),
+    ]);
 
-    const toolUse = response.content.find((b) => b.type === "tool_use");
-    if (!toolUse || toolUse.type !== "tool_use") {
+    const metaTool = metaResp.content.find((b) => b.type === "tool_use");
+    const questionsTool = questionsResp.content.find(
+      (b) => b.type === "tool_use"
+    );
+
+    if (!metaTool || metaTool.type !== "tool_use") {
       console.error(
-        "generate: brak tool_use w odpowiedzi",
-        JSON.stringify(response.content).slice(0, 2000)
+        "generate: meta tool_use missing, stop=" + metaResp.stop_reason
       );
       return NextResponse.json(
-        {
-          error:
-            "Model nie wywołał narzędzia. Stop reason: " +
-            (response.stop_reason ?? "unknown"),
-        },
+        { error: "Model nie wygenerował metadanych." },
+        { status: 502 }
+      );
+    }
+    if (!questionsTool || questionsTool.type !== "tool_use") {
+      console.error(
+        "generate: questions tool_use missing, stop=" +
+          questionsResp.stop_reason
+      );
+      return NextResponse.json(
+        { error: "Model nie wygenerował pytań." },
         { status: 502 }
       );
     }
 
-    const input = toolUse.input as Record<string, unknown>;
-    const qCount = Array.isArray(input.questions)
-      ? input.questions.length
-      : 0;
-    console.log("generate qCount=" + qCount);
-    console.log("generate stop=" + response.stop_reason);
-    console.log("generate outputTokens=" + response.usage.output_tokens);
-    console.log("generate inputTokens=" + response.usage.input_tokens);
-    if (qCount > 0 && Array.isArray(input.questions)) {
-      const firstQ = input.questions[0] as Record<string, unknown>;
-      console.log("generate firstQ=" + JSON.stringify(firstQ).slice(0, 400));
-    }
+    const meta = metaTool.input as Record<string, unknown>;
+    const questionsInput = questionsTool.input as Record<string, unknown>;
+    const questions = Array.isArray(questionsInput.questions)
+      ? questionsInput.questions
+      : [];
+
+    console.log("generate qCount=" + questions.length);
+    console.log("generate metaStop=" + metaResp.stop_reason);
+    console.log("generate qStop=" + questionsResp.stop_reason);
+    console.log(
+      "generate outputTokens meta=" +
+        metaResp.usage.output_tokens +
+        " q=" +
+        questionsResp.usage.output_tokens
+    );
+
+    const suggestion = {
+      ...meta,
+      questions,
+    };
 
     return NextResponse.json({
-      suggestion: toolUse.input,
-      usage: response.usage,
+      suggestion,
+      usage: {
+        meta: metaResp.usage,
+        questions: questionsResp.usage,
+      },
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
