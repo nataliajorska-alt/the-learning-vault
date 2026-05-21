@@ -136,6 +136,18 @@ export async function POST(req: Request) {
       );
     }
 
+    const input = toolUse.input as Record<string, unknown>;
+    const qCount = Array.isArray(input.questions)
+      ? input.questions.length
+      : 0;
+    console.log(
+      `generate: tool_use OK, questions=${qCount}, stop=${response.stop_reason}, inputTokens=${response.usage.input_tokens}, outputTokens=${response.usage.output_tokens}`
+    );
+    if (qCount > 0 && Array.isArray(input.questions)) {
+      const firstQ = input.questions[0] as Record<string, unknown>;
+      console.log("generate: first question shape:", JSON.stringify(firstQ));
+    }
+
     return NextResponse.json({
       suggestion: toolUse.input,
       usage: response.usage,

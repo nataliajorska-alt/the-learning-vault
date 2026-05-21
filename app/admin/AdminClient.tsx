@@ -33,36 +33,96 @@ function uid() {
   return Math.random().toString(36).slice(2, 9);
 }
 
+function coerceQuestionType(raw: unknown): QuestionType | null {
+  if (typeof raw !== "string") return null;
+  const t = raw.toLowerCase().replace(/[-\s]/g, "_");
+  if (t === "abc" || t === "multiple_choice" || t === "choice") return "abc";
+  if (
+    t === "fill" ||
+    t === "fill_in" ||
+    t === "fill_blank" ||
+    t === "fill_in_the_blank"
+  )
+    return "fill";
+  if (
+    t === "open" ||
+    t === "open_ended" ||
+    t === "essay" ||
+    t === "short_answer"
+  )
+    return "open";
+  if (
+    t === "spot_error" ||
+    t === "find_error" ||
+    t === "error" ||
+    t === "spot"
+  )
+    return "spot_error";
+  return null;
+}
+
 function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
-  if (!raw || typeof raw !== "object") return null;
-  const r = raw as Record<string, unknown>;
-  if (typeof r.title !== "string" || typeof r.summary !== "string")
+  console.info("[AdminClient] raw suggestion from API:", raw);
+  if (!raw || typeof raw !== "object") {
+    console.warn("normalizeSuggestion: raw not object", raw);
     return null;
-  if (typeof r.theory !== "string") return null;
+  }
+  const r = raw as Record<string, unknown>;
+  if (typeof r.title !== "string" || typeof r.summary !== "string") {
+    console.warn("normalizeSuggestion: missing title/summary", r);
+    return null;
+  }
+  if (typeof r.theory !== "string") {
+    console.warn("normalizeSuggestion: missing theory", r);
+    return null;
+  }
   const rawQuestions = Array.isArray(r.questions) ? r.questions : [];
+  console.info(
+    `[AdminClient] ${rawQuestions.length} raw questions from model`
+  );
+
   const questions: EditableQuestion[] = rawQuestions
-    .map((q: unknown) => {
-      if (!q || typeof q !== "object") return null;
+    .map((q: unknown, idx: number) => {
+      if (!q || typeof q !== "object") {
+        console.warn(`question ${idx}: not object`, q);
+        return null;
+      }
       const qr = q as Record<string, unknown>;
-      const type = qr.type as QuestionType;
-      if (!["abc", "fill", "open", "spot_error"].includes(type)) return null;
+      const type = coerceQuestionType(qr.type);
+      if (!type) {
+        console.warn(`question ${idx}: unrecognised type`, qr.type, qr);
+        return null;
+      }
       const options =
         Array.isArray(qr.options) && qr.options.every((o) => typeof o === "string")
           ? (qr.options as string[])
           : null;
+
+      let correctAnswer: string | number = "";
+      if (
+        typeof qr.correctAnswer === "string" ||
+        typeof qr.correctAnswer === "number"
+      ) {
+        correctAnswer = qr.correctAnswer;
+      } else if (typeof qr.correctAnswer === "boolean") {
+        correctAnswer = String(qr.correctAnswer);
+      }
+
       return {
         id: uid(),
         type,
         text: typeof qr.text === "string" ? qr.text : "",
         options,
-        correctAnswer:
-          typeof qr.correctAnswer === "string" || typeof qr.correctAnswer === "number"
-            ? qr.correctAnswer
-            : "",
-        explanation: typeof qr.explanation === "string" ? qr.explanation : "",
+        correctAnswer,
+        explanation:
+          typeof qr.explanation === "string" ? qr.explanation : "",
       };
     })
     .filter((q): q is EditableQuestion => q !== null);
+
+  console.info(
+    `[AdminClient] ${questions.length} questions passed validation`
+  );
 
   const salonRaw = (r.salon ?? {}) as Record<string, unknown>;
   const salon = {
