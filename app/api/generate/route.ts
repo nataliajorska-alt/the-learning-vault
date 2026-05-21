@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { getAnthropic, MODEL_GENERATE } from "@/lib/anthropic";
+import {
+  getAnthropic,
+  MODEL_GENERATE_META,
+  MODEL_GENERATE_QUESTIONS,
+} from "@/lib/anthropic";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -20,19 +24,17 @@ Wymagania:
 
 Przerób treść notatek na własne sformułowania, ale zachowaj fakty.`;
 
-const QUESTIONS_PROMPT = `Jesteś asystentem nauki Natalii. Uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Ton: konkretny, elegancki, bez emoji. Po polsku.
+const QUESTIONS_PROMPT = `Twoje zadanie: wygeneruj pytania testowe do notatek. Wywołaj save_questions z minimum 5, maksimum 8 pytaniami. Po polsku.
 
-Wywołaj save_questions z DOKŁADNIE 8 pytaniami testowymi do notatek:
-- 3 pytania typu "abc" (jednokrotny wybór z 3 opcji)
-- 2 pytania typu "fill" (uzupełnij lukę)
-- 2 pytania typu "open" (krótka odpowiedź otwarta)
-- 1 pytanie typu "spot_error" (znajdź błąd w zdaniu)
+Typy pytań (wybierz mix):
+- "abc": pytanie z 3 opcjami, correctAnswer = liczba 0/1/2 (indeks options)
+- "fill": uzupełnij lukę, correctAnswer = string z brakującym słowem
+- "open": krótka odpowiedź otwarta, correctAnswer = string ze wzorcową odpowiedzią
 
-Zasady:
-- Dla abc i spot_error: correctAnswer = liczba (indeks 0-based z options), options = lista stringów (dla spot_error ostatnia opcja "wszystko OK")
-- Dla fill i open: correctAnswer = string (wzorcowa odpowiedź), options pomiń
-- explanation: jedno krótkie zdanie, najlepiej "pułapka jest taka..."
-- Pytania mają sprawdzać ROZUMIENIE i pułapki, nie pamiętanie dat`;
+Każde pytanie ma: type, text, correctAnswer, explanation (jedno krótkie zdanie).
+Dla abc dodatkowo: options (lista 3 stringów).
+
+Pytania mają sprawdzać ROZUMIENIE, nie pamięć dat. Lepiej 5 dobrych pytań niż 0 idealnych.`;
 
 // ---- tool schemas --------------------------------------------------------
 
@@ -61,22 +63,21 @@ const SAVE_META_TOOL = {
 
 const SAVE_QUESTIONS_TOOL = {
   name: "save_questions",
-  description:
-    "Zapisuje 8 pytań testowych. questions array MUSI zawierać dokładnie 8 obiektów, nigdy pusty.",
+  description: "Zapisuje pytania testowe (5-8 sztuk).",
   input_schema: {
     type: "object" as const,
     properties: {
       questions: {
         type: "array",
-        minItems: 8,
+        minItems: 5,
         maxItems: 8,
-        description: "Dokładnie 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error",
+        description: "Lista 5-8 pytań różnych typów: abc, fill, open",
         items: {
           type: "object",
           properties: {
             type: {
               type: "string",
-              enum: ["abc", "fill", "open", "spot_error"],
+              enum: ["abc", "fill", "open"],
             },
             text: { type: "string" },
             options: {
@@ -127,7 +128,7 @@ export async function POST(req: Request) {
     // Each call has smaller scope -> fits in 60s window comfortably.
     const [metaResp, questionsResp] = await Promise.all([
       client.messages.create({
-        model: MODEL_GENERATE,
+        model: MODEL_GENERATE_META,
         max_tokens: 4096,
         system: [
           {
@@ -141,8 +142,8 @@ export async function POST(req: Request) {
         messages: [{ role: "user", content: userContent }],
       }),
       client.messages.create({
-        model: MODEL_GENERATE,
-        max_tokens: 8192,
+        model: MODEL_GENERATE_QUESTIONS,
+        max_tokens: 4096,
         system: [
           {
             type: "text",
@@ -190,12 +191,20 @@ export async function POST(req: Request) {
     console.log("generate qCount=" + questions.length);
     console.log("generate metaStop=" + metaResp.stop_reason);
     console.log("generate qStop=" + questionsResp.stop_reason);
-    console.log(
-      "generate outputTokens meta=" +
-        metaResp.usage.output_tokens +
-        " q=" +
-        questionsResp.usage.output_tokens
-    );
+    console.log("generate metaTokens=" + metaResp.usage.output_tokens);
+    console.log("generate qTokens=" + questionsResp.usage.output_tokens);
+
+    if (questions.length === 0) {
+      // Sonnet/Haiku zwrócił 0 pytań — zaloguj surowy input żeby zdiagnozować
+      console.log(
+        "generate qRawInput=" +
+          JSON.stringify(questionsInput).slice(0, 1500)
+      );
+      console.log(
+        "generate qRawContent=" +
+          JSON.stringify(questionsResp.content).slice(0, 1500)
+      );
+    }
 
     const suggestion = {
       ...meta,
