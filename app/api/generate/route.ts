@@ -4,65 +4,70 @@ import { getAnthropic, MODEL_GENERATE } from "@/lib/anthropic";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const SYSTEM_PROMPT = `Jesteś asystentem nauki Natalii. Uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Ton: konkretny, elegancki, bez wykrzykników, bez emoji. Po polsku.
+const SYSTEM_PROMPT = `Jesteś asystentem nauki Natalii. Ona uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Cel: rozumienie, nie pamięciówka. Ton: konkretny, elegancki, bez infantylizacji, bez wykrzykników, bez emoji. Po polsku.
 
-Z notatek użytkowniczki wygeneruj strukturę nauki — wywołaj narzędzie save_topic.
+Z notatek użytkowniczki wygeneruj strukturę nauki. Wywołaj narzędzie save_topic z odpowiednimi argumentami.
 
-Pytania:
-- około 6-8 sztuk różnych typów (abc, fill, open)
-- abc: 3 opcje, correctAnswer to indeks 0/1/2
-- fill: uzupełnij lukę, correctAnswer to brakujące słowo
-- open: krótka odpowiedź, correctAnswer to wzorcowa odpowiedź
-- Każde pytanie ma explanation — jedno krótkie zdanie ze sednem ("pułapka jest taka...")
-- Pytania sprawdzają rozumienie i niuanse, nie pamiętanie dat
-
-Salon (3 zdania do rozmowy przy stole):
-- short: 2-3 zdania (30s mówienia)
-- expand: co dodać jak ktoś dopyta (60s)
-- trap: czego nie mówić
-
-Theory: 1-2 paragrafy prozy. Title: 3-6 słów. Summary: 3-4 zdania.
-
-Przerób notatki własnymi słowami, zachowaj fakty.`;
+Wymagania:
+- DOKŁADNIE 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error
+- Dla typu "abc" i "spot_error": pole correctAnswer = liczba (indeks 0-based z options). Pole options = lista 3-4 stringów
+- Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null
+- W spot_error opcje to fragmenty zdania + ostatnia opcja "wszystko OK"
+- "explanation": jedno krótkie zdanie, najlepiej w stylu "pułapka jest taka..."
+- Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty
+- Salon: short = 2-3 zdania (30s mówienia), expand = co dodać (60s), trap = czego nie mówić`;
 
 const SAVE_TOPIC_TOOL = {
   name: "save_topic",
-  description: "Zapisuje wygenerowany temat z pytaniami i frazami do Salonu.",
+  description:
+    "Zapisuje wygenerowany temat nauki z pytaniami i frazami do Salonu",
   input_schema: {
     type: "object" as const,
     properties: {
+      title: {
+        type: "string",
+        description: "Krótki tytuł tematu, 3-6 słów",
+      },
+      summary: {
+        type: "string",
+        description: "3-4 zdania podsumowania w stylu eleganckim",
+      },
+      theory: {
+        type: "string",
+        description: "1-2 paragrafy treści teoretycznej, proza",
+      },
       questions: {
         type: "array",
-        description: "Lista pytań (6-8 sztuk różnych typów)",
+        description: "Dokładnie 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error",
         items: {
           type: "object",
           properties: {
-            type: { type: "string", enum: ["abc", "fill", "open"] },
+            type: {
+              type: "string",
+              enum: ["abc", "fill", "open", "spot_error"],
+            },
             text: { type: "string" },
             options: {
-              type: "array",
+              type: ["array", "null"],
               items: { type: "string" },
-              description: "Opcje dla type=abc. Dla fill/open pomiń.",
+              description:
+                "Lista opcji dla ABC i spot_error. null dla fill i open.",
             },
             correctAnswer: {
-              type: ["string", "number"],
               description:
-                "Liczba (indeks 0-based) dla abc. String dla fill/open.",
+                "Liczba (indeks 0-based) dla ABC/spot_error. String dla fill/open.",
             },
             explanation: { type: "string" },
           },
           required: ["type", "text", "correctAnswer", "explanation"],
         },
       },
-      title: { type: "string" },
-      summary: { type: "string" },
-      theory: { type: "string" },
       salon: {
         type: "object",
         properties: {
-          short: { type: "string" },
-          expand: { type: "string" },
-          trap: { type: "string" },
+          short: { type: "string", description: "2-3 zdania, 30s mówienia" },
+          expand: { type: "string", description: "60s rozwinięcia" },
+          trap: { type: "string", description: "Czego nie mówić" },
         },
         required: ["short", "expand", "trap"],
       },
@@ -87,7 +92,7 @@ export async function POST(req: Request) {
   const { notes, vaultName } = body;
   if (!notes || notes.trim().length < 20) {
     return NextResponse.json(
-      { error: "Notatki za krótkie." },
+      { error: "Notatki za krótkie. Wklej co najmniej kilka zdań." },
       { status: 400 }
     );
   }
@@ -118,35 +123,21 @@ export async function POST(req: Request) {
     const toolUse = response.content.find((b) => b.type === "tool_use");
     if (!toolUse || toolUse.type !== "tool_use") {
       console.error(
-        "generate: brak tool_use, stop=" + response.stop_reason,
-        JSON.stringify(response.content).slice(0, 1500)
+        "generate: brak tool_use w odpowiedzi",
+        JSON.stringify(response.content).slice(0, 2000)
       );
       return NextResponse.json(
         {
           error:
-            "Model nie wywołał narzędzia. Stop: " +
+            "Model nie wywołał narzędzia. Stop reason: " +
             (response.stop_reason ?? "unknown"),
         },
         { status: 502 }
       );
     }
 
-    const input = toolUse.input as Record<string, unknown>;
-    const qCount = Array.isArray(input.questions)
-      ? input.questions.length
-      : 0;
-    console.log("generate qCount=" + qCount);
-    console.log("generate stop=" + response.stop_reason);
-    console.log("generate outputTokens=" + response.usage.output_tokens);
-
-    if (qCount === 0) {
-      console.log(
-        "generate qRawInput=" + JSON.stringify(input).slice(0, 1500)
-      );
-    }
-
     return NextResponse.json({
-      suggestion: input,
+      suggestion: toolUse.input,
       usage: response.usage,
     });
   } catch (err: unknown) {
