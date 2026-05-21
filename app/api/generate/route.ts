@@ -102,7 +102,7 @@ export async function POST(req: Request) {
   try {
     const response = await client.messages.create({
       model: MODEL_GENERATE,
-      max_tokens: 8192,
+      max_tokens: 16384,
       system: [
         {
           type: "text",
@@ -136,8 +136,17 @@ export async function POST(req: Request) {
       );
     }
 
+    const input = toolUse.input as Record<string, unknown>;
+    const qCount = Array.isArray(input.questions)
+      ? input.questions.length
+      : 0;
+    console.log("generate qCount=" + qCount);
+    console.log("generate stop=" + response.stop_reason);
+    console.log("generate outputTokens=" + response.usage.output_tokens);
+    console.log("generate inputTokens=" + response.usage.input_tokens);
+
     return NextResponse.json({
-      suggestion: toolUse.input,
+      suggestion: input,
       usage: response.usage,
     });
   } catch (err: unknown) {
