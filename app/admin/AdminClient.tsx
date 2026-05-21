@@ -171,6 +171,11 @@ export function AdminClient() {
         body: JSON.stringify({ notes, vaultName }),
       });
       if (!res.ok) {
+        if (res.status === 504) {
+          throw new Error(
+            "Opus 4.7 nie zmieścił się w 60s (Vercel Hobby). Spróbuj jeszcze raz albo skróć notatki o połowę."
+          );
+        }
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error ?? `HTTP ${res.status}`);
       }
