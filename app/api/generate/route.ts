@@ -6,33 +6,75 @@ export const maxDuration = 60;
 
 const SYSTEM_PROMPT = `Jesteś asystentem nauki Natalii. Ona uczy się w stylu obycia kulturowego, nie szkolnej kartkówki. Cel: rozumienie, nie pamięciówka. Ton: konkretny, elegancki, bez infantylizacji, bez wykrzykników, bez emoji. Po polsku.
 
-Z notatek użytkowniczki wygeneruj strukturę nauki. Odpowiedz WYŁĄCZNIE jednym valid JSON object — bez markdown fences, bez tekstu wokół, bez komentarzy.
-
-Schemat:
-{
-  "title": "krótki tytuł tematu, 3-6 słów",
-  "summary": "3-4 zdania podsumowania w stylu eleganckim",
-  "theory": "1-2 paragrafy treści teoretycznej, proza, bez bullet points jeśli nie konieczne",
-  "questions": [
-    { "type": "abc", "text": "...", "options": ["A","B","C"], "correctAnswer": 0, "explanation": "..." },
-    { "type": "fill", "text": "_____ ...", "options": null, "correctAnswer": "wyraz", "explanation": "..." },
-    { "type": "open", "text": "...", "options": null, "correctAnswer": "wzorcowa odpowiedź", "explanation": "..." },
-    { "type": "spot_error", "text": "zdanie z błędem", "options": ["element 1","element 2","element 3","wszystko OK"], "correctAnswer": 0, "explanation": "..." }
-  ],
-  "salon": {
-    "short": "2-3 zdania, 30s mówienia, co powiedzieć przy stole",
-    "expand": "60s, co dodać jak ktoś dopyta",
-    "trap": "czego nie mówić, w co nie wchodzić"
-  }
-}
+Z notatek użytkowniczki wygeneruj strukturę nauki. Wywołaj narzędzie save_topic z odpowiednimi argumentami.
 
 Wymagania:
 - DOKŁADNIE 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error
-- "correctAnswer" dla ABC/spot_error: indeks 0-based z "options"
-- "correctAnswer" dla fill/open: string
-- "explanation": jedno krótkie zdanie, najlepiej "pułapka jest taka..."
-- Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty.
-- Jeśli notatki są zbyt skąpe na 8 pytań, wygeneruj mniej, ale zachowaj proporcje typów.`;
+- Dla typu "abc" i "spot_error": pole correctAnswer = liczba (indeks 0-based z options). Pole options = lista 3-4 stringów
+- Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null
+- W spot_error opcje to fragmenty zdania + ostatnia opcja "wszystko OK"
+- "explanation": jedno krótkie zdanie, najlepiej w stylu "pułapka jest taka..."
+- Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty
+- Salon: short = 2-3 zdania (30s mówienia), expand = co dodać (60s), trap = czego nie mówić`;
+
+const SAVE_TOPIC_TOOL = {
+  name: "save_topic",
+  description:
+    "Zapisuje wygenerowany temat nauki z pytaniami i frazami do Salonu",
+  input_schema: {
+    type: "object" as const,
+    properties: {
+      title: {
+        type: "string",
+        description: "Krótki tytuł tematu, 3-6 słów",
+      },
+      summary: {
+        type: "string",
+        description: "3-4 zdania podsumowania w stylu eleganckim",
+      },
+      theory: {
+        type: "string",
+        description: "1-2 paragrafy treści teoretycznej, proza",
+      },
+      questions: {
+        type: "array",
+        description: "Dokładnie 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error",
+        items: {
+          type: "object",
+          properties: {
+            type: {
+              type: "string",
+              enum: ["abc", "fill", "open", "spot_error"],
+            },
+            text: { type: "string" },
+            options: {
+              type: ["array", "null"],
+              items: { type: "string" },
+              description:
+                "Lista opcji dla ABC i spot_error. null dla fill i open.",
+            },
+            correctAnswer: {
+              description:
+                "Liczba (indeks 0-based) dla ABC/spot_error. String dla fill/open.",
+            },
+            explanation: { type: "string" },
+          },
+          required: ["type", "text", "correctAnswer", "explanation"],
+        },
+      },
+      salon: {
+        type: "object",
+        properties: {
+          short: { type: "string", description: "2-3 zdania, 30s mówienia" },
+          expand: { type: "string", description: "60s rozwinięcia" },
+          trap: { type: "string", description: "Czego nie mówić" },
+        },
+        required: ["short", "expand", "trap"],
+      },
+    },
+    required: ["title", "summary", "theory", "questions", "salon"],
+  },
+};
 
 interface GenerateRequest {
   notes: string;
@@ -68,6 +110,8 @@ export async function POST(req: Request) {
           cache_control: { type: "ephemeral" },
         },
       ],
+      tools: [SAVE_TOPIC_TOOL],
+      tool_choice: { type: "tool", name: "save_topic" },
       messages: [
         {
           role: "user",
@@ -76,47 +120,29 @@ export async function POST(req: Request) {
       ],
     });
 
-    const textBlock = response.content.find((b) => b.type === "text");
-    if (!textBlock || textBlock.type !== "text") {
-      return NextResponse.json(
-        { error: "Model nie zwrócił tekstu." },
-        { status: 502 }
+    const toolUse = response.content.find((b) => b.type === "tool_use");
+    if (!toolUse || toolUse.type !== "tool_use") {
+      console.error(
+        "generate: brak tool_use w odpowiedzi",
+        JSON.stringify(response.content).slice(0, 2000)
       );
-    }
-
-    const parsed = extractJson(textBlock.text);
-    if (!parsed) {
       return NextResponse.json(
-        { error: "Nie udało się sparsować JSON-a od modelu.", raw: textBlock.text },
+        {
+          error:
+            "Model nie wywołał narzędzia. Stop reason: " +
+            (response.stop_reason ?? "unknown"),
+        },
         { status: 502 }
       );
     }
 
     return NextResponse.json({
-      suggestion: parsed,
+      suggestion: toolUse.input,
       usage: response.usage,
     });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("generate failed", err);
     return NextResponse.json({ error: msg }, { status: 500 });
-  }
-}
-
-function extractJson(text: string): unknown {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  const raw = (fenced ? fenced[1] : text).trim();
-  try {
-    return JSON.parse(raw);
-  } catch {
-    // Try to find first { and last } in case there's prose around
-    const first = raw.indexOf("{");
-    const last = raw.lastIndexOf("}");
-    if (first === -1 || last === -1) return null;
-    try {
-      return JSON.parse(raw.slice(first, last + 1));
-    } catch {
-      return null;
-    }
   }
 }
