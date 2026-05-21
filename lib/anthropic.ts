@@ -12,6 +12,5 @@ export function getAnthropic(): Anthropic {
   return client;
 }
 
-export const MODEL_GENERATE_META = "claude-sonnet-4-6";
-export const MODEL_GENERATE_QUESTIONS = "claude-haiku-4-5";
+export const MODEL_GENERATE = "claude-sonnet-4-6";
 export const MODEL_GRADE = "claude-haiku-4-5";
