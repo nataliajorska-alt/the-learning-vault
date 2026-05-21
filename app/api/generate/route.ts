@@ -60,8 +60,7 @@ export async function POST(req: Request) {
   try {
     const response = await client.messages.create({
       model: MODEL_GENERATE,
-      max_tokens: 4096,
-      thinking: { type: "adaptive" },
+      max_tokens: 8192,
       system: [
         {
           type: "text",
