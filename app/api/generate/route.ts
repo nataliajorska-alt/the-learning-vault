@@ -8,37 +8,38 @@ const SYSTEM_PROMPT = `Jesteś asystentem nauki Natalii. Ona uczy się w stylu o
 
 Z notatek użytkowniczki wygeneruj strukturę nauki. Wywołaj narzędzie save_topic z odpowiednimi argumentami.
 
-Wymagania:
-- DOKŁADNIE 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error
+WAŻNE — questions ARRAY MUSI zawierać DOKŁADNIE 8 obiektów-pytań. Nigdy nie zwracaj pustego array. To najważniejsze pole w odpowiedzi.
+
+Wymagania pytań:
+- DOKŁADNIE 8 pytań w array: 3 ABC, 2 fill, 2 open, 1 spot_error
 - Dla typu "abc" i "spot_error": pole correctAnswer = liczba (indeks 0-based z options). Pole options = lista 3-4 stringów
-- Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null
+- Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null lub pominięte
 - W spot_error opcje to fragmenty zdania + ostatnia opcja "wszystko OK"
 - "explanation": jedno krótkie zdanie, najlepiej w stylu "pułapka jest taka..."
-- Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty
-- Salon: short = 2-3 zdania (30s mówienia), expand = co dodać (60s), trap = czego nie mówić`;
+
+Inne pola:
+- title: 3-6 słów
+- summary: 3-4 zdania, krótkie
+- theory: 1-2 paragrafy, ale POMIŃ jeśli musisz wybrać między teorią a pytaniami — pytania ważniejsze
+- salon.short: 2-3 zdania (30s), salon.expand: 60s, salon.trap: czego nie mówić
+
+Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty.`;
 
 const SAVE_TOPIC_TOOL = {
   name: "save_topic",
   description:
-    "Zapisuje wygenerowany temat nauki z pytaniami i frazami do Salonu",
+    "Zapisuje wygenerowany temat nauki. WAŻNE: questions array musi mieć dokładnie 8 obiektów, nigdy pusty.",
   input_schema: {
     type: "object" as const,
     properties: {
-      title: {
-        type: "string",
-        description: "Krótki tytuł tematu, 3-6 słów",
-      },
-      summary: {
-        type: "string",
-        description: "3-4 zdania podsumowania w stylu eleganckim",
-      },
-      theory: {
-        type: "string",
-        description: "1-2 paragrafy treści teoretycznej, proza",
-      },
+      // questions umieszczone PIERWSZE — żeby model wypełnił najważniejsze pole
+      // zanim ewentualnie ucznie się max_tokens
       questions: {
         type: "array",
-        description: "Dokładnie 8 pytań: 3 ABC, 2 fill, 2 open, 1 spot_error",
+        minItems: 8,
+        maxItems: 8,
+        description:
+          "DOKŁADNIE 8 obiektów-pytań. 3 ABC, 2 fill, 2 open, 1 spot_error. Nigdy pusty array.",
         items: {
           type: "object",
           properties: {
@@ -48,12 +49,13 @@ const SAVE_TOPIC_TOOL = {
             },
             text: { type: "string" },
             options: {
-              type: ["array", "null"],
+              type: "array",
               items: { type: "string" },
               description:
-                "Lista opcji dla ABC i spot_error. null dla fill i open.",
+                "Lista opcji dla ABC i spot_error. Dla fill/open pomiń to pole.",
             },
             correctAnswer: {
+              type: ["string", "number"],
               description:
                 "Liczba (indeks 0-based) dla ABC/spot_error. String dla fill/open.",
             },
@@ -61,6 +63,14 @@ const SAVE_TOPIC_TOOL = {
           },
           required: ["type", "text", "correctAnswer", "explanation"],
         },
+      },
+      title: {
+        type: "string",
+        description: "Krótki tytuł tematu, 3-6 słów",
+      },
+      summary: {
+        type: "string",
+        description: "3-4 zdania podsumowania w stylu eleganckim",
       },
       salon: {
         type: "object",
@@ -70,6 +80,10 @@ const SAVE_TOPIC_TOOL = {
           trap: { type: "string", description: "Czego nie mówić" },
         },
         required: ["short", "expand", "trap"],
+      },
+      theory: {
+        type: "string",
+        description: "1-2 paragrafy treści teoretycznej, proza",
       },
     },
     required: ["title", "summary", "theory", "questions", "salon"],
@@ -102,7 +116,7 @@ export async function POST(req: Request) {
   try {
     const response = await client.messages.create({
       model: MODEL_GENERATE,
-      max_tokens: 8192,
+      max_tokens: 16384,
       system: [
         {
           type: "text",
@@ -140,12 +154,13 @@ export async function POST(req: Request) {
     const qCount = Array.isArray(input.questions)
       ? input.questions.length
       : 0;
-    console.log(
-      `generate: tool_use OK, questions=${qCount}, stop=${response.stop_reason}, inputTokens=${response.usage.input_tokens}, outputTokens=${response.usage.output_tokens}`
-    );
+    console.log("generate qCount=" + qCount);
+    console.log("generate stop=" + response.stop_reason);
+    console.log("generate outputTokens=" + response.usage.output_tokens);
+    console.log("generate inputTokens=" + response.usage.input_tokens);
     if (qCount > 0 && Array.isArray(input.questions)) {
       const firstQ = input.questions[0] as Record<string, unknown>;
-      console.log("generate: first question shape:", JSON.stringify(firstQ));
+      console.log("generate firstQ=" + JSON.stringify(firstQ).slice(0, 400));
     }
 
     return NextResponse.json({
