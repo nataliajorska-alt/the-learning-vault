@@ -1755,4 +1755,113 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 17. Angielski: filler words i tentative phrasing
+  // ============================================================
+  {
+    slug: "angielski-filler-words",
+    vaultSlug: "en",
+    label: "Angielski C1 — filler words i tentative phrasing",
+    payload: {
+      title: "Filler words & tentative phrasing",
+      summary:
+        "Największa blokada na C1 w consultingu: wstawki typu „uh, like, I guess, actually\". Wstawiasz je, żeby brzmieć grzeczniej, ale w business contexcie klient kupuje pewność, nie wahanie. Native speakerzy też używają fillerów, ale rzadziej i bardziej świadomie. U Polaków często kalka z „no, wiesz, jakby\".",
+      theory:
+        "Filler words to: uh, um, like, well, so, you know, kind of, sort of. Tentative phrasing to: I guess, I don't think, maybe, actually, possibly, just. W business angielskim (consulting, finance, decyzje pre-board) działają przeciwnie do tego, co czujesz po polsku: czujesz, że łagodzą i są grzeczne, brzmią jak niezdecydowanie i brak pewności. Klient nie kupi rekomendacji od osoby, która sama siebie nie kupuje. Native speakerzy w tych branżach zwykle używają mocniejszych formuł: „I'd argue\", „In my view\", „The data suggests\", „Specifically\", „The next logical step\".\n\nKluczowe podmiany do automatyzacji: „I guess\" → „I believe\" lub „I'd argue\". „I don't think X\" → „In my view, X isn't the strongest option\". „Actually, maybe...\" → „Specifically, we need to...\". „Well, so...\" → pomiń, zacznij od konkretu. „uh, like, you know\" → pauza, oddech, dalej. Pauza zawsze wygrywa z fillerem. Cisza brzmi jak myślenie, „uh\" brzmi jak panika. Osobno: słowo „just\" („I just wanted to ask...\") brzmi jak przeprosiny za swoje istnienie — wyrzuć z pracy. Grzeczność w business angielskim robi się przez „could / would / please\", nie przez tentative language. To dwie różne rzeczy, których Polak często nie rozróżnia.",
+      questions: [
+        {
+          type: "abc",
+          text: "Co powinno zastąpić „I guess\" w rekomendacji dla klienta?",
+          options: [
+            "I believe / I'd argue",
+            "I think maybe",
+            "I'm not sure but probably",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Pułapka jest taka: „I guess\" wydaje się grzeczne po polsku, w business angielskim brzmi jak ktoś, kto sam siebie nie kupuje. „I'd argue\" / „I believe\" pokazują pewność bez arogancji.",
+        },
+        {
+          type: "abc",
+          text: "„I just wanted to ask...\" — co z tym?",
+          options: [
+            "Jest grzeczne i naturalne, używaj",
+            "Brzmi jak przeprosiny za swoje istnienie",
+            "Jest poprawne tylko w mailach",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Just\" w pracy to przeprosiny za zabieranie czasu. Wyrzuć: „I'd like to ask\" albo wprost pytanie bez preambuły.",
+        },
+        {
+          type: "abc",
+          text: "Filler words u native speakerów w consulting/finance:",
+          options: [
+            "w ogóle nie występują — to znak nieprofesjonalizmu",
+            "występują, ale rzadziej i świadomiej",
+            "są używane tak samo często jak po polsku",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Nie chodzi o ich całkowite wykorzenienie — to niemożliwe. Chodzi o świadomość: pauza zamiast „uh\", konkret zamiast „well, so\".",
+        },
+        {
+          type: "fill",
+          text: "W rekomendacji dla zarządu: „I'd _____ that the data clearly points toward option B.\"",
+          options: null,
+          correctAnswer: "argue",
+          explanation:
+            "„I'd argue\" — pewność z otwartością na dyskusję. Mocna formuła, brzmi profesjonalnie bez arogancji.",
+        },
+        {
+          type: "fill",
+          text: "Cisza brzmi jak myślenie. „Uh\" brzmi jak _____.",
+          options: null,
+          correctAnswer: "panika",
+          explanation:
+            "Pauza zawsze wygrywa z fillerem. To kontrintuicyjne dla Polaków, którzy czują presję, żeby „nie milczeć\".",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego „I guess\" brzmi źle w consulting/finance contexcie po angielsku.",
+          options: null,
+          correctAnswer:
+            "Brzmi jak ktoś, kto sam siebie nie kupuje. Klient kupuje pewność, nie wahanie. W polskim mózgu wydaje się grzeczne, w angielskim business contexcie jest niezdecydowane i nieprofesjonalne. Plus: tentative language ≠ politeness — grzeczność robi się przez „could/would/please\", nie przez „guess\".",
+          explanation:
+            "Kluczowe rozróżnienie: tentativeness ≠ politeness. To dwie różne dźwignie językowe.",
+        },
+        {
+          type: "open",
+          text: "Jak przeformułować to zdanie po angielsku w stylu rekomendacji dla zarządu: „I just thought maybe we could check this with commercial team\"?",
+          options: null,
+          correctAnswer:
+            "„In my view, the next logical step is to validate this with the commercial team.\" Wycięte: just, maybe, could (jako tentative). Dodane: konkretna formuła „In my view\" + „next logical step\" + assertive verb „validate\".",
+          explanation:
+            "Sam ten przykład Twoich notatek pokazuje, jak działa wymiana: cztery sygnały tentative-ness wymieniasz na jedną mocną strukturę.",
+        },
+        {
+          type: "spot_error",
+          text: "Actually, I just wanted to like, ask if maybe we could possibly check this with commercial team, you know?",
+          options: [
+            "actually + just",
+            "like + maybe",
+            "could possibly + you know",
+            "wszystko źle — kumulacja problemów",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Klasyczna kumulacja: actually (filler), just (przepraszanie), like (filler), maybe + could possibly (potrójna tentative), you know (filler). Powinno być: „I'd like to validate this with the commercial team.\" lub „In my view, the next step is to check with commercial.\"",
+        },
+      ],
+      salon: {
+        short:
+          "W consultingu i finansach po angielsku największa blokada na C1 to filler words i tentative phrasing. „I guess\", „just\", „maybe\", „like\" — wydają się grzeczne po polsku, w business contexcie brzmią jak niezdecydowanie.",
+        expand:
+          "Native speakerzy w tych branżach używają mocniejszych formuł: „I'd argue\", „In my view\", „The data suggests\", „The next logical step is\". Pauza zawsze wygrywa z fillerem — cisza brzmi jak myślenie, „uh\" brzmi jak panika. Klient kupuje pewność, nie wahanie. To kontrintuicyjne dla Polaków, którzy czują, że tentative language to grzeczność. Nie jest — grzeczność robi się przez „could/would/please\", nie przez „guess\".",
+        trap:
+          "Nie myl tentative language z politeness — to dwie różne dźwignie. „I guess\" nie jest grzeczne, jest niezdecydowane. „Just\" w pracy brzmi jak przeprosiny za istnienie — wyrzuć. „Well, so...\" na początku zdania to filler bez treści — zacznij od konkretu. I uważaj na kumulacje: „actually, just, maybe, like, you know\" w jednym zdaniu to ostrzeżenie, że mózg pracuje na polskim trybie grzeczności.",
+      },
+    },
+  },
 ];
