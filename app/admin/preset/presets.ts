@@ -7068,4 +7068,268 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 77. Blackjack: podstawy i ruchy
+  // ============================================================
+  {
+    slug: "blackjack-podstawy-i-ruchy",
+    vaultSlug: "blackjack",
+    label: "Blackjack — podstawy i ruchy",
+    payload: {
+      title: "Blackjack — podstawy i ruchy",
+      summary:
+        "Grasz przeciw krupierowi, nie przeciw innym graczom. Cała strategia bierze się z trzech rzeczy: Twojej ręki, odkrytej karty krupiera i SZTYWNYCH zasad, według których gra krupier. Im lepiej to znasz, tym mniej decyzji jest „z głowy\".",
+      theory:
+        "Cel: zbliżyć się do 21 bardziej niż krupier, ale nie przekroczyć 21. Przekroczenie = bust = przegrana automatyczna.\n\nWartości kart: 2–10 wartość nominalna, J/Q/K = 10, As = 1 albo 11 elastycznie (na Twoją korzyść). Blackjack = 21 z dwóch pierwszych kart (As + karta o wartości 10). Wypłaca więcej niż zwykła wygrana (zwykle 3:2).\n\nRozgrywka: Ty i krupier dostajecie po 2 karty. Widzisz jedną odkrytą kartę krupiera, druga jest zakryta. Decydujesz, co zrobić ze swoją ręką. Na końcu krupier odsłania kartę i dobiera według sztywnych zasad.\n\nZasady krupiera (kluczowe dla strategii): krupier DOBIERA do 16 włącznie, STOI na 17 lub więcej. Krupier nie ma wyboru, nie myśli, nie improwizuje. To dlatego przy karcie krupiera 2–6 (słabe karty — łatwo mu się zbustować) grasz zachowawczo, a przy 7–As (silne karty) musisz sama walczyć o lepszy wynik.\n\nMożliwe ruchy:\n— Hit = dobierz kolejną kartę.\n— Stand = zostaję z tym, co mam.\n— Double down = podwajam stawkę i dobieram DOKŁADNIE JEDNĄ kartę (potem stand).\n— Split = mam parę, rozdzielam ją na dwa układy z osobnymi stawkami.\n— Surrender = poddaję się, oddaję połowę stawki (nie zawsze dostępne).\n— Insurance = „ubezpieczenie\", gdy krupier ma Asa. Zła stawka matematycznie — NIE bierz.\n\nBlackjack płaci 3:2, zwykła wygrana 1:1 — dlatego blackjacka nie „ulepsza\" się splittem dziesiątek.",
+      questions: [
+        {
+          type: "abc",
+          text: "Zasady krupiera (te sztywne, niezmienne):",
+          options: [
+            "krupier dobiera do 17, stoi na 18+",
+            "krupier dobiera do 16, stoi na 17+",
+            "krupier sam decyduje, kiedy stoi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Fundament całej strategii. Krupier dobiera do 16 włącznie, stoi na 17+. Nie ma wyboru, nie myśli. Stąd wynika logika kart słabych (2–6) vs silnych (7–As).",
+        },
+        {
+          type: "abc",
+          text: "Insurance, gdy krupier pokazuje Asa:",
+          options: [
+            "zawsze bierz — to ubezpieczenie przed jego blackjackiem",
+            "matematycznie to zła stawka — pomijaj",
+            "tylko przy wysokich stawkach",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Insurance brzmi sensownie, ale matematycznie jest niekorzystne — kasyno na tym zarabia. Pomijaj zawsze, niezależnie od ręki.",
+        },
+        {
+          type: "fill",
+          text: "Blackjack (21 z dwóch pierwszych kart) wypłaca _____ :2 — więcej niż zwykła wygrana 1:1.",
+          options: null,
+          correctAnswer: "3",
+          explanation:
+            "3:2 = postawisz 100 zł, wygrywasz 150 zł zysku (plus zwrot stawki). Stąd nie ulepsza się blackjacka splittem dziesiątek — 20 to nadal 1:1, a oryginalny 21 to byłoby 3:2.",
+        },
+        {
+          type: "fill",
+          text: "Ruch „double down\" pozwala dobrać DOKŁADNIE _____ karta.",
+          options: null,
+          correctAnswer: "jedną",
+          explanation:
+            "Podwajasz stawkę, dostajesz tylko jedną kartę, potem stand. To nie nieskończony hit — decyzja jest ostateczna. Stąd double działa najlepiej, gdy masz mocną rękę (9–11) i wiesz, że jedna karta wystarczy.",
+        },
+        {
+          type: "open",
+          text: "Czemu „mam 16\" nie jest pełną decyzją w blackjacku?",
+          options: null,
+          correctAnswer:
+            "Bo decyzja zawsze zależy od KARTY KRUPIERA, nie tylko od Twojej ręki. „Mam 16\" to dopiero pół informacji. „Mam 16, a krupier ma 6\" = stand (jego słaba karta, niech sam się bustuje). „Mam 16, a krupier ma 10\" = hit (jego prawdopodobnie 20, musisz ryzykować na lepszy wynik). Cała strategia bazuje na dwóch zmiennych jednocześnie: ja + krupier. Patrzenie tylko na siebie to klasyczny błąd początkujących.",
+          explanation:
+            "Klucz: dwie zmienne, nie jedna. Ręka gracza + karta krupiera = decyzja. To dlatego basic strategy jest tabelą 2D, nie listą.",
+        },
+        {
+          type: "spot_error",
+          text: "„Bustowałam się, ale krupier potem też się zbustował — więc remis.\"",
+          options: [
+            "tak, remis",
+            "nie — bust = automatyczna przegrana, NAWET jeśli krupier potem też się zbustuje. Dlatego nie naciska się na 17+",
+            "kasyno musi zwrócić stawkę",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczny błąd. Bust gracza = natychmiastowa przegrana, krupier nawet nie odsłania karty. Stąd asymetria: nie ma sensu hitować na 17+, lepiej przegrać po cichu z lepszym krupierem niż dobrowolnie się zbustować.",
+        },
+      ],
+      salon: {
+        short:
+          "Krupier dobiera do 16, stoi na 17. Nie myśli, nie improwizuje. Stąd cała strategia: gdy krupier ma 2–6 grasz zachowawczo, gdy 7–As musisz sama walczyć o wynik.",
+        expand:
+          "Decyzja w blackjacku zawsze zależy od DWÓCH zmiennych: Twojej ręki + karty krupiera. „Mam 16\" nie jest decyzją — dopiero „Mam 16, a krupier ma 6\" (stand) lub „Mam 16, a krupier ma 10\" (hit) jest. Ruchy: hit, stand, double (jedna karta, podwojona stawka), split (para na dwa układy), surrender (połowa stawki z powrotem), insurance (matematycznie zła — pomijaj).",
+        trap:
+          "Bust = automatyczna przegrana, nawet jeśli krupier potem też się zbustuje. Dlatego nie naciska się na 17+. Double down to JEDNA karta, decyzja ostateczna. Insurance brzmi sensownie, jest złą stawką matematycznie. Blackjack płaci 3:2, więc nie ulepsza się go splittem dziesiątek (20 to 1:1, oryginalny blackjack to 3:2).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 78. Blackjack: basic strategy (hard, soft, pary)
+  // ============================================================
+  {
+    slug: "blackjack-basic-strategy",
+    vaultSlug: "blackjack",
+    label: "Blackjack — basic strategy (hard, soft, pary)",
+    payload: {
+      title: "Blackjack — basic strategy",
+      summary:
+        "Wyliczona matematycznie tabela najlepszych decyzji. NIE intuicja, NIE „czuję, że teraz nie wezmę\" — to są twarde liczby. Trzy części: hard hands, soft hands (z Asem jako 11), pary. Każda wymaga innej logiki.",
+      theory:
+        "Filozofia całej strategii w jednym zdaniu: gdy krupier ma słabą kartę (2–6), grasz zachowawczo i pozwalasz mu się zbustować. Gdy krupier ma silną kartę (7–As), musisz sama wycisnąć więcej, bo on prawdopodobnie wyciągnie dobry wynik.\n\nHARD HANDS (bez Asa albo z Asem liczonym jako 1):\n— 17+ vs każda karta krupiera → STAND.\n— 13–16 vs 2–6 → STAND. 13–16 vs 7–As → HIT.\n— 12 vs 4–6 → STAND. 12 vs 2–3 lub 7–As → HIT. (Granica jest na CZWÓRCE krupiera, nie na dwójce.)\n— 11 vs prawie każda → DOUBLE.\n— 10 vs 2–9 → DOUBLE. 10 vs 10–As → HIT.\n— 9 vs 3–6 → DOUBLE. 9 vs inne → HIT.\n— 8 lub mniej → HIT.\n\nSOFT HANDS (z Asem jako 11): As jako 11 daje bezpieczeństwo — jeśli przesadzisz, przeskoczy na 1 i nie zbustujesz. Grasz odważniej.\n— Soft 13–17 (A+2 do A+6): hit; przeciw słabej karcie krupiera (3–6) często double.\n— Soft 18 (A+7) — WAŻNY niuans:\n  • vs 2, 7, 8 → STAND.\n  • vs 3–6 → DOUBLE (jeśli zasady pozwalają, inaczej stand).\n  • vs 9, 10, As → HIT (tak, hit! 18 to za mało przeciw silnej karcie).\n— Soft 19+ (A+8, A+9) → STAND.\n\nPARY (split): A,A — ZAWSZE split. 8,8 — ZAWSZE split. 10,10 — NIGDY split (20 to świetna ręka). 5,5 — NIGDY split (traktuj jak 10, częściej double). 9,9 — split vs 2–6 i 8–9; stand vs 7, 10, As. 7,7 — split vs 2–7. 6,6 — split vs 2–6. 2,2 / 3,3 — split vs 2–7.\n\nTrzy mantry, które działają w 80% przypadków:\n1. 17+ stand, 8 lub mniej hit — bez myślenia.\n2. 12–16: krupier 2–6 → stand, krupier 7–As → hit.\n3. Asy i ósemki ZAWSZE split, dziesiątki i piątki NIGDY.",
+      questions: [
+        {
+          type: "abc",
+          text: "Soft 18 (A+7) vs 10 — co robisz?",
+          options: [
+            "STAND — mam 18, wystarczy",
+            "HIT — 18 to za mało przeciw silnej karcie krupiera, prawdopodobnie wyciągnie 19+",
+            "DOUBLE",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kontrintuicyjne, ale prawidłowe. Soft 18 vs 9, 10, As → HIT. As pozwala na bezpieczne dobieranie (przeskoczy na 1 jeśli przesadzisz). Przeciw silnej karcie krupiera 18 nie wystarcza.",
+        },
+        {
+          type: "abc",
+          text: "Pary 10,10 — najlepsza decyzja:",
+          options: [
+            "split, bo dwie ręce po 10",
+            "NIGDY split — masz 20, jedną z najlepszych rąk, nie psuj",
+            "double",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka — split 10,10 kusi, ale jest błędem. 20 to praktyczna pewna wygrana. Rozbijając na dwa razy 10, dostaniesz dwie ręce słabsze niż 20. Pamiętaj: blackjack płaci 3:2, ale split dziesiątek nie da Ci blackjacka.",
+        },
+        {
+          type: "fill",
+          text: "12 vs 2 — decyzja: _____ (hit/stand).",
+          options: null,
+          correctAnswer: "hit",
+          explanation:
+            "Granica jest na CZWÓRCE krupiera, nie na dwójce. 12 vs 2 i 12 vs 3 → HIT. 12 vs 4–6 → STAND. 12 vs 7+ → HIT. To jedna z najtrudniejszych decyzji — łatwo o pomyłkę.",
+        },
+        {
+          type: "fill",
+          text: "Pary, które zawsze splitujemy: A,A i _____ , _____ .",
+          options: null,
+          correctAnswer: "8,8",
+          explanation:
+            "A,A — bo dwa Asy razem to słabe 12 (albo 2), a osobno każdy może dać blackjacka. 8,8 — bo 16 to fatalna ręka, dwie ósemki dają szansę na coś lepszego.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz filozofię basic strategy w jednym zdaniu i podaj przykład.",
+          options: null,
+          correctAnswer:
+            "Gdy krupier ma słabą kartę (2–6), grasz zachowawczo i pozwalasz mu się zbustować — bo on musi dobierać do 16. Gdy krupier ma silną kartę (7–As), musisz sama wycisnąć więcej, bo on prawdopodobnie wyciągnie dobry wynik. Przykład: mam 13. Vs 5 (słaby krupier) → STAND, niech sam się męczy. Vs 9 (silny krupier) → HIT, muszę ryzykować, bo 13 nie wygra z jego prawdopodobnym 19+. Ta sama ręka, dwie różne decyzje, bo karta krupiera zmienia kontekst.",
+          explanation:
+            "Klucz: filozofia + przykład. Ta sama ręka gracza, dwie różne decyzje w zależności od karty krupiera.",
+        },
+        {
+          type: "spot_error",
+          text: "Mam 9,9. Krupier pokazuje 7. Najlepsza decyzja: splituję pary, żeby dostać dwie szanse.",
+          options: [
+            "tak, split zawsze warto",
+            "nie — 9,9 vs 7 to STAND, nie split. 18 wygrywa z jego prawdopodobnym 17 (krupier z odkrytą 7 zwykle ma 17). Split rozbija pewną wygraną",
+            "powinien być double",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. 9,9 splituje się vs 2–6 i 8–9. Vs 7, 10, As — STAND. Vs 7: krupier z odkrytą 7 najczęściej kończy na 17, Ty masz pewne 18 — nie rozbijaj.",
+        },
+      ],
+      salon: {
+        short:
+          "Trzy mantry działają w 80% przypadków: 1) 17+ stand, 8 lub mniej hit. 2) 12–16: krupier 2–6 → stand, krupier 7–As → hit. 3) Asy i ósemki zawsze split, dziesiątki i piątki nigdy.",
+        expand:
+          "Hard hands: 17+ stand, 13–16 stand vs 2–6 hit vs 7–As, 12 stand vs 4–6 hit vs 2–3 i 7–As, 11 double, 10 double vs 2–9. Soft hands (As jako 11) grane odważniej: soft 13–17 hit lub double, soft 18 stand vs 2,7,8 / double vs 3–6 / HIT vs 9,10,As, soft 19+ stand. Pary: A,A i 8,8 zawsze split, 10,10 i 5,5 nigdy, reszta zależy od krupiera.",
+        trap:
+          "Splitowanie 10,10 (kuszące, ale głupie — 20 to świetna ręka). Splitowanie 5,5 (to jest 10, częściej double). HIT na soft 18 vs 9/10/As — kontrintuicyjne, ale prawidłowe. STAND na 12 vs 2 lub 3 (powinno być HIT, granica na 4). Niesplitowanie 9,9 vs 8–9 (gdy split daje lepszy expected value).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 79. Blackjack: pułapki i błędy do utrwalenia
+  // ============================================================
+  {
+    slug: "blackjack-pulapki-i-bledy",
+    vaultSlug: "blackjack",
+    label: "Blackjack — pułapki i błędy do utrwalenia",
+    payload: {
+      title: "Blackjack — pułapki i błędy do utrwalenia",
+      summary:
+        "Skupiona dawka trzech miejsc, gdzie najłatwiej zgubić punkty: za mało agresywne double, błędna obsługa soft 18, mylenie granicy 12. Te trzy zasady wyrównują 80% błędów początkujących.",
+      theory:
+        "Twój wzorzec błędu: zbyt mało agresji przy double. Gdy widzisz krupier 2–6, a u siebie masz 9, 10, 11, albo soft 13–18 — DOUBLE jest częściej dobrą odpowiedzią niż hit. Kasyno nie pozwala na double bez powodu — to działa na korzyść gracza w słusznych sytuacjach.\n\nKonkretne błędy z quizu:\n\n10 vs 6 → DOUBLE. Ty masz 10, krupier słabą szóstkę. Prawdopodobnie wyciągniesz 20 (1/3 szansa na 10/J/Q/K w talii). Krupier ma dużą szansę zbusta (musi dobierać do 16). Tylko hit zamiast double = tracisz pieniądze.\n\n11 vs 10 → DOUBLE. 11 to NAJLEPSZA ręka do double, prawie zawsze. Tak, nawet przeciw 10 — bo Ty masz większą szansę na 21 niż on. Wyjątek tylko: 11 vs As (czasem hit zamiast double, zależnie od zasad).\n\nSoft 18 — cały zestaw przypadków:\n— vs 2 → STAND (krupier słaby, ale Ty masz 18).\n— vs 3–6 → DOUBLE (krupier słaby, idź na większą stawkę).\n— vs 7 → STAND (18 bije jego prawdopodobne 17).\n— vs 8 → STAND (remis z prawdopodobnym 18).\n— vs 9, 10, As → HIT (jego prawdopodobne 19+ Cię bije, musisz ryzykować).\n\nGranica 12 (łatwo o pomyłkę):\n— 12 vs 2 → HIT (nie stand!).\n— 12 vs 3 → HIT (nie stand!).\n— 12 vs 4, 5, 6 → STAND.\n— 12 vs 7+ → HIT.\nGranica jest na CZWÓRCE krupiera, nie na dwójce.\n\nPary łatwe do pomylenia:\n— 9,9 vs 7 → STAND (nie split! 18 wygrywa z jego prawdopodobnym 17).\n— 9,9 vs 8 lub 9 → SPLIT.\n— 9,9 vs 10 lub As → STAND (nie warto rozbijać 18, gdy on prawdopodobnie ma 19+).\n\nZasada przewagi: double = „wykorzystuję sytuację, w której matematyka jest po mojej stronie\". Jeśli widzisz słabą kartę krupiera i mocną własną rękę — to JEST ta sytuacja. Strach ≠ ryzyko.",
+      questions: [
+        {
+          type: "abc",
+          text: "Mam 10, krupier pokazuje 6. Najlepsza decyzja:",
+          options: [
+            "hit — bezpieczniej, jedna karta",
+            "DOUBLE — masz mocną rękę, krupier ma słabą, podwajaj stawkę",
+            "stand na 10",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "10 vs 6 to klasyczne double. 1/3 szansa, że dobierzesz 10/J/Q/K → 20. Krupier z 6 ma dużą szansę zbusta (musi dobierać do 16). Hit zamiast double = pieniądze zostawione na stole.",
+        },
+        {
+          type: "abc",
+          text: "Mam 11, krupier pokazuje 10. Najlepsza decyzja:",
+          options: [
+            "hit — bo krupier ma silną kartę",
+            "DOUBLE — 11 to najlepsza ręka do double, masz większą szansę na 21 niż on",
+            "stand na 11",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "11 to NAJLEPSZA ręka do double, prawie zawsze. Nawet vs 10 — Ty masz większą szansę na 21 (jedna karta o wartości 10 daje Ci 21). Wyjątek tylko vs As (czasem hit, zależnie od zasad).",
+        },
+        {
+          type: "fill",
+          text: "Soft 18 vs 9 — decyzja: _____ (hit/stand/double).",
+          options: null,
+          correctAnswer: "hit",
+          explanation:
+            "Soft 18 vs 9, 10, As → HIT. Jego prawdopodobne 19+ Cię bije, musisz ryzykować. „Mam 18, wystarczy\" przy soft 18 vs silnej karcie krupiera to klasyczny błąd.",
+        },
+        {
+          type: "fill",
+          text: "12 vs 3 — decyzja: _____ (hit/stand).",
+          options: null,
+          correctAnswer: "hit",
+          explanation:
+            "Granica jest na czwórce krupiera. 12 vs 2 i 12 vs 3 → HIT. 12 vs 4–6 → STAND. Łatwa pomyłka: „2 to słaba karta, zostanę\" — błąd, bo krupier z 2 i tak prawdopodobnie wyciągnie 17+.",
+        },
+        {
+          type: "open",
+          text: "Wymień trzy zasady, które wyrównują 80% błędów początkujących.",
+          options: null,
+          correctAnswer:
+            "1) „Krupier 2–6 + ja 9/10/11 → DOUBLE\" (a nie hit). Gdy widzę słabą kartę krupiera i mocną własną rękę, podwajam stawkę — matematyka jest po mojej stronie. 2) „Soft 18 vs 9, 10, As → HIT\" (nie stand). Kontrintuicyjne, ale prawidłowe — As pozwala na bezpieczne dobieranie. 3) „12 vs 2 lub 3 → HIT\" (granica stand zaczyna się od 4 krupiera). Łatwo o pomyłkę. Te trzy wzory pokrywają większość błędów początkujących.",
+          explanation:
+            "Klucz: trzy konkretne zasady. End-fix w głowie przed wejściem do stołu.",
+        },
+        {
+          type: "spot_error",
+          text: "Mam 9,9, krupier pokazuje 7. Decyzja: split — bo zawsze warto rozbijać pary.",
+          options: [
+            "tak, split zawsze warto",
+            "nie — 9,9 vs 7 → STAND, nie split. 18 wygrywa z jego prawdopodobnym 17. Pary nie zawsze splitujemy",
+            "powinno być double",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pary mają niuans. 9,9 vs 7 → STAND, bo krupier z odkrytą 7 najczęściej kończy na 17, a Ty masz pewne 18. Split rozbija pewną wygraną. 9,9 splitujemy vs 2–6 i 8–9, stoimy vs 7, 10, As.",
+        },
+      ],
+      salon: {
+        short:
+          "Wzorzec błędu: za mało agresji przy double. Trzy zasady na koniec: krupier 2–6 + ja 9/10/11 → DOUBLE. Soft 18 vs 9/10/As → HIT. 12 vs 2 lub 3 → HIT (granica na 4).",
+        expand:
+          "Kasyno nie pozwala na double bez powodu — to działa na korzyść gracza w słusznych sytuacjach. 10 vs 6 → DOUBLE (1/3 szansa na 20 + krupier prawdopodobnie zbustuje). 11 vs 10 → DOUBLE (masz większą szansę na 21 niż on). Soft 18 vs 9/10/As → HIT (jego prawdopodobne 19+ Cię bije). 9,9 vs 7 → STAND (18 wygrywa z jego prawdopodobnym 17).",
+        trap:
+          "„Mam 18, wystarczy\" — przy soft 18 vs 9/10/As NIE wystarczy. HIT. „Boję się podwoić\" — to dokładnie te momenty, kiedy trzeba. Strach ≠ ryzyko. „12 to za blisko 21, lepiej stać\" — vs 2 i 3 HIT, granica stand zaczyna się od 4. „Mam parę, to splitnę\" — nie zawsze: 10,10 i 5,5 NIGDY, 9,9 zależy od krupiera.",
+      },
+    },
+  },
 ];
