@@ -7332,4 +7332,112 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 80. Excel: skróty i szybka nawigacja
+  // ============================================================
+  // Uwaga: dla tematów praktycznych (Excel, lotnictwo, narzędzia)
+  // pomijamy Salon — to nie są tematy „przy winie\". Topic ląduje
+  // normalnie w Vault i sesji 15 min, nie pojawia się w rotacji Salonu.
+  {
+    slug: "excel-skroty-i-szybka-nawigacja",
+    vaultSlug: "excel",
+    label: "Excel — skróty i szybka nawigacja",
+    payload: {
+      title: "Excel — skróty i szybka nawigacja",
+      summary:
+        "Alt sumuje, Ctrl+A zaznacza, prawy klik na strzałki znajduje zakładki, plus dodaje, minus usuwa. Jedno zdanie pokrywa ~80% codziennych mikro-czynności w Excelu.",
+      theory:
+        "Autosuma — Alt + =. Automatycznie wstawia formułę „=SUMA(...)\" („=SUM(...)\" po angielsku) dla danych obok lub nad komórką, w której stoisz. Excel sam zgaduje zakres, ale warto sprawdzić, czy nie obciął lub nie dorzucił czegoś za dużo.\n\nZaznaczanie — Ctrl + A. Pierwsze użycie: zaznacza aktualny blok danych lub tabelę, w której stoi kursor. Drugie użycie: zaznacza cały arkusz. Działa kontekstowo — jeśli stoisz w pustej komórce, od razu zaznaczy cały arkusz.\n\nLista wszystkich arkuszy — prawy klik na strzałki przewijania zakładek w lewym dolnym rogu (te małe trójkąciki obok nazw arkuszy). Pokazuje pełną listę wszystkich arkuszy w pliku. Klikasz w nazwę, przechodzisz od razu do tego arkusza. Ratuje życie przy plikach z 20+ zakładkami.\n\nDodawanie wierszy / kolumn — Ctrl + Shift + Plus (+). Najpierw zaznacz cały wiersz (Shift + Spacja) albo kolumnę (Ctrl + Spacja), potem skrót. Wiersz dodaje się NAD zaznaczonym, kolumna NA LEWO od zaznaczonej.\n\nUsuwanie wierszy / kolumn / komórek — Ctrl + Minus (-). Usuwa zaznaczone. Jeśli zaznaczysz pojedyncze komórki, Excel zapyta, w którą stronę przesunąć resztę.\n\nMac: Alt → Option, Ctrl → Cmd. Czyli Cmd + Shift + + dodaje wiersz. Na PC (EY i większość biur) nie będzie problemu — wszystko działa pod Ctrl.",
+      questions: [
+        {
+          type: "abc",
+          text: "Skrót na autosumę (wstawia =SUMA dla danych obok/nad komórką):",
+          options: [
+            "Ctrl + S",
+            "Alt + =",
+            "Ctrl + Shift + S",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Alt + = wywołuje autosumę. Excel zgaduje zakres, więc warto rzucić okiem przed Enterem, czy nie obciął lub dorzucił za dużo.",
+        },
+        {
+          type: "abc",
+          text: "Stoję w pustej komórce. Wciskam Ctrl + A. Co się stanie?",
+          options: [
+            "nic, bo brak danych do zaznaczenia",
+            "zaznaczy się cały arkusz (bo brak bloku do złapania)",
+            "zaznaczy się tylko aktywna komórka",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ctrl + A działa kontekstowo. W środku danych: zaznacza blok. W pustej komórce: cały arkusz. Jeśli chcesz tylko tabelę, najpierw stań W ŚRODKU danych, potem Ctrl + A.",
+        },
+        {
+          type: "abc",
+          text: "Plik z 22 zakładkami, chcesz szybko skoczyć do arkusza „2024_Q3\". Najszybsza droga:",
+          options: [
+            "scrollować strzałkami przewijania zakładek aż znajdę",
+            "prawy klik na strzałki przewijania zakładek → lista wszystkich arkuszy, klik w nazwę",
+            "Ctrl + F",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Prawy klik na trójkąciki przewijania (lewy dolny róg) daje pełną listę arkuszy. Klikasz w nazwę, jesteś od razu. Trik, którego mało osób zna — pierwsza rzecz, na którą koledzy reagują „czekaj, jak to zrobiłaś?\".",
+        },
+        {
+          type: "fill",
+          text: "Skrót do zaznaczenia całego WIERSZA (przed dodawaniem/usuwaniem): Shift + _____ .",
+          options: null,
+          correctAnswer: "Spacja",
+          explanation:
+            "Shift + Spacja = cały wiersz. Ctrl + Spacja = cała kolumna. Potem Ctrl + Shift + Plus dodaje nowy wiersz/kolumnę.",
+        },
+        {
+          type: "fill",
+          text: "Skrót do zaznaczenia całej KOLUMNY: _____ + Spacja.",
+          options: null,
+          correctAnswer: "Ctrl",
+          explanation:
+            "Ctrl + Spacja = kolumna. Shift + Spacja = wiersz. Pamiętaj: na Macu Ctrl staje się Cmd.",
+        },
+        {
+          type: "fill",
+          text: "Dodanie wiersza (po zaznaczeniu wiersza): Ctrl + Shift + _____ .",
+          options: null,
+          correctAnswer: "+",
+          explanation:
+            "Ctrl + Shift + Plus. Wiersz wstawi się NAD zaznaczonym, kolumna NA LEWO od zaznaczonej. Usuwanie: Ctrl + Minus.",
+        },
+        {
+          type: "spot_error",
+          text: "„Stoję w pojedynczej komórce, wciskam Ctrl + Shift + +. Powinno od razu dodać się wiersz nad nią.\"",
+          options: [
+            "tak, wiersz się doda",
+            "nie — bez zaznaczonego wiersza/kolumny Excel pyta, co właściwie wstawić (komórki w prawo, w dół, wiersz, kolumna). Wolniej. Najpierw Shift + Spacja, potem Ctrl + Shift + +",
+            "skrót nie istnieje",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Ctrl + Shift + + na pojedynczej komórce → okienko z pytaniem. Trzeba dwóch ruchów: najpierw Shift + Spacja (cały wiersz), potem Ctrl + Shift + + (dodaje nad). Z dialogiem to wciąż działa, ale wolniej.",
+        },
+        {
+          type: "spot_error",
+          text: "„Alt + = wstawiło autosumę. Excel sam zgadł zakres, więc na pewno jest dobrze, walę Enter.\"",
+          options: [
+            "tak, Excel nigdy się nie myli",
+            "nie — Excel zgaduje po pustych wierszach i czasem łapie zły zakres. Zawsze rzuć okiem na podświetlone komórki przed Enterem",
+            "Alt + = nie istnieje",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Excel zgaduje zakres po pustych komórkach — czasem obcina (gdy w środku jest pusty wiersz), czasem dorzuca za dużo. Sekunda na sprawdzenie podświetlonego zakresu = brak fatalnych pomyłek w raporcie.",
+        },
+      ],
+      salon: null,
+    },
+  },
 ];
