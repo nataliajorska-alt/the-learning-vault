@@ -95,7 +95,9 @@ export function PresetClient() {
       </header>
 
       <section className="space-y-6">
-        {PRESETS.map((p) => {
+        {/* Nowe presety dodawane są na końcu tablicy PRESETS w pliku — w UI
+            wyświetlamy je od ostatnio dodanych (najświeższy import na górze). */}
+        {[...PRESETS].reverse().map((p) => {
           const justSavedTopicId = justSaved[p.slug];
           const previouslyImportedTopicId = importedMap[p.slug];
           const importedTopicId = justSavedTopicId ?? previouslyImportedTopicId;
