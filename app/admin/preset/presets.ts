@@ -6628,4 +6628,444 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 72. Muzyka: pojęcia klasyczne (słownik bazowy)
+  // ============================================================
+  {
+    slug: "music-pojecia-muzyki-klasycznej",
+    vaultSlug: "music",
+    label: "Muzyka — pojęcia klasyczne (słownik bazowy)",
+    payload: {
+      title: "Pojęcia muzyki klasycznej",
+      summary:
+        "Działający słownik dla obycia kulturowego — koncert vs symfonia vs uwertura, tempa po włosku, muzyka programowa vs absolutna. Te same pojęcia wracają przy każdym kompozytorze.",
+      theory:
+        "Formy muzyczne. Koncert — utwór na instrument solowy (lub kilka) i orkiestrę. Solista i orkiestra prowadzą dialog. Najczęściej trzyczęściowy: szybko–wolno–szybko. Przykład: Cztery pory roku Vivaldiego.\n\nSymfonia — duży utwór na całą orkiestrę, bez solisty (chyba że dodany jak w IX Beethovena). Najczęściej czteroczęściowy. Przykład: IX Symfonia Beethovena.\n\nUwertura — oryginalnie utwór otwierający operę lub balet. Z czasem pojawiła się też uwertura koncertowa, czyli samodzielny utwór orkiestrowy (Uwertura 1812 Czajkowskiego).\n\nOpera — dzieło sceniczne łączące muzykę, śpiew, dramat i scenografię. Postaci śpiewają zamiast mówić.\n\nTempa (po włosku — Włochy były kolebką muzyki europejskiej w XVII w.): Allegro — szybko, żywo. Adagio — wolno, spokojnie. Largo — jeszcze wolniej, dostojnie. Andante — tempo spacerowe, „idąc\". Vivace — żywo, szybciej niż allegro. Presto — bardzo szybko.\n\nPojęcia narracyjne. Movement / część / ruch — segment większego utworu. Muzyka programowa — opowiada konkretną historię lub maluje obraz (Uwertura 1812). Przeciwieństwo: muzyka absolutna, czysto dźwiękowa. Motyw — rozpoznawalny krótki fragment melodii, który się powtarza („pa-pa-pa-paaaam\" z V Symfonii). Fanfara — mocny, uroczysty motyw na blaszanych dęciakach. Crescendo — stopniowe narastanie głośności; odwrotność: diminuendo. Aria — solowa pieśń w operze. Recytatyw — półśpiewane fragmenty popychające akcję.",
+      questions: [
+        {
+          type: "abc",
+          text: "Czym różni się koncert od symfonii?",
+          options: [
+            "koncert ma chór, symfonia nie",
+            "koncert = solista + orkiestra (dialog); symfonia = cała orkiestra bez solisty",
+            "koncert jest krótszy, symfonia dłuższa",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Główna różnica strukturalna. „Koncert skrzypcowy\" = utwór, w którym skrzypek jest solistą obok orkiestry. Symfonia to praca orkiestry jako całości.",
+        },
+        {
+          type: "abc",
+          text: "Uwertura zawsze coś otwiera?",
+          options: [
+            "tak — to z definicji wstęp do opery lub baletu",
+            "nie — może też być samodzielnym utworem (uwertura koncertowa, np. Uwertura 1812)",
+            "tylko symfonię",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Oryginalnie tak (wstęp), ale z czasem pojawiła się uwertura koncertowa — samodzielne dzieło orkiestrowe. Czajkowski 1812 to klasyczny przykład.",
+        },
+        {
+          type: "fill",
+          text: "Tempo „wolno, spokojnie\" po włosku to _____ .",
+          options: null,
+          correctAnswer: "adagio",
+          explanation:
+            "Adagio = wolno. Largo jeszcze wolniej, andante tempo spacerowe. Allegro = szybko, vivace szybciej, presto bardzo szybko.",
+        },
+        {
+          type: "fill",
+          text: "Muzyka opowiadająca konkretną historię to muzyka _____ .",
+          options: null,
+          correctAnswer: "programowa",
+          explanation:
+            "Programowa = z „programem\" (fabułą, sonetem, opisem). Przeciwieństwo: muzyka absolutna, czysto dźwiękowa bez narracji.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz różnicę między arią a recytatywem w operze.",
+          options: null,
+          correctAnswer:
+            "Aria to solowa pieśń, moment, w którym postać staje na scenie i wyraża swoje emocje muzycznie — pełne melodie, rozwinięte, często wirtuozowskie. Przykład: Habanera Carmen, Pieśń Torreadora Escamilla. Recytatyw to półśpiewane–półmówione fragmenty, służące do popychania akcji — dialog, narracja, przejścia między scenami. Recytatyw jest tekstem z muzycznym akcentem, aria jest muzyką z tekstem. W operze barokowej rozróżnienie jest bardzo wyraźne, w XIX-wiecznej (Verdi, Wagner) zaczyna się zacierać.",
+          explanation:
+            "Klucz: aria = pieśń (emocje), recytatyw = mówione/śpiewane (akcja). Dwa różne narzędzia w operze.",
+        },
+        {
+          type: "spot_error",
+          text: "„Allegro to wesoły, optymistyczny utwór — Beethoven napisał wiele takich.\"",
+          options: [
+            "tak, allegro znaczy wesoły",
+            "nie — allegro w muzyce to TEMPO (szybko), nie nastrój. Po włosku znaczy „wesoły\", ale w muzyce funkcjonuje jako wskazówka tempa",
+            "allegro znaczy „bardzo wolno\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne nieporozumienie. „Allegro\" jako etykieta części utworu mówi o tempie (szybkie). Nastrój może być wesoły, dramatyczny, niepokojący — niezależnie.",
+        },
+      ],
+      salon: {
+        short:
+          "Koncert = solista + orkiestra. Symfonia = sama orkiestra. Uwertura = otwarcie lub samodzielny utwór. Opera = teatr ze śpiewem. Tempa po włosku.",
+        expand:
+          "Allegro (szybko), adagio (wolno), largo (jeszcze wolniej), andante (spacerowe), vivace (żywo), presto (bardzo szybko). Muzyka programowa opowiada historię (Uwertura 1812), absolutna jest czystym dźwiękiem. Motyw = powtarzający się „podpis\" utworu (pa-pa-pa-paaaam z V Beethovena). Aria w operze = solowa pieśń, recytatyw = mówione/śpiewane fragmenty.",
+        trap:
+          "Koncertu jako utworu nie mylić z koncertem jako wydarzeniem. Uwertura nie zawsze coś otwiera. „Symfonia\" w mowie potocznej („coś wielkiego\") to nie to samo co forma muzyczna z konkretną strukturą. Allegro to tempo, nie nastrój — choć po włosku znaczy „wesoły\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 73. Muzyka: Vivaldi — Cztery pory roku
+  // ============================================================
+  {
+    slug: "music-vivaldi-cztery-pory-roku",
+    vaultSlug: "music",
+    label: "Muzyka — Vivaldi, Cztery pory roku (1720)",
+    payload: {
+      title: "Vivaldi — Cztery pory roku",
+      summary:
+        "Około 1720, barok włoski. Cykl czterech koncertów skrzypcowych (NIE symfonii), z dołączonymi sonetami opisującymi muzyczne obrazy. Vivaldi pisał je dla dziewcząt z weneckiego sierocińca. Zapomniany na 200 lat, wrócił do kanonu w XX wieku.",
+      theory:
+        "Antonio Vivaldi (1678–1741), włoski kompozytor baroku, ksiądz katolicki o rudych włosach — „il Prete Rosso\" (Czerwony Ksiądz). Większość życia w Wenecji, uczył muzyki dziewczęta w Ospedale della Pietà (sierociniec i konserwatorium). To dla nich pisał wiele swoich koncertów. Cztery pory roku skomponował ok. 1720, opublikowane w 1725.\n\nStruktura. Cykl czterech koncertów skrzypcowych, nie jeden utwór i nie symfonia. Każdy koncert ma trzy części w klasycznym układzie barokowym: szybka–wolna–szybka (allegro, largo/adagio, allegro/presto).\n\nMuzyka programowa. Vivaldi dołączył do każdej pory roku sonet opisujący, co dzieje się w muzyce. Wiosna: śpiew ptaków, strumień, burza, taniec pasterzy. Lato: upał, leniwe komary, kukułka, gołąb, dzika burza letnia. Jesień: żniwa, taniec wieśniaków, sen po winie, polowanie. Zima: mróz, drżenie z zimna, ciepły kominek, dzieci ślizgające się na lodzie, wichura.\n\nNajsłynniejsza, najczęściej „reklamowa\" część to Zima, ruch pierwszy — ostro tnąca, dramatyczna melodia z reklam, filmów i czołówek.\n\nPo śmierci jego muzyka zniknęła z głównego obiegu na ok. 200 lat i wróciła do kanonu dopiero w XX wieku.",
+      questions: [
+        {
+          type: "abc",
+          text: "Cztery pory roku to:",
+          options: [
+            "jedna symfonia w czterech częściach",
+            "cykl czterech koncertów skrzypcowych, każdy w trzech częściach",
+            "opera",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Cztery koncerty, każdy z trzema częściami (12 części razem). To nie symfonia — to cykl koncertów na skrzypce solo plus orkiestra.",
+        },
+        {
+          type: "abc",
+          text: "Sonety dołączone przez Vivaldiego do każdej pory roku:",
+          options: [
+            "to luźna inspiracja, nie odpowiadają konkretnym fragmentom",
+            "są dosłowne — burza w sonecie to burza w muzyce, ptaki w sonecie to ptaki w muzyce",
+            "powstały dopiero w XX wieku",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Muzyka programowa w czystej postaci. Vivaldi mapował konkretne wersy sonetów na konkretne fragmenty muzyki. To nie metafora — to dosłowne ilustrowanie.",
+        },
+        {
+          type: "fill",
+          text: "Vivaldi nauczał muzyki dziewczęta w sierocińcu _____ della Pietà.",
+          options: null,
+          correctAnswer: "Ospedale",
+          explanation:
+            "Ospedale della Pietà — wenecki sierociniec, jednocześnie konserwatorium. To dla tych uczennic powstała duża część dorobku Vivaldiego.",
+        },
+        {
+          type: "fill",
+          text: "Vivaldi był nazywany „Czerwonym _____ \" z powodu rudych włosów.",
+          options: null,
+          correctAnswer: "Księdzem",
+          explanation:
+            "Po włosku „il Prete Rosso\". Był księdzem katolickim, miał rude włosy. Trzy słowa-klucze do Vivaldiego: Wenecja, sierociniec dla dziewcząt, Czerwony Ksiądz.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu Vivaldi to barok, nie klasycyzm.",
+          options: null,
+          correctAnswer:
+            "Vivaldi działa w pierwszej połowie XVIII wieku, w okresie późnego baroku (1600–1750). Cechy barokowe: koncertująca forma (solista vs orkiestra w dialogu), basso continuo (klawesyn + wiolonczela jako podkład), szybka–wolna–szybka struktura, melodyczna ozdobność, kontrast dynamik. Klasycyzm zaczyna się dopiero z Haydnem i Mozartem w drugiej połowie XVIII wieku, z czteroczęściową symfonią, formą sonatową, większą orkiestrą. Vivaldi i Bach to barok; Haydn, Mozart i wczesny Beethoven to klasycyzm; późny Beethoven i Schubert otwierają romantyzm.",
+          explanation:
+            "Klucz: chronologia (przed 1750 = barok), forma (basso continuo + concerto grosso), kontrast z Haydnem/Mozartem.",
+        },
+        {
+          type: "spot_error",
+          text: "„Vivaldi był uznawany za genialnego kompozytora przez całe życie i przez kolejne pokolenia po śmierci.\"",
+          options: [
+            "tak, niezmienna sława",
+            "nie — był doceniany lokalnie w Wenecji, ale po śmierci jego muzyka zniknęła z głównego obiegu na ok. 200 lat i wróciła do kanonu dopiero w XX wieku",
+            "Vivaldi nigdy nie istniał",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka „zawsze sławny\". Vivaldi zmarł w biedzie w Wiedniu, popadł w zapomnienie, jego muzyka odkrywana była w XX wieku przy okazji prac nad Bachem (Bach przepisywał i adaptował Vivaldiego).",
+        },
+      ],
+      salon: {
+        short:
+          "Vivaldi pisał Cztery pory roku dla dziewcząt z weneckiego sierocińca. Muzyka programowa: każda pora ma sonet, burza w sonecie to burza w muzyce, dosłownie.",
+        expand:
+          "Cykl czterech koncertów skrzypcowych (nie symfonia), każdy z trzech części (szybka–wolna–szybka). Najsłynniejsza część: Zima ruch I, ten dramatyczny motyw z reklam i filmów. Vivaldi — barok włoski, nie klasycyzm. Po śmierci zapomniany na 200 lat, wrócił do kanonu w XX wieku przy okazji prac nad Bachem.",
+        trap:
+          "Vivaldi to BAROK, nie klasycyzm. Cztery pory roku to KONCERTY, nie symfonia. Sonety są DOSŁOWNE, nie luźna inspiracja. Vivaldi NIE był sławny przez całe życie — zmarł w biedzie w Wiedniu, odkryty na nowo w XX wieku.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 74. Muzyka: Beethoven — IX Symfonia / Oda do radości
+  // ============================================================
+  {
+    slug: "music-beethoven-ix-symfonia",
+    vaultSlug: "music",
+    label: "Muzyka — Beethoven, IX Symfonia / Oda do radości (1824)",
+    payload: {
+      title: "Beethoven — IX Symfonia",
+      summary:
+        "Premiera 7 maja 1824 w Wiedniu. Beethoven był wtedy całkowicie głuchy — pisał „wewnętrznym słuchem\". Pierwsza symfonia w historii z chórem i solistami w finale. Tekst: Schillerowska „Oda do radości\". Dziś hymn Unii Europejskiej.",
+      theory:
+        "Ludwig van Beethoven (1770–1827), niemiecki kompozytor — postać przełomowa między klasycyzmem a romantyzmem. IX Symfonia („Chóralna\", Choral Symphony) miała premierę 7 maja 1824 w Wiedniu. Beethoven był już wtedy całkowicie głuchy — uczył się partytur tylko z papieru. Tekst finału to wiersz Friedricha Schillera „An die Freude\" (Oda do radości) z 1785 roku. Beethoven nosił pomysł zamiany tego wiersza w muzykę przez większość dorosłego życia.\n\nStruktura: cztery części, podróż od chaosu do radości.\n1. Allegro ma non troppo — chaos, napięcie, walka, motywy rodzące się z ciszy.\n2. Molto vivace, scherzo — rytmiczna, ognista, taneczna, z mocnymi kotłami.\n3. Adagio molto e cantabile — liryczna, spokojna, kontemplacyjna, prawie modlitewna.\n4. Finał — orkiestra cytuje wcześniejsze części i je odrzuca, potem wchodzą soliści i chór z „Odą do radości\".\n\nPierwsza symfonia w historii z chórem i solistami wokalnymi w finale. Rewolucyjne — przepisało reguły gatunku.\n\nPremiera: Beethoven stał przy orkiestrze, ale realnym dyrygentem był Michael Umlauf. Beethoven nie słyszał oklasków po finale. Caroline Unger, młoda altystka, odwróciła go w stronę publiczności, żeby zobaczył brawa.\n\n„Oda do radości\" w aranżacji Herberta von Karajana jest od 1972 oficjalnym hymnem Rady Europy, a od 1985 hymnem Unii Europejskiej (wersja bez tekstu — UE ma wiele języków).",
+      questions: [
+        {
+          type: "abc",
+          text: "Co było rewolucyjne w IX Symfonii w 1824 roku?",
+          options: [
+            "pierwsza symfonia z drukowaną partyturą",
+            "pierwsza symfonia w historii z chórem i solistami wokalnymi w finale",
+            "pierwszy utwór w tonacji d-moll",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Beethoven przepisał reguły gatunku. Symfonia była dotąd czysto instrumentalna. Dodanie chóru i solistów w finale = całkowita nowość, otwarcie drogi dla późniejszych romantyków (Mahler).",
+        },
+        {
+          type: "abc",
+          text: "Beethoven podczas pisania i premiery IX Symfonii:",
+          options: [
+            "słyszał dobrze",
+            "był całkowicie głuchy — pisał „wewnętrznym słuchem\", na premierze ktoś musiał go odwrócić, by zobaczył oklaski",
+            "tracił słuch dopiero w trakcie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Słuch tracił stopniowo od ok. 26 roku życia, pełna głuchota pod koniec. IX powstała w pełnej głuchocie. Caroline Unger odwróciła go w stronę publiczności na premierze — drobiazg, którym można zabłysnąć.",
+        },
+        {
+          type: "fill",
+          text: "Tekst finału IX Symfonii to wiersz Friedricha _____ „An die Freude\".",
+          options: null,
+          correctAnswer: "Schillera",
+          explanation:
+            "Schiller napisał wiersz w 1785. Beethoven dodał muzykę kilkadziesiąt lat później. „Beethoven napisał Odę do radości\" to skrót — tekst jest Schillerowski.",
+        },
+        {
+          type: "fill",
+          text: "Od 1985 roku „Oda do radości\" jest hymnem _____ (organizacja).",
+          options: null,
+          correctAnswer: "Unii Europejskiej",
+          explanation:
+            "Aranżacja Herberta von Karajana. UE używa wersji bez tekstu, bo Unia ma wiele języków. Wcześniej od 1972 jako hymn Rady Europy.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy „podróż od chaosu do radości\" w strukturze IX Symfonii?",
+          options: null,
+          correctAnswer:
+            "Cztery części opisują wewnętrzną podróż słuchacza. Część I (Allegro ma non troppo) — chaos, napięcie, motywy rodzące się z ciszy, walka. Część II (Molto vivace, scherzo) — taneczna, ale wciąż niespokojna, mocne kotły. Część III (Adagio molto e cantabile) — liryczna, kontemplacyjna, modlitewna. Część IV (Finał) — orkiestra cytuje wcześniejsze części i ODRZUCA je („nie, nie to\"), zanim pojawia się temat Ody do radości w niskich smyczkach, narastający, aż wchodzą soliści i chór z tekstem Schillera. To dramatyczna struktura: od walki przez ciszę do zbiorowej, wokalnej radości.",
+          explanation:
+            "Klucz: cztery części jako sekwencja narracyjna. Cytowanie i odrzucanie wcześniejszych motywów w finale to jeden z najbardziej dramatycznych momentów w historii muzyki.",
+        },
+        {
+          type: "spot_error",
+          text: "„Beethoven napisał i tekst, i muzykę «Ody do radości» — to jego oryginalny wiersz.\"",
+          options: [
+            "tak, oba elementy są Beethovena",
+            "nie — tekst napisał Friedrich Schiller w 1785, Beethoven dodał muzykę kilkadziesiąt lat później (premiera IX Symfonii: 1824)",
+            "Schiller był synem Beethovena",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Schiller — poeta, niemiecki klasyk, napisał „An die Freude\" w 1785. Beethoven kilkadziesiąt lat później zamienił go w muzykę. To partnerstwo poeta + kompozytor, nie jeden autor.",
+        },
+      ],
+      salon: {
+        short:
+          "IX Symfonia Beethovena to muzyczna podróż od chaosu do radości. Cztery części, ostatnia z chórem śpiewającym Schillerowską „Odę do radości\". Beethoven był głuchy, gdy ją pisał i stał na premierze.",
+        expand:
+          "Pierwsza symfonia w historii z chórem i solistami w finale — rewolucja gatunku. Na premierze Caroline Unger, młoda altystka, odwróciła Beethovena w stronę publiczności, żeby zobaczył oklaski, których nie słyszał. Drobiazg, którym można zabłysnąć w rozmowie. Aranżacja Karajana jest dziś hymnem Unii Europejskiej.",
+        trap:
+          "„Oda do radości\" to wiersz Schillera, Beethoven dodał muzykę. „Choral Symphony\" to przezwisko, nie oficjalna nazwa (oficjalnie: IX Symfonia d-moll op. 125). Beethoven nie był głuchy „od urodzenia\" — tracił słuch stopniowo od 26 roku życia. W Spotify pięć ścieżek nie oznacza pięciu części, finał bywa dzielony technicznie.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 75. Muzyka: Czajkowski — Uwertura 1812
+  // ============================================================
+  {
+    slug: "music-czajkowski-uwertura-1812",
+    vaultSlug: "music",
+    label: "Muzyka — Czajkowski, Uwertura 1812 (1880)",
+    payload: {
+      title: "Czajkowski — Uwertura 1812",
+      summary:
+        "1880, romantyzm rosyjski. Utwór programowy o wojnie 1812 (Napoleon vs Rosja) — z Marsylianką, hymnem carskim i prawdziwymi armatami w finale. Pikantny detal: sam Czajkowski tego utworu nie znosił, pisał go na zamówienie.",
+      theory:
+        "Piotr Czajkowski (1840–1893), rosyjski kompozytor romantyzmu. Uwerturę 1812 napisał w 1880 na zamówienie, z okazji rocznicy zwycięstwa Rosji nad Napoleonem w 1812 (68 lat po wydarzeniu). Sam Czajkowski tego utworu nie lubił — pisał o nim, że jest „bardzo głośny i hałaśliwy\", napisany „bez ciepła i miłości\". Mimo to stał się jednym z jego najsłynniejszych dzieł.\n\nStruktura jako narracja wojny:\n1. Modlitwa rosyjska na początek — motyw cerkiewny, spokojny.\n2. Wejście Francuzów — motyw Marsylianki, francuskiego hymnu.\n3. Bitwa — ścieranie się motywów rosyjskich i francuskich.\n4. Moskwa jako pułapka — Francuzi wchodzą do miasta, ale jest puste i podpalone.\n5. Zima i odwrót — motyw francuski słabnie, zanika, gaśnie.\n6. Triumf Rosji — dzwony cerkiewne, armaty, hymn carski „Boże, chroń cara\".\n\nW oryginalnej wersji Czajkowski przewidział prawdziwe armaty jako instrument. Dziś na otwartych koncertach często odpalane są realne działa lub salwy. Klasyk dętych koncertów plenerowych, zwłaszcza w USA na 4 lipca.\n\nDetale historyczne (anachronizmy): Marsylianka była w 1812 we Francji napoleońskiej już zakazana. Hymn „Boże, chroń cara\" powstał dopiero w 1833 — w 1812 nie istniał. Czajkowski używa obu jako rozpoznawalnych skrótów kulturowych, nie dokumentacji historycznej.",
+      questions: [
+        {
+          type: "abc",
+          text: "Stosunek Czajkowskiego do własnej Uwertury 1812 to:",
+          options: [
+            "duma — uważał ją za swoje arcydzieło",
+            "niechęć — pisał, że jest hałaśliwa, „bez ciepła i miłości\", napisał na zamówienie",
+            "obojętność",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pikantny detal historyczny. Mimo niechęci kompozytora — utwór stał się jednym z najsłynniejszych jego dzieł. Klasyczna ironia.",
+        },
+        {
+          type: "abc",
+          text: "Rok „1812\" w tytule oznacza:",
+          options: [
+            "rok kompozycji",
+            "rok wojny Napoleona z Rosją, której utwór opowiada",
+            "rok śmierci Czajkowskiego",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Czajkowski napisał utwór w 1880 — 68 lat po wydarzeniu, na rocznicę zwycięstwa. Tytuł odnosi się do tematu, nie daty kompozycji.",
+        },
+        {
+          type: "fill",
+          text: "Motyw Francuzów w utworze to _____ (hymn francuski).",
+          options: null,
+          correctAnswer: "Marsylianka",
+          explanation:
+            "Marsylianka jako skrót kulturowy „Francuzi\". Anachronizm — w 1812 napoleońska Francja zakazała Marsylianki jako pieśni rewolucyjnej. Czajkowski używa jej symbolicznie.",
+        },
+        {
+          type: "fill",
+          text: "W finale Czajkowski przewidział prawdziwe _____ jako instrument muzyczny.",
+          options: null,
+          correctAnswer: "armaty",
+          explanation:
+            "W partyturze są naprawdę partycerzane „cannons\". Na koncertach plenerowych (zwłaszcza w USA na 4 lipca) odpalane są realne działa lub salwy.",
+        },
+        {
+          type: "open",
+          text: "Wymień dwa anachronizmy historyczne w Uwerturze 1812.",
+          options: null,
+          correctAnswer:
+            "1) Marsylianka jako motyw Francuzów — w 1812 napoleońska Francja już zakazała Marsylianki jako pieśni rewolucyjnej, kojarzonej z obaleniem monarchii. Napoleon używał innych pieśni państwowych. Czajkowski używa Marsylianki symbolicznie, bo była rozpoznawalnym skrótem „Francja\" dla publiczności XIX wieku. 2) Hymn carski „Boże, chroń cara\" powstał dopiero w 1833 — w 1812 jeszcze nie istniał. Czajkowski używa go anachronicznie jako symbolu Rosji caratu, choć w realiach 1812 ten hymn jeszcze nie funkcjonował. Oba anachronizmy to dramaturgia, nie historia — Czajkowski pisał uwerturę programową, nie dokument.",
+          explanation:
+            "Klucz: dwa konkretne anachronizmy + zrozumienie, że programowa muzyka używa skrótów kulturowych, nie dokumentacji.",
+        },
+        {
+          type: "spot_error",
+          text: "„Uwertura 1812 to wstęp do opery «1812» Czajkowskiego — opowiada o wydarzeniach przed akcją główną.\"",
+          options: [
+            "tak, to wstęp do opery",
+            "nie — to uwertura koncertowa (concert overture), samodzielne dzieło orkiestrowe, nie wstęp do żadnej opery",
+            "Czajkowski nie pisał oper",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Uwertura\" sugeruje wstęp, ale uwertura koncertowa to gatunek samodzielny. Czajkowski pisał opery (Eugeniusz Oniegin, Dama pikowa), ale Uwertura 1812 nie należy do żadnej z nich.",
+        },
+      ],
+      salon: {
+        short:
+          "Uwertura 1812 to muzyczna inscenizacja wojny — Marsylianka naprzeciw rosyjskich melodii cerkiewnych, finał to dzwony i armaty, dosłownie. Najciekawsze: Czajkowski sam tego utworu nie znosił.",
+        expand:
+          "Pisał o nim, że jest „bardzo głośny i hałaśliwy\", napisany „bez ciepła i miłości\". Mimo to stał się klasykiem dętych koncertów plenerowych, zwłaszcza w USA na 4 lipca. Czajkowski używa anachronizmów (Marsylianka była w 1812 we Francji zakazana, hymn „Boże, chroń cara\" powstał w 1833) jako rozpoznawalnych skrótów kulturowych, nie dokumentacji historycznej.",
+        trap:
+          "1812 to ROK WOJNY, nie rok kompozycji (utwór z 1880). „Uwertura\" tu nie otwiera opery — to uwertura koncertowa, samodzielna. Marsylianka i „Boże, chroń cara\" są anachroniczne — Czajkowski używa ich symbolicznie. Nie pisał uwertury z patriotycznego porywu — pisał na zamówienie, stąd jego niechęć.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 76. Muzyka: Bizet — Carmen
+  // ============================================================
+  {
+    slug: "music-bizet-carmen",
+    vaultSlug: "music",
+    label: "Muzyka — Bizet, Carmen (1875)",
+    payload: {
+      title: "Bizet — Carmen",
+      summary:
+        "Premiera marzec 1875, Opéra-Comique w Paryżu. Skandal — publiczność uznała ją za niemoralną i wulgarną. Bizet zmarł 3 miesiące po premierze (36 lat), nie dożył triumfu. Dziś jedna z najczęściej granych oper świata. Habanera, Pieśń Torreadora, tragiczny finał.",
+      theory:
+        "Georges Bizet (1838–1875), francuski kompozytor romantyzmu. Carmen, jego najsłynniejsza opera, miała premierę w marcu 1875 w Opéra-Comique w Paryżu. Spotkała się z chłodnym, niemal skandalicznym przyjęciem — publiczność i krytyka uznali ją za niemoralną i wulgarną, bo główna bohaterka to namiętna, niezależna kobieta robotnica, której zachowanie łamało ówczesne konwencje.\n\nBizet zmarł trzy miesiące po premierze, mając 36 lat. Nie dożył triumfu Carmen. Libretto bazuje na noweli Prospera Mériméego z 1845. Akcja w Sewilli.\n\nGłówne postacie:\n— Carmen: cygańska robotnica z fabryki cygar, namiętna, wolna, uwodzicielska, klasyczna femme fatale.\n— Don José: żołnierz, początkowo wzorowy, popada w obsesję na punkcie Carmen i niszczy sobie życie.\n— Micaëla: delikatna, pobożna wieśniaczka, narzeczona Don Joségo, symbol tradycyjnej kobiecości.\n— Escamillo: torreador, gwiazda, celebryta swoich czasów.\n\nKluczowe sceny: fabryka cygar — Carmen śpiewa Habanerę: „Miłość jest dzikim ptakiem, którego nie da się oswoić\". Programowa deklaracja jej filozofii. Bójka, aresztowanie, uwiedzenie Don Joségo. Tawerna w górach z przemytnikami, Escamillo śpiewa Pieśń Torreadora. Carmen wróży sobie z tarota — wypada śmierć. Finał: na arenie w Sewilli Escamillo walczy z bykiem, a Carmen na zewnątrz odrzuca Don Joségo — on zabija ją nożem.\n\nDetale: Habanera nie jest hiszpańska — to rytm KUBAŃSKI, dotarł do Hiszpanii przez Hawanę. Bizet nie był Hiszpanem, pisał o Hiszpanii jako Francuz, nigdy nie był w Sewilli.",
+      questions: [
+        {
+          type: "abc",
+          text: "Premiera Carmen w 1875:",
+          options: [
+            "od razu triumf, owacje na stojąco",
+            "skandal — uznana za niemoralną i wulgarną. Bizet zmarł 3 miesiące później, nie dożył triumfu",
+            "odwołana przez cenzurę",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna historia: krytyka za wulgarność (główna bohaterka — niezależna robotnica), Bizet umarł, opera potem stała się jedną z najczęściej granych na świecie. Ironia.",
+        },
+        {
+          type: "abc",
+          text: "Habanera (najsłynniejsza aria Carmen) ma rodowód:",
+          options: [
+            "czysto hiszpański",
+            "kubański — rytm dotarł do Hiszpanii przez Hawanę. Stąd nazwa „habanera\" (od Habana)",
+            "francuski",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Habanera = rytm z Hawany, kubański w pochodzeniu. Trafił do Hiszpanii w XIX wieku, stał się popularny w Europie. Bizet (Francuz piszący operę o Hiszpanii) używa go jako lokalnego kolorytu.",
+        },
+        {
+          type: "fill",
+          text: "Don José zabija Carmen na końcu opery _____ (czym?).",
+          options: null,
+          correctAnswer: "nożem",
+          explanation:
+            "Akt finałowy: na arenie Escamillo walczy z bykiem, a Carmen na zewnątrz odrzuca Don Joségo. Z obsesyjnej miłości i niemożności zaakceptowania jej wolności — zabija ją nożem.",
+        },
+        {
+          type: "fill",
+          text: "Sławna aria Escamilla to _____ Torreadora.",
+          options: null,
+          correctAnswer: "Pieśń",
+          explanation:
+            "Pieśń Torreadora — wjazdowa aria torreadora, w której opowiada o walce z bykiem. Druga najbardziej rozpoznawalna aria opery po Habanerze.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu Carmen to nie jest opera „o miłości\".",
+          options: null,
+          correctAnswer:
+            "To opera o OBSESJI, POSIADANIU i WOLNOŚCI, nie o miłości w sentymentalnym sensie. Don José nie kocha Carmen — chce ją mieć i kontrolować. Gdy ona odrzuca go (bo jest wolnym ptakiem, jak deklaruje w Habanerze: „miłość jest dzikim ptakiem, którego nie da się oswoić\"), on jej nie wypuszcza, tylko zabija. Carmen z perspektywy współczesnej to ofiara przemocy ze strony mężczyzny, który nie potrafi zaakceptować, że ona ma prawo go zostawić. W 1875 publiczność zobaczyła to jako „niemoralność\" Carmen, dziś widzimy to jako tragedię patriarchatu. To dlatego opera jest tak żywa — bohaterka mówi „nie\", a system odpowiada przemocą.",
+          explanation:
+            "Klucz: opera o obsesji i kontroli, nie o miłości. Współczesna interpretacja widzi Carmen jako ofiarę, nie jako „złą kobietę\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Carmen to opera napisana przez hiszpańskiego kompozytora, który dorastał w Sewilli i znał miejscowy folklor.\"",
+          options: [
+            "tak, Bizet był Hiszpanem",
+            "nie — Bizet był Francuzem, nigdy nie był w Sewilli. Pisał operę o Hiszpanii jako outsider, używając rytmów (jak kubańska habanera) jako lokalnego kolorytu",
+            "Bizet był Włochem",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bizet to klasyczny przykład XIX-wiecznego „egzotyzmu\" — francuski kompozytor pisze operę o Hiszpanii (egzotyczny południowy temat dla paryskiej publiczności), nigdy nie będąc w Sewilli. Używa rytmów i obrazów jako fantazji o Hiszpanii.",
+        },
+      ],
+      salon: {
+        short:
+          "Carmen to jedna z tych oper, które przy premierze były skandalem, a dziś są klasykiem. Femme fatale śpiewa Habanerę o tym, że miłość jest jak ptak, którego nie da się zamknąć. Don José zabija ją z zazdrości w finale.",
+        expand:
+          "Bizet nie dożył sukcesu, umarł trzy miesiące po prapremierze, mając 36 lat. Publiczność 1875 odrzuciła operę jako wulgarną — niezależna robotnica łamała konwencje. Habanera ma rodowód KUBAŃSKI (nie hiszpański), Bizet był Francuzem (nie Hiszpanem) i nigdy nie był w Sewilli. To francuska fantazja o Hiszpanii, klasyczny XIX-wieczny egzotyzm.",
+        trap:
+          "Carmen to NIE opera „o miłości\" — to opera o obsesji, posiadaniu i wolności. Carmen nie jest „złą kobietą\" — to ofiara przemocy mężczyzny, który nie akceptuje jej wolności. Habanera nie jest hiszpańska, to rytm kubański. Bizet nie był Hiszpanem ani nie był w Sewilli.",
+      },
+    },
+  },
 ];
