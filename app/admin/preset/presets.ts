@@ -5660,4 +5660,972 @@ export const PRESETS: Preset[] = [
       imageCaption: "Pieter Bruegel Starszy, Myśliwi w śniegu, 1565, Kunsthistorisches Museum, Wiedeń",
     },
   },
+
+  // ============================================================
+  // 61. Savoir-vivre: powitania i przedstawianie
+  // ============================================================
+  {
+    slug: "savoir-powitania-i-przedstawianie",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — powitania i przedstawianie",
+    payload: {
+      title: "Powitania i przedstawianie",
+      summary:
+        "Pierwsze 30 sekund kontaktu decyduje o tym, jak Cię zapamiętają. Dwie różne reguły: towarzyskie (kobieta i starszy pierwsze) vs biznesowe (stanowisko, nie płeć). Większość ludzi wpada, bo myli kody.",
+      theory:
+        "Sytuacja towarzyska. Hierarchia: kobieta > osoba starsza > młodszy mężczyzna. Kobieta podaje rękę pierwsza. Starszy mężczyzna podaje rękę młodszemu.\n\nSytuacja biznesowa. Hierarchia stanowisk, nie płeć i nie wiek. Osoba wyższa rangą podaje rękę pierwsza — CEO podaje rękę pierwszy, nawet jeśli jest mężczyzną, a kobieta jest junior.\n\nPrzedstawianie: zawsze „do góry\" — osobę niższą w hierarchii przedstawiamy osobie wyższej. Format: najpierw imię osoby wyższej, potem nowa osoba. „Pani Anno, to jest Marek Nowak, nasz analityk. Marek, Pani Anna Wiśniewska, head of strategy.\"\n\nSam uścisk: krótki, pewny, kontakt wzrokowy, jedno-dwa pociągnięcia. Lekki uśmiech, nie ostentacyjny. Wstajemy do powitania (w biznesie zawsze, towarzysko mężczyźni do kobiet i starszych).",
+      questions: [
+        {
+          type: "abc",
+          text: "Kobieta junior i mężczyzna senior na spotkaniu biznesowym — kto podaje rękę pierwszy?",
+          options: [
+            "kobieta — bo towarzyska reguła ma zawsze pierwszeństwo",
+            "senior — bo w biznesie liczy się stanowisko, nie płeć",
+            "obie strony jednocześnie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Biznes: hierarchia stanowisk, nie płci. Senior podaje pierwszy. Towarzyska reguła „kobieta pierwsza\" tu nie obowiązuje.",
+        },
+        {
+          type: "abc",
+          text: "Przedstawiasz dwie osoby. Format poprawny:",
+          options: [
+            "najpierw imię nowej osoby, potem ważniejszej",
+            "najpierw imię osoby wyższej rangą, potem nowa",
+            "kolejność alfabetyczna",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przedstawiamy „do góry\". „Pani Anno, to jest Marek\" — najpierw zwracamy się do osoby wyższej rangą.",
+        },
+        {
+          type: "fill",
+          text: "Towarzyska hierarchia: kobieta > osoba _____ > młodszy mężczyzna.",
+          options: null,
+          correctAnswer: "starsza",
+          explanation:
+            "Wiek jest drugim wymiarem. Starszy mężczyzna podaje rękę młodszemu w sytuacji towarzyskiej.",
+        },
+        {
+          type: "fill",
+          text: "Reakcja na powitanie: kontakt wzrokowy, krótki uścisk, _____ uśmiech.",
+          options: null,
+          correctAnswer: "lekki",
+          explanation:
+            "Lekki, nie ostentacyjny. Powitanie ma być profesjonalne, nie performatywne.",
+        },
+        {
+          type: "open",
+          text: "Sformułuj poprawne przedstawienie analityka (Marek Nowak) head of strategy (Anna Wiśniewska).",
+          options: null,
+          correctAnswer:
+            "„Pani Anno, to jest Marek Nowak, nasz analityk. Marek, Pani Anna Wiśniewska, head of strategy.\" Najpierw zwracamy się do osoby wyższej rangą (Anna), przedstawiamy nową osobę (Marek), potem do nowej osoby kierujemy pełne nazwisko i tytuł wyższej osoby. Tytuł pomaga w kontekście, ale nie powinien być przesadny.",
+          explanation:
+            "Klucz: do góry, najpierw imię wyższej rangą, potem nowa osoba, opcjonalnie krótkie role. Wszystko spokojnie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Spotykam CEO mężczyznę na korytarzu, jestem kobietą junior. Czekam aż on poda rękę, ale czuję, że to ja powinnam — w końcu w towarzyskim kontekście kobieta pierwsza.\"",
+          options: [
+            "tak — kobieta zawsze pierwsza",
+            "nie — w biznesie hierarchia stanowisk: CEO podaje rękę pierwszy, nawet jeśli jest mężczyzną, a Ty kobietą junior",
+            "obie strony naraz",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne mylenie kodów. W biznesie CEO ma pierwszeństwo niezależnie od płci. Czekanie na inicjatywę CEO jest poprawne.",
+        },
+      ],
+      salon: {
+        short:
+          "Towarzysko: kobieta i starszy pierwsze. Biznesowo: stanowisko, nie płeć. CEO podaje rękę pierwszy, nawet jeśli jest mężczyzną, a Ty kobietą junior.",
+        expand:
+          "Przedstawiamy „do góry\" — najpierw imię osoby wyższej rangą, potem nowa osoba. „Pani Anno, to jest Marek Nowak, nasz analityk. Marek, Pani Anna Wiśniewska, head of strategy.\" Sam uścisk: krótki, pewny, kontakt wzrokowy, jedno-dwa pociągnięcia. Lekki uśmiech, nie ostentacyjny. W biznesie zawsze wstajemy do powitania.",
+        trap:
+          "Czekać aż mężczyzna senior poda rękę, gdy Ty jesteś jeszcze wyżej rangą — błąd. Powtarzać „miło mi, miło mi\" — raz wystarczy. Zbyt mocny uścisk (próba dominacji) albo zbyt wiotki (sygnał niepewności). Patrzeć w bok podczas powitania.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 62. Savoir-vivre: etykieta stołu
+  // ============================================================
+  {
+    slug: "savoir-etykieta-stolu",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — etykieta stołu",
+    payload: {
+      title: "Etykieta stołu",
+      summary:
+        "Stół to scena. Większość zasad sprowadza się do dwóch rzeczy: nie wyprzedzaj gospodarza, dawaj sygnały sztućcami. Pauza = V, koniec = równolegle na 4:20.",
+      theory:
+        "Kiedy zaczynamy jeść: gdy zaczyna gospodarz lub gdy wszyscy mają już talerze i gospodarz daje znak. Nie zaczynamy „bo mi wystygnie\".\n\nSerwetka: na kolana zaraz po usiądnięciu, składamy w pół zagiętą stroną do siebie. W trakcie krótkiej przerwy (np. wyjście do toalety): NA KRZEŚLE, nie na stole. Na koniec posiłku: lekko zwinięta z lewej strony talerza, nie składamy starannie.\n\nSygnały sztućcami. Pauza w jedzeniu: sztućce w „V\" na talerzu, widelec lewo, nóż prawo, czubki ku środkowi. Koniec posiłku: sztućce równolegle, ułożone na pozycji 4:20 jak na zegarze, ostrza noża do siebie, uchwyty w prawo-dół.\n\nPieczywo: łamiemy kęsy palcami, nie odgryzamy z całej kromki. Smarujemy małe porcje, nie całą kromkę naraz. Pieczywo trzymamy nad talerzykiem lub talerzem, nie nad obrusem.\n\nToasty: wstajemy razem z gospodarzem (jeśli on wstaje). Patrzymy w oczy osobie, do której pijemy. Lekkie uniesienie kieliszka, delikatny kontakt jeśli w ogóle, nie stukanie.\n\nGdy gospodarz wstaje w trakcie posiłku: ODKŁADAMY sztućce w pauzę V, NIE wstajemy z nim. Chyba że na koniec posiłku — wtedy wszyscy.\n\nTempo: dostosowane do reszty stołu. Nie pierwsza, nie ostatnia.",
+      questions: [
+        {
+          type: "abc",
+          text: "Sygnał „pauza w jedzeniu\" sztućcami:",
+          options: [
+            "sztućce równolegle na 4:20",
+            "sztućce w V, czubki ku środkowi (widelec lewo, nóż prawo)",
+            "sztućce skrzyżowane na X",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "V = pauza, robię przerwę. Równolegle = koniec posiłku. To kod międzynarodowy dla kelnera.",
+        },
+        {
+          type: "abc",
+          text: "Gospodarz wstaje od stołu na chwilę. Co robisz?",
+          options: [
+            "wstajesz z nim, z grzeczności",
+            "zostajesz, odkładasz sztućce w pauzę V",
+            "kontynuujesz jedzenie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wstajemy razem z gospodarzem tylko gdy on wstaje NA KONIEC posiłku. Przy krótkiej przerwie — zostajemy, robimy pauzę V.",
+        },
+        {
+          type: "fill",
+          text: "W trakcie krótkiej przerwy (np. wyjście do toalety) serwetkę kładziemy na _____ , nie na stole.",
+          options: null,
+          correctAnswer: "krześle",
+          explanation:
+            "Stół jest dla zastawy i czystego obrusu. Serwetka na krześle = wracamy. Po zakończeniu posiłku — lekko zwinięta z lewej strony talerza.",
+        },
+        {
+          type: "fill",
+          text: "Pieczywo _____ palcami, nie odgryzamy z całej kromki.",
+          options: null,
+          correctAnswer: "łamiemy",
+          explanation:
+            "Małe kęsy łamane, smarujemy małe porcje pojedynczo, trzymamy nad talerzykiem (nie nad obrusem).",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, dlaczego sygnały sztućcami są ważne, nawet jeśli nikt ich nie „odczytuje\" świadomie.",
+          options: null,
+          correctAnswer:
+            "Sygnały V (pauza) i równolegle (koniec) są międzynarodowym kodem dla kelnera — wie, czy zabrać talerz, czy poczekać. Pomagają obsłudze, ale też tworzą rytm całego stołu: wszyscy widzą wzajemnie sygnały, dostosowują tempo, nikt nie czeka samotnie z pustym talerzem ani nie jest pospieszany. Plus: świadomie ułożone sztućce to drobny gest kontroli — sygnał, że jesz spokojnie, świadomie, że nie krzątasz się przy stole. Drobiazg, ale buduje wrażenie obycia.",
+          explanation:
+            "Klucz: funkcja (komunikacja z kelnerem) + estetyka (rytm stołu, brak nerwowych ruchów).",
+        },
+        {
+          type: "spot_error",
+          text: "„Stukam mocno kieliszkiem do toastu, krzyczę «Sto lat!» — to świadczy o entuzjazmie.\"",
+          options: [
+            "tak, entuzjastycznie jest dobrze",
+            "nie — toast: delikatne uniesienie kieliszka, kontakt wzrokowy z osobą, do której pijemy, ewentualnie minimalny kontakt — nie stukanie",
+            "kieliszek powinien być pusty",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Stukanie kieliszkami jest popularne w polskiej tradycji, ale w eleganckim kontekście — minimalne. Toast to gest wzajemnego spojrzenia, nie hałasu.",
+        },
+      ],
+      salon: {
+        short:
+          "Pauza = V, koniec = równolegle. Gospodarz daje rytm. Serwetka na krześle przy przerwie, nie na stole. Pieczywo łamiemy palcami, nie odgryzamy.",
+        expand:
+          "Sygnały sztućcami są międzynarodowym kodem dla kelnera. Toast: patrzymy w oczy, delikatne uniesienie kieliszka, nie stukanie. Tempo dostosowane do reszty stołu — nie pierwsza, nie ostatnia. Gdy gospodarz wstaje na chwilę: odkładamy sztućce w V, zostajemy, nie wstajemy z nim.",
+        trap:
+          "Wstać z gospodarzem, gdy on wstaje na chwilę. Zaczynać jeść przed gospodarzem. Trzymać serwetkę na stole przy krótkim wyjściu. Stukać kieliszkiem przy toaście. Mówić z pełnymi ustami. Krzątać się przy sztućcach, kiedy nie jemy (gest niepewności).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 63. Savoir-vivre: torebka i przestrzeń przy stole
+  // ============================================================
+  {
+    slug: "savoir-torebka-i-przestrzen",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — torebka i przestrzeń przy stole",
+    payload: {
+      title: "Torebka i przestrzeń przy stole",
+      summary:
+        "Kobiety wpadają najczęściej na torebce. Reguła jest prosta: torebka ma być niewidoczna, nie kolidować z obsługą i nie zaśmiecać estetyki stołu. Mała na kolanach od lewej, duża przy nodze krzesła.",
+      theory:
+        "Gdzie torebka NIGDY. Nie na stole — stół jest dla zastawy, torebka zaśmieca optycznie i koliduje z talerzami i kieliszkami. Nie na oparciu krzesła — spadnie, kelner się potknie, ktoś o nią zaczepi. Nie na podłodze (poza ekstremalnymi sytuacjami).\n\nMała torebka / kopertówka: na kolanach, od strony lewej, między udem a lewym oparciem. Albo na krześle obok TYLKO jeśli krzesło jest puste i lokal kameralny. W restauracjach premium często jest niski stołeczek lub haczyk pod blatem — korzystamy.\n\nDuża torba: między nogami krzesła a stołem, oparta o nogę krzesła od strony siedzenia. NIE w przejściu. NIE na drugim krześle, gdy lokal pełny.\n\nZasada lewej nogi: mała torebka kładziona na kolanach idzie z lewej strony. Lewa, bo prawą ręką jemy i sięgamy po kieliszek.\n\nCo robimy w torebce przy stole: NIC. Otwieramy ją tylko w sytuacjach koniecznych. Sprawdzenie telefonu, poprawka makijażu, szukanie czegoś — wychodzimy do toalety. Telefon w ręce podczas posiłku to czerwona flaga.",
+      questions: [
+        {
+          type: "abc",
+          text: "Mała kopertówka przy stole — gdzie?",
+          options: [
+            "na stole obok talerza",
+            "na oparciu krzesła",
+            "na kolanach, od strony lewej",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Zasada lewej nogi — prawa ręka wolna do jedzenia i kieliszka. Stół jest dla zastawy, oparcie się grozi spadnięciem.",
+        },
+        {
+          type: "abc",
+          text: "Duża torba w restauracji — gdzie?",
+          options: [
+            "na oparciu krzesła",
+            "między nogą krzesła a stołem, oparta o nogę od strony siedzenia",
+            "na drugim krześle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bezpiecznie, nie w przejściu, nie blokuje obsługi. Drugie krzesło rezerwujemy dla potencjalnego gościa.",
+        },
+        {
+          type: "fill",
+          text: "Mała torebka idzie z _____ strony, bo prawą ręką jemy.",
+          options: null,
+          correctAnswer: "lewej",
+          explanation:
+            "Logika praktyczna — wolna ręka do sztućców i kieliszka. „Zasada lewej nogi\" jest standardową regułą savoir-vivre.",
+        },
+        {
+          type: "fill",
+          text: "Jeśli musisz sprawdzić telefon lub poprawić makijaż, wychodzisz do _____ .",
+          options: null,
+          correctAnswer: "toalety",
+          explanation:
+            "Otwieranie torebki przy stole, sprawdzanie telefonu, gorączkowe szukanie — psuje rytm stołu. Toaleta to neutralna przestrzeń do tych czynności.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu „powieszę torebkę na oparciu, będę mieć pod ręką\" to zły pomysł.",
+          options: null,
+          correctAnswer:
+            "Trzy powody. Bezpieczeństwo: torebka spada, ktoś o nią zaczepi, kelner może się potknąć. Estetyka: w lokalu premium wisząca torba wygląda chaotycznie, łamie linię oparcia. Logistyka: gdy wstajesz albo ktoś przechodzi za Twoim krzesłem, torba jest na drodze. Lepiej: mała kopertówka na kolanach od lewej (kontrola, czystość), duża pod stołem przy nodze krzesła (bezpiecznie schowana). Premium restauracje często oferują niski stołeczek lub haczyk pod blatem — wtedy korzystamy z nich.",
+          explanation:
+            "Klucz: bezpieczeństwo + estetyka + logistyka. Trzy razem wykluczają oparcie krzesła.",
+        },
+        {
+          type: "spot_error",
+          text: "„Na pełnej kolacji w premium restauracji telefon trzymam obok talerza — mam alerty z pracy, czekam na ważnego maila.\"",
+          options: [
+            "tak, kontekst pracy uzasadnia",
+            "nie — telefon poza stołem zawsze. Jeśli czekasz na coś naprawdę pilnego: telefon na kolanach w torebce, krótkie wyjście jeśli wibruje, „przepraszam na chwilę\"",
+            "telefon na głośnomówiącym OK",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Telefon na stole sygnalizuje, że spotkanie nie jest w pełni Twoim priorytetem. W premium kontekście to czerwona flaga niezależnie od kontekstu zawodowego.",
+        },
+      ],
+      salon: {
+        short:
+          "Mała torebka na kolanach od lewej, duża pod stołem przy nodze krzesła. Nigdy na stole, nigdy na oparciu, nigdy w przejściu. Telefon trzymamy w torebce, otwieramy w toalecie.",
+        expand:
+          "Zasada lewej nogi — prawa ręka wolna do sztućców i kieliszka. W restauracjach premium często jest niski stołeczek lub haczyk pod blatem, korzystamy. „Powieszę na oparciu, będę miała pod ręką\" — fatalny pomysł: spada, kelner się potyka, w premium lokalu wygląda chaotycznie.",
+        trap:
+          "Położyć torebkę na drugim krześle, gdy lokal pełny — krzesło może być potrzebne. Otwierać torebkę przy stole, żeby sprawdzić telefon — wychodzimy. Trzymać telefon w ręce podczas posiłku. Zasłaniać torebką kieliszek wina.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 64. Savoir-vivre: elegancka komunikacja
+  // ============================================================
+  {
+    slug: "savoir-elegancka-komunikacja",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — elegancka komunikacja",
+    payload: {
+      title: "Elegancka komunikacja",
+      summary:
+        "Jak mówisz, jak reagujesz na komplement, jak nie poprawiasz innych — to poziom, na którym widać, czy ktoś ma realne obycie. Można umieć wszystko o stole i wpaść tu w ciągu trzech zdań.",
+      theory:
+        "Tempo i ton. Mówimy spokojniej i niżej niż naturalny impuls. Mikropauzy między zdaniami. Nie podnosimy głosu, żeby coś podkreślić — raczej ściszamy. Ludzie wtedy słuchają uważniej.\n\nNie przerywamy. Czekamy do końca myśli drugiej osoby. Mikropauza po jej zdaniu. Dopiero potem mówimy. Jeśli sami zostaniemy przerwani: zatrzymujemy się, mikropauza, patrzymy spokojnie, druga osoba kończy, wracamy.\n\nReakcja na komplement. „Dziękuję, to bardzo miłe.\" Albo: „Dziękuję, miło mi to słyszeć.\" NIE: „ależ nie\", „co Ty\", „to stare\", „no niestety jeszcze nie tak dobrze\". Pomniejszanie komplementu odrzuca uprzejmość drugiej osoby. To nie skromność — to brak elegancji.\n\nNie poprawiamy publicznie. Nawet jeśli ktoś przekręcił nazwisko, popełnił błąd merytoryczny, źle wymówił słowo. Publicznie: nie. Prywatnie, w cztery oczy, delikatnie, w odpowiednim momencie.\n\nEleganckie zamienniki potocznych zwrotów. „Słucham?\" zamiast „co?\". „Oczywiście / naturalnie / z przyjemnością\" zamiast „spoko\". „Dobrze / w porządku\" zamiast „OK\". „Przepraszam\" zamiast „sorry\". „Dzień dobry\" w mailu biznesowym zamiast „Hej\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Ktoś mówi: „Wyglądasz fantastycznie w tej sukience.\" Najlepsza reakcja:",
+          options: [
+            "„Ależ nie, stara jest, kupiłam dawno.\"",
+            "„Dziękuję, to bardzo miłe.\"",
+            "„No, tak myślałam, że dobrze leży.\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Krótko, ciepło, bez umniejszania. Pomniejszanie komplementu („ależ nie\") odrzuca uprzejmość drugiej osoby — to nie skromność, to brak elegancji.",
+        },
+        {
+          type: "abc",
+          text: "Ktoś przy stole popełnia błąd merytoryczny przy wszystkich. Reakcja:",
+          options: [
+            "publicznie korygujesz, by inni nie żyli w błędzie",
+            "nie korygujesz publicznie — jeśli to ważne, w cztery oczy, później, delikatnie",
+            "ostentacyjnie milczysz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Poprawianie kogoś publicznie upokarza, nawet jeśli masz rację merytorycznie. Cztery oczy + delikatnie + odpowiedni moment.",
+        },
+        {
+          type: "fill",
+          text: "Eleganckie zamiennik „co?\" — _____ ?",
+          options: null,
+          correctAnswer: "słucham",
+          explanation:
+            "„Słucham?\" albo „Przepraszam, nie dosłyszałam?\" — eleganckie, spokojne. „Co?\" brzmi potocznie i ostro.",
+        },
+        {
+          type: "fill",
+          text: "Aby coś podkreślić w wypowiedzi, lepiej _____ głos, nie podnosić.",
+          options: null,
+          correctAnswer: "ściszyć",
+          explanation:
+            "Kontrintuicyjne: ludzie nachylają się i słuchają uważniej, gdy mówisz ciszej, niż gdy podnosisz głos. Cisza buduje uwagę.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu „ależ nie, to stare\" w odpowiedzi na komplement to brak elegancji.",
+          options: null,
+          correctAnswer:
+            "Komplement to akt uprzejmości od drugiej osoby — ona daje Ci coś (uznanie, dobre słowo). Pomniejszając („ależ nie\", „to stare\") odrzucasz jej dar, sygnalizujesz, że uznajesz jej osąd za błędny, niemądry albo nadgorliwy. To nie jest skromność, tylko publiczne kwestionowanie smaku komentującej osoby. „Dziękuję, to bardzo miłe\" przyjmuje gest, oddaje ciepło, nie wymaga rozwijania. Mikrokod elegancji: nie odrzucasz darów uprzejmości, nawet jeśli czujesz wewnętrzny dyskomfort. Przyjmujesz, dziękujesz, idziesz dalej.",
+          explanation:
+            "Klucz: komplement to dar uprzejmości — odrzucenie go = odrzucenie osądu drugiej osoby. Krótkie podziękowanie zamyka pętlę bez umniejszania.",
+        },
+        {
+          type: "spot_error",
+          text: "„Aniu, ale nazwisko Pana Kowalskiego wymawiasz źle — Kowálski, nie Kowalski!\" — przy całym stole, z półprzymrużeniem oka.",
+          options: [
+            "tak — pomagasz koleżance",
+            "nie — poprawianie publicznie, nawet żartem, upokarza. W cztery oczy, później, delikatnie",
+            "powinnaś krzyczeć głośniej",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka — żart przy świadkach to nadal upokorzenie. „Z półprzymrużeniem oka\" tu nie rozbraja sytuacji, tylko podkreśla cię jako autorytet kosztem koleżanki. Cztery oczy, później, delikatnie.",
+        },
+      ],
+      salon: {
+        short:
+          "Wolniej, niżej, mniej. Komplement: „Dziękuję, to bardzo miłe.\" Nie poprawiamy publicznie. Mikropauza zamiast natychmiastowej reakcji.",
+        expand:
+          "Pomniejszanie komplementu jako „skromność\" odrzuca uprzejmość drugiej osoby — to nie skromność, to brak elegancji. „Słucham?\" zamiast „co?\". „Oczywiście\" zamiast „spoko\". „Dzień dobry\" w mailu biznesowym, nie „Hej\". Cisza buduje uwagę — gdy chcesz coś podkreślić, ścisz, nie podnoś głosu.",
+        trap:
+          "Mówienie „no\" zamiast „tak\" — bardzo potoczne. Wtrącenia: „wiesz?\", „ogólnie\", „po prostu\", „jakby\", „tego\". Podnoszenie głosu, by coś podkreślić — dokładnie odwrotnie: ścisz. Poprawianie publicznie nawet żartem — upokarza, w cztery oczy.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 65. Savoir-vivre: rozmowa i small talk
+  // ============================================================
+  {
+    slug: "savoir-rozmowa-i-small-talk",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — rozmowa i small talk",
+    payload: {
+      title: "Rozmowa i small talk",
+      summary:
+        "Small talk to nie wypełniacz ciszy. To narzędzie, które buduje poziom komfortu i zaufania, zanim cokolwiek poważniejszego się wydarzy. Dobry small talk to MNIEJ gadania, nie więcej. Zasada 70/30: 70 słuchasz, 30 mówisz.",
+      theory:
+        "Czego unikamy. Pieniędzy (zarobki, ceny, koszty, pensje). Polityki. Religii. Plotek o nieobecnych. Narzekania (pogoda, korki, szef). Własnych dramatów. Zdrowia (poza grzecznościowym „jak się Pani miewa\").\n\nBezpieczne i ciekawe tematy. Podróże (gdzie ostatnio, co zaskoczyło). Kultura (wystawy, książki, koncerty, teatr). Jedzenie i wino. Sport (jeśli wiesz, że osoba się interesuje). Aktualne wydarzenia kulturalne (bez polityki). Miasto, w którym jesteście. Pogoda jako wstęp, nie temat główny.\n\nZasada 70/30: 70 procent słuchasz, 30 mówisz. Pytania otwarte zamiast zamkniętych. „Co Panią ostatnio zaciekawiło?\" / „Byłaś ostatnio na czymś, co Cię poruszyło?\" / „Skąd pomysł na ten kierunek?\"\n\nJak mówić o sobie: konkretnie, bez chwalenia się, bez fałszywej skromności. „Pracuję w consultingu strategicznym w EY\" wystarczy. NIE: „jestem tylko zwykłą konsultantką\" ani „robię gigantyczne projekty dla zarządów\".\n\nReguły wewnętrzne. Jeśli mówisz dłużej niż dwie minuty bez przerwy — oddaj głos. Nie konkurujemy historiami („też tam byłam, ja jeszcze lepiej...\"). Nie domykamy cudzych zdań.",
+      questions: [
+        {
+          type: "abc",
+          text: "Zasada 70/30 w small talku to:",
+          options: [
+            "70% mówisz, 30% słuchasz",
+            "70% słuchasz, 30% mówisz",
+            "70% pijesz wodę, 30% wino",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Słuchanie buduje relację, mówienie tylko ją demonstruje. Większość ludzi robi odwrotnie i to widać.",
+        },
+        {
+          type: "abc",
+          text: "Lepsze otwarcie rozmowy:",
+          options: [
+            "„Co u Ciebie?\" — uniwersalne i grzeczne",
+            "„Co u Ciebie po Lizbonie?\" / „Jak udała się rozmowa o awansie?\" — konkretne pytanie z kontekstem",
+            "„Ile teraz zarabiasz?\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Konkret + pamięć o drugiej osobie. „Co u Ciebie?\" jest puste, otwarcie z konkretem pokazuje zainteresowanie.",
+        },
+        {
+          type: "fill",
+          text: "Tematy, których unikamy w small talku: pieniądze, polityka, religia, plotki, _____ .",
+          options: null,
+          correctAnswer: "narzekanie",
+          explanation:
+            "Plus własne dramaty i zdrowie. Narzekanie na pogodę, korki, szefa to klasyczna pułapka — wciąga rozmówcę w negatywność.",
+        },
+        {
+          type: "fill",
+          text: "Jeśli mówisz dłużej niż _____ minuty bez przerwy, oddaj głos.",
+          options: null,
+          correctAnswer: "dwie",
+          explanation:
+            "Wewnętrzny licznik. Po 2 minutach jesteś już na granicy monologu — dobry moment na pytanie zwrotne.",
+        },
+        {
+          type: "open",
+          text: "Sformułuj uniwersalne otwarcie do nowej rozmowy, które zaprasza do osobistej, ale bezpiecznej odpowiedzi.",
+          options: null,
+          correctAnswer:
+            "„A co ostatnio Cię naprawdę poruszyło? Cokolwiek — książka, wystawa, wieczór z kimś, podróż.\" Otwarte (nie tak/nie), wymaga konkretu, daje pole na osobistość bez przymusu, naturalnie prowadzi dalej. Alternatywy: „Co Pana ostatnio zaciekawiło?\" / „Byłaś gdzieś w ostatnim czasie, co zaskoczyło?\" / „Co teraz czytasz / oglądasz, co warto?\". Wszystkie z pytaniem otwartym, konkretnym, niebanalnym, ale bezpiecznym.",
+          explanation:
+            "Klucz: otwartość + konkret + bezpieczeństwo. Pytanie ma zaprosić, nie wymusić odpowiedź.",
+        },
+        {
+          type: "spot_error",
+          text: "„Bardzo dobre opowiadanie o Twojej wycieczce do Kioto. A ja właśnie też tam byłam, ale w lepszym hotelu i z lepszym przewodnikiem — chcesz, opowiem Ci, jak my to zrobiliśmy?\"",
+          options: [
+            "tak, dzielimy się doświadczeniem",
+            "nie — konkurowanie historiami („jeszcze lepiej u mnie\") jest sygnałem braku pewności, nie elegancji",
+            "Kioto to złe miasto",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka „ja jeszcze lepiej\". Każda Twoja historia jako lepsza wersja cudzej sygnalizuje, że nie potrafisz po prostu słuchać.",
+        },
+      ],
+      salon: {
+        short:
+          "70 procent słuchaj, 30 mów. Pytania otwarte zamiast zamkniętych. Unikać: pieniądze, polityka, religia, plotki, narzekanie. O sobie konkretnie — bez minimalizmu i podbijania.",
+        expand:
+          "Bezpieczne i ciekawe tematy: podróże, kultura, jedzenie i wino, sport (jeśli interesuje rozmówcę), aktualne wydarzenia kulturalne, miasto. Pogoda tylko jako wstęp. „Co Pana ostatnio zaciekawiło?\" zamiast „Co u Pana?\". Jeśli mówisz dłużej niż dwie minuty bez przerwy — oddaj głos.",
+        trap:
+          "Wypełnianie ciszy — cisza jest OK i często pożądana. Konkurowanie historiami („też tam byłam, ja jeszcze lepiej\") to sygnał braku pewności. Pytania o pieniądze („ile zarabiasz?\", „ile to kosztowało?\"). Mówienie o własnych dramatach na pierwszym spotkaniu.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 66. Savoir-vivre: biznes
+  // ============================================================
+  {
+    slug: "savoir-biznes",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — biznes (hierarchia, mail, wideo, lunch)",
+    payload: {
+      title: "Savoir-vivre biznesowy",
+      summary:
+        "Biznes ma własną hierarchię i rytuały. Główna różnica od życia towarzyskiego: hierarchia płynie ze stanowiska, nie z płci ani wieku. Profesjonalnie, ciepło, ale bez przesadnej swojskości.",
+      theory:
+        "Hierarchia: stanowisko > wiek > płeć. CEO podaje rękę pierwszy niezależnie od tego, kim jest. W mailach, telefonach, spotkaniach: ten sam kod.\n\nWstawanie do powitania: klient zawsze, w pełni. Przełożony zawsze. Równi rangą: sytuacyjnie, ale z grzeczności lepiej wstać.\n\nU klienta: nie siadamy, dopóki gospodarz nie zaprosi. Czekamy, często wskazują miejsce. Nie wybieramy „tej fajnej kanapy\". Płaszcz, torba: czekamy, aż ktoś nam pokaże, gdzie odłożyć.\n\nMail biznesowy: konkret, struktura, jedna myśl główna. Jasne „czego oczekuję\". Pełne powitanie i pełen podpis. BEZ nadmiernych przeprosin („przepraszam, że zawracam głowę\") — są zbędne i osłabiają. Temat: konkretny, nie „Pytanie\" tylko „Pytanie o termin spotkania w sprawie X\".\n\nWideokonferencja: kamera włączona. Tło neutralne, oświetlenie z przodu (nie pod światło). Mikrofon wyciszony, gdy nie mówisz. Nie jemy, nie czytamy maili — widać. Nie przerywamy: na Zoomie jest „raise hand\". Punktualność: minuta wcześniej w pokoju.\n\nLinkedIn follow-up: w ciągu 24–48 godzin od spotkania. Krótko, konkretnie, z odniesieniem do tego, o czym rozmawialiście. Nie ogólne „miło było poznać\".\n\nLunch biznesowy: kto zaprasza, ten płaci. Nie zamawiamy najdroższych pozycji w menu. Nie pijemy alkoholu, chyba że gospodarz zaproponuje (i nawet wtedy ostrożnie). Telefon poza stołem. Tematy zawodowe pojawiają się raczej w drugiej części lunchu, nie od razu.",
+      questions: [
+        {
+          type: "abc",
+          text: "Mail biznesowy — najlepszy temat:",
+          options: [
+            "„Pytanie\"",
+            "„Pytanie o termin spotkania w sprawie X\"",
+            "„Pilne!!!\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Temat to praca dla odbiorcy — szuka maila później, filtruje, planuje. Konkret zawsze wygrywa z „Pytaniem\" czy „Pilne!!!\".",
+        },
+        {
+          type: "abc",
+          text: "Lunch biznesowy — kto płaci?",
+          options: [
+            "dzielimy rachunek",
+            "ten, kto zaprasza",
+            "junior",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kto zaprasza, ten płaci. Junior zaproszony przez senior — senior płaci. Senior zaproszony przez junior — junior płaci. Zasada jest jasna.",
+        },
+        {
+          type: "fill",
+          text: "Wideokonferencja: punktualność — minuta _____ w pokoju.",
+          options: null,
+          correctAnswer: "wcześniej",
+          explanation:
+            "Wchodzimy minutę przed, sprawdzamy mikrofon, kamerę, tło. Spóźnienie z trzaskiem mikrofonu sygnalizuje brak przygotowania.",
+        },
+        {
+          type: "fill",
+          text: "LinkedIn follow-up po spotkaniu — w ciągu _____ –48 godzin.",
+          options: null,
+          correctAnswer: "24",
+          explanation:
+            "Świeże w pamięci obu stron. Po tygodniu już niezręczne. Krótko, konkretnie, z odniesieniem do tego, o czym rozmawialiście.",
+        },
+        {
+          type: "open",
+          text: "Napisz krótki mail po spotkaniu z klientem (dziękujesz, przesyłasz notatkę).",
+          options: null,
+          correctAnswer:
+            "„Dzień dobry, Pani Anno, dziękuję za czas wczoraj. Przesyłam, jak ustaliliśmy, krótką notatkę i propozycję kolejnych kroków. W razie pytań jestem do dyspozycji. Pozdrawiam serdecznie, Natalia.\" Pełne powitanie, konkret, jasne czego się spodziewam, brak przesadnych przeprosin, pełen podpis. Bez „przepraszam, że zawracam głowę\" — to osłabia.",
+          explanation:
+            "Klucz: konkret + struktura + pełne powitanie i podpis. Brak nadmiernych przeprosin — osłabiają.",
+        },
+        {
+          type: "spot_error",
+          text: "„Hej Marek! Sorry że tak późno, ale chciałam Cię tylko spytać czy może byłaby szansa, gdybyś miał chwilę, dopytać o ten projekt — ale jeśli nie, to oczywiście rozumiem.\"",
+          options: [
+            "tak, ciepłe i grzeczne",
+            "nie — w mailu biznesowym do CEO: „Hej\" zamiast „Dzień dobry, Panie Marku\", nadmierne przeprosiny i tentative phrasing, brak konkretnej prośby",
+            "powinno być po angielsku",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne błędy: zbyt swojski ton („Hej\"), kumulacja przeprosin („sorry że...\", „chciałam tylko spytać\", „jeśli miałbyś chwilę\"), brak konkretnej prośby. Mail rozmywa odbiorcę.",
+        },
+      ],
+      salon: {
+        short:
+          "Hierarchia: stanowisko, nie płeć. U klienta: czekamy na zaproszenie do siadania. Mail: konkret, struktura, bez nadmiernych przeprosin. Kamera włączona, mikrofon wyciszony.",
+        expand:
+          "Lunch biznesowy: kto zaprasza, ten płaci. Nie zamawiamy najdroższych pozycji. Telefon poza stołem. Tematy zawodowe pojawiają się w drugiej części lunchu. LinkedIn follow-up w 24–48 godzin, krótko i konkretnie. Wideokonferencja: minuta wcześniej w pokoju, neutralne tło, mikrofon wyciszony gdy nie mówisz.",
+        trap:
+          "„Hej Marek\" do CEO — powinno być „Dzień dobry, Panie Marku\". Wchodzenie do meetingu z dziesięciosekundowym spóźnieniem bez „przepraszam za spóźnienie\". Sprawdzanie telefonu przy stole na lunchu biznesowym. Pisanie do klienta po godzinach jako standard — wyjątkowo, z asekuracją.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 67. Savoir-vivre: w domu i jako gość
+  // ============================================================
+  {
+    slug: "savoir-w-domu-i-jako-gosc",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — w domu i jako gość (RSVP, prezent, wyjście)",
+    payload: {
+      title: "W domu i jako gość",
+      summary:
+        "Bycie gościem to mały test charakteru. RSVP, godzina przyjścia, prezent, zachowanie przy stole, wyjście, podziękowanie następnego dnia. Większość ludzi wpada na trzech: brak RSVP, niewłaściwy prezent, komentowanie jedzenia.",
+      theory:
+        "RSVP. Odpowiadamy najszybciej jak się da, najpóźniej w ciągu 2–3 dni. NIE zostawiamy gospodarza w niewiedzy. Jeśli przyjdziemy: „Z przyjemnością przyjdę, dziękuję za pamięć.\" Jeśli nie: „Niestety nie dam rady, mam już zaplanowane X. Bardzo dziękuję za zaproszenie.\" Alergie i preferencje zgłaszamy NA TYM etapie, nie przy stole.\n\nPrezent dla gospodarza: wino (jakościowe, nie najtańsze, nie ostentacyjnie drogie), czekoladki (premium), świeca zapachowa (klasyczna marka), kwiaty (bez róż — mogą mieć symbolikę romantyczną).\n\nCzego nie nosimy: ciasto / danie (gospodarz miał własny plan menu), żywe rośliny (kłopot), zbyt drogi prezent (zobowiązuje, robi niezręcznie). Kwiaty: lepiej wysłać wcześniej, niż przynieść w ręce — gospodarz musi szukać wazonu w trakcie przyjmowania innych gości.\n\nGodzina przyjścia: 5–10 minut po wyznaczonej godzinie. Na czas to za wcześnie (gospodarz może jeszcze nie być gotowy). 20+ minut to spóźnienie (informujemy SMSem).\n\nPrzy stole — danie, którego nie jemy: jemy, co możemy. Resztę zostawiamy BEZ KOMENTARZA. NIE: „ja nie jadam ryb\", „tego nie jem\". Jeśli mamy alergię — zgłaszaliśmy ją na etapie RSVP.\n\nPochwała jedzenia: krótko, konkretnie, bez przesady. „Pyszna ta zupa, co tam jest?\" zamiast „O Boże, NAJLEPSZE co jadłam\". Jeśli coś nie wyszło: milczymy.\n\nWyjście: nie pierwsi, nie ostatni. Dziękujemy gospodarzowi przy drzwiach, krótko, ciepło. Nie przeciągamy. Następnego dnia: krótka wiadomość lub kartka z podziękowaniem.",
+      questions: [
+        {
+          type: "abc",
+          text: "RSVP — kiedy odpowiadamy?",
+          options: [
+            "tydzień przed wydarzeniem",
+            "w ciągu 2–3 dni od otrzymania zaproszenia",
+            "dzień przed",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Gospodarz musi wiedzieć, na ile osób gotować i jak rozsadzić. Brak RSVP to brak szacunku dla jego planowania.",
+        },
+        {
+          type: "abc",
+          text: "Wybór prezentu na kolację — NAJLEPIEJ:",
+          options: [
+            "domowe ciasto",
+            "wino (jakościowe), czekoladki (premium), świeca zapachowa",
+            "żywa roślina doniczkowa",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ciasto koliduje z planem menu gospodarza. Roślina to kłopot dla niego. Wino, czekoladki, świeca: bezpieczne i konsumowalne.",
+        },
+        {
+          type: "fill",
+          text: "Godzina przyjścia: _____ –10 minut po wyznaczonej godzinie (na czas to za wcześnie).",
+          options: null,
+          correctAnswer: "5",
+          explanation:
+            "Gospodarz dokończ przygotowania w ostatnich minutach. Punktualność „na minutę\" zmusza go do otwarcia drzwi w momencie chaosu.",
+        },
+        {
+          type: "fill",
+          text: "Następnego dnia po wydarzeniu wysyłamy krótkie _____ za zaproszenie.",
+          options: null,
+          correctAnswer: "podziękowanie",
+          explanation:
+            "SMS, krótka wiadomość, kartka przy większym wydarzeniu. Drobiazg, który gospodarz pamięta.",
+        },
+        {
+          type: "open",
+          text: "Napisz SMS z podziękowaniem do gospodyni, dzień po kolacji.",
+          options: null,
+          correctAnswer:
+            "„Aniu, bardzo dziękuję za wczoraj. Wyjątkowo dobry wieczór, kolacja absolutnie pyszna. Następnym razem ja gotuję. Buziaki.\" Krótko, konkretnie, ciepło. Konkret („kolacja\", „wieczór\"). Wzajemność („następnym razem ja\"). Bez patosu („nigdy nie zapomnę!\") i bez minimalizmu („dzięki za zaproszenie\").",
+          explanation:
+            "Klucz: ciepło + konkret + propozycja wzajemności. Trzy elementy w 4 zdaniach.",
+        },
+        {
+          type: "spot_error",
+          text: "Na kolacji u znajomych podają rybę, której nie jesz: „Ach, ja akurat ryb nie jadam — czy mogłabym dostać coś innego?\"",
+          options: [
+            "tak, gospodarz powinien wiedzieć",
+            "nie — alergie i preferencje zgłaszamy na etapie RSVP. Przy stole: jemy co możemy (warzywa, dodatki), resztę zostawiamy bez komentarza",
+            "trzeba wyjść",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczny błąd. Zmienianie zamówienia w trakcie kolacji u kogoś w domu stawia gospodarza w niezręcznej sytuacji. Preferencje — RSVP. Przy stole: jemy, co można.",
+        },
+      ],
+      salon: {
+        short:
+          "RSVP zawsze i szybko. Prezent: wino, kwiaty (wcześniej), czekoladki, świeca. Przyjście: 5–10 minut po godzinie. Danie, którego nie jesz: bez komentarza. Następnego dnia: krótkie podziękowanie.",
+        expand:
+          "Czego nie nosimy w prezencie: ciasto / danie (gospodarz miał własny plan menu), żywe rośliny (kłopot), zbyt drogi prezent (zobowiązuje). Pochwała jedzenia: krótko, konkretnie. „Pyszna ta zupa, co tam jest?\" zamiast „O Boże, najlepsze co jadłam\". Jeśli coś nie wyszło — milczymy.",
+        trap:
+          "Nie odpowiadać na zaproszenie. Przyjść równo o godzinie (gospodarz może jeszcze nie być gotowy). Przynieść tort, gdy gospodarz przygotował deser. Komentować jedzenie negatywnie. Wyjść jako pierwsi, tuż po posiłku. Nie podziękować następnego dnia.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 68. Savoir-vivre: old money micro-rules
+  // ============================================================
+  {
+    slug: "savoir-old-money-micro-rules",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — old money micro-rules (rób mniej)",
+    payload: {
+      title: "Old money micro-rules",
+      summary:
+        "Mikrokod, który wynosi się z domów, w których obycie było normą, a nie projektem. Rozpoznawalny dla tych, którzy wiedzą — niewidoczny dla reszty. Większość polega na jednej rzeczy: robić mniej, niż chce się robić.",
+      theory:
+        "Rób mniej. Mniej gestów, mniej mimiki, mniej ozdoby, mniej biżuterii, mniej perfum. Mniej słów na potwierdzenie czegoś oczywistego. Mniej zawsze wygląda lepiej.\n\nRób chwilę później. Nie jesteś pierwsza, która reaguje, mówi, sięga, śmieje się. Mikrosekunda opóźnienia daje dystans i władzę nad rytmem. Nie wskakujesz z odpowiedzią natychmiast po pytaniu.\n\nDrugi plan. Nie środek pokoju. Nie środek rozmowy. Nie pierwsza opowiadasz, jak było. Zostawiasz przestrzeń, żeby inni mogli się pokazać. Centrum nie jest sygnałem statusu — jest sygnałem braku statusu.\n\nRytm, nie tempo. Nie chodzi o sztuczne spowolnienie. Chodzi o ten sam rytm w ruchu, który zaczęłaś. Sięgnęłaś po kieliszek — dopijasz spokojnie, odkładasz. Nie krzątasz się, nie zaczynasz trzech rzeczy naraz.\n\nNie obciążaj. Innych swoją obecnością, swoimi problemami przy każdej okazji, potrzebą uwagi. Bycie w pokoju ma być przyjemnością dla wszystkich, nie projektem.\n\nNie dominuj przestrzeni. Głosem, gestami, śmiechem. Perfumami (lekkie, dyskretne). Biżuterią (jakość ponad ilość). Opowieściami o sobie.\n\nNie tłumacz się. Z prezentu, który dałaś. Z wyboru jedzenia, ubrania, miejsca. Z opinii. „Tak postanowiłam\" wystarczy. Nadmiar wyjaśnień osłabia.\n\nZdanie-kotwica: „Robię mniej, trochę później i zawsze zostawiam przestrzeń.\"",
+      questions: [
+        {
+          type: "abc",
+          text: "Klucz old money micro-rules to:",
+          options: [
+            "robić więcej i lepiej niż inni",
+            "robić mniej, trochę później i zostawiać przestrzeń",
+            "być w centrum uwagi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zdanie-kotwica. Mniej zawsze wygląda lepiej. Centrum nie jest sygnałem statusu — jest sygnałem braku statusu.",
+        },
+        {
+          type: "abc",
+          text: "Ktoś pyta, czemu kupiłaś tę konkretną świecę dla gospodyni. Reakcja:",
+          options: [
+            "rozbudowany wykład o pochodzeniu, marce, cenie i intencji",
+            "„Tak postanowiłam\" / krótka konkretna odpowiedź bez tłumaczenia",
+            "milczysz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Nie tłumacz się z prezentów, wyborów, opinii. Nadmiar wyjaśnień osłabia. „Tak postanowiłam\" wystarczy.",
+        },
+        {
+          type: "fill",
+          text: "Cel obecności w pokoju to być „tą, przy której _____ być\", nie „tą, która była głośna\".",
+          options: null,
+          correctAnswer: "dobrze",
+          explanation:
+            "Test: po wyjściu z pokoju, jaką pamięć po sobie zostawiasz? „Tą, przy której było dobrze być\" — to cel.",
+        },
+        {
+          type: "fill",
+          text: "Mikrosekunda _____ przed reakcją daje dystans i władzę nad rytmem.",
+          options: null,
+          correctAnswer: "opóźnienia",
+          explanation:
+            "Nie wskakujesz z odpowiedzią natychmiast po pytaniu. Pół sekundy ciszy = sygnalizacja, że myślisz, że masz dystans.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu tłumaczenie wyborów („kupiłam to tylko dlatego, że...\") osłabia.",
+          options: null,
+          correctAnswer:
+            "Tłumaczenie zakłada, że Twoja decyzja wymaga obrony — sygnalizujesz, że spodziewasz się krytyki albo niezrozumienia. To osłabia pozycję: stajesz się petentką własnej decyzji. Plus tłumaczenia są nudne (rozmówca pyta z grzeczności, nie dla analizy zakupu) i przedłużają temat, który już powinien być zamknięty. „Tak postanowiłam\" / „Bo lubię\" zamyka pętlę z godnością — to wybór, nie obrona. Ta sama zasada w pracy: tłumaczenie się z decyzji strategicznej przed zarządem osłabia, krótkie i konkretne uzasadnienie wzmacnia.",
+          explanation:
+            "Klucz: tłumaczenie = obrona = słaba pozycja. „Tak postanowiłam\" = decyzja = pewność.",
+        },
+        {
+          type: "spot_error",
+          text: "Na przyjęciu chcesz pokazać klasę: wchodzisz pierwsza do środka pokoju, mówisz głośno, śmiejesz się intensywnie z każdego żartu, opowiadasz swoją najnowszą historię.",
+          options: [
+            "tak — pokazujesz pewność",
+            "nie — to dokładnie odwrotnie do old money mikrokodu. Drugi plan, mniej gestów, chwilę później, mniej opowieści o sobie",
+            "powinnaś tańczyć",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka: próba „wypełnienia\" przestrzeni, żeby pokazać wartość. Dokładnie odwrotnie. Bycie pierwszą, która reaguje na wszystko — sygnał napięcia, nie pewności.",
+        },
+      ],
+      salon: {
+        short:
+          "Mikrokod: rób mniej, trochę później i zawsze zostawiaj przestrzeń. Centrum nie jest sygnałem statusu — jest sygnałem braku statusu.",
+        expand:
+          "Mniej gestów, mniej mimiki, mniej ozdoby, mniej biżuterii, mniej perfum. Rytm, nie tempo — kończ jeden ruch, zanim zaczniesz kolejny. Nie tłumacz się z prezentów, wyborów, opinii — „Tak postanowiłam\" wystarczy. Test po wyjściu z pokoju: „tą, przy której było dobrze być\", nie „tą, która była głośna\".",
+        trap:
+          "Próba „wypełnienia\" przestrzeni, żeby pokazać wartość — dokładnie odwrotnie. Bycie pierwszą, która reaguje na wszystko — sygnał napięcia. Tłumaczenie wyborów osłabia. Nadmiar perfum, biżuterii, opowieści, śmiechu, obecności. Wymyślanie historii, żeby zabłysnąć — drugi plan jest mocniejszy.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 69. Savoir-vivre: przestrzeń publiczna
+  // ============================================================
+  {
+    slug: "savoir-przestrzen-publiczna",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — przestrzeń publiczna (test klasy)",
+    payload: {
+      title: "Przestrzeń publiczna",
+      summary:
+        "Jak zachowujesz się tam, gdzie Cię nikt nie zna, to Twoja prawdziwa wersja. Restauracja, teatr, hotel, samolot, taksówka, ulica. Główna zasada: traktuj personel z szacunkiem zawsze. To największy test klasy.",
+      theory:
+        "Restauracja: „Dzień dobry\" przy wejściu, kontakt wzrokowy. Kelner to człowiek — „dzień dobry, proszę, dziękuję\". Nie wołamy „halo!\". Telefon na stole: nie. Płacenie dyskretne. Napiwek: 10–15% w Polsce i Europie, 18–20% w USA.\n\nTeatr / opera: spóźnienie = czekamy do przerwy, NIE wchodzimy w trakcie aktu. Ubranie smart, raczej ciemne, klasyczne. Telefon całkowicie wyciszony (nie wibracja — słychać). Bisy: klaskamy do końca, nie wychodzimy gwałtownie. Po wejściu do rzędu: idziemy twarzą do siedzących, mówimy „przepraszam\".\n\nTaksówka / Uber: „Dzień dobry\" przy wsiadaniu, „Dziękuję\" przy wysiadaniu. Nie głośne rozmowy telefoniczne. Drzwi zamykamy bez trzaskania. Nie zostawiamy śmieci.\n\nHotel: personel „dzień dobry, dziękuję\", kontakt wzrokowy. W lobby nie głośno, nie z telefonem na głośnomówiącym. Pokój zostawiamy w stanie cywilizowanym. Napiwek dla porterki (10–20 zł), dla housekeepingu na nocnym stoliku ostatniego dnia.\n\nSamolot: personel pokładowy — szacunek bezwarunkowy. Oparcie fotela opuszczamy delikatnie. Bagaż podręczny — nie blokujemy przejścia. Cisza nocna na długodystansowych. W klasach wyższych: nie ostentacyjnie.\n\nUlica: nie zatrzymujemy się w środku przejścia. Drzwi przytrzymujemy następnej osobie. Telefon na głośnomówiącym w miejscu publicznym: nie. Schody, eskalator: stoimy z prawej, lewa do wyprzedzania.\n\nZdanie-kotwica: „Klasa nie polega na tym, jak traktujesz tych, którzy są nad Tobą. Polega na tym, jak traktujesz tych, którzy są pod Tobą służbowo.\"",
+      questions: [
+        {
+          type: "abc",
+          text: "Spóźniasz się 5 minut na teatr — co robisz?",
+          options: [
+            "wchodzisz cicho do rzędu",
+            "czekasz do przerwy, NIE wchodzisz w trakcie aktu",
+            "wracasz do domu",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wejście w trakcie aktu zakłóca wszystkim — aktorom i publiczności. Czekamy do przerwy, nawet jeśli to godzina.",
+        },
+        {
+          type: "abc",
+          text: "Test klasy w przestrzeni publicznej to:",
+          options: [
+            "jak traktujesz tych, którzy są nad Tobą",
+            "jak traktujesz tych, którzy są pod Tobą służbowo (kelner, kierowca, recepcja)",
+            "jak się ubierasz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wszyscy są mili do przełożonych. Klasę widać w stosunku do osób, które „nie muszą\" Ci się odwdzięczać. Kelner zapamięta gościa miłego i niemiłego.",
+        },
+        {
+          type: "fill",
+          text: "Standardowy napiwek w Polsce i Europie: _____ –15%.",
+          options: null,
+          correctAnswer: "10",
+          explanation:
+            "10–15% w Europie. W USA 18–20% (tam kelnerzy żyją głównie z napiwków). W Japonii napiwek jest uznawany za niegrzeczny.",
+        },
+        {
+          type: "fill",
+          text: "Eskalator: stoimy z _____ , lewa do wyprzedzania.",
+          options: null,
+          correctAnswer: "prawej",
+          explanation:
+            "Międzynarodowy standard (poza UK, gdzie odwrotnie). Stanie po lewej blokuje ruch, irytuje zazwyczaj milcząco.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu sposób traktowania kelnera mówi więcej niż sposób traktowania CEO klienta.",
+          options: null,
+          correctAnswer:
+            "Wszyscy są mili do CEO klienta — to oczywiste, on ma władzę, opinia o nas się liczy. Ale kelner, kierowca, recepcjonistka nie mogą Cię „ukarać\" w żaden poważny sposób. Jeśli z nimi też jesteś miła i konkretnie pomocna, to znaczy, że uprzejmość jest Twoją wartością, nie strategią. Jeśli jesteś dobra do CEO i opryskliwa do kelnera, to ujawniasz, że dobre maniery są transakcją, nie tożsamością. Klasa to spójność zachowania niezależnie od relacji władzy — i to widzi każdy obserwator z zewnątrz, łącznie z tym samym CEO, który zaprosił Cię na kolację.",
+          explanation:
+            "Klucz: spójność = klasa. Niespójność = grzeczność jako strategia.",
+        },
+        {
+          type: "spot_error",
+          text: "Kelner wolno cię obsługuje, chcesz wezwać uwagę — wołasz głośno „Halo, halo! Tu poproszę!\".",
+          options: [
+            "tak — trzeba czasem stanowczo",
+            "nie — spokojny kontakt wzrokowy wystarczy. „Halo!\" w kelnera nigdy",
+            "kelner nie istnieje",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Spokojne uniesienie wzroku, lekki gest dłonią, ewentualnie cicho „Przepraszam\" gdy kelner mija. „Halo!\" jest agresywne i obniża własną klasę.",
+        },
+      ],
+      salon: {
+        short:
+          "Klasa nie polega na tym, jak traktujesz tych, którzy są nad Tobą. Polega na tym, jak traktujesz tych, którzy są pod Tobą służbowo. Kelner, kierowca, recepcjonistka — to jest test.",
+        expand:
+          "Wszędzie: „dzień dobry, dziękuję, proszę\" z kontaktem wzrokowym. Teatr: spóźnienie = czekamy do przerwy. Restauracja: telefon poza stołem. Samolot, hotel, taxi: personel z szacunkiem zawsze. Ulica: prawa strona na schodach, drzwi przytrzymujemy następnej osobie. Telefon na głośnomówiącym w miejscu publicznym — nigdy.",
+        trap:
+          "Wołanie na kelnera („halo!\") — nigdy. Wejście do teatru w trakcie aktu — nigdy. Telefon na głośnomówiącym w restauracji, Uberze, hotelu, samolocie. Pasywno-agresywne uwagi do personelu („no nie wiem, w innych miejscach to robią szybciej\"). Trzaskanie drzwiami auta.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 70. Savoir-vivre: tempo i cisza
+  // ============================================================
+  {
+    slug: "savoir-tempo-i-cisza",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — tempo i cisza (mikropauzy, niżej/wolniej)",
+    payload: {
+      title: "Tempo i cisza",
+      summary:
+        "Cisza jest częścią rozmowy. Tempo, w którym się poruszasz, to sygnał. Spokój czyta się jako pewność siebie. Pośpiech zawsze wygląda na panikę. To jeden z elementów, który najbardziej zmienia wrażenie ogólne, niezależnie od ubioru i słów.",
+      theory:
+        "Mikropauzy. Krótkie momenty ciszy między pytaniem a odpowiedzią. Między zdaniami. Przed reakcją emocjonalną. Sygnalizują, że myślisz, że masz dystans, że nie reagujesz na automacie. Pół sekundy do sekundy w zupełności wystarczy.\n\nNiewypełnianie ciszy. Jeśli druga osoba zrobi pauzę, NIE wskakujemy z gadaniem. Cisza buduje napięcie i daje przestrzeń obu stronom. W rozmowach biznesowych szczególnie: kto pierwszy wypełnia ciszę, ten ma słabszą pozycję.\n\nSpokojne ruchy. Sięgamy po kieliszek bez nerwowości. Otwieramy torebkę bez gorączkowych ruchów. Wstajemy bez podrywania się. Siadamy z kontrolą, nie z opadem. Każdy ruch zaczynamy świadomie i kończymy świadomie.\n\nBrak pośpiechu w odbiorze. Nawet jeśli mamy mało czasu, nie sprawiamy wrażenia, że biegniemy. Pośpiech wygląda na panikę. Lepiej spóźnić się o 2 minuty i wejść spokojnie, niż wpaść zdyszany dokładnie na czas.\n\nKończenie ruchu. Sięgnęłaś po szklankę — dopijasz spokojnie, odkładasz. Nie zaczynasz trzech rzeczy naraz. To samo z zdaniami: nie urywamy w połowie.\n\nMowa. Niżej niż naturalny impuls. Wolniej niż naturalny impuls. Ciszej, gdy chcesz coś podkreślić (nie głośniej). Ludzie z prawdziwą obecnością mówią niżej i wolniej, niż im się chce.",
+      questions: [
+        {
+          type: "abc",
+          text: "Aby coś podkreślić w wypowiedzi:",
+          options: [
+            "mówimy głośniej",
+            "mówimy ciszej",
+            "krzyczymy",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kontrintuicyjne. Ludzie nachylają się i słuchają uważniej, gdy ściszasz. Głośność sygnalizuje napięcie i niepewność, nie autorytet.",
+        },
+        {
+          type: "abc",
+          text: "W rozmowie biznesowej pauzuje druga osoba — co robisz?",
+          options: [
+            "wskakujesz z gadaniem, żeby wypełnić ciszę",
+            "trzymasz ciszę, nie wskakujesz",
+            "wychodzisz z pokoju",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kto pierwszy wypełnia ciszę, ma słabszą pozycję. Cisza buduje napięcie i daje przestrzeń obu stronom.",
+        },
+        {
+          type: "fill",
+          text: "Mikropauza przed reakcją — pół sekundy do _____ sekundy w zupełności wystarczy.",
+          options: null,
+          correctAnswer: "jednej",
+          explanation:
+            "Pół sekundy do sekundy. Niewidoczny dla rozmówcy, ale wystarczający, żeby pokazać dystans i przemyślaną reakcję.",
+        },
+        {
+          type: "fill",
+          text: "Lepiej spóźnić się 2 minuty i wejść spokojnie, niż wpaść _____ dokładnie na czas.",
+          options: null,
+          correctAnswer: "zdyszany",
+          explanation:
+            "Pierwsze wrażenie po wejściu liczy się bardziej niż minuta punktualności. Zdyszany pokazuje panikę, spokojny 2-minutowy spóźniony — kontrolę.",
+        },
+        {
+          type: "open",
+          text: "Trzy konkretne rzeczy do ćwiczenia tygodniami, żeby tempo i cisza weszły automatycznie.",
+          options: null,
+          correctAnswer:
+            "1) Jeden ruch do końca — sięgnęłaś po kieliszek, dopij spokojnie, odłóż, dopiero potem sięgnij po sztućce. Nie krzątaj się. 2) Mikropauza przed odpowiedzią — pół sekundy ciszy po pytaniu zanim odpowiesz. Nie wskakuj. 3) Niższy ton — mów ciemniejszym tonem niż czujesz, że masz ochotę. Po dwóch tygodniach świadomego ćwiczenia te trzy rzeczy wejdą automatycznie. To bardziej praktyka niż wiedza.",
+          explanation:
+            "Klucz: trzy proste, mierzalne nawyki. Ćwiczenie świadome 2 tygodnie → automatyzm.",
+        },
+        {
+          type: "spot_error",
+          text: "W trakcie meetingu sięgasz po długopis, zaczynasz pisać, w połowie odkładasz, sięgasz po szklankę, dopijasz w pośpiechu, jeszcze nie odłożona — już sięgasz po telefon.",
+          options: [
+            "tak — efektywne wielozadaniowość",
+            "nie — to klasyczne „krzątanie\", sygnał napięcia. Jeden ruch do końca, dopiero potem kolejny",
+            "powinnaś jeszcze sprawdzać maila",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Krzątanie = sygnał niepewności. Spokojne kończenie każdego ruchu, świadomie, daje obraz osoby skupionej i kontrolującej sytuację.",
+        },
+      ],
+      salon: {
+        short:
+          "Cisza jest częścią rozmowy. Mikropauzy = czas na myśl, sygnał dystansu. Kończ jeden ruch, zanim zaczniesz kolejny. Niżej, wolniej, ciszej. Pośpiech wygląda na panikę.",
+        expand:
+          "Trzy rzeczy do ćwiczenia tygodniami: jeden ruch do końca, mikropauza przed odpowiedzią, niższy ton. Po dwóch tygodniach wchodzą automatycznie. Lepiej spóźnić się 2 minuty i wejść spokojnie, niż wpaść zdyszanym na czas. Aby podkreślić coś — ścisz, nie podnoś.",
+        trap:
+          "Wypełnianie każdej pauzy „yyy\", „no\", „jakby\", „po prostu\". Reagowanie na pytanie zanim druga osoba je skończy. Krzątanie się przy stole — poprawianie włosów, telefonu, serwetki, biżuterii. Mówienie głośniej, gdy chcesz coś podkreślić. Spóźnienie 2 minut + wpadnięcie zdyszanym.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 71. Savoir-vivre: sytuacje ryzykowne cheat sheet
+  // ============================================================
+  {
+    slug: "savoir-sytuacje-ryzykowne",
+    vaultSlug: "savoir",
+    label: "Savoir-vivre — sytuacje ryzykowne (cheat sheet)",
+    payload: {
+      title: "Sytuacje ryzykowne — cheat sheet",
+      summary:
+        "Krótka lista pułapek, na których ludzie z dobrą bazą i tak wpadają. Sytuacje, w których pierwszy odruch jest często zły. Powtarzaj przed wyjściem na ważne wydarzenie. Zdanie-kotwica: „Robię mniej, trochę później i zawsze zostawiam przestrzeń.\"",
+      theory:
+        "Klasyczne scenariusze i poprawne reakcje:\n\n1. Biznes, mężczyzna senior, ja kobieta junior. Czy podaję rękę pierwsza? NIE w biznesie. On podaje. Hierarchia stanowisk, nie płci.\n\n2. Gospodarz wstaje od stołu na chwilę. NIE wstaję. Odkładam sztućce w pauzę V.\n\n3. Spóźniłam się na teatr 5 minut. NIE wchodzę w trakcie aktu — czekam do przerwy.\n\n4. Danie, którego nie jem, na kolacji u kogoś. Jem, co mogę. Resztę bez komentarza. Alergie zgłaszałam na etapie RSVP.\n\n5. Ktoś spóźnia się 10 minut na call bez odzewu. Po 10–15 minutach krótkie miękkie pingnięcie: „Cześć, jesteś? Czekam na linku.\" Bez czekania w nieskończoność i bez pretensji.\n\n6. Komplement „Wyglądasz świetnie\". „Dziękuję, to bardzo miłe.\" Nie „ależ nie\".\n\n7. Ktoś głośno krytykuje obecnego polityka / aktora przy stole. Nie wchodzę. „Hm, interesujące, ja akurat tematu nie znam za dobrze\" lub łagodne przekierowanie: „A propos, kto wybierał wino?\"\n\n8. Prezent, który Ci się nie podoba. „O, to bardzo miłe, dziękuję.\" Bez wymyślania, bez nadgorliwości.\n\n9. Kelner pomylił zamówienie. Spokojnie, ciszej: „Przepraszam, prosiłam o X.\" Bez ostentacji.\n\n10. Ktoś przerywa Ci w rozmowie. Zatrzymujesz się. Mikropauza. Patrzysz spokojnie. Druga osoba kończy. Wracasz: „Wracając do tego, co mówiłam...\" Bez ostentacyjnego „mogę dokończyć?\".\n\n11. Ktoś popełnia błąd merytoryczny publicznie. NIE poprawiamy publicznie. W cztery oczy, później, delikatnie.\n\n12. Wchodzisz do windy z 6 nieznajomymi. „Dzień dobry\" cicho ale wyraźnie. Kontakt wzrokowy.\n\n13. Pytanie o pieniądze („Ile zarabiasz?\"). „Nie chciałabym wchodzić w szczegóły\" lub humorystycznie: „Tyle, ile trzeba.\"",
+      questions: [
+        {
+          type: "abc",
+          text: "Dostajesz prezent, który Ci się nie podoba. Najlepsza reakcja:",
+          options: [
+            "„No nie wiem, ja akurat takich rzeczy nie używam.\"",
+            "„O, to bardzo miłe, dziękuję.\"",
+            "milczysz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bez wymyślania, bez nadgorliwości, bez korygowania na żywo. Szczerość przy prezentach jest brutalna i niesprawiedliwa wobec dawcy.",
+        },
+        {
+          type: "abc",
+          text: "Ktoś krytykuje przy stole obecnego polityka — sytuacja gorąca. Co robisz?",
+          options: [
+            "wchodzisz w dyskusję, bronisz swojego stanowiska",
+            "nie wchodzisz, łagodnie przekierowujesz: „A propos, kto wybierał wino?\"",
+            "wstajesz i wychodzisz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Polityka jest na liście tematów do unikania w small talku. Łagodne przekierowanie zachowuje atmosferę. „Hm, interesujące, ja akurat tematu nie znam za dobrze\" też działa.",
+        },
+        {
+          type: "fill",
+          text: "Pytanie o pieniądze („Ile zarabiasz?\"). Reakcja: „Nie chciałabym _____ w szczegóły.\"",
+          options: null,
+          correctAnswer: "wchodzić",
+          explanation:
+            "„Nie chciałabym wchodzić w szczegóły\" lub humorystycznie: „Tyle, ile trzeba.\" Bez wykładu, bez urażenia.",
+        },
+        {
+          type: "fill",
+          text: "Ktoś przerywa Ci w rozmowie. Reakcja: zatrzymujesz się, _____ pauza, patrzysz spokojnie.",
+          options: null,
+          correctAnswer: "mikro",
+          explanation:
+            "Mikropauza. Druga osoba kończy. Wracasz: „Wracając do tego, co mówiłam...\" Bez ostentacyjnego „mogę dokończyć?\" — to jest agresywne.",
+        },
+        {
+          type: "open",
+          text: "Wymień 3 sytuacje, w których jeden moment pauzy przed reakcją rozwiązuje problem.",
+          options: null,
+          correctAnswer:
+            "1) Ktoś Ci przerwał — mikropauza zamiast natychmiastowej obrony pozwala drugiej osobie skończyć, a Ty wracasz spokojnie. 2) Dostałaś niewygodne pytanie (o pieniądze, prywatne życie) — pauza daje czas na sformułowanie spokojnej odpowiedzi zamiast emocjonalnej reakcji. 3) Słyszysz coś, co Cię zirytowało (krytyka polityka, błąd merytoryczny, nieuprzejmy komentarz) — mikropauza pozwala wybrać, czy w ogóle wchodzić, czy łagodnie przekierować. Zdanie-kotwica: „Robię mniej, trochę później i zawsze zostawiam przestrzeń.\"",
+          explanation:
+            "Klucz: pauza = wybór. Bez pauzy → automat, często zły. Z pauzą → świadoma reakcja.",
+        },
+        {
+          type: "spot_error",
+          text: "Ktoś przy stole popełnia ewidentny błąd merytoryczny. Mówisz głośno: „Aniu, no nie, to jest dokładnie odwrotnie, sprawdź sobie!\"",
+          options: [
+            "tak — pomagasz koleżance",
+            "nie — poprawianie publicznie upokarza, nawet jeśli masz rację merytorycznie. Cztery oczy, później, delikatnie",
+            "powinnaś dzwonić do redakcji",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Poprawianie publicznie = upokarzanie. W cztery oczy, później, delikatnie. „Aniu, słuchaj, drobiazg, ale wiesz co — chyba pomyliłaś X z Y\". I to też dopiero jeśli to naprawdę ważne.",
+        },
+      ],
+      salon: {
+        short:
+          "Cheat sheet sytuacji, na których wpada się z dobrym instynktem. Komplement: „Dziękuję, to bardzo miłe.\" Prezent, który się nie podoba: „O, to bardzo miłe, dziękuję.\" Pytanie o pieniądze: „Nie chciałabym wchodzić w szczegóły.\"",
+        expand:
+          "Gospodarz wstaje na chwilę → ja zostaję, sztućce w V. Spóźnienie na teatr → czekam do przerwy. Danie którego nie jem → jem co mogę, bez komentarza. Ktoś krytykuje polityka → łagodne przekierowanie. Ktoś przerywa → mikropauza, czekam, wracam spokojnie. Pomylenie kelnera → spokojnie, ciszej.",
+        trap:
+          "Poprawianie publicznie nawet w słusznej sprawie. Wchodzenie w dyskusję polityczną przy stole. Brutalna szczerość przy prezentach. Ostentacyjne „no, mogę dokończyć?\" gdy ktoś przerwał. Wykład w odpowiedzi na pytanie o pieniądze. Jeden moment pauzy przed reakcją zwykle rozwiązuje połowę sytuacji.",
+      },
+    },
+  },
 ];
