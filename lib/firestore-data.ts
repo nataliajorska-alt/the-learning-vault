@@ -238,12 +238,14 @@ export async function commitSuggestion(opts: {
   userId: string;
   vaultId: string;
   payload: SuggestionPayload;
+  /** opcjonalny slug presetu — zapisuje się na topic, służy do detekcji importu */
+  presetSlug?: string;
 }): Promise<{ topicId: string }> {
   const { db } = getFirebase();
   const now = new Date();
-  const { userId, vaultId, payload } = opts;
+  const { userId, vaultId, payload, presetSlug } = opts;
 
-  const topicRef = await addDoc(collection(db, "topics"), {
+  const topicData: Record<string, unknown> = {
     userId,
     vaultId,
     title: payload.title,
@@ -259,7 +261,9 @@ export async function commitSuggestion(opts: {
     lastShownInSalon: null,
     createdAt: now,
     updatedAt: now,
-  });
+  };
+  if (presetSlug) topicData.presetSlug = presetSlug;
+  const topicRef = await addDoc(collection(db, "topics"), topicData);
 
   for (let i = 0; i < payload.questions.length; i++) {
     const q = payload.questions[i]!;

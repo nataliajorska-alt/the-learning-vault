@@ -1,18 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Check, ArrowLeft, Sparkles } from "lucide-react";
+import { Check, ArrowLeft, Sparkles, BookOpen } from "lucide-react";
 import { useUser } from "@/lib/auth-context";
-import { commitSuggestion, useVaults } from "@/lib/firestore-data";
+import {
+  commitSuggestion,
+  useTopics,
+  useVaults,
+} from "@/lib/firestore-data";
 import { PRESETS } from "./presets";
 
 export function PresetClient() {
   const user = useUser();
   const vaults = useVaults();
+  const topics = useTopics();
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [saved, setSaved] = useState<Record<string, string>>({});
+  const [justSaved, setJustSaved] = useState<Record<string, string>>({});
+
+  // Detekcja: dla każdego presetSlug → znajdź topicId zaimportowanego wcześniej
+  const importedMap = useMemo(() => {
+    const m: Record<string, string> = {};
+    if (!topics) return m;
+    for (const t of topics) {
+      if (t.presetSlug) m[t.presetSlug] = t.id;
+    }
+    return m;
+  }, [topics]);
 
   async function addPreset(presetSlug: string) {
     const preset = PRESETS.find((p) => p.slug === presetSlug);
@@ -29,14 +44,20 @@ export function PresetClient() {
         userId: user.uid,
         vaultId: vault.id,
         payload: preset.payload,
+        presetSlug: preset.slug,
       });
-      setSaved((s) => ({ ...s, [presetSlug]: result.topicId }));
+      setJustSaved((s) => ({ ...s, [presetSlug]: result.topicId }));
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : "Zapis nie powiódł się.");
     } finally {
       setBusy(null);
     }
   }
+
+  const totalImported =
+    Object.keys(importedMap).filter((k) =>
+      PRESETS.some((p) => p.slug === k)
+    ).length;
 
   return (
     <div className="space-y-10">
@@ -55,20 +76,40 @@ export function PresetClient() {
           kredytów Anthropic czy timeoutu Vercel. Klikasz raz, temat ląduje w
           odpowiedniej sekcji z pełnym kompletem pytań i fraz Salonu.
         </p>
+        {topics !== null && (
+          <p className="text-xs text-muted mt-4">
+            Zaimportowane: <span className="text-gold">{totalImported}</span> z{" "}
+            {PRESETS.length}
+          </p>
+        )}
       </header>
 
       <section className="space-y-6">
         {PRESETS.map((p) => {
-          const savedTopicId = saved[p.slug];
+          const justSavedTopicId = justSaved[p.slug];
+          const previouslyImportedTopicId = importedMap[p.slug];
+          const importedTopicId = justSavedTopicId ?? previouslyImportedTopicId;
+          const isImported = Boolean(importedTopicId);
           const isBusy = busy === p.slug;
           const vault = vaults?.find((v) => v.slug === p.vaultSlug);
 
           return (
-            <article key={p.slug} className="card max-w-3xl">
+            <article
+              key={p.slug}
+              className={`card max-w-3xl ${isImported ? "opacity-70" : ""}`}
+            >
               <div className="flex items-start justify-between gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
-                  <div className="eyebrow">
-                    {vault?.name ?? p.vaultSlug.toUpperCase()}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="eyebrow">
+                      {vault?.name ?? p.vaultSlug.toUpperCase()}
+                    </div>
+                    {isImported && (
+                      <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-eyebrow text-forest bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5">
+                        <Check className="w-3 h-3" />
+                        zaimportowane
+                      </span>
+                    )}
                   </div>
                   <h2 className="hero-italic text-3xl mt-1 text-ink">
                     {p.payload.title}
@@ -117,18 +158,18 @@ export function PresetClient() {
               </details>
 
               <div className="mt-6 flex gap-3 items-center flex-wrap">
-                {savedTopicId ? (
+                {isImported ? (
                   <>
-                    <div className="inline-flex items-center gap-2 text-forest text-sm">
-                      <Check className="w-4 h-4" />
-                      Dodane do Vault
-                    </div>
                     <Link
-                      href={`/study/session/new?topic=${savedTopicId}`}
-                      className="btn-primary"
+                      href={`/study/session/new?topic=${importedTopicId}`}
+                      className="btn-ghost"
                     >
+                      <BookOpen className="w-4 h-4" />
                       Zrób sesję 15 min
                     </Link>
+                    <span className="text-xs text-muted">
+                      Temat jest w Vault. Możesz odświeżać sesję w nieskończoność.
+                    </span>
                   </>
                 ) : (
                   <button
@@ -152,7 +193,8 @@ export function PresetClient() {
         Jeśli chcesz dorzucić kolejny temat, edytuj plik{" "}
         <code className="text-gold/80">app/admin/preset/presets.ts</code> i
         dodaj kolejny obiekt do tablicy PRESETS. Kolejność: title, summary,
-        theory, 8 pytań, salon.
+        theory, 8 pytań, salon. Pole presetSlug pozwala oznaczyć temat jako
+        zaimportowany — nie da się go dodać drugi raz.
       </p>
     </div>
   );

@@ -883,4 +883,876 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 9. Estetyka: czym jest sztuka
+  // ============================================================
+  {
+    slug: "estetyka-czym-jest-sztuka",
+    vaultSlug: "art",
+    label: "Estetyka — Tołstoj, Danto, Wittgenstein, Hume",
+    payload: {
+      title: "Czym jest sztuka",
+      summary:
+        "Definiowanie sztuki próbowano setki lat i wszystkie definicje pękają na konkretnych przykładach. Tołstoj: świadomy przekaz emocji. Danto: kontekst i interpretacja. Wittgenstein: nie ma definicji, jest rodzinne podobieństwo. A Hume osobno pyta: czy gust można doskonalić?",
+      theory:
+        "Lew Tołstoj w 1897 roku zaproponował prostą definicję: sztuka to świadomy przekaz emocji. Artysta przeżywa uczucie, „wpakowuje\" je w dzieło, odbiorca przeżywa to samo. Sztuka prawdziwa = jasna komunikacja autentycznych, uniwersalnych emocji; sztuka „fałszywa\" to elitarna, niezrozumiała — Tołstoj odrzucił dużą część klasyki, w tym swoją „Wojnę i pokój\". Wittgenstein kontruje: sztuka jest cluster concept jak „gra\". Nie ma jednej cechy wspólnej wszystkim dziełom, tylko family resemblance — sieć nakładających się podobieństw. Próba „definicji sztuki\" jest skazana na porażkę, bo szukamy esencji tam, gdzie jej nie ma. Osobno warto rozróżnić aesthetic enjoyment (po prostu mi się podoba) i appreciation (rozumiem, dlaczego to jest dobre, nawet jeśli nie sprawia mi przyjemności — np. trudny film Bergmana).\n\nArthur Danto robi przełom po wystawie Brillo Boxes Andy'ego Warhola w 1964. Pudełko Brillo w sklepie to przedmiot. Pudełko Brillo w galerii to sztuka. Wyglądają identycznie. Wniosek: o byciu sztuką decyduje nie wygląd, tylko kontekst i interpretacja — artworld, instytucjonalna sieć galerii, krytyków, teorii, historii. Sztuka to nie cecha obiektu, lecz relacja obiektu z artworld. David Hume z kolei pyta inaczej: czy gust jest subiektywny? Pozornie tak, ale Hume twierdzi, że istnieje standard taste, ustalany przez good critics — osoby z delikatnością postrzegania, doświadczeniem, praktyką porównywania, brakiem uprzedzeń i zdrowym rozsądkiem. Dzieła, które zachwycają good critics przez wiele kultur i wieków, są obiektywnie lepsze. Szekspir działa po 400 latach — to nie jest przypadek.",
+      questions: [
+        {
+          type: "abc",
+          text: "Według Tołstoja sztuka to:",
+          options: [
+            "manipulacja zmysłami dla rozrywki",
+            "świadomy przekaz emocji od artysty do odbiorcy",
+            "wyraz idealnego piękna",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Tołstoj definiuje sztukę funkcjonalnie: artysta przeżywa uczucie, dzieło je niesie, odbiorca przeżywa to samo. Prosta, ale prowokacyjna teza.",
+        },
+        {
+          type: "abc",
+          text: "Brillo Boxes Warhola pokazują, że:",
+          options: [
+            "wszystko może być sztuką, jeśli artysta tak powie",
+            "o byciu sztuką decyduje kontekst (artworld), nie wygląd",
+            "konsumpcjonizm jest najwyższą formą sztuki",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Argument Danto: pudełko w sklepie i pudełko w galerii wyglądają identycznie, ale tylko jedno jest sztuką. Decyduje sieć instytucjonalna i interpretacja.",
+        },
+        {
+          type: "abc",
+          text: "Według Hume'a gust:",
+          options: [
+            "jest całkowicie subiektywny, nikt nie ma racji",
+            "można doskonalić, istnieje standard taste przez good critics",
+            "wynika z genów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Hume nie jest elitarystą — pokazuje empirycznie, że gust można trenować, a niektóre dzieła wytrzymują test czasu w wielu kulturach.",
+        },
+        {
+          type: "fill",
+          text: "Wittgenstein twierdzi, że sztuka nie ma jednej definicji — tylko _____ resemblance.",
+          options: null,
+          correctAnswer: "family",
+          explanation:
+            "Pojęcie sztuki jest otwarte i ewoluuje. Łączą ją nakładające się podobieństwa, nie wspólna esencja.",
+        },
+        {
+          type: "fill",
+          text: "Rozumiem, dlaczego dzieło jest ważne, choć nie sprawia mi przyjemności — to estetyczna _____.",
+          options: null,
+          correctAnswer: "appreciation",
+          explanation:
+            "Appreciation wymaga wiedzy i kontekstu, w przeciwieństwie do enjoyment (po prostu mi się podoba).",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij argument Danto z Brillo Boxes.",
+          options: null,
+          correctAnswer:
+            "Pudełko Brillo w supermarkecie to przedmiot użytkowy. Pudełko Brillo Warhola w galerii to sztuka. Wyglądają identycznie. Więc to nie wygląd decyduje o statusie sztuki, lecz artworld — sieć galerii, krytyków, teorii i historii, które nadają obiektowi status sztuki przez interpretację.",
+          explanation:
+            "Stąd: sztuka to nie cecha obiektu, lecz relacja obiektu ze społeczeństwem artystycznym.",
+        },
+        {
+          type: "open",
+          text: "Czemu Wittgenstein uważa, że nie da się zdefiniować sztuki?",
+          options: null,
+          correctAnswer:
+            "Sztuka to cluster concept — nie ma jednej cechy wspólnej wszystkim dziełom (Mozart, Brillo Boxes, performance, ikona prawosławna nie dzielą jednej esencji). Łączy je sieć nakładających się podobieństw — family resemblance. Próba definicji szuka esencji tam, gdzie jej nie ma.",
+          explanation:
+            "To nie znaczy, że pojęcie jest bezużyteczne — jest otwarte i ewoluuje, zachowując sens przez praktykę używania.",
+        },
+        {
+          type: "spot_error",
+          text: "Danto twierdzi, że wszystko może być sztuką, jeśli tylko artysta nazwie to sztuką.",
+          options: [
+            "Danto twierdzi",
+            "wszystko może być sztuką",
+            "jeśli tylko artysta nazwie to sztuką",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Danto NIE redukuje sztuki do deklaracji artysty. Wymaga teoretycznej interpretacji i kontekstu artworld. Pudełko Brillo na śmietniku to nie sztuka, mimo że Warhol je „nazwał\".",
+        },
+      ],
+      salon: {
+        short:
+          "Najciekawszy zwrot w filozofii sztuki to Danto. Po Brillo Boxes Warhola stało się jasne, że nie da się odróżnić sztuki od nie-sztuki na podstawie wyglądu. Pudełko w supermarkecie to przedmiot, pudełko w galerii to sztuka.",
+        expand:
+          "O byciu sztuką decyduje nie obiekt, tylko artworld: kontekst instytucji, historii, teorii i interpretacji. To zmieniło całą estetykę. Wcześniej Tołstoj próbował zdefiniować sztukę jako przekaz emocji, Wittgenstein argumentował, że definicja jest niemożliwa (cluster concept). A Hume osobno bronił idei, że gust można doskonalić — niektóre dzieła wytrzymują test czasu i kultur, i to nie jest przypadek.",
+        trap:
+          "Tołstoj brzmi naiwnie, ale jego pytanie jest poważne — jeśli sztuka nie komunikuje, jaką ma wartość? Wittgenstein NIE mówi, że pojęcie sztuki jest bezużyteczne, mówi że jest otwarte. Danto NIE głosi, że „wszystko jest sztuką\" — wymaga kontekstu artworld. Hume to nie elitaryzm — to argument empiryczny, że gust można trenować.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 10. Sztuka i emocje
+  // ============================================================
+  {
+    slug: "sztuka-i-emocje",
+    vaultSlug: "art",
+    label: "Sztuka i emocje — Platon, Arystoteles, paradox of fiction",
+    payload: {
+      title: "Sztuka i emocje",
+      summary:
+        "Czemu płaczemy oglądając film, choć wiemy, że to fikcja? Czemu Arystoteles uważał tragedię za zdrową, a Platon za niebezpieczną? Czy sztuka, która jest moralnie odpychająca, może być dobra artystycznie? Klasyczne pytania, na które filozofia daje napięte odpowiedzi.",
+      theory:
+        "Platon w „Państwie\" jest podejrzliwy wobec sztuki. Sztuka to mimesis — naśladowanie, więc dwa kroki od rzeczywistości. Niebezpieczna, bo apeluje do emocji, nie rozumu. Tragedia uczy nas „ulegać\" emocjom, co osłabia kontrolę i deformuje charakter. Wyrzuca poetów z idealnego miasta. Arystoteles polemizuje z mistrzem: tragedia wywołuje litość i strach, ale w kontrolowany sposób je „wyładowuje\" — catharsis. Nie deformuje, lecz reguluje emocje. Tragedia jako emocjonalna higiena: doświadczamy intensywnych uczuć bezpiecznie, w teatrze, dzięki strukturze dzieła (jedność akcji, hamartia bohatera, peripeteia, anagnorisis).\n\nWspółczesny problem: paradox of fiction. Płaczemy nad Anną Kareniną, ale Anna nie istnieje. Trzy pozornie sprzeczne warunki: mamy autentyczne emocje, wiemy że postacie nie istnieją, i emocje wymagają wiary w istnienie obiektu. Coś musi pęknąć. Kendall Walton mówi: to quasi-emotions, nie pełne emocje — sztuka to make-believe, gra w udawanie. Podobne mechanizmy fizjologiczne, ale inna struktura poznawcza. Noël Carroll kontruje: emocje wobec fikcji SĄ prawdziwe, wystarczy „myśl o istnieniu\" (entertaining the thought), nie pełna wiara. R.G. Collingwood dorzuca klasyfikację sztuki: amusement art (rozrywka, ma wywoływać konkretne emocje — komedia, horror), magic art (wzmacnia emocje społeczne — hymny, propaganda), proper art (ekspresja, gdzie artysta sam dopiero odkrywa, co czuje, przez tworzenie). I osobno: spór autonomism vs aesthetic moralism. Autonomiści: wartość artystyczna i moralna są niezależne (Riefenstahl: „Triumf woli\" jest brawurowo zrealizowany, a propagandowo nazistowski). Moraliści: moralne wady dzieła obniżają jego wartość artystyczną. Większość współczesnych filozofów to umiarkowani moraliści.",
+      questions: [
+        {
+          type: "abc",
+          text: "Arystoteles bronił tragedii argumentem, że:",
+          options: [
+            "wzmacnia emocje, żeby były intensywniejsze w życiu",
+            "wyładowuje emocje w bezpieczny sposób — catharsis",
+            "uczy logicznego myślenia",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Catharsis: tragedia wywołuje litość i strach, ale je reguluje. Emocjonalna higiena, nie deformacja jak chciał Platon.",
+        },
+        {
+          type: "abc",
+          text: "Walton tłumaczy nasze łzy nad fikcją jako:",
+          options: [
+            "prawdziwe emocje, nieodróżnialne od realnych",
+            "quasi-emotions w grze w udawanie",
+            "objaw choroby psychicznej",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Make-believe theory: podobna fizjologia, ale inna struktura poznawcza. Wiemy, że Anna nie istnieje, więc to quasi-strach, nie pełen strach.",
+        },
+        {
+          type: "abc",
+          text: "Autonomism w filozofii sztuki głosi, że:",
+          options: [
+            "wartość artystyczna i moralna są niezależne",
+            "tylko artyści moralnie nienaganni tworzą wartościowe dzieła",
+            "sztuka powinna być wolna od polityki",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Klasyczny case: Riefenstahl „Triumf woli\" — brawurowo zrealizowany, propagandowo odrażający. Autonomiści: dwa wymiary niezależne.",
+        },
+        {
+          type: "fill",
+          text: "Arystoteles oczyszczenie emocji przez tragedię nazywa _____.",
+          options: null,
+          correctAnswer: "catharsis",
+          explanation:
+            "Spór historyczny: czy catharsis to „oczyszczenie\" (medyczne) czy „klaryfikacja\" (poznawcza). Sam Arystoteles tego nie sprecyzował.",
+        },
+        {
+          type: "fill",
+          text: "Sztuka, w której artysta odkrywa emocje przez tworzenie (a nie wyraża z góry znaną emocję), to według Collingwooda _____ art.",
+          options: null,
+          correctAnswer: "proper",
+          explanation:
+            "Trzy poziomy: amusement (rozrywka), magic (społeczna), proper (ekspresja). Tylko ostatnia jest sztuką w pełnym sensie.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij paradox of fiction.",
+          options: null,
+          correctAnswer:
+            "Mamy autentyczne emocje wobec fikcyjnych postaci (płaczemy nad Anną Kareniną). Wiemy, że one nie istnieją. A emocje wymagają wiary w istnienie obiektu. Trzy warunki nie mogą zachodzić razem — coś musi pęknąć. Walton mówi: to quasi-emotions. Carroll mówi: warunek trzeci jest fałszywy.",
+          explanation:
+            "Rozwiązanie zależy od tego, który warunek się uchyli. Walton uchyla pierwszy, Carroll trzeci.",
+        },
+        {
+          type: "open",
+          text: "Czemu Platon się sztuki bał?",
+          options: null,
+          correctAnswer:
+            "Bo apeluje do emocji, nie rozumu, i przez to deformuje charakter. Tragedia uczy ulegania emocjom, osłabiając kontrolę. Plus: sztuka jest mimesis (naśladowaniem), dwa kroki od rzeczywistości (idee → świat → sztuka). Wyrzuca poetów z idealnego miasta.",
+          explanation:
+            "Ważne: Platon nie zakazuje całej sztuki. Pozwala na hymny do bogów. Wyrzuca tragedię i poezję mimetyczną.",
+        },
+        {
+          type: "spot_error",
+          text: "Walton twierdzi, że nasze łzy oglądając Annę Kareninę są fałszywe — w rzeczywistości nic nie czujemy.",
+          options: [
+            "Walton twierdzi",
+            "nasze łzy są fałszywe",
+            "w rzeczywistości nic nie czujemy",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Walton NIE mówi, że łzy są fałszywe. Mówi, że ich struktura poznawcza jest inna — to quasi-emotions w ramach gry w udawanie, ale realnie odczuwane.",
+        },
+      ],
+      salon: {
+        short:
+          "Spór o sztukę i emocje jest stary jak filozofia. Platon się sztuki bał, bo działa na emocje, nie rozum. Arystoteles ją bronił, mówiąc o catharsis: tragedia leczy nas, dając wyładowanie litości i strachu w bezpiecznych warunkach.",
+        expand:
+          "A współczesny paradox of fiction pyta: czemu w ogóle płaczemy nad Anną Kareniną, skoro wiemy, że nie istnieje? Kendall Walton mówi: to quasi-emotions w grze w udawanie. Noël Carroll kontruje: emocje są prawdziwe, tylko nie wymagają wiary w istnienie. To pokazuje, jak dziwną mamy relację z fikcją — i jak filozofia próbuje ją rozplątać sześć tysięcy lat po pierwszej tragedii greckiej.",
+        trap:
+          "Platon NIE zakazuje całej sztuki — pozwala na hymny do bogów. Catharsis Arystotelesa nie jest jasno zdefiniowana — spór: oczyszczenie czy klaryfikacja? Walton NIE mówi, że łzy są fałszywe — chodzi o strukturę poznawczą. A spór autonomism/moralism nie ma jednej odpowiedzi: Riefenstahl jako klasyczny case study wciąż dzieli filozofów.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 11. Metaetyka
+  // ============================================================
+  {
+    slug: "metaetyka",
+    vaultSlug: "phil",
+    label: "Metaetyka — realizm vs anti-realizm, relatywizm",
+    payload: {
+      title: "Metaetyka",
+      summary:
+        "Etyka pyta „co powinienem zrobić?\". Metaetyka pyta o coś fundamentalniejszego: czy istnieją obiektywne odpowiedzi na pytania etyczne, czy każdy ma swoje? Bez metaetyki wszystkie spory etyczne wiszą w powietrzu — nie wiadomo, o co tak naprawdę walczą.",
+      theory:
+        "Metaetyka stawia cztery główne pytania: czy istnieją obiektywne fakty moralne? Skąd biorą się moralne wartości? Czy „dobre\" znaczy to samo dla wszystkich? Co znaczą sądy moralne? Moral Realism mówi: istnieją obiektywne fakty moralne, niezależne od opinii. „Zabijać niewinnych jest złe\" jest prawdziwe w taki sam sposób jak „2+2=4\" czy „woda to H2O\". Sądy moralne mogą być prawdziwe lub fałszywe. Wariant naturalistyczny: fakty moralne to fakty o świecie (cierpienie, dobrostan — Sam Harris). Wariant non-naturalistyczny (G.E. Moore): fakty moralne istnieją, ale nie są redukowalne do faktów naturalnych. Grounding problem: jeśli fakty moralne istnieją, gdzie są zakotwiczone? Możliwe odpowiedzi: w Bogu (Divine Command), w naturze ludzkiej (Natural Law), w rozumie (Kant), w konsekwencjach (Util), w cnocie (Arystoteles). Każde zakotwiczenie ma swoje problemy.\n\nPo drugiej stronie: Moral Anti-realism. Nie istnieją obiektywne fakty moralne, sądy moralne nie są „prawdziwe\" ani „fałszywe\" w mocnym sensie. Cultural Relativism: moralność jest relatywna do kultury, „dobre\" znaczy „uznawane za dobre przez moją kulturę\". Argumenty za: różnice kulturowe — kanibalizm, poligamia, kara śmierci akceptowane w różnych miejscach. Subjectivism idzie dalej: moralność zależy od indywidualnej osoby, sądy moralne to wyrażenia preferencji. Najmocniej brzmi Emotivism: sądy moralne to czysta ekspresja emocji („Boo, killing!\", „Hooray, charity!\") — nie mają wartości logicznej. Krytyka relatywizmu: paradoks — czy „należy szanować inne kultury\" jest samo obiektywne, czy relatywne? Jeśli obiektywne, to relatywizm pada. Jeśli relatywne, argument się rozpada. Plus: trudno relatywizmowi wytłumaczyć moralny postęp (zniesienie niewolnictwa, prawa kobiet) — to były „zmiany kultury\" czy „odkrycia moralne\"?",
+      questions: [
+        {
+          type: "abc",
+          text: "Moral Realism głosi, że:",
+          options: [
+            "istnieją obiektywne fakty moralne, niezależne od opinii",
+            "moralność wymyśliły religie, żeby kontrolować ludzi",
+            "każdy ma swoją prawdę moralną",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Zabijać niewinnych jest złe\" jest prawdziwe w taki sam sposób jak „2+2=4\". Sądy moralne mogą być prawdziwe lub fałszywe.",
+        },
+        {
+          type: "abc",
+          text: "Cultural Relativism twierdzi, że:",
+          options: [
+            "moralność jest relatywna do kultury",
+            "każdy człowiek ma swoją moralność",
+            "moralność wynika z biologii",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Dobre\" znaczy „uznawane za dobre przez moją kulturę\". Argument za: różnice kulturowe (poligamia, kara śmierci) akceptowane w różnych miejscach.",
+        },
+        {
+          type: "abc",
+          text: "Emotivism redukuje sądy moralne do:",
+          options: [
+            "ukrytych imperatywów",
+            "wyrażeń emocji („Boo, killing!\")",
+            "praw natury",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Skrajna forma anti-realizmu. Sądy moralne nie mają wartości logicznej — to ekspresja, nie opis.",
+        },
+        {
+          type: "fill",
+          text: "G.E. Moore twierdził, że fakty moralne istnieją, ale nie da się ich zredukować do faktów _____ — to non-naturalistyczny realizm.",
+          options: null,
+          correctAnswer: "naturalnych",
+          explanation:
+            "Open question argument: „X jest dobry\" zawsze jest sensownym pytaniem, więc „dobry\" nie znaczy żadnej cechy naturalnej. Klasyka XX-wiecznej metaetyki.",
+        },
+        {
+          type: "fill",
+          text: "Pytanie „gdzie są zakotwiczone fakty moralne, jeśli istnieją?\" nazywa się _____ problem.",
+          options: null,
+          correctAnswer: "grounding",
+          explanation:
+            "Możliwe odpowiedzi: Bóg, natura ludzka, rozum, konsekwencje, cnota. Każde zakotwiczenie generuje swoje trudności.",
+        },
+        {
+          type: "open",
+          text: "Jaki jest klasyczny paradoks Cultural Relativismu?",
+          options: null,
+          correctAnswer:
+            "Cultural Relativism mówi „należy szanować inne kultury\". Ale czy to twierdzenie jest samo obiektywne, czy relatywne? Jeśli obiektywne — to istnieją obiektywne normy, więc relatywizm pada. Jeśli relatywne — to argument za relatywizmem rozpada się we własnych założeniach.",
+          explanation:
+            "Klasyczny problem autoreferencji: teza relatywizmu, użyta na samej sobie, niszczy własną podstawę.",
+        },
+        {
+          type: "open",
+          text: "Czemu moralny postęp jest problemem dla Cultural Relativismu?",
+          options: null,
+          correctAnswer:
+            "Zniesienie niewolnictwa, prawa kobiet, zakaz tortur — czy to były „zmiany kultury\" (równouprawnione z dawnymi normami), czy „odkrycia moralne\" (poprawne odpowiedzi na trudne pytania)? Relatywizm musi powiedzieć pierwsze, ale intuicja mówi drugie. Stąd argument przeciw relatywizmowi.",
+          explanation:
+            "Jeśli moralny postęp to tylko zmiana, nie ma sensu mówić, że abolicja była „lepsza\". Realizm wyjaśnia to naturalnie, relatywizm — z trudem.",
+        },
+        {
+          type: "spot_error",
+          text: "Anti-realizm w metaetyce oznacza, że wszystko wolno i nie ma sensu prowadzić sporów moralnych.",
+          options: [
+            "Anti-realizm",
+            "wszystko wolno",
+            "nie ma sensu prowadzić sporów moralnych",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Anti-realizm NIE oznacza „wszystko wolno\". Wielu anti-realistów ma silne moralne intuicje — po prostu nie wierzą w ich obiektywność. Spory też mają sens, choć inne niż w realizmie.",
+        },
+      ],
+      salon: {
+        short:
+          "Metaetyka pyta o coś bardzo fundamentalnego: czy „zabijać niewinnych jest złe\" jest prawdziwe w takim samym sensie jak „woda to H2O\", czy tylko „moja kultura tak uważa\"?",
+        expand:
+          "Realiści mówią, że są obiektywne fakty moralne. Relatywiści mówią, że są tylko fakty społeczne. Ten spór decyduje o tym, czy w ogóle ma sens prowadzić spór etyczny, czy każdy zostaje przy swoim. I jest empiryczny test relatywizmu: jeśli abolicja niewolnictwa była tylko „zmianą kultury\", to nie była lepsza ani gorsza od dawnych praktyk. Intuicja mówi inaczej — i to jeden z mocniejszych argumentów za realizmem.",
+        trap:
+          "Anti-realizm NIE znaczy „wszystko wolno\" — wielu anti-realistów ma silne moralne intuicje, tylko nie wierzą w ich obiektywność. Realizm NIE wymaga Boga — można być świeckim realistą (Sam Harris). Subjectivism NIE jest tym samym co tolerancja. I uważaj na samoreferencyjny paradoks relatywizmu: „należy szanować inne kultury\" jako sama teza relatywna unieważnia argument.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 12. Natural Law
+  // ============================================================
+  {
+    slug: "natural-law",
+    vaultSlug: "phil",
+    label: "Natural Law — Tomasz z Akwinu, Hume i is-ought",
+    payload: {
+      title: "Natural Law",
+      summary:
+        "Skąd bierze się moralność, jeśli nie z Boga bezpośrednio i nie z konwencji? Natural Law: z natury ludzkiej. Tomasz z Akwinu rozwija to klasycznie. Ale Hume zadaje pytanie, które wstrząsa całą tradycją: czy z tego, jak rzeczy są, można wywieść, jak powinny być?",
+      theory:
+        "Tomasz z Akwinu (XIII w.) buduje teorię Natural Law: moralność wynika z natury ludzkiej, którą stworzył Bóg. Bóg nadał wszystkim bytom telos (cel), w tym człowiekowi. Rozum naturalny pozwala odkryć, co jest dla człowieka dobre — dlatego Natural Law jest uniwersalna i poznawalna nawet dla niewierzących. Łączy myślenie religijne z arystotelesowskim. Tomasz wymienia basic goods wpisane w naturę ludzką: życie, reprodukcja, wychowywanie potomstwa, poszukiwanie Boga, życie społeczne, unikanie krzywdzenia, unikanie ignorancji. Każde dobre działanie wspiera te dobra, każde złe je narusza. Ważne rozróżnienie: positive injunction (nakaz pozytywny — „czyń X\") jest trudniejszy, bo zależny od okoliczności. Prohibition (zakaz — „nie czyń X\") jest mocniejszy, obowiązuje zawsze. Stąd klasyczna intuicja: „nie wolno torturować dziecka, choćby skutki były dobre\".\n\nWspółczesne aplikacje Natural Law: etyka medyczna (aborcja, eutanazja, antykoncepcja), etyka seksualna, argumenty przeciw karze śmierci, prawa człowieka jako wynikające z natury, nie z państwa. Ale David Hume w XVIII w. zadaje pytanie, które wstrząsa całą tradycją: z faktów (is) nie wynikają wartości (ought). Ze stwierdzenia „ludzie się rozmnażają\" nie wynika „ludzie powinni się rozmnażać\". Z „człowiek ma rozum\" nie wynika „człowiek powinien postępować zgodnie z rozumem\". To is-ought gap (G.E. Moore później nazwie to naturalistic fallacy). Każda etyka, która wyprowadza powinność z natury, musi ten gap przeskoczyć. Możliwe odpowiedzi Natural Law: Tomasz mówi, że natura nie jest „neutralnym faktem\", tylko zawiera telos — z telosu wynika powinność. Współcześni naturaliści (Philippa Foot, Alasdair MacIntyre) argumentują, że dobrostan i cierpienie są inherentnie wartościujące.",
+      questions: [
+        {
+          type: "abc",
+          text: "Natural Law według Tomasza z Akwinu zakorzenia moralność w:",
+          options: [
+            "bezpośrednich nakazach Boga",
+            "naturze ludzkiej, którą stworzył Bóg",
+            "umowie społecznej",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bóg nadał człowiekowi naturę z telosem (celem). Rozum naturalny odkrywa, co jest dobre — bez konieczności objawienia. Stąd Natural Law jest poznawalna nawet dla niewierzących.",
+        },
+        {
+          type: "abc",
+          text: "Is-ought problem Hume'a głosi, że:",
+          options: [
+            "z faktów nie wynikają wartości",
+            "fakty są ważniejsze niż wartości",
+            "wartości to złudzenie",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Z „ludzie mają rozum\" nie wynika „powinni postępować zgodnie z rozumem\". Każda etyka oparta na naturze musi przeskoczyć tę przepaść.",
+        },
+        {
+          type: "abc",
+          text: "Wśród basic goods Tomasza NIE ma:",
+          options: [
+            "życia",
+            "wiedzy",
+            "bogactwa materialnego",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Tomasz wymienia: życie, reprodukcję, wychowywanie potomstwa, poszukiwanie Boga, życie społeczne, unikanie krzywdy, unikanie ignorancji. Bogactwo nie jest basic good.",
+        },
+        {
+          type: "fill",
+          text: "Zakaz („nie czyń X\") jest mocniejszy niż nakaz pozytywny, bo obowiązuje _____.",
+          options: null,
+          correctAnswer: "zawsze",
+          explanation:
+            "Stąd „nie wolno torturować dziecka, choćby skutki były dobre\". Positive injunction zależy od okoliczności, prohibition działa bezwarunkowo.",
+        },
+        {
+          type: "fill",
+          text: "G.E. Moore nazwał próbę wyprowadzenia „dobrego\" z faktów naturalnych _____ fallacy.",
+          options: null,
+          correctAnswer: "naturalistic",
+          explanation:
+            "Rozszerzenie is-ought problem. „Dobre\" nie da się zredukować do żadnej cechy naturalnej — open question argument.",
+        },
+        {
+          type: "open",
+          text: "Jak Tomasz mógłby odpowiedzieć Hume'owi na is-ought problem?",
+          options: null,
+          correctAnswer:
+            "Tomasz twierdziłby, że natura ludzka nie jest „neutralnym faktem\", tylko zawiera w sobie telos (cel). Człowiek ma cel — rozumność, życie w społeczeństwie, dążenie do dobra. Z tego celu wynika powinność, bo „być człowiekiem\" to znaczy „realizować swój telos\". Powinność jest wbudowana w naturę, nie wyciągana z neutralnych faktów.",
+          explanation:
+            "Współcześni Tomasiści (Foot, MacIntyre) argumentują podobnie: dobrostan i cierpienie są inherentnie wartościujące, nie neutralne.",
+        },
+        {
+          type: "open",
+          text: "Czemu „naturalne\" w Natural Law NIE znaczy „biologicznie naturalne\"?",
+          options: null,
+          correctAnswer:
+            "„Naturalne\" w sensie Natural Law oznacza „zgodne z istotną naturą ludzkiej rozumności\" — nie „zgodne z biologią\". To rozróżnienie ratuje teorię przed naturalistic fallacy w wersji „skoro biologia X, to X jest dobre\". Tomasz mówi o naturze rozumnej, nie zwierzęcej.",
+          explanation:
+            "Pomylenie tych dwóch znaczeń to klasyczna pułapka. „Naturalne biologicznie\" (np. agresja) nie ma w Natural Law statusu moralnie dobrego.",
+        },
+        {
+          type: "spot_error",
+          text: "Natural Law to teoria religijna, bo wymaga wiary w Boga jako fundament moralności.",
+          options: [
+            "Natural Law to teoria",
+            "religijna",
+            "wymaga wiary w Boga",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Natural Law NIE wymaga wiary w Boga. Można być Natural Law theorist bez religii (Philippa Foot, Alasdair MacIntyre). Tomasz dodaje Boga, ale teoria może bez Niego funkcjonować.",
+        },
+      ],
+      salon: {
+        short:
+          "Tomasz z Akwinu próbuje wyprowadzić moralność z natury ludzkiej. Człowiek ma swoją naturę, swoje basic goods (życie, wiedza, społeczeństwo), a z nich wynika, co jest dobre.",
+        expand:
+          "Brzmi rozsądnie, ale David Hume zadaje pytanie, które do dziś nie ma jednej odpowiedzi: czy z faktów (jak rzeczy są) można wywieść wartości (jak powinny być)? To is-ought problem. Każda etyka oparta na naturze musi przez ten gap przeskoczyć. Tomasz odpowiada, że natura zawiera telos, więc powinność jest w niej wbudowana. Współcześni Natural Law theorists (Foot, MacIntyre) argumentują, że dobrostan i cierpienie są inherentnie wartościujące, nie neutralne.",
+        trap:
+          "Natural Law NIE jest tylko religijna — można być świeckim Natural Law theorist. „Naturalne\" NIE znaczy biologicznie naturalne — to byłaby naturalistic fallacy. Tomasz nie mówi, że wszyscy poznają moralność tak samo — twierdzi, że potencjalnie mogą, jeśli używają rozumu. I uważaj na pułapkę „naturalne jest X, więc X jest dobre\" — to dokładnie ten błąd, który Hume krytykuje.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 13. Kant: etyka obowiązku
+  // ============================================================
+  {
+    slug: "kant-etyka-obowiazku",
+    vaultSlug: "phil",
+    label: "Kant — etyka obowiązku, imperatyw kategoryczny",
+    payload: {
+      title: "Kant: etyka obowiązku",
+      summary:
+        "Kant robi rewolucję w etyce. Wcześniej moralność była zakotwiczona w Bogu, naturze albo skutkach. Kant mówi: nic z tego. Moralność wynika z czystego rozumu, niezależnie od pragnień, konsekwencji i religii. Jedna z najmocniejszych pozycji w historii etyki — i klucz do rozróżnienia od utylitaryzmu i Arystotelesa.",
+      theory:
+        "Podstawowa intuicja Kanta: moralność musi być uniwersalna, bezwarunkowa i wynikać z rozumu. Nie z pragnień (są subiektywne), nie z konsekwencji (są niepewne), nie z religii (musi obowiązywać każdą rozumną istotę, też niewierzących). Hypothetical imperatives mają formę „jeśli chcesz X, zrób Y\" — zależą od celu, są praktyczne ale warunkowe, nie moralne. Categorical imperatives: „rób X, bo to jest moralnie słuszne\" — niezależne od pragnień, obowiązują każdą rozumną istotę bezwarunkowo. Główna formuła to Universalizability Principle: „postępuj tylko według takiej zasady, którą mógłbyś chcieć uczynić prawem powszechnym\". Test: zanim coś zrobisz, pytaj — a co, gdyby wszyscy tak robili? Jeśli wynik byłby logicznie sprzeczny lub niemożliwy do zaakceptowania, działanie jest niemoralne. Klasyczny przykład: czy mogę kłamać dla korzyści? A gdyby wszyscy kłamali, kiedy im się opłaca? Pojęcie obietnicy, zaufania, samej komunikacji by się rozpadło. Kłamstwo nie da się zuniwersalizować, więc jest niemoralne. Słynna konsekwencja: Kant twierdzi, że nie wolno kłamać nawet mordercy, który pyta, gdzie schowała się twoja przyjaciółka. Sam Kant przyjmuje tę skrajność.\n\nFormula of Humanity (drugie sformułowanie imperatywu): „postępuj tak, abyś używał człowieczeństwa zawsze jako celu, nigdy tylko jako środka\". Krócej: traktuj ludzi jako cele same w sobie. Nie znaczy to, że nie wolno nikogo używać do żadnych celów (kasjer pomaga mi kupić chleb, więc go „używam\"). Znaczy: nigdy tylko jako środka, ignorując jego godność. Kłamstwo manipuluje drugą osobą, narusza jej godność. Trzecie pojęcie: good will — jedyna rzecz „dobra bez zastrzeżeń\". Działanie z obowiązku, z szacunku dla prawa moralnego. Działanie z chęci, sympatii, korzyści nie ma wartości moralnej (choć może być pożądane). Słynna teza: pomoc bliźniemu z miłości nie jest moralnie wartościowa. Pomoc z poczucia obowiązku — tak.",
+      questions: [
+        {
+          type: "abc",
+          text: "Według Kanta moralność wynika z:",
+          options: [
+            "konsekwencji działań",
+            "czystego rozumu, niezależnie od pragnień i skutków",
+            "uczuć i sympatii do innych",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka jest taka: Kant NIE patrzy na skutki (to Util) ani na charakter (to Arystoteles). Patrzy na zasadę i racjonalną formę.",
+        },
+        {
+          type: "abc",
+          text: "Universalizability Principle pyta:",
+          options: [
+            "czy zasada mojego działania może być prawem dla wszystkich",
+            "czy działanie przyniesie więcej szczęścia",
+            "czy działanie pasuje do mojej kultury",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Test: gdybym mógł chcieć, żeby wszyscy tak postępowali. Jeśli wynik byłby logicznie sprzeczny — działanie jest niemoralne.",
+        },
+        {
+          type: "abc",
+          text: "Formula of Humanity zabrania:",
+          options: [
+            "używania ludzi do jakichkolwiek celów",
+            "używania ludzi tylko jako środków, bez szacunku dla godności",
+            "współpracy z innymi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka: Kant nie zabrania używania ludzi do celów. Zabrania używania ich tylko jako środka, ignorując ich człowieczeństwo.",
+        },
+        {
+          type: "fill",
+          text: "Imperatywy hipotetyczne mają formę „jeśli chcesz X, zrób Y\". Imperatywy _____ obowiązują bezwarunkowo.",
+          options: null,
+          correctAnswer: "kategoryczne",
+          explanation:
+            "Tylko kategoryczne imperatywy są moralne — niezależne od pragnień i celów. Hipotetyczne są praktyczne, ale moralnie obojętne.",
+        },
+        {
+          type: "fill",
+          text: "Kant twierdzi, że jedyną rzeczą dobrą bez zastrzeżeń jest _____ wola.",
+          options: null,
+          correctAnswer: "dobra",
+          explanation:
+            "Good will — działanie z obowiązku, z szacunku dla prawa moralnego. Nie z sympatii, nie z korzyści.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego Kant uważa, że nie wolno kłamać nawet mordercy pytającemu o przyjaciółkę.",
+          options: null,
+          correctAnswer:
+            "Zasada „wolno kłamać, gdy się opłaca\" nie da się zuniwersalizować — gdyby wszyscy tak robili, samo pojęcie zaufania i komunikacji by się rozpadło. Kant przyjmuje skrajną konsekwencję: zasada uniwersalna obowiązuje bezwarunkowo, nawet w trudnych okolicznościach. Większość filozofów próbuje to złagodzić, ale sam Kant się nie ugina.",
+          explanation:
+            "To słynna teza pokazująca rygoryzm Kanta. Argument: jeśli złamiesz zasadę dla skutków, etyka konsekwencjalistyczna wygrywa, a Kant tego nie chce.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij różnicę między Universalizability a Złotą Regułą („nie czyń drugiemu...\").",
+          options: null,
+          correctAnswer:
+            "Złota Reguła odwołuje się do pragnień („to, czego ja bym chciał/nie chciał\"). Universalizability Kanta jest głębsza — pyta o logiczną spójność zasady, niezależnie od pragnień. Pragnienia są subiektywne, racjonalność uniwersalna. Plus: Złota Reguła zawodzi w przypadkach asymetrycznych (masochista mógłby chcieć, żeby inni go bili), Kant takich problemów nie ma.",
+          explanation:
+            "Stąd Kantowska etyka jest mocniejsza niż Złota Reguła — opiera się na rozumie, nie na sympatii.",
+        },
+        {
+          type: "spot_error",
+          text: "Kant uważa, że uczucia są moralnie złe, a działanie z miłości jest niemoralne.",
+          options: [
+            "Kant uważa, że uczucia są moralnie złe",
+            "działanie z miłości jest niemoralne",
+            "uczucia",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Kant NIE mówi, że uczucia są złe. Mówi, że nie są podstawą moralności — wartość moralna pochodzi z rozumu, choć uczucie może towarzyszyć. Działanie z miłości jest dopuszczalne i pożądane, tylko bez wartości moralnej w sensie ścisłym.",
+        },
+      ],
+      salon: {
+        short:
+          "Kant przesuwa moralność z emocji, religii i konsekwencji na czysty rozum. Dla niego pytanie nie brzmi: czy to mi się opłaci, ani czy to przyniesie dobre skutki, tylko: czy zasada mojego działania mogłaby obowiązywać wszystkich?",
+        expand:
+          "I jego druga formuła jest piękna: traktuj ludzi zawsze jako cele same w sobie, nigdy tylko jako środki. To jedna z największych myśli w historii etyki — fundament współczesnych praw człowieka. Kant przyjmuje też skrajne konsekwencje: nie wolno kłamać nawet mordercy, który pyta gdzie schowała się przyjaciółka. Większość się ugina, Kant nie.",
+        trap:
+          "NAJWAŻNIEJSZE: Kant ≠ Util. Kant patrzy na ZASADĘ i intencję, NIE na konsekwencje — to często mylone. Kant NIE mówi, że uczucia są złe, tylko że nie są podstawą moralności. Formula of Humanity nie zabrania używania ludzi do celów, tylko używania ich TYLKO jako środków. I Universalizability NIE jest tym samym co Złota Reguła — Kant idzie głębiej, opierając się na logicznej spójności, nie sympatii.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 14. Utylitaryzm
+  // ============================================================
+  {
+    slug: "utylitaryzm",
+    vaultSlug: "phil",
+    label: "Utylitaryzm — Bentham, Mill, act vs rule",
+    payload: {
+      title: "Utylitaryzm",
+      summary:
+        "Utylitaryzm to przeciwieństwo Kanta. Kant pyta o zasadę. Utylitarysta pyta o konsekwencje. Dobre jest to, co przynosi najwięcej dobra największej liczbie. Wygląda prosto i intuicyjnie, ale prowadzi do bardzo niewygodnych konsekwencji. Razem z Kantem i Arystotelesem to święta trójca etyki.",
+      theory:
+        "Podstawowa teza utylitaryzmu: moralność = maksymalizacja dobra. „Dobre\" zwykle definiowane jako szczęście, dobrostan, redukcja cierpienia. Greatest happiness for the greatest number. Liczy się wynik, nie intencja ani zasada. Jeremy Bentham (XVIII/XIX w.) — klasyczny utylitaryzm. Hedonistic theory: jedynym dobrem jest przyjemność, jedynym złem cierpienie. Wszystkie inne wartości są redukowalne. Felicific calculus: można obliczać sumę przyjemności i cierpienia po intensywności, czasie trwania, pewności, bliskości, płodności, czystości, zasięgu. Other-regarding: liczę nie tylko swoje szczęście, ale wszystkich. Impartiality: szczęście każdej osoby waży tak samo. John Stuart Mill modyfikuje: rozróżnia higher pleasures (intelektualne, estetyczne, moralne) i lower (cielesne). Słynne: „better Socrates dissatisfied than a pig satisfied\". Test: kto doświadczył obu rodzajów, woli higher. Krytyka: czy to nie zdradza utylitaryzmu? Wprowadza obiektywną hierarchię.\n\nWażne rozróżnienie: Act vs Rule Utilitarianism. Act Util ocenia każde pojedyncze działanie według skutków — „która decyzja tu i teraz przyniesie najwięcej dobra?\". Problem: pozwala na intuicyjnie niemoralne działania (zabić jednego, żeby uratować pięciu). Rule Util ocenia zasady według ogólnych konsekwencji: „jaka reguła, jeśli wszyscy będą przestrzegać, przyniesie najlepsze skutki?\". Reguła „nie zabijaj niewinnych\" daje generalnie lepsze skutki — bliższy intuicji, ale krytykowany jako „Kant z innym uzasadnieniem\". Klasyczne wyzwania: trolley problem (czy przekierować wagon, żeby zabił 1 zamiast 5?), transplant case (czy zabić zdrowego, by uratować pięciu pobierając organy?), utility monster Nozicka (istota czerpiąca nieproporcjonalnie więcej szczęścia — czy mu wszystko oddać?). Trolley problem często traktowany jako test utylitaryzmu — ludzie przekierują wagon (5 vs 1), ale nie popchną grubasa z mostu (też 5 vs 1). Intuicje są mieszane. Słynna krytyka: utylitaryzm może poświęcić jednostkę dla dobra ogółu — jednostka nie ma „nienaruszalnej godności\" jak u Kanta.",
+      questions: [
+        {
+          type: "abc",
+          text: "Utylitaryzm ocenia czyn po:",
+          options: [
+            "intencji",
+            "zasadzie",
+            "sumie szczęścia i cierpienia (konsekwencjach)",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "To przeciwieństwo Kanta. Pułapka jest taka: liczy się wynik, nie intencja ani forma zasady.",
+        },
+        {
+          type: "abc",
+          text: "Mill rozróżnia higher i lower pleasures. Słynne zdanie:",
+          options: [
+            "lepiej Sokrates niezadowolony niż świnia szczęśliwa",
+            "wszystkie przyjemności są równe",
+            "lepiej świnia szczęśliwa niż Sokrates niezadowolony",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Mill wprowadza hierarchię przyjemności. Krytyka: czy to nie zdradza czystego utylitaryzmu Benthama, wprowadzając obiektywną wartość?",
+        },
+        {
+          type: "abc",
+          text: "Rule Utilitarianism ocenia:",
+          options: [
+            "każde pojedyncze działanie według skutków",
+            "zasady według ich ogólnych konsekwencji",
+            "charakter osoby działającej",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bliższy intuicji moralnej, ale krytykowany jako „Kant z innym uzasadnieniem\". Reguła „nie zabijaj\" daje generalnie lepsze konsekwencje niż reguła „zabijaj gdy się opłaca\".",
+        },
+        {
+          type: "fill",
+          text: "Bentham proponował obliczać sumę przyjemności i cierpienia po siedmiu wymiarach — to felicific _____.",
+          options: null,
+          correctAnswer: "calculus",
+          explanation:
+            "Intensywność, czas, pewność, bliskość, płodność, czystość, zasięg. Klasyczny utylitaryzm w wersji najmocniejszej.",
+        },
+        {
+          type: "fill",
+          text: "W eksperymencie transplant case Act Util zaleca zabicie zdrowego pacjenta, żeby uratować _____ chorych pobierając organy.",
+          options: null,
+          correctAnswer: "pięciu",
+          explanation:
+            "Klasyczny case pokazujący problem Act Util — większość intuicji moralnej się buntuje, mimo że arytmetyka szczęścia wygrywa.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij główną różnicę między Kantem a utylitaryzmem.",
+          options: null,
+          correctAnswer:
+            "Kant ocenia czyn po zasadzie i intencji (deontologia) — pyta, czy zasada da się zuniwersalizować. Utylitaryzm ocenia czyn po sumie szczęścia (konsekwencjalizm) — pyta, jaki będzie wynik. Kant: nie wolno zabić jednego, żeby uratować pięciu (narusza godność). Util: można, bo arytmetyka wygrywa.",
+          explanation:
+            "Ta różnica jest fundamentalna w etyce. Trzeci pozycja (Arystoteles) pyta o trzeci wymiar: charakter osoby działającej.",
+        },
+        {
+          type: "open",
+          text: "Czemu trolley problem pokazuje, że nasze intuicje moralne są mieszane?",
+          options: null,
+          correctAnswer:
+            "Większość przekieruje wagon (zabić 1 zamiast 5) — utylitaryzm wygrywa. Ale większość NIE popchnie grubasa z mostu, mimo że arytmetyka jest taka sama (1 zamiast 5). Różnica: przekierowanie to skutek uboczny, popchnięcie to bezpośrednie użycie jako środka. Doktryna podwójnego skutku — intuicja działa, choć Util nie powinien rozróżniać.",
+          explanation:
+            "To pokazuje, że nasze intuicje moralne są mieszane — częściowo utylitarystyczne, częściowo deontologiczne (Kantowskie).",
+        },
+        {
+          type: "spot_error",
+          text: "Utylitaryzm to forma egoizmu, bo liczy tylko własne szczęście jednostki podejmującej decyzję.",
+          options: [
+            "Utylitaryzm to forma egoizmu",
+            "liczy tylko własne szczęście",
+            "jednostki podejmującej decyzję",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Utylitaryzm to PRZECIWIEŃSTWO egoizmu. Other-regarding i impartiality: liczę szczęście wszystkich tak samo, nie tylko swoje.",
+        },
+      ],
+      salon: {
+        short:
+          "Utylitaryzm jest bardzo intuicyjny, bo pyta: co realnie zmniejszy cierpienie i zwiększy dobrostan? Bentham mówił o felicific calculus, Mill dodał rozróżnienie między higher and lower pleasures.",
+        expand:
+          "Ale utylitaryzm bywa niebezpieczny, bo dla dobra większości może poświęcić jednostkę. To dlatego trolley problem jest tak ciekawym testem: intuicja nie idzie czystą matematyką szczęścia. Większość przekieruje wagon, ale nie popchnie grubasa z mostu — mimo identycznej arytmetyki. To pokazuje, że nasze intuicje są mieszane: częściowo utylitarystyczne, częściowo Kantowskie.",
+        trap:
+          "Utylitaryzm to NIE egoizm — wprost przeciwnie, liczy wszystkich równo. Mill z higher/lower pleasures łatwo pomylić ze snobizmem — on nie mówi „opera jest lepsza niż piwo\", tylko że istnieje hierarchia testowana empirycznie. Act Util prowadzi do problematycznych konsekwencji (transplant case) — Rule Util to próba ich uniknięcia. I uważaj na klasyczną krytykę: utylitaryzm może poświęcić jednostkę dla ogółu, nie ma „nienaruszalnej godności\" jak u Kanta.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 15. Contractarianism (Hobbes)
+  // ============================================================
+  {
+    slug: "contractarianism-hobbes",
+    vaultSlug: "phil",
+    label: "Contractarianism — Hobbes, social contract",
+    payload: {
+      title: "Contractarianism (Hobbes)",
+      summary:
+        "Co, jeśli moralność nie istnieje obiektywnie, a my ją po prostu wymyślamy, bo bez niej życie byłoby koszmarem? Hobbes pisze to po wojnie domowej w Anglii. Widział co się dzieje, gdy państwo upada. Jego odpowiedź: moralność i polityka to racjonalna umowa, którą zawieramy, bo alternatywa jest gorsza.",
+      theory:
+        "Thomas Hobbes (XVII w.) w „Leviathanie\" wychodzi z mocnego realizmu o naturze ludzkiej. Ludzie nie są źli z natury, ale działają z samozachowania i lęku. W naturalnym świecie bez państwa każdy musi sam się bronić. State of Nature (stan natury) to hipotetyczny stan przed państwem: brak stabilnej władzy, brak gwarancji bezpieczeństwa, każdy chroni się sam. „War of all against all\" (bellum omnium contra omnes). Słynny opis życia człowieka w stanie natury: solitary, poor, nasty, brutish, and short. To nie znaczy, że ludzie są źli — znaczy, że bez zaufania i bezpieczeństwa współpraca się rozpada. Rozwiązanie: Social Contract. Ludzie zawierają umowę — oddają część wolności w zamian za bezpieczeństwo. Przekazują władzę suwerenowi (Leviathanowi), który ma autorytet wymuszać reguły. W zamian zgadzają się przestrzegać umowy. Rozróżnienie: explicit contract (jawna umowa — Konstytucja, śluby) vs implicit contract (dorozumiana, przez życie w społeczeństwie). Krytyka: czy „dorozumiana umowa\" jest naprawdę umową? Nikt jej nie podpisywał.\n\nRights imply obligations: jeśli chcę mieć prawa, muszę uznać obowiązki wobec innych. Prawo do życia = obowiązek nie zabijania. Prawo do własności = obowiązek nie kradzieży. Moralność jako wzajemność. Prisoner's Dilemma ilustruje problem zaufania: dwóch więźniów może zeznawać przeciw sobie lub milczeć. Najlepszy wspólny wynik: oboje milczą. Najgorszy: jeden zdradza, drugi milczy. Racjonalnie indywidualnie: defection (zdradzić). Racjonalnie wspólnie: cooperate. Bez zaufania i egzekucji każdy zdradza. To pokazuje, dlaczego potrzebujemy państwa: żeby egzekwowało umowę. Mocna teza Hobbesowska: „there is no morality until we make it up\" — moralność powstaje z umowy społecznej, jest narzędziem cywilizacji. To konstruktywizm moralny (antyrealizm metaetyczny). Późniejsi kontraktualiści: John Locke (kontrakt liberalny, państwo chroni prawa), Jean-Jacques Rousseau („wola powszechna\"), John Rawls (XX w., „veil of ignorance\" — kontrakt zawierany za zasłoną niewiedzy o swojej pozycji).",
+      questions: [
+        {
+          type: "abc",
+          text: "Według Hobbesa w stanie natury (state of nature):",
+          options: [
+            "ludzie żyli w szczęśliwym pierwotnym pokoju",
+            "panuje war of all against all, życie jest „solitary, poor, nasty, brutish, and short\"",
+            "ludzie żyli pod kontrolą szamanów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ważna pułapka: state of nature to model teoretyczny, nie historyczny. Hobbes nie twierdzi, że ludzie kiedyś tak żyli — pyta o logikę współpracy bez egzekucji.",
+        },
+        {
+          type: "abc",
+          text: "Hobbesowski social contract:",
+          options: [
+            "ludzie oddają wolność w zamian za bezpieczeństwo, przekazują władzę suwerenowi",
+            "wszyscy podpisują dokument konstytucyjny",
+            "władza pochodzi od Boga, nie od ludzi",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Leviathan: silna władza wymuszająca umowę. Hobbes był rojalistą — wspierał silną centralizację, później Locke i Rousseau wyciągnęli z kontraktu liberalne wnioski.",
+        },
+        {
+          type: "abc",
+          text: "Prisoner's Dilemma pokazuje, że bez egzekucji:",
+          options: [
+            "wszyscy zawsze współpracują",
+            "racjonalna indywidualnie strategia to zdrada, mimo że współpraca byłaby wspólnie lepsza",
+            "moralność powstaje automatycznie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "To formalna ilustracja, czemu potrzebujemy państwa — żeby egzekwowało umowę. Inaczej każdy zdradza, mimo że wszyscy by zyskali na współpracy.",
+        },
+        {
+          type: "fill",
+          text: "Stan natury według Hobbesa Bellum omnium contra _____.",
+          options: null,
+          correctAnswer: "omnes",
+          explanation:
+            "Wojna wszystkich przeciw wszystkim. Bez bezpieczeństwa współpraca się rozpada, choć Hobbes nie głosi że ludzie są źli — tylko że bez egzekucji muszą się tak zachowywać.",
+        },
+        {
+          type: "fill",
+          text: "John Rawls w „Theory of Justice\" proponuje, że sprawiedliwe zasady to te, które wybralibyśmy za _____ niewiedzy o swojej pozycji w społeczeństwie.",
+          options: null,
+          correctAnswer: "zasłoną",
+          explanation:
+            "Veil of ignorance — współczesny renesans kontraktualizmu. Pyta: jakie zasady wybralibyśmy, nie wiedząc czy będziemy bogaci czy biedni?",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij rozróżnienie między explicit a implicit contract i czemu to drugie jest problematyczne.",
+          options: null,
+          correctAnswer:
+            "Explicit contract to jawna umowa (Konstytucja, śluby) — strony świadomie ją zawierają. Implicit contract to dorozumiana umowa przez życie w społeczeństwie i korzystanie z jego dóbr. Problem: nikt jej świadomie nie podpisywał. Czy można być związanym umową, której się nie zawierało? To poważny zarzut przeciw kontraktualizmowi.",
+          explanation:
+            "Stąd częsta krytyka: „nigdy nie zgodziłem się na obecny system\". Kontraktualiści odpowiadają różnie — albo argumentem racjonalnym (zgodziłabyś się, gdybyś racjonalnie wybierała), albo strukturalnym (sama struktura społeczna implikuje zgodę).",
+        },
+        {
+          type: "open",
+          text: "Czemu Hobbes był rojalistą, choć jego idea social contract bywa kojarzona z liberalizmem?",
+          options: null,
+          correctAnswer:
+            "Hobbes wnioskuje, że suweren musi być silny i mieć autorytet wymuszać umowę — inaczej powraca chaos. Stąd jego rojalizm i obrona monarchii absolutnej. Późniejsi kontraktualiści (Locke, Rousseau) wzięli sam kontrakt jako narzędzie, ale wyciągnęli z niego liberalne wnioski: kontrakt ogranicza władzę, gwarantuje prawa.",
+          explanation:
+            "Stąd ciekawy paradoks: Hobbesowska idea jest fundamentem zarówno absolutyzmu (Leviathan), jak i liberalizmu (Locke, Rawls).",
+        },
+        {
+          type: "spot_error",
+          text: "Hobbes uważał, że ludzie są z natury źli, dlatego potrzebują silnego państwa.",
+          options: [
+            "Hobbes uważał",
+            "ludzie są z natury źli",
+            "potrzebują silnego państwa",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Hobbes NIE mówi, że ludzie są źli. Mówi, że bez bezpieczeństwa muszą się zachowywać brutalnie — to sytuacja, nie natura. Współpraca rozpada się, gdy nie ma kto egzekwować umów.",
+        },
+      ],
+      salon: {
+        short:
+          "Hobbes pokazuje moralność i porządek społeczny jako racjonalną umowę. Nie dlatego, że ludzie są aniołami, tylko dlatego, że bez zasad życie byłoby „solitary, poor, nasty, brutish, and short\".",
+        expand:
+          "To realistyczna pozycja: nie potrzebujemy odwoływać się do Boga ani natury, żeby uzasadnić moralność. Wystarczy, że alternatywa jest gorsza dla każdego. Prisoner's Dilemma formalnie pokazuje, czemu potrzebujemy państwa — bez egzekucji każdy zdradza, choć wszyscy by zyskali na współpracy. Współczesny Rawls dorzuca veil of ignorance: sprawiedliwe są zasady, które wybralibyśmy, nie wiedząc, czy będziemy bogaci czy biedni.",
+        trap:
+          "Hobbes NIE mówi, że ludzie są źli — mówi, że bez bezpieczeństwa muszą się tak zachowywać. State of nature to model teoretyczny, nie historyczny. Implicit contract jest poważnym problemem teorii — nikt go nie podpisywał. I Hobbes był rojalistą, choć jego idea kontraktu posłużyła potem liberalizmowi (Locke, Rawls). Ciekawy paradoks intelektualny.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 16. Virtue Ethics (Arystoteles)
+  // ============================================================
+  {
+    slug: "virtue-ethics-arystoteles",
+    vaultSlug: "phil",
+    label: "Virtue Ethics — Arystoteles, eudaimonia, golden mean",
+    payload: {
+      title: "Virtue Ethics (Arystoteles)",
+      summary:
+        "Trzecia ze świętej trójcy etyki. Kant pyta o zasadę. Util pyta o skutki. Arystoteles pyta o coś zupełnie innego: jakim człowiekiem mam się stać? Moralność to nie pojedyncze decyzje, tylko charakter, który kształtujesz całe życie. Dziś jedna z najbardziej popularnych pozycji w etyce, bo wydaje się najbliższa życiu.",
+      theory:
+        "Podstawowa intuicja Arystotelesa: złe pytanie etyki to „co mam zrobić?\". Dobre pytanie: „jakim człowiekiem mam się stać?\". Moralność to nie pojedyncze działania, tylko dyspozycje charakteru. Etyka jest rozwojowa — trenujesz się w cnocie jak w grze na instrumencie. Virtue (cnota) to dobra cecha charakteru, dyspozycja do działania właściwego. Vice (wada) to zła dyspozycja. Cnoty są trenowalne: stajesz się odważna przez robienie odważnych rzeczy, hojna przez bycie hojną. Arystoteles formułuje to mocno: „stajemy się sprawiedliwi przez sprawiedliwe działania\". Golden Mean (złoty środek): cnota leży między dwiema skrajnościami — jedną przez nadmiar, drugą przez niedomiar. Klasyczne pary: tchórzostwo ← odwaga → brawura; skąpstwo ← hojność → rozrzutność; małostkowość ← wielkoduszność → próżność. Uwaga: złoty środek to NIE przeciętność. To właściwa reakcja we właściwej sytuacji. Czasem właściwa reakcja jest blisko jednej skrajności (w czasie wojny odwaga blisko brawury).\n\nProper functioning: każdy byt ma swoją funkcję (ergon). Nóż dobrze tnie, koń dobrze biegnie. Funkcja człowieka: życie zgodne z rozumem. Człowiek dobry = ten, kto dobrze realizuje funkcję rozumną. Practical wisdom (phronesis): mądrość praktyczna, zdolność oceny, co w konkretnej sytuacji jest właściwe. Nie da się jej wyuczyć z książek — wymaga doświadczenia, refleksji, czasu. Bez phronesis cnoty są ślepe (odwaga bez phronesis = brawura). Moral exemplars: uczymy się cnoty przez wzory osobowe. Patrząc na osoby cnotliwe i naśladując ich, kształtujemy własny charakter. Dlatego biografie, historia, literatura mają znaczenie moralne. Cel człowieka: eudaimonia — najczęściej tłumaczona jako rozkwit, pełnia życia, dobre życie. NIE jest to po prostu szczęście w sensie hedonistycznym. Eudaimonia to życie zgodne z najlepszą wersją człowieczeństwa: rozwinięte cnoty + praktyczna mądrość + relacje + sens. Telos ludzkiego życia. Klasyczny case porównawczy (mordercą pyta o przyjaciółkę): Kant nie wolno kłamać (zasada uniwersalna). Util można skłamać dla skutków (uratowanie życia). Arystoteles: co zrobiłaby osoba mądra, odważna i opiekuńcza? Prawdopodobnie skłamie, ale dlatego, że wynika to z jej charakteru, nie z kalkulacji ani z zasady.",
+      questions: [
+        {
+          type: "abc",
+          text: "Arystoteles uważa, że właściwe pytanie etyki to:",
+          options: [
+            "co mam zrobić w tej sytuacji?",
+            "jakim człowiekiem mam się stać?",
+            "jakie są konsekwencje moich działań?",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka jest taka: virtue ethics ≠ Kant ≠ Util. Arystoteles patrzy na charakter, nie na pojedyncze decyzje czy zasady.",
+        },
+        {
+          type: "abc",
+          text: "Golden Mean (złoty środek) to:",
+          options: [
+            "przeciętność, średnia między ekstremami",
+            "właściwa reakcja we właściwej sytuacji, między nadmiarem a niedomiarem",
+            "wybór najmniej kontrowersyjny",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Częsta pułapka. Golden Mean to NIE przeciętność. Czasem właściwa reakcja jest blisko skrajności (w czasie wojny odwaga blisko brawury).",
+        },
+        {
+          type: "abc",
+          text: "Eudaimonia Arystotelesa to:",
+          options: [
+            "szczęście rozumiane jako przyjemność",
+            "rozkwit, pełnia życia zgodnego ze swoją naturą rozumną",
+            "zaspokojenie wszystkich potrzeb",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka: eudaimonia to NIE szczęście w sensie hedonistycznym. Pełnia, sens, rozwinięte cnoty + praktyczna mądrość + relacje.",
+        },
+        {
+          type: "fill",
+          text: "Mądrość praktyczna, zdolność oceny sytuacji, którą trenuje się przez doświadczenie, to _____.",
+          options: null,
+          correctAnswer: "phronesis",
+          explanation:
+            "Bez phronesis cnoty są ślepe — odwaga w niewłaściwej sytuacji to nie odwaga, tylko brawura. Klucz do prawidłowego stosowania cnót.",
+        },
+        {
+          type: "fill",
+          text: "Arystoteles powiedział: „stajemy się sprawiedliwi przez sprawiedliwe _____\".",
+          options: null,
+          correctAnswer: "działania",
+          explanation:
+            "Cnoty są trenowalne, nie wrodzone. Stajesz się odważna przez robienie odważnych rzeczy, hojna przez bycie hojną. To etyka rozwojowa.",
+        },
+        {
+          type: "open",
+          text: "Porównaj, jak Kant, Util i Arystoteles podchodzą do problemu „morderca pyta gdzie przyjaciółka\".",
+          options: null,
+          correctAnswer:
+            "Kant: nie wolno kłamać, zasada uniwersalna obowiązuje bezwarunkowo. Util: można skłamać, bo skutki będą lepsze (uratowane życie). Arystoteles: co zrobiłaby osoba mądra, odważna i opiekuńcza? Prawdopodobnie skłamie, ale dlatego, że wynika to z jej charakteru, nie z kalkulacji konsekwencji ani z zasady.",
+          explanation:
+            "Ta trójca różnych odpowiedzi pokazuje fundamentalną różnicę między etyką deontologiczną, konsekwencjalistyczną i cnotliwą.",
+        },
+        {
+          type: "open",
+          text: "Czemu cnoty są trenowalne według Arystotelesa?",
+          options: null,
+          correctAnswer:
+            "Cnoty to nie wrodzone właściwości, lecz dyspozycje charakteru, które kształtują się przez powtarzane działania. „Stajemy się sprawiedliwi przez sprawiedliwe działania\". Im więcej razy działasz odważnie, tym łatwiej ci być odważną — odwaga staje się częścią ciebie. To dlatego moral exemplars (wzory osobowe) mają znaczenie: patrzymy, naśladujemy, formujemy charakter.",
+          explanation:
+            "Stąd etyka jest rozwojowa, podobna do nauki gry na instrumencie. Wymaga praktyki, czasu, doświadczenia.",
+        },
+        {
+          type: "spot_error",
+          text: "Złoty środek Arystotelesa to przeciętność — wybieraj zawsze drogę środkową, unikaj skrajności.",
+          options: [
+            "Złoty środek Arystotelesa",
+            "to przeciętność",
+            "unikaj skrajności",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Golden Mean to NIE przeciętność. To właściwa reakcja we właściwej sytuacji — czasem blisko skrajności (np. heroizm w walce). Mylenie golden mean z „średnią\" to klasyczna pułapka.",
+        },
+      ],
+      salon: {
+        short:
+          "Arystoteles jest bardzo praktyczny, bo moralność traktuje jak trening charakteru. Nie wystarczy wiedzieć, czym jest odwaga — trzeba ją ćwiczyć, aż stanie się częścią tego, kim jesteś.",
+        expand:
+          "Cnota leży w złotym środku, ale to nie jest przeciętność, tylko właściwa reakcja we właściwej sytuacji. I cel tego wszystkiego to eudaimonia: nie szczęście jako przyjemność, tylko pełnia życia zgodnego ze swoją naturą rozumną. Klucz: phronesis, mądrość praktyczna, której nie wyuczysz się z książek. Bez niej odwaga staje się brawurą, hojność rozrzutnością. Klasyczna trójca etyki: Kant patrzy na zasadę, Util na skutki, Arystoteles na to, kim się staję.",
+        trap:
+          "NAJWAŻNIEJSZE: virtue ethics ≠ Kant ≠ Util. Trzy zupełnie różne pytania. Golden Mean NIE jest przeciętnością — to właściwa reakcja, czasem blisko skrajności. Eudaimonia NIE jest „szczęściem\" w sensie przyjemności — to rozkwit, pełnia, sens. Phronesis jest niezbywalna — bez niej cnoty stają się sztywne. I uważaj na zarzut circularity: cnotliwa osoba robi to, co robi cnotliwa osoba. Odpowiedź: phronesis i moral exemplars łamią cykl, dając konkretne punkty zaczepienia.",
+      },
+    },
+  },
 ];

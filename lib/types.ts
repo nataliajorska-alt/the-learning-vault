@@ -33,6 +33,8 @@ export interface Topic {
   lastShownInSalon: Timestamp | Date | null;
   createdAt: Timestamp | Date;
   updatedAt: Timestamp | Date;
+  /** slug presetu z /admin/preset jeśli temat pochodzi z gotowca */
+  presetSlug?: string;
 }
 
 export type QuestionType = "abc" | "fill" | "open" | "spot_error" | "translate";
