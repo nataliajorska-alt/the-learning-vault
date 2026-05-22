@@ -3252,4 +3252,884 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 34. Ekonomia: model Dalio — mapa całości
+  // ============================================================
+  {
+    slug: "econ-dalio-mapa-calosci",
+    vaultSlug: "econ",
+    label: "Ekonomia — model Dalio (mapa całości)",
+    payload: {
+      title: "Model Dalio: jak działa gospodarka",
+      summary:
+        "Ray Dalio w „How the Economic Machine Works\" pokazuje gospodarkę jako system trzech sił: produktywności, krótkoterminowego cyklu zadłużenia (5–8 lat) i długoterminowego cyklu zadłużenia (dekady). Ta rama wyjaśnia, czemu gospodarka nie rośnie gładko, tylko falami — i czemu kryzysy są nieuniknione.",
+      theory:
+        "Gospodarka u Dalio to suma transakcji: wydatki jednej osoby są dochodem drugiej. Na tej podstawie działają trzy główne siły napędowe.\n\nProduktywność — długoterminowy, stabilny wzrost, bo ludzie z czasem uczą się robić więcej i lepiej. Gdyby nie kredyt, gospodarka rosłaby liniowo i wolno w tempie produktywności.\n\nKrótki cykl zadłużenia (5–8 lat) — sterowany głównie przez bank centralny przez stopy procentowe. Kredyt taniej → wydatki w górę → inflacja → stopy w górę → schłodzenie → stopy znów w dół. Każdy z nas przeżyje w życiu kilka takich cykli.\n\nDługi cykl zadłużenia (dekady, zwykle 50–75 lat) — fala wszystkich fal. Każdy krótki cykl zostawia trochę długu, który narasta w skali pokoleniowej. Gdy dług jest zbyt duży, klasyczne narzędzia banku centralnego przestają działać.\n\nDwóch głównych graczy systemowych: rząd centralny (polityka fiskalna — podatki, wydatki) i bank centralny (stopy procentowe, kreacja pieniądza). To dwie różne instytucje z różnymi narzędziami i innym mandatem. Kredyt napędza gospodarkę dziś, ale wymaga spłaty jutro — stąd boomy i kryzysy. Zbyt duży dług prowadzi do kryzysu; deleveraging to bolesne sprzątanie po okresie nadmiernego zadłużenia.",
+      questions: [
+        {
+          type: "abc",
+          text: "Trzy główne siły napędowe w modelu Dalio to:",
+          options: [
+            "produktywność, krótki cykl długu, długi cykl długu",
+            "inflacja, bezrobocie, PKB",
+            "polityka fiskalna, monetarna i kursowa",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Produktywność (liniowy wzrost) + dwa cykle kredytowe (krótki i długi) — to fundament całego modelu. Inflacja i bezrobocie to wskaźniki, nie siły.",
+        },
+        {
+          type: "abc",
+          text: "Bank centralny i rząd centralny:",
+          options: [
+            "to ta sama instytucja w różnych rolach",
+            "to dwie różne instytucje z różnymi narzędziami",
+            "bank centralny jest częścią rządu",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bank centralny — stopy + kreacja pieniądza, formalnie niezależny. Rząd — podatki + wydatki (polityka fiskalna). Inny mandat, inne narzędzia.",
+        },
+        {
+          type: "fill",
+          text: "Bez kredytu gospodarka rosłaby liniowo, w tempie wzrostu _____.",
+          options: null,
+          correctAnswer: "produktywności",
+          explanation:
+            "Produktywność to długoterminowy realny wzrost. Kredyt sprawia, że wzrost jest falowy, nie liniowy.",
+        },
+        {
+          type: "fill",
+          text: "Suma wszystkich transakcji w gospodarce — wydatki jednej osoby są _____ drugiej.",
+          options: null,
+          correctAnswer: "dochodem",
+          explanation:
+            "Fundamentalne równanie Dalio: czyjeś wydatki = czyjś dochód. Brzmi banalnie, jest kluczem do reszty modelu (m.in. dlaczego austerity pogłębia recesję).",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz znajomemu, dlaczego gospodarka rośnie falami, nie liniowo.",
+          options: null,
+          correctAnswer:
+            "Gdyby nie kredyt, gospodarka rosłaby liniowo w tempie produktywności. Kredyt pozwala dziś wydać więcej, niż się zarobiło — przyspiesza wzrost, ale wymaga spłaty jutro. Stąd boomy (kiedy łatwo pożyczyć) i kryzysy (kiedy trzeba oddać). Dwa cykle kredytowe — krótki (5–8 lat) i długi (dekady) — nakładają się na liniową produktywność.",
+          explanation:
+            "Klucz: kredyt + produktywność = gospodarka realna. Cykle są wbudowane w system, nie są błędem.",
+        },
+        {
+          type: "spot_error",
+          text: "„Gospodarka USA rośnie 3% rocznie głównie dzięki produktywności, więc kryzys jest niemożliwy, jeśli rośnie produktywność.\"",
+          options: [
+            "3% to za mało",
+            "produktywność i kredyt to to samo",
+            "wzrost PKB ≠ wzrost produktywności; wzrost z kredytu wygląda tak samo aż do pęknięcia",
+            "kryzysy są zawsze winą banku centralnego",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "PKB rośnie też przez kredyt. Wzrost z kredytu i z produktywności wyglądają identycznie na wykresie aż do momentu, gdy dług trzeba oddać. Stąd kryzys jest możliwy nawet w gospodarce z realnym wzrostem produktywności.",
+        },
+      ],
+      salon: {
+        short:
+          "Dalio: gospodarka = produktywność + krótki cykl długu (5–8 lat) + długi cykl długu (dekady). Produktywność buduje realne bogactwo, kredyt tworzy cykle.",
+        expand:
+          "Każda transakcja jest wymianą pieniądza/kredytu na dobro lub aktywo. Wydatki jednej osoby są dochodem drugiej — stąd austerity automatycznie zmniejsza dochody innych. Bank centralny (stopy, kreacja pieniądza) i rząd centralny (podatki, wydatki) to dwie różne instytucje. Krótki cykl resetuje się stopami, długi już nie — w nim narasta dług na lata. Klasyczne końce długich cykli: 1929 USA, 2008 USA, Japonia od 1990.",
+        trap:
+          "Mylenie wzrostu z kredytu z prawdziwym wzrostem produktywności — pierwszy jest pożyczony, drugi zarobiony. Mylenie banku centralnego z rządem. Założenie, że gospodarka „powinna\" rosnąć gładko — cykle są wbudowane w system, nie są błędem.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 35. Ekonomia: transakcje, rynek, produktywność
+  // ============================================================
+  {
+    slug: "econ-transakcje-i-produktywnosc",
+    vaultSlug: "econ",
+    label: "Ekonomia — transakcje, rynek, produktywność",
+    payload: {
+      title: "Transakcje, rynek, produktywność",
+      summary:
+        "Gospodarka wygląda skomplikowanie, ale Dalio sprowadza ją do jednego prostego mechanizmu: ludzie kupują i sprzedają, a wszystkie te transakcje razem tworzą gospodarkę. Najzdrowszym źródłem długoterminowego wzrostu jest produktywność, czyli to, że ludzie z czasem uczą się robić więcej i lepiej.",
+      theory:
+        "Każda transakcja ma cztery elementy: kupującego, sprzedającego, pieniądz lub kredyt, oraz dobro / usługę / aktywo. Rynek = wszystkie transakcje danego typu (rynek pszenicy, rynek mieszkań, rynek pracy). Gospodarka = suma wszystkich rynków.\n\nFundamentalne równanie: wydatki jednej osoby są dochodem drugiej. Brzmi banalnie, jest kluczowe dla zrozumienia całej reszty modelu — w szczególności dlaczego austerity (cięcie wydatków) automatycznie zmniejsza dochody innych i pogłębia recesję.\n\nProduktywność to ile można wyprodukować na jednostkę czasu lub pracy. Rośnie dzięki wiedzy, technologii, organizacji i inwestycjom. Bez kredytu gospodarka rosłaby liniowo w tempie wzrostu produktywności. Kredyt sprawia, że wzrost jest falowy — stąd cykle.\n\nNajbardziej niedoceniana siła w gospodarce: produktywność realnie buduje bogactwo narodu w skali pokoleniowej. Wzrost z kredytu wygląda spektakularnie i jest na pierwszych stronach gazet, ale to inny rodzaj wzrostu — pożyczony, nie zarobiony.",
+      questions: [
+        {
+          type: "abc",
+          text: "Cztery elementy transakcji u Dalio to:",
+          options: [
+            "popyt, podaż, cena, ilość",
+            "kupujący, sprzedający, pieniądz/kredyt, dobro/usługa/aktywo",
+            "PKB, inflacja, bezrobocie, kurs",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Transakcja to konkretny akt wymiany: ktoś, ktoś, czym, za co. Popyt/podaż to abstrakcja z agregowania transakcji.",
+        },
+        {
+          type: "abc",
+          text: "Wysokie tempo wzrostu PKB to:",
+          options: [
+            "zawsze sukces produktywności",
+            "może być wzrostem z kredytu, niekoniecznie z produktywności",
+            "jest niemożliwe bez wzrostu produktywności",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kraj może rosnąć szybko przez kredyt i wyglądać świetnie, dopóki nie przyjdzie spłata. PKB ≠ produktywność.",
+        },
+        {
+          type: "fill",
+          text: "Rynek to wszystkie _____ danego typu (rynek pszenicy, rynek mieszkań).",
+          options: null,
+          correctAnswer: "transakcje",
+          explanation:
+            "Rynek = agregacja transakcji w jednej kategorii. Gospodarka = suma wszystkich rynków.",
+        },
+        {
+          type: "fill",
+          text: "Wydatki jednej osoby są _____ drugiej.",
+          options: null,
+          correctAnswer: "dochodem",
+          explanation:
+            "Banalne, ale fundamentalne. Z tego równania wynika m.in. dlaczego sama austerity pogłębia recesję — cięcie wydatków jednych odbiera dochód drugim.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz różnicę między produktywnością a pracowitością.",
+          options: null,
+          correctAnswer:
+            "Produktywność = ile produkujesz na jednostkę czasu / pracy. Pracowitość = ile godzin pracujesz. Można pracować 14 godzin dziennie i mieć niską produktywność (mało efektu na godzinę). Produktywność rośnie dzięki wiedzy, technologii, organizacji i inwestycjom, nie dzięki dłuższym godzinom. To dlatego kraje z krótszym czasem pracy (Niemcy, Szwajcaria) bywają bardziej produktywne niż kraje z dłuższym.",
+          explanation:
+            "Klucz w consultingu i analizie krajów: ile efektu na input, nie ile inputu. Też klasyczna lekcja na poziom osobisty.",
+        },
+        {
+          type: "spot_error",
+          text: "„Rząd cięł wydatki, więc deficyt spadł, a gospodarka automatycznie się ożywi.\"",
+          options: [
+            "cięcie wydatków nie redukuje deficytu",
+            "wydatki rządu = dochody innych, więc cięcie pogłębia recesję, nie ożywia",
+            "deficyt nie ma znaczenia",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wydatki rządu (dotacje, zamówienia, pensje sektora publicznego) są bezpośrednio dochodem firm i ludzi. Sama austerity = pogłębienie recesji w krótkim okresie, nawet jeśli długoterminowo redukuje dług. To jeden z fundamentów modelu Dalio.",
+        },
+      ],
+      salon: {
+        short:
+          "Gospodarka to suma transakcji, a transakcja ma cztery elementy: dwie strony, środek płatniczy i dobro. Wydatki jednej osoby są dochodem drugiej — z tego wynika cała reszta.",
+        expand:
+          "Produktywność to realny, długoterminowy wzrost: ile efektu na jednostkę pracy / czasu. Rośnie przez wiedzę, technologię, organizację, inwestycje. Bez kredytu gospodarka rosłaby liniowo w tempie produktywności. Z kredytem — falowo. To dlatego można mieć wysoki wzrost PKB i jednocześnie niski wzrost produktywności (jeśli wzrost jest pożyczony, nie zarobiony).",
+        trap:
+          "Wzrost PKB ≠ wzrost produktywności. Produktywność ≠ pracowitość. Cięcie wydatków rządu pogłębia recesję w krótkim okresie, bo cudze wydatki = czyjeś dochody. Spojrzenie tylko na PKB ukrywa, czy bogactwo jest realnie budowane, czy tylko pożyczane.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 36. Ekonomia: kredyt, dług, aktywa, zobowiązania
+  // ============================================================
+  {
+    slug: "econ-kredyt-dlug-aktywa-zobowiazania",
+    vaultSlug: "econ",
+    label: "Ekonomia — kredyt, dług, aktywa, zobowiązania",
+    payload: {
+      title: "Kredyt, dług, aktywa, zobowiązania",
+      summary:
+        "Kredyt to silnik krótkoterminowy gospodarki — pozwala dziś wydać więcej, niż się dziś zarobiło. Brzmi niegroźnie, ale tworzy cykle i sprawia, że gospodarka nie rośnie gładko. Bez tego pojęcia nie da się zrozumieć ani inflacji, ani kryzysów, ani banków centralnych.",
+      theory:
+        "Kredyt = możliwość wydawania więcej niż obecne dochody, w zamian za obietnicę spłaty w przyszłości. Dług składa się z dwóch części: kwota główna (principal) i odsetki (interest).\n\nKluczowa obserwacja: każdy dług ma dwie strony. Dla pożyczkobiorcy kredyt to zobowiązanie (liability) — coś, co trzeba spłacić. Dla pożyczkodawcy ten sam kredyt to aktywo (asset) — coś, co ma wartość lub generuje dochód. Co dla jednego jest ciężarem, dla drugiego jest pozycją w portfelu. Twoja hipoteka jest dla Ciebie ciężarem, ale dla banku jest aktywem w portfelu.\n\nKredyt jest tworzony w momencie udzielenia. Bank nie „wyjmuje\" pieniędzy z czyichś oszczędności — kreuje nowy zapis na koncie. To jedna z najczęściej mylonych rzeczy w intuicyjnym myśleniu o pieniądzu.\n\nKonsekwencje:\n— Dług jednej osoby jest aktywem drugiej. Dlatego „po prostu skasujmy długi\" nie istnieje jako rozwiązanie. Skasowanie długu dłużnikowi zawsze oznacza stratę dla wierzyciela.\n— Kryzysy zadłużenia to zawsze kryzysy aktywów. Gdy długi przestają być spłacane, ktoś musi przyjąć stratę — i to politycznie najtrudniejsza część każdego kryzysu.\n— Dług nie jest zawsze zły. Zdrowy kredyt finansujący produktywność (inwestycje, edukacja, infrastruktura) jest korzystny. Problematyczny jest dług na konsumpcję — bo nie generuje przyszłych dochodów do spłaty.",
+      questions: [
+        {
+          type: "abc",
+          text: "Hipoteka jest:",
+          options: [
+            "zobowiązaniem dla Ciebie, aktywem dla banku",
+            "aktywem dla obu stron",
+            "zobowiązaniem dla obu stron",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Każdy dług ma dwie strony. Dla dłużnika — liability. Dla wierzyciela — asset. Stąd kryzysy zadłużenia są tak trudne politycznie.",
+        },
+        {
+          type: "abc",
+          text: "Bank udzielając kredytu:",
+          options: [
+            "wyjmuje pieniądze z czyichś oszczędności",
+            "kreuje nowy zapis na koncie",
+            "drukuje banknoty",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kredyt powstaje w momencie udzielenia jako nowy zapis. To kreacja pieniądza, nie redystrybucja istniejących oszczędności.",
+        },
+        {
+          type: "fill",
+          text: "Dług składa się z dwóch części: kwota główna (principal) i _____ (interest).",
+          options: null,
+          correctAnswer: "odsetki",
+          explanation:
+            "Principal + interest. Klasyczne rozróżnienie w każdej umowie kredytowej.",
+        },
+        {
+          type: "fill",
+          text: "Dla pożyczkobiorcy kredyt to zobowiązanie. Dla pożyczkodawcy ten sam kredyt to _____.",
+          options: null,
+          correctAnswer: "aktywo",
+          explanation:
+            "Asset / liability — dwie strony tego samego długu. Z tego wynika, dlaczego kryzysy zadłużenia są zawsze kryzysami aktywów.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu „po prostu skasujmy długi\" nie istnieje jako proste rozwiązanie.",
+          options: null,
+          correctAnswer:
+            "Każdy dług ma dwie strony — dłużnika i wierzyciela. Skasowanie długu dłużnikowi to automatycznie strata dla wierzyciela. Kryzysy zadłużenia są zawsze kryzysami aktywów. Ulga dla jednych musi być stratą dla drugich. Politycznie to najtrudniejsza część każdego kryzysu — komu odebrać, komu darować. Stąd zwykle stosuje się mix narzędzi (restrukturyzacja + drukowanie + redystrybucja + austerity) zamiast prostego skasowania.",
+          explanation:
+            "Klucz: dług jednej osoby = aktywo drugiej. Każde rozwiązanie kryzysu zadłużenia to redystrybucja strat, nie ich zniknięcie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Dług hipoteczny na 30 lat na kupno mieszkania i kredyt konsumencki na nowy telewizor to ekonomicznie to samo — oba to dług na konsumpcję.\"",
+          options: [
+            "30 lat to za długo",
+            "mieszkanie to aktywo, telewizor traci wartość — to dwa różne rodzaje długu",
+            "oba to inwestycja",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Dług finansujący aktywo (mieszkanie, edukacja, infrastruktura) może budować przyszłe dochody / wartość. Dług finansujący konsumpcję (telewizor) — nie. Stąd różne ryzyko makroekonomiczne i osobiste.",
+        },
+      ],
+      salon: {
+        short:
+          "Dług jednej osoby jest aktywem drugiej. Stąd „skasujmy długi\" nie istnieje — ulga dla jednych musi być stratą dla drugich. Kryzysy zadłużenia to zawsze kryzysy aktywów.",
+        expand:
+          "Kredyt = wydawanie więcej niż obecne dochody w zamian za obietnicę spłaty. Składa się z principalu i odsetek. Tworzony w momencie udzielenia (nie z czyichś oszczędności) — to kreacja pieniądza. Dług finansujący produktywność (inwestycje, edukacja, infrastruktura) jest zdrowy. Dług finansujący konsumpcję jest problematyczny — nie generuje przyszłych dochodów do spłaty.",
+        trap:
+          "Mylenie kredytu z pieniądzem — kredyt jest stworzony, nie pożyczony z oszczędności. Myślenie, że dług jest zawsze zły — bywa dźwignią produktywności. Niezauważenie, że kryzysy zadłużenia to kryzysy aktywów — gdy długi nie są spłacane, ktoś musi przyjąć stratę.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 37. Ekonomia: bank centralny i stopy procentowe
+  // ============================================================
+  {
+    slug: "econ-bank-centralny-i-stopy",
+    vaultSlug: "econ",
+    label: "Ekonomia — bank centralny i stopy procentowe",
+    payload: {
+      title: "Bank centralny i stopy procentowe",
+      summary:
+        "Bank centralny to dyrygent krótkoterminowego cyklu zadłużenia. Decyduje, czy kredyt jest tani i powszechny, czy drogi i trudno dostępny. To jeden z najpotężniejszych aktorów w nowoczesnej gospodarce — dlatego newsy o decyzjach Fed, EBC czy NBP poruszają rynki.",
+      theory:
+        "Bank centralny ustala stopy procentowe — „cenę pieniądza\" i kredytu. Mechanizm kontrcykliczny:\n— Niskie stopy = tani kredyt → więcej pożyczek → większe wydatki → gospodarka przyspiesza.\n— Wysokie stopy = drogi kredyt → mniej pożyczek → niższe wydatki → gospodarka zwalnia.\n\nDrugi główny instrument: kreacja pieniądza i kupowanie aktywów (obligacje rządowe, korporacyjne). To narzędzie nadzwyczajne, używane gdy stopy nie wystarczają — głównie quantitative easing (QE).\n\nIstotne instytucje: w większości państw bank centralny jest formalnie niezależny od rządu, żeby uniknąć politycznej presji na drukowanie pieniędzy pod wybory. NBP w Polsce, Fed w USA (Federal Reserve), EBC w strefie euro. Główny cel większości banków centralnych: inflacja w okolicach 2%. Fed ma podwójny mandat: inflacja + zatrudnienie.\n\nDziałanie kontrcykliczne — gdy gospodarka się przegrzewa, bank centralny podnosi stopy; gdy hamuje, obniża. Problem zaczyna się dopiero przy „zero lower bound\" — gdy stopy są już przy zerze, a gospodarka nadal potrzebuje pomocy. Wtedy wchodzi QE i niestandardowe narzędzia.",
+      questions: [
+        {
+          type: "abc",
+          text: "Bank centralny i bank komercyjny to:",
+          options: [
+            "to samo",
+            "dwie różne instytucje — NBP nie obsługuje Twojego konta",
+            "bank centralny jest właścicielem banków komercyjnych",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bank centralny (NBP) ustala stopy i nadzoruje system. Bank komercyjny (PKO, ING, mBank) udziela kredytów i obsługuje klientów detalicznych.",
+        },
+        {
+          type: "abc",
+          text: "Główny cel większości banków centralnych na świecie:",
+          options: [
+            "PKB na poziomie 5%",
+            "inflacja w okolicach 2%",
+            "bezrobocie pod 3%",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Standardowy target: ~2% inflacji. Fed ma podwójny mandat (inflacja + zatrudnienie), większość pozostałych banków centralnych — tylko inflacja.",
+        },
+        {
+          type: "fill",
+          text: "Niskie stopy procentowe oznaczają _____ kredyt — więcej pożyczek, wzrost wydatków.",
+          options: null,
+          correctAnswer: "tani",
+          explanation:
+            "Stopa procentowa = cena pieniądza. Niska stopa = tani kredyt = więcej pożyczek = ożywienie.",
+        },
+        {
+          type: "fill",
+          text: "Bank centralny strefy euro to skrót _____ .",
+          options: null,
+          correctAnswer: "EBC",
+          explanation:
+            "EBC (European Central Bank). Polski: NBP. Amerykański: Fed (Federal Reserve).",
+        },
+        {
+          type: "open",
+          text: "Dlaczego niezależność banku centralnego od rządu jest ważna?",
+          options: null,
+          correctAnswer:
+            "Rząd ma krótki horyzont (cykl wyborczy) i pokusę finansowania wydatków drukowaniem pieniędzy. Bez niezależności bank centralny obniżyłby stopy pod wybory, żeby ożywić gospodarkę, kosztem wyższej inflacji za parę lat. Niezależność daje wiarygodność polityki monetarnej — rynki ufają, że bank centralny będzie walczył z inflacją niezależnie od cyklu politycznego. Dlatego np. Fed czy NBP są formalnie oddzielone od rządu.",
+          explanation:
+            "Klucz: kredyt makro = polityka długoterminowa, polityka rządu = horyzont krótki. Niezależność rozwiązuje konflikt interesów.",
+        },
+        {
+          type: "spot_error",
+          text: "„Inflacja w Polsce 2022 wzrosła do 18% wyłącznie przez błędy NBP. Bank centralny ma pełną kontrolę nad inflacją.\"",
+          options: [
+            "inflacja była niższa",
+            "bank centralny ma wpływ, ale nie pełną kontrolę — są wstrząsy podażowe (energia, wojna, łańcuchy)",
+            "rząd ma pełną kontrolę nad inflacją, nie bank centralny",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bank centralny wpływa na inflację głównie przez kanał popytowy (stopy → kredyt → wydatki). Ale są też wstrząsy podażowe — wojna w Ukrainie, koszty energii, zerwanie łańcuchów po COVID — nad którymi NBP nie ma kontroli. Pełna kontrola to mit.",
+        },
+      ],
+      salon: {
+        short:
+          "Bank centralny jest dyrygentem cyklu krótkoterminowego: stopy w górę, gdy gospodarka się przegrzewa, w dół — gdy hamuje. Problem zaczyna się przy 0%, kiedy stopy nie mają już dokąd spaść.",
+        expand:
+          "Główny instrument to stopy procentowe (cena pieniądza), drugi — kreacja pieniądza i zakupy aktywów (QE). Bank centralny formalnie niezależny od rządu, żeby uniknąć politycznej presji na drukowanie pod wybory. Cel większości: inflacja ~2%. Fed ma podwójny mandat (inflacja + zatrudnienie). NBP, Fed, EBC — trzy najczęściej omawiane.",
+        trap:
+          "Mylenie banku centralnego z bankiem komercyjnym (NBP nie obsługuje Twojego konta). Mylenie banku centralnego z rządem — inna instytucja, inne narzędzia. Myślenie, że obniżki stóp zawsze pomagają — przy 0% klasyczne narzędzia przestają działać. Założenie, że bank centralny „rządzi\" inflacją — wpływa mocno, ale wstrząsy podażowe (wojna, energia) są poza jego kontrolą.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 38. Ekonomia: krótkoterminowy cykl zadłużenia
+  // ============================================================
+  {
+    slug: "econ-krotki-cykl-zadluzenia",
+    vaultSlug: "econ",
+    label: "Ekonomia — krótkoterminowy cykl zadłużenia (5–8 lat)",
+    payload: {
+      title: "Krótkoterminowy cykl zadłużenia",
+      summary:
+        "To codzienność gospodarki — to, co widać w newsach o stopach procentowych, inflacji i recesjach. Każdy z nas przeżyje w życiu kilka takich cykli, świadomie lub nie. Polska 2014–2024 to klasyczny przykład: boom, COVID, inflacja 2022–2023, podwyżki stóp, schłodzenie.",
+      theory:
+        "Krok po kroku, jak działa krótki cykl (5–8 lat):\n1. Bank centralny obniża stopy. Kredyt tanieje.\n2. Ludzie i firmy chętniej pożyczają. Wydatki rosną.\n3. Czyjeś wydatki są czyimś dochodem. Gospodarka przyspiesza.\n4. Większe dochody = większa zdolność kredytowa = jeszcze więcej kredytu.\n5. Popyt rośnie szybciej niż podaż. Pojawia się inflacja.\n6. Bank centralny reaguje: podnosi stopy.\n7. Kredyt drożeje. Wydatki spadają.\n8. Dochody spadają. Pojawia się spowolnienie albo recesja.\n9. Bank centralny znów obniża stopy. Cykl startuje od nowa.\n\nKrótki cykl jest sterowany głównie przez bank centralny i jego stopy procentowe. Inflacja w górę = stopy w górę = schłodzenie. Recesja = stopy w dół = ożywienie.\n\nWażna obserwacja: każdy kolejny krótki cykl zostawia trochę długu. Te długi narastają i w końcu zaczynają zaburzać cały system — wtedy mówimy o długoterminowym cyklu zadłużenia. Krótkie cykle resetują się stopami. Długi już nie.",
+      questions: [
+        {
+          type: "abc",
+          text: "Krótkoterminowy cykl zadłużenia trwa zwykle:",
+          options: [
+            "1–2 lata",
+            "5–8 lat",
+            "30–50 lat",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "5–8 lat to klasyczny odstęp między recesjami. Dłuższy cykl (50–75 lat) to długoterminowy cykl zadłużenia.",
+        },
+        {
+          type: "abc",
+          text: "Co głównie steruje krótkim cyklem zadłużenia?",
+          options: [
+            "polityka fiskalna rządu",
+            "bank centralny przez stopy procentowe",
+            "kurs walutowy",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bank centralny — kontrcyklicznie zmienia stopy. Polityka fiskalna ma wpływ, ale to nie ona definiuje krótki cykl.",
+        },
+        {
+          type: "fill",
+          text: "Gdy popyt rośnie szybciej niż podaż, pojawia się _____ .",
+          options: null,
+          correctAnswer: "inflacja",
+          explanation:
+            "Klasyczny mechanizm: za dużo pieniądza za mało dóbr = ceny w górę. Bank centralny reaguje podnosząc stopy.",
+        },
+        {
+          type: "fill",
+          text: "Recesja = bank centralny _____ stopy = ożywienie.",
+          options: null,
+          correctAnswer: "obniża",
+          explanation:
+            "Kontrcyklicznie. Recesja → obniżki → tani kredyt → wydatki → ożywienie. To klasyczny reset krótkiego cyklu.",
+        },
+        {
+          type: "open",
+          text: "Opisz polski cykl 2014–2024 w terminologii Dalio.",
+          options: null,
+          correctAnswer:
+            "2014–2019: niskie stopy NBP (1,5%), boom kredytowy, wzrost wydatków, dochodów. 2020: COVID, dalsze obniżki (do 0,1%) i tarcza fiskalna, dalsze pompowanie. 2021–2022: efekty drukowania + wstrząsy podażowe (wojna, energia, łańcuchy) = inflacja przyspiesza do 18%. 2022–2023: NBP gwałtownie podnosi stopy (z 0,1% do 6,75%). 2023–2024: schłodzenie, spadek inflacji, dyskusja o obniżkach. Klasyczny krótki cykl Dalio.",
+          explanation:
+            "Pełen przebieg: tanie stopy → boom → inflacja → drogie stopy → schłodzenie → znów rozważanie obniżek. Idealny case study krótkiego cyklu.",
+        },
+        {
+          type: "spot_error",
+          text: "„Recesja jest oznaką, że system gospodarczy się załamuje i banki centralne robią coś źle.\"",
+          options: [
+            "recesja zwykle jest naturalnym elementem krótkiego cyklu, nie błędem",
+            "recesji nie da się przewidzieć, więc to zawsze błąd banku centralnego",
+            "recesja to to samo co depresja",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Krótkie recesje są wbudowane w system kredytowy. Bank centralny obniża stopy, gospodarka się ożywia, cykl rusza ponownie. Problem zaczyna się dopiero gdy stopy są przy 0% — wtedy zaczyna się długoterminowy kryzys zadłużenia.",
+        },
+      ],
+      salon: {
+        short:
+          "Krótki cykl zadłużenia (5–8 lat) to fala sterowana stopami banku centralnego. Tanie stopy → boom → inflacja → drogie stopy → schłodzenie → znów obniżki. Każdy z nas przeżyje kilka takich cykli.",
+        expand:
+          "Mechanizm: niskie stopy = tani kredyt = wzrost wydatków = wzrost dochodów = większa zdolność kredytowa = jeszcze więcej kredytu = aż popyt przerasta podaż i pojawia się inflacja. Bank centralny reaguje podnoszeniem stóp. Kredyt drożeje, wydatki spadają, recesja, znów obniżki. Polska 2014–2024 to klasyczny przykład.",
+        trap:
+          "Mylenie krótkiego cyklu z długim. Krótki resetuje się stopami. Długi już nie. Myślenie, że każde spowolnienie to katastrofa — krótkie recesje są naturalne. Ignorowanie, że każdy krótki cykl zostawia trochę długu, który narasta w długim.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 39. Ekonomia: inflacja / deflacja / recesja / stagflacja / depresja
+  // ============================================================
+  {
+    slug: "econ-inflacja-deflacja-recesja-stagflacja-depresja",
+    vaultSlug: "econ",
+    label: "Ekonomia — inflacja, deflacja, recesja, stagflacja, depresja",
+    payload: {
+      title: "Inflacja, deflacja, recesja, stagflacja, depresja",
+      summary:
+        "Pięć klasycznych zjawisk makro, które często mylą się ludziom. Każde wymaga innej reakcji od banku centralnego i rządu. Warto je rozróżniać, bo brzmią podobnie, a oznaczają zupełnie różne sytuacje — i wymagają zupełnie różnych narzędzi.",
+      theory:
+        "Inflacja — ogólny wzrost cen. Zwykle gdy popyt przerasta podaż lub gdy pieniądza jest za dużo. Cel większości banków centralnych: ok. 2%.\n\nDeflacja — ogólny spadek cen. Niegroźnie brzmi, ale zatrzymuje wydatki (po co kupować dziś, skoro jutro będzie taniej) i pogłębia kryzys. Niebezpieczna nawet w małych dawkach.\n\nRecesja — spadek aktywności gospodarczej. Klasyczna definicja techniczna: dwa kolejne kwartały spadku PKB. Bezrobocie rośnie, firmy redukują. Normalna część krótkiego cyklu.\n\nStagflacja — stagnacja + inflacja jednocześnie. Klasyczny koszmar (lata 70. w USA, w mniejszym stopniu Polska 2022–2023). Bank centralny w pułapce: podnieść stopy, żeby zbić inflację, znaczy pogłębić recesję; obniżyć stopy, żeby pomóc, znaczy napędzić inflację. Nie ma łatwego ruchu.\n\nDepresja — bardzo głęboka i długa recesja, zwykle związana z kryzysem zadłużenia. Wielki Kryzys lat 30. to klasyczny przykład. Zjawisko dziesięcioleci, nie kwartałów.\n\nKluczowe rozróżnienia:\n— Inflacja i deflacja to nie symetryczne lustra. Umiarkowana inflacja (2–3%) jest zdrowa; deflacja jest niebezpieczna nawet w małych dawkach.\n— Recesja jest normalna i krótka. Depresja jest dramatyczna i długa.\n— Stagflacja jest gorsza od zwykłej recesji, bo nie ma łatwego lekarstwa.\n— Inflacja ≠ drożyzna. Inflacja = tempo wzrostu cen (procent), drożyzna = poziom cen względem dochodów.",
+      questions: [
+        {
+          type: "abc",
+          text: "Stagflacja to:",
+          options: [
+            "wysoka inflacja i wysoki wzrost gospodarczy",
+            "stagnacja gospodarcza i wysoka inflacja jednocześnie",
+            "spadek cen z rosnącym PKB",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Stagnacja + inflacja = bank centralny w pułapce. Lata 70. w USA, częściowo Polska 2022–2023.",
+        },
+        {
+          type: "abc",
+          text: "Klasyczna techniczna definicja recesji to:",
+          options: [
+            "spadek PKB w jednym kwartale",
+            "dwa kolejne kwartały spadku PKB",
+            "wzrost bezrobocia powyżej 5%",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Standard: dwa kolejne kwartały spadku PKB. Definicja ma swoje wady (NBER w USA używa szerszego zestawu wskaźników), ale to klasyczna heurystyka.",
+        },
+        {
+          type: "fill",
+          text: "Ogólny spadek cen w gospodarce to _____ — zatrzymuje wydatki i pogłębia kryzys.",
+          options: null,
+          correctAnswer: "deflacja",
+          explanation:
+            "Po co kupować dziś, skoro jutro będzie taniej. Deflacyjna spirala — Japonia od lat 90. to klasyczny przykład.",
+        },
+        {
+          type: "fill",
+          text: "Bardzo głęboka i długa recesja, zwykle związana z kryzysem zadłużenia, to _____.",
+          options: null,
+          correctAnswer: "depresja",
+          explanation:
+            "Wielki Kryzys lat 30. to klasyczny przykład. Trwa dekady, nie kwartały.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego stagflacja jest dla banku centralnego gorsza niż zwykła recesja?",
+          options: null,
+          correctAnswer:
+            "W zwykłej recesji bank centralny obniża stopy → ożywienie. W stagflacji ma sprzeczne sygnały: inflacja każe podnieść stopy (żeby ją zbić), stagnacja każe obniżyć (żeby pomóc gospodarce). Każdy ruch pogarsza drugi problem. Podniesienie stóp pogłębi recesję; obniżenie napędzi inflację. Nie ma łatwego dobrego ruchu — stąd lata 70. w USA były tak trudne i wymagały radykalnych kroków (Volcker podniósł stopy do ~20%, kosztem głębokiej recesji).",
+          explanation:
+            "Klucz: stagflacja łamie standardowy model kontrcykliczny, bo wymusza wybór, który problem zaakceptować jako bolesny.",
+        },
+        {
+          type: "spot_error",
+          text: "„Deflacja to świetna wiadomość dla konsumentów — wszyscy zyskują, bo wszystko jest tańsze.\"",
+          options: [
+            "deflacja to wzrost cen",
+            "deflacja zatrzymuje wydatki i pogłębia kryzys — krótkoterminowy zysk konsumenta = długoterminowy problem dla gospodarki",
+            "deflacja jest dobra tylko dla rządu",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Spadek cen może wyglądać dobrze, ale gdy jest ogólny: ludzie odkładają zakupy, firmy ścinają wynagrodzenia, długi rosną realnie. Spirala deflacyjna (Japonia po 1990) to wieloletnia stagnacja.",
+        },
+      ],
+      salon: {
+        short:
+          "Pięć zjawisk: inflacja (zdrowa ~2%), deflacja (niebezpieczna), recesja (normalna), stagflacja (pułapka banku centralnego), depresja (dziesięciolecia, kryzys zadłużenia).",
+        expand:
+          "Inflacja i deflacja to nie symetryczne lustra — umiarkowana inflacja jest zdrowa, deflacja jest niebezpieczna nawet w małych dawkach. Recesja jest normalną częścią cyklu, depresja jest tragedią. Stagflacja jest gorsza od zwykłej recesji, bo bank centralny nie ma dobrego ruchu. Lata 70. w USA, częściowo Polska 2022–2023 jako mini-version.",
+        trap:
+          "Mylenie recesji z depresją (różnica skali i czasu trwania). Mylenie inflacji z drożyzną (procent vs poziom). Założenie, że spadek cen jest dobry — krótkoterminowy zysk konsumenta = długoterminowy problem gospodarki. Myślenie, że inflacja jest tylko winą rządu — bywa też efektem wstrząsów podażowych.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 40. Ekonomia: długoterminowy cykl zadłużenia i bańka
+  // ============================================================
+  {
+    slug: "econ-dlugi-cykl-zadluzenia-banka",
+    vaultSlug: "econ",
+    label: "Ekonomia — długoterminowy cykl zadłużenia i bańka",
+    payload: {
+      title: "Długoterminowy cykl zadłużenia i bańka spekulacyjna",
+      summary:
+        "Fala wszystkich fal, trwająca dekady (50–75 lat). Składa się z wielu krótkich cykli, z których każdy zostawia trochę długu. W końcu długu jest tyle, że klasyczne narzędzia banku centralnego przestają działać — to wtedy zaczynają się prawdziwe kryzysy systemowe. Większość ludzi przeżyje jeden, najwyżej dwa długie cykle w życiu.",
+      theory:
+        "Mechanizm: każdy krótki cykl kończy się większym poziomem długu. Z czasem dług narasta w skali pokoleniowej. Wzrost cen aktywów (mieszkania, akcje, obligacje) staje się napędzany kredytem, a nie produktywnością — to jest właśnie bańka.\n\nDynamika bańki: ludzie pożyczają coraz więcej, żeby kupować aktywa, wierząc, że ceny będą dalej rosły. Wzrost cen utwierdza w przekonaniu, że pożyczanie pod zakup aktywów jest bezpieczne. Spirala działa, dopóki spłaty długu nie zaczynają przekraczać możliwości dochodów.\n\nKlasyczne przykłady końca długiego cyklu:\n— 1929 USA (Wielki Kryzys)\n— 2008 USA (kryzys subprime)\n— Japonia od lat 90. (Lost Decades)\n\nKluczowa obserwacja: po pęknięciu długiego cyklu stopy procentowe są już zwykle przy zerze. Bank centralny ma związane ręce — klasyczne narzędzie monetarne (obniżki stóp) nie działa. To moment, w którym potrzebny jest deleveraging (sprzątanie po nadmiernym zadłużeniu) i sięga się po niestandardowe narzędzia jak QE.\n\nDługi cykl zadłużenia kończy się, gdy długu jest tyle, że klasyczna polityka monetarna przestaje pomagać. Stopy są przy 0%, ale gospodarka nadal nie rośnie.",
+      questions: [
+        {
+          type: "abc",
+          text: "Długoterminowy cykl zadłużenia trwa zwykle:",
+          options: [
+            "5–10 lat",
+            "20–30 lat",
+            "50–75 lat",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Skala pokoleniowa. Większość ludzi przeżyje raz, najwyżej dwa razy w życiu. To dlatego każde pokolenie myśli, że „tym razem jest inaczej\".",
+        },
+        {
+          type: "abc",
+          text: "Co odróżnia bańkę od zdrowego wzrostu cen aktywów?",
+          options: [
+            "skala wzrostu cen",
+            "źródło wzrostu — bańka jest napędzana kredytem, zdrowy wzrost produktywnością",
+            "ilość uczestników rynku",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bańka = ceny aktywów rosną dzięki pożyczonemu pieniądzowi, nie dzięki realnym fundamentom. Dlatego pęka, gdy spłaty zaczynają przekraczać dochody.",
+        },
+        {
+          type: "fill",
+          text: "Klasyczne ostatnie słowa przed każdym pęknięciem bańki: „tym razem jest _____\".",
+          options: null,
+          correctAnswer: "inaczej",
+          explanation:
+            "Reinhart & Rogoff — „This Time Is Different\". Zawsze są dobre powody, dlaczego ten boom jest inny. Nigdy nie są wystarczająco dobre.",
+        },
+        {
+          type: "fill",
+          text: "Po pęknięciu długiego cyklu stopy procentowe są już zwykle przy _____ — bank centralny ma związane ręce.",
+          options: null,
+          correctAnswer: "zerze",
+          explanation:
+            "Zero lower bound. Klasyczne narzędzia nie działają — wtedy wchodzi QE i deleveraging.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego 2008 był końcem długiego cyklu, a nie zwykłą recesją?",
+          options: null,
+          correctAnswer:
+            "Klasyczna recesja jest częścią krótkiego cyklu — bank centralny obniża stopy, kredyt taniej, ożywienie. W 2008 stopy spadły z 5,25% do 0,25% — i klasyczne narzędzia się skończyły, a gospodarka nadal nie rosła. Trzeba było sięgnąć po niestandardowe (QE, TARP), które stały się stałym elementem polityki. Kryzys subprime to było pęknięcie bańki kredytowej na rynku mieszkaniowym, napędzanej dekadą niskich stóp i łatwego kredytu — peak długoterminowego cyklu, nie zwykłe schłodzenie.",
+          explanation:
+            "Klucz: skala długu, stopy do zera, QE. Krótki cykl resetuje się stopami. Długi już nie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Recesja 2001 po pęknięciu bańki dotcom i kryzys 2008 to to samo zjawisko — pęknięcie długoterminowego cyklu zadłużenia w USA.\"",
+          options: [
+            "obie sytuacje to długi cykl",
+            "2001 to krótki cykl (sektorowa bańka tech), 2008 to koniec długiego cyklu (system finansowy + dług gospodarstw)",
+            "obie były bańkami nieruchomości",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "2001 — sektorowa bańka technologiczna, klasyczny krótki cykl. 2008 — pęknięcie bańki kredytowej w sercu systemu (mieszkania, banki, MBS/CDO), stopy do zera, QE. Skala i mechanizm zupełnie różne.",
+        },
+      ],
+      salon: {
+        short:
+          "Długoterminowy cykl zadłużenia (50–75 lat) to fala dekad. Składa się z wielu krótkich cykli, z których każdy zostawia trochę długu. Kończy się, gdy stopy są przy 0%, a gospodarka nadal nie rośnie.",
+        expand:
+          "Bańka to wzrost cen aktywów napędzany kredytem, nie produktywnością. Powstaje, gdy ludzie pożyczają coraz więcej, żeby kupować aktywa, wierząc, że ceny dalej będą rosły. Pęka, gdy spłaty przekraczają dochody. Klasyczne końce długich cykli: 1929 USA, 2008 USA, Japonia od 1990. Większość ludzi przeżyje raz lub dwa razy w życiu.",
+        trap:
+          "„Tym razem jest inaczej\" — klasyczne ostatnie słowa przed pęknięciem. Mylenie wzrostu cen aktywów z prawdziwym wzrostem gospodarczym. Założenie, że bańki da się przewidzieć precyzyjnie — da się rozpoznać przewartościowanie, nie dokładny dzień pęknięcia. Mylenie krótkiego cyklu z długim (2001 vs 2008).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 41. Ekonomia: deleveraging i 4 dźwignie
+  // ============================================================
+  {
+    slug: "econ-deleveraging-4-dzwignie",
+    vaultSlug: "econ",
+    label: "Ekonomia — deleveraging i 4 dźwignie (beautiful deleveraging)",
+    payload: {
+      title: "Deleveraging i 4 dźwignie",
+      summary:
+        "Gdy długi cykl zadłużenia kończy się, gospodarka musi zmniejszyć ciężar długu. Ten proces to deleveraging. Jest bolesny zawsze — pytanie tylko, jak bardzo i kto ucierpi najmocniej. Sztuka polega na mieszaniu czterech narzędzi w dobrych proporcjach. Stąd termin „beautiful deleveraging\" — piękne oddłużanie.",
+      theory:
+        "Cztery dźwignie deleveragingu:\n\n1. Cięcie wydatków (austerity) — rząd, firmy, gospodarstwa domowe ograniczają wydatki. Pomaga obniżyć dług, ale boli wszystkich i pogłębia recesję, bo czyjeś wydatki są czyimś dochodem.\n\n2. Restrukturyzacja długu — przedłużenie spłat, obniżenie odsetek, częściowe umorzenie. Boli wierzycieli, bo ich aktywo traci wartość.\n\n3. Redystrybucja pieniędzy — transfery od bogatych do biednych przez podatki, programy socjalne. Boli bogatych, politycznie trudne.\n\n4. Drukowanie pieniędzy (kreacja pieniądza, QE) — bank centralny kupuje aktywa i pompuje pieniądze do systemu. Boli oszczędzających (siła nabywcza maleje), grozi inflacją.\n\nBeautiful deleveraging — termin Dalio na sytuację, w której gospodarka oddłuża się BEZ wpadania w depresję i BEZ wyzwolenia hiperinflacji. Wymaga zrównoważonego mixu wszystkich czterech dźwigni.\n\nDlaczego sam mix, a nie wybór jednej?\n— Sama austerity = depresja (każde cięcie odbiera komuś dochód).\n— Samo drukowanie = ryzyko hiperinflacji.\n— Sama restrukturyzacja = bunt wierzycieli, krach systemu finansowego.\n— Sama redystrybucja = bunt bogatych, ucieczka kapitału.\n\nKażda dźwignia boli kogoś. Sztuka to mix proporcji, nie wybór jednego narzędzia. To proces na lata, czasem dekady (Japonia po 1990).",
+      questions: [
+        {
+          type: "abc",
+          text: "Cztery dźwignie deleveragingu wg Dalio to:",
+          options: [
+            "stopy, QE, podatki, cła",
+            "austerity, restrukturyzacja długu, redystrybucja, drukowanie pieniędzy",
+            "PKB, inflacja, bezrobocie, deficyt",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "To nazwany zestaw czterech narzędzi do oddłużania. Każde boli kogoś — sztuka to dobry mix.",
+        },
+        {
+          type: "abc",
+          text: "„Beautiful deleveraging\" to:",
+          options: [
+            "oddłużanie bez wpadania w depresję i bez hiperinflacji",
+            "oddłużanie wyłącznie przez cięcie wydatków",
+            "kryzys, który nie wymaga interwencji",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Termin Dalio na zrównoważony mix czterech dźwigni — żadna nie dominuje, więc nie ma ani depresji, ani hiperinflacji.",
+        },
+        {
+          type: "fill",
+          text: "Sama austerity bez innych dźwigni prowadzi zwykle do _____.",
+          options: null,
+          correctAnswer: "depresji",
+          explanation:
+            "Cięcie wydatków odbiera dochody innym (czyjeś wydatki = czyjś dochód). Gdy nikt nie kompensuje cięć drukowaniem czy redystrybucją, gospodarka spada w spiralę.",
+        },
+        {
+          type: "fill",
+          text: "Restrukturyzacja długu boli wierzycieli, bo ich _____ traci wartość.",
+          options: null,
+          correctAnswer: "aktywo",
+          explanation:
+            "Dług jednej strony = aktywo drugiej. Obniżenie odsetek albo umorzenie = utrata wartości w portfelu wierzyciela.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego sam dodruk pieniędzy nie wystarczy do deleveragingu?",
+          options: null,
+          correctAnswer:
+            "Sam dodruk grozi hiperinflacją — bo kreuje pieniądz bez odpowiadającego mu dobra, więc rosną ceny. Plus pieniądz może utknąć w systemie finansowym (jak po 2008 w USA) i nie trafiać do realnej gospodarki, więc nie oddłuża faktycznie. Dodruk działa jako kompensacja deflacyjnych efektów austerity i restrukturyzacji — równoważy spadek wartości aktywów. Sam, bez tych dźwigni, jest niebezpieczny. Klucz to mix, nie pojedyncze narzędzie.",
+          explanation:
+            "Klucz: każda dźwignia ma sens tylko jako część zbalansowanego mixu. Dodruk neutralizuje deflacyjne skutki pozostałych dźwigni.",
+        },
+        {
+          type: "spot_error",
+          text: "„Drukowanie pieniędzy ZAWSZE prowadzi do hiperinflacji, więc QE po 2008 powinno było wywołać natychmiastową hiperinflację w USA.\"",
+          options: [
+            "to prawda — hiperinflacja przyszła w 2009",
+            "QE po 2008 było ogromne, ale inflacja w USA była niska przez ~10 lat, bo pieniądz utknął w systemie finansowym, nie w realnej gospodarce",
+            "po 2008 nie było QE",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bilans Fed wzrósł z 900 mld do 4,5 bln dolarów, ale inflacja w USA pozostawała poniżej 2% przez większość dekady. Pieniądz utknął w sektorze finansowym — banki, aktywa, akcje — nie w realnej gospodarce. Inflacja wróciła dopiero 2021–2023 jako splot wielu czynników (COVID QE, wstrząsy podażowe, wojna).",
+        },
+      ],
+      salon: {
+        short:
+          "Beautiful deleveraging to nie magiczne narzędzie — to dobry mix czterech bolesnych. Austerity, restrukturyzacja, redystrybucja, drukowanie pieniędzy. Każde boli kogoś, sztuka w proporcjach.",
+        expand:
+          "Sama austerity = depresja, samo drukowanie = inflacja, sama restrukturyzacja = bunt wierzycieli, sama redystrybucja = bunt bogatych. Klucz to mieszanie — drukowanie kompensuje deflacyjne skutki austerity, restrukturyzacja przerzuca część ciężaru na wierzycieli, redystrybucja łagodzi społeczny ból. Deleveraging to proces na lata, czasem dekady (Japonia po 1990).",
+        trap:
+          "Myślenie, że „drukowanie\" zawsze prowadzi do hiperinflacji — w deleveragingu może być konieczne, by neutralizować deflację. Mylenie deleveragingu z recesją (skala i czas trwania). Założenie, że deleveraging można przyspieszyć — to proces na lata. Myślenie, że jest „dobre\" i „złe\" narzędzie — każde ma sens w odpowiednich proporcjach.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 42. Ekonomia: stopy 0% i QE
+  // ============================================================
+  {
+    slug: "econ-stopy-zero-qe",
+    vaultSlug: "econ",
+    label: "Ekonomia — stopy 0% i quantitative easing (QE)",
+    payload: {
+      title: "Stopy 0% i quantitative easing",
+      summary:
+        "Klasyczna polityka monetarna polega na zmienianiu stóp procentowych. Ale gdy stopy są już przy 0%, bank centralny nie może ich obniżyć dalej. To moment, w którym sięga po niestandardowe narzędzia. Wbrew nazwie, „drukowanie pieniędzy\" rzadko polega na fizycznym drukowaniu banknotów.",
+      theory:
+        "„Zero lower bound\" — teoretyczna granica obniżania stóp. W praktyce niektóre banki centralne wprowadzały lekko ujemne stopy (Japonia, strefa euro, Szwajcaria), ale to wciąż wąska skala.\n\nQE (quantitative easing) — bank centralny kreuje pieniądz cyfrowo i kupuje za niego aktywa, głównie obligacje rządowe i korporacyjne. Cele:\n— pompowanie płynności w system,\n— obniżenie długoterminowych stóp procentowych,\n— wsparcie cen aktywów,\n— podtrzymanie kredytowania w realnej gospodarce.\n\nKlasyczne przykłady: USA po 2008 (trzy rundy QE w latach 2008–2014), strefa euro po 2012, cały świat po COVID 2020.\n\nSkutki uboczne:\n— Wzrost cen aktywów (akcje, nieruchomości) → bogatsze gospodarstwa zyskują najwięcej, bo to one mają aktywa.\n— Pogłębienie nierówności.\n— Potencjalna inflacja, gdy pieniądz wreszcie trafi do realnej gospodarki (vide 2021–2023).\n\nSkala: w 2008 bilans Fed wzrósł z ok. 900 mld dolarów do ponad 4,5 bln. Po COVID przekroczył 8 bln.\n\nKluczowe rozróżnienie:\n— QE = zakup aktywów (głównie obligacje).\n— Helicopter money = bezpośredni transfer do ludzi. Drugie nigdy nie zostało wdrożone w klasycznej formie.\n\nQE to narzędzie nadzwyczajne. Bank centralny przestaje sterować ceną pieniądza, a zaczyna sterować jego ilością.",
+      questions: [
+        {
+          type: "abc",
+          text: "QE polega na:",
+          options: [
+            "fizycznym drukowaniu banknotów",
+            "cyfrowej kreacji pieniądza przez bank centralny i zakupie aktywów",
+            "obniżeniu podatków",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wbrew nazwie potocznej („drukowanie\"), QE to elektroniczne kreowanie zapisów na kontach + zakup obligacji rządowych/korporacyjnych. Fizyczne banknoty nie są drukowane.",
+        },
+        {
+          type: "abc",
+          text: "Helicopter money różni się od QE tym, że:",
+          options: [
+            "to dosłownie zrzut banknotów z helikoptera",
+            "to bezpośredni transfer pieniędzy do obywateli, podczas gdy QE to zakup aktywów",
+            "to to samo, różne nazwy",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Helicopter money — bezpośredni transfer do gospodarstw. QE — zakup obligacji w systemie finansowym. Pierwsze nigdy nie zostało wdrożone w klasycznej formie.",
+        },
+        {
+          type: "fill",
+          text: "Granica obniżania stóp blisko 0% nazywa się „zero lower _____ \".",
+          options: null,
+          correctAnswer: "bound",
+          explanation:
+            "Klasyczny termin makroekonomiczny. Niektóre banki centralne (Japonia, EBC) testowały lekko ujemne stopy, ale to wąska skala.",
+        },
+        {
+          type: "fill",
+          text: "Po 2008 Fed zwiększył bilans z ok. 900 mld do ponad _____ bln dolarów.",
+          options: null,
+          correctAnswer: "4,5",
+          explanation:
+            "Skala QE 2008–2014. Po COVID bilans przekroczył 8 bln. To pokazuje, jaką skalę osiągnęły niestandardowe narzędzia.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego po 2008 ogromne QE nie wywołało natychmiastowej wysokiej inflacji w USA?",
+          options: null,
+          correctAnswer:
+            "Pieniądz z QE utknął w systemie finansowym — banki dostały płynność, kupowały aktywa, ale kredyt do realnej gospodarki rósł powoli. Gospodarstwa po kryzysie były bardziej ostrożne, firmy też. Pieniądz trafił głównie na rynki finansowe, podbijając ceny aktywów (akcje, nieruchomości), nie ceny dóbr konsumpcyjnych. Stąd dekada niskiej inflacji w USA mimo ogromnego QE. Inflacja wróciła dopiero 2021–2023 — splot QE po COVID, wstrząsów podażowych, wojny.",
+          explanation:
+            "Klucz: pieniądz może być w systemie, ale nie w realnej gospodarce. Dopiero gdy realnie krąży (popyt na dobra), pojawia się inflacja konsumencka.",
+        },
+        {
+          type: "spot_error",
+          text: "„QE pomaga równo wszystkim, bo dodaje pieniądze do systemu.\"",
+          options: [
+            "QE pomaga równo",
+            "QE głównie podbija ceny aktywów — najwięcej zyskują ci, którzy je już mają (bogaci), więc pogłębia nierówności",
+            "QE szkodzi wszystkim",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna krytyka QE: pieniądz trafia do systemu finansowego → ceny aktywów rosną → bogaci posiadający aktywa zyskują, biedni nie mają ich w portfelu. Stąd pogłębienie nierówności jako udokumentowany skutek dekady QE w USA.",
+        },
+      ],
+      salon: {
+        short:
+          "QE to nie drukowanie banknotów — to bank centralny kreujący pieniądz cyfrowo i kupujący za niego obligacje. Narzędzie nadzwyczajne, używane gdy stopy są przy 0%.",
+        expand:
+          "Bank centralny przestaje sterować ceną pieniądza (stopa), a zaczyna sterować jego ilością (bilans). Skutki: wsparcie kredytowania, wzrost cen aktywów (akcje, nieruchomości), pogłębienie nierówności (bogaci posiadający aktywa zyskują), potencjalna inflacja, gdy pieniądz trafi do realnej gospodarki. Po 2008 USA — bilans Fed 900 mld → 4,5 bln. Po COVID >8 bln.",
+        trap:
+          "Wyobrażanie sobie, że QE to fizyczne drukowanie banknotów. Myślenie, że QE = natychmiastowa inflacja (po 2008 inflacja była niska przez ~10 lat). Założenie, że QE jest „darmowe\" — wprowadza bańki na aktywach, nierówności, presje inflacyjne. Mylenie QE z helicopter money — QE to zakup aktywów, helicopter to transfer do ludzi (nigdy klasycznie nie wdrożony).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 43. Ekonomia: kryzys 2008 USA — case study
+  // ============================================================
+  {
+    slug: "econ-kryzys-2008-usa",
+    vaultSlug: "econ",
+    label: "Ekonomia — kryzys 2008 USA (case study)",
+    payload: {
+      title: "Kryzys 2008 USA",
+      summary:
+        "Najlepszy przykład pęknięcia długoterminowego cyklu zadłużenia w nowoczesnej gospodarce. Pokazuje wszystkie elementy modelu Dalio w jednym wydarzeniu: bańkę kredytową, peak długu, pęknięcie, deleveraging, QE. Wspólna referencja w rozmowach o ekonomii.",
+      theory:
+        "Oś czasu:\n\n2000–2007 — niskie stopy procentowe Fed (po pęknięciu bańki dotcom Fed obniżył agresywnie), eksplozja kredytów hipotecznych, w tym subprime (dla osób o niskiej zdolności kredytowej). Ceny mieszkań w USA rosły systematycznie, więc kredyt subprime wydawał się bezpieczny: „ceny zawsze rosną\". Banki pakowały te kredyty w skomplikowane instrumenty (CDO, MBS) i sprzedawały na całym świecie.\n\n2007 — ceny mieszkań przestały rosnąć. Część kredytów subprime przestała być spłacana. Wartość CDO/MBS gwałtownie spadła.\n\nWrzesień 2008 — upadek Lehman Brothers. Systemowy kryzys finansowy. Panika.\n\nReakcja Fed — stopy obniżone praktycznie do 0% (z 5,25% w 2007 do 0,25% w grudniu 2008).\n\nReakcja rządu USA — TARP (Troubled Asset Relief Program), bailouty banków, programy stymulacyjne.\n\nReakcja Fed po dotarciu do 0% — trzy rundy QE w latach 2008–2014. Bilans Fed wzrósł z ok. 900 mld do ponad 4,5 bln dolarów.\n\nEfekt długofalowy — USA uniknęły depresji, ale weszły w długi okres niskiego wzrostu, niskich stóp i wysokich nierówności. Klasyczny przykład beautiful deleveraging w skali makro.\n\n2008 to przykład wszystkich elementów modelu Dalio jednocześnie: bańki kredytowej, peak długu, pęknięcia, deleveragingu z mixem austerity + restrukturyzacji + redystrybucji + drukowania. To moment, w którym narodziło się współczesne QE.",
+      questions: [
+        {
+          type: "abc",
+          text: "Bezpośrednim wyzwalaczem paniki finansowej we wrześniu 2008 był:",
+          options: [
+            "upadek Bear Stearns",
+            "upadek Lehman Brothers",
+            "bankructwo Grecji",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Lehman Brothers — 15 września 2008. Bear Stearns upadł wcześniej (marzec 2008), ale Fed go uratował. Lehmana nie — i to wyzwoliło systemową panikę.",
+        },
+        {
+          type: "abc",
+          text: "Kryzys subprime to:",
+          options: [
+            "kryzys obligacji rządowych USA",
+            "kryzys kredytów hipotecznych dla osób o niskiej zdolności kredytowej, spakowanych w CDO/MBS",
+            "kryzys waluty dolarowej",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Subprime = poniżej standardu („prime\"). Niska zdolność kredytowa + zerowy wkład własny + ceny mieszkań rosną → kredyty wydawały się bezpieczne. CDO/MBS to instrumenty, w które je pakowano.",
+        },
+        {
+          type: "fill",
+          text: "Po 2008 Fed obniżył stopy do 0,25% i uruchomił trzy rundy _____ (skrót na 2 litery).",
+          options: null,
+          correctAnswer: "QE",
+          explanation:
+            "Quantitative easing. W praktyce: 2008–2010 (QE1), 2010–2011 (QE2), 2012–2014 (QE3).",
+        },
+        {
+          type: "fill",
+          text: "Program ratunkowy dla banków po Lehmanie miał skrót _____ .",
+          options: null,
+          correctAnswer: "TARP",
+          explanation:
+            "Troubled Asset Relief Program. Bailout banków, pierwotnie ~700 mld dolarów, faktycznie wydane mniej.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego 2008 zmieniło rolę banków centralnych na świecie.",
+          options: null,
+          correctAnswer:
+            "Przed 2008 bank centralny działał głównie przez stopy procentowe — to było klasyczne narzędzie. Po 2008 stopy doszły do 0% i nie działały już dalej. Fed sięgnął po QE — kreację pieniądza i zakup aktywów. Co miało być nadzwyczajne, stało się standardem. EBC powtórzył to po 2012, Bank of Japan rozszerzył skalę, cały świat zrobił to po COVID. Bank centralny przestał sterować tylko ceną pieniądza (stopa), a zaczął sterować też jego ilością (bilans). To fundamentalna zmiana paradygmatu — i jeden z głównych powodów, dla których ceny aktywów (akcje, nieruchomości) rosły przez całą dekadę po 2008.",
+          explanation:
+            "Klucz: QE z narzędzia nadzwyczajnego stało się stałym elementem polityki monetarnej. To zmienia układ sił między rynkami finansowymi a realną gospodarką.",
+        },
+        {
+          type: "spot_error",
+          text: "„Kryzys 2008 i kryzys strefy euro 2010–2012 to to samo zjawisko z tych samych przyczyn.\"",
+          options: [
+            "tak, to było jedno globalne zjawisko",
+            "to dwa różne kryzysy — 2008 to bańka kredytowa nieruchomości w USA, 2010–2012 to kryzys zadłużenia państw w strefie euro (Grecja, Hiszpania, Włochy, Portugalia, Irlandia)",
+            "kryzys strefy euro nie istniał",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "2008 USA — dług gospodarstw domowych (hipoteki subprime) + dług sektora finansowego (CDO/MBS). 2010–2012 strefa euro — dług państw (PIIGS), problem braku wspólnej polityki fiskalnej przy wspólnej walucie. Powiązane (2008 nakręcił globalne problemy), ale inne mechanizmy.",
+        },
+      ],
+      salon: {
+        short:
+          "2008 to nie była zwykła recesja, tylko pęknięcie długoterminowego cyklu zadłużenia. Bańka kredytowa na rynku mieszkaniowym, peak długu, panika po Lehmanie, stopy do zera, dekada QE.",
+        expand:
+          "Sekwencja: 2000–2007 niskie stopy + subprime + CDO/MBS, 2007 ceny przestają rosnąć, 2008 Lehman, panika. Fed obniża z 5,25% do 0,25%, uruchamia TARP i trzy rundy QE (bilans z 900 mld do 4,5 bln). USA uniknęły depresji, ale weszły w dekadę niskiego wzrostu, niskich stóp, wysokich nierówności. Klasyczny beautiful deleveraging w skali makro. To moment, w którym narodziło się współczesne QE jako stałe narzędzie.",
+        trap:
+          "Myślenie, że 2008 to zwykła recesja, tylko głębsza — to było pęknięcie długiego cyklu. Założenie, że winę ponoszą tylko banki — to efekt całego systemu (stopy, deregulacja, polityka mieszkaniowa, zachłanność, naiwność). Niezauważenie, że 2008 zmieniło rolę banków centralnych na trwałe. Mylenie 2008 USA z kryzysem strefy euro 2010–2012.",
+      },
+    },
+  },
 ];
