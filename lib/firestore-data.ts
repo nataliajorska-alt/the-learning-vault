@@ -232,6 +232,10 @@ export interface SuggestionPayload {
     expand: string;
     trap: string;
   } | null;
+  /** opcjonalna ścieżka do obrazu (np. /art/mona-lisa.jpg) — wyświetlany w detail topica */
+  imageUrl?: string;
+  /** podpis pod obrazem (autor + tytuł + rok), wyświetlany pod obrazem małą czcionką */
+  imageCaption?: string;
 }
 
 export async function commitSuggestion(opts: {
@@ -263,6 +267,8 @@ export async function commitSuggestion(opts: {
     updatedAt: now,
   };
   if (presetSlug) topicData.presetSlug = presetSlug;
+  if (payload.imageUrl) topicData.imageUrl = payload.imageUrl;
+  if (payload.imageCaption) topicData.imageCaption = payload.imageCaption;
   const topicRef = await addDoc(collection(db, "topics"), topicData);
 
   for (let i = 0; i < payload.questions.length; i++) {

@@ -73,6 +73,21 @@ export function SalonDetail({ topicId }: { topicId: string }) {
         <h1 className="hero-italic text-5xl mt-2">{topic.title}</h1>
       </header>
 
+      {topic.imageUrl && (
+        <figure className="max-w-2xl">
+          <img
+            src={topic.imageUrl}
+            alt={topic.imageCaption ?? topic.title}
+            className="w-full h-auto border border-line"
+          />
+          {topic.imageCaption && (
+            <figcaption className="text-xs text-muted mt-2 italic">
+              {topic.imageCaption}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
       <article className="card max-w-2xl">
         <div className="space-y-7 text-base">
           <div>

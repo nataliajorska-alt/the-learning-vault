@@ -4132,4 +4132,1532 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 44. Sztuka: Vermeer — Mleczarka
+  // ============================================================
+  {
+    slug: "art-vermeer-mleczarka",
+    vaultSlug: "art",
+    label: "Sztuka — Vermeer, Mleczarka (1657–58)",
+    payload: {
+      title: "Vermeer — Mleczarka",
+      summary:
+        "Mała kuchenna scena (ok. 45×41 cm), służąca przelewa mleko z dzbanka — Vermeer robi z najprostszej czynności niemal sakrament. Holendrzy w XVII wieku odkryli, że codzienność może być tematem sztuki, nie tylko mity i święci.",
+      theory:
+        "Około 1657–1658, barok niderlandzki, Złoty Wiek Holandii. Dziś w Rijksmuseum w Amsterdamie. Vermeer pracował w Delft, malował powoli i mało — zachowało się około 35 obrazów. Genre painting, czyli scena rodzajowa: codzienne życie zamiast mitów i świętych. Protestancka Holandia uznała, że zwykłe życie jest godnym tematem sztuki.\n\nNajważniejsze techniczne i kulturowe ślady:\n— Mistrzowskie operowanie światłem z lewej strony, prawie filmowe.\n— Skrupulatne tekstury: chleb, mleko, ściana z dziurkami od gwoździ.\n— Prawdopodobnie używał camera obscura jako narzędzia kompozycyjnego.\n— Niezwykle drogi pigment ultramaryna (z lapis lazuli) na fartuchu — to nie była tania kuchenna scena.\n— Skupienie i cisza, niemal sakralne.\n\nVermeer zmarł młodo (43 lata), w długach, popadł w zapomnienie na 200 lat — odkryty na nowo w XIX wieku. Mleczarka to wypowiedź o świętości codzienności i godności pracy fizycznej.",
+      questions: [
+        {
+          type: "abc",
+          text: "Mleczarka pokazuje:",
+          options: [
+            "biblijną postać Marii",
+            "codzienną scenę z kuchni — służącą przelewającą mleko",
+            "alegorię umiarkowania",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Genre painting — scena rodzajowa. Vermeer celowo wybiera zwykły gest, nie temat religijny. To holenderska protestancka decyzja o tym, że codzienność jest godna obrazu.",
+        },
+        {
+          type: "abc",
+          text: "Niebieski na fartuchu mleczarki to:",
+          options: [
+            "tani pigment indygo",
+            "drogi ultramarynowy pigment z lapis lazuli",
+            "syntetyczny błękit pruski",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ultramaryna z lapis lazuli była droższa niż złoto. Sygnalizuje, że Vermeer traktował tę scenę z najwyższą uwagą — nie tania kuchenna miniaturka.",
+        },
+        {
+          type: "fill",
+          text: "Vermeer pracował w mieście _____ (Holandia).",
+          options: null,
+          correctAnswer: "Delft",
+          explanation:
+            "Delft — niewielkie holenderskie miasto, miejsce niemal całej jego pracy. Stąd termin „Delft school\".",
+        },
+        {
+          type: "fill",
+          text: "Narzędzie optyczne, którego Vermeer prawdopodobnie używał do kompozycji: camera _____ .",
+          options: null,
+          correctAnswer: "obscura",
+          explanation:
+            "Camera obscura — narzędzie projekcji, użyteczne dla badania światła i proporcji. Dyskutowane, ale wiele cech jego obrazów to sugeruje.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, dlaczego Mleczarka jest „wypowiedzią o świętości codzienności\", nie tylko ładną sceną kuchenną.",
+          options: null,
+          correctAnswer:
+            "Vermeer wybrał najprostszą czynność — służącą przelewającą mleko — i potraktował ją z najwyższą uwagą techniczną (skrupulatne tekstury, dramatyczne światło, drogi ultramarynowy pigment na fartuchu). Holandia XVII wieku, protestancka, mieszczańska, postanowiła, że zwykłe życie jest godnym tematem sztuki, nie tylko mity i święci. Vermeer doprowadza to do skrajności: kompozycja jest niemal sakralna, jak ołtarzowa, ale temat — całkowicie świecki. To deklaracja, że godność człowieka pracy jest tematem na równi z biblijnymi.",
+          explanation:
+            "Klucz: kontekst kulturowy + decyzja artystyczna. Tani temat + drogie środki = świadomy gest.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mleczarka i Dziewczyna z perłą to ten sam obraz Vermeera w różnych wersjach.\"",
+          options: [
+            "tak, to ten sam motyw",
+            "nie — to dwa różne obrazy Vermeera, oba małe scenki rodzajowe, ale różne motywy i kompozycje",
+            "Dziewczyna z perłą jest Rembrandta",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Obie sceny to Vermeer, ale Mleczarka (1657–58, Rijksmuseum) to scena rodzajowa, a Dziewczyna z perłą (~1665, Mauritshuis) to tronie — popiersie postaci. Inne kompozycje.",
+        },
+      ],
+      salon: {
+        short:
+          "U Vermeera fascynuje to, że bierze najprostszą czynność, służącą przelewającą mleko, i robi z tego niemal sakrament. Codzienność może być tematem sztuki, nie tylko mity i święci.",
+        expand:
+          "Mistrzowskie światło z lewej, skrupulatne tekstury (chleb, mleko, ściana z dziurkami), drogi ultramarynowy pigment na fartuchu. Vermeer prawdopodobnie używał camera obscura. Holandia protestancka XVII wieku odkryła, że zwykłe życie jest godnym tematem sztuki — Vermeer doprowadza to do mistrzostwa. Mały format (45×41 cm), wielka waga emocjonalna.",
+        trap:
+          "To NIE jest tylko „ładna scena kuchenna\" — to wypowiedź o świętości codzienności i godności pracy fizycznej. Nie mylić z Dziewczyną z perłą (też Vermeer, inny obraz). Nie redukować „Vermeer = camera obscura\" — narzędzie to nie geniusz.",
+      },
+      imageUrl: "/art/vermeer-mleczarka.jpg",
+      imageCaption: "Johannes Vermeer, Mleczarka, ok. 1657–1658, Rijksmuseum, Amsterdam",
+    },
+  },
+
+  // ============================================================
+  // 45. Sztuka: Van Eyck — Portret Arnolfinich
+  // ============================================================
+  {
+    slug: "art-van-eyck-arnolfini",
+    vaultSlug: "art",
+    label: "Sztuka — van Eyck, Portret Arnolfinich (1434)",
+    payload: {
+      title: "Van Eyck — Portret Arnolfinich",
+      summary:
+        "1434, renesans północny. Portret pary kupieckiej, w którym każdy szczegół niesie symbol — pies, pomarańcze, świeca, lustro. Pierwszy obraz, w którym malarz mówi „byłem tutaj\" — sygnaturą nad lustrem czyni z siebie świadka.",
+      theory:
+        "Olej na desce dębowej, dziś w National Gallery w Londynie. Jan van Eyck był nadwornym malarzem księcia Filipa Dobrego, jednym z pionierów malarstwa olejnego w Europie Północnej. Niderlandy w XV wieku to bogate, mieszczańskie centrum handlu.\n\nPortret pary: prawdopodobnie Giovanni di Nicolao Arnolfini (włoski kupiec w Brugii) i jego żona. Każdy element niesie symboliczne znaczenie:\n— Pies = wierność małżeńska.\n— Pomarańcze = bogactwo (importowane, drogie).\n— Jedna paląca się świeca = obecność Boga.\n— Zdjęte buty = sakralność miejsca.\n— Lustro z 10 scenami męki Pańskiej w ramie.\n\nNad lustrem podpis: „Johannes de Eyck fuit hic\" (Jan van Eyck był tutaj) — artysta jako świadek. W lustrze widać dwie postacie wchodzące do pomieszczenia (sam artysta + ktoś jeszcze). Nie wiadomo na 100%, czy to ślub, kontrakt małżeński czy portret pamiątkowy — historycy się spierają.\n\nKobieta nie jest w ciąży — taki krój sukni był wtedy modny. Realizm jest pozorny: każdy element ma znaczenie, nic nie jest przypadkowe.",
+      questions: [
+        {
+          type: "abc",
+          text: "Pies u stóp pary Arnolfinich symbolizuje:",
+          options: [
+            "bogactwo właścicieli",
+            "wierność małżeńską",
+            "dziedzictwo arystokratyczne",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pies = wierność, klasyczny symbol małżeństwa. W obrazie van Eycka każdy element jest symbolem — pies pasuje do tematu sakralności związku.",
+        },
+        {
+          type: "abc",
+          text: "Sygnatura van Eycka nad lustrem brzmi:",
+          options: [
+            "Pinxit Johannes de Eyck",
+            "Johannes de Eyck fuit hic",
+            "Ex voto Johannes",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Fuit hic\" = „był tutaj\". To pierwsze tak silne stwierdzenie artysty jako świadka sceny — niemal akt notarialny.",
+        },
+        {
+          type: "fill",
+          text: "Jedna paląca się świeca na żyrandolu symbolizuje obecność _____.",
+          options: null,
+          correctAnswer: "Boga",
+          explanation:
+            "Jedna świeca w pełnym świetle dnia = znak transcendencji. Świętość miejsca podkreślona też przez zdjęte buty.",
+        },
+        {
+          type: "fill",
+          text: "Bogactwo Arnolfinich sygnalizuje m.in. importowany owoc: _____ .",
+          options: null,
+          correctAnswer: "pomarańcze",
+          explanation:
+            "Pomarańcze w Brugii XV wieku to luksus — sprowadzane z południa, drogie. Sygnalizują status majątkowy.",
+        },
+        {
+          type: "open",
+          text: "Co fraza „Johannes de Eyck fuit hic\" zmienia w roli artysty?",
+          options: null,
+          correctAnswer:
+            "Po raz pierwszy artysta staje się świadkiem sceny, nie tylko jej kreatorem. Sygnatura „był tutaj\" plus podwójne odbicie w lustrze (van Eyck + ktoś jeszcze wchodzący) czynią z malarza element samej sceny, niemal notariusza wydarzenia. To inny stosunek do roli niż w średniowieczu, gdzie artysta był rzemieślnikiem anonimowym. Tu artysta podpisuje się jako świadek i autoryzuje to, co widzimy. To radykalna zmiana w pojęciu autorstwa.",
+          explanation:
+            "Klucz: zmiana statusu artysty — od rzemieślnika do świadka i autora w nowoczesnym sensie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Kobieta na obrazie jest wyraźnie w ciąży — to portret rodziny w oczekiwaniu na dziecko.\"",
+          options: [
+            "tak, ciąża jest oczywista",
+            "nie — taki krój sukni był wtedy modny (powiększona partia brzucha), kobieta nie jest w ciąży",
+            "to nie kobieta, tylko alegoria",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne nieporozumienie współczesnych widzów. Krój sukni z fałdami zbieranymi pod biustem dawał taki kształt w modzie XV wieku. To nie ciąża.",
+        },
+      ],
+      salon: {
+        short:
+          "Portret Arnolfinich wygląda jak fotografia z XV wieku, a tak naprawdę każdy szczegół jest symbolem. Pies = wierność, świeca = Bóg, pomarańcze = bogactwo, lustro = świadectwo.",
+        expand:
+          "Sygnatura „Johannes de Eyck fuit hic\" nad lustrem czyni z artysty świadka sceny — w lustrze widać sam van Eyck wchodzący do pomieszczenia. To pierwszy obraz, w którym malarz mówi: ja tu byłem, ja to widziałem. Pionierstwo techniki olejnej i symbolicznego realizmu Niderlandów XV wieku.",
+        trap:
+          "To NIE jest oczywista scena ślubna — historycy się spierają (ślub, kontrakt, portret pamiątkowy?). Realizm jest pozorny: każdy element ma znaczenie. Kobieta nie jest w ciąży — taki krój sukni był modny. Nie mylić van Eycka (XV w.) z Vermeerem (XVII w.) — 200 lat różnicy.",
+      },
+      imageUrl: "/art/van-eyck-arnolfini.jpg",
+      imageCaption: "Jan van Eyck, Portret małżeństwa Arnolfinich, 1434, National Gallery, Londyn",
+    },
+  },
+
+  // ============================================================
+  // 46. Sztuka: Leonardo — Mona Lisa
+  // ============================================================
+  {
+    slug: "art-leonardo-mona-lisa",
+    vaultSlug: "art",
+    label: "Sztuka — Leonardo, Mona Lisa (1503–19)",
+    payload: {
+      title: "Leonardo — Mona Lisa",
+      summary:
+        "1503–1519, renesans włoski. Olej na desce topolowej, mniejsza niż się wydaje (77×53 cm). Sfumato (przejścia bez ostrych granic, „jak dym\") + chyba pierwszy portret pokazujący człowieka MYŚLĄCEGO, nie tylko status czy podobiznę.",
+      theory:
+        "Leonardo malował ją przez 16 lat, nosił ze sobą do końca życia, do Francji, gdzie zmarł w 1519 na dworze Franciszka I. Dziś w Luwrze. Prawdopodobnie portret Lisy Gherardini, żony florenckiego kupca Francesca del Giocondo — stąd włoska nazwa „La Gioconda\".\n\nTechniczne i historyczne fakty:\n— Sfumato: technika rozmywania konturów, przejścia bez ostrych granic, „jak dym\".\n— Pejzaż za nią asymetryczny: dwa różne horyzonty po obu stronach.\n— Mniejsza niż wszyscy myślą (77×53 cm) — większość ludzi rozczarowuje się na żywo.\n— Skradziona z Luwru w 1911 roku przez Vincenza Peruggię (włoskiego pracownika muzeum) — to ta kradzież zrobiła z niej globalną ikonę.\n\nWcześniej była znana znawcom, ale nie była najbardziej sławnym obrazem świata — sława przyszła po kradzieży, mediach i kulturze masowej XX wieku. To NIE obraz nieukończony, tylko obraz wielokrotnie poprawiany. Nie ma „tajemniczego uśmiechu\" jako celowego efektu — to nasza projekcja XIX-wieczna (Walter Pater, romantyzm).\n\nPrawdziwa siła obrazu: chyba pierwszy portret pokazujący człowieka świadomego siebie. Nie pozę, nie status, tylko świadomość. Jeden z pierwszych portretów osoby prywatnej — nie władcy, świętego, mitu.",
+      questions: [
+        {
+          type: "abc",
+          text: "Sfumato Leonarda to:",
+          options: [
+            "technika złoceń",
+            "rozmywanie konturów, przejścia bez ostrych granic — „jak dym\"",
+            "perspektywa centralna",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Sfumato\" pochodzi od „fumo\" (dym). Klucz techniki Leonarda — kontury rozpływają się, nie ma ostrych krawędzi, wszystko płynie. Twarz Mony Lisy to popis tej techniki.",
+        },
+        {
+          type: "abc",
+          text: "Globalna sława Mony Lisy przyszła głównie dzięki:",
+          options: [
+            "od początku była najbardziej sławnym obrazem świata",
+            "kradzieży z Luwru w 1911 roku i kulturze masowej XX wieku",
+            "promocji Napoleona",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przed 1911 Mona Lisa była znana znawcom, nie była globalną ikoną. Kradzież + media + ruchy XX-wieczne (Duchamp, reklama, pop art) zrobiły z niej fenomen.",
+        },
+        {
+          type: "fill",
+          text: "Mona Lisa to portret _____ Gherardini, żony Francesca del Giocondo.",
+          options: null,
+          correctAnswer: "Lisy",
+          explanation:
+            "„La Gioconda\" = „pani Giocondo\". „Mona\" = skrót od „madonna\" (pani). „Lisa\" — imię własne.",
+        },
+        {
+          type: "fill",
+          text: "W którym muzeum wisi Mona Lisa?",
+          options: null,
+          correctAnswer: "Luwr",
+          explanation:
+            "Po śmierci Leonarda obraz został we Francji jako własność króla Franciszka I, potem trafił do królewskich kolekcji, po rewolucji do Luwru.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy „pierwszy portret człowieka myślącego\" w przypadku Mony Lisy?",
+          options: null,
+          correctAnswer:
+            "Wcześniejsze portrety pokazywały głównie status społeczny (władca, święty, kupiec) albo idealizowaną pozę. Mona Lisa nie pokazuje statusu (jest osobą prywatną, żoną kupca) ani pozy (jest spokojna, ale czujna). Pokazuje świadomość — wrażenie, że patrząca osoba MYŚLI, ma życie wewnętrzne, którego nie da się zredukować do podobizny. Sfumato wspiera to wrażenie — twarz nie ma ostrych konturów, jakby cały czas w ruchu, jak myśl. To nowy typ portretu — nie obiekt, tylko podmiot.",
+          explanation:
+            "Klucz: portret jako wgląd w psychikę, nie tylko jej dokumentacja zewnętrzna.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mona Lisa jest gigantycznym obrazem — pełnowymiarowy portret na całe życie.\"",
+          options: [
+            "tak, jest ogromna",
+            "nie — Mona Lisa jest mała (77×53 cm), większość turystów się rozczarowuje na żywo",
+            "to fresk, nie obraz",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne rozczarowanie w Luwrze. Obraz ma 77 cm wysokości, mniej niż wiele plakatów. Wielkość legendy jest większa niż samego obrazu.",
+        },
+      ],
+      salon: {
+        short:
+          "Z Moną Lizą jest tak, że jej legenda jest większa niż sam obraz. Prawdziwa siła leży w tym, że to chyba pierwszy portret pokazujący człowieka myślącego — nie pozę, nie status, tylko świadomość.",
+        expand:
+          "Sfumato Leonarda jest genialne — kontury rozmyte, twarz „jak dym\". Pejzaż za nią asymetryczny, dwa horyzonty. Globalną gwiazdą zrobiła ją dopiero kradzież w 1911 i media XX wieku — wcześniej była znana znawcom, nie była najbardziej sławnym obrazem świata. Leonardo malował ją 16 lat i nosił ze sobą do Francji.",
+        trap:
+          "Nie ma „tajemniczego uśmiechu\" jako celowego efektu — to nasza projekcja XIX-wieczna (Walter Pater, romantyzm). To nie obraz nieukończony, tylko wielokrotnie poprawiany. Mniejsza niż się wydaje (77×53 cm) — większość ludzi się rozczarowuje na żywo.",
+      },
+      imageUrl: "/art/leonardo-mona-lisa.jpg",
+      imageCaption: "Leonardo da Vinci, Mona Lisa, 1503–1519, Luwr, Paryż",
+    },
+  },
+
+  // ============================================================
+  // 47. Sztuka: Friedrich — Wędrowiec nad morzem mgły
+  // ============================================================
+  {
+    slug: "art-friedrich-wedrowiec",
+    vaultSlug: "art",
+    label: "Sztuka — Friedrich, Wędrowiec nad morzem mgły (ok. 1818)",
+    payload: {
+      title: "Friedrich — Wędrowiec nad morzem mgły",
+      summary:
+        "Niemiecki romantyzm po wojnach napoleońskich. Mężczyzna w surducie stoi tyłem do widza, patrzy na morze mgły. Rückenfigur — postać od tyłu — to zaproszenie, żeby widz patrzył razem z nim, nie na niego. Pejzaż jako doświadczenie duchowe.",
+      theory:
+        "Olej na płótnie, Kunsthalle w Hamburgu. Friedrich malował po wojnach napoleońskich, w okresie kiedy Niemcy szukały tożsamości narodowej i duchowej. Romantyzm to reakcja na chłód oświeceniowego rozumu — powrót do uczucia, natury, jednostki.\n\nKluczowe pojęcia:\n— Rückenfigur (postać od tyłu) — charakterystyczny zabieg Friedricha. Widz patrzy razem z bohaterem, nie na niego.\n— Sublime / wzniosłość — filozoficzna koncepcja małości człowieka wobec nieskończoności (Burke, Kant).\n— „Inner eye\" — widzimy nie krajobraz fizyczny, tylko stan ducha bohatera.\n— Natura jako doświadczenie duchowe, niemal religijne (alternatywa wobec kościoła).\n\nFriedrich był protestantem, melancholikiem, miał trudne dzieciństwo (śmierć brata na jego oczach). Przez dekady traktowany jako „kicz nacjonalistyczny\", rehabilitowany dopiero w XX wieku. Nazistowska Rzesza przejęła go jako swojego, co potem skomplikowało jego odbiór — ale sam Friedrich nie ma z tym nic wspólnego.\n\nObraz nie jest „o przyrodzie\" — to obraz o człowieku w przyrodzie. Ostrożnie z interpretacją „władczego mężczyzny patrzącego z góry\" — to romantyczna kontemplacja, nie kolonialny gest.",
+      questions: [
+        {
+          type: "abc",
+          text: "Rückenfigur u Friedricha to:",
+          options: [
+            "alegoryczna postać z mitologii",
+            "postać przedstawiona od tyłu, żeby widz patrzył razem z nią",
+            "ukryty autoportret artysty",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Charakterystyczny zabieg romantyczny — widz nie patrzy NA bohatera, tylko Z bohaterem. Krajobraz to nie obiekt obserwacji, tylko współdoświadczenie.",
+        },
+        {
+          type: "abc",
+          text: "Pojęcie „sublime\" (wzniosłość) w romantyzmie oznacza:",
+          options: [
+            "perfekcja techniczna",
+            "doświadczenie małości człowieka wobec nieskończoności",
+            "harmonijne piękno greckie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Burke i Kant rozwinęli pojęcie wzniosłości jako jakości innej niż piękno. Romantyzm robi z tego centralny temat — góra, morze mgły, nieskończony horyzont.",
+        },
+        {
+          type: "fill",
+          text: "Obraz powstał po wojnach _____ , w okresie szukania niemieckiej tożsamości.",
+          options: null,
+          correctAnswer: "napoleońskich",
+          explanation:
+            "Po klęsce Napoleona Niemcy zostały politycznie podzielone, ale kulturalnie szukały wspólnej tożsamości. Friedrich jest częścią tej fali.",
+        },
+        {
+          type: "fill",
+          text: "Friedrich był wyznania _____ (denominacja chrześcijańska).",
+          options: null,
+          correctAnswer: "protestanckiego",
+          explanation:
+            "Protestantyzm północnoniemiecki + melancholia + zainteresowanie naturą jako objawieniem — typowy zestaw dla niego.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego to nie jest obraz „o przyrodzie\"?",
+          options: null,
+          correctAnswer:
+            "To obraz o człowieku w przyrodzie, nie o samej przyrodzie. Bohater (Rückenfigur) jest centrum kompozycji, krajobraz jest jego doświadczeniem, nie przedmiotem. Friedrich nie maluje gór jako geograf — maluje stan ducha człowieka patrzącego na góry. Cała tradycja romantyczna polegała na tym, że pejzaż przestał być tłem albo dekoracją, a stał się sposobem mówienia o wnętrzu człowieka. „Inner eye\" — widzimy nie krajobraz fizyczny, tylko stan duchowy bohatera.",
+          explanation:
+            "Klucz: pejzaż jako lustro duszy, nie geografia. To centralne dla romantycznej rewolucji w malarstwie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Wędrowiec patrzy z góry z gestem władcy nad krajobrazem — to imperialistyczna alegoria.\"",
+          options: [
+            "tak, to jest gest kolonialny",
+            "to romantyczna kontemplacja, nie kolonialny gest — bohater nie posiada krajobrazu, on go doświadcza",
+            "to nie jest obraz Friedricha",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Współczesna anachroniczna interpretacja. Friedrich maluje doświadczenie wzniosłości, nie zawłaszczenia. Bohater jest mały na tle nieskończoności mgły — to nie jest gest władzy, tylko medytacja.",
+        },
+      ],
+      salon: {
+        short:
+          "Friedrich pokazuje człowieka tyłem nieprzypadkowo. Mamy patrzeć RAZEM z nim, nie na niego. Pejzaż nie jest tłem, jest doświadczeniem duchowym. To sedno romantyzmu.",
+        expand:
+          "Po wojnach napoleońskich Niemcy szukali sensu poza kościołem i rozumem. Znaleźli go we mgle nad górami. Rückenfigur, sublime, „inner eye\" — to słownictwo romantyczne, którym Friedrich operuje mistrzowsko. Mały bohater w nieskończonej mgle = małość człowieka wobec nieskończoności. Ale nie lęk, tylko spokój.",
+        trap:
+          "To NIE obraz o przyrodzie — to obraz o człowieku w przyrodzie. Ostrożnie z odczytaniem „władczego mężczyzny patrzącego z góry\" — to romantyczna kontemplacja, nie gest kolonialny. Friedrich był protestanckim melancholikiem, nie nacjonalistą — nazistowska Rzesza przejęła go później, ale on sam nie ma z tym nic wspólnego.",
+      },
+      imageUrl: "/art/friedrich-wedrowiec.jpg",
+      imageCaption: "Caspar David Friedrich, Wędrowiec nad morzem mgły, ok. 1818, Kunsthalle, Hamburg",
+    },
+  },
+
+  // ============================================================
+  // 48. Sztuka: Van Gogh — Jedzący ziemniaki
+  // ============================================================
+  {
+    slug: "art-van-gogh-jedzacy-ziemniaki",
+    vaultSlug: "art",
+    label: "Sztuka — Van Gogh, Jedzący ziemniaki (1885)",
+    payload: {
+      title: "Van Gogh — Jedzący ziemniaki",
+      summary:
+        "1885, Nuenen w Holandii. Wczesny van Gogh, ciemna paleta — przed Paryżem, przed słonecznikami. Chłopska rodzina przy kolacji z ziemniaków. Celowo brzydcy, celowo ciężcy — to świadoma moralna decyzja, nie błąd techniczny.",
+      theory:
+        "Van Gogh miał wtedy 32 lata, dopiero zaczynał poważnie malować. Olej na płótnie, Van Gogh Museum w Amsterdamie. Uważał ten obraz za swoje pierwsze ważne dzieło.\n\nNajważniejsze fakty:\n— Chłopska rodzina przy kolacji złożonej z ziemniaków, oświetlona surową lampą oliwną.\n— Van Gogh chciał pokazać „ręce, które jadły ziemniaki, tego samego dnia zrywały je z ziemi\" — moralna intencja.\n— Inspiracja: Jean-François Millet i francuski realizm społeczny (Siewca, Anioł Pański).\n— Twarze niemal karykaturalne, celowo brzydkie, nie upiększone — to świadoma decyzja.\n— Listy do brata Theo: van Gogh tłumaczył, dlaczego nie chciał ich pokazać „ładnymi\".\n— Cała seria szkiców głów chłopskich poprzedzała ostateczny obraz.\n\nObraz źle przyjęty przez krytyków i przyjaciół. Anthon van Rappard napisał ostry list — van Gogh zerwał z nim przyjaźń.\n\nKulturowe znaczenie: zwykli ludzie zasługują na portret, nie tylko bogaci czy święci. Prawda emocjonalna ważniejsza niż piękno akademickie. Sztuka może być moralna i społeczna, nie tylko estetyczna. Na tym etapie życia van Gogh był głęboko zaangażowanym społecznie człowiekiem, byłym ewangelizatorem wśród górników belgijskich w Borinage.",
+      questions: [
+        {
+          type: "abc",
+          text: "Twarze chłopów są na obrazie celowo:",
+          options: [
+            "wyidealizowane",
+            "ciężkie, niemal karykaturalne — świadoma decyzja moralna",
+            "abstrakcyjne i geometryczne",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Van Gogh w listach do Theo tłumaczył, że nie chciał pokazać chłopów „ładnymi\". Nieupiększenie to świadoma decyzja, nie brak umiejętności.",
+        },
+        {
+          type: "abc",
+          text: "Główna inspiracja Jedzących ziemniaki to:",
+          options: [
+            "japońskie drzeworyty",
+            "Jean-François Millet i francuski realizm społeczny",
+            "barokowe martwe natury",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Van Gogh uwielbiał Milleta (Siewcę, Anioł Pański). Realizm społeczny — godność ciężkiej pracy chłopskiej — to bezpośredni wpływ.",
+        },
+        {
+          type: "fill",
+          text: "Obraz powstał w holenderskiej wiosce _____ .",
+          options: null,
+          correctAnswer: "Nuenen",
+          explanation:
+            "Wczesna faza, „ciemna paleta\". Później van Gogh wyjechał do Paryża, potem do Arles — i kolory eksplodowały.",
+        },
+        {
+          type: "fill",
+          text: "„Ręce, które jadły ziemniaki, tego samego dnia _____ je z ziemi.\"",
+          options: null,
+          correctAnswer: "zrywały",
+          explanation:
+            "Cytat z listów van Gogha do Theo. Esencja jego moralnej intencji: pokazać godność pracy fizycznej.",
+        },
+        {
+          type: "open",
+          text: "Czemu Jedzący ziemniaki nie są „brzydkim van Goghem\"?",
+          options: null,
+          correctAnswer:
+            "Nieupiększenie chłopów to świadoma artystyczna i moralna decyzja, nie brak umiejętności. Van Gogh chciał pokazać prawdę o ich życiu — ciężkie ręce, zmęczone twarze, surowe światło lampy. Inspirowany Milletem i realizmem społecznym, świadomie zerwał z akademickim ideałem piękna. Sam tłumaczył w listach do Theo, że nie chciał ich pokazać „ładnymi\", bo to byłoby ich kłamliwe odzobrazowanie. To wczesny etap (1885), przed Paryżem i Arles — ciemna paleta, ale techniczna decyzja świadoma.",
+          explanation:
+            "Klucz: brzydota tutaj jest narzędziem prawdy, nie defektem. To deklaracja moralna o godności pracy.",
+        },
+        {
+          type: "spot_error",
+          text: "„Jedzący ziemniaki to typowy van Gogh z eksplodującymi żółciami i błękitami z okresu Arles.\"",
+          options: [
+            "tak, to klasyczny van Gogh\",",
+            "nie — to wczesny van Gogh z 1885, ciemna paleta. Arles (1888) i słoneczniki dopiero później, po Paryżu",
+            "obraz nie istnieje",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne pomieszanie. „Słonecznikowy\" van Gogh to lata 1887–90. Jedzący ziemniaki to 1885, ciemna paleta, jeszcze przed wyjazdem do Paryża, gdzie van Gogh poznał impresjonistów.",
+        },
+      ],
+      salon: {
+        short:
+          "Wcześniejszy van Gogh jest ważniejszy niż się zakłada. Jedzący ziemniaki są celowo ciężcy i nieupiększeni — to moralna decyzja, nie błąd techniczny.",
+        expand:
+          "Chciał pokazać, że ręce, które jedzą ziemniaki, to te same ręce, które je wyrywały z ziemi. Inspiracja: Millet i francuski realizm społeczny. Listy do Theo tłumaczą, czemu nie chciał ich „ładnymi\". Cała seria szkiców głów chłopskich poprzedzała ten obraz. To długo zanim namalował słoneczniki.",
+        trap:
+          "To NIE jest „brzydki van Gogh\" — świadoma decyzja artystyczna. To NIE jest jeszcze ten van Gogh od słoneczników — dopiero później w Arles. Nie redukować go do „szaleńca\" — na tym etapie życia był głęboko zaangażowanym społecznie człowiekiem, byłym ewangelizatorem wśród górników.",
+      },
+      imageUrl: "/art/van-gogh-jedzacy-ziemniaki.jpg",
+      imageCaption: "Vincent van Gogh, Jedzący ziemniaki, 1885, Van Gogh Museum, Amsterdam",
+    },
+  },
+
+  // ============================================================
+  // 49. Sztuka: Van Gogh — Gwiaździsta noc
+  // ============================================================
+  {
+    slug: "art-van-gogh-gwiezdzista-noc",
+    vaultSlug: "art",
+    label: "Sztuka — Van Gogh, Gwiaździsta noc (1889)",
+    payload: {
+      title: "Van Gogh — Gwiaździsta noc",
+      summary:
+        "Czerwiec 1889, sanatorium Saint-Paul-de-Mausole w Saint-Rémy-de-Provence. Spirale na niebie nie są chaosem szaleńca — to kontrolowana geometria, obraz świadomego widzenia świata jako energii. Van Gogh NIE namalował tego w ataku.",
+      theory:
+        "Olej na płótnie, dziś w MoMA w Nowym Jorku. Van Gogh był w sanatorium po załamaniu nerwowym i odcięciu sobie ucha w Arles (grudzień 1888). Zmarł rok później, w lipcu 1890.\n\nFakty kluczowe:\n— Widok z okna sanatorium na wioskę i Alpilles — ale wieś z kościołem i smukłą wieżą została DODANA (nie było jej w Saint-Rémy).\n— Spirale na niebie częściowo astronomicznie realne (Wenus, gwiazdy).\n— Cyprys na pierwszym planie — symbol śmierci i wieczności w kulturze śródziemnomorskiej.\n— Gruba farba (impasto), widoczne pociągnięcia pędzla jako bezpośrednia emocja.\n— Inspiracja: japońskie drzeworyty (Hokusai, Wielka fala).\n— Listy do Theo: „potrzeba religii sprawia, że wychodzę nocą malować gwiazdy\".\n\nVan Gogh NIE namalował tego w ataku — był w okresie remisji, świadomie pracował. Za życia sprzedał kilka obrazów, sławę zyskał pośmiertnie dzięki bratowej Jo Bonger-van Gogh, która zachowała listy i obrazy. „Szalony van Gogh\" to romantyczny mit XX wieku, sprzedający się dobrze.\n\nKulturowe znaczenie: malować to, co się czuje, nie to, co się widzi. Chaos może stać się formą — spirale są uporządkowane, nie panika. To kontrolowana ekstaza, nie atak.",
+      questions: [
+        {
+          type: "abc",
+          text: "Gwiaździsta noc powstała w sytuacji:",
+          options: [
+            "ataku psychotycznego — van Gogh malował w napadzie",
+            "okresie remisji w sanatorium — świadoma, kontrolowana praca",
+            "ostatniego dnia życia",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Mit „szalonego van Gogha\" malującego w napadzie jest XX-wiecznym romantyzmem. Faktycznie obraz powstał w spokojnym okresie — w sanatorium, ale świadomie.",
+        },
+        {
+          type: "abc",
+          text: "Wieś z kościołem na obrazie:",
+          options: [
+            "była rzeczywiście za oknem sanatorium",
+            "została dodana przez van Gogha — w Saint-Rémy jej nie było",
+            "to widok Arles",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Van Gogh nie kopiował widoku. Wieś + wieża kościelna to dodanie kompozycyjne, prawdopodobnie wspomnienie holenderskiego pejzażu z dzieciństwa.",
+        },
+        {
+          type: "fill",
+          text: "Cyprys na pierwszym planie to w kulturze śródziemnomorskiej symbol _____.",
+          options: null,
+          correctAnswer: "śmierci",
+          explanation:
+            "Cyprysy sadzono na cmentarzach. Symbol śmierci i wieczności. Van Gogh malował je obsesyjnie w ostatnich miesiącach życia.",
+        },
+        {
+          type: "fill",
+          text: "Obraz wisi dziś w muzeum _____ w Nowym Jorku (skrót).",
+          options: null,
+          correctAnswer: "MoMA",
+          explanation:
+            "Museum of Modern Art. Jeden z najbardziej znanych obrazów ich kolekcji.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego spirale Gwiaździstej nocy nie są chaosem szaleńca?",
+          options: null,
+          correctAnswer:
+            "Są geometryczne, uporządkowane, rytmiczne — nie panika, nie atak. Van Gogh był w okresie remisji, świadomie pracował nad kompozycją, inspirując się japońskimi drzeworytami i obserwacjami astronomicznymi (Wenus, układ gwiazd). Listy do brata Theo pokazują artystę w pełni świadomego, planującego: „potrzeba religii sprawia, że wychodzę nocą malować gwiazdy\". Mit „szalonego van Gogha malującego w napadzie\" to romantyczna konstrukcja XX wieku — fakty mówią o kontrolowanej ekstazie, świadomym widzeniu świata jako energii.",
+          explanation:
+            "Klucz: forma + biografia + listy. Wszystkie trzy źródła obalają mit ataku.",
+        },
+        {
+          type: "spot_error",
+          text: "„Gwiaździsta noc to ostatni obraz van Gogha — namalował go w dzień śmierci.\"",
+          options: [
+            "tak, to ostatni",
+            "nie — powstał w czerwcu 1889, van Gogh zmarł rok później (lipiec 1890), namalował setki innych obrazów po Gwiaździstej nocy",
+            "namalował go w Arles",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pomyłka. Gwiaździsta noc to czerwiec 1889. Van Gogh żył jeszcze rok i namalował m.in. Krukowie nad polem pszenicy, Pole pszenicy z kosiarzem, wiele autoportretów.",
+        },
+      ],
+      salon: {
+        short:
+          "Gwiaździsta noc to nie obraz szaleństwa, mimo że van Gogh był w sanatorium. To kontrolowana ekstaza — spirale są geometryczne, nie chaotyczne. Świadome widzenie świata jako energii.",
+        expand:
+          "Powstał w okresie remisji, czerwiec 1889. Listy do Theo pokazują artystę w pełni świadomego: „potrzeba religii każe mi wychodzić nocą i malować gwiazdy\". Inspiracje: Hokusai, astronomia, holenderskie wspomnienia. Wieś z kościołem została dodana — nie było jej za oknem. Cyprys jako symbol śmierci. Gruba farba (impasto) jako bezpośrednia emocja.",
+        trap:
+          "Van Gogh NIE namalował tego w ataku szaleństwa — był w okresie remisji. „Szalony van Gogh\" to romantyczny mit XX wieku. To nie ostatni jego obraz — żył jeszcze rok. Sprzedał za życia raczej kilka obrazów, nie „jeden\" — to popularny, nieprecyzyjny mit.",
+      },
+      imageUrl: "/art/van-gogh-gwiezdzista-noc.jpg",
+      imageCaption: "Vincent van Gogh, Gwiaździsta noc, 1889, MoMA, Nowy Jork",
+    },
+  },
+
+  // ============================================================
+  // 50. Sztuka: Monet — Nenufary
+  // ============================================================
+  {
+    slug: "art-monet-nenufary",
+    vaultSlug: "art",
+    label: "Sztuka — Monet, Nenufary (1914–26)",
+    payload: {
+      title: "Monet — Nenufary",
+      summary:
+        "Cykl monumentalnych płócien (8 paneli, każdy ok. 2 m wysokości) z lat 1914–1926, zaprojektowany dla dwóch owalnych sal Musée de l'Orangerie. Powstają w czasie I wojny światowej. Monet ofiarował obrazy Francji dzień po podpisaniu rozejmu — to pomnik pokoju, nie ładny kwiatek.",
+      theory:
+        "Ostatnie 12 lat życia Moneta w Giverny, jego ogrodzie pod Paryżem. Łącznie około 250 prac Moneta na temat nenufarów w różnych formatach. Monet zmarł w 1926, ekspozycja Orangerie otwarta w 1927.\n\nIstotne fakty:\n— Orangerie: dwie owalne sale, panoramiczne, immersyjne — widz wchodzi w obraz.\n— Monet ofiarował obrazy Francji w dniu po podpisaniu rozejmu (11 listopada 1918) — traktował to jako pomnik pokoju i pamięć o wojnie.\n— Pogarszający się wzrok (zaćma) — operowany w 1923 roku.\n— Brak horyzontu w obrazach — widz nie wie, gdzie góra, gdzie dół, jest zanurzony.\n— Kolory nie mieszane na palecie, kładzione obok siebie — oko widza miesza je z dystansu.\n— Współpracował z architektem przy projektowaniu sal Orangerie.\n\nPrzez dekady niedoceniane jako „ładne lilie\", dopiero amerykański ekspresjonizm abstrakcyjny (Rothko, Pollock) „odkrył\" Moneta na nowo w latach 50. — zobaczyli w nich prekursora abstrakcji.\n\nPóźny Monet jest radykalny, niemal abstrakcyjny, nie tylko ładny. Piękno jako odpowiedź na cierpienie (wojnę). Monet zaprojektował przestrzeń, nie tylko obrazy — to immersyjne doświadczenie, niemal kaplica.",
+      questions: [
+        {
+          type: "abc",
+          text: "Monet ofiarował Nenufary Francji:",
+          options: [
+            "na 100-lecie rewolucji francuskiej",
+            "dzień po podpisaniu rozejmu kończącego I wojnę światową (11.11.1918)",
+            "jako prezent prywatny dla Clemenceau",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Daty mają znaczenie. To gest polityczny i emocjonalny: pomnik pokoju, pamięć o wojnie, dar narodowi po katastrofie.",
+        },
+        {
+          type: "abc",
+          text: "Specyfika sal Orangerie:",
+          options: [
+            "klasyczne prostokątne galerie",
+            "dwie owalne sale, immersyjne — widz wchodzi w obraz",
+            "freski na suficie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Monet projektował to z architektem. Owalna sala + brak horyzontu w obrazach = widz zanurzony, niemal jak w kaplicy.",
+        },
+        {
+          type: "fill",
+          text: "Ogród Moneta znajduje się w miejscowości _____ pod Paryżem.",
+          options: null,
+          correctAnswer: "Giverny",
+          explanation:
+            "Giverny — miejsce ostatnich dekad życia Moneta, jego prywatny ogród z japońskim mostkiem, sadzawkami i nenufarami.",
+        },
+        {
+          type: "fill",
+          text: "Pod koniec życia Monet zmagał się z chorobą oczu — _____ .",
+          options: null,
+          correctAnswer: "zaćmą",
+          explanation:
+            "Operacja w 1923. Zaćma wpłynęła na percepcję kolorów — niektórzy widzą w późnych Nenufarach jej ślad, ale Monet pracował świadomie pomimo.",
+        },
+        {
+          type: "open",
+          text: "Czemu Nenufary nie są „ładnymi liliami\"?",
+          options: null,
+          correctAnswer:
+            "Cykl powstawał w trakcie i po I wojnie światowej. Monet ofiarował obrazy Francji dzień po podpisaniu rozejmu — traktował je jako pomnik pokoju i pamięć o katastrofie. Orangerie to nie galeria, to kaplica — owalne sale, brak horyzontu w obrazach, widz zanurzony. Późny Monet jest radykalny, niemal abstrakcyjny — amerykański ekspresjonizm abstrakcyjny lat 50. (Rothko, Pollock) zobaczył w nich prekursora. To kontemplacja po katastrofie, nie dekoracja salonu. Dzisiejsze magnesy i kubki z nenufarami to zafałszowanie kontekstu.",
+          explanation:
+            "Klucz: kontekst historyczny + zamiar artysty + radykalność formy. Trzy warstwy, których nie widać w reprodukcjach.",
+        },
+        {
+          type: "spot_error",
+          text: "„Monet to klasyczny impresjonista — Nenufary to typowy plener z lat 70. XIX wieku.\"",
+          options: [
+            "tak, klasyczny plener",
+            "nie — Nenufary to 1914–26, późny Monet (po 75. roku życia), radykalny, niemal abstrakcyjny — inny świat niż wczesny impresjonizm",
+            "Monet nie malował nenufarów",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wczesny Monet (Impresja wschód słońca, 1872, Most kolejowy w Argenteuil) to lata 70. XIX wieku. Późny Monet (Nenufary, 1914–26) to inny artysta — bez horyzontu, bez kompozycji klasycznej, prekursor abstrakcji.",
+        },
+      ],
+      salon: {
+        short:
+          "Z Nenufarami jest cały żart, że dziś wiszą na kubkach i magnesach jako synonim ładności. A to są obrazy wojenne — ofiarowane Francji dzień po rozejmie w 1918.",
+        expand:
+          "Cykl 8 paneli, każdy ok. 2 m wysokości, zaprojektowany dla dwóch owalnych sal Orangerie. Brak horyzontu, kolory niemieszane na palecie. Późny Monet jest radykalny, niemal abstrakcyjny — Rothko i Pollock w latach 50. odkryli go jako prekursora. Orangerie to nie galeria do przejścia, to kaplica niemal — trzeba usiąść i być.",
+        trap:
+          "To NIE „ładne lilie\" do salonu, choć dziś wiszą na kubkach. Choroba oczu (zaćma) wpłynęła, ale nie redukować dzieła do tego — to świadoma decyzja artystyczna. Nie mylić impresjonizmu wczesnego Moneta (lata 70–80 XIX w.) z późnym Monetem — to różne światy.",
+      },
+      imageUrl: "/art/monet-nenufary.jpg",
+      imageCaption: "Claude Monet, Refleksje chmur na sadzawce lilii wodnych (z cyklu Nenufary), 1920, Orangerie",
+    },
+  },
+
+  // ============================================================
+  // 51. Sztuka: Manet — Śniadanie na trawie
+  // ============================================================
+  {
+    slug: "art-manet-sniadanie-na-trawie",
+    vaultSlug: "art",
+    label: "Sztuka — Manet, Śniadanie na trawie (1863)",
+    payload: {
+      title: "Manet — Śniadanie na trawie",
+      summary:
+        "1863, Paryż. Skandal otworzył drogę nowoczesności. Dwóch ubranych mężczyzn i naga kobieta na pikniku. Skandal NIE wynikał z nagości samej w sobie (nagość była OK w mitologii) — wynikał z kontekstu: codzienność zamiast mitu.",
+      theory:
+        "Édouard Manet — ojciec nowoczesności w malarstwie, choć sam tego określenia nie znosił. Olej na płótnie, dziś w Musée d'Orsay w Paryżu. Drugie Cesarstwo, Paryż Haussmanna, sztuka oficjalna kontrolowana przez paryski Salon i Akademię.\n\nKluczowe fakty:\n— Dwóch ubranych mężczyzn w surdutach i naga kobieta siedzą na pikniku.\n— Druga kobieta w głębi, niemal nadnaturalnie duża — świadomie błędna perspektywa.\n— Modelka: Victorine Meurent (która sama była malarką, choć przez lata sprowadzana tylko do roli „muzy\").\n— Odrzucony przez oficjalny Salon, pokazany na Salon des Refusés zorganizowanym przez Napoleona III.\n— Inspiracja: kompozycja zapożyczona z renesansowej ryciny Marcantonia Raimondiego po obrazie Rafaela.\n— Widoczne, szybkie pociągnięcia pędzla, brak gładkiego „akademickiego\" wykończenia — manifest.\n\nSkandal nie wynikał z nagości jako takiej — Wenus mogła być naga, Diana mogła. Wynikał z tego, że paryżanka w 1863 roku, na pikniku, w towarzystwie ubranych mężczyzn, jest naga. Codzienność uderzyła w konwencje mitu.\n\nKulturowe znaczenie: moment narodzin awangardy — sztuka przestaje udawać i zaczyna pytać. Współczesność jako uprawniony temat sztuki. Skandal jako narzędzie artystyczne, świadomie użyte.",
+      questions: [
+        {
+          type: "abc",
+          text: "Skandal Śniadania na trawie wynikał z:",
+          options: [
+            "nagości samej w sobie",
+            "kontekstu — naga współczesna paryżanka obok ubranych mężczyzn na pikniku",
+            "tematu mitologicznego",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wenus mogła być naga, Diana mogła. Paryżanka w 1863 — nie. To kontekst, nie nagość per se, otworzył drogę nowoczesności.",
+        },
+        {
+          type: "abc",
+          text: "Salon des Refusés to:",
+          options: [
+            "alternatywna galeria dla awangardy, zorganizowana przez Napoleona III dla odrzuconych z oficjalnego Salonu",
+            "spotkanie krytyków w Café Guerbois",
+            "prywatna galeria Maneta",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Po fali odrzuceń z oficjalnego Salonu Napoleon III zorganizował alternatywę — żeby pokazać publiczności, „co odrzucamy\". Manet, Whistler, inni — wszyscy tam byli.",
+        },
+        {
+          type: "fill",
+          text: "Modelka na obrazie to malarka i muza Maneta — _____ Meurent.",
+          options: null,
+          correctAnswer: "Victorine",
+          explanation:
+            "Victorine Meurent — sama była malarką, przez lata redukowana w historii sztuki do roli muzy. Pojawia się też w Olimpii (1863).",
+        },
+        {
+          type: "fill",
+          text: "Manet zainspirował kompozycję ryciną renesansowego artysty — _____ Raimondiego.",
+          options: null,
+          correctAnswer: "Marcantonia",
+          explanation:
+            "Marcantonio Raimondi, rycina po Rafaelowskiej kompozycji. Manet świadomie cytuje renesans, żeby zderzyć go z paryską codziennością.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu Śniadanie na trawie to „moment narodzin awangardy\".",
+          options: null,
+          correctAnswer:
+            "Manet zderza klasyczną kompozycję renesansową (cytat z Raimondiego po Rafaelu) ze współczesnością paryską (1863 rok, surduty, modelka Meurent). To zderzenie mitu z codziennością otwiera pytanie: jeśli sztuka może rezygnować z mitologicznych pretekstów i pokazywać współczesność, to czym jest sztuka? Plus widoczne pociągnięcia pędzla, brak akademickiego wykończenia, świadomie błędna perspektywa (druga kobieta zbyt duża) — wszystko to jest manifest, że konwencja nie jest święta. To otwarcie drogi dla impresjonistów, potem postimpresjonistów, kubistów, całej sztuki XX wieku.",
+          explanation:
+            "Klucz: cytat z tradycji + zderzenie ze współczesnością + manifestacyjne odrzucenie konwencji = sztuka jako pytanie, nie jak ozdoba.",
+        },
+        {
+          type: "spot_error",
+          text: "„Manet był impresjonistą — Śniadanie na trawie to klasyczny impresjonizm.\"",
+          options: [
+            "tak, klasyczny impresjonizm",
+            "nie — Manet to PRE-impresjonizm, ojciec ruchu, ale sam nie wystawiał z impresjonistami. Śniadanie (1863) jest przed pierwszą wystawą impresjonistów (1874)",
+            "Manet nie istniał",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Manet to ojciec impresjonistów, ale sam wolał oficjalny Salon. Jego prace inspirowały Moneta, Renoira, Degasa, ale on sam nigdy nie był na ich wystawach. Manet ≠ Monet (klasyczne pomieszanie).",
+        },
+      ],
+      salon: {
+        short:
+          "Manet wywołał skandal nie nagością, tylko kontekstem. Wenus może być naga. Paryżanka na pikniku w Lasku Bulońskim — nie. To zderzenie mitu z codziennością otworzyło drogę nowoczesności.",
+        expand:
+          "Inspiracja: rycina Raimondiego po Rafaelu — Manet świadomie cytuje renesans. Modelka: Victorine Meurent, sama malarka, przez lata redukowana do roli „muzy\". Salon des Refusés organizowany przez Napoleona III — Manet, Whistler, inni odrzuceni. Widoczne pociągnięcia pędzla, świadomie błędna perspektywa, brak akademickiego wykończenia. Można powiedzieć, że cała sztuka XX wieku zaczęła się od tego niezręcznego pikniku.",
+        trap:
+          "Skandal NIE wynikał z nagości samej w sobie — nagość była OK w mitologii. Wynikał z kontekstu (codzienność zamiast mitu). To NIE jeszcze impresjonizm — Manet to PRE-impresjonizm. Victorine Meurent była sama malarką — niesprawiedliwie redukowana do „tylko modelki\". Nie mylić ze „Śniadaniem nad wodą\" Moneta (zupełnie inny obraz).",
+      },
+      imageUrl: "/art/manet-sniadanie-na-trawie.jpg",
+      imageCaption: "Édouard Manet, Śniadanie na trawie, 1863, Musée d'Orsay, Paryż",
+    },
+  },
+
+  // ============================================================
+  // 52. Sztuka: Seurat — Grande Jatte
+  // ============================================================
+  {
+    slug: "art-seurat-grande-jatte",
+    vaultSlug: "art",
+    label: "Sztuka — Seurat, Grande Jatte (1884–86)",
+    payload: {
+      title: "Seurat — Niedzielne popołudnie na wyspie La Grande Jatte",
+      summary:
+        "1884–1886, schyłek belle époque. Ogromny format (~2×3 m). Pointylizm — naukowa reakcja na „rozmyte\" plenery impresjonistów. Ludzie celowo sztywni jak figury egipskie, chłód jako świadoma artystyczna wypowiedź.",
+      theory:
+        "Olej na płótnie, dziś w Art Institute of Chicago. Georges Seurat zmarł młodo, w wieku 31 lat — cały jego dorobek powstał w ciągu ok. 10 lat. Założył kierunek pointylizmu (neo-impresjonizmu).\n\nTechniczne i kulturowe fakty:\n— Pointylizm: malowanie milionami drobnych punktów czystego, niemieszanego koloru.\n— Oko widza miesza kolory optycznie (np. żółty + niebieski punkt = zielony widziany z dystansu).\n— Seurat oparł się na naukowych teoriach koloru: Michel Eugène Chevreul, Ogden Rood.\n— 2 lata pracy, ponad 60 szkiców przygotowawczych — skrajne przeciwieństwo szybkich plenerów impresjonistów.\n— Ludzie celowo sztywni, niemal jak figury egipskie — „frozen moment\".\n— Różne klasy społeczne na jednym obrazie: robotnicy, mieszczanie, prawdopodobnie kobiety lekkich obyczajów (małpka na smyczy była ich symbolem).\n\nSeurat zmarł nagle w 1891, ruch szybko stracił impet. Kontynuował Paul Signac, ale to już nie była ta sama szkoła. Pointylizm wpłynął jednak na późnego van Gogha, fauwistów, Mondriana.\n\nKulturowe znaczenie: nauka i sztuka mogą się spotkać (teoria koloru, percepcja, optyka). Chłód i porządek mogą być wyborem artystycznym, nie brakiem emocji. Perfekcja konstrukcji może odebrać życie — i to też jest świadoma wypowiedź.",
+      questions: [
+        {
+          type: "abc",
+          text: "Pointylizm to:",
+          options: [
+            "malowanie kropkami losowo, jako reakcja na akademizm",
+            "system optyczny — drobne punkty czystego koloru, mieszane optycznie przez oko widza",
+            "technika japońska",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pointylizm NIE jest „kropkami losowo\". To naukowy system — Seurat opierał się na teoriach koloru Chevreula i Rooda.",
+        },
+        {
+          type: "abc",
+          text: "Postacie na Grande Jatte są:",
+          options: [
+            "spontaniczne, w ruchu",
+            "celowo sztywne, niemal jak figury egipskie — zamrożony rytuał mieszczański",
+            "zniekształcone surrealistycznie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Sztywność jest świadoma. Seurat chciał chłodu i porządku, „zamrożonego momentu\" — kontrast wobec spontanicznych impresjonistów.",
+        },
+        {
+          type: "fill",
+          text: "Seurat oparł się na teoriach koloru chemika francuskiego — Michel Eugène _____ .",
+          options: null,
+          correctAnswer: "Chevreul",
+          explanation:
+            "Chevreul badał kontrasty kolorów. Seurat aplikował te zasady jako artysta — np. że oko miesza kolory położone obok siebie.",
+        },
+        {
+          type: "fill",
+          text: "Wyspa La Grande Jatte leży na rzece _____ pod Paryżem.",
+          options: null,
+          correctAnswer: "Sekwanie",
+          explanation:
+            "Wyspa na Sekwanie, popularne miejsce niedzielnych spacerów paryżan w XIX wieku. Dziś nadal istnieje.",
+        },
+        {
+          type: "open",
+          text: "Czemu chłód postaci na Grande Jatte to świadoma decyzja, nie błąd?",
+          options: null,
+          correctAnswer:
+            "Seurat chciał zracjonalizować impresjonizm. Impresjoniści malowali wrażenie chwili, on chciał zamrozić wrażenie i przeanalizować je naukowo. Sztywność postaci — niemal jak figurki egipskie — to manifestacja: nie spontaniczność, tylko konstrukcja. Sztuka oparta na nauce, nie na natchnieniu. Ponad 60 szkiców przygotowawczych poprzedzało ostateczny obraz — to przeciwieństwo szybkich plenerów. Zamrożony rytuał mieszczański XIX-wiecznego Paryża jest też socjologicznym komentarzem — pokazuje społeczeństwo jako sztywne, klasowo zorganizowane, niemal teatralne.",
+          explanation:
+            "Klucz: chłód jako wybór, nie brak emocji. Seurat chciał sztuki obiektywnej, systematycznej, naukowej.",
+        },
+        {
+          type: "spot_error",
+          text: "„Pointylizm to po prostu drobny impresjonizm — Seurat malował to samo co Monet, tylko mniejszymi pociągnięciami pędzla.\"",
+          options: [
+            "tak, to ten sam ruch",
+            "nie — pointylizm (neo-impresjonizm) jest świadomą reakcją na impresjonizm, oparty na nauce, z chłodem i sztywnością przeciwną do spontanicznego pleneru",
+            "Seurat nie był pointylistą",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pointylizm = NEO-impresjonizm. „Neo\" oznacza świadomą reakcję, nie kontynuację. Seurat chciał odejść od spontaniczności na rzecz systemu naukowego.",
+        },
+      ],
+      salon: {
+        short:
+          "Seurat zrobił coś dziwnego. Impresjoniści malowali wrażenie, on chciał to wrażenie zracjonalizować. Niedzielne popołudnie na Grande Jatte wygląda jak zamrożony rytuał mieszczański.",
+        expand:
+          "Pointylizm: drobne punkty czystego koloru, mieszane optycznie przez oko widza. Teorie Chevreula i Rooda jako podstawa. 2 lata pracy, 60 szkiców przygotowawczych. Ludzie sztywni jak figury egipskie — to nie błąd, to manifest. Różne klasy społeczne na jednym obrazie. Seurat zmarł młodo (31 lat), ruch szybko stracił impet.",
+        trap:
+          "Pointylizm NIE jest „kropkami losowo\" — to system optyczny oparty na nauce. To nie impresjonizm — neo-impresjonizm, świadoma reakcja na „rozmyte\" plenery. Ludzie celowo nieemocjonalni, to nie błąd. Nie mylić Seurata z Signakiem — obaj pointyliści, ale Signac żył dłużej i kontynuował ruch.",
+      },
+      imageUrl: "/art/seurat-grande-jatte.jpg",
+      imageCaption: "Georges Seurat, Niedzielne popołudnie na wyspie La Grande Jatte, 1884–1886, Art Institute of Chicago",
+    },
+  },
+
+  // ============================================================
+  // 53. Sztuka: Artemisia Gentileschi — Judyta
+  // ============================================================
+  {
+    slug: "art-artemisia-judyta",
+    vaultSlug: "art",
+    label: "Sztuka — Artemisia Gentileschi, Judyta (~1620)",
+    payload: {
+      title: "Artemisia Gentileschi — Judyta odcinająca głowę Holofernesowi",
+      summary:
+        "Wersja florencka ok. 1620, barok włoski. Biblijna scena: Judyta ścina głowę asyryjskiemu wodzowi. U Caravaggia Judyta się wzdraga — u Artemisii dwie kobiety pracują wspólnie, jak rzeźniczki. Inna perspektywa, inna siła. Długo zapomniana, odkrywana na nowo w XX wieku.",
+      theory:
+        "Olej na płótnie, dziś w Galleria degli Uffizi we Florencji. Wcześniejsza wersja (ok. 1612–1613) jest w Museo di Capodimonte w Neapolu. Artemisia była córką malarza Orazia Gentileschi — sama jedną z najwybitniejszych malarek baroku, długo zapomnianą i odkrywaną na nowo dopiero w XX wieku.\n\nBiograficzny kontekst:\n— Artemisia była zgwałcona w wieku 17 lat (1611) przez Agostina Tassiego, przyjaciela i współpracownika jej ojca.\n— Proces w Rzymie 1612 — była przesłuchiwana z użyciem tortury sznurkami na palcach („sibille\"), żeby „potwierdzić prawdziwość zeznań\".\n— Tassi został skazany, ale wyrok formalnie nie wykonany — wpływy.\n— Jedna z pierwszych kobiet przyjętych do florenckiej Accademia delle Arti del Disegno (1616).\n\nKluczowa różnica wobec wersji Caravaggia: u Caravaggia Judyta wzdraga się, odsuwa, ma delikatność salonu. U Artemisii dwie kobiety pracują wspólnie, jak rzeźniczki — pochylone, zaangażowane fizycznie, zdeterminowane. To inny stosunek do tej samej sceny biblijnej.\n\nKrew tryska realistycznie, bo Artemisia konsultowała się z lekarzem — to nie sensacja, to studium.\n\nKulturowe znaczenie: sztuka może odzyskiwać godność po traumie. Kobieta jako podmiot, nie obiekt (nawet w temacie przemocy). Różnica perspektywy — ta sama scena u mężczyzny i kobiety wygląda zupełnie inaczej.",
+      questions: [
+        {
+          type: "abc",
+          text: "Główna różnica między Judytą Artemisii a Judytą Caravaggia:",
+          options: [
+            "różny moment biblijny",
+            "u Artemisii dwie kobiety pracują fizycznie, jak rzeźniczki — u Caravaggia Judyta wzdraga się, salonowa",
+            "różne malowane medium",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ta sama scena, kompletnie inny stosunek. Caravaggio: delikatność i odsunięcie. Artemisia: determinacja, fizyczna praca, wspólnota dwóch kobiet.",
+        },
+        {
+          type: "abc",
+          text: "Artemisia była:",
+          options: [
+            "jedną z pierwszych kobiet przyjętych do florenckiej Accademia delle Arti del Disegno",
+            "uczennicą Caravaggia",
+            "siostrą Bernardo Cavallino",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Przyjęta 1616, jedna z pierwszych kobiet w Accademia. Niezależna artystka, wybitna postać baroku.",
+        },
+        {
+          type: "fill",
+          text: "Florencka wersja Judyty wisi dziś w galerii _____ .",
+          options: null,
+          correctAnswer: "Uffizi",
+          explanation:
+            "Galleria degli Uffizi we Florencji. Wcześniejsza wersja jest w Capodimonte w Neapolu — Artemisia namalowała ich kilka.",
+        },
+        {
+          type: "fill",
+          text: "Ojciec Artemisii, też malarz, to _____ Gentileschi.",
+          options: null,
+          correctAnswer: "Orazio",
+          explanation:
+            "Orazio Gentileschi — jeden z czołowych caravaggionistów, pierwsza nauczyciel Artemisii. Ojciec i córka byli w bliskich relacjach zawodowych.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego nie wolno redukować Artemisii do „ofiary gwałtu malującej zemstę\"?",
+          options: null,
+          correctAnswer:
+            "Była wybitną artystką niezależnie od biografii. Jej technika, kompozycje, znajomość anatomii, dramatyzm — to ranga baroku, na poziomie najlepszych mężczyzn epoki. Redukowanie jej do traumy spłaszcza ją do jednowymiarowej postaci. Owszem, biografia jest istotna — proces 1612, tortura sibille, niewydany wyrok Tassiego — ale jej sztuka stoi sama. Judyta Artemisii to nie tylko emocjonalna reakcja na gwałt, to świadome przemyślenie sceny biblijnej z perspektywy kobiecej siły i wspólnoty (dwie kobiety pracujące razem). Wartość artystyczna i wartość biograficzna są dwiema rzeczami, których nie należy mieszać.",
+          explanation:
+            "Klucz: niezależność dzieła od biografii. Trauma nie tłumaczy mistrzostwa. Mistrzostwo stoi samo.",
+        },
+        {
+          type: "spot_error",
+          text: "„Artemisia Gentileschi to pierwsza kobieta malarka w historii sztuki.\"",
+          options: [
+            "tak, pierwsza",
+            "nie — były inne kobiety malarki przed Artemisią (np. Sofonisba Anguissola, Lavinia Fontana). Artemisia była jedną z największych, ale nie pierwszą",
+            "Artemisia nie była kobietą",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Sofonisba Anguissola (ok. 1532–1625), Lavinia Fontana (1552–1614) — to kobiety malarki działające przed Artemisią. Artemisia jest najsłynniejszą, nie pierwszą.",
+        },
+      ],
+      salon: {
+        short:
+          "U Artemisii Judyta nie odwraca głowy, nie wzdraga się. U Caravaggia tak. Ta sama scena, ten sam moment, kompletnie inny stosunek.",
+        expand:
+          "Artemisia maluje to jak ktoś, kto wie, z czego trzeba się oczyścić, nie jak ktoś, kto obserwuje z boku. I to długo zanim ktokolwiek mówił o kobiecym spojrzeniu w sztuce. Dwie kobiety pracują razem fizycznie, jak rzeźniczki. Krew tryska realistycznie — Artemisia konsultowała się z lekarzem. Jedna z pierwszych kobiet w Accademia delle Arti del Disegno (1616).",
+        trap:
+          "NIE redukować Artemisii do „ofiary gwałtu malującej zemstę\" — była wybitną artystką niezależnie od biografii. Nie mylić jej Judyty z wersją Caravaggia. Nie nazywać jej „pierwszą kobietą malarką\" — były inne (Anguissola, Fontana), ale ona była jedną z największych.",
+      },
+      imageUrl: "/art/artemisia-judyta.jpg",
+      imageCaption: "Artemisia Gentileschi, Judyta odcinająca głowę Holofernesowi, ok. 1620, Galleria degli Uffizi, Florencja",
+    },
+  },
+
+  // ============================================================
+  // 54. Sztuka: Magritte — Kochankowie II
+  // ============================================================
+  {
+    slug: "art-magritte-kochankowie",
+    vaultSlug: "art",
+    label: "Sztuka — Magritte, Kochankowie II (1928)",
+    payload: {
+      title: "Magritte — Kochankowie II",
+      summary:
+        "1928, belgijski surrealizm. Dwie postacie całują się z głowami owiniętymi w białą tkaninę. Bliskość fizyczna nie oznacza pełnego poznania drugiego człowieka. Codzienność + jedno zniekształcenie = niepokój.",
+      theory:
+        "Olej na płótnie, dziś w MoMA w Nowym Jorku. Część serii „Kochankowie\". René Magritte mieszkał wtedy w Paryżu, w centrum ruchu surrealistycznego (André Breton, Dalí, Ernst).\n\nBiograficzny kontekst (kontrowersyjny):\n— Matka Magritte'a popełniła samobójstwo topiąc się w rzece Sambre (1912), miał wtedy 13 lat.\n— Według biografii znaleziono jej ciało z koszulą nocną owiniętą wokół twarzy.\n— Biograficzna interpretacja jest kusząca, ale sam Magritte nigdy jej nie potwierdzał i wręcz odrzucał psychoanalizę swojego dzieła.\n\nMechanika surrealizmu Magritte'a — codzienne sceny + jeden element absurdu = niepokój.\n\nStyl: gładki, niemal komercyjny. Magritte pracował przez lata jako projektant reklam, co wpłynęło na jego „chłodną\" estetykę. Magritte to NIE Dalí — styl jest spokojny, niemal reklamowy, nie ekstatyczny. Magritte był ironiczny i filozoficzny.\n\nEfekt obcości właśnie przez kontrast: spokojna forma + niepokojąca treść. Magritte odrzucał interpretacje psychoanalityczne swojego dzieła — sam mówił, że „obrazy są tym, czym są\".\n\nKulturowe znaczenie: bliskość fizyczna nie oznacza pełnego poznania drugiego człowieka. Obraz jako pytanie, nie odpowiedź. Surrealizm = codzienność + jedno zniekształcenie = niepokój.",
+      questions: [
+        {
+          type: "abc",
+          text: "Mechanika surrealizmu Magritte'a to:",
+          options: [
+            "ekstaza i automatyzm",
+            "codzienne sceny + jeden element absurdu = niepokój",
+            "abstrakcyjne kolory",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Magritte ≠ Dalí. Spokojna forma + niepokojąca treść. Pocałunek (codzienność) + tkanina na twarzach (absurd) = efekt obcości.",
+        },
+        {
+          type: "abc",
+          text: "Styl wizualny Magritte'a jest:",
+          options: [
+            "gładki, niemal komercyjny — wpływ pracy w reklamie",
+            "ekspresyjny i emocjonalny",
+            "geometrycznie abstrakcyjny",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Magritte pracował lata jako projektant reklam, stąd ten chłodny, gładki styl. Spokojna forma kontrastuje z niepokojącą treścią.",
+        },
+        {
+          type: "fill",
+          text: "Magritte był z kraju _____ (narodowość).",
+          options: null,
+          correctAnswer: "Belgia",
+          explanation:
+            "Belgijski surrealizm. Mieszkał też w Paryżu w latach 20., ale jego korzenie i tożsamość są belgijskie.",
+        },
+        {
+          type: "fill",
+          text: "Tragedia z dzieciństwa Magritte'a: jego matka popełniła samobójstwo, topiąc się w rzece _____ .",
+          options: null,
+          correctAnswer: "Sambre",
+          explanation:
+            "Rzeka Sambre w Belgii. Magritte miał 13 lat. Biograficzna interpretacja Kochanków jest kusząca, ale sam Magritte ją odrzucał.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz, czemu redukcja obrazu do „traumy po matce\" jest spłaszczająca.",
+          options: null,
+          correctAnswer:
+            "Magritte sam odrzucał psychoanalityczne interpretacje swojego dzieła. Mówił, że „obrazy są tym, czym są\". Pomijając już to — Kochankowie pytają o coś szerszego niż konkretna trauma: czy kiedykolwiek naprawdę widzimy twarz osoby, którą kochamy? Czy nie zawsze patrzymy przez warstwę projekcji i wyobrażeń? To filozoficzne pytanie o granice poznania drugiego człowieka, nie autobiograficzna terapia. Redukcja do biografii sprowadza dzieło do jednego prywatnego przypadku, kiedy obraz mówi o uniwersalnym doświadczeniu.",
+          explanation:
+            "Klucz: Magritte był filozoficzny, nie autobiograficzny. Biograficzny klucz spłaszcza filozoficzne pytanie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Magritte to ten sam typ surrealizmu co Dalí — ekstatyczny, snowy, sensualny.\"",
+          options: [
+            "tak, to ten sam ruch",
+            "nie — Magritte jest spokojny, ironiczny, filozoficzny. Styl niemal reklamowy. Dalí jest ekstatyczny, surrealizm spod znaku sennych ekstaz",
+            "Magritte to ten sam artysta co Dalí",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Surrealizm to nie monolitryczny ruch. Magritte (belgijski, filozoficzny, chłodny) i Dalí (kataloński, ekstatyczny, sensualny) reprezentują dwa różne nurty. Łatwo pomylić, ale to różne podejścia.",
+        },
+      ],
+      salon: {
+        short:
+          "Magritte fascynuje tym, że pokazuje coś tak intymnego jak pocałunek, a jednocześnie kompletnie nie wiemy, kto kogo całuje. Obraz pyta: czy kiedykolwiek naprawdę widzimy twarz osoby, którą kochamy?",
+        expand:
+          "Codzienność + jedno zniekształcenie = niepokój. Spokojna forma kontrastuje z niepokojącą treścią. Styl niemal reklamowy (Magritte pracował jako projektant reklam). Belgijski surrealizm, lata 20. w Paryżu. Magritte odrzucał psychoanalityczne interpretacje — mówił, że „obrazy są tym, czym są\".",
+        trap:
+          "Redukowanie do „traumy po matce\" jest kuszące, ale spłaszczające. Magritte to NIE Dalí — styl spokojny, niemal reklamowy, nie ekstatyczny. Nie mylić z „The Lovers I\" — tej samej serii, ale inny układ postaci. Magritte odrzucał psychoanalizę swojego dzieła.",
+      },
+      imageUrl: "/art/magritte-kochankowie.jpg",
+      imageCaption: "René Magritte, Kochankowie II, 1928, MoMA, Nowy Jork",
+    },
+  },
+
+  // ============================================================
+  // 55. Sztuka: Tanning — Gry dzieci (bez obrazu — copyright)
+  // ============================================================
+  {
+    slug: "art-tanning-gry-dzieci",
+    vaultSlug: "art",
+    label: "Sztuka — Tanning, Gry dzieci (1942)",
+    payload: {
+      title: "Tanning — Children's Games",
+      summary:
+        "1942, amerykański surrealizm. Dorothea Tanning pokazuje dzieciństwo, którego nie ma w bajkach. Dwie dziewczynki w korytarzu, tapeta odrywa się jak druga skóra. Surrealizm kobiet jest inny niż surrealizm Dalego — bardziej psychologiczny, bardziej o transformacji.",
+      theory:
+        "Olej na płótnie. Dorothea Tanning była młodą amerykańską malarką, która właśnie poznała Maxa Ernsta (uciekiniera z Europy podczas II wojny światowej). Później została jego żoną i partnerką twórczą. Tanning była jedną z niewielu kobiet, którym udało się zaistnieć w bardzo męskim ruchu surrealistycznym.\n\nKluczowe elementy:\n— Dwie dziewczynki w niejednoznacznej, niepokojącej scenie w korytarzu.\n— Tapeta odrywa się od ściany, jakby rozdarły ją same dziewczynki — odsłania niepokojącą głębię.\n— Temat: dojrzewanie, kobiecość, psychika, niepokojąca transformacja.\n— Drzwi, korytarze, tapety w jej obrazach to przejścia psychiczne, nie tylko architektura.\n\nKobiety surrealistki: Tanning była jedną z grupy obok Leonory Carrington, Remedios Varo, Méret Oppenheim, Fridy Kahlo (na obrzeżach ruchu). Pisała: „kobiece sny są inne niż męskie sny\" — surrealizm kobiet różnił się od męskiego.\n\nŻyła 101 lat (1910–2012), pracowała do końca — malowała, rzeźbiła, pisała. Surrealizm kobiet przez dekady był odsuwany na bok historiografii — dopiero ostatnie 30 lat to zmienia.\n\nKulturowe znaczenie: kobiecość i dziewczęcość są złożone, nie idylliczne. Surrealizm kobiet różni się od surrealizmu mężczyzn (Dalí, Magritte) — bardziej psychologiczny, mniej erotyczny, bardziej o transformacji. Drzwi, korytarze, tapety jako przejścia psychiczne.",
+      questions: [
+        {
+          type: "abc",
+          text: "Surrealizm kobiet różnił się od męskiego głównie tym, że był:",
+          options: [
+            "bardziej psychologiczny i o transformacji",
+            "bardziej polityczny",
+            "bardziej religijny",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Kobiety surrealistki (Tanning, Carrington, Varo, Oppenheim, Kahlo na obrzeżach) szły w psychologię, transformację, dojrzewanie — nie tak ekstatycznie sensualnie jak Dalí.",
+        },
+        {
+          type: "abc",
+          text: "Tapeta odrywająca się od ściany w obrazach Tanning to symbol:",
+          options: [
+            "biedy domowej",
+            "przejścia psychicznego, drugiej skóry — niepokojącej transformacji",
+            "amerykańskiej architektury",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Drzwi, korytarze, tapety to u Tanning przejścia psychiczne, nie architektura. Tapeta jak druga skóra, którą się zdziera.",
+        },
+        {
+          type: "fill",
+          text: "Tanning była partnerką i żoną innego surrealisty, uciekiniera z Europy — Maxa _____ .",
+          options: null,
+          correctAnswer: "Ernsta",
+          explanation:
+            "Max Ernst, niemiecki surrealista, uciekł przed nazizmem do USA. Tanning poznała go i wyszła za niego.",
+        },
+        {
+          type: "fill",
+          text: "Tanning żyła _____ lat (cyfrowo) — pracowała do końca.",
+          options: null,
+          correctAnswer: "101",
+          explanation:
+            "1910–2012. Wybitnie długie życie + ciągła praca twórcza (malarstwo, rzeźba, pisanie) do śmierci.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego nie wolno redukować Tanning do „żony Maxa Ernsta\"?",
+          options: null,
+          correctAnswer:
+            "Była całkowicie niezależną artystką, nie tylko współmałżonką. Jej biografia jest często tak redukowana, bezpodstawnie. Tanning miała własne, mocne dzieło — surrealizm psychologiczny, dziewczęcość, transformacja, tapety jako druga skóra. Żyła 101 lat, malowała, rzeźbiła, pisała do końca. Była częścią grupy kobiet surrealistek (Carrington, Varo, Oppenheim), które przez dekady były odsuwane na bok historii sztuki — dopiero ostatnie 30 lat odbudowuje ich miejsce. Redukcja do „żony\" powtarza tę historyczną niesprawiedliwość.",
+          explanation:
+            "Klucz: niezależność dzieła. Łączenie biograficzne (związek z Ernstem) jest mniej istotne niż artystyczne osiągnięcia.",
+        },
+        {
+          type: "spot_error",
+          text: "„Children's Games to klasyczna idylliczna scena dzieciństwa, jak u Renoira.\"",
+          options: [
+            "tak, idylla",
+            "nie — to niepokojąca scena z odrywającą się tapetą, o transformacji i niepokoju dziewczęcości, nie o idylli",
+            "to obraz Renoira",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Tanning pokazuje dzieciństwo, którego nie ma w bajkach. To nie idylla — to surrealistyczna scena o transformacji psychicznej.",
+        },
+      ],
+      salon: {
+        short:
+          "Tanning pokazuje dzieciństwo, którego nie ma w bajkach. Dwie dziewczynki w korytarzu, tapeta odrywająca się jak druga skóra. Surrealizm kobiet jest inny niż surrealizm Dalego.",
+        expand:
+          "Bardziej psychologiczny, bardziej o transformacji niż o snach. Drzwi, korytarze, tapety to przejścia psychiczne. Tanning była jedną z grupy kobiet surrealistek (Carrington, Varo, Oppenheim, Kahlo na obrzeżach). „Kobiece sny są inne niż męskie sny\" — pisała. I jakoś przez dekady ten nurt był spychany w cień — dopiero ostatnio go odkrywamy.",
+        trap:
+          "Nie wszystko trzeba „rozwiązywać\" — surrealizm zostawia niejednoznaczność celowo. Tanning była CAŁKOWICIE niezależną artystką, nie tylko „żoną Maxa Ernsta\" — jej biografia często jest tak redukowana, bezpodstawnie. Surrealizm kobiet przez dekady odsuwany na bok historiografii.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 56. Sztuka: Hopper — Nighthawks
+  // ============================================================
+  {
+    slug: "art-hopper-nighthawks",
+    vaultSlug: "art",
+    label: "Sztuka — Hopper, Nighthawks (1942)",
+    payload: {
+      title: "Hopper — Nighthawks",
+      summary:
+        "1942, kilka miesięcy po Pearl Harbor. Cztery postacie w pustym diner-ze w nocnym Manhattanie. Geniusz Hoppera: cztery osoby w jednym pomieszczeniu, każda jest sama. I bar NIE MA drzwi — my, widzowie, też jesteśmy zamknięci na zewnątrz.",
+      theory:
+        "Edward Hopper, amerykański realista. Olej na płótnie, dziś w Art Institute of Chicago. Lata 30. i 40. w USA: Wielki Kryzys, potem wojna. Atmosfera niepokoju, izolacji, miejskiego osamotnienia.\n\nKluczowe fakty:\n— Powstał kilka miesięcy po Pearl Harbor — atmosfera narodowego niepokoju.\n— Bar NIE ma drzwi (nie ma wejścia widocznego na obrazie) — to celowa decyzja Hoppera.\n— Żona Hoppera Josephine „Jo\" Nivison pozowała do wszystkich kobiet w jego obrazach (kobieta w czerwonej sukience to ona).\n— Filmowe światło, kompozycja jak kadr — Hopper inspirował później Hitchcocka, Lyncha, „Drogę do zatracenia\", całą estetykę amerykańskiego noir.\n— Sam Hopper mówił niechętnie o swoich obrazach: „może mimowolnie maluję samotność wielkiego miasta\".\n\nJo Nivison była sama malarką, ale poświęciła karierę dla Edwarda — bolesny aspekt jej biografii.\n\nKulturowe znaczenie: można być samotnym wśród ludzi (cztery osoby w jednym pomieszczeniu, każda osobno). Cisza opowiada historię tak samo jak rozmowa. Hopper stworzył estetyczny język amerykańskiej samotności miejskiej. To NIE jest impresjonizm ani realizm naiwny — to bardzo świadoma, niemal filmowa kompozycja.",
+      questions: [
+        {
+          type: "abc",
+          text: "Bar w Nighthawks:",
+          options: [
+            "ma drzwi po lewej",
+            "NIE ma drzwi widocznych na obrazie — celowa decyzja Hoppera",
+            "ma drzwi w głębi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna subtelność. Bez widocznych drzwi widz jest zamknięty na zewnątrz — wzmocnienie tematu izolacji.",
+        },
+        {
+          type: "abc",
+          text: "Modelka do kobiety w czerwonej sukience to:",
+          options: [
+            "Jo Nivison, żona Hoppera (sama też malarka)",
+            "anonimowa modelka z Bronxu",
+            "siostra Hoppera",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Jo pozowała do wszystkich kobiet w obrazach Edwarda. Sama była malarką, ale poświęciła karierę dla niego — bolesny aspekt jej biografii.",
+        },
+        {
+          type: "fill",
+          text: "Hopper namalował Nighthawks kilka miesięcy po ataku na _____ Harbor.",
+          options: null,
+          correctAnswer: "Pearl",
+          explanation:
+            "Atak Japonii na Pearl Harbor: grudzień 1941. Nighthawks: 1942. Kontekst narodowego niepokoju i wojennej izolacji.",
+        },
+        {
+          type: "fill",
+          text: "Hopper wpłynął na filmowców — m.in. Hitchcocka, Lyncha i amerykański _____ (gatunek filmowy).",
+          options: null,
+          correctAnswer: "noir",
+          explanation:
+            "Amerykański film noir lat 40. i 50. korzystał z Hopperowskiego światła, kompozycji, atmosfery samotności miejskiej.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy „samotność wśród ludzi\" w kontekście Nighthawks?",
+          options: null,
+          correctAnswer:
+            "W Nighthawks są cztery osoby w jednym pomieszczeniu — kobieta i mężczyzna obok siebie, drugi mężczyzna obok nich, barman pracujący. Mimo fizycznej bliskości każda osoba jest sama: nikt na siebie nie patrzy, nikt nie mówi, każdy jest w swoim świecie. To paradoks wielkiego miasta — można być otoczonym ludźmi i jednocześnie głęboko samotnym. Hopper wzmacnia ten efekt brakiem drzwi (widz też zamknięty na zewnątrz) i filmowym, chłodnym światłem. To stało się DNA wizualnego języka amerykańskiej samotności miejskiej — Hitchcock, Lynch, „Droga do zatracenia\" wszyscy to potem cytowali.",
+          explanation:
+            "Klucz: bliskość fizyczna ≠ bliskość emocjonalna. Hopper diagnozuje to wizualnie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Hopper sam mówił, że Nighthawks to obraz o samotności wielkiego miasta — to był jego główny temat.\"",
+          options: [
+            "tak, sam tak mówił",
+            "Hopper mówił o tym niechętnie i ostrożnie — „może mimowolnie maluję samotność\", nie chciał być uważany za „malarza samotności\"",
+            "Hopper nie żył w mieście",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Hopper był wstrzemięźliwy w komentowaniu swoich obrazów. „Malarz samotności\" to projekcja krytyków i widzów, nie jego deklaracja. On sam czasem prostował.",
+        },
+      ],
+      salon: {
+        short:
+          "Hopper zrobił największy paradoks: w Nighthawks są cztery osoby w jednym pomieszczeniu i każda jest sama. I zauważ, że bar nie ma drzwi — nie wejdziesz do środka.",
+        expand:
+          "Powstał kilka miesięcy po Pearl Harbor — atmosfera narodowego niepokoju. Jo Nivison pozowała do wszystkich kobiet w jego obrazach. Filmowe światło, kompozycja jak kadr — DNA amerykańskiego noir. Hitchcock, Lynch, „Droga do zatracenia\" — wszyscy go cytowali. Cisza opowiada historię tak samo jak rozmowa.",
+        trap:
+          "Hopper sam mówił niechętnie o swoich obrazach — nie chciał być uważany za „malarza samotności\". To nasza projekcja. To NIE impresjonizm ani realizm naiwny — bardzo świadoma, niemal filmowa kompozycja. Bar bez drzwi to celowa decyzja, nie błąd. Nie redukować Hoppera do „noir\" — on był wcześniej, on stworzył ten język wizualny.",
+      },
+      imageUrl: "/art/hopper-nighthawks.jpg",
+      imageCaption: "Edward Hopper, Nighthawks, 1942, Art Institute of Chicago",
+    },
+  },
+
+  // ============================================================
+  // 57. Sztuka: Rothko — Seagram Murals
+  // ============================================================
+  {
+    slug: "art-rothko-seagram-murals",
+    vaultSlug: "art",
+    label: "Sztuka — Rothko, Seagram Murals (1958–59)",
+    payload: {
+      title: "Rothko — Seagram Murals",
+      summary:
+        "1958–59, abstrakcyjny ekspresjonizm. Rothko dostał gigantyczny kontrakt na murale do luksusowej restauracji Four Seasons. Po wizycie w już otwartej restauracji ODDAŁ honorarium i ODMÓWIŁ dostarczenia obrazów — „nie chcę, żeby moja sztuka wisiała tam, gdzie ludzie obrażają jedzenie pieniędzmi\".",
+      theory:
+        "Mark Rothko (urodzony jako Markus Rothkowitz w Dźwińsku, dziś Łotwa, w żydowskiej rodzinie, emigrant w USA od 1913). Cykl 30+ murali zamówionych przez Four Seasons Restaurant w nowo zbudowanym Seagram Building (architekci Mies van der Rohe i Philip Johnson). Olej na płótnie, ciemne czerwienie, brązy, bordo.\n\nDramatyczna historia kontraktu:\n— Największy w karierze Rothki kontrakt na zestaw murali do luksusowej restauracji.\n— Po wizycie w już otwartej restauracji oddał honorarium i odmówił dostarczenia obrazów.\n— Uznał, że jego sztuka nie pasuje do „miejsca, gdzie bogaci ludzie obrażają jedzenie pieniędzmi\".\n— Część obrazów ostatecznie trafiła do Tate Modern w Londynie w 1969.\n— Dzień dostawy tych obrazów do Tate — dzień śmierci Rothki przez samobójstwo (25 lutego 1970).\n\nInspiracje i estetyka:\n— Ciemne czerwienie i brązy — inspiracja: biblioteka Michała Anioła Laurenziana we Florencji (Rothko jeździł tam specjalnie).\n— Mówił o „Mozarcie uśmiechającym się przez łzy\" — inspiracja Nietzschem (Narodziny tragedii).\n— Rothko Chapel w Houston (1971) — kontynuacja tego pomysłu, prawdziwie sakralna przestrzeń z obrazami Rothki.\n\nKluczowe stwierdzenie: Rothko BARDZO nie lubił słowa „abstrakcja\". Mówił, że jego obrazy to „tragiczne emocje\", nie kompozycje kolorów.",
+      questions: [
+        {
+          type: "abc",
+          text: "Rothko po wizycie w otwartej restauracji Four Seasons:",
+          options: [
+            "dostarczył obrazy i zgarnął honorarium",
+            "oddał honorarium i odmówił dostarczenia obrazów",
+            "podniósł cenę",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna historia integralności artysty. Uznał, że restauracja luksusowa to złe miejsce dla jego sztuki — i wycofał się, oddając pieniądze.",
+        },
+        {
+          type: "abc",
+          text: "Rothko nie lubił słowa „abstrakcja\" — wolał mówić, że jego obrazy to:",
+          options: [
+            "kompozycje koloru",
+            "tragiczne emocje",
+            "medytacje",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Tragiczne emocje\" — to jego określenie. Inspiracja Nietzschem (Narodziny tragedii). Sztuka jako doświadczenie egzystencjalne, nie estetyka.",
+        },
+        {
+          type: "fill",
+          text: "Część murali trafiła ostatecznie do Tate Modern w mieście _____ .",
+          options: null,
+          correctAnswer: "Londynie",
+          explanation:
+            "Tate Modern w Londynie, 1969. To jeden z najbardziej znanych zestawów obrazów ich kolekcji.",
+        },
+        {
+          type: "fill",
+          text: "Dzień dostawy murali do Tate to też dzień samobójstwa Rothki — 25 lutego _____ (rok).",
+          options: null,
+          correctAnswer: "1970",
+          explanation:
+            "Tragiczna klamra: Rothko popełnia samobójstwo w pracowni dokładnie tego dnia, gdy obrazy są transportowane do Londynu.",
+        },
+        {
+          type: "open",
+          text: "Czemu Rothko zrezygnował z kontraktu Four Seasons?",
+          options: null,
+          correctAnswer:
+            "Po wizycie w już otwartej restauracji uznał, że jego sztuka nie pasuje do „miejsca, gdzie bogaci ludzie obrażają jedzenie pieniędzmi\". Dla niego obraz miał być doświadczeniem, niemal sakralnym — „tragiczną emocją\", inspirowaną Nietzschem i biblioteką Laurenziany. Luksusowa restauracja, gdzie obrazy byłyby tłem dla biznesowych lunchów, sprowadzała jego dzieło do dekoracji. Wybór był radykalny: oddał honorarium (gigantyczne, największe w jego karierze) i zatrzymał obrazy. Tę samą wrażliwość później kontynuował w Rothko Chapel w Houston — przestrzeń jako kaplica, nie galeria. Kontekst pokazu jest częścią sztuki, nie tylko sam obraz.",
+          explanation:
+            "Klucz: integralność miejsca. Dla Rothki kontekst eksponowania był integralną częścią dzieła, nie wymienialny.",
+        },
+        {
+          type: "spot_error",
+          text: "„Rothko to abstrakcjonista — jego obrazy to po prostu kolorowe prostokąty.\"",
+          options: [
+            "tak, kolorowe prostokąty",
+            "Rothko BARDZO nie lubił słowa „abstrakcja\" — dla niego obrazy to „tragiczne emocje\", warstwy z niemal niewidocznymi przejściami i świetlistością, nie kolory ułożone obok siebie",
+            "Rothko malował figuratywnie",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Reprodukcje pokazują kolorowe prostokąty. Na żywo widać warstwy, świetlistość, niemal wibrację. Rothko walczył z redukcją do „kolor = emocja\".",
+        },
+      ],
+      salon: {
+        short:
+          "Najmocniejsza historia Rothki: dostał gigantyczny kontrakt na restaurację w Seagram Building. Poszedł zjeść kolację. Wrócił, oddał kasę, zatrzymał obrazy. Trafiły do Tate dokładnie w dniu jego samobójstwa.",
+        expand:
+          "Sztuka ma być przeżywana, nie oglądana. Kolor jako doświadczenie duchowe, nie estetyczne. Inspiracja: biblioteka Michała Anioła Laurenziana we Florencji. „Mozart uśmiechający się przez łzy\" — Nietzsche, Narodziny tragedii. Rothko Chapel w Houston (1971) jako kontynuacja idei. Trudno o bardziej tragiczną klamrę: dzień dostawy obrazów do Tate = dzień samobójstwa.",
+        trap:
+          "Rothko BARDZO nie lubił słowa „abstrakcja\" — to nie „kolorowe prostokąty\", to warstwy, prawie niewidoczne przejścia, świetlistość, prawie wibracja. Redukowanie do „kolor = emocja\" jest banalizujące — trzeba zobaczyć na żywo, reprodukcje nie oddają. Nie mylić z Barnetem Newmanem czy Adolphem Gottliebem — inni ekspresjoniści, inna estetyka.",
+      },
+      imageUrl: "/art/rothko-seagram-murals.jpg",
+      imageCaption: "Mark Rothko, Seagram Murals (fragment wystawy), 1958–59, część w Tate Modern, Londyn",
+    },
+  },
+
+  // ============================================================
+  // 58. Sztuka: Łempicka — Tamara w Zielonym Bugatti
+  // ============================================================
+  {
+    slug: "art-lempicka-bugatti",
+    vaultSlug: "art",
+    label: "Sztuka — Łempicka, Tamara w Zielonym Bugatti (1929)",
+    payload: {
+      title: "Łempicka — Tamara w Zielonym Bugatti",
+      summary:
+        "1929, art déco. Autoportret jako manifest: kobieta sama za kierownicą, w skórzanym kasku i rękawiczkach. Powstał jako okładka niemieckiego magazynu mody Die Dame. Polka, biseksualna, samodzielna — Łempicka tworzyła swoją tożsamość jak markę, długo zanim to było modne.",
+      theory:
+        "Tamara Łempicka, urodzona jako Maria Górska w Warszawie w 1898, jedna z najbardziej charakterystycznych artystek międzywojnia. Olej na płycie.\n\nKluczowe fakty:\n— Autoportret jako manifest emancypacji — kobieta sama za kierownicą, w skórzanym kasku i rękawiczkach.\n— Łempicka NIE miała Bugatti (miała żółty Renault) — to artystyczna licencja, marzenie o luksusie.\n— Styl art déco: geometria, połysk, metaliczne refleksy, kobieta-maszyna.\n— Biseksualna, otwarcie miała relacje z mężczyznami i kobietami w Paryżu lat 20.\n— Urodzona w Warszawie 1898, wyemigrowała z Rosji po rewolucji 1917, mieszkała w Paryżu, USA, Meksyku. Zmarła w Cuernavaca w Meksyku w 1980, prochy rozsypane nad wulkanem Popocatépetl.\n\nRecepcja:\n— Styl został zapomniany w latach 50–60 (modernizm i abstrakcja go zepchnęły).\n— Odkryty na nowo w latach 70.\n— Madonna jest kolekcjonerką jej prac — bardzo przyczyniła się do współczesnej sławy Łempickiej.\n— W 2024 sprzedaż jednego z portretów za rekordowe sumy (ok. 13 mln dolarów).\n\nKulturowe znaczenie: styl jako forma władzy i komunikatu. Można siebie stworzyć — tożsamość jako projekt artystyczny. Art déco = nowoczesność, prędkość, kontrola, geometria, luksus z odwagą.",
+      questions: [
+        {
+          type: "abc",
+          text: "Tamara w Zielonym Bugatti powstała jako:",
+          options: [
+            "zamówienie portretowe",
+            "okładka niemieckiego magazynu mody Die Dame — manifest nowoczesnej kobiecości",
+            "prywatny prezent dla męża",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Die Dame to publikacja mody, kierowana do nowoczesnej, świadomej kobiety. Łempicka świadomie projektowała obraz jako wizualne credo emancypacji.",
+        },
+        {
+          type: "abc",
+          text: "Łempicka:",
+          options: [
+            "rzeczywiście miała Bugatti",
+            "miała żółty Renault, Bugatti to artystyczna licencja",
+            "nie miała samochodu",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bugatti = marzenie o luksusie, manifest. Renault to rzeczywistość. Łempicka tworzyła swój wizerunek artystycznie, nie biograficznie.",
+        },
+        {
+          type: "fill",
+          text: "Łempicka urodziła się jako Maria _____ w Warszawie w 1898.",
+          options: null,
+          correctAnswer: "Górska",
+          explanation:
+            "Maria Górska. Łempicka to nazwisko po pierwszym mężu, Tadeuszu Łempickim. Nazwisko zachowała, bo była już znana zawodowo pod nim.",
+        },
+        {
+          type: "fill",
+          text: "Łempicka zmarła w Meksyku, prochy rozsypano nad wulkanem _____ .",
+          options: null,
+          correctAnswer: "Popocatépetl",
+          explanation:
+            "Zmarła w Cuernavaca, prochy nad Popocatépetlem — wulkan symboliczny dla niej. Spektakularna decyzja, zgodna z jej estetyką.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy „autoportret jako manifest\" w tym konkretnym obrazie?",
+          options: null,
+          correctAnswer:
+            "Łempicka tworzy nie portret siebie, tylko wizerunek, jakim chce być widziana — i jakim chce, żeby kobiety XX wieku były widziane. Sama za kierownicą (autonomia), w skórzanym kasku i rękawiczkach (siła, kontrola), patrząca z góry (władza spojrzenia). To rok 1929, kobiety dopiero zdobywają prawo głosu w wielu krajach, jeszcze niedawno były głównie obiektem męskiego spojrzenia. Łempicka odwraca to: ona patrzy, ona prowadzi, ona stworzyła samochód, ubranie, sytuację. „Nie miała Bugatti\" jest tu kluczowe — to nie dokument, to projektowanie tożsamości jako artystycznego dzieła. Sama siebie wymyśla, długo zanim to było modne.",
+          explanation:
+            "Klucz: autoportret jako projekt, nie dokument. Tożsamość jako medium artystyczne — to bardzo nowoczesne myślenie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Łempicka to francuska artystka art déco bez polskich korzeni.\"",
+          options: [
+            "tak, Francuzka",
+            "nie — urodzona w Warszawie jako Maria Górska, polskie korzenie (w międzynarodowej recepcji często pomijane), choć żyła w Paryżu, USA, Meksyku",
+            "Łempicka nie istniała",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Polskie korzenie często pomijane w międzynarodowej recepcji. Była Polką, nawet jeśli mieszkała wszędzie. To istotny element jej biografii, ale często marginalizowany.",
+        },
+      ],
+      salon: {
+        short:
+          "Tamara w Zielonym Bugatti jest jednym z najbardziej zuchwałych autoportretów XX wieku. Kobieta w skórze, sama za kierownicą, patrząca z góry. To 1929 rok. I jeszcze polski paszport.",
+        expand:
+          "Stworzyła sobie tożsamość jak markę, długo zanim to było modne. Naprawdę nawet nie miała Bugatti, miała Renault — ale to przecież nie o samochód chodziło. Powstał jako okładka niemieckiego Die Dame — manifest nowoczesnej kobiecości. Biseksualna, w Paryżu lat 20. Styl art déco: geometria, połysk, kobieta-maszyna. Madonna jest kolekcjonerką jej prac, bardzo przyczyniła się do współczesnej sławy.",
+        trap:
+          "To nie jest „ładny obrazek z lat 20\" — to manifest emancypacji. Styl Łempickiej jest często redukowany do dekoracji, ignorując polityczny ładunek (kobieta za kierownicą w 1929!). Polskie korzenie często pomijane w międzynarodowej recepcji. Nie mylić z Tamarą Karsavinę (rosyjska tancerka) ani Tamarą Toumanovą.",
+      },
+      imageUrl: "/art/lempicka-bugatti.jpg",
+      imageCaption: "Tamara Łempicka, Autoportret w Zielonym Bugatti, 1929, kolekcja prywatna",
+    },
+  },
+
+  // ============================================================
+  // 59. Sztuka: Riepin — Iwan Groźny
+  // ============================================================
+  {
+    slug: "art-riepin-iwan-grozny",
+    vaultSlug: "art",
+    label: "Sztuka — Riepin, Iwan Groźny zabija syna (1885)",
+    payload: {
+      title: "Riepin — Iwan Groźny i jego syn",
+      summary:
+        "1885, rosyjski realizm. Car Iwan IV w napadzie furii uderza berłem w głowę własnego syna — kompozycja to świecka Pieta, ojciec trzyma umierającego syna. Riepin namalował to po zamachu na cara Aleksandra II — obraz polityczny, dwukrotnie atakowany w muzeum (1913 nożem, 2018 metalową rurą).",
+      theory:
+        "Ilja Riepin, jeden z najważniejszych malarzy rosyjskich XIX wieku, członek grupy Pieriedwiżników (wędrowników). Olej na płótnie, Galeria Tretiakowska w Moskwie. Powstał w kontekście Rosji po zamachu na cara Aleksandra II (1881).\n\nScena z 1581 roku:\n— Car Iwan IV Groźny w napadzie furii uderza berłem w głowę własnego syna Iwana Iwanowicza, ten umiera.\n— Twarz cara: oczy szaleńca. Twarz syna: blada, gasnąca.\n— Kompozycja to świecka Pieta — ojciec trzyma umierającego syna, jak Maria trzyma Chrystusa.\n— Świętość przeniesiona z religijnej do politycznej.\n\nKontekst polityczny:\n— Riepin namalował to jako reakcję na zamordowanie cara Aleksandra II — obraz polityczny, nie tylko historyczny.\n— Car Aleksander III zakazał wystawiania obrazu na pewien czas — za bardzo wstrząsający, za blisko aktualnej polityki.\n— Obraz dwukrotnie atakowany w muzeum: 1913 (nożem) i 2018 (metalową rurą) — wciąż polityczny w Rosji.\n\nNiepewność historyczna: historycy spierają się, czy Iwan rzeczywiście zabił syna — są inne hipotezy (otrucie, naturalna śmierć), ale obraz Riepina utrwalił tę wersję jako ikoniczną.\n\nKulturowe znaczenie: władza bez kontroli prowadzi do zniszczenia własnej kontynuacji. Kompozycja świecka jako Pieta — świętość przeniesiona z religijnej do politycznej. Sztuka może być świadectwem politycznym, bezpośrednio aktualnym.",
+      questions: [
+        {
+          type: "abc",
+          text: "Kompozycja Iwana Groźnego Riepina to:",
+          options: [
+            "świecka Pieta — ojciec trzyma umierającego syna",
+            "klasyczny portret koronacyjny",
+            "scena bitwy",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Świecka Pieta. Riepin świadomie cytuje religijną kompozycję (Maria trzyma Chrystusa) i przenosi ją w sferę polityczną — władza zabijająca własne dziedzictwo.",
+        },
+        {
+          type: "abc",
+          text: "Bezpośredni polityczny kontekst obrazu:",
+          options: [
+            "rewolucja 1917 roku",
+            "zamach na cara Aleksandra II w 1881 roku",
+            "wojna krymska",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Aleksander II zamordowany 1881. Riepin maluje 1885 — przetwarza świeże doświadczenie politycznej przemocy w historyczną alegorię.",
+        },
+        {
+          type: "fill",
+          text: "Obraz wisi w Galerii _____ w Moskwie.",
+          options: null,
+          correctAnswer: "Tretiakowskiej",
+          explanation:
+            "Galeria Tretiakowska — główna kolekcja sztuki rosyjskiej w Moskwie. Także miejsce dwóch ataków na obraz.",
+        },
+        {
+          type: "fill",
+          text: "Riepin był członkiem grupy malarzy „wędrowników\" — _____ (po rosyjsku).",
+          options: null,
+          correctAnswer: "Pieriedwiżników",
+          explanation:
+            "Pieriedwiżnicy (передвижники) = „wędrownicy\". Grupa malarzy organizujących wystawy wędrowne po Rosji, łącząca realizm i społeczne zaangażowanie.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy, że obraz Riepina „jest nadal aktualny politycznie\"?",
+          options: null,
+          correctAnswer:
+            "Obraz pyta, co się dzieje z państwem, w którym furia zastępuje rozsądek. Władza zabijająca własną kontynuację, syna, dziedzictwo. To pytanie zostało aktualne w Rosji XIX, XX i XXI wieku — stąd dwa ataki na obraz (1913 nożem, 2018 metalową rurą). Ataki nie były przypadkowe — to akty polityczne, próby unicestwienia obrazu, który zadaje niewygodne pytania o naturę rosyjskiej władzy. Sztuka może być świadectwem politycznym, bezpośrednio aktualnym, nawet po 140 latach. Aleksander III zakazał wystawiania go na pewien czas — bo widział to samo zagrożenie.",
+          explanation:
+            "Klucz: obraz historyczny może być komentarzem do bieżącej polityki. Akty wandalizmu w 1913 i 2018 dowodzą, że nadal funkcjonuje politycznie.",
+        },
+        {
+          type: "spot_error",
+          text: "„To dokumentalny obraz historyczny — wiemy ze 100% pewnością, że Iwan IV zabił syna.\"",
+          options: [
+            "tak, w pełni udokumentowane",
+            "historycy spierają się — są inne hipotezy (otrucie, naturalna śmierć). Obraz Riepina utrwalił TĘ wersję, ale historycznie sprawa nie jest jednoznaczna",
+            "to legenda kompletnie zmyślona",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Riepin namalował konkretną wersję wydarzeń. Współcześni historycy są bardziej ostrożni — są inne teorie. To pokazuje, jak silnie obraz może utrwalić jedną interpretację jako oczywistą.",
+        },
+      ],
+      salon: {
+        short:
+          "Riepin namalował Iwana Groźnego trzymającego umierającego syna jako odwróconą Pietę. Władza, która zabija własną kontynuację. I to nie jest tylko XVI wiek, to obraz z 1885, namalowany po zamachu na Aleksandra II.",
+        expand:
+          "Riepin pytał, co się dzieje z państwem, w którym furia zastępuje rozsądek. Te pytania są nadal aktualne, dosłownie — obraz był dwukrotnie atakowany w muzeum, ostatnio w 2018. Aleksander III zakazał wystawiania na pewien czas. Świętość kompozycji Piety przeniesiona z religijnej do politycznej. Ilja Riepin, grupa Pieriedwiżników, rosyjski realizm.",
+        trap:
+          "To nie jest „historyczny obraz\" w sensie neutralnym — to komentarz do współczesnej Riepinowi Rosji. Nie mylić Iwana IV (XVI w.) z innymi carami o tym imieniu. Nie wiadomo z całkowitą pewnością, czy Iwan rzeczywiście zabił syna — obraz to JEGO ikona, ale historia jest sporna. Riepin to NIE Repin (transliteracja) — po polsku poprawnie Riepin.",
+      },
+      imageUrl: "/art/riepin-iwan-grozny.jpg",
+      imageCaption: "Ilja Riepin, Iwan Groźny i jego syn Iwan, 1885, Galeria Tretiakowska, Moskwa",
+    },
+  },
+
+  // ============================================================
+  // 60. Sztuka: Bruegel — Myśliwi w śniegu
+  // ============================================================
+  {
+    slug: "art-bruegel-mysliwi-w-sniegu",
+    vaultSlug: "art",
+    label: "Sztuka — Bruegel, Myśliwi w śniegu (1565)",
+    payload: {
+      title: "Bruegel — Myśliwi w śniegu",
+      summary:
+        "1565, renesans niderlandzki. Myśliwi wracają z polowania z jednym lisem, zmęczeni. Poniżej w wiosce dzieci jeżdżą na łyżwach, ktoś gasi pożar, ktoś gotuje. Pierwszy raz „zwykli ludzie też zasługują na obraz\" bez konieczności religijnego pretekstu. I dokument klimatyczny: Mała epoka lodowcowa.",
+      theory:
+        "Pieter Bruegel Starszy, jeden z najważniejszych artystów Niderlandów XVI wieku. Olej na desce dębowej. Część cyklu sześciu obrazów o porach roku (zachowanych jest pięć). Dziś w Kunsthistorisches Museum w Wiedniu. Niderlandy w tym okresie pod hiszpańskim panowaniem, narastał konflikt religijny.\n\nFakty kluczowe:\n— Myśliwi z psami wracają z polowania, mają tylko jednego lisa — polowanie kiepskie.\n— Wieś poniżej, zamarznięte stawy, ludzie łyżwiarczący, ktoś gasi pożar po lewej.\n— „Little Ice Age\" (Mała epoka lodowcowa) — okres ochłodzenia klimatu w Europie od XIV do XIX wieku, zimy były dużo cięższe niż dziś, kanały w Holandii często zamarzały.\n— Bruegel jako pierwszy w sztuce europejskiej traktuje krajobraz i codzienne życie chłopów jako godny temat sam w sobie (bez pretekstu religijnego czy mitologicznego).\n— Kompozycja diagonalna prowadzi wzrok od góry-lewej do dołu-prawej.\n— Wszystkie elementy w jednym obrazie: trud (zmęczeni myśliwi), radość (łyżwiarze), praca (kobiety przy ogniu), niebezpieczeństwo (pożar).\n\nBruegel zmarł młodo (1569), pozostawił bardzo niewiele obrazów (ok. 40), za to ogromny wpływ na sztukę.\n\nKulturowe znaczenie: życie zwykłych ludzi jako historia, nie tylko królów i świętych. Życie jest jednocześnie trudne i radosne (myśliwi vs łyżwiarze w tym samym kadrze). Bruegel jako pionier „krajobrazu jako tematu\", bez konieczności mitologicznego pretekstu.",
+      questions: [
+        {
+          type: "abc",
+          text: "Myśliwi wracają z polowania z:",
+          options: [
+            "dużą zdobyczą — udane polowanie",
+            "jednym lisem — polowanie kiepskie, są zmęczeni",
+            "pustymi rękami",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Jeden lis na grupę myśliwych = kiepskie polowanie. Bruegel maluje codzienność z jej trudami, nie heroiczne triumfy.",
+        },
+        {
+          type: "abc",
+          text: "Pionierstwo Bruegla polega na tym, że:",
+          options: [
+            "wprowadził technikę olejną",
+            "jako pierwszy traktuje krajobraz i życie chłopów jako godny temat sam w sobie, bez religijnego pretekstu",
+            "namalował pierwszą Pietę",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przed Brueglem krajobrazy były tłem dla biblijnych scen, chłopi pojawiali się jako rodzajowe ozdoby. Bruegel czyni z nich główny temat.",
+        },
+        {
+          type: "fill",
+          text: "Okres ochłodzenia klimatu w Europie od XIV do XIX wieku to Mała _____ lodowcowa.",
+          options: null,
+          correctAnswer: "epoka",
+          explanation:
+            "„Little Ice Age\". Wpływał na rolnictwo, gospodarkę, kulturę — zimy były dużo cięższe, kanały holenderskie zamarzały, malarstwo zimowe miało realne źródło.",
+        },
+        {
+          type: "fill",
+          text: "Obraz wisi dziś w Kunsthistorisches Museum w stolicy _____ .",
+          options: null,
+          correctAnswer: "Austrii",
+          explanation:
+            "Wiedeń. Kunsthistorisches Museum ma największą kolekcję Bruegla na świecie. Część cyklu pór roku.",
+        },
+        {
+          type: "open",
+          text: "Co znaczy „życie jest jednocześnie trudne i radosne\" w tym obrazie?",
+          options: null,
+          correctAnswer:
+            "Bruegel pokazuje wszystkie wymiary życia w jednym kadrze: zmęczonych myśliwych z jednym lisem (trud, niepowodzenie), dzieci na łyżwach (radość, gra), kobiety przy ogniu (praca, gospodarstwo domowe), pożar po lewej (niebezpieczeństwo, niespodzianka), zamarzniętą wieś (surowość klimatu). To nie idylla i nie tragedia — to życie jako całość. Bruegel patrzy z dystansu antropologicznym, niemal jak fotograf z drona, widząc wszystko naraz. To radykalne nowoczesne spojrzenie — życie zwykłych ludzi traktowane z powagą, ale bez nadęcia. „Życie nie jest jedną emocją\".",
+          explanation:
+            "Klucz: jeden kadr, wiele emocji równolegle. Bruegel jako antropolog, nie moralista.",
+        },
+        {
+          type: "spot_error",
+          text: "„Bruegel Starszy i Bruegel Młodszy to ten sam artysta — używał obu nazwisk.\"",
+          options: [
+            "tak, to ten sam",
+            "to dwie różne osoby — Pieter Bruegel Starszy (wielki, ok. 1525–1569) i jego syn Pieter Bruegel Młodszy, który głównie kopiował ojca",
+            "Bruegel nie istniał",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pomyłka. Starszy to oryginał, wielki innowator. Młodszy to syn, głównie kopiujący. Łatwo pomylić, ale to inne osoby z innymi rolami w historii.",
+        },
+      ],
+      salon: {
+        short:
+          "U Bruegla zima nie jest tłem, jest bohaterką. Myśliwi wracają z niczym, jeden lis, wszyscy zmęczeni. A poniżej w wiosce dzieci jeżdżą na łyżwach, ktoś gasi pożar, ktoś gotuje.",
+        expand:
+          "XVI-wieczna kronika klimatyczna — byliśmy wtedy w Małej epoce lodowcowej, kanały w Niderlandach zamarzały. Ale ważniejsze: Bruegel po raz pierwszy uznał, że zwykli ludzie też zasługują na obraz, bez konieczności wciskania świętego w róg. Część cyklu sześciu obrazów o porach roku (zachowane pięć). Diagonalna kompozycja prowadzi wzrok. Niewiele obrazów (~40), ogromny wpływ.",
+        trap:
+          "To NIE jest „ładny pejzaż zimowy\" — to dokument klimatyczny i społeczny. Bruegel Starszy jest często mylony z synem (Pieter Bruegel Młodszy) — Starszy to wielki, Młodszy głównie kopiował. Pisownia: po polsku Bruegel, czasem Brueghel. Nie traktować chłopów na obrazach Bruegla jako karykatury — patrzył z dystansu antropologicznym, ale z szacunkiem.",
+      },
+      imageUrl: "/art/bruegel-mysliwi-w-sniegu.jpg",
+      imageCaption: "Pieter Bruegel Starszy, Myśliwi w śniegu, 1565, Kunsthistorisches Museum, Wiedeń",
+    },
+  },
 ];

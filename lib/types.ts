@@ -35,6 +35,10 @@ export interface Topic {
   updatedAt: Timestamp | Date;
   /** slug presetu z /admin/preset jeśli temat pochodzi z gotowca */
   presetSlug?: string;
+  /** opcjonalna ścieżka do obrazu (np. /art/mona-lisa.jpg) */
+  imageUrl?: string;
+  /** podpis pod obrazem (autor + tytuł + rok) */
+  imageCaption?: string;
 }
 
 export type QuestionType = "abc" | "fill" | "open" | "spot_error" | "translate";

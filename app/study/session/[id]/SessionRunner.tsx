@@ -311,6 +311,20 @@ export function SessionRunner({
       {phase === "theory" && (
         <section className="card max-w-2xl">
           <div className="eyebrow mb-4">Teoria</div>
+          {topic.imageUrl && (
+            <figure className="mb-6 -mt-2">
+              <img
+                src={topic.imageUrl}
+                alt={topic.imageCaption ?? topic.title}
+                className="w-full h-auto border border-line"
+              />
+              {topic.imageCaption && (
+                <figcaption className="text-xs text-muted mt-2 italic">
+                  {topic.imageCaption}
+                </figcaption>
+              )}
+            </figure>
+          )}
           <p className="hero-italic text-2xl text-ink mb-6 leading-snug">
             {topic.summary}
           </p>
