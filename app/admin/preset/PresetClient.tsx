@@ -19,12 +19,22 @@ export function PresetClient() {
   const [err, setErr] = useState<string | null>(null);
   const [justSaved, setJustSaved] = useState<Record<string, string>>({});
 
-  // Detekcja: dla każdego presetSlug → znajdź topicId zaimportowanego wcześniej
+  // Detekcja: dla każdego presetSlug → znajdź topicId zaimportowanego wcześniej.
+  // Najpierw po polu presetSlug (nowe importy), potem fallback po identycznym
+  // title (stare importy sprzed wprowadzenia presetSlug).
   const importedMap = useMemo(() => {
     const m: Record<string, string> = {};
     if (!topics) return m;
     for (const t of topics) {
       if (t.presetSlug) m[t.presetSlug] = t.id;
+    }
+    for (const p of PRESETS) {
+      if (m[p.slug]) continue;
+      const match = topics.find(
+        (t) =>
+          !t.presetSlug && t.title.trim() === p.payload.title.trim()
+      );
+      if (match) m[p.slug] = match.id;
     }
     return m;
   }, [topics]);

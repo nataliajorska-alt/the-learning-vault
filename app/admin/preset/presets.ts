@@ -889,7 +889,7 @@ export const PRESETS: Preset[] = [
   // ============================================================
   {
     slug: "estetyka-czym-jest-sztuka",
-    vaultSlug: "art",
+    vaultSlug: "phil",
     label: "Estetyka — Tołstoj, Danto, Wittgenstein, Hume",
     payload: {
       title: "Czym jest sztuka",
@@ -998,7 +998,7 @@ export const PRESETS: Preset[] = [
   // ============================================================
   {
     slug: "sztuka-i-emocje",
-    vaultSlug: "art",
+    vaultSlug: "phil",
     label: "Sztuka i emocje — Platon, Arystoteles, paradox of fiction",
     payload: {
       title: "Sztuka i emocje",
