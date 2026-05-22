@@ -1864,4 +1864,1392 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 18. Angielski: confidence escalator
+  // ============================================================
+  {
+    slug: "angielski-confidence-escalator",
+    vaultSlug: "en",
+    label: "Angielski C1 — confidence escalator (skala pewności w mowie)",
+    payload: {
+      title: "Confidence escalator",
+      summary:
+        "Skala pewności w business angielskim: od „I guess\" (do kosza w pracy) po „We will\" (rekomendacja, decyzja). Ta sama treść powiedziana „I guess\" vs „We need to\" to dwa różne światy w odbiorze klienta. Nie chodzi o to, żeby zawsze grzmieć — chodzi o świadomy wybór poziomu.",
+      theory:
+        "Skala od najsłabszego do najmocniejszego, sześć stopni:\n\n1. „I guess\" — unikać w pracy. Brzmi jak ktoś, kto sam siebie nie kupuje. Zostawia tylko dla prawdziwej niepewności: „I guess we'll see\".\n2. „I think\" — codzienne, OK do rozmów nieformalnych i opinii miękkich, ale neutralne.\n3. „I believe\" — profesjonalne, polecane jako default w pracy. Brzmi jak ktoś, kto stoi za swoim zdaniem bez agresji.\n4. „I'd argue\" — analityczne, świetne na meetingi z klientem. Nie znaczy że się kłócisz — to silniejsze „I think\" z elementem analizy, zostawia miejsce na dyskusję.\n5. „The data suggests\" — depersonalizacja, najlepsze dla strategii i rekomendacji opartych na danych. Zamienia opinię w obserwację.\n6. „We will / We need to\" — najmocniejsze, dla rekomendacji i decyzji.\n\nDefault w pracy: „I believe\" lub „I'd argue\". Kiedy masz dane: „The data suggests\". Kiedy dajesz rekomendację: „We need to / We will\". Native speakerzy z UK często łagodzą bardziej niż US, ale robią to przez modale (would / could), nie przez „I guess\". Eskalacja działa w obie strony — nie wszystko da się powiedzieć „We will\". Czasem „I'd argue\" jest lepsze właśnie dlatego, że zostawia przestrzeń na rozmowę.",
+      questions: [
+        {
+          type: "abc",
+          text: "Default poziom pewności w pracy konsultantki C1 to:",
+          options: [
+            "I think",
+            "I believe / I'd argue",
+            "We will",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„I think\" jest OK do luźnych opinii, „We will\" do twardych rekomendacji. Default to środek: „I believe\" lub „I'd argue\" — pewność bez agresji.",
+        },
+        {
+          type: "abc",
+          text: "Kiedy używać „The data suggests\"?",
+          options: [
+            "zamiast „I think\" gdy chcesz brzmieć skromniej",
+            "gdy masz dane i chcesz zamienić opinię w obserwację",
+            "tylko w pisemnych raportach, nie w mowie",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„The data suggests\" depersonalizuje sąd — nie Ty mówisz, dane mówią. Najmocniejsza formuła do rekomendacji strategicznych opartych o liczby.",
+        },
+        {
+          type: "fill",
+          text: "„_____ argue we should focus on retention before touching acquisition.\" — analityczna pewność z miejscem na dyskusję.",
+          options: null,
+          correctAnswer: "I'd",
+          explanation:
+            "„I'd argue\" — mocna formuła consulting English, brzmi jak ktoś, kto myślał, nie jak ktoś, kto się kłóci.",
+        },
+        {
+          type: "fill",
+          text: "Najsłabszy stopień skali, do wyrzucenia z pracy poza zdaniami typu „I guess we'll see\", to „I _____\".",
+          options: null,
+          correctAnswer: "guess",
+          explanation:
+            "„I guess\" w business contexcie brzmi jak ktoś, kto sam siebie nie kupuje. Wyłącznie do prawdziwej niepewności.",
+        },
+        {
+          type: "open",
+          text: "Przerób na konsultancki ton: „I think maybe we should kind of focus on customer retention.\"",
+          options: null,
+          correctAnswer:
+            "„The data suggests that customer retention is the bigger lever here. I'd argue we should focus there before touching acquisition.\" Eskalacja: „I think maybe\" → „The data suggests\" + „I'd argue\". Wycięte: maybe, kind of.",
+          explanation:
+            "Dwa stopnie wyżej na skali pewności + wycięcie tentative phrasing. Tak brzmi rekomendacja, nie niepewność.",
+        },
+        {
+          type: "spot_error",
+          text: "Rekomendacja do zarządu: „I guess we will need to maybe consider restructuring the portfolio.\"",
+          options: [
+            "I guess",
+            "we will",
+            "maybe",
+            "I guess + maybe — sprzeczność z „we will\"",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "„We will\" to szczyt skali pewności, „I guess\" i „maybe\" to jej dno. W jednym zdaniu sygnalizujesz jednocześnie pewność i wahanie — odbiorca nie wie, czemu wierzyć. Powinno być: „We need to consider restructuring the portfolio.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Skala pewności w business angielskim ma sześć stopni: od „I guess\" (do kosza) przez „I believe / I'd argue\" (default w pracy) po „The data suggests\" i „We will\" (rekomendacja).",
+        expand:
+          "Default to „I believe\" lub „I'd argue\" — pewność bez agresji, brzmi jak ktoś, kto myślał. „The data suggests\" depersonalizuje — to nie Ty mówisz, dane mówią; najlepsza formuła do rekomendacji strategicznych. „We will / We need to\" zostaw na twarde decyzje. „I think\" jest neutralne, OK na luźną opinię, ale w meetingu z klientem brzmi miękko. Eskalacja działa w obie strony — czasem „I'd argue\" lepiej niż „We will\", bo zostawia miejsce na dyskusję.",
+        trap:
+          "Nie myl skali pewności z grzecznością. Native UK łagodzą przez modale (would / could), nie przez „I guess\". „I'd argue\" nie znaczy, że się kłócisz — to akademicki / consulting standard. I uważaj na kumulację: „I guess we will maybe...\" miesza najwyższy i najniższy stopień skali w jednym zdaniu, klient nie wie, czemu wierzyć.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 19. Angielski: at the end vs in the end
+  // ============================================================
+  {
+    slug: "angielski-at-the-end-vs-in-the-end",
+    vaultSlug: "en",
+    label: "Angielski C1 — at the end vs in the end",
+    payload: {
+      title: "At the end vs in the end",
+      summary:
+        "Klasyczny błąd Polaków: polski „na końcu / w końcu / ostatecznie\" rozdziela się w angielskim na dwa wyrażenia ze sztywnymi zasadami. ELSA wytyka to gramatycznie — „at the end the service\" zamiast „in the end, the service\".",
+      theory:
+        "Trzy konstrukcje, każda z własną funkcją:\n\n„In the end\" = ostatecznie, w rezultacie, po procesie lub decyzji. Wynik czegoś. „In the end, we decided to launch.\" / „In the end, the strategy paid off.\"\n\n„At the end (of)\" = na końcu czegoś konkretnego — czasu, listy, filmu, spotkania. Lokalizacja w czasie albo miejscu. „At the end of the meeting, we agreed on next steps.\" / „At the end of Q3, revenue was flat.\" „At the end\" bez „of\" brzmi niekompletnie i prawie zawsze potrzebuje uzupełnienia.\n\n„By the end (of)\" = do momentu zakończenia czegoś, deadline. „By the end of the week, we'll have a draft.\"\n\nReguły pamięciowe: wynik / wniosek = „in the end\"; lokalizacja w czasie = „at the end of\" + coś konkretnego; deadline = „by the end of\". „On the end\" nie istnieje, mimo że Polak czasem tak strzeli przez analogię do „on Monday\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„_____, only two of the three deliverables turned out to be realistic.\"",
+          options: [
+            "At the end",
+            "In the end",
+            "On the end",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wynik procesu, refleksja po fakcie → „In the end\". „At the end\" wymagałoby „of czegoś\". „On the end\" nie istnieje.",
+        },
+        {
+          type: "abc",
+          text: "„_____ the SteerCo, we agreed on three deliverables.\"",
+          options: [
+            "At the end of",
+            "In the end of",
+            "By the end of",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Lokalizacja w czasie — konkretny moment w obrębie spotkania → „At the end of\". „By the end of\" znaczyłoby deadline („zanim się skończyło\"). „In the end of\" nie istnieje.",
+        },
+        {
+          type: "fill",
+          text: "Deadline: „_____ the week, we'll have a draft ready.\"",
+          options: null,
+          correctAnswer: "By the end of",
+          explanation:
+            "„By the end of\" = do momentu zakończenia, klasyczna formuła deadline'u w consultingu.",
+        },
+        {
+          type: "fill",
+          text: "Wynik / wniosek po procesie: „_____, only two were realistic given the timeline.\"",
+          options: null,
+          correctAnswer: "In the end",
+          explanation:
+            "„In the end\" zamyka refleksję — co wyszło z całej historii.",
+        },
+        {
+          type: "spot_error",
+          text: "„At the end the meeting, in the end they agreed on the timeline.\"",
+          options: [
+            "at the end the meeting — brak „of\"",
+            "in the end — powinno być „at the end\"",
+            "obie konstrukcje źle",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„At the end\" prawie zawsze potrzebuje „of\" — tu: „At the end of the meeting\". Druga część („in the end, they agreed\") jest poprawna jako wynik dyskusji.",
+        },
+      ],
+      salon: {
+        short:
+          "Polski „na końcu / w końcu\" rozdziela się w angielskim na trzy wyrażenia: „in the end\" (wynik), „at the end of\" (lokalizacja w czasie), „by the end of\" (deadline).",
+        expand:
+          "„In the end, we decided to launch\" — wynik refleksji. „At the end of the meeting, we agreed\" — moment w obrębie wydarzenia, zawsze z „of\". „By the end of the week\" — deadline. Jedno zdanie pokazuje dwie konstrukcje obok siebie: „At the end of the SteerCo, we agreed on three deliverables. In the end, only two were realistic.\"",
+        trap:
+          "„At the end\" bez „of\" prawie zawsze brzmi błędnie. „On the end\" nie istnieje (Polak strzela przez analogię do „on Monday\"). I nie myl „in the end\" (wniosek) z „at the end\" (lokalizacja) — to dwa różne narzędzia.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 20. Angielski: register upgrade — stuff / things do kosza
+  // ============================================================
+  {
+    slug: "angielski-register-stuff-things",
+    vaultSlug: "en",
+    label: "Angielski C1 — register upgrade (stuff, things, really)",
+    payload: {
+      title: "Register upgrade: stuff i things do kosza",
+      summary:
+        "W professional context „stuff\" i „things\" to czerwona flaga — brzmią jak student, nie konsultantka strategiczna. Ten sam problem dotyczy „kind of / sort of\" i nadużywanego „really\". W consultingu zawsze da się nazwać konkretniej, bo właśnie za tę precyzję klient płaci.",
+      theory:
+        "„Stuff\" i „things\" to catch-all, kiedy nie wiemy, jak coś nazwać. Podmiany do automatyzacji w business contexcie:\n\n„these things\" → „these factors / elements / drivers\". „stuff like that\" → „similar considerations / related aspects\". „all this stuff\" → „all these variables / these dynamics\". „the cost stuff\" → „the cost dynamics / the cost structure\". „customer stuff\" → „customer-side considerations / consumer dynamics\". „the things we need to do\" → „the actions we need to take / the next steps\".\n\nInne słowa do uważności: „really\" (overused) → „significantly, substantially, materially\". „very + przymiotnik\" → mocniejszy przymiotnik („very important\" → „critical\"; „very big\" → „substantial\"). „kind of / sort of\" → wytnij albo zamień na „somewhat, to some extent\".\n\nUwaga: „things\" jako zaimek w zdaniach typu „things are looking good\" / „things have improved this quarter\" jest naturalne i OK. Problem zaczyna się przy „these things to consider\" — tam zawsze da się powiedzieć precyzyjniej. Native speakerzy w UK używają „stuff/things\" naturalnie w mowie codziennej. To Ty w business contexcie masz być precyzyjniejsza — Polak na C1, który nadużywa „stuff\", brzmi jak ktoś, kto nie nauczył się słownictwa branżowego. Ale nie przeskakuj w język nadęty: „considerations\" jest OK, „ratiocinations\" za daleko.",
+      questions: [
+        {
+          type: "abc",
+          text: "„There are three _____ driving this trend: pricing pressure, shifting consumer expectations, and regulatory tightening.\"",
+          options: [
+            "things",
+            "stuff",
+            "factors",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "„Factors / drivers / elements\" — consulting standard. „Things\" w tym kontekście brzmi jak student. „Stuff\" w ogóle nie używa się jako liczba mnoga.",
+        },
+        {
+          type: "abc",
+          text: "„Very important\" w deck dla klienta lepiej zastąpić przez:",
+          options: [
+            "really important",
+            "critical",
+            "kind of important",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Jedno mocniejsze słowo zamiast „very + adj\". „Critical\" (lub „pivotal / essential\") brzmi profesjonalnie. „Really\" jest overused, „kind of\" osłabia.",
+        },
+        {
+          type: "fill",
+          text: "„Revenue has _____ increased this quarter\" — zamiast nadużywanego „really\".",
+          options: null,
+          correctAnswer: "significantly",
+          explanation:
+            "„Significantly / substantially / materially\" — finansowy i consulting standard, brzmi analitycznie.",
+        },
+        {
+          type: "open",
+          text: "Przerób na consulting English: „There's like three things behind this, you know, pricing stuff, customers, and regulations and things.\"",
+          options: null,
+          correctAnswer:
+            "„There are three factors driving this trend: pricing pressure, shifting consumer expectations, and regulatory tightening.\" Wycięte: like, you know, things, stuff. Dodane: konkretne nazwy każdego czynnika.",
+          explanation:
+            "Zasada: jeśli używasz „things/stuff\", to znak, że jeszcze nie nazwałaś tego konkretnie. Wymuś na sobie precyzję.",
+        },
+        {
+          type: "spot_error",
+          text: "„We need to focus on the cost stuff and kind of address these customer things really soon.\"",
+          options: [
+            "cost stuff",
+            "kind of",
+            "customer things",
+            "wszystko — kumulacja register problemów",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Kumulacja: „cost stuff\" (catch-all), „kind of\" (hedging bez sensu), „customer things\" (catch-all), „really soon\" (overused intensifier). Powinno być: „We need to address the cost dynamics and the customer-side considerations promptly.\"",
+        },
+      ],
+      salon: {
+        short:
+          "„Stuff\" i „things\" w business angielskim to czerwona flaga — brzmią jak student, nie konsultantka. Każde z nich w consulting contexcie da się zastąpić precyzyjniejszym słowem.",
+        expand:
+          "„These things\" → „these factors / drivers / elements\". „The cost stuff\" → „the cost dynamics / structure\". „Very important\" → „critical\". „Really\" overused → „significantly / substantially / materially\". Tam, gdzie używasz „stuff\", jeszcze nie nazwałaś rzeczy po imieniu — to sygnał, że trzeba zrobić jeszcze jeden krok precyzji. Native UK używają „stuff/things\" naturalnie w small talku, ale Ty w pracy masz brzmieć jak ktoś, kto zna słownictwo branżowe.",
+        trap:
+          "Nie wpadnij w pretensjonalność. „Considerations\" jest OK, „ratiocinations\" za daleko. „Things are looking good\" jako zaimek jest naturalne — problem dotyczy zdań typu „these things to consider\", gdzie zawsze da się powiedzieć konkretniej. I uważaj na „kind of / sort of\" — w mowie z umiarem OK, w piśmie wytnij.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 21. Angielski: synonimy eco-friendly i customer behavior
+  // ============================================================
+  {
+    slug: "angielski-synonimy-eco-customer",
+    vaultSlug: "en",
+    label: "Angielski C1 — synonimy (eco-friendly, customer behavior)",
+    payload: {
+      title: "Synonimy: eco-friendly i customer behavior",
+      summary:
+        "Na C1+ oczekuje się vocabulary range — umiejętności podawania tej samej idei innymi słowami. ELSA wytknęła powtarzanie „eco-friendly\" i „customer behavior\" w jednej rozmowie. To nie kosmetyka, to realny marker poziomu w IELTS/CAE i w odbiorze przez native speakerów.",
+      theory:
+        "Eco-friendly — synonimy w kolejności od najczęstszych do najbardziej technicznych:\n„sustainable\" (najczęstsze w biznesie i strategii, default).\n„green\" (codzienne, OK).\n„environmentally conscious\" (o ludziach i firmach).\n„environmentally friendly\" (formalne).\n„low-impact\" (techniczne, ESG).\n„climate-aligned\" (corporate, ESG).\n„net-zero / carbon-neutral\" (konkretny target, mierzalny).\n„ESG-aligned\" (investment / strategy speak).\n\nCustomer behavior — synonimy:\n„consumer trends\" (makro, rynek).\n„consumer insights\" (data-driven, market research).\n„market dynamics\" (szeroko, system).\n„buying patterns\" (konkret, mikro).\n„purchase behavior\" (transakcyjne).\n„customer preferences\" (gusta, wybory).\n„consumer sentiment\" (emocje, opinie).\n„demand patterns\" (z perspektywy podaży/popytu).\n\nReguły: w jednej wypowiedzi nie używaj tego samego terminu więcej niż 2 razy. Mieszaj makro („market dynamics\") z konkretem („buying patterns\"). „Sustainable\" to default w biznesie; ESG i corporate to „climate-aligned / net-zero\". Dla danych klientów „consumer insights\" brzmi profesjonalnie i analitycznie. „Eco-friendly\" nadużywane brzmi marketingowo, prawie greenwashingowo — „sustainable\" jest poważniejsze. „Carbon-neutral\" to konkretny mierzalny cel, nie luźny synonim ekologii.",
+      questions: [
+        {
+          type: "abc",
+          text: "Default słowo dla „eco-friendly\" w business / strategy contexcie to:",
+          options: [
+            "green",
+            "sustainable",
+            "eco-conscious",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Sustainable\" — najpoważniejsze i najbardziej uniwersalne. „Green\" jest OK, ale w deck brzmi marketingowo. „Eco-friendly\" nadużywane pachnie greenwashingiem.",
+        },
+        {
+          type: "abc",
+          text: "W research / market analysis kontekstcie najprecyzyjniejszy synonim „customer behavior\" to:",
+          options: [
+            "consumer insights",
+            "customer stuff",
+            "people preferences",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Consumer insights\" brzmi data-driven, analitycznie. „Customer stuff\" — kategoria register problemu. „People preferences\" to nie jest standardowa kolokacja.",
+        },
+        {
+          type: "fill",
+          text: "Konkretny mierzalny target ekologiczny to „_____-neutral\" lub „net-zero\".",
+          options: null,
+          correctAnswer: "carbon",
+          explanation:
+            "„Carbon-neutral\" to konkretny target, nie ogólny synonim „ekologicznego\". Nie używaj jako stylistycznej wariacji „green\".",
+        },
+        {
+          type: "fill",
+          text: "Mikro, transakcyjny synonim „customer behavior\" — co kupują i jak: „_____ patterns\".",
+          options: null,
+          correctAnswer: "buying",
+          explanation:
+            "„Buying patterns\" — konkret na poziomie transakcji. „Consumer trends\" jest makro, „buying patterns\" mikro.",
+        },
+        {
+          type: "open",
+          text: "Napisz jedno zdanie używając trzech różnych synonimów z grupy „eco-friendly\" / „customer behavior\" bez powtórzeń.",
+          options: null,
+          correctAnswer:
+            "Przykład: „Our analysis of consumer trends suggests that demand for sustainable products is no longer a niche, but a mainstream expectation. The buying patterns we observed in the last quarter confirm this shift.\" Trzy synonimy: consumer trends, sustainable, buying patterns.",
+          explanation:
+            "Mieszanka makro (consumer trends) z konkretem (buying patterns) plus jeden synonim ekologii. Tak działa vocabulary range na C1.",
+        },
+        {
+          type: "spot_error",
+          text: "„We need to understand customer behavior better because customer behavior in this market is shifting and customer behavior data is limited.\"",
+          options: [
+            "powtórzenie „customer behavior\" trzy razy",
+            "źle dobrana skala",
+            "brak modalu",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Czerwona flaga na C1 — trzy razy ten sam termin. Powinno być np.: „We need to understand consumer behavior better because buying patterns in this market are shifting and consumer insights are limited.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Na C1+ vocabulary range to nie kosmetyka — to marker poziomu. „Eco-friendly\" i „customer behavior\" mają po 6–8 synonimów, z których każdy nosi inny rejestr.",
+        expand:
+          "„Sustainable\" to default w biznesie, „climate-aligned\" i „net-zero\" w ESG, „carbon-neutral\" jako konkretny target. Dla klientów: „consumer trends\" (makro), „buying patterns\" (mikro), „consumer insights\" (data-driven). W jednej wypowiedzi mieszaj makro z konkretem, nie używaj tego samego terminu więcej niż dwa razy. Ten sam mini-paragraf może łączyć „consumer trends\" + „sustainable\" + „buying patterns\" — i wtedy brzmisz jak konsultantka, a nie jak student na repeat-mode.",
+        trap:
+          "„Carbon-neutral\" to mierzalny cel, nie stylistyczna wariacja „green\". „Eco-friendly\" nadużywane zaczyna brzmieć greenwashingowo. I nie przeskakuj w przesadnie techniczny rejestr na luźnej rozmowie — „ESG-aligned\" przy lampce wina brzmi sztywno.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 22. Angielski: politeness w business
+  // ============================================================
+  {
+    slug: "angielski-politeness-business",
+    vaultSlug: "en",
+    label: "Angielski C1 — politeness w business (modale, pośredniość)",
+    payload: {
+      title: "Politeness w business English",
+      summary:
+        "Polski poziom bezpośredniości w mowie biznesowej jest wyższy niż angielski. To, co po polsku brzmi neutralnie („Powiedz mi więcej\"), po angielsku często brzmi rozkazująco. Grzeczność w business angielskim robi się przez modale (could / would), pośredniość („I'd appreciate\") i softeners — NIE przez tentative phrasing typu „I guess\".",
+      theory:
+        "Mechanizm grzeczności: modale (could / would / might) + pośredniość („I'd appreciate\" zamiast „tell me\") + łagodniki („perhaps, if possible\"). Klasyczne podmiany do automatyzacji:\n\n„Tell me about your strategy\" → „Could you walk me through your strategy?\". „What do you think?\" → „I'd appreciate your perspective on this\". „Send me the report\" → „Could you please send me the report?\". „I need this by Friday\" → „Would it be possible to have this by Friday?\". „Do you know more about X?\" → „Could you share more on X?\". „When can we meet?\" → „When would be a good time for you to meet?\". „Answer my email\" → „I'd appreciate your response when you have a moment\".\n\nSoftenery bez utraty pewności: „Would it be possible to...\", „I was wondering if...\", „If you don't mind...\", „When you have a moment...\", „At your convenience...\".\n\nReguły: „could / would\" to najlepsi przyjaciele w pracy. „Please\" używaj częściej niż w polskim — w angielskim nie brzmi służalczo. Im wyższe stanowisko rozmówcy, tym bardziej pośrednio — ale nigdy niepewnie. Pułapki: „could you\" > „can you\" z klientem. „Please\" na początku zdania może brzmieć szorstko („Please send the report\" w niektórych kontekstcie brzmi jak rozkaz) — lepiej „Could you please send...\". Nadmiar też jest źle: „I was wondering if perhaps you might possibly...\" brzmi jak parodia, jeden softener wystarczy. „I'd like you to...\" jest bardziej rozkazujące niż „Could you...\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Grzeczność w business angielskim robi się głównie przez:",
+          options: [
+            "tentative phrasing („I guess, maybe\")",
+            "modale + pośredniość + softenery",
+            "częste „sorry\" na początku zdań",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„I guess / maybe\" osłabiają treść, nie ją grzeczni. Tentativeness ≠ politeness — dwie różne dźwignie.",
+        },
+        {
+          type: "abc",
+          text: "Z klientem C-level lepiej: „Send me the report.\" czy „Could you please send me the report?\"",
+          options: [
+            "pierwsza wersja, bezpośrednia",
+            "druga wersja, modal + please",
+            "obie OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pośredniość przez modal + please. Im wyższe stanowisko, tym bardziej pośrednio. „Please\" w angielskim nie brzmi służalczo.",
+        },
+        {
+          type: "fill",
+          text: "Klasyczny softener: „Would it be _____ to have this by Friday?\"",
+          options: null,
+          correctAnswer: "possible",
+          explanation:
+            "„Would it be possible to...\" — uniwersalny softener do deadline'ów i próśb. Brzmi profesjonalnie bez wymuszania.",
+        },
+        {
+          type: "fill",
+          text: "Z klientem, zamiast „Can you...\", użyj „_____ you...\".",
+          options: null,
+          correctAnswer: "Could",
+          explanation:
+            "„Could you\" > „Can you\" w business contexcie. „Can you\" jest OK z kolegami, z klientem mniej formalne.",
+        },
+        {
+          type: "open",
+          text: "Przerób na business English: „Tell me about your assumptions on pricing before we present to the board.\"",
+          options: null,
+          correctAnswer:
+            "„Could you walk me through your assumptions on pricing? I'd appreciate understanding the logic before we present this to the board.\" Modal („could you\") + pośredniość („walk me through\", „I'd appreciate\") + uzasadnienie.",
+          explanation:
+            "Trzy dźwignie naraz: modal, pośrednia formuła, uzasadnienie czemu pytasz. Brzmi profesjonalnie, nie agresywnie, nie służalczo.",
+        },
+        {
+          type: "spot_error",
+          text: "„I was wondering if perhaps you might possibly be able to consider sending me the report when convenient.\"",
+          options: [
+            "I was wondering if",
+            "perhaps + might + possibly",
+            "when convenient",
+            "nadmiar softenerów — parodia grzeczności",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Każdy element osobno OK, ale kumulacja brzmi jak parodia. Jeden softener wystarczy: „Would it be possible to send me the report when you have a moment?\"",
+        },
+      ],
+      salon: {
+        short:
+          "Polski poziom bezpośredniości w business mowie jest wyższy niż angielski — to, co u nas brzmi neutralnie, po angielsku często brzmi rozkazująco. Grzeczność robi się przez modale, pośredniość i softenery.",
+        expand:
+          "„Could you walk me through...\", „I'd appreciate your perspective\", „Would it be possible to...\" — to podstawowe narzędzia. „Please\" używaj częściej niż w polskim, nie brzmi służalczo. Im wyższe stanowisko rozmówcy, tym bardziej pośrednio — ale nigdy niepewnie. Mechanizm to modal + pośrednia formuła + ewentualnie uzasadnienie czemu pytasz.",
+        trap:
+          "Tentativeness („I guess, maybe\") ≠ politeness. To dwie różne dźwignie, których Polak często nie rozróżnia. „I'd like you to...\" brzmi bardziej rozkazująco niż „Could you...\". Nadmiar softenerów to parodia — „I was wondering if perhaps you might possibly...\" brzmi jak komedia. Jeden softener wystarczy.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 23. Angielski: articles (a / an / the / zero)
+  // ============================================================
+  {
+    slug: "angielski-articles-pulapki",
+    vaultSlug: "en",
+    label: "Angielski C1 — articles (a / an / the / zero)",
+    payload: {
+      title: "Articles — 3 pułapki polskie",
+      summary:
+        "Polski nie ma rodzajników, więc dla nas to nigdy nie jest automatyczne. Articles to ranking #1 problemów Polaków na C1, szczególnie pod presją (interview, prezentacja, case). Trzy reguły niżej pokrywają 80% sytuacji w biznesowym angielskim.",
+      theory:
+        "Reguła 1: general vs specific.\nZero article dla ogólnych pojęć i niepoliczalnych w sensie ogólnym: „I work in consulting.\" / „Inflation is rising.\"\n„The\" dla rzeczy konkretnych, znanych obu stronom: „The CEO we met yesterday wants a follow-up.\" / „The strategy we presented was approved.\"\n„A / an\" dla rzeczy wprowadzanych pierwszy raz, jeden z wielu: „We need a strategy for next year.\"\n\nReguła 2: instytucje funkcjonalnie vs jako budynki.\nZero article gdy mówimy o funkcji / działaniu: „go to school, be in hospital, go to university, finish work\".\n„The\" gdy mówimy o konkretnym budynku / miejscu: „The school was renovated last year.\" / „The hospital is just around the corner.\"\n\nReguła 3: geografia.\nPojedyncze szczyty / jeziora: bez „the\" — „Mount Everest, Lake Victoria, Mont Blanc\".\nPasma górskie i grupy wysp: z „the\" — „The Alps, The Himalayas, The Bahamas, The Philippines\".\nKraje pojedyncze: zwykle bez „the\" — „Poland, France, Germany\".\nKraje z „republic / states / kingdom\": z „the\" — „The United States, The United Kingdom, The Czech Republic\".\n\nNazwy firm i miast: zero article — „I work at EY in Warsaw.\" (nie „the EY\", nie „the Warsaw\"). W tytułach i headlines często wycina się articles, ale w mowie i mailu — nie wycinaj.",
+      questions: [
+        {
+          type: "abc",
+          text: "„I work at _____ in _____.\" (firma + miasto)",
+          options: [
+            "the EY / the Warsaw",
+            "EY / Warsaw",
+            "an EY / a Warsaw",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Nazwy firm i miast — zero article. „The EY\" i „the Warsaw\" to klasyczna polska kalka.",
+        },
+        {
+          type: "abc",
+          text: "„_____ energy transition is reshaping industry.\" (mówimy o obecnej, znanej transformacji)",
+          options: [
+            "An",
+            "The",
+            "zero article",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Konkretna, znana obu stronom transformacja → „The\". Gdyby było ogólne „Energy transitions reshape industries\", to byłoby zero article.",
+        },
+        {
+          type: "fill",
+          text: "Pasmo górskie wymaga „the\": „_____ Alps\".",
+          options: null,
+          correctAnswer: "The",
+          explanation:
+            "Pasma górskie i grupy wysp z „the\" (The Alps, The Himalayas, The Bahamas). Pojedyncze szczyty bez (Mount Everest).",
+        },
+        {
+          type: "fill",
+          text: "„I go to _____ school\" (jestem uczniem — funkcja, nie budynek).",
+          options: null,
+          correctAnswer: "",
+          explanation:
+            "Zero article, gdy mówimy o funkcji instytucji. „The school was renovated\" wymagałoby „the\" — wtedy mówimy o konkretnym budynku.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij różnicę: „I go to school\" vs „I'm going to the school by car\".",
+          options: null,
+          correctAnswer:
+            "„I go to school\" = jestem uczniem (funkcja instytucji, zero article). „I'm going to the school\" = jadę do tego konkretnego budynku (np. po dziecko — lokalizacja, z „the\"). Polak miesza, bo polski nie ma rodzajników.",
+          explanation:
+            "Klasyczne rozróżnienie: instytucja jako funkcja (zero article) vs instytucja jako konkretny budynek (the).",
+        },
+        {
+          type: "spot_error",
+          text: "„The Poland is changing fast, and the EY is hiring more consultants for the next year's strategy.\"",
+          options: [
+            "the Poland — kraj pojedynczy nie ma „the\"",
+            "the EY — nazwa firmy bez „the\"",
+            "the next year's — should be zero",
+            "wszystko źle — trzy article problemy",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Trzy klasyczne polskie błędy: „the Poland\" (kraj pojedynczy bez „the\"), „the EY\" (nazwa firmy bez „the\"), „the next year's\" (bez „the\"). Powinno być: „Poland is changing fast, and EY is hiring more consultants for next year's strategy.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Articles to ranking #1 problemów Polaków na C1. Trzy reguły pokrywają 80% sytuacji: general vs specific, instytucje funkcjonalne vs budynki, geografia (pojedyncze vs pasma).",
+        expand:
+          "Zero article dla pojęć ogólnych („I work in consulting\") i instytucji jako funkcji („go to school\"). „The\" dla konkretu znanego obu stronom („The strategy we presented\") i pasm górskich / grup („The Alps, The Bahamas\"). „A / an\" dla nowo wprowadzanych obiektów („We need a strategy\"). Nazwy firm i miast — zero article („I work at EY in Warsaw\").",
+        trap:
+          "„The Poland / The EY / The Warsaw\" to klasyczna polska kalka, bo nie mamy rodzajników. „I go to the school by car\" znaczy „jadę do tego konkretnego budynku\" (np. po dziecko), nie „jestem uczniem\". W tytułach articles często wycina się, ale w mowie i mailu — nie wycinaj.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 24. Angielski: prepositions po czasownikach
+  // ============================================================
+  {
+    slug: "angielski-prepositions-po-czasownikach",
+    vaultSlug: "en",
+    label: "Angielski C1 — prepositions po czasownikach",
+    payload: {
+      title: "Prepositions po czasownikach (verb + preposition collocations)",
+      summary:
+        "Polski „zależeć od\" to angielski „depend on\", nie „depend from\". To są kolokacje, których nie da się wyciągnąć logicznie — trzeba znać. Polacy najczęściej walą „depend from / discuss about / explain me\". Te trzy trzeba mieć zautomatyzowane do C1.",
+      theory:
+        "Kanon polskich błędów (must-know):\n„depend ON\" (nie „from\").\n„consist OF\" (nie „from\").\n„focus ON\" (nie „at\").\n„responsible FOR\" (nie „of\").\n„result IN\" (sth) / „result FROM\" (sth) — uważać na kierunek.\n„discuss\" — BEZ przyimka („Let's discuss the plan\", nie „discuss about\").\n„explain sth TO sb\" (nie „explain sb sth\").\n„listen TO\" (nie samo „listen\").\n„arrive AT\" (place) / „arrive IN\" (city) — nie „arrive to\".\n„comment ON\" (nie „about\").\n„agree WITH\" sb / „agree ON\" sth.\n„apologize FOR\" sth / „apologize TO\" sb.\n„participate IN\" (nie „at\").\n„graduate FROM\" (nie „of\").\n\nKluczowe rozróżnienia:\nResult IN vs result FROM — „IN\" = przynieść jako skutek („The project resulted in a 15% cost reduction.\"), „FROM\" = wynikać z („The cost reduction resulted from process automation.\").\nAgree WITH vs agree ON — „WITH\" kogoś (osoba): „I agree with the CFO.\". „ON\" coś (decyzja, plan): „We agreed on the timeline.\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„The success of this project depends _____ three factors.\"",
+          options: [
+            "from",
+            "on",
+            "of",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Depend ON\" — uniwersalna kolokacja. „Depend from\" to kalka z polskiego „zależeć od\".",
+        },
+        {
+          type: "abc",
+          text: "„I will _____ this to you in detail.\"",
+          options: [
+            "explain",
+            "explain you",
+            "discuss about",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Explain sth TO sb\" — kolejność i przyimek obowiązkowe. „Explain you this\" to klasyczna kalka z polskiego.",
+        },
+        {
+          type: "fill",
+          text: "„We _____ the budget for an hour but couldn't reach a conclusion.\" (bez przyimka po czasowniku)",
+          options: null,
+          correctAnswer: "discussed",
+          explanation:
+            "„Discuss\" nie bierze przyimka. „Discussed about\" to klasyczna polska pułapka.",
+        },
+        {
+          type: "fill",
+          text: "„I agree _____ the CFO that we should pivot.\" (osoba)",
+          options: null,
+          correctAnswer: "with",
+          explanation:
+            "Z osobą zawsze „with\". Z decyzją / planem — „on\" („We agreed on the timeline\").",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij różnicę: „The project resulted in cost savings\" vs „The cost savings resulted from automation\".",
+          options: null,
+          correctAnswer:
+            "„Result IN\" = projekt przyniósł skutek (kierunek: przyczyna → skutek). „Result FROM\" = oszczędności wynikają z (kierunek: skutek ← przyczyna). Strzałka leci w przeciwne strony.",
+          explanation:
+            "Klasyczna pułapka kierunku. „IN\" patrzy do przodu, „FROM\" patrzy do tyłu.",
+        },
+        {
+          type: "spot_error",
+          text: "„We discussed about the budget, depended from the timeline, and arrived to a conclusion.\"",
+          options: [
+            "discussed about",
+            "depended from",
+            "arrived to",
+            "wszystkie trzy — typowe polskie kalki",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Trzy klasyczne błędy: „discuss\" bez przyimka, „depend ON\", „arrive AT/IN\". Powinno być: „We discussed the budget, depended on the timeline, and arrived at a conclusion.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Verb + preposition to kolokacje, których się nie wyciąga logiką — trzeba je znać. Polacy najczęściej walą „depend from / discuss about / explain me\".",
+        expand:
+          "Kanon do automatyzacji: depend ON, consist OF, focus ON, responsible FOR, discuss (bez przyimka), explain sth TO sb, listen TO, arrive AT (place) / IN (city), agree WITH (osoba) / ON (sprawa). Dwie subtelne pary: result IN (skutek) vs result FROM (przyczyna); agree WITH (osoba) vs agree ON (decyzja).",
+        trap:
+          "„Explain you this\" / „discussed about\" / „depend from\" / „listen me\" / „arrive to Warsaw\" — to top-5 polskich błędów. Każdy z nich wynika z kalki bezpośredniej z polskiego.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 25. Angielski: Present Perfect vs Past Simple
+  // ============================================================
+  {
+    slug: "angielski-present-perfect-vs-past-simple",
+    vaultSlug: "en",
+    label: "Angielski C1 — Present Perfect vs Past Simple",
+    payload: {
+      title: "Present Perfect vs Past Simple",
+      summary:
+        "Polski ma jeden czas przeszły, więc Present Perfect to dla nas obcy koncept. Klasyczna pułapka Polaków na C1, szczególnie w interview, gdzie opowiadasz o swoim doświadczeniu. Wybór czasu zmienia znaczenie zdania.",
+      theory:
+        "Past Simple — akcja zakończona, konkretny moment w przeszłości:\n„I worked at EY for 5 years.\" → już tam nie pracuję, koniec.\n„Yesterday I had a meeting with the CFO.\" → konkretny dzień.\nSygnały: yesterday, last week / month / year, in 2020, ago, when I was...\n\nPresent Perfect — łączy przeszłość z teraźniejszością. Trzy główne użycia:\n1. Akcja zaczęła się w przeszłości i trwa do teraz: „I have worked at EY for 5 years.\" → dalej tam pracuję. „I have lived in Warsaw since 2019.\"\n2. Doświadczenie życiowe (kiedykolwiek, bez konkretnego momentu): „Have you ever done a strategy project for the energy sector?\" / „I have worked with three Fortune 500 clients.\"\n3. Niedawne akcje z efektem teraz: „I have just finished the deck.\" / „They have decided to postpone the launch.\"\nSygnały: for, since, ever, never, just, already, yet, recently, this week / month / year (jeszcze trwa), so far.\n\nPast Perfect (dodatek) — akcja przed inną akcją w przeszłości: „By the time we finalized the model, the client had already changed their mind twice.\"\n\nZasady pamięciowe: „for / since\" + Present Perfect prawie zawsze. „yesterday / ago / last X\" + Past Simple zawsze. „Pracuję tu od 5 lat\" = „I have worked here for 5 years\" (NIE „I work here for 5 years\" — to klasyczny błąd). W US English Present Perfect bywa zastępowane Past Simple („I just finished\" vs „I have just finished\"). W UK trzymaj się Present Perfect — brzmi czyściej w pracy.",
+      questions: [
+        {
+          type: "abc",
+          text: "„I _____ at EY for 5 years.\" (dalej tam pracuję)",
+          options: [
+            "work",
+            "worked",
+            "have worked",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Akcja zaczęła się w przeszłości i trwa do teraz → Present Perfect. „I work here for 5 years\" to klasyczna polska kalka.",
+        },
+        {
+          type: "abc",
+          text: "„Yesterday I _____ a meeting with the CFO.\"",
+          options: [
+            "had",
+            "have had",
+            "have",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Yesterday\" = konkretny moment → Past Simple. „Have had yesterday\" to błąd, bo Present Perfect nie idzie z konkretnym przeszłym czasem.",
+        },
+        {
+          type: "fill",
+          text: "Interview: „I _____ been at EY for five years, working primarily on strategy projects.\"",
+          options: null,
+          correctAnswer: "have",
+          explanation:
+            "Trwa do teraz → Present Perfect. „For\" jest klasycznym sygnałem.",
+        },
+        {
+          type: "fill",
+          text: "„Last year, I _____ a portfolio of solar PV projects.\" (konkretny rok, zamknięte)",
+          options: null,
+          correctAnswer: "led",
+          explanation:
+            "„Last year\" = konkretny zamknięty moment → Past Simple („led\", nie „have led\").",
+        },
+        {
+          type: "open",
+          text: "Połącz oba czasy w jednym zdaniu o karierze, używając „for\" + „last year\".",
+          options: null,
+          correctAnswer:
+            "Przykład: „I have been at EY for five years. Last year, I led a portfolio of solar PV projects up to Ready-to-Build, and I recently started exploring opportunities outside consulting.\" Present Perfect dla obecnej kariery, Past Simple dla zamkniętego projektu, Present Perfect dla niedawnej akcji.",
+          explanation:
+            "Tak brzmi C1 w interview: świadome zarządzanie dwoma czasami w jednej wypowiedzi.",
+        },
+        {
+          type: "spot_error",
+          text: "„I have seen the CFO yesterday and we have agreed on the timeline last week.\"",
+          options: [
+            "have seen + yesterday",
+            "have agreed + last week",
+            "obie pary źle — Present Perfect nie idzie z konkretnym czasem",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "„Yesterday / last week\" → Past Simple. Powinno być: „I saw the CFO yesterday and we agreed on the timeline last week.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Polski ma jeden czas przeszły, angielski dwa kluczowe — Past Simple (zamknięte) i Present Perfect (łączy przeszłość z teraz). Wybór czasu zmienia znaczenie.",
+        expand:
+          "„For / since\" + Present Perfect prawie zawsze („I have worked here for 5 years\" = dalej pracuję). „Yesterday / last X / ago\" + Past Simple zawsze. Trzy użycia Present Perfect: trwa do teraz (for / since), doświadczenie życiowe (ever / never), niedawna akcja z efektem teraz (just / already / yet). Interview standard: Present Perfect dla kariery, Past Simple dla konkretnych projektów, Present Perfect dla najświeższego newsa.",
+        trap:
+          "„I work here for 5 years\" to top klasyczny polski błąd — brak Present Perfect. „I have seen him yesterday\" — niemożliwe, bo Present Perfect nie idzie z konkretnym przeszłym momentem. W US Present Perfect bywa zastępowane Past Simple („I just finished\"), w UK trzymaj się Present Perfect — brzmi czyściej.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 26. Angielski: mixed conditionals
+  // ============================================================
+  {
+    slug: "angielski-mixed-conditionals",
+    vaultSlug: "en",
+    label: "Angielski C1 — mixed conditionals",
+    payload: {
+      title: "Mixed conditionals",
+      summary:
+        "Conditionals 0/1/2/3 masz pewnie ogarnięte. Mixed conditional to C1+ konstrukcja, która łączy dwa różne czasy w jednym zdaniu. Przydatna w refleksji nad decyzjami (kariera, „co by było, gdyby\"), w analizie strategicznej i w eleganckich argumentach. Sygnalizuje C1+ poziom, bo wymaga świadomego zarządzania dwoma czasami.",
+      theory:
+        "Typ 1: past condition → present result.\n„If + had + 3 forma, would + bezokolicznik\"\nSytuacja: w przeszłości coś (nie) zrobiłem, więc teraz mam (nie mam) tego efektu.\n„If I had accepted that offer in London, I would be there now.\" (Nie przyjęłam → teraz nie jestem.)\n„If we had launched earlier, we would be ahead of the competition today.\"\n„If she had stayed at the firm, she would be a partner by now.\"\n\nTyp 2: present condition → past result.\n„If + Past Simple, would + have + 3 forma\"\nJakaś ogólna cecha lub stan obecny, który gdyby był inny, to przeszłość wyglądałaby inaczej.\n„If I were more direct, I would have closed that deal last quarter.\" (Generalnie nie jestem direct → przez to wtedy nie zamknęłam.)\n„If she weren't so risk-averse, she would have invested in that startup.\"\n„If we had a stronger commercial team, we would have won the tender.\"\n\nForma „were\" (subjunctive): w mixed conditionals z 2nd typu w hipotezach formalnych używa się „were\" zamiast „was\" — „If I were the CEO, I would have done things differently.\" W mowie potocznej „if I was\" też się słyszy, ale w pracy i piśmie zostań przy „were\".\n\nMixed conditional łatwo pomylić z 3rd conditional (oba mają „had + 3 forma\" w if-clause). Różnica: 3rd kończy się „would have + 3 forma\" (oba past), mixed kończy się „would + V\" (present). Nie nadużywaj — użyta dwa razy w 30 minut robi wrażenie, użyta 6 razy brzmi jak ćwiczenie z gramatyki.",
+      questions: [
+        {
+          type: "abc",
+          text: "Past → present: „If I _____ that job in London, I would be there now.\"",
+          options: [
+            "had accepted",
+            "would have accepted",
+            "accepted",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Past condition (decyzja w przeszłości) → present result (teraz). „If + had + 3 forma\" w pierwszej części.",
+        },
+        {
+          type: "abc",
+          text: "Present → past: „If I _____ more direct, I would have closed that deal last quarter.\"",
+          options: [
+            "had been",
+            "were",
+            "would be",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Present condition (cecha ogólna) → past result. „If + Past Simple (were)\" w pierwszej części, „would have + 3 forma\" w drugiej.",
+        },
+        {
+          type: "fill",
+          text: "W formalnej hipotezie używamy „were\", nie „_____\".",
+          options: null,
+          correctAnswer: "was",
+          explanation:
+            "„If I were\" — subjunctive, standard w pracy i piśmie. „If I was\" jest OK w mowie potocznej, ale w consulting contexcie trzymaj się „were\".",
+        },
+        {
+          type: "fill",
+          text: "Past → present: „If we _____ launched earlier, we would be ahead of the competition today.\"",
+          options: null,
+          correctAnswer: "had",
+          explanation:
+            "„If we had launched\" — past condition. Druga część w present („would be\"), bo mówimy o stanie obecnym.",
+        },
+        {
+          type: "open",
+          text: "Napisz mixed conditional w odpowiedzi na pytanie w interview o decyzję, której żałujesz.",
+          options: null,
+          correctAnswer:
+            "Przykład: „Looking back, if I had said yes to that secondment, I would probably be running a different team by now. But I'm not sure I would have learned what I have at EY.\" Mixed conditional pierwszego typu (past → present) plus refleksja.",
+          explanation:
+            "Brzmi dojrzale i C1+. Refleksja nad nieobranymi drogami to klasyczny moment na mixed conditional.",
+        },
+        {
+          type: "spot_error",
+          text: "„If I would have known about the offer earlier, I would have applied.\"",
+          options: [
+            "would have known — błąd polski, ma być „had known\"",
+            "would have applied — OK",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Klasyczny polski błąd: „would have\" w pierwszej części. Powinno być: „If I had known about the offer earlier, I would have applied.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Mixed conditional łączy dwa różne czasy w jednym zdaniu. Past → present („If I had taken that job, I would be in Zurich now\") albo present → past („If I were more assertive, I would have negotiated more\").",
+        expand:
+          "Sygnalizuje C1+ poziom, bo wymaga świadomego zarządzania dwoma osiami czasu. Klasyczny moment na mixed conditional: refleksja nad decyzjami w karierze, analiza strategiczna („gdybyśmy mieli silniejszy commercial team, wygralibyśmy tamten tender\"), eleganckie argumenty. „Were\" zamiast „was\" w hipotezach formalnych — w pracy zawsze.",
+        trap:
+          "„If I would have known\" to top polski błąd — w if-clause nie ma „would\". Mixed łatwo pomylić z 3rd conditional: różnica leży w drugiej części (3rd kończy się „would have\", mixed kończy się „would\"). I nie nadużywaj — dwa razy w 30 minut robi wrażenie, sześć razy brzmi jak ćwiczenie.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 27. Angielski: inversion (C1 elegancja)
+  // ============================================================
+  {
+    slug: "angielski-inversion-c1",
+    vaultSlug: "en",
+    label: "Angielski C1 — inversion (negative adverbials)",
+    payload: {
+      title: "Inversion — C1 elegancja w mowie i piśmie",
+      summary:
+        "Inwersja to konstrukcja, w której zamieniasz miejscami subject i auxiliary, żeby coś podkreślić. Sygnał C1+ w mowie i piśmie. Na CAE / CPE robisz na tym punkty. W mailu lub prezentacji daje elegancki, profesjonalny ton bez nadęcia.",
+      theory:
+        "Reguła: negative adverbial na początku → auxiliary przed subject → reszta zdania. Jeśli nie ma auxiliary (np. proste Past Simple), dorzucasz do / does / did.\n\nNajczęstsze wyrażenia uruchamiające inwersję:\nNever — „Never have I seen such a clean dataset.\"\nRarely — „Rarely do you find this kind of clarity.\"\nSeldom — „Seldom does a project go this smoothly.\"\nHardly... when — „Hardly had we finished the deck when the meeting was rescheduled.\"\nNo sooner... than — „No sooner had we launched than the demand exploded.\"\nNot only... but also — „Not only did we deliver on time, but we also exceeded the KPIs.\"\nOnly after — „Only after the audit did we realize the issue.\"\nOnly then — „Only then did the CEO change his mind.\"\nUnder no circumstances — „Under no circumstances should this leave the room.\"\nNowhere else — „Nowhere else will you see this level of integration.\"\nLittle — „Little did we know that the client had already decided.\"\nNot until — „Not until Q4 will we see the full impact.\"\n\nMechanika krok po kroku: „I have never seen such a structured analysis\" → wyrzucam „never\" na początek → inwersja: „Never have I seen such a structured analysis.\" Z Past Simple bez auxiliary: „We rarely see this kind of clarity\" → „Rarely\" → brak auxiliary, dorzucam „do\": „Rarely do we see this kind of clarity.\"\n\nInwersja to ozdobnik. Użyta 1–2 razy w wypowiedzi = wow. Pięć razy = pretensja. I uwaga: „Only\" w sensie „tylko / jedynie\" jak liczba NIE uruchamia inwersji („Only three people came\" — bez inwersji). Inwersja w „Only\" tylko z czasem: „Only then / Only after / Only when\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Poprawna inwersja:",
+          options: [
+            "Never I have seen such a clean dataset.",
+            "Never have I seen such a clean dataset.",
+            "I never have seen such a clean dataset.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Negative adverbial („Never\") na początku → auxiliary („have\") przed subject („I\"). „Never I have\" to brak inwersji.",
+        },
+        {
+          type: "abc",
+          text: "„Rarely _____ a project of this scope close with such clear alignment.\"",
+          options: [
+            "do",
+            "does",
+            "did",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Subject: „a project\" (3 os. lp.). Brak auxiliary w oryginale → dorzucamy „does\". „Rarely does a project...\"",
+        },
+        {
+          type: "fill",
+          text: "„Not only _____ we deliver on time, but we also exceeded the KPIs.\"",
+          options: null,
+          correctAnswer: "did",
+          explanation:
+            "Past Simple bez auxiliary → dorzucamy „did\". W drugiej części „but we also exceeded\" — normalny szyk, bo „but\" otwiera nową klauzulę.",
+        },
+        {
+          type: "fill",
+          text: "„Under no circumstances _____ this leave the room.\" (modal of obligation)",
+          options: null,
+          correctAnswer: "should",
+          explanation:
+            "Z modalami inwersja przenosi modal przed subject. „Under no circumstances should this leave the room.\"",
+        },
+        {
+          type: "open",
+          text: "Przerób na inwersję: „We had hardly finished the deck when the meeting was rescheduled.\"",
+          options: null,
+          correctAnswer:
+            "„Hardly had we finished the deck when the meeting was rescheduled.\" Inwersja po „hardly\" — auxiliary „had\" przed subject „we\". Struktura: hardly... when.",
+          explanation:
+            "Klasyczna formuła „hardly... when\" — uruchamia inwersję i brzmi C1+ w pisanym recapie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Not only we delivered on time, but we exceeded the KPIs.\"",
+          options: [
+            "not only we delivered — brak inwersji",
+            "but we exceeded — powinno być „but we also exceeded\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Not only\" wymaga inwersji w pierwszej części. Powinno być: „Not only did we deliver on time, but we also exceeded the KPIs.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Inwersja to przesunięcie auxiliary przed subject, gdy negative adverbial („never, rarely, not only, only after\") jest na początku zdania. C1+ ozdobnik, robi punkty na CAE / CPE.",
+        expand:
+          "„Never have I seen...\", „Rarely do we find...\", „Not only did we deliver, but we also exceeded...\", „Under no circumstances should this leave the room\". Bez auxiliary dorzucasz do / does / did. Używana 1–2 razy w wypowiedzi = wow, pięć razy = pretensja. Klasyczne miejsca: rekomendacja do zarządu, mail recap po wygranym tenderze, lead w prezentacji.",
+        trap:
+          "„Never I have seen\" / „Not only we delivered\" / „No sooner we had launched\" — klasyczne braki inwersji. Inwersja działa TYLKO gdy negative adverbial jest na początku — „I have never seen\" bez inwersji jest też poprawne. „Only\" jako liczba („Only three people came\") nie uruchamia inwersji — tylko „Only\" + czas („Only then / after / when\").",
+      },
+    },
+  },
+
+  // ============================================================
+  // 28. Angielski: modals of deduction
+  // ============================================================
+  {
+    slug: "angielski-modals-of-deduction",
+    vaultSlug: "en",
+    label: "Angielski C1 — modals of deduction (must / could / might / can't)",
+    payload: {
+      title: "Modals of deduction",
+      summary:
+        "Modale dedukcyjne pozwalają wyrażać stopień pewności w obserwacji. Używasz ich w pracy, gdy interpretujesz dane, dyskutujesz hipotezy w zespole albo komentujesz zachowanie klienta. Znacznie elegantsze niż „I think maybe\" w każdym zdaniu.",
+      theory:
+        "Skala pewności (od pewności do wykluczenia):\n„must\" — jestem pewna, że tak. „He must be in a meeting.\"\n„will\" (deduction) — bardzo prawdopodobne. „That'll be the courier at the door.\"\n„should\" — spodziewam się, że tak. „The report should be on your desk by 5pm.\"\n„may\" — możliwe. „The client may push back on the timeline.\"\n„might / could\" — mniej prawdopodobne, ale możliwe. „He might be stuck in traffic.\"\n„can't / couldn't\" — wykluczam. „He can't be in the office, I just saw him leave.\"\n\nPresent vs Past:\nPresent (teraz): „He must be busy.\" / „She might be in a call.\" / „They can't be serious.\"\nPast (przeszłość): modal + have + 3 forma — „He must have left already.\" / „She might have missed the email.\" / „They can't have known about the change.\"\n\nMust vs have to:\n„Must\" (deduction): jestem pewna z obserwacji — „He must be tired.\" (widzę po nim).\n„Must\" (obligation): wewnętrzny obowiązek — „I must finish this today.\"\n„Have to\" (obligation): zewnętrzny obowiązek, narzucony z zewnątrz — „I have to submit by Friday.\"\nW amerykańskim angielskim „must\" jako obligation zanika, „have to\" jest częstsze.",
+      questions: [
+        {
+          type: "abc",
+          text: "„He _____ be in the office — I just saw him leave for the airport.\" (wykluczenie)",
+          options: [
+            "mustn't",
+            "can't",
+            "shouldn't",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wykluczenie → „can't\". „Mustn't\" = zakaz („You mustn't share this\"), nie wykluczenie obecności.",
+        },
+        {
+          type: "abc",
+          text: "Past deduction: „She _____ the email — she hasn't responded.\"",
+          options: [
+            "must have missed",
+            "must miss",
+            "must to miss",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Past deduction = modal + have + 3 forma. „Must have missed\".",
+        },
+        {
+          type: "fill",
+          text: "„The Q3 dip _____ be purely seasonal — customer churn has spiked.\" (wykluczenie)",
+          options: null,
+          correctAnswer: "can't",
+          explanation:
+            "Wykluczenie hipotezy → „can't\". W analizie danych klasyczna formuła.",
+        },
+        {
+          type: "fill",
+          text: "„The package _____ arrive tomorrow.\" (spodziewam się, oczekiwanie, nie pewność)",
+          options: null,
+          correctAnswer: "should",
+          explanation:
+            "„Should\" = oczekiwanie, nie pewność. Coś może nie dotrzeć — ale tak, jak się umawialiśmy, powinno.",
+        },
+        {
+          type: "open",
+          text: "Użyj trzech różnych modali deduction w jednej analizie danych sprzedażowych.",
+          options: null,
+          correctAnswer:
+            "Przykład: „The Q3 dip can't be purely seasonal. Customer churn must have spiked, but we should validate that with the retention data before drawing conclusions.\" „Can't\" (wykluczenie), „must have\" (pewna dedukcja o przeszłości), „should\" (oczekiwanie / sugestia).",
+          explanation:
+            "Trzy poziomy pewności w jednej analizie — brzmi jak analityczna konsultantka, nie student.",
+        },
+        {
+          type: "spot_error",
+          text: "„He mustn't be in the office because I just saw him leave, and he must been tired after the long flight.\"",
+          options: [
+            "mustn't — w sensie wykluczenia ma być „can't\"",
+            "must been — ma być „must have been\"",
+            "obie konstrukcje źle",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Dwa błędy: „mustn't be\" (powinno „can't be\" — wykluczenie) i „must been\" (powinno „must have been\" — past deduction).",
+        },
+      ],
+      salon: {
+        short:
+          "Skala modali deduction: must (pewność) → will → should → may → might / could → can't (wykluczenie). Pozwala wyrażać stopień pewności bez „I think maybe\" co drugie zdanie.",
+        expand:
+          "Present: „He must be busy.\" Past: modal + have + 3 forma — „He must have left already.\" „Should\" to oczekiwanie, nie pewność. „Will\" jako deduction („That'll be John\") jest bardzo brytyjskie i bardzo eleganckie. „Must\" w deduction (pewność z obserwacji) różne od „must\" obligation (wewnętrzny obowiązek) i od „have to\" (zewnętrzny obowiązek).",
+        trap:
+          "„Mustn't\" w sensie wykluczenia to klasyczny błąd — „mustn't\" = zakaz, nie wykluczenie. Wykluczenie to „can't\". „He must been tired\" → ma być „must have been tired\". „Should\" w deduction to oczekiwanie, nie pewność — paczka „should arrive\" znaczy „spodziewam się\", nie „na pewno przyjdzie\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 29. Angielski: business collocations
+  // ============================================================
+  {
+    slug: "angielski-business-collocations",
+    vaultSlug: "en",
+    label: "Angielski C1 — business collocations (verb + noun)",
+    payload: {
+      title: "Business collocations",
+      summary:
+        "Collocations to „kogo z kim\" w danym języku. W business angielskim określone czasowniki łączą się z określonymi rzeczownikami, i ich pomylenie od razu zdradza, że nie jesteś native. Lista poniżej to kanon, którego nie da się wyciągnąć logiką z polskiego — trzeba znać.",
+      theory:
+        "Najczęstsze biznesowe kolokacje:\n„make a decision / progress / a difference / a profit / a loss\".\n„do business (with) / research / due diligence\".\n„take responsibility / action / the lead / a risk\".\n„reach an agreement / a conclusion\".\n„close a deal\".\n„launch a product / a campaign\".\n„raise an issue / a concern / a flag\" — poruszyć.\n„address a concern / an issue\" — odnieść się do.\n„meet a deadline\" (NIE „catch a deadline\").\n„miss a deadline\".\n„set a goal / a target\".\n„achieve a target / a milestone\".\n„drive growth / change\".\n„deliver results / value\".\n\nUK vs US:\n„Make a decision\" — uniwersalne.\n„Take a decision\" — brytyjskie, w US rzadkie. W consulting używaj „make a decision\", bezpieczne wszędzie.\n„Take a meeting\" w US OK („let's take a meeting\" = umówmy spotkanie), w UK rzadko. Lepiej „have a meeting\" lub „schedule a meeting\".\n\nInne ważne pary:\n„Hit a target\" (mocne, sportowe) vs „achieve a target\" (neutralne).\n„Cut costs\" vs „reduce costs\" (cut jest mocniejsze, decydujące).\n„Grow the business\" (organicznie) vs „expand the business\" (rozszerzać zakres).\n„Lead a project / a team\" (kierować) vs „manage a project / a team\" (zarządzać operacyjnie).",
+      questions: [
+        {
+          type: "abc",
+          text: "„We need to _____ a decision on scope by end of next week.\"",
+          options: [
+            "do",
+            "take",
+            "make",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "„Make a decision\" jest uniwersalne. „Take a decision\" jest UK-only, w US brzmi dziwnie — w międzynarodowym consultingu „make\" wygrywa.",
+        },
+        {
+          type: "abc",
+          text: "„We agreed to _____ the lead on the customer segmentation workstream.\"",
+          options: [
+            "make",
+            "take",
+            "do",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Take the lead\" — kolokacja na przejęcie inicjatywy. „Make the lead\" / „do the lead\" nie istnieją.",
+        },
+        {
+          type: "fill",
+          text: "„To _____ the deadline, we'll need to make a few decisions on scope.\"",
+          options: null,
+          correctAnswer: "meet",
+          explanation:
+            "„Meet a deadline\" — dotrzymać terminu. „Catch a deadline\" to klasyczna polska kalka i nie istnieje.",
+        },
+        {
+          type: "fill",
+          text: "„I'll _____ the open questions in our Friday SteerCo.\" (poruszyć kwestie na początku)",
+          options: null,
+          correctAnswer: "raise",
+          explanation:
+            "„Raise an issue / questions / concerns\" — poruszyć, zgłosić. Później „address\" = odnieść się i rozwiązać.",
+        },
+        {
+          type: "open",
+          text: "Napisz mini-akapit recapu meeting'u używając min. czterech business collocations.",
+          options: null,
+          correctAnswer:
+            "Przykład: „We agreed to take the lead on the customer segmentation workstream. To meet the deadline, we'll need to make a few decisions on scope by end of next week. I'll raise the open questions in our Friday SteerCo.\" Cztery kolokacje: take the lead, meet the deadline, make decisions, raise the questions.",
+          explanation:
+            "Consulting English w czystej postaci — kolokacje spinają zdanie i brzmią naturalnie.",
+        },
+        {
+          type: "spot_error",
+          text: "„We need to do a decision, catch the deadline, and make business with the new partner.\"",
+          options: [
+            "do a decision",
+            "catch the deadline",
+            "make business",
+            "wszystkie trzy — klasyczne kalki",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Trzy klasyczne kalki: „do a decision\" → make. „catch the deadline\" → meet. „make business\" → do business. Powinno być: „We need to make a decision, meet the deadline, and do business with the new partner.\"",
+        },
+      ],
+      salon: {
+        short:
+          "Collocations to „kogo z kim\" w business angielskim — „make a decision, take the lead, meet a deadline, raise an issue, drive growth, deliver value\". Nie da się wyciągnąć logicznie.",
+        expand:
+          "„Make\" idzie z decisions, progress, a difference, a profit. „Take\" idzie z responsibility, action, the lead, a risk. „Reach\" — an agreement, a conclusion. „Raise\" otwiera temat, „address\" go zamyka. „Drive growth\" i „deliver value\" to klasyczne consulting speak. Pamiętaj o subtelnych parach: „lead a team\" (kierować strategicznie) vs „manage a team\" (zarządzać operacyjnie); „cut costs\" (mocne) vs „reduce costs\" (neutralne).",
+        trap:
+          "„Do a decision\" / „catch a deadline\" / „make business\" / „make a research\" / „take a decision\" w US — to top polskie kalki. „Take a meeting\" jest OK w US, ale w UK dziwne — bezpiecznie „have a meeting\". Mieszanie kolokacji od razu zdradza, że nie jesteś native — pojedynczy taki błąd potrafi obniżyć cały efekt świetnej rekomendacji.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 30. Angielski: rise vs raise
+  // ============================================================
+  {
+    slug: "angielski-rise-vs-raise",
+    vaultSlug: "en",
+    label: "Angielski C1 — rise vs raise",
+    payload: {
+      title: "Rise vs raise",
+      summary:
+        "Klasyczny problem na całym świecie, nie tylko u Polaków. Polacy walą to szczególnie często, bo „rosnąć / podnosić\" są w polskim blisko siebie, a w angielskim to dwa zupełnie inne czasowniki z różnymi konstrukcjami.",
+      theory:
+        "Rise (rose, risen) — intransitive. Coś wzrasta samo, nie ma obiektu.\n„Prices rose by 5% last quarter.\" (ceny rosną same)\n„The sun rises in the east.\"\n„Tensions are rising between the two parties.\"\n„Inflation has risen sharply.\"\nForma rzeczownikowa: „a rise in X\" („a rise in prices, a rise in demand\").\n\nRaise (raised, raised) — transitive. Ktoś coś podnosi, musi być obiekt.\n„The government raised taxes.\" (rząd podniósł podatki)\n„She raised her hand.\"\n„We raised the issue at the SteerCo.\"\n„The board has raised concerns about timeline.\"\nForma rzeczownikowa: „a raise\" = podwyżka (US English): „I got a raise.\" W UK: „a pay rise\".\n\nTest na rozpoznanie — spytaj: kto / co podnosi co?\nJeśli odpowiedź to „coś podnosi się samo\" → rise.\nJeśli odpowiedź to „ktoś coś podnosi\" → raise.\n\nInne kontekstowe użycia raise:\n„raise capital\" (zebrać kapitał, fundraising).\n„raise awareness\" (zwiększyć świadomość).\n„raise a child\" (wychować dziecko).\n„raise an issue / a concern / a flag\" (poruszyć kwestię).\n„raise expectations\" (podnieść oczekiwania).\n„raise the bar\" (podnieść poprzeczkę).",
+      questions: [
+        {
+          type: "abc",
+          text: "„Energy prices have _____ by 30% since last year.\"",
+          options: [
+            "raised",
+            "risen",
+            "rised",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Ceny rosną same → rise (rose, risen). „Rised\" nie istnieje. „Raised\" wymagałoby agenta: kto je podniósł.",
+        },
+        {
+          type: "abc",
+          text: "„The board has _____ concerns about the timeline.\"",
+          options: [
+            "raised",
+            "risen",
+            "rose",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Zarząd (agent) podniósł obawy (obiekt) → raise. „Risen\" to forma intransitive.",
+        },
+        {
+          type: "fill",
+          text: "„_____ the question\" — poruszyć kwestię na meetingu.",
+          options: null,
+          correctAnswer: "Raise",
+          explanation:
+            "„Raise an issue / a question / a concern / a flag\" — biznesowa kolokacja na otwarcie tematu.",
+        },
+        {
+          type: "fill",
+          text: "Past Simple: „Sales _____ by 8% last quarter.\" (same się podniosły)",
+          options: null,
+          correctAnswer: "rose",
+          explanation:
+            "Rise → rose → risen. Past Simple bez agenta: „Sales rose\".",
+        },
+        {
+          type: "open",
+          text: "Użyj „rise\" (samo) i „raise\" (poruszyć) w jednym zdaniu o cenach energii.",
+          options: null,
+          correctAnswer:
+            "Przykład: „Energy prices have risen by 30% since last year, which has pushed the client to raise the question of strategic procurement.\" „Have risen\" — same się podniosły. „Raise the question\" — poruszyć kwestię.",
+          explanation:
+            "Dwa różne użycia w jednym zdaniu — pokazujesz świadomość rozróżnienia.",
+        },
+        {
+          type: "spot_error",
+          text: "„The prices were rised by 5%, and the team has raised early today.\"",
+          options: [
+            "were rised — strona bierna od rise nie istnieje",
+            "raised early — kalka z „wstał wcześnie\"",
+            "obie konstrukcje źle",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "„Were rised\" nie istnieje (rise nie ma passive). „Raised early\" to kalka z polskiego „wstałem wcześnie\" — powinno być „got up early\" albo „rose early\" (poetycko).",
+        },
+      ],
+      salon: {
+        short:
+          "Rise = samo rośnie (bez obiektu), raise = ktoś coś podnosi (z obiektem). „Prices rise\" / „The government raises prices\" — ta sama sytuacja z dwóch perspektyw.",
+        expand:
+          "Rise (rose, risen) intransitive — „Energy prices have risen.\" Raise (raised, raised) transitive — „The board raised concerns.\" Kontekstowe użycia raise: raise capital, raise awareness, raise a child, raise an issue, raise the bar. Rzeczowniki różnią się: „a rise\" = wzrost zjawiska, „a raise\" = podwyżka pensji (US). W UK „a pay rise\".",
+        trap:
+          "„The prices were rised\" nie istnieje (rise nie ma passive). „He raised early today\" jako „wstał\" to kalka — „got up\" / „rose\". „He raised to a senior position\" → ma być „rose to a senior position\". Test: kto podnosi co? Jeśli nie ma agenta — rise.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 31. Angielski: business trends vocabulary (wzrosty/spadki)
+  // ============================================================
+  {
+    slug: "angielski-business-trends-vocabulary",
+    vaultSlug: "en",
+    label: "Angielski C1 — wzrosty i spadki (skala kalibracyjna)",
+    payload: {
+      title: "Business trends vocabulary",
+      summary:
+        "W consultingu, finance i strategii rozmawiasz o wzrostach i spadkach codziennie. Dobranie złego słowa do skali zmiany od razu zdradza brak feelingu. „Skyrocket\" o 3% to przesada. „Edge up\" o 200% to absurd. Niżej skala kalibracyjna, której używasz świadomie w mowie i deck.",
+      theory:
+        "Wzrosty (od delikatnego do dramatycznego):\n„edge up / inch up\" (minimalny, 1–2%): „Sales edged up slightly in Q3.\"\n„rise / increase\" (umiarkowany, neutralny): „Revenue rose by 8%.\"\n„grow\" (organiczny, biznesowy): „The business grew by 15%.\"\n„climb\" (systematyczny): „The share price climbed to a new high.\"\n„pick up\" (nabiera tempa): „Demand is picking up.\"\n„surge\" (gwałtowny): „Energy prices surged after the announcement.\"\n„soar\" (bardzo gwałtowny): „Revenue soared to record levels.\"\n„skyrocket\" (ekstremalnie szybki): „Crypto valuations skyrocketed.\"\n„spike\" (krótkotrwały, gwałtowny): „Demand spiked during the holiday season.\"\n„explode\" (dramatyczny): „Growth exploded in emerging markets.\"\n\nSpadki (od delikatnego do dramatycznego):\n„edge down / dip\" (minimalny): „Profits dipped slightly in Q2.\"\n„fall / drop\" (wyraźny): „The stock dropped 12%.\"\n„decline / decrease\" (systematyczny, formalny): „Customer satisfaction has declined.\"\n„slip / slide\" (delikatny, postępujący): „Margins slipped this quarter.\"\n„plunge\" (gwałtowny): „Oil prices plunged on the news.\"\n„plummet\" (bardzo gwałtowny): „The stock plummeted after the earnings call.\"\n„collapse\" (totalny): „The market collapsed in March 2020.\"\n„crash\" (nagły, dramatyczny): „Tech stocks crashed last week.\"\n\nStabilność:\n„remain / hold steady, level out, plateau, flatline, stagnate, stabilize\".\n„Plateau\" = wysokie stabilne. „Flatline\" / „stagnate\" = niskie, martwe.\n\nModifiers do precyzowania skali: slightly / marginally, gradually / steadily, significantly / substantially, sharply / dramatically, considerably.",
+      questions: [
+        {
+          type: "abc",
+          text: "Najbardziej formalny, dobry do prezentacji synonim „spadku o kilka %\":",
+          options: [
+            "plummet",
+            "decline",
+            "crash",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Decline\" — neutralny, formalny, systematyczny. „Plummet\" / „crash\" są dramatyczne i nie pasują do delikatnego spadku.",
+        },
+        {
+          type: "abc",
+          text: "Profits w Q2 spadły o 1%. Które słowo pasuje?",
+          options: [
+            "plummeted",
+            "dipped",
+            "collapsed",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "1% to bardzo mało → „dipped\" / „edged down\". „Plummeted slightly\" to wewnętrzna sprzeczność, „collapsed\" to przesada.",
+        },
+        {
+          type: "fill",
+          text: "Wzrost 200% w EM: „Growth _____ in emerging markets.\"",
+          options: null,
+          correctAnswer: "exploded",
+          explanation:
+            "Skala ekstremalna → „exploded / skyrocketed\". „Rose by 200%\" jest też OK, ale neutralne — bez ładunku.",
+        },
+        {
+          type: "fill",
+          text: "Wysokie stabilne plateau po wzroście: „We expect the trend to _____ in Q4.\"",
+          options: null,
+          correctAnswer: "plateau",
+          explanation:
+            "„Plateau\" jako czasownik = wyrównanie się na wysokim poziomie. „Flatline\" byłoby negatywne (martwe).",
+        },
+        {
+          type: "open",
+          text: "Napisz earnings recap o trzech różnych dynamikach (wzrost umiarkowany, spadek delikatny, oczekiwany plateau).",
+          options: null,
+          correctAnswer:
+            "Przykład: „Revenue rose by 12% year-on-year, driven by strong growth in the EMEA region. Margins, however, edged down by 80 basis points due to rising input costs. We expect the trend to plateau in Q4 as supply chain pressures ease.\" „Rose\" (umiarkowany), „edged down\" (delikatny), „plateau\" (stabilizacja).",
+          explanation:
+            "Każda dynamika z właściwą skalą. Tak brzmi earnings call po C1.",
+        },
+        {
+          type: "spot_error",
+          text: "„Profits soared by 2% while the market crashed by 5%.\"",
+          options: [
+            "soared by 2% — soar wymaga większej skali",
+            "crashed by 5% — crash to totalny załamanie",
+            "obie skale źle",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Dwie błędne kalibracje skali. 2% to „edged up\" / „rose\", nie „soared\". 5% to „dropped\" / „fell\", nie „crashed\". „Profits edged up by 2% while the market dropped by 5%.\"",
+        },
+      ],
+      salon: {
+        short:
+          "W business angielskim skala ma znaczenie — „skyrocket\" o 3% to przesada, „edge up\" o 200% absurd. Słowa od „edge up / dip\" do „explode / collapse\" tworzą skalę kalibracyjną.",
+        expand:
+          "Wzrosty: edge up (1–2%) → rise / grow / climb → surge / soar → skyrocket / explode. Spadki: edge down / dip → drop / decline → plunge / plummet → crash / collapse. „Plateau\" to pozytywna stabilność na wysokim poziomie, „flatline / stagnate\" to negatywna stoptyckość. Modifiers (slightly, sharply, significantly) pozwalają jeszcze precyzyjniej dostroić skalę.",
+        trap:
+          "„Plummet slightly\" / „crash by 5%\" / „soar by 2%\" — wewnętrzne sprzeczności. Klient od razu wyczuwa brak feelingu. Pamiętaj też o rise / raise — „economy raised by 3%\" to klasyczny błąd („rose\"). Crash = totalne załamanie, nie 5% korekta.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 32. Angielski: opinion structures C1
+  // ============================================================
+  {
+    slug: "angielski-opinion-structures-c1",
+    vaultSlug: "en",
+    label: "Angielski C1 — opinion structures (jak elegancko podawać zdanie)",
+    payload: {
+      title: "Opinion structures C1",
+      summary:
+        "„I think\" jest neutralne i działa, ale na C1+ oczekuje się range w sposobach formułowania opinii. Niżej rozszerzona lista plus zasada — kiedy czego używać. „In my opinion\" jest OK, ale ograne; native i konsultanci wybierają „In my view\" / „I'd argue\" / „The data suggests\".",
+      theory:
+        "Soft opening (delikatne otwarcie):\n„From my perspective...\", „In my view...\", „To my mind...\", „As I see it...\", „Speaking personally...\", „From where I'm sitting...\".\n\nConfident opening (pewne stanowisko):\n„I'd argue that...\", „I'd maintain that...\", „I'd contend that...\", „It's my firm belief that...\", „I'm convinced that...\".\n\nHighlighting (podkreślanie kluczowych punktów):\n„What I find particularly compelling is...\", „What strikes me most is...\", „The crucial point here is...\", „What's worth noting is...\", „The key takeaway is...\".\n\nWeighing pros and cons:\n„The benefits outweigh the risks.\", „There's a strong argument for...\", „On balance, I'd say...\", „Taking everything into account...\", „Weighing the trade-offs...\".\n\nAcknowledging counter-argument (przed pushback):\n„I see the appeal of X, but...\", „While I appreciate the logic of X, I'd argue...\", „There's merit in that view, however...\", „I can see why one might think that, but...\".\n\nBringing in evidence:\n„The data suggests...\", „Evidence points to...\", „Research indicates...\", „Our analysis shows...\", „Based on what we've seen...\".\n\nHedging (świadome zostawianie marginesu):\n„It's worth considering whether...\", „One could argue that...\", „It seems to me that...\", „Arguably...\".\n\nReguły: soft opening dla opinii dyskusyjnych („In my view\"), confident opening dla rekomendacji („I'd argue that\"), highlighting dla ważnego („What I find particularly compelling\"), acknowledging przed pushback („I see the appeal, but...\"), data-driven dla powagi („The data suggests\"). Mieszaj — nie używaj jednego stylu w kółko.",
+      questions: [
+        {
+          type: "abc",
+          text: "Najlepsze otwarcie pewnego stanowiska konsultantki w meeting'u:",
+          options: [
+            "Personally I think",
+            "I'd argue that",
+            "To be honest",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„I'd argue\" = confident, analityczne. „Personally I think\" jest redundantne. „To be honest\" sugeruje, że wcześniej nie byłaś szczera — wytnij.",
+        },
+        {
+          type: "abc",
+          text: "Klasyczne otwarcie pushback po uprzejmym uznaniu drugiej strony:",
+          options: [
+            "I see the appeal of X, but...",
+            "I disagree with you completely",
+            "You're wrong because...",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„I see the appeal of X, but...\" — uznajesz logikę drugiej strony i dopiero potem oponujesz. Klasyczny C1+ pushback.",
+        },
+        {
+          type: "fill",
+          text: "Data-driven opening: „The data _____ that customer retention is the bigger lever here.\"",
+          options: null,
+          correctAnswer: "suggests",
+          explanation:
+            "„The data suggests\" — depersonalizuje, dodaje powagi. Jedna z najmocniejszych formuł w consulting English.",
+        },
+        {
+          type: "fill",
+          text: "Highlighting kluczowego punktu: „What I find particularly _____ is the case for doubling down on what's already working.\"",
+          options: null,
+          correctAnswer: "compelling",
+          explanation:
+            "„What I find particularly compelling / striking / interesting\" — formuła highlighting'u. Brzmi C1+ bez ozdobników.",
+        },
+        {
+          type: "open",
+          text: "Napisz akapit łączący soft opening, confident pushback, data-driven i highlighting (cztery różne strategie).",
+          options: null,
+          correctAnswer:
+            "Przykład: „I see the appeal of expanding into the German market, but I'd argue we should consolidate in Poland first. The data suggests our retention is still soft, and entering a new geography would stretch the team thin. What I find particularly compelling is the case for doubling down on what's already working.\" Cztery strategie: acknowledging („I see the appeal\"), confident („I'd argue\"), data-driven („The data suggests\"), highlighting („What I find particularly compelling\").",
+          explanation:
+            "Mieszanka czterech strategii w jednym akapicie — tak brzmi rozmowa strategiczna na C1+.",
+        },
+        {
+          type: "spot_error",
+          text: "„Personally, I think to be honest I feel that in my opinion we should pivot.\"",
+          options: [
+            "personally I think — redundantne",
+            "to be honest — sugeruje brak szczerości wcześniej",
+            "I feel — emocjonalne w C-level contexcie",
+            "kumulacja czterech otwarć opinii w jednym zdaniu",
+          ],
+          correctAnswer: 3,
+          explanation:
+            "Cztery różne otwarcia opinii w jednym zdaniu, każde osłabia kolejne. Powinno być jedno czyste, np.: „I'd argue we should pivot.\"",
+        },
+      ],
+      salon: {
+        short:
+          "„I think\" jest OK, ale na C1+ oczekuje się range. „In my view\" (soft), „I'd argue that\" (confident), „The data suggests\" (data-driven), „I see the appeal of X, but...\" (pushback) — to różne dźwignie do różnych momentów.",
+        expand:
+          "Soft opening dla opinii dyskusyjnych, confident dla rekomendacji, highlighting dla podkreślenia ważnego, acknowledging przed pushback, data-driven dla powagi. „I'd argue\" nie znaczy że się kłócisz — to akademicki / consulting standard. „What I find particularly compelling is...\" działa jako neon — kierujesz uwagę słuchacza na konkretny punkt. Mieszaj style — jeden powtarzany w kółko brzmi jak ćwiczenie.",
+        trap:
+          "„In my opinion\" nadużywane przez Polaków — lepsze „In my view / From my perspective\". „To be honest\" sugeruje, że wcześniej nie byłaś szczera — wytnij. „Personally I think\" jest redundantne (kto inny by miał twoją opinię?). „I feel\" zamiast „I think\" jest miękkie i emocjonalne — z C-level lepiej „I'd argue\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 33. Angielski: pronunciation /s/, /t/, /æ/
+  // ============================================================
+  {
+    slug: "angielski-pronunciation-s-t-ae",
+    vaultSlug: "en",
+    label: "Angielski C1 — pronunciation /s/, /t/, /æ/ (ELSA)",
+    payload: {
+      title: "Pronunciation tips: /s/, /t/, /æ/",
+      summary:
+        "ELSA wyceniła wymowę na C1, ale wskazała trzy konkretne dźwięki, które poprawione zauważalnie podniosą czystość i profesjonalizm: /s/, /t/, /æ/. To klasyczne polskie pułapki — polski ma podobne dźwięki, ale wymówione inaczej.",
+      theory:
+        "/s/ — na przykładzie „insights\", „firstly\".\nProblem polski: polskie „s\" jest twarde, ostre, z językiem w środku ust.\nCel angielski: /s/ jest sykające — język wysunięty do przodu, blisko górnych dziąseł i zębów, ale ich nie dotyka. Powietrze przepływa wąskim kanałem.\nĆwiczenie: powiedz polskie „s\" w „sok\", potem przesuń język do przodu, prawie dotykając górnych zębów, powtórz „sssssss\" — dźwięk powinien być wyższy, bardziej sykający.\nSłowa: insights, firstly, sustainable, strategy, suggest, system.\n\n/t/ — na przykładzie „customer\", „important\".\nProblem polski: polskie „t\" jest miękkie, z minimalnym wstrzymaniem powietrza.\nCel angielski: /t/ to plosive (zwarto-wybuchowy). Mocno zatrzymujesz powietrze za górnymi dziąsłami, potem nagle uwalniasz.\nĆwiczenie: czubek języka na górnych dziąsłach (tuż za przednimi zębami), zatrzymaj powietrze, uwolnij nagle — słyszalne „tłuk\".\nSłowa: customer, important, time, target, strategy, talent.\nUwaga: w US English /t/ między samogłoskami często zamienia się we „flap\" (jak miękkie „d\"): „water\" brzmi prawie jak „wader\". W UK /t/ pozostaje wyraźne — trzymaj się UK style w pracy.\n\n/æ/ — na przykładzie „that's\", „example\".\nProblem polski: w polskim nie ma /æ/. Polacy mówią albo „e\" („that\" → „det\"), albo „a\" („that\" → „dat\"). Oba są nieprawidłowe.\nCel angielski: /æ/ to coś pomiędzy „e\" a „a\", z szeroko otwartymi ustami i językiem nisko z przodu.\nĆwiczenie: rozciągnij usta jak na szerokim uśmiechu, opuść żuchwę, wymów „a\" — ale szerzej i bardziej spłaszczone niż polskie „a\".\nSłowa: that's, example, plan, manage, value, factor, action.\nTest: „cat / cut / cot\" — trzy różne dźwięki. „Cat\" /æ/ szerokie, „cut\" /ʌ/ neutralne, „cot\" /ɒ/ okrągłe.\n\nELSA ocenia te trzy dźwięki bardzo skrupulatnie. Drobna poprawa = duża różnica w score. Nagrywaj się i odsłuchuj — ucho szybko się przyzwyczaja do błędu, ale obiektywny zapis pokazuje prawdę.",
+      questions: [
+        {
+          type: "abc",
+          text: "Polskie „s\" w słowie „insights\" brzmi za:",
+          options: [
+            "wysoko",
+            "twardo / w środku ust",
+            "miękko",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Polskie „s\" jest twarde, z językiem w środku ust. Angielskie /s/ wymaga języka wysuniętego do przodu, sykającego.",
+        },
+        {
+          type: "abc",
+          text: "/t/ w angielskim to:",
+          options: [
+            "spółgłoska miękka",
+            "plosive (zwarto-wybuchowa) — wstrzymanie + nagłe uwolnienie",
+            "samogłoska",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "/t/ to plosive — czubek języka na górnych dziąsłach, mocne zatrzymanie powietrza, nagłe uwolnienie. Polskie „t\" jest miękkie i mniej wybuchowe.",
+        },
+        {
+          type: "fill",
+          text: "Dźwięk pomiędzy „e\" a „a\", którego polski nie ma, w słowie „cat\": / _ /.",
+          options: null,
+          correctAnswer: "æ",
+          explanation:
+            "/æ/ — szerokie, spłaszczone, między „e\" a „a\". Polacy domyślnie podstawiają albo „e\", albo „a\" — oba błędne.",
+        },
+        {
+          type: "fill",
+          text: "Test trzech dźwięków: cat (/æ/), cut (/_ /), cot (/ɒ/).",
+          options: null,
+          correctAnswer: "ʌ",
+          explanation:
+            "„Cut\" to /ʌ/ — neutralne, krótkie. Trzy różne dźwięki w trzech bliskich słowach — klasyczny test rozróżnienia samogłosek.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, czemu warto się NAGRYWAĆ ćwicząc /s/, /t/, /æ/.",
+          options: null,
+          correctAnswer:
+            "Ucho szybko przyzwyczaja się do własnego błędu — sami nie słyszymy, że wymawiamy „det\" zamiast „that\". Obiektywny zapis pokazuje prawdę. Plus ELSA ocenia te dźwięki skrupulatnie, więc drobna poprawa = duża różnica w score.",
+          explanation:
+            "Świadomość = nagranie + odsłuch + powtórka. Trening codzienny przez tydzień na konkretnych słowach przynosi szybki efekt.",
+        },
+        {
+          type: "spot_error",
+          text: "Polak na C1 świadomy /æ/ mówi „bæd\" zamiast „bed\". Co poszło nie tak?",
+          options: [
+            "hiperkorekcja — /æ/ tam, gdzie powinno być /e/",
+            "/æ/ jest poprawne wszędzie",
+            "to UK / US różnica",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Hiperkorekcja: świadomość /æ/ czasem prowadzi do nadużycia tego dźwięku tam, gdzie powinno być zwykłe /e/. „Bed\" to /bed/, nie /bæd/. Słuchaj kontekstu.",
+        },
+      ],
+      salon: {
+        short:
+          "ELSA wskazała trzy dźwięki do dopieszczenia: /s/ (sykające, język do przodu), /t/ (plosive, mocne zatrzymanie + uwolnienie), /æ/ (między „e\" a „a\", szeroko otwarte usta).",
+        expand:
+          "Polskie „s\" jest twarde w środku ust — angielskie /s/ chce języka z przodu, blisko górnych dziąseł, ale ich nie dotyka. Polskie „t\" jest miękkie — angielskie /t/ to plosive, słyszalne „tłuk\" za górnymi dziąsłami. /æ/ w polskim nie istnieje — to spłaszczone, szerokie „a\", trochę uśmiech ust, żuchwa nisko. Test: „cat / cut / cot\" to trzy różne dźwięki. W UK /t/ pozostaje wyraźne, w US zmienia się we „flap\" („water\" → „wader\") — w pracy trzymaj się UK.",
+        trap:
+          "Hiperkorekcja /æ/: świadomość prowadzi do nadużycia (mówisz „bæd\" zamiast „bed\"). Słuchaj kontekstu. Polskie „insights\" z polskim „s\" — brzmi twardo, nie sykające. „Important\" wymawiane po polsku „impor-tant\" — angielski lubi „impor-nt\" z wyraźnym /t/. Nie kopiuj brytyjskiego „what?\" → „wha?\" — w pracy brzmi nieprofesjonalnie.",
+      },
+    },
+  },
 ];
