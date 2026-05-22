@@ -238,6 +238,47 @@ export interface SuggestionPayload {
   imageCaption?: string;
 }
 
+/**
+ * Sprawdza, czy user ma vault o danym slugu — jeśli nie, tworzy go z podanymi
+ * metadanymi. Zwraca id istniejącego lub nowo utworzonego vaulta.
+ *
+ * Używane przez /admin/preset, gdy preset definiuje nowy vaultSlug (np. „sport"),
+ * którego user jeszcze nie ma w swojej kolekcji — wtedy preset dorzuca też
+ * metadane vaulta (vaultMeta) i sekcja powstaje on-demand bez ręcznego seed.
+ */
+export async function ensureVault(opts: {
+  userId: string;
+  slug: string;
+  name: string;
+  icon: string;
+  level: string;
+  color: VaultColor;
+  order: number;
+}): Promise<string> {
+  const { db } = getFirebase();
+  const existing = await getDocs(
+    query(
+      collection(db, "vaults"),
+      where("userId", "==", opts.userId),
+      where("slug", "==", opts.slug)
+    )
+  );
+  if (!existing.empty) {
+    return existing.docs[0]!.id;
+  }
+  const ref = await addDoc(collection(db, "vaults"), {
+    userId: opts.userId,
+    slug: opts.slug,
+    name: opts.name,
+    icon: opts.icon,
+    level: opts.level,
+    color: opts.color,
+    order: opts.order,
+    createdAt: new Date(),
+  });
+  return ref.id;
+}
+
 export async function commitSuggestion(opts: {
   userId: string;
   vaultId: string;
@@ -637,6 +678,7 @@ const STARTER_VAULTS: VaultSeed[] = [
   { slug: "avia", name: "Lotnictwo", icon: "Plane", level: "Powrót", color: "forest", order: 10 },
   { slug: "excel", name: "Excel", icon: "FileSpreadsheet", level: "Skróty", color: "forest", order: 11 },
   { slug: "en", name: "Angielski", icon: "Languages", level: "C1", color: "rose", order: 12 },
+  { slug: "sport", name: "Sport", icon: "Trophy", level: "Obycie", color: "forest", order: 13 },
 ];
 
 const STARTER_ERRORS: Array<{

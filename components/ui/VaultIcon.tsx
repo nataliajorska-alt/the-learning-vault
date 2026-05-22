@@ -11,6 +11,7 @@ import {
   Plane,
   FileSpreadsheet,
   Languages,
+  Trophy,
   BookOpen,
 } from "lucide-react";
 
@@ -27,6 +28,7 @@ const map: Record<string, React.ComponentType<{ className?: string }>> = {
   Plane,
   FileSpreadsheet,
   Languages,
+  Trophy,
 };
 
 export function VaultIcon({

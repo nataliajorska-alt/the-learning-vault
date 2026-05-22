@@ -6,6 +6,7 @@ import { Check, ArrowLeft, Sparkles, BookOpen } from "lucide-react";
 import { useUser } from "@/lib/auth-context";
 import {
   commitSuggestion,
+  ensureVault,
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
@@ -42,17 +43,28 @@ export function PresetClient() {
   async function addPreset(presetSlug: string) {
     const preset = PRESETS.find((p) => p.slug === presetSlug);
     if (!preset || !user || !vaults) return;
-    const vault = vaults.find((v) => v.slug === preset.vaultSlug);
-    if (!vault) {
-      setErr(`Brak sekcji o slug=${preset.vaultSlug} w bazie.`);
+    let vaultId = vaults.find((v) => v.slug === preset.vaultSlug)?.id;
+    if (!vaultId && !preset.vaultMeta) {
+      setErr(
+        `Brak sekcji o slug=${preset.vaultSlug} i preset nie ma vaultMeta — nie wiem, jak ją utworzyć.`
+      );
       return;
     }
     setBusy(presetSlug);
     setErr(null);
     try {
+      // Auto-create vault, jeśli nie istnieje a preset dostarczył metadane.
+      // Pozwala dorzucać nowe sekcje (np. „Sport") bez re-seedowania.
+      if (!vaultId && preset.vaultMeta) {
+        vaultId = await ensureVault({
+          userId: user.uid,
+          slug: preset.vaultSlug,
+          ...preset.vaultMeta,
+        });
+      }
       const result = await commitSuggestion({
         userId: user.uid,
-        vaultId: vault.id,
+        vaultId: vaultId!,
         payload: preset.payload,
         presetSlug: preset.slug,
       });
@@ -114,7 +126,7 @@ export function PresetClient() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="eyebrow">
-                      {vault?.name ?? p.vaultSlug.toUpperCase()}
+                      {vault?.name ?? p.vaultMeta?.name ?? p.vaultSlug.toUpperCase()}
                     </div>
                     {isImported && (
                       <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-eyebrow text-forest bg-gold/15 border border-gold/30 rounded-full px-2 py-0.5">

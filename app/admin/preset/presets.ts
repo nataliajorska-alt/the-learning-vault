@@ -1,4 +1,5 @@
 import type { SuggestionPayload } from "@/lib/firestore-data";
+import type { VaultColor } from "@/lib/types";
 
 export interface Preset {
   /** kebab-case identyfikator do URL */
@@ -9,6 +10,19 @@ export interface Preset {
   label: string;
   /** payload do commitSuggestion */
   payload: SuggestionPayload;
+  /**
+   * Opcjonalne metadane vaulta — używane tylko gdy preset wprowadza nowy
+   * vaultSlug, którego user jeszcze nie ma w swojej kolekcji. Wtedy
+   * PresetClient wywołuje ensureVault z tymi danymi i tworzy sekcję
+   * on-demand, bez konieczności re-seedowania.
+   */
+  vaultMeta?: {
+    name: string;
+    icon: string;
+    level: string;
+    color: VaultColor;
+    order: number;
+  };
 }
 
 export const PRESETS: Preset[] = [
@@ -7438,6 +7452,129 @@ export const PRESETS: Preset[] = [
         },
       ],
       salon: null,
+    },
+  },
+
+  // ============================================================
+  // 81. Sport: Polo — podstawy dla widza (nowy vault "sport")
+  // ============================================================
+  // Pierwszy preset w sekcji Sport. vaultMeta sprawia, że PresetClient
+  // utworzy vault on-demand, jeśli user go jeszcze nie ma w Firestore.
+  // Salon zostaje (Polo to klasyczny temat „przy winie", treading
+  // the divots z kieliszkiem to dosłowna scena salonowa).
+  {
+    slug: "sport-polo-podstawy-dla-widza",
+    vaultSlug: "sport",
+    label: "Sport — Polo, podstawy dla widza",
+    vaultMeta: {
+      name: "Sport",
+      icon: "Trophy",
+      level: "Obycie",
+      color: "forest",
+      order: 13,
+    },
+    payload: {
+      title: "Polo — podstawy dla widza",
+      summary:
+        "Polo to konie + drużyna + mallet + bramka. Reszta to detale. Pozycja widza: wiesz, jak się ubrać, co się dzieje na boisku, i nie pytasz głupio o piłkę. Klasyczna lekcja obycia.",
+      theory:
+        "Na czym to polega: gra się konno, drużynowo (4 zawodników na drużynę). Cel — trafić piłkę długim młotkiem (mallet) do bramki przeciwnika. Mecz dzieli się na rundy zwane CHUKKERAMI. Po każdym golu drużyny zamieniają się stronami boiska. Konie są często zmieniane, bo gra jest morderczo intensywna dla zwierzęcia — zawodnik ma więcej niż jednego konia na mecz.\n\nSłownictwo do znania:\n— Chukker — runda gry.\n— Mallet — długi młotek do uderzania piłki.\n— Ride-off — walka bark w bark, gdy dwóch zawodników stara się wypchnąć siebie nawzajem z linii piłki.\n— Line of the ball — linia piłki. Zasada pierwszeństwa i bezpieczeństwa, żeby nie doszło do groźnego zderzenia.\n— Handicap — ranking/poziom zawodnika.\n\nRole na boisku: każdy z czterech graczy ma numer, który oznacza jego rolę. NUMER 3 to często rozgrywający (playmaker) — trochę jak „10\" w piłce nożnej. Reszta numerów to atak, obrona i pivot, ale numer 3 jest najważniejszy dla rytmu drużyny.\n\nTradycja widza: TREADING THE DIVOTS. W przerwie meczu publiczność wychodzi na boisko i PRZYDEPTUJE ślady po kopytach koni (divots). To rytuał, w którym uczestniczą wszyscy, niezależnie od statusu. Z kieliszkiem w ręce. Nie pomijaj tego, jeśli jesteś na meczu — to część doświadczenia.\n\nDress code dla widza: boisko jest darnią, nie parkietem. SZPILKI = sabotaż (niszczą darń, a Ty zostajesz aeratorem w sukience). Płaskie, eleganckie, stabilne.",
+      questions: [
+        {
+          type: "abc",
+          text: "Runda gry w polo nazywa się:",
+          options: [
+            "kwarta",
+            "chukker",
+            "połowa",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Chukker\" to najważniejsze słowo z polo — od razu zdradza, czy widz wie, o czym mówi. Powiedzenie „połowa\" zamiast „chukker\" sygnalizuje pierwszy raz.",
+        },
+        {
+          type: "abc",
+          text: "NUMER 3 w drużynie polo to:",
+          options: [
+            "obrońca",
+            "rozgrywający / playmaker — najważniejszy dla rytmu drużyny",
+            "bramkarz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Numer 3 = playmaker, jak „10\" w piłce nożnej. Patrzysz na niego, jeśli chcesz zrozumieć grę swojej drużyny.",
+        },
+        {
+          type: "abc",
+          text: "Co najlepiej założyć na mecz polo jako widz?",
+          options: [
+            "wysokie szpilki (eleganckie wydarzenie)",
+            "płaskie, eleganckie, stabilne buty (boisko to darń, szpilki ją niszczą)",
+            "sportowe trampki",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczna pułapka. Polo to eleganckie wydarzenie, ale boisko jest darnią. Szpilki ją niszczą + treading the divots w szpilkach = porażka. Płaskie i eleganckie.",
+        },
+        {
+          type: "fill",
+          text: "Długi młotek do uderzania piłki nazywa się _____ .",
+          options: null,
+          correctAnswer: "mallet",
+          explanation:
+            "Mallet. Bez tego słowa nie ma rozmowy o polo.",
+        },
+        {
+          type: "fill",
+          text: "Tradycja, w której widzowie w przerwie meczu wychodzą na boisko i przydeptują ślady kopyt: treading the _____ .",
+          options: null,
+          correctAnswer: "divots",
+          explanation:
+            "„Divots\" to wgłębienia w darni wykopane przez kopyta. Publiczność w przerwie je przydeptuje, z kieliszkiem w ręce — obowiązkowa atrakcja widza, nie opcja.",
+        },
+        {
+          type: "fill",
+          text: "Zasada pierwszeństwa i bezpieczeństwa, która chroni przed zderzeniem zawodników: line of the _____ .",
+          options: null,
+          correctAnswer: "ball",
+          explanation:
+            "„Line of the ball\" — święta zasada, jak prawo pierwszeństwa na drodze. Złamanie = niebezpieczeństwo, faul.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mój zawodnik wjechał na boisko na innym koniu niż w pierwszej rundzie — chyba musieli zmienić skład drużyny.\"",
+          options: [
+            "tak, nowy zawodnik",
+            "nie — konie zmieniają się w trakcie meczu, bo gra jest morderczo intensywna dla zwierzęcia. To NORMALNE, nie zmiana zawodnika",
+            "to znaczy że jego koń padł",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczne nieporozumienie widza. Każdy zawodnik ma kilka koni na mecz. Konie się zmieniają, zawodnicy zostają.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mecz polo był ciekawy. Druga połowa była mocniejsza od pierwszej.\"",
+          options: [
+            "tak, polo ma połowy",
+            "nie — polo NIE ma kwart ani połów. Ma chukkery. „Połowa\" zamiast „chukker\" od razu zdradza, że jesteś pierwszy raz",
+            "polo ma kwarty",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Słownictwo zdradza obycie. „Chukker\", „mallet\", „line of the ball\" — to są słowa-klucze. „Połowa\" przeniesiona z piłki nożnej brzmi obco.",
+        },
+      ],
+      salon: {
+        short:
+          "Najbardziej fascynujące w polo jest to, że nie patrzysz tylko na piłkę. Patrzysz na linię piłki, kto ma pierwszeństwo, i na konia tak samo jak na zawodnika. A numer 3 jest praktycznie rozgrywającym całej drużyny.",
+        expand:
+          "Polo to konie + drużyna + mallet + bramka. Mecz ma chukkery (rundy), nie połowy. Po każdym golu zmiana stron. Konie się zmieniają — zawodnik ma kilka koni na mecz, bo intensywność jest morderczza dla zwierzęcia. Najbardziej lubię moment TREADING THE DIVOTS — jedyny sport, w którym publiczność dosłownie wchodzi na boisko i je naprawia. Z kieliszkiem w ręce.",
+        trap:
+          "Szpilki na trawie = sabotaż (boisko to darń, nie parkiet). Mówienie „połowa\" zamiast „chukker\" od razu zdradza pierwszy raz. Patrzenie wyłącznie na piłkę — błąd początkującego, trzeba patrzeć na ustawienie, kontrolę koni i kto trzyma linię. Konie się zmieniają w trakcie meczu — to normalne, nie zmiana zawodnika.",
+      },
     },
   },
 ];

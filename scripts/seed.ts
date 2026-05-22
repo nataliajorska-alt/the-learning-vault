@@ -33,6 +33,7 @@ const VAULTS: SeedVault[] = [
   { slug: "avia", name: "Lotnictwo", icon: "Plane", level: "Powrót", color: "forest", order: 10 },
   { slug: "excel", name: "Excel", icon: "FileSpreadsheet", level: "Skróty", color: "forest", order: 11 },
   { slug: "en", name: "Angielski", icon: "Languages", level: "C1", color: "rose", order: 12 },
+  { slug: "sport", name: "Sport", icon: "Trophy", level: "Obycie", color: "forest", order: 13 },
 ];
 
 interface SeedError {
