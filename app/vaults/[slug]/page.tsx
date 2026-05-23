@@ -106,7 +106,7 @@ export default function VaultDetailPage({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="desk-surface grid grid-cols-1 sm:grid-cols-2 gap-5">
           {topics.map((t, i) => (
             <CatalogCard
               key={t.id}

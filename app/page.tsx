@@ -183,7 +183,7 @@ export default function DashboardPage() {
               Wszystkie
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="desk-surface grid grid-cols-1 md:grid-cols-3 gap-4">
             {errors.slice(0, 3).map((e, i) => {
               const tough = e.timesWrong >= 3;
               return (

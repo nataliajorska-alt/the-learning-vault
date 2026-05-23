@@ -108,7 +108,7 @@ export default function ErrorsPage() {
               Nic nie pasuje do filtrów.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="desk-surface grid grid-cols-1 sm:grid-cols-2 gap-5">
               {filtered!.map((e, i) => {
                 const tough = e.timesWrong >= 3;
                 return (
