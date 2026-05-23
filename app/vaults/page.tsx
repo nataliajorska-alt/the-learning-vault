@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
+import { Bookshelf } from "@/components/ui/Bookshelf";
 import { VaultIcon } from "@/components/ui/VaultIcon";
 import { useTopics, useVaults } from "@/lib/firestore-data";
 import type { Timestamp } from "firebase/firestore";
@@ -27,7 +28,7 @@ export default function VaultsPage() {
       const isDue =
         t.status === "struggling" ||
         t.status === "fresh" ||
-        (t.status === "due") ||
+        t.status === "due" ||
         toMillis(t.nextReview) <= now;
       if (isDue && t.status !== "mastered") {
         map[t.vaultId] = (map[t.vaultId] ?? 0) + 1;
@@ -49,55 +50,77 @@ export default function VaultsPage() {
     return <div className="text-muted hero-italic text-2xl">Ładuję sekcje...</div>;
   }
 
+  const totalDue = Object.values(dueByVault).reduce((s, n) => s + n, 0);
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       <header>
-        <div className="eyebrow">Twoje obszary</div>
-        <h1 className="hero-italic text-5xl mt-2">Sekcje</h1>
+        <div className="eyebrow">Twoja biblioteka</div>
+        <h1 className="hero-italic text-5xl mt-2">Regał</h1>
         <p className="text-muted mt-3 max-w-xl">
-          {vaults.length} obszarów, jeden rytm. Każda sekcja ma własną kolejkę.
+          {vaults.length} tomów, jeden rytm.{" "}
+          {totalDue > 0
+            ? `Dziś ${totalDue} ${totalDue === 1 ? "rzecz czeka" : "rzeczy czekają"} na otwarcie.`
+            : "Dziś nic nie zalega."}
         </p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {vaults.map((v, i) => {
-          const dueCount = dueByVault[v.id] ?? 0;
-          const total = totalByVault[v.id] ?? 0;
-          return (
-            <Link
-              key={v.id}
-              href={`/vaults/${v.slug}`}
-              className="card card-hover group block relative animate-fadein"
-              style={{ animationDelay: `${i * 30}ms` }}
-            >
-              <div className="flex items-start justify-between">
-                <div
-                  className={`w-10 h-10 rounded flex items-center justify-center ${
-                    v.color === "gold"
-                      ? "bg-gold/10 text-gold"
-                      : v.color === "rose"
-                      ? "bg-rose/10 text-rose"
-                      : "bg-gold/10 text-gold"
-                  }`}
-                >
-                  <VaultIcon name={v.icon} />
-                </div>
-                {dueCount > 0 && (
-                  <span className="text-[10px] uppercase tracking-eyebrow text-gold bg-gold/20 border border-gold/30 rounded-full px-2.5 py-1">
-                    {dueCount} dziś
-                  </span>
-                )}
-              </div>
+      <section
+        className="relative -mx-2 sm:mx-0 px-2 py-8 sm:py-10 rounded"
+        style={{
+          background:
+            "radial-gradient(ellipse at top, rgba(184,146,77,0.06) 0%, transparent 60%), linear-gradient(180deg, rgba(10,17,30,0.6) 0%, rgba(14,22,38,0.3) 100%)",
+        }}
+      >
+        <Bookshelf
+          vaults={vaults}
+          dueByVault={dueByVault}
+          totalByVault={totalByVault}
+        />
+      </section>
 
-              <div className="eyebrow mt-6">{v.level}</div>
-              <div className="hero-italic text-2xl mt-1 text-ink">{v.name}</div>
-              <div className="text-xs text-muted mt-4">
-                {total} {total === 1 ? "temat" : total < 5 ? "tematy" : "tematów"}
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      <section>
+        <div className="eyebrow mb-4">Katalog</div>
+        <ul className="divide-y divide-line border-y border-line">
+          {vaults.map((v) => {
+            const dueCount = dueByVault[v.id] ?? 0;
+            const total = totalByVault[v.id] ?? 0;
+            return (
+              <li key={v.id}>
+                <Link
+                  href={`/vaults/${v.slug}`}
+                  className="flex items-center gap-4 py-3 px-2 hover:bg-cream/40 transition-colors group"
+                >
+                  <span
+                    className={`w-8 h-8 rounded flex items-center justify-center shrink-0 ${
+                      v.color === "rose"
+                        ? "bg-rose/15 text-rose"
+                        : v.color === "gold"
+                        ? "bg-gold/15 text-gold"
+                        : "bg-forest-2/40 text-paper/70"
+                    }`}
+                  >
+                    <VaultIcon name={v.icon} className="w-4 h-4 stroke-[1.5]" />
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <div className="hero-italic text-lg text-ink truncate">
+                      {v.name}
+                    </div>
+                    <div className="text-[10px] uppercase tracking-eyebrow text-muted mt-0.5">
+                      {v.level} · {total} {total === 1 ? "temat" : total < 5 ? "tematy" : "tematów"}
+                    </div>
+                  </div>
+                  {dueCount > 0 && (
+                    <span className="text-[10px] uppercase tracking-eyebrow text-gold bg-gold/15 border border-gold/30 rounded-full px-2.5 py-1 shrink-0">
+                      {dueCount} dziś
+                    </span>
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </div>
   );
 }
