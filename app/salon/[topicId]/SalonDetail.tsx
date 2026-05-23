@@ -9,6 +9,7 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
+import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 
 export function SalonDetail({ topicId }: { topicId: string }) {
   const topics = useTopics();
@@ -29,13 +30,20 @@ export function SalonDetail({ topicId }: { topicId: string }) {
     [topic, vaults]
   );
 
-  // Bump lastShownInSalon once on mount, after we have the topic
+  // Bump lastShownInSalon once on mount, after we have the topic.
+  // Plus best-effort XP do P30 (+5 za odsłonięcie salonowego tematu).
+  // Pillar wyznaczony z vault.slug, jeśli vault jest już załadowany.
   useEffect(() => {
     if (topic && !markedRef.current) {
       markedRef.current = true;
       markTopicShownInSalon(topic.id).catch(() => {});
+      void awardP30Xp({
+        xp: 5,
+        source: "vault:salon-view",
+        pillar: pillarForVaultSlug(vault?.slug),
+      });
     }
-  }, [topic]);
+  }, [topic, vault]);
 
   const loading = topics === null || phrases === null || vaults === null;
 

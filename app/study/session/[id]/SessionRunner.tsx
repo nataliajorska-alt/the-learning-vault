@@ -11,6 +11,7 @@ import {
   startSession,
   useVaults,
 } from "@/lib/firestore-data";
+import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
 import type { Question, Topic } from "@/lib/types";
 
@@ -235,14 +236,27 @@ export function SessionRunner({
     if (finishedRef.current || !sessionId) return;
     finishedRef.current = true;
     const duration = Math.round((Date.now() - sessionStartRef.current) / 1000);
+    const correctCount = attempts.filter((a) => a.correct).length;
     try {
       await finishSession(sessionId, {
         attempted: attempts.length,
-        correct: attempts.filter((a) => a.correct).length,
+        correct: correctCount,
         duration,
       });
     } catch (e) {
       console.error("finishSession failed", e);
+    }
+    // Best-effort XP do Projekt 30:
+    // 25 baseXP za skończoną sesję + 1 XP za każdą poprawną odpowiedź (max 8).
+    // Filar wg vault.slug topica. Topic single per session w obecnym MVP.
+    if (topic && vaults) {
+      const vault = vaults.find((v) => v.id === topic.vaultId);
+      const correctBonus = Math.min(correctCount, 8);
+      void awardP30Xp({
+        xp: 25 + correctBonus,
+        source: "vault:finish-session",
+        pillar: pillarForVaultSlug(vault?.slug),
+      });
     }
   }
 

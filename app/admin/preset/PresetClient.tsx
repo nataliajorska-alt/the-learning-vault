@@ -10,6 +10,7 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
+import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { PRESETS } from "./presets";
 
 export function PresetClient() {
@@ -69,6 +70,12 @@ export function PresetClient() {
         presetSlug: preset.slug,
       });
       setJustSaved((s) => ({ ...s, [presetSlug]: result.topicId }));
+      // Best-effort XP to Projekt 30 (+10 za import nowego tematu).
+      void awardP30Xp({
+        xp: 10,
+        source: "vault:preset-import",
+        pillar: pillarForVaultSlug(preset.vaultSlug),
+      });
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : "Zapis nie powiódł się.");
     } finally {
