@@ -69,7 +69,7 @@ export default function VaultsPage() {
         className="relative -mx-2 sm:mx-0 px-2 py-8 sm:py-10 rounded"
         style={{
           background:
-            "radial-gradient(ellipse at top, rgba(184,146,77,0.06) 0%, transparent 60%), linear-gradient(180deg, rgba(10,17,30,0.6) 0%, rgba(14,22,38,0.3) 100%)",
+            "radial-gradient(ellipse at top, rgba(184,146,77,0.08) 0%, transparent 60%), linear-gradient(180deg, rgba(18,10,4,0.5) 0%, rgba(27,17,8,0.2) 100%)",
         }}
       >
         <Bookshelf

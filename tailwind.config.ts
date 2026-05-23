@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Midnight Library palette
-        ivory: "#0E1626",        // main body bg (granat ink)
-        cream: "#1A2438",        // card / surface bg
+        // Old Library palette — warm dark mahogany / sepia
+        ivory: "#1B1108",        // main body bg (deep mahogany)
+        cream: "#271A0C",        // card / surface bg (warm leather)
         paper: "#E8DFCC",        // light cream text on dark
         forest: {
-          DEFAULT: "#0A111E",    // deepest surface (top nav, modals)
-          2: "#243049",          // hover state
+          DEFAULT: "#120A04",    // deepest surface (top nav, modals)
+          2: "#3A2615",          // hover state (caramel brown)
         },
         gold: {
           DEFAULT: "#B8924D",    // brass accent
