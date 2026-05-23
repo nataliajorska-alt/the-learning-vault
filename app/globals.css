@@ -283,3 +283,248 @@
   }
 }
 
+/* --- Open book (study session) ------------------------------------------- */
+
+.open-book {
+  position: relative;
+  background-color: #E2D6BA;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(80, 50, 20, 0.05) 1px, transparent 0),
+    linear-gradient(180deg, #ECE0C5 0%, #DCCDAA 60%, #D2C198 100%);
+  background-size: 4px 4px, 100% 100%;
+  color: #2a1810;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.4) inset,
+    0 14px 32px -12px rgba(0, 0, 0, 0.55),
+    0 30px 60px -30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+/* outer page edge curl */
+.open-book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, transparent 4%),
+    linear-gradient(270deg, rgba(0, 0, 0, 0.12) 0%, transparent 4%);
+}
+
+/* center spine shadow */
+.open-book .book-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 36px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(60, 40, 20, 0.12) 30%,
+      rgba(40, 25, 12, 0.32) 50%,
+      rgba(60, 40, 20, 0.12) 70%,
+      transparent 100%
+    );
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .open-book .book-spine {
+    display: none;
+  }
+}
+
+.book-pages {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 460px;
+}
+
+@media (min-width: 768px) {
+  .book-pages {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.book-page {
+  padding: 2rem 1.75rem 3rem 1.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .book-page-left {
+    padding-right: 2.5rem;
+  }
+  .book-page-right {
+    padding-left: 2.5rem;
+  }
+}
+
+.book-eyebrow {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6b4a26;
+  font-weight: 600;
+}
+
+.book-folio {
+  position: absolute;
+  bottom: 0.9rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #8a6a3a;
+}
+
+.book-folio-left {
+  left: 1.75rem;
+}
+
+.book-folio-right {
+  right: 1.75rem;
+}
+
+.book-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #1f1208;
+}
+
+.book-body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  color: #3a2614;
+  line-height: 1.65;
+}
+
+.book-body p + p {
+  margin-top: 0.85rem;
+}
+
+.book-input {
+  width: 100%;
+  background-color: rgba(255, 248, 230, 0.7);
+  border: 1px solid rgba(60, 40, 20, 0.25);
+  border-radius: 2px;
+  padding: 0.7rem 0.85rem;
+  color: #2a1810;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.875rem;
+}
+
+.book-input:focus {
+  outline: none;
+  border-color: rgba(184, 146, 77, 0.7);
+  box-shadow: 0 0 0 2px rgba(184, 146, 77, 0.2);
+  background-color: rgba(255, 248, 230, 0.95);
+}
+
+.book-input::placeholder {
+  color: rgba(60, 40, 20, 0.45);
+  font-style: italic;
+}
+
+.book-option {
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(60, 40, 20, 0.22);
+  border-radius: 2px;
+  background-color: rgba(255, 248, 230, 0.45);
+  color: #2a1810;
+  font-size: 0.875rem;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.book-option:hover:not(:disabled) {
+  border-color: rgba(184, 146, 77, 0.65);
+  background-color: rgba(255, 248, 230, 0.8);
+}
+
+.book-option-correct {
+  border-color: rgba(45, 90, 63, 0.6) !important;
+  background-color: rgba(45, 90, 63, 0.1) !important;
+}
+
+.book-option-wrong {
+  border-color: rgba(139, 46, 31, 0.6) !important;
+  background-color: rgba(139, 46, 31, 0.1) !important;
+}
+
+.book-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2a1810;
+  color: #ECE0C5;
+  padding: 0.55rem 1.1rem;
+  border-radius: 2px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #1a0f06;
+}
+
+.book-btn:hover:not(:disabled) {
+  background-color: #3a2614;
+  transform: translateY(-1px);
+}
+
+.book-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.book-margin-note {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #8a6a3a;
+}
+
+/* Gold ribbon bookmark — slides as correct answers accumulate */
+.bookmark-ribbon {
+  position: absolute;
+  top: -8px;
+  width: 16px;
+  background: linear-gradient(
+    90deg,
+    #8a6a32 0%,
+    #C9A961 30%,
+    #B8924D 60%,
+    #7a5c28 100%
+  );
+  z-index: 3;
+  transition: height 480ms cubic-bezier(0.34, 1.2, 0.64, 1);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+}
+
+.bookmark-ribbon::after {
+  content: "";
+  position: absolute;
+  inset-y: 0;
+  left: 0;
+  width: 2px;
+  background-color: rgba(255, 230, 180, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookmark-ribbon {
+    transition: none;
+  }
+}
+
+
