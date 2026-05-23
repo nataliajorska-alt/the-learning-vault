@@ -17,25 +17,32 @@ interface BookProps {
   total: number;
   dueCount: number;
   index: number;
+  leans?: boolean;
 }
 
-const SPINE_HEIGHTS = [296, 312, 288, 320, 300, 308, 284, 316, 292, 304, 296, 312, 288];
-const SPINE_WIDTHS = [62, 70, 64, 74, 66, 70, 60, 72, 64, 68, 62, 74, 66];
+const SPINE_HEIGHTS = [296, 304, 292, 308, 298, 302, 294, 306, 296, 300, 290, 304, 298];
+const SPINE_WIDTHS = [64, 68, 66, 70, 64, 68, 66, 70, 64, 68, 66, 70, 66];
 
 function spineGradient(color: BookVault["color"]) {
   if (color === "rose") {
-    return "linear-gradient(90deg, #6b2a14 0%, #C9622F 18%, #9a3f1e 50%, #C9622F 82%, #6b2a14 100%)";
+    return "linear-gradient(90deg, #2b0a0a 0%, #5a1a1a 14%, #3d1010 50%, #5a1a1a 86%, #2b0a0a 100%)";
   }
   if (color === "gold") {
-    return "linear-gradient(90deg, #5a4520 0%, #B8924D 18%, #8a6a32 50%, #B8924D 82%, #5a4520 100%)";
+    return "linear-gradient(90deg, #2a1808 0%, #5e3e1f 14%, #422a13 50%, #5e3e1f 86%, #2a1808 100%)";
   }
-  return "linear-gradient(90deg, #0a111e 0%, #243049 22%, #142036 50%, #243049 78%, #0a111e 100%)";
+  return "linear-gradient(90deg, #0a1410 0%, #1d3527 14%, #122318 50%, #1d3527 86%, #0a1410 100%)";
 }
 
-function Book({ vault, dueCount, index }: BookProps) {
+const COLOR_ORDER: Record<BookVault["color"], number> = {
+  rose: 0,
+  gold: 1,
+  forest: 2,
+};
+
+function Book({ vault, dueCount, index, leans }: BookProps) {
   const height = SPINE_HEIGHTS[index % SPINE_HEIGHTS.length];
   const width = SPINE_WIDTHS[index % SPINE_WIDTHS.length];
-  const tilt = index % 7 === 5 ? -1.5 : 0;
+  const tilt = leans ? -2 : 0;
 
   return (
     <Link
@@ -68,11 +75,11 @@ function Book({ vault, dueCount, index }: BookProps) {
       {/* top cap / headband */}
       <span className="pointer-events-none absolute top-0 left-0 right-0 h-1.5 rounded-t-[3px] bg-gradient-to-b from-paper/70 to-paper/20" />
 
-      {/* decorative gold bands */}
-      <span className="pointer-events-none absolute left-1.5 right-1.5 top-7 h-px bg-gold/70" />
-      <span className="pointer-events-none absolute left-2 right-2 top-9 h-px bg-gold/40" />
-      <span className="pointer-events-none absolute left-1.5 right-1.5 bottom-12 h-px bg-gold/40" />
-      <span className="pointer-events-none absolute left-2 right-2 bottom-14 h-px bg-gold/70" />
+      {/* decorative gold bands — embossed, restrained */}
+      <span className="pointer-events-none absolute left-2 right-2 top-7 h-px bg-gold/55" />
+      <span className="pointer-events-none absolute left-2.5 right-2.5 top-[34px] h-px bg-gold/25" />
+      <span className="pointer-events-none absolute left-2.5 right-2.5 bottom-[40px] h-px bg-gold/25" />
+      <span className="pointer-events-none absolute left-2 right-2 bottom-12 h-px bg-gold/55" />
 
       {/* due badge */}
       {dueCount > 0 && (
@@ -126,7 +133,7 @@ function Shelf({ vaults, dueByVault, totalByVault, startIndex = 0 }: ShelfProps)
   return (
     <div className="relative">
       {/* books — sit on top of the shelf */}
-      <div className="flex items-end justify-center gap-[3px] overflow-x-auto px-3 pb-0 scrollbar-thin">
+      <div className="flex items-end justify-center gap-[2px] overflow-x-auto px-3 pb-0 scrollbar-thin">
         {vaults.map((v, i) => (
           <Book
             key={v.id}
@@ -134,6 +141,7 @@ function Shelf({ vaults, dueByVault, totalByVault, startIndex = 0 }: ShelfProps)
             total={totalByVault[v.id] ?? 0}
             dueCount={dueByVault[v.id] ?? 0}
             index={startIndex + i}
+            leans={i === vaults.length - 1}
           />
         ))}
       </div>
@@ -162,14 +170,18 @@ export function Bookshelf({
   dueByVault: Record<string, number>;
   totalByVault: Record<string, number>;
 }) {
+  // group by color (rose → gold → forest) then by order within group
   const sorted = [...vaults].sort((a, b) => {
+    const ca = COLOR_ORDER[a.color] ?? 99;
+    const cb = COLOR_ORDER[b.color] ?? 99;
+    if (ca !== cb) return ca - cb;
     const ao = (a as unknown as { order?: number }).order ?? 0;
     const bo = (b as unknown as { order?: number }).order ?? 0;
     return ao - bo;
   });
-  const mid = Math.ceil(sorted.length / 2);
-  const top = sorted.slice(0, mid);
-  const bottom = sorted.slice(mid);
+  // split into two shelves: warm tones on top (rose + gold), cool/green on bottom
+  const top = sorted.filter((v) => v.color !== "forest");
+  const bottom = sorted.filter((v) => v.color === "forest");
 
   return (
     <div className="space-y-8">
