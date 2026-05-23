@@ -4,8 +4,8 @@
   "description": "Aktywna nauka. Old money po cichu.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0E1626",
-  "theme_color": "#0A111E",
+  "background_color": "#1B1108",
+  "theme_color": "#120A04",
   "orientation": "portrait",
   "icons": [
     {
