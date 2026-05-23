@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { StatusDot } from "@/components/ui/StatusDot";
+import { CatalogCard, type StampColor } from "@/components/ui/CatalogCard";
 import { VaultIcon } from "@/components/ui/VaultIcon";
 import { useTopics, useVaultBySlug } from "@/lib/firestore-data";
 
@@ -12,6 +12,30 @@ const statusLabel: Record<string, string> = {
   mastered: "opanowane",
   struggling: "uciążliwe",
 };
+
+const statusStampColor: Record<string, StampColor> = {
+  fresh: "blue",
+  due: "red",
+  mastered: "green",
+  struggling: "orange",
+};
+
+function vaultSig(name: string): string {
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 4)
+    .toUpperCase();
+}
+
+function idSig(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  }
+  return String(hash % 1000).padStart(3, "0");
+}
 
 export default function VaultDetailPage({
   params,
@@ -82,31 +106,27 @@ export default function VaultDetailPage({
           </p>
         </div>
       ) : (
-        <ul className="divide-y divide-line border-t border-b border-line">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {topics.map((t, i) => (
-            <li
+            <CatalogCard
               key={t.id}
-              className="animate-fadein"
-              style={{ animationDelay: `${i * 35}ms` }}
-            >
-              <Link
-                href={`/study/session/new?topic=${t.id}`}
-                className="flex items-center gap-4 py-5 group hover:bg-cream/60 -mx-2 px-2 rounded transition-colors"
-              >
-                <div className="w-5 flex items-center justify-center">
-                  <StatusDot status={t.status} />
-                </div>
-                <div className="flex-1">
-                  <div className="hero-italic text-xl text-ink">{t.title}</div>
-                  <div className="text-xs text-muted mt-1">{t.summary}</div>
-                </div>
-                <div className="text-[10px] uppercase tracking-eyebrow text-muted whitespace-nowrap">
-                  {statusLabel[t.status]}
-                </div>
-              </Link>
-            </li>
+              href={`/study/session/new?topic=${t.id}`}
+              signature={`${vaultSig(vault.name)} · ${idSig(t.id)}`}
+              rightMeta={
+                t.totalAttempts > 0
+                  ? `${Math.round((t.totalCorrect / t.totalAttempts) * 100)}%`
+                  : "—"
+              }
+              title={t.title}
+              subtitle={t.summary}
+              stamp={{
+                label: statusLabel[t.status] ?? t.status,
+                color: statusStampColor[t.status] ?? "gold",
+              }}
+              delayMs={i * 35}
+            />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

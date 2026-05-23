@@ -2,9 +2,27 @@
 
 import { useEffect, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Wine, AlertTriangle } from "lucide-react";
+import { ArrowRight, Wine } from "lucide-react";
 import { StatCard } from "@/components/ui/StatCard";
+import { CatalogCard } from "@/components/ui/CatalogCard";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
+
+function dashSigFromVault(name: string): string {
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 4)
+    .toUpperCase();
+}
+
+function dashSigFromId(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  }
+  return String(hash % 1000).padStart(3, "0");
+}
 import {
   ensureUserDoc,
   useErrors,
@@ -165,30 +183,34 @@ export default function DashboardPage() {
               Wszystkie
             </Link>
           </div>
-          <div className="space-y-3">
-            {errors.slice(0, 3).map((e) => (
-              <Link
-                key={e.id}
-                href="/errors"
-                className="card card-hover flex items-start gap-4"
-              >
-                <AlertTriangle className="w-4 h-4 text-gold stroke-[1.5] mt-1 shrink-0" />
-                <div className="flex-1">
-                  <div className="eyebrow">{e.vaultName}</div>
-                  <div className="hero-italic text-xl mt-1">
-                    {e.correctVersion}
-                  </div>
-                  <div className="text-xs text-muted mt-1">
-                    nie:{" "}
-                    <span className="line-through">{e.wrongVersion}</span> ·{" "}
-                    {e.context}
-                  </div>
-                </div>
-                <div className="text-xs text-muted whitespace-nowrap">
-                  ×{e.timesWrong}
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {errors.slice(0, 3).map((e, i) => {
+              const tough = e.timesWrong >= 3;
+              return (
+                <CatalogCard
+                  key={e.id}
+                  href="/errors"
+                  signature={`${dashSigFromVault(e.vaultName)} · ${dashSigFromId(e.id)}`}
+                  rightMeta={`× ${e.timesWrong}`}
+                  title={e.correctVersion}
+                  subtitle={
+                    <>
+                      nie:{" "}
+                      <span className="line-through opacity-70">
+                        {e.wrongVersion}
+                      </span>{" "}
+                      · {e.context}
+                    </>
+                  }
+                  stamp={
+                    tough
+                      ? { label: "uciążliwe", color: "orange" }
+                      : { label: "do upilnowania", color: "red" }
+                  }
+                  delayMs={i * 50}
+                />
+              );
+            })}
           </div>
         </section>
       )}

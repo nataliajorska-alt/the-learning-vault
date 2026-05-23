@@ -106,3 +106,143 @@
     transition: none !important;
   }
 }
+
+/* --- Catalog card (old university library style) -------------------------- */
+
+.catalog-card {
+  position: relative;
+  background-color: #E2D6BA;
+  background-image:
+    /* warm paper noise */
+    radial-gradient(circle at 1px 1px, rgba(80, 50, 20, 0.06) 1px, transparent 0),
+    /* subtle aged gradient */
+    linear-gradient(160deg, #E8DCC1 0%, #DCCDAA 70%, #D2C198 100%);
+  background-size: 4px 4px, 100% 100%;
+  color: #2a1810;
+  padding: 1.25rem 1.25rem 2rem 1.25rem;
+  border: 1px solid rgba(60, 40, 20, 0.18);
+  border-bottom: none;
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 6px 14px -8px rgba(0, 0, 0, 0.45),
+    0 12px 24px -16px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.catalog-link:hover .catalog-card,
+.catalog-link:focus-visible .catalog-card {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 10px 18px -8px rgba(0, 0, 0, 0.5),
+    0 16px 32px -18px rgba(0, 0, 0, 0.4);
+}
+
+.catalog-card {
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.catalog-link:focus-visible {
+  outline: none;
+}
+.catalog-link:focus-visible .catalog-card {
+  box-shadow:
+    0 0 0 2px rgba(184, 146, 77, 0.6),
+    0 10px 18px -8px rgba(0, 0, 0, 0.5);
+}
+
+.catalog-sig {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b4a26;
+  font-weight: 600;
+}
+
+.catalog-meta {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #6b4a26;
+  white-space: nowrap;
+}
+
+.catalog-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  color: #1f1208;
+}
+
+.catalog-subtitle {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  color: #5a3f24;
+  line-height: 1.5;
+}
+
+.catalog-footer {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a6a3a;
+}
+
+.catalog-stamp {
+  position: absolute;
+  right: 1rem;
+  bottom: 2.25rem;
+  transform: rotate(-9deg);
+  padding: 0.2rem 0.7rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  opacity: 0.78;
+  background-color: rgba(226, 214, 186, 0.4);
+  pointer-events: none;
+  user-select: none;
+}
+
+.catalog-perforation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 6px,
+      rgba(60, 40, 20, 0.35) 6px,
+      rgba(60, 40, 20, 0.35) 11px
+    );
+  background-position: 0 0.55rem;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  border-top: 1px dashed rgba(60, 40, 20, 0.22);
+}
+
+.catalog-hole {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #0E1626;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.4);
+}
+

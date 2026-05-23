@@ -2,8 +2,26 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { AlertTriangle, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
+import { CatalogCard } from "@/components/ui/CatalogCard";
 import { useErrors, useVaults } from "@/lib/firestore-data";
+
+function sigFromVault(name: string): string {
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 4)
+    .toUpperCase();
+}
+
+function sigFromId(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  }
+  return String(hash % 1000).padStart(3, "0");
+}
 
 export default function ErrorsPage() {
   const errors = useErrors();
@@ -90,32 +108,39 @@ export default function ErrorsPage() {
               Nic nie pasuje do filtrów.
             </p>
           ) : (
-            <ul className="divide-y divide-line border-t border-b border-line">
-              {filtered!.map((e) => (
-                <li key={e.id} className="py-5 flex items-start gap-4">
-                  <AlertTriangle className="w-4 h-4 text-gold stroke-[1.5] mt-1.5 shrink-0" />
-                  <div className="flex-1">
-                    <div className="eyebrow">{e.vaultName}</div>
-                    <div className="hero-italic text-2xl text-ink mt-1">
-                      {e.correctVersion}
-                    </div>
-                    <div className="text-xs text-muted mt-1">
-                      nie:{" "}
-                      <span className="line-through">{e.wrongVersion}</span> ·{" "}
-                      {e.context}
-                    </div>
-                    {e.correctStreak > 0 && (
-                      <div className="text-[10px] uppercase tracking-eyebrow text-gold/60 mt-2">
-                        {e.correctStreak}/3 do rehabilitacji
-                      </div>
-                    )}
-                  </div>
-                  <div className="text-xs text-muted whitespace-nowrap mt-2">
-                    ×{e.timesWrong}
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {filtered!.map((e, i) => {
+                const tough = e.timesWrong >= 3;
+                return (
+                  <CatalogCard
+                    key={e.id}
+                    signature={`${sigFromVault(e.vaultName)} · ${sigFromId(e.id)}`}
+                    rightMeta={`× ${e.timesWrong}`}
+                    title={e.correctVersion}
+                    subtitle={
+                      <>
+                        nie:{" "}
+                        <span className="line-through opacity-70">
+                          {e.wrongVersion}
+                        </span>{" "}
+                        · {e.context}
+                      </>
+                    }
+                    footer={
+                      e.correctStreak > 0
+                        ? `${e.correctStreak}/3 do rehabilitacji`
+                        : undefined
+                    }
+                    stamp={
+                      tough
+                        ? { label: "uciążliwe", color: "orange" }
+                        : { label: "do upilnowania", color: "red" }
+                    }
+                    delayMs={i * 40}
+                  />
+                );
+              })}
+            </div>
           )}
         </>
       )}
