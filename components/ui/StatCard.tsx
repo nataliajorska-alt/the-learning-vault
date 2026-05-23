@@ -6,10 +6,10 @@ interface Props {
 
 export function StatCard({ label, value, hint }: Props) {
   return (
-    <div className="card">
-      <div className="eyebrow">{label}</div>
-      <div className="hero-italic text-4xl mt-3 text-ink">{value}</div>
-      {hint && <div className="text-xs text-muted mt-2">{hint}</div>}
+    <div className="brass-plaque">
+      <div className="brass-label">{label}</div>
+      <div className="brass-value">{value}</div>
+      {hint && <div className="brass-hint">{hint}</div>}
     </div>
   );
 }

@@ -56,6 +56,14 @@ export default function DashboardPage() {
     day: "numeric",
     month: "long",
   });
+  const todayStamp = new Date()
+    .toLocaleDateString("pl-PL", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .replace(/\./g, "")
+    .toUpperCase();
 
   const due = useMemo(() => {
     if (!topics) return [];
@@ -108,18 +116,24 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-12">
-      <header>
-        <div className="eyebrow">{today}</div>
-        <h1 className="hero-italic text-5xl md:text-6xl mt-2">
-          Dzień dobry, Natalia.
-        </h1>
-        <p className="text-muted mt-4 max-w-xl leading-relaxed">
-          {!loaded
-            ? "Ładuję twoją kolejkę..."
-            : due.length === 0
-            ? "Dziś masz wolne. Wszystko opanowane, nic nie zalega."
-            : `Dziś czeka ${due.length} ${due.length === 1 ? "temat" : due.length < 5 ? "tematy" : "tematów"}. Zacznij, kiedy będziesz miała kwadrans.`}
-        </p>
+      <header className="relative flex items-start justify-between gap-6">
+        <div>
+          <div className="eyebrow">{today}</div>
+          <h1 className="hero-italic text-5xl md:text-6xl mt-2">
+            Dzień dobry, Natalia.
+          </h1>
+          <p className="text-muted mt-4 max-w-xl leading-relaxed">
+            {!loaded
+              ? "Ładuję twoją kolejkę..."
+              : due.length === 0
+              ? "Dziś masz wolne. Wszystko opanowane, nic nie zalega."
+              : `Dziś czeka ${due.length} ${due.length === 1 ? "temat" : due.length < 5 ? "tematy" : "tematów"}. Zacznij, kiedy będziesz miała kwadrans.`}
+          </p>
+        </div>
+        <div className="date-stamp shrink-0 mt-2 hidden sm:flex" aria-hidden>
+          <span className="date-stamp-top">Zarejestrowano</span>
+          <span className="date-stamp-main">{todayStamp}</span>
+        </div>
       </header>
 
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -128,42 +142,49 @@ export default function DashboardPage() {
         <StatCard label="Opanowane" value={mastered} hint={`z ${topics?.length ?? 0} tematów`} />
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Link
-          href="/study"
-          className="card card-hover group flex flex-col justify-between min-h-[200px]"
-        >
-          <div>
-            <div className="eyebrow">15 minut</div>
-            <div className="hero-italic text-3xl mt-2">Zacznij sesję</div>
-            <p className="text-muted text-sm mt-3 max-w-sm">
-              Trzy minuty teorii, dziesięć minut testu, dwie minuty korekty.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 text-gold text-sm mt-6 group-hover:gap-3 transition-all">
-            Otwórz <ArrowRight className="w-4 h-4" />
-          </div>
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <Link href="/study" className="notice-link block">
+          <article className="notice-card min-h-[210px] flex flex-col justify-between">
+            <span className="notice-seal" aria-hidden>
+              LV
+            </span>
+            <div className="relative">
+              <span className="notice-eyebrow">XV minut</span>
+              <h3 className="notice-title">Zacznij sesję</h3>
+              <p className="notice-body">
+                Trzy minuty teorii, dziesięć minut testu, dwie minuty korekty.
+              </p>
+            </div>
+            <span className="notice-action relative">
+              Otwórz księgę <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </article>
         </Link>
 
         <Link
           href={salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon"}
-          className="card card-hover group flex flex-col justify-between min-h-[200px]"
+          className="notice-link block"
         >
-          <div>
-            <div className="flex items-center gap-2 eyebrow">
-              <Wine className="w-3 h-3" />
-              Salon — temat dnia
+          <article className="notice-card min-h-[210px] flex flex-col justify-between">
+            <span className="notice-seal" aria-hidden>
+              S
+            </span>
+            <div className="relative">
+              <span className="notice-eyebrow">
+                <Wine className="w-3 h-3" /> Salon — temat dnia
+              </span>
+              <h3 className="notice-title">
+                {salonTopic?.topic.title ?? "Salon"}
+              </h3>
+              <p className="notice-body line-clamp-3">
+                {salonTopic?.phrase.short ??
+                  "Trzy zdania na temat. Praktyczne obycie, nie egzamin."}
+              </p>
             </div>
-            <div className="hero-italic text-3xl mt-2">
-              {salonTopic?.topic.title ?? "Salon"}
-            </div>
-            <p className="text-muted text-sm mt-3 max-w-sm line-clamp-3">
-              {salonTopic?.phrase.short ?? "Trzy zdania na temat. Praktyczne obycie, nie egzamin."}
-            </p>
-          </div>
-          <div className="flex items-center gap-2 text-gold text-sm mt-6 group-hover:gap-3 transition-all">
-            Otwórz <ArrowRight className="w-4 h-4" />
-          </div>
+            <span className="notice-action relative">
+              Wejdź <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </article>
         </Link>
       </section>
 

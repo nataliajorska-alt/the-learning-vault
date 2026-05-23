@@ -527,4 +527,236 @@
   }
 }
 
+/* --- Dashboard library furniture ----------------------------------------- */
+
+/* Rubber-stamp date in header corner */
+.date-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border: 2px solid rgba(139, 46, 31, 0.55);
+  border-radius: 2px;
+  color: #8B2E1F;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  transform: rotate(-3deg);
+  background-color: rgba(232, 223, 204, 0.04);
+  opacity: 0.88;
+  line-height: 1.1;
+  pointer-events: none;
+}
+
+.date-stamp-top {
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  color: rgba(139, 46, 31, 0.7);
+}
+
+.date-stamp-main {
+  font-size: 13px;
+  margin-top: 1px;
+}
+
+/* Brass plaque (statistics) */
+.brass-plaque {
+  position: relative;
+  background:
+    linear-gradient(180deg, #2c1d0e 0%, #1d130a 100%);
+  border: 1px solid rgba(184, 146, 77, 0.28);
+  border-radius: 2px;
+  padding: 1.1rem 1.25rem 1.2rem 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(184, 146, 77, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 6px 14px -10px rgba(0, 0, 0, 0.5);
+}
+
+.brass-plaque::before,
+.brass-plaque::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C9A961 0%, #6b4a26 60%, #1d130a 100%);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+.brass-plaque::before {
+  top: 6px;
+  left: 6px;
+}
+.brass-plaque::after {
+  top: 6px;
+  right: 6px;
+}
+
+.brass-label {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 97, 0.7);
+}
+
+.brass-value {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #C9A961;
+  font-size: 2.25rem;
+  margin-top: 0.35rem;
+  letter-spacing: -0.01em;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 0 12px rgba(201, 169, 97, 0.18);
+}
+
+.brass-hint {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 11px;
+  color: rgba(232, 223, 204, 0.55);
+  margin-top: 0.5rem;
+}
+
+/* Invitation / notice card — cream paper letterpress card */
+.notice-card {
+  position: relative;
+  background-color: #E2D6BA;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(80, 50, 20, 0.05) 1px, transparent 0),
+    linear-gradient(155deg, #ECE0C5 0%, #DCCDAA 75%, #CFC096 100%);
+  background-size: 4px 4px, 100% 100%;
+  color: #2a1810;
+  padding: 1.5rem 1.5rem 1.6rem 1.5rem;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 1px 0 rgba(60, 40, 20, 0.18),
+    0 10px 22px -10px rgba(0, 0, 0, 0.5),
+    0 18px 36px -22px rgba(0, 0, 0, 0.4);
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* double-ruled gold frame inside card */
+.notice-card::before {
+  content: "";
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px solid rgba(122, 92, 40, 0.42);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.notice-card::after {
+  content: "";
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(122, 92, 40, 0.22);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.notice-link:hover .notice-card,
+.notice-link:focus-visible .notice-card {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 0 rgba(60, 40, 20, 0.2),
+    0 14px 28px -10px rgba(0, 0, 0, 0.55),
+    0 24px 44px -22px rgba(0, 0, 0, 0.45);
+}
+
+.notice-link:focus-visible {
+  outline: none;
+}
+
+.notice-eyebrow {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6b4a26;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.notice-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.875rem;
+  line-height: 1.15;
+  color: #1f1208;
+  margin-top: 0.55rem;
+}
+
+.notice-body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  color: #5a3f24;
+  line-height: 1.55;
+  margin-top: 0.7rem;
+  max-width: 28ch;
+}
+
+.notice-action {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a5c28;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  transition: gap 220ms ease;
+}
+
+.notice-link:hover .notice-action {
+  gap: 0.7rem;
+  color: #1f1208;
+}
+
+/* wax seal in corner */
+.notice-seal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #b53a26 0%, #7a1f14 55%, #4a1009 100%);
+  box-shadow:
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 200, 180, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 230, 200, 0.85);
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  z-index: 2;
+}
+
+.notice-seal::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 220, 200, 0.25);
+  pointer-events: none;
+}
+
+
 
