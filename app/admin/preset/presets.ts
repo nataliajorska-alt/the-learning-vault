@@ -7577,4 +7577,120 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 82. Hiszpański: zaimki me/te/le/nos/les — pozycja
+  // ============================================================
+  // Format praktyczny (salon: null) — to gramatyka recall, nie temat
+  // „przy winie". Bazuje na Duolingo Section 4 Unit 24 „Talk about classes".
+  {
+    slug: "es-zaimki-pozycja",
+    vaultSlug: "es",
+    label: "Hiszpański — zaimki me/te/le/nos/les (pozycja)",
+    payload: {
+      title: "Zaimki me/te/le/nos/les — pozycja",
+      summary:
+        "Małe słowa „me, te, le, nos, les\" stoją PRZED czasownikiem. Wyjątek: gdy są DWA czasowniki i drugi to bezokolicznik, możesz je postawić przed pierwszym ALBO doczepić do bezokolicznika. Dwie formy, ten sam sens.",
+      theory:
+        "Reguła główna: w hiszpańskim zaimki dopełnienia (me, te, le, nos, les) stoją PRZED czasownikiem. „Te expliqué eso\" (Wyjaśniłam ci to), „Yo le compro un regalo\" (Kupuję mu / jej prezent), „¿Me pasas el estuche?\" (Podasz mi piórnik?).\n\nZnaczenia:\n— me = mi / mnie\n— te = ci / tobie (forma „ty\")\n— le = mu / jej / Panu / Pani (formalne lub trzecia osoba)\n— nos = nam / nas\n— les = im / Państwu\n\nWyjątek z dwoma czasownikami + bezokolicznikiem. Gdy w zdaniu są dwa czasowniki i drugi jest w bezokoliczniku (np. „quiero hablar\", „va a dar\", „puedes pasar\"), masz DWIE opcje:\n\nA) zaimek PRZED pierwszym czasownikiem:\n— „No te quiero dar mi estuche.\" (Nie chcę ci dać mojego piórnika.)\n— „La maestra te va a dar una nota buena.\" (Nauczycielka da ci dobrą ocenę.)\n— „¿Me puedes dar esa mochila?\" (Możesz mi dać ten plecak?)\n\nB) zaimek DOCZEPIONY do bezokolicznika (jako jedno słowo):\n— „No quiero darte mi estuche.\" (Nie chcę ci dać mojego piórnika.)\n— „La maestra va a darte una nota buena.\" (Nauczycielka da ci dobrą ocenę.)\n— „¿Puedes darme esa mochila?\" (Możesz mi dać ten plecak?)\n\nObie formy są poprawne i znaczą dokładnie to samo. W mowie codziennej obie są naturalne — wybór zależy od rytmu zdania i nawyku.\n\nKluczowy warunek: bezokolicznik musi być w zdaniu (czasownik -ar, -er, -ir w pełnej formie). Bez bezokolicznika można tylko przed (forma A). „Te expliqué eso\" — jeden czasownik (expliqué), brak bezokolicznika, więc TYLKO przed.\n\nPrzykłady z Duolingo Section 4 Unit 24 „Talk about classes\":\n— „¿Me pasas el estuche, por favor?\" — jeden czasownik, zaimek przed.\n— „No te quiero dar mi estuche.\" lub „No quiero darte mi estuche.\" — dwa czasowniki + bezokolicznik, obie opcje.\n— „¿Vas a decirle la verdad?\" lub „¿Le vas a decir la verdad?\" — z konstrukcją „ir a + infinitivo\" też obie opcje.\n— „Quiero darte un consejo para la clase.\" — doczepione, ale można też „Te quiero dar un consejo\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„¿___ pasas el estuche, por favor?\" (Podasz mi piórnik?) — jeden czasownik. Wstaw zaimek:",
+          options: [
+            "Me",
+            "Te",
+            "Le",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Me\" = mi / mnie. Zaimek przed czasownikiem, bo jest tylko jeden czasownik (pasas) — bez bezokolicznika nie ma alternatywy.",
+        },
+        {
+          type: "abc",
+          text: "„Yo ___ compro un regalo.\" (Kupuję jej prezent) — wstaw zaimek:",
+          options: [
+            "te",
+            "le",
+            "me",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Le\" = jej / mu / Panu / Pani (trzecia osoba lub formalne). Stoi przed czasownikiem „compro\".",
+        },
+        {
+          type: "abc",
+          text: "Dwie poprawne formy: „Nie chcę ci dać piórnika\" to:",
+          options: [
+            "„No te quiero dar mi estuche\" — jedyna forma",
+            "„No quiero darte mi estuche\" — jedyna forma",
+            "Obie: „No te quiero dar mi estuche\" ORAZ „No quiero darte mi estuche\" — bo jest bezokolicznik (dar)",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Klucz: gdy drugi czasownik to bezokolicznik (dar), masz wybór — przed pierwszym czasownikiem (te quiero dar) ALBO doczepiony do bezokolicznika (darte). Obie poprawne, ten sam sens.",
+        },
+        {
+          type: "fill",
+          text: "Doczepienie zaimka do bezokolicznika: „¿Puedes dar___ esa mochila?\" (Możesz mi dać ten plecak?)",
+          options: null,
+          correctAnswer: "me",
+          explanation:
+            "„Darme\" = dar + me (doczepione razem, jedno słowo). Druga forma: „¿Me puedes dar esa mochila?\". Obie OK.",
+        },
+        {
+          type: "fill",
+          text: "Konstrukcja „ir a + infinitivo\": „¿Vas a decir___ la verdad?\" (Powiesz jej prawdę?)",
+          options: null,
+          correctAnswer: "le",
+          explanation:
+            "„Decirle\" = decir + le. „Le\" bo trzecia osoba (jej). Alternatywa: „¿Le vas a decir la verdad?\". Te dwie formy są wymienne.",
+        },
+        {
+          type: "fill",
+          text: "„La maestra ___ va a dar una nota buena.\" (Nauczycielka da CI dobrą ocenę) — przed pierwszym czasownikiem:",
+          options: null,
+          correctAnswer: "te",
+          explanation:
+            "„Te\" = ci / tobie. Forma A (przed pierwszym czasownikiem). Forma B: „La maestra va a darte una nota buena\" — doczepione do bezokolicznika.",
+        },
+        {
+          type: "open",
+          text: "Przekształć z formy A (przed czasownikiem) na formę B (doczepione do bezokolicznika): „Te quiero dar un consejo\".",
+          options: null,
+          correctAnswer:
+            "„Quiero darte un consejo.\" Zaimek „te\" odczepia się od pozycji przed „quiero\" i doczepia do bezokolicznika „dar\" jako jedno słowo „darte\". Obie formy mają identyczne znaczenie: „Chcę ci dać radę.\" To samo działa z „le, me, nos, les\" w analogicznych konstrukcjach.",
+          explanation:
+            "Klucz: mechaniczna transformacja. Te + quiero + dar → quiero + darte. Bezokolicznik jako kotwica dla zaimka.",
+        },
+        {
+          type: "spot_error",
+          text: "„Te expliqué eso darme\" — w jednej rozmowie chcę powiedzieć „Wyjaśniłam ci to\" i potem „daj mi to\".",
+          options: [
+            "tak, „te expliqué eso\" jest OK",
+            "„Te expliqué eso\" — OK (jeden czasownik, zaimek przed). Ale „darme\" w izolacji to bezokolicznik z zaimkiem, czyli „dać mi\" jako forma niefinalna — żeby powiedzieć rozkaz „daj mi to\" trzeba „dámelo\" (rozkaz + zaimki)",
+            "„te expliqué\" to błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Subtelność. Bezokolicznik z zaimkiem („darme\") to konstrukcja, która działa W zdaniu z innym czasownikiem („¿Puedes darme?\"), nie samodzielnie. Sam rozkaz „daj mi to\" wymaga trybu rozkazującego: „dámelo\" (dar + me + lo). To wykracza poza ten preset, ale warto wiedzieć.",
+        },
+        {
+          type: "spot_error",
+          text: "„No quiero te dar mi estuche.\" — chcę powiedzieć „Nie chcę ci dać mojego piórnika\".",
+          options: [
+            "OK, „te\" pomiędzy",
+            "BŁĄD — zaimek „te\" nie może stać MIĘDZY czasownikami. Albo przed pierwszym („No te quiero dar\") albo doczepiony do bezokolicznika („No quiero darte\")",
+            "powinno być „le\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczny błąd Polaków. Zaimek nigdy NIE stoi luźno między dwoma czasownikami. Tylko dwie opcje: przed pierwszym (te quiero dar) albo doczepiony do bezokolicznika (quiero darte).",
+        },
+      ],
+      salon: null,
+    },
+  },
 ];
