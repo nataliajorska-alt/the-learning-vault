@@ -87,21 +87,29 @@ export default function SalonPage() {
             <section>
               <Link
                 href={`/salon/${topicOfDay.topic.id}`}
-                className="card card-hover group block ring-1 ring-gold/20"
+                className="salon-link block"
               >
-                <div className="flex items-center gap-2 eyebrow">
-                  <Wine className="w-3 h-3" />
-                  Temat dnia · {topicOfDay.vault.name}
-                </div>
-                <h2 className="hero-italic text-3xl mt-2 text-ink">
-                  {topicOfDay.topic.title}
-                </h2>
-                <p className="text-muted text-sm mt-3 max-w-xl">
-                  {topicOfDay.phrase.short}
-                </p>
-                <div className="flex items-center gap-2 text-gold text-sm mt-5 group-hover:gap-3 transition-all">
-                  Otwórz <ArrowRight className="w-4 h-4" />
-                </div>
+                <article className="salon-card relative">
+                  <span className="salon-monogram" aria-hidden>
+                    ❦
+                  </span>
+                  <div
+                    className="salon-cta flex items-center gap-2"
+                    style={{ marginTop: 0 }}
+                  >
+                    <Wine className="w-3 h-3" />
+                    Temat dnia · {topicOfDay.vault.name}
+                  </div>
+                  <h2 className="salon-title text-3xl mt-3">
+                    {topicOfDay.topic.title}
+                  </h2>
+                  <p className="salon-snippet max-w-xl">
+                    {topicOfDay.phrase.short}
+                  </p>
+                  <span className="salon-cta">
+                    Wejdź <ArrowRight className="w-3 h-3" />
+                  </span>
+                </article>
               </Link>
             </section>
           )}
@@ -109,23 +117,26 @@ export default function SalonPage() {
           {grouped.map(([vaultName, items]) => (
             <section key={vaultName}>
               <div className="eyebrow mb-4">{vaultName}</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="velvet-tray grid grid-cols-1 md:grid-cols-2 gap-4">
                 {items.map((e, i) => (
                   <Link
                     key={e.phrase.id}
                     href={`/salon/${e.topic.id}`}
-                    className="card card-hover group block animate-fadein"
+                    className="salon-link block animate-fadein"
                     style={{ animationDelay: `${i * 40}ms` }}
                   >
-                    <div className="hero-italic text-2xl text-ink">
-                      {e.topic.title}
-                    </div>
-                    <p className="text-sm text-muted mt-2 line-clamp-2">
-                      {e.phrase.short}
-                    </p>
-                    <div className="flex items-center gap-2 text-gold text-xs mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
-                      3 zdania <ArrowRight className="w-3 h-3" />
-                    </div>
+                    <article className="salon-card">
+                      <span className="salon-monogram" aria-hidden>
+                        ❦
+                      </span>
+                      <div className="salon-title">{e.topic.title}</div>
+                      <p className="salon-snippet line-clamp-2">
+                        {e.phrase.short}
+                      </p>
+                      <span className="salon-cta">
+                        Trzy zdania <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </article>
                   </Link>
                 ))}
               </div>

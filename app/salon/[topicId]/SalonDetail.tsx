@@ -96,22 +96,24 @@ export function SalonDetail({ topicId }: { topicId: string }) {
         </figure>
       )}
 
-      <article className="card max-w-2xl">
-        <div className="space-y-7 text-base">
-          <div>
-            <div className="eyebrow text-gold/60">Krótko · 30s</div>
-            <p className="prose-old-money hero-italic text-xl mt-3 leading-snug">
-              {phrase.short}
-            </p>
+      <article className="salon-menu max-w-2xl">
+        <div className="relative">
+          <div className="salon-menu-eyebrow">Krótko · 30 sekund</div>
+          <p className="salon-menu-short">{phrase.short}</p>
+
+          <div className="salon-menu-divider" aria-hidden>
+            <span className="salon-menu-ornament">❦</span>
           </div>
-          <div className="border-t border-line pt-7">
-            <div className="eyebrow text-gold/60">Rozbudowanie · 60s</div>
-            <p className="prose-old-money mt-3">{phrase.expand}</p>
+
+          <div className="salon-menu-eyebrow">Rozbudowanie · 60 sekund</div>
+          <p className="salon-menu-body">{phrase.expand}</p>
+
+          <div className="salon-menu-divider" aria-hidden>
+            <span className="salon-menu-ornament">❦</span>
           </div>
-          <div className="border-t border-line pt-7">
-            <div className="eyebrow text-gold/60">Pułapka</div>
-            <p className="prose-old-money mt-3 text-muted">{phrase.trap}</p>
-          </div>
+
+          <div className="salon-menu-eyebrow">Pułapka</div>
+          <p className="salon-menu-trap">{phrase.trap}</p>
         </div>
       </article>
 

@@ -758,5 +758,234 @@
   pointer-events: none;
 }
 
+/* --- Salon (burgundy velvet parlor) -------------------------------------- */
+
+.velvet-tray {
+  position: relative;
+  padding: 1.75rem 1.5rem 2rem 1.5rem;
+  border-radius: 4px;
+  background-color: #3a0f1c;
+  background-image:
+    /* fine velvet weave */
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.12) 0px,
+      rgba(0, 0, 0, 0.12) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 200, 180, 0.04) 0px,
+      rgba(255, 200, 180, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(ellipse at top, #4a1525 0%, #3a0f1c 60%, #240811 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 200, 180, 0.15),
+    inset 0 0 60px rgba(0, 0, 0, 0.45),
+    0 12px 24px -16px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 640px) {
+  .velvet-tray {
+    padding: 2.25rem 2rem 2.5rem 2rem;
+  }
+}
+
+.salon-card {
+  position: relative;
+  background-color: #E2D6BA;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(80, 50, 20, 0.05) 1px, transparent 0),
+    linear-gradient(155deg, #ECE0C5 0%, #DCCDAA 80%, #CFC096 100%);
+  background-size: 4px 4px, 100% 100%;
+  color: #2a1810;
+  padding: 1.4rem 1.4rem 1.5rem 1.4rem;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 0 rgba(60, 40, 20, 0.18),
+    0 8px 18px -8px rgba(0, 0, 0, 0.55);
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.salon-card::before {
+  content: "";
+  position: absolute;
+  inset: 0.45rem;
+  border: 1px solid rgba(122, 92, 40, 0.32);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.salon-link:hover .salon-card,
+.salon-link:focus-visible .salon-card {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 1px 0 rgba(60, 40, 20, 0.22),
+    0 12px 22px -8px rgba(0, 0, 0, 0.6);
+}
+
+.salon-link:focus-visible {
+  outline: none;
+}
+
+.salon-monogram {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  color: rgba(122, 92, 40, 0.55);
+  line-height: 1;
+}
+
+.salon-title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: #1f1208;
+  padding-right: 2rem;
+}
+
+.salon-snippet {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  color: #5a3f24;
+  line-height: 1.55;
+  margin-top: 0.6rem;
+}
+
+.salon-cta {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a5c28;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 220ms ease, color 220ms ease;
+}
+
+.salon-link:hover .salon-cta {
+  gap: 0.6rem;
+  color: #1f1208;
+}
+
+/* --- Salon menu (detail page — degustation menu) ------------------------- */
+
+.salon-menu {
+  position: relative;
+  background-color: #E8DCC1;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(80, 50, 20, 0.05) 1px, transparent 0),
+    linear-gradient(180deg, #F2E6CC 0%, #DCCDAA 65%, #CCBC92 100%);
+  background-size: 4px 4px, 100% 100%;
+  color: #2a1810;
+  padding: 2.5rem 2rem 3rem 2rem;
+  border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 12px 28px -14px rgba(0, 0, 0, 0.5),
+    0 24px 48px -28px rgba(0, 0, 0, 0.4);
+}
+
+.salon-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0.7rem;
+  border: 1px solid rgba(122, 92, 40, 0.42);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.salon-menu::after {
+  content: "";
+  position: absolute;
+  inset: 0.95rem;
+  border: 1px solid rgba(122, 92, 40, 0.22);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.salon-menu-eyebrow {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #7a5c28;
+  font-weight: 600;
+}
+
+.salon-menu-short {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  color: #1f1208;
+  margin-top: 0.65rem;
+}
+
+.salon-menu-body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  color: #3a2614;
+  line-height: 1.7;
+  margin-top: 0.65rem;
+}
+
+.salon-menu-trap {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.875rem;
+  color: #6e2a1e;
+  font-style: italic;
+  line-height: 1.65;
+  margin-top: 0.65rem;
+}
+
+.salon-menu-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 1.85rem 0;
+  color: rgba(122, 92, 40, 0.6);
+}
+
+.salon-menu-divider::before,
+.salon-menu-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(122, 92, 40, 0.5) 30%,
+    rgba(122, 92, 40, 0.5) 70%,
+    transparent 100%
+  );
+}
+
+.salon-menu-ornament {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba(122, 92, 40, 0.85);
+  letter-spacing: 0.2em;
+}
+
+
 
 
