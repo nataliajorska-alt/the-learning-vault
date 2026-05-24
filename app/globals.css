@@ -1301,6 +1301,35 @@
   }
 }
 
+/* Salon — carte du jour card hover */
+.carte-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.carte-card:hover,
+.carte-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,250,235,0.6) inset,
+    0 -1px 0 rgba(80,50,20,0.18) inset,
+    0 16px 32px -12px rgba(0,0,0,0.7),
+    0 3px 6px rgba(0,0,0,0.4) !important;
+  outline: none;
+}
+.carte-card:hover .carte-card-cta {
+  color: var(--c-ink2);
+}
+.carte-card-cta {
+  color: rgba(139,46,31,0.7);
+}
+
+/* Salon — more card hover */
+.more-card:hover,
+.more-card:focus-visible {
+  border-color: rgba(184,146,77,0.55) !important;
+  background: rgba(27,17,8,0.45) !important;
+  outline: none;
+}
+
 
 
 
