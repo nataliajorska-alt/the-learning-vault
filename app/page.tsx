@@ -2,35 +2,23 @@
 
 import { useEffect, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Wine } from "lucide-react";
-import { StatCard } from "@/components/ui/StatCard";
-import { CatalogCard } from "@/components/ui/CatalogCard";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
-
-function dashSigFromVault(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-zA-Z]/g, "")
-    .slice(0, 4)
-    .toUpperCase();
-}
-
-function dashSigFromId(id: string): string {
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
-  }
-  return String(hash % 1000).padStart(3, "0");
-}
+import { DateStamp } from "@/components/ui/DateStamp";
+import { WaxSeal } from "@/components/ui/WaxSeal";
 import {
+  effectiveStreak,
   ensureUserDoc,
+  useAttempts,
   useErrors,
   useSalonPhrases,
+  useSessions,
   useTopics,
+  useUserDoc,
   useVaults,
 } from "@/lib/firestore-data";
 import type { Timestamp } from "firebase/firestore";
+
+/* ---------- helpers ----------------------------------------------------- */
 
 function toMillis(v: unknown): number {
   if (!v) return 0;
@@ -41,6 +29,58 @@ function toMillis(v: unknown): number {
   return 0;
 }
 
+function toRoman(n: number): string {
+  if (n <= 0) return "—";
+  const map: Array<[number, string]> = [
+    [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+    [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let r = "";
+  let x = n;
+  for (const [v, s] of map) {
+    while (x >= v) {
+      r += s;
+      x -= v;
+    }
+  }
+  return r;
+}
+
+function vaultSig(name: string): string {
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-zA-Z]/g, "")
+    .slice(0, 4)
+    .toUpperCase();
+}
+
+function idSig(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  }
+  return String(hash % 1000).padStart(3, "0");
+}
+
+const MONTHS_PL_SHORT = [
+  "I", "II", "III", "IV", "V", "VI",
+  "VII", "VIII", "IX", "X", "XI", "XII",
+];
+
+function ledgerDate(d: Date): string {
+  return `${String(d.getDate()).padStart(2, "0")}.${MONTHS_PL_SHORT[d.getMonth()]}`;
+}
+
+function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+/* ---------- Page -------------------------------------------------------- */
+
 export default function DashboardPage() {
   useEffect(() => {
     ensureUserDoc().catch(() => {});
@@ -50,20 +90,11 @@ export default function DashboardPage() {
   const topics = useTopics();
   const errors = useErrors();
   const salonPhrases = useSalonPhrases();
+  const userDoc = useUserDoc();
+  const sessions = useSessions(7);
+  const attempts7d = useAttempts(7);
 
-  const today = new Date().toLocaleDateString("pl-PL", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
-  const todayStamp = new Date()
-    .toLocaleDateString("pl-PL", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    })
-    .replace(/\./g, "")
-    .toUpperCase();
+  const streak = effectiveStreak(userDoc);
 
   const due = useMemo(() => {
     if (!topics) return [];
@@ -77,10 +108,15 @@ export default function DashboardPage() {
   }, [topics]);
 
   const mastered = topics?.filter((t) => t.status === "mastered").length ?? 0;
-  const totalAttempts = topics?.reduce((s, t) => s + t.totalAttempts, 0) ?? 0;
-  const totalCorrect = topics?.reduce((s, t) => s + t.totalCorrect, 0) ?? 0;
-  const accuracy =
-    totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+  const totalTopics = topics?.length ?? 0;
+
+  const accuracy7d = useMemo(() => {
+    if (!attempts7d || attempts7d.length === 0) return null;
+    const ok = attempts7d.filter((a) => a.isCorrect).length;
+    return Math.round((ok / attempts7d.length) * 100);
+  }, [attempts7d]);
+
+  const activeErrors = errors?.length ?? 0;
 
   const salonTopic = useMemo(() => {
     if (!topics || !salonPhrases || salonPhrases.length === 0) return null;
@@ -94,12 +130,27 @@ export default function DashboardPage() {
     return topic && pick ? { topic, phrase: pick } : null;
   }, [topics, salonPhrases]);
 
+  const sessionCount = sessions?.length ?? 0;
+  const sessionTotalDuration = sessions?.reduce((s, x) => s + (x.duration ?? 0), 0) ?? 0;
+  const weeklyAccuracy = useMemo(() => {
+    if (!sessions || sessions.length === 0) return null;
+    const totalAttempted = sessions.reduce((s, x) => s + (x.questionsAttempted ?? 0), 0);
+    const totalCorrect = sessions.reduce((s, x) => s + (x.questionsCorrect ?? 0), 0);
+    if (totalAttempted === 0) return null;
+    return ((totalCorrect / totalAttempted) * 100).toFixed(1).replace(".", ",");
+  }, [sessions]);
+
+  /* ---------- First-run fallback ---------- */
   if (vaults && vaults.length === 0) {
     return (
       <div className="space-y-10">
         <header>
-          <div className="eyebrow">{today}</div>
-          <h1 className="hero-italic text-5xl md:text-6xl mt-2">
+          <div className="eyebrow text-gold">
+            {new Date().toLocaleDateString("pl-PL", {
+              weekday: "long", day: "numeric", month: "long",
+            })}
+          </div>
+          <h1 className="display text-5xl md:text-6xl mt-2 text-paper">
             Witaj w Vault.
           </h1>
           <p className="text-muted mt-4 max-w-xl leading-relaxed">
@@ -112,129 +163,1155 @@ export default function DashboardPage() {
     );
   }
 
-  const loaded = vaults !== null && topics !== null && errors !== null;
+  /* ---------- Stats for spis treści (index) ---------- */
+
+  const STATS: Array<{
+    label: string;
+    value: string;
+    sub: string;
+  }> = [
+    {
+      label: "Passa",
+      value: String(streak || 0),
+      sub: `${streak === 1 ? "dzień" : "dni"} z rzędu`,
+    },
+    {
+      label: "Trafność",
+      value: accuracy7d != null ? `${accuracy7d}%` : "—",
+      sub: "z ostatnich 7 dni",
+    },
+    {
+      label: "Opanowano",
+      value: String(mastered),
+      sub:
+        totalTopics > 0
+          ? `z ${totalTopics} kart · ${Math.round((mastered / totalTopics) * 100)}%`
+          : "brak kart",
+    },
+    {
+      label: "Errata",
+      value: String(activeErrors),
+      sub: activeErrors === 1 ? "karta do upilnowania" : "kart do upilnowania",
+    },
+  ];
+
+  /* ---------- Greeting fragments ---------- */
+
+  const displayDate = new Date().toLocaleDateString("pl-PL", {
+    weekday: "long", day: "numeric", month: "long",
+  });
+  const chapterRoman = toRoman(Math.max(streak, 1));
+
+  const heroLead =
+    due.length === 0
+      ? "Dziś masz wolne. Trzynaście dziedzin czeka — możesz zajrzeć na przegląd albo zostawić księgę zamkniętą."
+      : `${due.length === 1 ? "Jeden temat" : `${due.length} ${due.length < 5 ? "tematy" : "tematów"}`} w kolejce. Piętnaście minut, trzy fazy — powtórki, nowe karty, quiz z oceną AI.`;
+
+  /* ---------- Render ---------- */
 
   return (
-    <div className="space-y-12">
-      <header className="relative flex items-start justify-between gap-6">
-        <div>
-          <div className="eyebrow">{today}</div>
-          <h1 className="hero-italic text-5xl md:text-6xl mt-2">
-            Dzień dobry, Natalia.
+    // Bust out of the standard max-w-content wrapper for a wider canvas
+    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12">
+      <div className="relative" style={{ overflow: "hidden" }}>
+        {/* Top light spill */}
+        <div
+          aria-hidden
+          className="absolute pointer-events-none"
+          style={{
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 600,
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 0%, rgba(255,210,160,0.10), transparent 70%)",
+            zIndex: 1,
+          }}
+        />
+
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <Hero
+            displayDate={displayDate}
+            chapterRoman={chapterRoman}
+            streak={streak}
+            heroLead={heroLead}
+            dueCount={due.length}
+            sessionNumber={sessionCount + 1}
+          />
+          <PlaqueRow stats={STATS} />
+          <InvitationRow
+            errorsCount={activeErrors}
+            errorsTopChips={
+              errors
+                ?.slice(0, 3)
+                .map((e) => `${e.timesWrong}× ${e.correctVersion.split(" ").slice(0, 2).join(" ")}`)
+                .join(" · ") ?? "—"
+            }
+            salonTopic={salonTopic}
+            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+            weeklySessions={sessionCount}
+            weeklyAccuracy={weeklyAccuracy}
+          />
+          <ErrataShelf errors={errors ?? []} />
+          <WeeklyLedger
+            sessions={sessions ?? []}
+            topics={topics ?? []}
+            vaults={vaults ?? []}
+            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+            weeklySessions={sessionCount}
+            weeklyAccuracy={weeklyAccuracy}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   Hero — greeting + agenda
+   ============================================================ */
+
+interface HeroProps {
+  displayDate: string;
+  chapterRoman: string;
+  streak: number;
+  heroLead: string;
+  dueCount: number;
+  sessionNumber: number;
+}
+
+function Hero({
+  displayDate,
+  chapterRoman,
+  streak,
+  heroLead,
+  dueCount,
+  sessionNumber,
+}: HeroProps) {
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pt-12 md:pt-16 pb-8 md:pb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        {/* LEFT — greeting */}
+        <div className="lg:col-span-7">
+          <div
+            className="eyebrow flex items-center"
+            style={{ color: "var(--c-gold-400)", marginBottom: 20, gap: 16 }}
+          >
+            <span style={{ textTransform: "uppercase" }}>
+              {displayDate} · MMXXVI
+            </span>
+            <span
+              style={{
+                flex: 1,
+                height: 1,
+                background: "rgba(184,146,77,0.35)",
+              }}
+            />
+          </div>
+
+          <h1
+            className="display"
+            style={{
+              fontSize: "clamp(40px, 6vw, 60px)",
+              color: "var(--c-paper-100)",
+              marginBottom: 16,
+              lineHeight: 1.0,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Witaj znów,{" "}
+            <span style={{ color: "var(--c-gold-400)" }}>Natalio</span>
+            <span style={{ color: "var(--c-paper-300)", opacity: 0.55 }}>.</span>
           </h1>
-          <p className="text-muted mt-4 max-w-xl leading-relaxed">
-            {!loaded
-              ? "Ładuję twoją kolejkę..."
-              : due.length === 0
-              ? "Dziś masz wolne. Wszystko opanowane, nic nie zalega."
-              : `Dziś czeka ${due.length} ${due.length === 1 ? "temat" : due.length < 5 ? "tematy" : "tematów"}. Zacznij, kiedy będziesz miała kwadrans.`}
-          </p>
-        </div>
-        <div className="date-stamp shrink-0 mt-2 hidden sm:flex" aria-hidden>
-          <span className="date-stamp-top">Zarejestrowano</span>
-          <span className="date-stamp-main">{todayStamp}</span>
-        </div>
-      </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatCard label="Do zrobienia dziś" value={due.length} hint="powtórki + świeże" />
-        <StatCard label="Trafność" value={`${accuracy}%`} hint="ze wszystkich prób" />
-        <StatCard label="Opanowane" value={mastered} hint={`z ${topics?.length ?? 0} tematów`} />
-      </section>
-
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <Link href="/study" className="notice-link block">
-          <article className="notice-card min-h-[210px] flex flex-col justify-between">
-            <span className="notice-seal" aria-hidden>
-              LV
-            </span>
-            <div className="relative">
-              <span className="notice-eyebrow">XV minut</span>
-              <h3 className="notice-title">Zacznij sesję</h3>
-              <p className="notice-body">
-                Trzy minuty teorii, dziesięć minut testu, dwie minuty korekty.
-              </p>
-            </div>
-            <span className="notice-action relative">
-              Otwórz księgę <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-          </article>
-        </Link>
-
-        <Link
-          href={salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon"}
-          className="notice-link block"
-        >
-          <article className="notice-card min-h-[210px] flex flex-col justify-between">
-            <span className="notice-seal" aria-hidden>
-              S
-            </span>
-            <div className="relative">
-              <span className="notice-eyebrow">
-                <Wine className="w-3 h-3" /> Salon — temat dnia
-              </span>
-              <h3 className="notice-title">
-                {salonTopic?.topic.title ?? "Salon"}
-              </h3>
-              <p className="notice-body line-clamp-3">
-                {salonTopic?.phrase.short ??
-                  "Trzy zdania na temat. Praktyczne obycie, nie egzamin."}
-              </p>
-            </div>
-            <span className="notice-action relative">
-              Wejdź <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-          </article>
-        </Link>
-      </section>
-
-      {errors && errors.length > 0 && (
-        <section>
-          <div className="flex items-end justify-between mb-5">
-            <div>
-              <div className="eyebrow">Error Vault</div>
-              <h2 className="hero-italic text-2xl mt-1">
-                Ostatnie błędy do upilnowania
-              </h2>
-            </div>
-            <Link
-              href="/errors"
-              className="text-sm text-gold hover:text-gold-2 transition-colors"
+          {streak > 0 && (
+            <div
+              className="signature flex items-center"
+              style={{
+                color: "var(--c-paper-300)",
+                opacity: 0.78,
+                marginBottom: 24,
+                gap: 10,
+                fontSize: 14,
+              }}
             >
-              Wszystkie
+              <span
+                className="font-display italic"
+                style={{
+                  color: "var(--c-gold-400)",
+                  fontSize: 18,
+                  opacity: 0.95,
+                }}
+                aria-hidden
+              >
+                ❦
+              </span>
+              <span>
+                Otwieramy rozdział{" "}
+                <span
+                  style={{
+                    color: "var(--c-gold-300)",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {chapterRoman}
+                </span>{" "}
+                — {streak === 1 ? "pierwszy" : `${streak === 2 ? "drugi" : streak === 3 ? "trzeci" : `${streak}.`}`}{" "}
+                dzień Twojej passy.
+              </span>
+            </div>
+          )}
+
+          <p
+            className="lead"
+            style={{
+              color: "rgba(228,214,186,0.74)",
+              maxWidth: 540,
+              marginBottom: 32,
+            }}
+          >
+            {heroLead}
+          </p>
+
+          <div className="flex items-center flex-wrap" style={{ gap: 14 }}>
+            <Link
+              href="/study"
+              className="eyebrow"
+              style={{
+                background:
+                  "linear-gradient(180deg, #6b1a14 0%, #4a1010 55%, #2c0808 100%)",
+                color: "var(--c-paper-100)",
+                padding: "16px 28px",
+                border: "0.5px solid rgba(184,146,77,0.55)",
+                letterSpacing: "0.22em",
+                fontWeight: 600,
+                boxShadow:
+                  "inset 0 1px 0 rgba(255,180,140,0.18), inset 0 -1px 0 rgba(0,0,0,0.45), 0 8px 20px -6px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.45)",
+                cursor: "pointer",
+                textShadow: "0 -1px 0 rgba(0,0,0,0.6)",
+                display: "inline-block",
+                textDecoration: "none",
+              }}
+            >
+              Otwórz sesję · 15 min →
+            </Link>
+            <Link
+              href="/vaults"
+              className="eyebrow"
+              style={{
+                background: "transparent",
+                color: "var(--c-paper-200)",
+                padding: "16px 22px",
+                border: "1px solid rgba(184,146,77,0.4)",
+                opacity: 0.9,
+                cursor: "pointer",
+                display: "inline-block",
+                textDecoration: "none",
+              }}
+            >
+              Pokaż agendę
             </Link>
           </div>
-          <div className="desk-surface grid grid-cols-1 md:grid-cols-3 gap-4">
-            {errors.slice(0, 3).map((e, i) => {
-              const tough = e.timesWrong >= 3;
-              return (
-                <CatalogCard
-                  key={e.id}
-                  href="/errors"
-                  signature={`${dashSigFromVault(e.vaultName)} · ${dashSigFromId(e.id)}`}
-                  rightMeta={`× ${e.timesWrong}`}
-                  title={e.correctVersion}
-                  subtitle={
-                    <>
-                      nie:{" "}
-                      <span className="line-through opacity-70">
-                        {e.wrongVersion}
-                      </span>{" "}
-                      · {e.context}
-                    </>
-                  }
-                  stamp={
-                    tough
-                      ? { label: "uciążliwe", color: "orange" }
-                      : { label: "do upilnowania", color: "red" }
-                  }
-                  delayMs={i * 50}
-                />
-              );
-            })}
+        </div>
+
+        {/* RIGHT — date stamp + agenda */}
+        <div className="lg:col-span-5 flex flex-col lg:items-end">
+          <div className="lg:self-end mt-2 lg:mt-0">
+            <DateStamp />
           </div>
-        </section>
+
+          <div
+            className="mt-8 w-full lg:max-w-[360px] lg:self-end"
+          >
+            <div
+              className="eyebrow flex items-center"
+              style={{
+                color: "var(--c-gold-400)",
+                marginBottom: 12,
+                gap: 12,
+                opacity: 0.85,
+              }}
+            >
+              <span>
+                Sesja {toRoman(sessionNumber)} · {dueCount > 0 ? "dziś" : "wstrzymana"}
+              </span>
+              <span
+                style={{
+                  flex: 1,
+                  height: 0.5,
+                  background: "rgba(184,146,77,0.25)",
+                }}
+              />
+            </div>
+            {[
+              { ph: "I", t: "Teoria", dur: "3:00" },
+              { ph: "II", t: "Test", dur: "10:00" },
+              { ph: "III", t: "Korekta", dur: "2:00" },
+            ].map((p) => (
+              <div
+                key={p.ph}
+                className="flex items-baseline"
+                style={{ padding: "6px 0", gap: 14 }}
+              >
+                <span
+                  className="font-display italic"
+                  style={{
+                    color: "var(--c-gold-400)",
+                    fontSize: 14,
+                    width: 24,
+                    flexShrink: 0,
+                    opacity: 0.85,
+                  }}
+                >
+                  {p.ph}
+                </span>
+                <span
+                  style={{
+                    flex: 1,
+                    color: "var(--c-paper-200)",
+                    fontSize: 14,
+                    opacity: 0.85,
+                  }}
+                >
+                  {p.t}
+                </span>
+                <span
+                  className="signature"
+                  style={{ color: "var(--c-paper-300)", opacity: 0.55 }}
+                >
+                  {p.dur}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   PlaqueRow — StatRowIndex (dot-leader spis treści)
+   ============================================================ */
+
+function PlaqueRow({
+  stats,
+}: {
+  stats: Array<{ label: string; value: string; sub: string }>;
+}) {
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+      <div
+        style={{
+          padding: "28px 0 8px",
+          borderTop: "1px solid rgba(184,146,77,0.35)",
+        }}
+      >
+        <div
+          className="eyebrow flex items-center"
+          style={{
+            color: "var(--c-gold-400)",
+            marginBottom: 18,
+            gap: 16,
+          }}
+        >
+          <span>Bilans · stan na dziś</span>
+          <span
+            style={{ flex: 1, height: 1, background: "rgba(184,146,77,0.2)" }}
+          />
+          <span style={{ opacity: 0.6 }}>
+            {new Date().toLocaleDateString("pl-PL", {
+              day: "numeric",
+              month: "long",
+            })}
+          </span>
+        </div>
+
+        {stats.map((s, i) => (
+          <div
+            key={s.label}
+            className="flex items-baseline"
+            style={{
+              padding: "14px 0",
+              borderTop:
+                i === 0 ? "none" : "0.5px solid rgba(184,146,77,0.15)",
+              gap: 18,
+            }}
+          >
+            <span
+              className="signature"
+              style={{
+                color: "var(--c-gold-500)",
+                width: 28,
+                flexShrink: 0,
+              }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span
+              className="font-display italic font-medium"
+              style={{
+                fontSize: "clamp(20px, 2.2vw, 26px)",
+                color: "var(--c-paper-100)",
+                letterSpacing: "-0.01em",
+                minWidth: 140,
+              }}
+            >
+              {s.label}
+            </span>
+            <span
+              style={{
+                flex: 1,
+                borderBottom: "1px dotted rgba(184,146,77,0.4)",
+                transform: "translateY(-6px)",
+              }}
+            />
+            <span
+              className="signature hidden sm:inline"
+              style={{
+                color: "var(--c-paper-300)",
+                opacity: 0.65,
+                textAlign: "right",
+              }}
+            >
+              {s.sub}
+            </span>
+            <span
+              className="font-display italic font-medium"
+              style={{
+                fontSize: "clamp(24px, 2.6vw, 32px)",
+                color: "var(--c-gold-400)",
+                lineHeight: 1,
+                minWidth: 80,
+                textAlign: "right",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {s.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   InvitationRow — RitualsC: Salon featured (velvet) + 2 sides
+   ============================================================ */
+
+interface InvitationRowProps {
+  errorsCount: number;
+  errorsTopChips: string;
+  salonTopic: {
+    topic: { id: string; title: string };
+    phrase: { short: string };
+  } | null;
+  weeklyMinutes: number;
+  weeklySessions: number;
+  weeklyAccuracy: string | null;
+}
+
+function InvitationRow({
+  errorsCount,
+  errorsTopChips,
+  salonTopic,
+  weeklyMinutes,
+  weeklySessions,
+  weeklyAccuracy,
+}: InvitationRowProps) {
+  const featured = {
+    href: salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon",
+    eyebrow: salonTopic ? "Salon · temat dnia" : "Salon",
+    title: salonTopic?.topic.title ?? "Wybierz temat",
+    body:
+      salonTopic?.phrase.short ??
+      "Trzy zdania na temat. Krótko, rozbudowanie, pułapka. Praktyczne obycie, nie egzamin.",
+    meta: "Konwersacja AI · ocena finezji",
+    cta: "Wejdź do salonu",
+    sealLabel: "S",
+    sealTone: "burgundy" as const,
+  };
+
+  const sides = [
+    {
+      href: "/errors",
+      eyebrow: `Errata · ${errorsCount} ${errorsCount === 1 ? "karta" : "kart"}`,
+      title: "Słabe ogniwa",
+      meta: errorsTopChips,
+      cta: "Otwórz erratę",
+      ord: "I",
+    },
+    {
+      href: "/stats",
+      eyebrow: `Tydzień · ${weeklySessions} ${weeklySessions === 1 ? "sesja" : "sesji"}`,
+      title: "Dziennik postępów",
+      meta:
+        weeklySessions > 0
+          ? `${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min · śr. ${weeklyAccuracy ?? "—"}%`
+          : "Brak sesji w tym tygodniu",
+      cta: "Otwórz statystyki",
+      ord: "III",
+    },
+  ];
+
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
+      <div
+        className="flex items-baseline"
+        style={{ marginBottom: 22, gap: 20 }}
+      >
+        <h2
+          className="h2"
+          style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
+        >
+          Po sesji
+        </h2>
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            background: "rgba(184,146,77,0.3)",
+            transform: "translateY(-8px)",
+          }}
+        />
+        <span
+          className="signature"
+          style={{ color: "var(--c-paper-300)", opacity: 0.6 }}
+        >
+          III rytuały
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 items-stretch">
+        {/* Salon featured */}
+        <div className="lg:col-span-7">
+          <Link
+            href={featured.href}
+            className="block h-full"
+            style={{ minHeight: 340 }}
+          >
+            <div
+              className="tex-velvet relative h-full flex flex-col"
+              style={{
+                boxShadow:
+                  "0 24px 48px -20px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(184,146,77,0.32)",
+              }}
+            >
+              <div
+                className="relative flex-1 flex flex-col"
+                style={{
+                  margin: 14,
+                  border: "0.5px solid rgba(184,146,77,0.45)",
+                  padding: "28px 28px 24px",
+                }}
+              >
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    inset: 4,
+                    border: "0.5px solid rgba(184,146,77,0.20)",
+                  }}
+                />
+                <div
+                  className="flex items-start justify-between"
+                  style={{ marginBottom: 18 }}
+                >
+                  <span
+                    className="eyebrow"
+                    style={{ color: "var(--c-gold-300)" }}
+                  >
+                    {featured.eyebrow}
+                  </span>
+                  <WaxSeal
+                    size={52}
+                    label={featured.sealLabel}
+                    tone={featured.sealTone}
+                  />
+                </div>
+                <h3
+                  className="h3"
+                  style={{
+                    fontSize: 34,
+                    color: "var(--c-paper-100)",
+                    marginBottom: 12,
+                    lineHeight: 1.05,
+                  }}
+                >
+                  {featured.title}
+                </h3>
+                <p
+                  className="body-prose"
+                  style={{
+                    color: "rgba(228,214,186,0.78)",
+                    marginBottom: 16,
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {featured.body}
+                </p>
+                <div
+                  className="signature"
+                  style={{
+                    color: "rgba(228,214,186,0.55)",
+                    marginBottom: 16,
+                  }}
+                >
+                  {featured.meta}
+                </div>
+                <div style={{ flex: 1 }} />
+                <div
+                  style={{
+                    height: 1,
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(184,146,77,0.4), transparent)",
+                    marginBottom: 16,
+                  }}
+                />
+                <div className="flex items-center justify-between">
+                  <span
+                    className="eyebrow"
+                    style={{ color: "var(--c-gold-300)" }}
+                  >
+                    {featured.cta}
+                  </span>
+                  <span
+                    style={{ color: "var(--c-gold-300)", fontSize: 16 }}
+                  >
+                    →
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Two side entries */}
+        <div className="lg:col-span-5 flex flex-col gap-4 md:gap-[18px]">
+          {sides.map((r) => (
+            <Link
+              key={r.href}
+              href={r.href}
+              className="block flex-1"
+            >
+              <div
+                className="relative h-full"
+                style={{
+                  border: "1px solid rgba(184,146,77,0.28)",
+                  padding: "28px 28px 24px",
+                  background: "rgba(228,214,186,0.03)",
+                  display: "flex",
+                  flexDirection: "column",
+                  minHeight: 160,
+                }}
+              >
+                <div
+                  className="eyebrow flex items-center justify-between"
+                  style={{ color: "var(--c-gold-400)", marginBottom: 10 }}
+                >
+                  <span>{r.eyebrow}</span>
+                  <span
+                    style={{ color: "var(--c-paper-300)", opacity: 0.5 }}
+                  >
+                    {r.ord}
+                  </span>
+                </div>
+                <div
+                  className="font-display italic"
+                  style={{
+                    fontSize: 24,
+                    color: "var(--c-paper-100)",
+                    fontWeight: 500,
+                    lineHeight: 1.1,
+                    marginBottom: 8,
+                  }}
+                >
+                  {r.title}
+                </div>
+                <div
+                  className="signature"
+                  style={{
+                    color: "var(--c-paper-300)",
+                    opacity: 0.6,
+                    marginBottom: 14,
+                  }}
+                >
+                  {r.meta}
+                </div>
+                <div style={{ flex: 1 }} />
+                <div
+                  style={{
+                    height: 1,
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(184,146,77,0.35), transparent)",
+                    marginBottom: 14,
+                  }}
+                />
+                <div className="flex items-center justify-between">
+                  <span
+                    className="eyebrow"
+                    style={{ color: "var(--c-gold-300)" }}
+                  >
+                    {r.cta}
+                  </span>
+                  <span
+                    style={{ color: "var(--c-gold-400)", fontSize: 14 }}
+                  >
+                    →
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ErrataShelf — oxblood leather pad with 3 catalog cards
+   ============================================================ */
+
+interface ErrataItem {
+  id: string;
+  vaultName: string;
+  correctVersion: string;
+  wrongVersion: string;
+  context: string;
+  timesWrong: number;
+}
+
+function ErrataShelf({ errors }: { errors: ErrataItem[] }) {
+  if (!errors || errors.length === 0) return null;
+  const items = errors.slice(0, 3);
+  const rotates = [-1.2, 0.4, 1.6];
+
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
+      <div className="flex items-baseline justify-between" style={{ marginBottom: 24 }}>
+        <div>
+          <div
+            className="eyebrow"
+            style={{ color: "var(--c-ink2)", marginBottom: 8 }}
+          >
+            Error Vault · {errors.length} {errors.length === 1 ? "wpis" : "wpisów"}
+          </div>
+          <h2
+            className="h2"
+            style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
+          >
+            Ostatnie błędy do upilnowania
+          </h2>
+        </div>
+        <Link
+          href="/errors"
+          className="eyebrow"
+          style={{ color: "var(--c-gold-400)" }}
+        >
+          Wszystkie →
+        </Link>
+      </div>
+
+      <div
+        className="tex-leather relative"
+        style={{
+          padding: "32px 24px 40px",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,180,140,0.12), inset 0 -3px 8px rgba(0,0,0,0.55), 0 24px 48px -16px rgba(0,0,0,0.75), 0 4px 8px rgba(0,0,0,0.4)",
+          isolation: "isolate",
+        }}
+      >
+        {/* gold-tooled double inner rule */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            inset: 14,
+            border: "0.5px solid rgba(184,146,77,0.55)",
+            boxShadow: "inset 0 0 0 0.5px rgba(0,0,0,0.5)",
+          }}
+        />
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            inset: 22,
+            border: "0.5px solid rgba(184,146,77,0.22)",
+          }}
+        />
+
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start" style={{ zIndex: 2 }}>
+          {items.map((e, i) => (
+            <div
+              key={e.id}
+              style={{ transform: `rotate(${(rotates[i] ?? 0) * 0.6}deg)` }}
+            >
+              <ErratumCard
+                sig={`${vaultSig(e.vaultName)} · ${idSig(e.id)}`}
+                times={e.timesWrong}
+                front={e.correctVersion}
+                wrong={e.wrongVersion}
+                context={e.context}
+                stamp={e.timesWrong >= 3 ? "UCIĄŻLIWE" : "DO UPILNOWANIA"}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ErratumCard({
+  sig,
+  times,
+  front,
+  wrong,
+  context,
+  stamp,
+}: {
+  sig: string;
+  times: number;
+  front: string;
+  wrong: string;
+  context: string;
+  stamp: string;
+}) {
+  return (
+    <div
+      className="tex-paper tex-noise-fine relative"
+      style={{
+        boxShadow:
+          "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -16px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.35)",
+      }}
+    >
+      {/* perforated top */}
+      <div
+        style={{
+          height: 22,
+          borderBottom: "0.5px dashed rgba(27,17,8,0.28)",
+          position: "relative",
+        }}
+      >
+        <div
+          className="signature absolute"
+          style={{
+            left: 18,
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "rgba(27,17,8,0.6)",
+          }}
+        >
+          {sig}
+        </div>
+        <div
+          className="signature absolute"
+          style={{
+            right: 18,
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "rgba(27,17,8,0.55)",
+          }}
+        >
+          × {times}
+        </div>
+      </div>
+
+      <div style={{ padding: "22px 24px 36px", position: "relative" }}>
+        <p
+          className="font-display italic"
+          style={{
+            fontSize: 20,
+            color: "#1B1108",
+            lineHeight: 1.32,
+            marginBottom: 14,
+            fontWeight: 500,
+          }}
+        >
+          {front}
+        </p>
+        <div
+          style={{
+            height: 0.5,
+            background: "rgba(27,17,8,0.22)",
+            margin: "14px 0",
+          }}
+        />
+        <p
+          className="body-prose"
+          style={{
+            color: "rgba(27,17,8,0.78)",
+            fontSize: 13,
+            lineHeight: 1.55,
+          }}
+        >
+          <span style={{ color: "rgba(27,17,8,0.6)", fontStyle: "italic" }}>
+            nie:{" "}
+          </span>
+          <span
+            style={{
+              textDecoration: "line-through",
+              textDecorationThickness: "1px",
+              opacity: 0.62,
+            }}
+          >
+            {wrong}
+          </span>
+          {context && (
+            <>
+              <br />
+              · {context}
+            </>
+          )}
+        </p>
+
+        <div
+          className="absolute"
+          style={{
+            right: 16,
+            bottom: 16,
+            transform: "rotate(-6deg)",
+            border: "1.5px solid var(--c-ink2)",
+            color: "var(--c-ink2)",
+            padding: "4px 9px 3px",
+            fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+            fontSize: 9,
+            letterSpacing: "0.18em",
+            fontWeight: 600,
+            opacity: 0.85,
+          }}
+        >
+          {stamp}
+        </div>
+
+        <div
+          className="absolute"
+          style={{
+            bottom: -3,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            background: "rgba(27,17,8,0.45)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   WeeklyLedger — last 7 sessions table
+   ============================================================ */
+
+interface WeeklyLedgerProps {
+  sessions: Array<{
+    id: string;
+    startedAt: Timestamp | Date;
+    topicIds: string[];
+    vaultId: string | null;
+    questionsAttempted: number;
+    questionsCorrect: number;
+    duration: number;
+  }>;
+  topics: Array<{ id: string; title: string; vaultId: string }>;
+  vaults: Array<{ id: string; name: string }>;
+  weeklyMinutes: number;
+  weeklySessions: number;
+  weeklyAccuracy: string | null;
+}
+
+function WeeklyLedger({
+  sessions,
+  topics,
+  vaults,
+  weeklyMinutes,
+  weeklySessions,
+  weeklyAccuracy,
+}: WeeklyLedgerProps) {
+  const rows = useMemo(() => {
+    return [...sessions]
+      .sort((a, b) => toMillis(b.startedAt) - toMillis(a.startedAt))
+      .slice(0, 7)
+      .map((s) => {
+        const d = new Date(toMillis(s.startedAt) || Date.now());
+        const firstTopic = s.topicIds[0]
+          ? topics.find((t) => t.id === s.topicIds[0])
+          : null;
+        const vault = firstTopic
+          ? vaults.find((v) => v.id === firstTopic.vaultId)
+          : s.vaultId
+          ? vaults.find((v) => v.id === s.vaultId)
+          : null;
+        const tom = `${vault?.name ?? "—"}${firstTopic ? " · " + firstTopic.title : ""}`;
+        const acc =
+          s.questionsAttempted > 0
+            ? Math.round((s.questionsCorrect / s.questionsAttempted) * 100)
+            : 0;
+        return {
+          date: ledgerDate(d),
+          tom,
+          cards: String(s.questionsAttempted ?? 0),
+          acc: `${acc}%`,
+          time: formatDuration(s.duration ?? 0),
+        };
+      });
+  }, [sessions, topics, vaults]);
+
+  return (
+    <div className="px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
+      <div
+        className="flex items-baseline justify-between flex-wrap"
+        style={{ marginBottom: 24, gap: 16 }}
+      >
+        <div>
+          <div
+            className="eyebrow"
+            style={{ color: "var(--c-gold-400)", marginBottom: 8 }}
+          >
+            Dziennik · tydzień
+          </div>
+          <h2
+            className="h2"
+            style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
+          >
+            Ostatnie sesje
+          </h2>
+        </div>
+        <div
+          className="signature"
+          style={{ color: "var(--c-paper-300)", opacity: 0.7 }}
+        >
+          {weeklySessions === 0
+            ? "Brak sesji"
+            : `${weeklySessions} ${weeklySessions === 1 ? "sesja" : "sesji"} · ${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min${weeklyAccuracy ? ` · śr. ${weeklyAccuracy}%` : ""}`}
+        </div>
+      </div>
+
+      {rows.length === 0 ? (
+        <div
+          style={{
+            background: "rgba(228,214,186,0.03)",
+            border: "1px solid rgba(184,146,77,0.18)",
+            padding: "32px",
+            textAlign: "center",
+          }}
+        >
+          <p
+            className="font-display italic text-2xl"
+            style={{ color: "var(--c-paper-300)", opacity: 0.65 }}
+          >
+            Dziennik jest pusty.
+          </p>
+          <p
+            className="body-prose"
+            style={{
+              color: "var(--c-paper-300)",
+              opacity: 0.5,
+              marginTop: 8,
+              fontSize: 13,
+            }}
+          >
+            Otwórz pierwszą sesję żeby zacząć notować.
+          </p>
+        </div>
+      ) : (
+        <div
+          style={{
+            background: "rgba(228,214,186,0.035)",
+            border: "1px solid rgba(184,146,77,0.22)",
+            padding: "16px 24px",
+          }}
+        >
+          <div
+            className="eyebrow grid grid-cols-12"
+            style={{
+              color: "var(--c-gold-400)",
+              opacity: 0.7,
+              paddingBottom: 12,
+              borderBottom: "1px solid rgba(184,146,77,0.22)",
+              gap: 8,
+            }}
+          >
+            <span className="col-span-2 md:col-span-1">Data</span>
+            <span className="col-span-6 md:col-span-6">Tom</span>
+            <span className="col-span-2 md:col-span-2">Karty</span>
+            <span className="col-span-1 md:col-span-2">Trafn.</span>
+            <span className="col-span-1 md:col-span-1 text-right">Czas</span>
+          </div>
+
+          {rows.map((row, i) => (
+            <div
+              key={i}
+              className="grid grid-cols-12 body-prose"
+              style={{
+                padding: "12px 0",
+                borderBottom:
+                  i < rows.length - 1
+                    ? "0.5px solid rgba(184,146,77,0.12)"
+                    : "none",
+                color: "var(--c-paper-200)",
+                fontSize: 14,
+                gap: 8,
+              }}
+            >
+              <span
+                className="col-span-2 md:col-span-1 signature"
+                style={{ color: "var(--c-gold-400)" }}
+              >
+                {row.date}
+              </span>
+              <span
+                className="col-span-6 md:col-span-6"
+                style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+              >
+                {row.tom}
+              </span>
+              <span className="col-span-2 md:col-span-2 signature">
+                {row.cards}
+              </span>
+              <span
+                className="col-span-1 md:col-span-2 signature"
+                style={{
+                  color:
+                    parseInt(row.acc) >= 90
+                      ? "var(--c-gold-300)"
+                      : "var(--c-paper-200)",
+                }}
+              >
+                {row.acc}
+              </span>
+              <span className="col-span-1 md:col-span-1 signature text-right">
+                {row.time}
+              </span>
+            </div>
+          ))}
+        </div>
       )}
+
+      {/* footer ornament */}
+      <div
+        className="ornament-sep"
+        style={{
+          marginTop: 48,
+          color: "var(--c-gold-500)",
+          opacity: 0.6,
+          fontSize: 14,
+        }}
+      >
+        ❦
+      </div>
+      <div
+        className="signature"
+        style={{
+          color: "var(--c-paper-300)",
+          opacity: 0.45,
+          textAlign: "center",
+          marginTop: 14,
+        }}
+      >
+        Sub gratia studiorum · The Learning Vault · Anno MMXXVI
+      </div>
     </div>
   );
 }
