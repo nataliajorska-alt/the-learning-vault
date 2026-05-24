@@ -1294,6 +1294,13 @@
   background-color: rgba(184, 146, 77, 0.08);
 }
 
+/* Errata masonry — collapse to 1 column on narrow screens */
+@media (max-width: 767px) {
+  .errata-masonry {
+    column-count: 1 !important;
+  }
+}
+
 
 
 
