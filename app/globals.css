@@ -1248,6 +1248,52 @@
   color: var(--c-gold-500);
 }
 
+/* --- Refined spine palette (Sekcje) ------------------------------------- */
+/* All spines share: subtle linen weave, gilt fold lines,
+   inner glow, edge darkening. Only the colour differs. */
+.spine-terracotta, .spine-wine, .spine-oxford, .spine-lapis,
+.spine-aubergine, .spine-buff, .spine-slate, .spine-forest-v2,
+.spine-racing-v2, .spine-steel, .spine-moss, .spine-maroon {
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.08) 3px, rgba(0,0,0,0) 4px),
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,0) 0px, rgba(255,255,255,0) 3px,
+      rgba(255,255,255,0.025) 4px, rgba(255,255,255,0) 6px),
+    linear-gradient(90deg,
+      rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 9%,
+      transparent 22%, transparent 78%,
+      rgba(0,0,0,0.25) 91%, rgba(0,0,0,0.7) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.35), transparent 14%, transparent 86%, rgba(0,0,0,0.45)),
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255,210,170,0.10), transparent 70%);
+}
+
+.spine-terracotta { background-color: #6e2418; }
+.spine-wine       { background-color: #3a0c12; }
+.spine-oxford     { background-color: #1a2438; }
+.spine-lapis      { background-color: #1c3552; }
+.spine-aubergine  { background-color: #3a1c38; }
+.spine-buff       { background-color: #6b4a22; }
+.spine-slate      { background-color: #25272c; }
+.spine-forest-v2  { background-color: #1d3a25; }
+.spine-racing-v2  { background-color: #0f2a19; }
+.spine-steel      { background-color: #2f4658; }
+.spine-moss       { background-color: #3a3a1c; }
+.spine-maroon     { background-color: #4a1414; }
+
+/* Catalog row hover (Sekcje page) */
+.catalog-row {
+  text-decoration: none;
+}
+.catalog-row:hover {
+  background-color: rgba(184, 146, 77, 0.04);
+}
+.catalog-row:focus-visible {
+  outline: none;
+  background-color: rgba(184, 146, 77, 0.08);
+}
+
 
 
 
