@@ -7693,4 +7693,121 @@ export const PRESETS: Preset[] = [
       salon: null,
     },
   },
+  // ============================================================
+  // 83. Hiszpański: porównania z rzeczownikami (más/menos/tanto + nombre)
+  // ============================================================
+  // Format praktyczny (salon: null) — gramatyka recall, nie temat „przy winie".
+  // Bazuje na notatce z książki: różnica między porównaniem cech
+  // (más bonita que / menos difícil que) a porównaniem ilości rzeczy,
+  // gdzie „tanto" musi się zgadzać z rzeczownikiem co do rodzaju i liczby.
+  {
+    slug: "es-porownania-z-rzeczownikami",
+    vaultSlug: "es",
+    label: "Hiszpański — porównania z rzeczownikami (más/menos/tanto + nombre)",
+    payload: {
+      title: "Porównania z rzeczownikami — más / menos / tanto + nombre",
+      summary:
+        "Porównanie z rzeczownikiem działa inaczej niż porównanie cech (más bonita que, menos difícil que). Tu porównujesz ilość rzeczy, więc forma „tanto\" musi zgadzać się z rzeczownikiem co do rodzaju i liczby: tanto / tanta / tantos / tantas. Pułapka: „tanta hambre\" (nie „tanto hambre\"), bo hambre jest rodzaju żeńskiego — el hambre to tylko zabieg fonetyczny.",
+      theory:
+        "Trzy schematy porównań z rzeczownikami:\n\n1) más + rzeczownik + que = więcej czegoś niż\n— „Tengo más libros que tú.\" (Mam więcej książek niż ty.)\n— „Hay más espectadores que el año pasado.\" (Jest więcej widzów niż w zeszłym roku.)\n\n2) menos + rzeczownik + que = mniej czegoś niż\n— „He recibido menos postales que vosotros.\" (Dostałam mniej pocztówek niż wy.)\n\n3) tanto/tanta/tantos/tantas + rzeczownik + como = tyle samo czegoś co\nTu „tanto\" SIĘ ODMIENIA i musi zgadzać się z rzeczownikiem:\n— tanto (m. lp.): „tanto dinero\", „tanto tiempo\"\n— tanta (ż. lp.): „tanta hambre\", „tanta paciencia\"\n— tantos (m. lm.): „tantos libros\", „tantos años\"\n— tantas (ż. lm.): „tantas postales\", „tantas veces\"\n\nPRZYKŁADY:\n— „Irena tiene tanta hambre como yo.\" (Irena jest tak samo głodna jak ja.)\n— „No tengo tantos libros como tú.\" (Nie mam tylu książek co ty.)\n\nPUŁAPKA Z HAMBRE. Mówi się „el hambre\" (rodzajnik męski), ale rzeczownik jest ŻEŃSKI. „El\" pojawia się tylko fonetycznie — przed akcentowanym „a-\" w liczbie pojedynczej, żeby uniknąć zbiegu „la a-\". Sam rzeczownik jest żeński i wszystkie inne formy się do tego dostosowują:\n— tanta hambre (nie tanto hambre)\n— mucha hambre (nie mucho hambre)\n— poca hambre (nie poco hambre)\nTak samo: „el agua fría\" (nie „frío\"), „mucha agua\", „toda el agua\".\n\nDOPASOWANIE OSOBY W PORÓWNANIU. Po „que\" / „como\" wstawiasz tę osobę, do której pytanie / zdanie się odnosi:\n— Pytanie: „¿Has recibido cinco postales?\" (do jednej osoby, tú) → odpowiedź: „He recibido menos postales que tú.\"\n— Pytanie: „¿Habéis recibido cinco postales?\" (do grupy, vosotros) → odpowiedź: „He recibido menos postales que vosotros.\"\nForma czasownika w pytaniu (has vs habéis) zdradza, czy to „tú\" czy „vosotros\".\n\nPOMIJANIE „COMO X\" GDY KONTEKST JEST OCZYWISTY:\n— „Tengo unos 500 libros.\" — „Yo no tengo tantos. Tengo unos 300.\"\nWystarczy „no tengo tantos\" — wiadomo, do czego się porównuje. Pełna forma „no tengo tantos como tú\" też jest poprawna, ale ćwiczenia często wymagają wersji krótszej, bo trenują pomijanie oczywistego porównania.\n\nESPECTADORES = widzowie, publiczność. „En el teatro había muchos espectadores.\" (W teatrze było wielu widzów.) W lp.: el espectador (widz), la espectadora (widzka).\n\nŚCIĄGA NA PAMIĘĆ:\n— más libros que tú — więcej książek niż ty\n— menos postales que vosotros — mniej pocztówek niż wy\n— tanta hambre como yo — tak samo głodna jak ja\n— tantos libros como tú — tyle samo książek co ty\n— No tengo tantos. — Nie mam tylu.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Irena tiene ___ hambre como yo.\" (Irena jest tak samo głodna jak ja.)",
+          options: [
+            "tanto",
+            "tanta",
+            "tantas",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Hambre\" jest rodzaju ŻEŃSKIEGO, mimo że mówi się „el hambre\" (rodzajnik męski tylko fonetycznie, przed akcentowanym a-). Wszystkie formy zgadzające się z hambre są żeńskie: tanta hambre, mucha hambre, poca hambre.",
+        },
+        {
+          type: "abc",
+          text: "Pytanie: „¿Habéis recibido cinco postales este verano? Yo he recibido tres.\" Wybierz poprawną odpowiedź:",
+          options: [
+            "He recibido menos postales que tú.",
+            "He recibido menos postales que vosotros.",
+            "He recibido menos postales como vosotros.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pytanie jest w formie „habéis recibido\" → wy (vosotros). Porównanie musi się dopasować: „que vosotros\". „Tú\" byłoby OK gdyby pytanie brzmiało „¿Has recibido…?\". Z „menos / más\" łączysz przez „que\", nie „como\".",
+        },
+        {
+          type: "abc",
+          text: "Kontekst: „Tengo unos 500 libros.\" — odpowiadasz, że masz 300. Książka ćwiczy krótką formę. Wybierz:",
+          options: [
+            "Yo no tengo tantos como tú.",
+            "Yo no tengo tantos.",
+            "Yo no tengo tanto.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Obie pierwsze są gramatycznie OK, ale ćwiczenie wymaga pominięcia „como tú\" — kontekst już mówi, z kim porównujesz. „Tanto\" (m. lp.) byłoby błędne: „libros\" to liczba mnoga, więc „tantos\".",
+        },
+        {
+          type: "fill",
+          text: "Wstaw poprawną formę „tanto\": „No he leído ___ libros como tú.\"",
+          options: null,
+          correctAnswer: "tantos",
+          explanation:
+            "„Libros\" — rzeczownik męski, liczba mnoga → tantos. Schemat: tanto/tanta/tantos/tantas + rzeczownik + COMO (nie que).",
+        },
+        {
+          type: "fill",
+          text: "Wstaw poprawną formę „tanto\": „Hoy tengo ___ paciencia como ayer.\" (Mam dziś tyle samo cierpliwości co wczoraj.)",
+          options: null,
+          correctAnswer: "tanta",
+          explanation:
+            "„Paciencia\" — rzeczownik żeński, liczba pojedyncza → tanta. Łącznik „como\", nie „que\", bo to porównanie równości.",
+        },
+        {
+          type: "fill",
+          text: "Wstaw brakujący łącznik: „Tengo más libros ___ tú.\"",
+          options: null,
+          correctAnswer: "que",
+          explanation:
+            "Z „más\" i „menos\" idzie „que\" (więcej / mniej NIŻ). Z „tanto / tanta / tantos / tantas\" idzie „como\" (tyle samo CO). Klucz: nierówność = que, równość = como.",
+        },
+        {
+          type: "open",
+          text: "Przetłumacz: „W tym roku film miał więcej widzów niż w zeszłym.\"",
+          options: null,
+          correctAnswer:
+            "„Este año la película tuvo más espectadores que el año pasado.\" Schemat: más + rzeczownik (espectadores) + que. „Espectadores\" = widzowie (l.m.). W l.p.: el espectador / la espectadora.",
+          explanation:
+            "Klucz: schemat „más + nombre + que\". Słowo: espectadores (widzowie / publiczność).",
+        },
+        {
+          type: "spot_error",
+          text: "„Irena tiene tanto hambre como yo.\" — gdzie błąd?",
+          options: [
+            "wszystko OK",
+            "powinno być „tanta hambre\", bo hambre jest rodzaju żeńskiego (el hambre tylko fonetycznie)",
+            "powinno być „tantos hambres\"",
+            "powinno być „que yo\" zamiast „como yo\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Klasyczny błąd. „El hambre\" wygląda męsko, ale rzeczownik jest ŻEŃSKI — „el\" pojawia się tylko przed akcentowanym a- w l.p. (fonetyka, nie rodzaj). Dlatego: tanta hambre, mucha hambre, poca hambre. Tak samo el agua fría, mucha agua.",
+        },
+        {
+          type: "spot_error",
+          text: "„Tengo más libros como tú.\" — gdzie błąd?",
+          options: [
+            "wszystko OK",
+            "powinno być „que tú\" — z „más\" / „menos\" łączymy przez „que\", nie „como\"",
+            "powinno być „mucho libros\"",
+            "powinno być „tantos libros\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Reguła: nierówność (más / menos) → QUE. Równość (tanto / tanta / tantos / tantas) → COMO. „Más libros que tú\", „tantos libros como tú\".",
+        },
+      ],
+      salon: null,
+    },
+  },
 ];
