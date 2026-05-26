@@ -15,6 +15,7 @@ import {
 import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
 import { TheoryPhase } from "@/components/session/TheoryPhase";
+import { TestPhase } from "@/components/session/TestPhase";
 import type { Question, Topic, Vault } from "@/lib/types";
 import type { Timestamp } from "firebase/firestore";
 
@@ -348,7 +349,7 @@ export function SessionRunner({
 
   return (
     <div className="space-y-10">
-      {phase !== "theory" && (
+      {phase !== "theory" && phase !== "test" && (
         <header className="flex items-start justify-between gap-6">
           <div>
             <div className="eyebrow">{phaseLabel(phase)}</div>
@@ -375,162 +376,24 @@ export function SessionRunner({
         />
       )}
 
-      {phase === "test" && current && (
-        <section className="open-book max-w-4xl">
-          {/* Gold ribbon bookmark — slides as correct answers accumulate */}
-          <span
-            className="bookmark-ribbon"
-            style={{
-              right: "18%",
-              height: `${28 + (score / Math.max(1, questions.length)) * 220}px`,
-            }}
-            aria-hidden
-          />
-          <span className="book-spine" aria-hidden />
-          <div className="book-pages">
-            <div className="book-page book-page-left">
-              <div className="flex items-baseline justify-between gap-4">
-                <div className="book-eyebrow">
-                  Pytanie {idx + 1} / {questions.length}
-                </div>
-                <span className="book-margin-note">
-                  {score} {score === 1 ? "trafiona" : "trafione"}
-                </span>
-              </div>
-              <p className="book-title text-2xl mt-4 leading-snug">
-                {current.text}
-              </p>
-
-              <div className="mt-6 space-y-2">
-                {current.type === "abc" || current.type === "spot_error" ? (
-                  (current.options ?? []).map((opt, i) => {
-                    const isCorrect = i === Number(current.correctAnswer);
-                    const picked = attempts.find(
-                      (a) => a.questionId === current.id
-                    );
-                    const isPicked = picked && Number(picked.answer) === i;
-                    return (
-                      <button
-                        key={i}
-                        onClick={() => submit(i)}
-                        disabled={revealed || submitting}
-                        className={`book-option ${
-                          revealed && isCorrect
-                            ? "book-option-correct"
-                            : revealed && isPicked
-                            ? "book-option-wrong"
-                            : ""
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    );
-                  })
-                ) : (
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      submit(input);
-                    }}
-                    className="space-y-3"
-                  >
-                    {current.type === "open" ? (
-                      <textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        disabled={revealed || submitting}
-                        rows={3}
-                        className="book-input"
-                        placeholder="Krótka odpowiedź..."
-                      />
-                    ) : (
-                      <input
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        disabled={revealed || submitting}
-                        className="book-input"
-                        placeholder="Wpisz odpowiedź..."
-                      />
-                    )}
-                    {!revealed && (
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="book-btn"
-                      >
-                        Sprawdź
-                      </button>
-                    )}
-                  </form>
-                )}
-              </div>
-              <span className="book-folio book-folio-left">
-                — {2 * idx + 3} —
-              </span>
-            </div>
-
-            <div className="book-page book-page-right">
-              {revealed ? (
-                <>
-                  <div className="book-eyebrow">Korekta</div>
-                  <div className="flex items-start gap-3 mt-4">
-                    {lastCorrect ? (
-                      <Check
-                        className="w-5 h-5 stroke-[2] mt-1 shrink-0"
-                        style={{ color: "#2D5A3F" }}
-                      />
-                    ) : (
-                      <X
-                        className="w-5 h-5 stroke-[2] mt-1 shrink-0"
-                        style={{ color: "#8B2E1F" }}
-                      />
-                    )}
-                    <div className="flex-1">
-                      <div className="book-title text-2xl">
-                        {lastCorrect ? "Tak. To samo." : "Nie. Tu jest sedno:"}
-                      </div>
-                      {lastFeedback && (
-                        <p className="book-body italic mt-3 text-[14px]">
-                          {lastFeedback}
-                        </p>
-                      )}
-                      <p className="book-body mt-3 text-[14px]">
-                        {current.explanation}
-                      </p>
-                      {!lastCorrect && (
-                        <p className="book-body mt-3 text-[14px]">
-                          Poprawna:{" "}
-                          <span className="book-title italic">
-                            {current.type === "abc" ||
-                            current.type === "spot_error"
-                              ? (current.options ?? [])[
-                                  Number(current.correctAnswer)
-                                ]
-                              : String(current.correctAnswer)}
-                          </span>
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <button onClick={next} className="book-btn mt-7">
-                    {idx + 1 >= questions.length ? "Do korekty" : "Następne"}{" "}
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div className="book-eyebrow">Notatki bibliotekarza</div>
-                  <p className="book-margin-note mt-5">
-                    — odpowiedź pojawi się tu po sprawdzeniu —
-                  </p>
-                </>
-              )}
-              <span className="book-folio book-folio-right">
-                — {2 * idx + 4} —
-              </span>
-            </div>
-          </div>
-        </section>
+      {phase === "test" && questions && (
+        <TestPhase
+          topic={topic}
+          vault={currentVault}
+          questions={questions}
+          attempts={attempts}
+          currentIdx={idx}
+          revealed={revealed}
+          lastCorrect={lastCorrect}
+          lastFeedback={lastFeedback}
+          input={input}
+          setInput={setInput}
+          submitting={submitting}
+          elapsedSec={Math.max(0, PHASE_DURATION.test - timeLeft)}
+          totalSec={PHASE_DURATION.test}
+          onSubmit={submit}
+          onAdvance={next}
+        />
       )}
 
       {phase === "review" && (
