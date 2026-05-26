@@ -16,6 +16,7 @@ import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
 import { TheoryPhase } from "@/components/session/TheoryPhase";
 import { TestPhase } from "@/components/session/TestPhase";
+import { KorektaPhase } from "@/components/session/KorektaPhase";
 import type { Question, Topic, Vault } from "@/lib/types";
 import type { Timestamp } from "firebase/firestore";
 
@@ -78,6 +79,9 @@ export function SessionRunner({
   const sessionStartRef = useRef<number>(Date.now());
   const questionStartRef = useRef<number>(Date.now());
   const finishedRef = useRef(false);
+  const testStartRef = useRef<number | null>(null);
+  const testEndRef = useRef<number | null>(null);
+  const korektaStartRef = useRef<number | null>(null);
 
   // Load topic + questions + open session
   useEffect(() => {
@@ -239,6 +243,8 @@ export function SessionRunner({
     setLastFeedback(null);
     setInput("");
     if (idx + 1 >= questions.length) {
+      testEndRef.current = Date.now();
+      korektaStartRef.current = Date.now();
       setPhase("review");
       await maybeFinish();
     } else {
@@ -327,7 +333,7 @@ export function SessionRunner({
     (topic && vaults?.find((v) => v.id === topic.vaultId)) ?? null;
 
   const onDeck = useMemo(() => {
-    if (phase !== "theory" || !topic || !allTopics || !vaults) return [];
+    if ((phase !== "theory" && phase !== "review") || !topic || !allTopics || !vaults) return [];
     const now = Date.now();
     const due = allTopics.filter(
       (t) =>
@@ -349,7 +355,7 @@ export function SessionRunner({
 
   return (
     <div className="space-y-10">
-      {phase !== "theory" && phase !== "test" && (
+      {phase !== "theory" && phase !== "test" && phase !== "review" && (
         <header className="flex items-start justify-between gap-6">
           <div>
             <div className="eyebrow">{phaseLabel(phase)}</div>
@@ -371,7 +377,10 @@ export function SessionRunner({
           vault={currentVault}
           elapsedSec={Math.max(0, PHASE_DURATION.theory - timeLeft)}
           totalSec={PHASE_DURATION.theory}
-          onProceed={() => setPhase("test")}
+          onProceed={() => {
+            testStartRef.current = Date.now();
+            setPhase("test");
+          }}
           onDeck={onDeck}
         />
       )}
@@ -396,87 +405,31 @@ export function SessionRunner({
         />
       )}
 
-      {phase === "review" && (
-        <section className="open-book max-w-4xl">
-          {/* final bookmark — full or near-full */}
-          <span
-            className="bookmark-ribbon"
-            style={{
-              right: "18%",
-              height: `${28 + (score / Math.max(1, questions.length)) * 220}px`,
-            }}
-            aria-hidden
-          />
-          <span className="book-spine" aria-hidden />
-          <div className="book-pages">
-            <div className="book-page book-page-left">
-              <div className="book-eyebrow">Podsumowanie</div>
-              <div
-                className="book-title mt-4"
-                style={{ fontSize: "4.5rem", lineHeight: 1 }}
-              >
-                {score}
-                <span style={{ opacity: 0.45 }}> / {questions.length}</span>
-              </div>
-              <p className="book-body mt-4 text-[15px]">
-                {attempts.length - score === 0
-                  ? "Bez błędów. Temat wraca później."
-                  : `${attempts.length - score} ${
-                      attempts.length - score === 1
-                        ? "błąd poszedł"
-                        : "błędy poszły"
-                    } do Error Vault.`}
-              </p>
-              <Link href="/" className="book-btn mt-8 inline-flex">
-                Zamknij księgę
-              </Link>
-              <span className="book-folio book-folio-left">— Finis —</span>
-            </div>
-
-            <div className="book-page book-page-right">
-              <div className="book-eyebrow">Errata</div>
-              <div className="mt-4 space-y-3">
-                {attempts.map((a, i) => {
-                  const q = questions.find((x) => x.id === a.questionId);
-                  if (!q) return null;
-                  return (
-                    <div
-                      key={i}
-                      className="flex items-start gap-3 pt-3"
-                      style={{
-                        borderTop: "1px dashed rgba(60,40,20,0.22)",
-                      }}
-                    >
-                      {a.correct ? (
-                        <Check
-                          className="w-4 h-4 stroke-[2] mt-1 shrink-0"
-                          style={{ color: "#2D5A3F" }}
-                        />
-                      ) : (
-                        <X
-                          className="w-4 h-4 stroke-[2] mt-1 shrink-0"
-                          style={{ color: "#8B2E1F" }}
-                        />
-                      )}
-                      <div className="flex-1">
-                        <div className="book-body text-[14px]">{q.text}</div>
-                        {!a.correct && (
-                          <div
-                            className="book-margin-note mt-1"
-                            style={{ fontStyle: "normal" }}
-                          >
-                            {q.explanation}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <span className="book-folio book-folio-right">— Indeks —</span>
-            </div>
-          </div>
-        </section>
+      {phase === "review" && questions && (
+        <KorektaPhase
+          topic={topic}
+          vault={currentVault}
+          questions={questions}
+          attempts={attempts}
+          testElapsedSec={Math.max(
+            0,
+            Math.round(
+              ((testEndRef.current ?? Date.now()) -
+                (testStartRef.current ?? Date.now())) /
+                1000
+            )
+          )}
+          testBudgetSec={PHASE_DURATION.test}
+          korektaElapsedSec={Math.max(
+            0,
+            Math.round(
+              (Date.now() - (korektaStartRef.current ?? Date.now())) / 1000
+            )
+          )}
+          korektaBudgetSec={PHASE_DURATION.review}
+          onDeck={onDeck}
+          closeHref="/"
+        />
       )}
     </div>
   );
