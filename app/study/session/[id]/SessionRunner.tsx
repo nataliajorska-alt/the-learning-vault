@@ -150,6 +150,38 @@ export function SessionRunner({
     return vaults.find((v) => v.id === topic.vaultId)?.name ?? "";
   }, [topic, vaults]);
 
+  /* Resolve current vault + on-deck queue (declared up here to keep hook
+     order stable across all early returns below). */
+  const currentVault: Vault | null =
+    (topic && vaults?.find((v) => v.id === topic.vaultId)) ?? null;
+
+  const onDeck = useMemo(() => {
+    if (
+      (phase !== "theory" && phase !== "review") ||
+      !topic ||
+      !allTopics ||
+      !vaults
+    )
+      return [];
+    const now = Date.now();
+    const due = allTopics.filter(
+      (t) =>
+        t.id !== topic.id &&
+        (t.status === "fresh" ||
+          t.status === "struggling" ||
+          toMillis(t.nextReview) <= now)
+    );
+    return due.slice(0, 2).map((t) => {
+      const v = vaults.find((x) => x.id === t.vaultId);
+      return {
+        topicId: t.id,
+        title: t.title,
+        vaultName: v?.name ?? "—",
+        vaultSlug: v?.slug ?? "",
+      };
+    });
+  }, [phase, topic, allTopics, vaults]);
+
   function checkAnswer(answer: string | number): boolean {
     if (!current) return false;
     if (current.type === "abc" || current.type === "spot_error") {
@@ -327,31 +359,6 @@ export function SessionRunner({
       </div>
     );
   }
-
-  /* Resolve current vault (object) + on-deck queue for the theory header */
-  const currentVault: Vault | null =
-    (topic && vaults?.find((v) => v.id === topic.vaultId)) ?? null;
-
-  const onDeck = useMemo(() => {
-    if ((phase !== "theory" && phase !== "review") || !topic || !allTopics || !vaults) return [];
-    const now = Date.now();
-    const due = allTopics.filter(
-      (t) =>
-        t.id !== topic.id &&
-        (t.status === "fresh" ||
-          t.status === "struggling" ||
-          toMillis(t.nextReview) <= now)
-    );
-    return due.slice(0, 2).map((t) => {
-      const v = vaults.find((x) => x.id === t.vaultId);
-      return {
-        topicId: t.id,
-        title: t.title,
-        vaultName: v?.name ?? "—",
-        vaultSlug: v?.slug ?? "",
-      };
-    });
-  }, [phase, topic, allTopics, vaults]);
 
   return (
     <div className="space-y-10">
