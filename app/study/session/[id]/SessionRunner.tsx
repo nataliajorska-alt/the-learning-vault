@@ -9,11 +9,23 @@ import {
   getTopic,
   recordAttempt,
   startSession,
+  useTopics,
   useVaults,
 } from "@/lib/firestore-data";
 import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
-import type { Question, Topic } from "@/lib/types";
+import { TheoryPhase } from "@/components/session/TheoryPhase";
+import type { Question, Topic, Vault } from "@/lib/types";
+import type { Timestamp } from "firebase/firestore";
+
+function toMillis(v: unknown): number {
+  if (!v) return 0;
+  if (v instanceof Date) return v.getTime();
+  if (typeof v === "object" && v && "toMillis" in v) {
+    return (v as Timestamp).toMillis();
+  }
+  return 0;
+}
 
 type Phase = "theory" | "test" | "review";
 type Mode = "mix" | "errors" | "vault" | "topic";
@@ -46,6 +58,7 @@ export function SessionRunner({
 }) {
   const user = useUser();
   const vaults = useVaults();
+  const allTopics = useTopics();
 
   const [topic, setTopic] = useState<Topic | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -308,61 +321,58 @@ export function SessionRunner({
     );
   }
 
+  /* Resolve current vault (object) + on-deck queue for the theory header */
+  const currentVault: Vault | null =
+    (topic && vaults?.find((v) => v.id === topic.vaultId)) ?? null;
+
+  const onDeck = useMemo(() => {
+    if (phase !== "theory" || !topic || !allTopics || !vaults) return [];
+    const now = Date.now();
+    const due = allTopics.filter(
+      (t) =>
+        t.id !== topic.id &&
+        (t.status === "fresh" ||
+          t.status === "struggling" ||
+          toMillis(t.nextReview) <= now)
+    );
+    return due.slice(0, 2).map((t) => {
+      const v = vaults.find((x) => x.id === t.vaultId);
+      return {
+        topicId: t.id,
+        title: t.title,
+        vaultName: v?.name ?? "—",
+        vaultSlug: v?.slug ?? "",
+      };
+    });
+  }, [phase, topic, allTopics, vaults]);
+
   return (
     <div className="space-y-10">
-      <header className="flex items-start justify-between gap-6">
-        <div>
-          <div className="eyebrow">{phaseLabel(phase)}</div>
-          <h1 className="hero-italic text-4xl mt-1">{topic.title}</h1>
-          {vaultName && <div className="text-xs text-muted mt-1">{vaultName}</div>}
-        </div>
-        <div className="flex items-center gap-2 text-sm text-muted shrink-0">
-          <Timer className="w-4 h-4" />
-          <span className="tabular-nums">{formatMs(timeLeft)}</span>
-        </div>
-      </header>
+      {phase !== "theory" && (
+        <header className="flex items-start justify-between gap-6">
+          <div>
+            <div className="eyebrow">{phaseLabel(phase)}</div>
+            <h1 className="hero-italic text-4xl mt-1">{topic.title}</h1>
+            {vaultName && (
+              <div className="text-xs text-muted mt-1">{vaultName}</div>
+            )}
+          </div>
+          <div className="flex items-center gap-2 text-sm text-muted shrink-0">
+            <Timer className="w-4 h-4" />
+            <span className="tabular-nums">{formatMs(timeLeft)}</span>
+          </div>
+        </header>
+      )}
 
       {phase === "theory" && (
-        <section className="open-book max-w-4xl">
-          <span className="book-spine" aria-hidden />
-          <div className="book-pages">
-            <div className="book-page book-page-left">
-              <div className="book-eyebrow">Teoria · recto</div>
-              <h2 className="book-title text-3xl mt-3">{topic.title}</h2>
-              <p className="book-title text-xl italic mt-5 leading-snug">
-                {topic.summary}
-              </p>
-              {topic.imageUrl && (
-                <figure className="mt-6">
-                  <img
-                    src={topic.imageUrl}
-                    alt={topic.imageCaption ?? topic.title}
-                    className="w-full h-auto border border-[#6b4a26]/30 rounded-sm"
-                  />
-                  {topic.imageCaption && (
-                    <figcaption className="book-margin-note mt-2">
-                      {topic.imageCaption}
-                    </figcaption>
-                  )}
-                </figure>
-              )}
-              <span className="book-folio book-folio-left">— I —</span>
-            </div>
-            <div className="book-page book-page-right">
-              <div className="book-eyebrow">Teoria · verso</div>
-              <div className="book-body mt-5 text-[15px]">
-                <p>{topic.theory}</p>
-              </div>
-              <button
-                onClick={() => setPhase("test")}
-                className="book-btn mt-8"
-              >
-                Do testu <ArrowRight className="w-4 h-4" />
-              </button>
-              <span className="book-folio book-folio-right">— II —</span>
-            </div>
-          </div>
-        </section>
+        <TheoryPhase
+          topic={topic}
+          vault={currentVault}
+          elapsedSec={Math.max(0, PHASE_DURATION.theory - timeLeft)}
+          totalSec={PHASE_DURATION.theory}
+          onProceed={() => setPhase("test")}
+          onDeck={onDeck}
+        />
       )}
 
       {phase === "test" && current && (
