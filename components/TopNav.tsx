@@ -1,15 +1,30 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-import { effectiveStreak, useUserDoc } from "@/lib/firestore-data";
+import {
+  effectiveStreak,
+  useTopics,
+  useUserDoc,
+} from "@/lib/firestore-data";
+import type { Timestamp } from "firebase/firestore";
 
-const NAV = [
-  { href: "/", label: "Dziś" },
+function toMillis(v: unknown): number {
+  if (!v) return 0;
+  if (v instanceof Date) return v.getTime();
+  if (typeof v === "object" && v && "toMillis" in v) {
+    return (v as Timestamp).toMillis();
+  }
+  return 0;
+}
+
+const NAV: Array<{ href: string; label: string; nudgeKey?: "due" }> = [
+  { href: "/", label: "Dziś", nudgeKey: "due" },
   { href: "/vaults", label: "Sekcje" },
-  { href: "/study", label: "Ucz mnie" },
+  { href: "/study", label: "Ucz mnie", nudgeKey: "due" },
   { href: "/errors", label: "Errata" },
   { href: "/salon", label: "Salon" },
   { href: "/stats", label: "Statystyki" },
@@ -21,9 +36,21 @@ export function TopNav() {
   const { user, signOut } = useAuth();
   const userDoc = useUserDoc();
   const streak = effectiveStreak(userDoc);
+  const topics = useTopics();
   const displayName =
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
   const initial = (displayName?.[0] ?? "·").toUpperCase();
+
+  const dueToday = useMemo(() => {
+    if (!topics) return 0;
+    const now = Date.now();
+    return topics.filter(
+      (t) =>
+        t.status === "fresh" ||
+        t.status === "struggling" ||
+        toMillis(t.nextReview) <= now
+    ).length;
+  }, [topics]);
 
   return (
     <header
@@ -64,11 +91,13 @@ export function TopNav() {
             const active =
               pathname === item.href ||
               (item.href !== "/" && pathname.startsWith(item.href));
+            const showDue =
+              item.nudgeKey === "due" && dueToday > 0 && !active;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="eyebrow"
+                className="eyebrow relative"
                 style={{
                   color: active
                     ? "var(--c-gold-300)"
@@ -82,8 +111,29 @@ export function TopNav() {
                   transition:
                     "color 180ms ease, opacity 180ms ease, border-color 180ms ease",
                 }}
+                title={
+                  showDue
+                    ? `Dziś czeka ${dueToday} ${dueToday === 1 ? "temat" : dueToday < 5 ? "tematy" : "tematów"}`
+                    : undefined
+                }
               >
                 {item.label}
+                {showDue && (
+                  <span
+                    aria-hidden
+                    style={{
+                      position: "absolute",
+                      top: -2,
+                      right: -8,
+                      width: 5,
+                      height: 5,
+                      borderRadius: "50%",
+                      background:
+                        "radial-gradient(circle at 35% 30%, #f3d28a, #b08540 70%)",
+                      boxShadow: "0 0 4px rgba(216,179,107,0.55)",
+                    }}
+                  />
+                )}
               </Link>
             );
           })}
