@@ -1182,7 +1182,7 @@ function FillInput({
         </div>
       </div>
       <div
-        className="flex items-center"
+        className="flex items-center flex-wrap"
         style={{ gap: 10, marginTop: 18, paddingLeft: 40 }}
       >
         <span
@@ -1193,21 +1193,13 @@ function FillInput({
             fontStyle: "italic",
           }}
         >
-          ↵ Enter zatwierdza wpis
+          ↵ Enter zatwierdza · {value.length} znaków
         </span>
-        <span
-          style={{
-            flex: 1,
-            height: 0.5,
-            background: "rgba(27,17,8,0.12)",
-          }}
+        <div style={{ flex: 1, minWidth: 8 }} />
+        <CheckButton
+          onClick={onSubmit}
+          disabled={disabled || !value.trim()}
         />
-        <span
-          className="signature"
-          style={{ color: "rgba(27,17,8,0.42)", fontSize: 10 }}
-        >
-          {value.length} znaków
-        </span>
       </div>
     </div>
   );
@@ -1298,8 +1290,8 @@ function OpenAnswer({
         />
       </div>
       <div
-        className="flex items-center justify-between"
-        style={{ marginTop: 10, gap: 8 }}
+        className="flex items-center justify-between flex-wrap"
+        style={{ marginTop: 12, gap: 10 }}
       >
         <span
           className="signature"
@@ -1309,16 +1301,83 @@ function OpenAnswer({
             fontStyle: "italic",
           }}
         >
-          ⌘/Ctrl + Enter zatwierdza · krótko, w punkt
+          ⌘/Ctrl + Enter zatwierdza · ≈ {words} {words === 1 ? "słowo" : "słów"}
         </span>
-        <span
-          className="signature"
-          style={{ color: "rgba(27,17,8,0.42)", fontSize: 10 }}
-        >
-          ≈ {words} {words === 1 ? "słowo" : "słów"}
-        </span>
+        <CheckButton
+          onClick={onSubmit}
+          disabled={disabled || !value.trim()}
+        />
       </div>
     </div>
+  );
+}
+
+/* ============================================================
+   Check button — small brass plate "Sprawdź" submit
+   ============================================================ */
+
+function CheckButton({
+  onClick,
+  disabled,
+}: {
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  return (
+    <button
+      type="submit"
+      onClick={onClick}
+      disabled={disabled}
+      className="relative inline-flex items-center"
+      style={{
+        gap: 10,
+        padding: "9px 18px",
+        background: disabled
+          ? "linear-gradient(180deg, #3a2a1c 0%, #2a1a0c 100%)"
+          : "linear-gradient(180deg, #221610 0%, #1a0f08 100%)",
+        border: "none",
+        cursor: disabled ? "not-allowed" : "pointer",
+        font: "inherit",
+        opacity: disabled ? 0.55 : 1,
+        boxShadow:
+          "0 5px 14px -6px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,230,180,0.14), inset 0 -1px 0 rgba(0,0,0,0.5)",
+        transition: "transform .15s ease, box-shadow .15s ease, opacity .15s",
+      }}
+    >
+      <span
+        aria-hidden
+        className="absolute pointer-events-none"
+        style={{ inset: 3, border: "0.5px solid rgba(184,146,77,0.55)" }}
+      />
+      <span
+        aria-hidden
+        className="absolute pointer-events-none"
+        style={{ inset: 5, border: "0.5px solid rgba(184,146,77,0.22)" }}
+      />
+      <span
+        className="font-display italic"
+        style={{
+          fontSize: 15,
+          color: "var(--c-paper-100)",
+          fontWeight: 500,
+          letterSpacing: "-0.005em",
+          padding: "0 4px",
+        }}
+      >
+        Sprawdź
+      </span>
+      <span
+        style={{
+          color: "var(--c-gold-300)",
+          fontSize: 13,
+          lineHeight: 1,
+          padding: "0 2px 0 0",
+        }}
+        aria-hidden
+      >
+        ↵
+      </span>
+    </button>
   );
 }
 
