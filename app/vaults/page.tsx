@@ -243,13 +243,13 @@ function Hero({
 }) {
   return (
     <div
-      className="flex items-end justify-between flex-wrap gap-8"
-      style={{ padding: "56px 24px 40px" }}
+      className="regal-header flex items-end justify-between flex-wrap gap-8"
+      style={{ padding: "clamp(32px, 6vw, 56px) clamp(20px, 5vw, 24px) clamp(28px, 5vw, 40px)" }}
     >
       <div style={{ maxWidth: 720 }}>
         <div
           className="eyebrow"
-          style={{ color: "var(--c-gold-400)", marginBottom: 18 }}
+          style={{ color: "var(--c-gold-400)", marginBottom: 14 }}
         >
           § II · Twoja biblioteka · {sectionsCount} tomów
         </div>
@@ -292,7 +292,7 @@ function Hero({
         </p>
       </div>
 
-      <div className="flex items-stretch flex-shrink-0">
+      <div className="regal-stats flex items-stretch flex-shrink-0">
         <BrassStat label="Tomów" value={sectionsCount} sub="czynnych" />
         <Divider />
         <BrassStat label="Dziś" value={totalDue} sub="powtórek" />
@@ -330,7 +330,7 @@ function BrassStat({
   sub: string;
 }) {
   return (
-    <div style={{ padding: "8px 24px", textAlign: "center" }}>
+    <div className="brass-stat" style={{ padding: "8px 24px", textAlign: "center" }}>
       <div
         className="eyebrow"
         style={{ color: "var(--c-gold-400)", marginBottom: 6 }}
@@ -338,7 +338,7 @@ function BrassStat({
         {label}
       </div>
       <div
-        className="font-display italic"
+        className="brass-stat-value font-display italic"
         style={{
           fontSize: 40,
           lineHeight: 1,
@@ -407,7 +407,7 @@ function Catalog({
   }, [vaults, sortMode, dueByVault, lastTouchedByVault]);
 
   return (
-    <div style={{ padding: "100px 24px 80px" }}>
+    <div style={{ padding: "clamp(48px, 9vw, 100px) clamp(20px, 5vw, 24px) clamp(48px, 7vw, 80px)" }}>
       <div
         className="flex items-baseline justify-between flex-wrap gap-6"
         style={{ marginBottom: 28 }}
@@ -583,11 +583,23 @@ function CatalogRow({
           style={{ color: "var(--c-paper-300)", opacity: 0.55 }}
         >
           {level} · Tom {romanIndex}
+          {/* Mobile-only meta: due count + last-touched (pokazują się
+              gdy główne kolumny są ukryte przez media query) */}
+          <span
+            className="catalog-mobile-meta"
+            style={{
+              color: due > 0 ? "var(--c-gold-300)" : "var(--c-paper-400)",
+              opacity: due > 0 ? 0.9 : 0.5,
+              marginLeft: 8,
+            }}
+          >
+            · {due} dziś{lastStr ? ` · ${lastStr}` : ""}
+          </span>
         </div>
       </div>
 
       {/* progress */}
-      <div>
+      <div className="catalog-progress">
         <div
           className="signature"
           style={{
@@ -623,7 +635,7 @@ function CatalogRow({
       </div>
 
       {/* last touched */}
-      <div className="flex items-center" style={{ gap: 10 }}>
+      <div className="catalog-last flex items-center" style={{ gap: 10 }}>
         <div
           style={{
             width: 6,
@@ -655,7 +667,7 @@ function CatalogRow({
       </div>
 
       {/* today pill */}
-      <div className="flex justify-end">
+      <div className="catalog-today flex justify-end">
         <span
           className="signature"
           style={{

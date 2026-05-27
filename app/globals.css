@@ -1293,6 +1293,39 @@
   outline: none;
   background-color: rgba(184, 146, 77, 0.08);
 }
+/* Mobile-only meta inside catalog row title — ukryte na desktop, gdzie
+   info „dziś" + „ostatnio" mają osobne kolumny. */
+.catalog-mobile-meta {
+  display: none;
+}
+/* Mobile (≤767px) — Regał: skompaktowany wiersz katalogu. Ukrywamy boczne
+   kolumny (progress, last-touched, today pill), zostawiamy: index, ikonę,
+   tytuł z metą inline, chevron. Bez tego desktop grid 580px+ wymuszal
+   horizontal scroll na telefonie. */
+@media (max-width: 767px) {
+  .catalog-row {
+    grid-template-columns: 32px 36px minmax(0, 1fr) 22px !important;
+    gap: 12px !important;
+    padding: 14px 0 !important;
+  }
+  .catalog-row .catalog-progress,
+  .catalog-row .catalog-last,
+  .catalog-row .catalog-today {
+    display: none !important;
+  }
+  .catalog-mobile-meta {
+    display: inline;
+  }
+  /* Regał — mniejszy brass-stat na mobile (Tomów / Dziś / Passa).
+     Zmniejszamy padding wewnątrz i font wartości, żeby trzy stat'y
+     zmieściły się obok siebie pod tytułem na 375px ekranie. */
+  .regal-stats .brass-stat {
+    padding: 4px 12px !important;
+  }
+  .regal-stats .brass-stat-value {
+    font-size: 28px !important;
+  }
+}
 
 /* Errata masonry — collapse to 1 column on narrow screens */
 @media (max-width: 767px) {
