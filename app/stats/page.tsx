@@ -143,7 +143,7 @@ export default function StatsPage() {
     <div className="space-y-12">
       <header>
         <div className="eyebrow">Twój rytm</div>
-        <h1 className="hero-italic text-5xl mt-2">Statystyki</h1>
+        <h1 className="hero-italic text-4xl mt-2">Statystyki</h1>
       </header>
 
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4">

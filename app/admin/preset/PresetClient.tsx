@@ -99,7 +99,7 @@ export function PresetClient() {
 
       <header>
         <div className="eyebrow">Ręcznie skomponowane</div>
-        <h1 className="hero-italic text-5xl mt-2">Gotowe tematy</h1>
+        <h1 className="hero-italic text-4xl mt-2">Gotowe tematy</h1>
         <p className="text-muted mt-3 max-w-xl">
           Pełne tematy napisane bez Claude API — działają zawsze, niezależnie od
           kredytów Anthropic czy timeoutu Vercel. Klikasz raz, temat ląduje w

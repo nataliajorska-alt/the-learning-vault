@@ -252,7 +252,7 @@ export function AdminClient() {
       <header className="flex items-start justify-between gap-6 flex-wrap">
         <div>
           <div className="eyebrow">Tryb mix · AI proponuje, ty akceptujesz</div>
-          <h1 className="hero-italic text-5xl mt-2">Admin</h1>
+          <h1 className="hero-italic text-4xl mt-2">Admin</h1>
           <p className="text-muted mt-3 max-w-xl">
             Wklej notatki z lekcji, książki, filmu. Claude wygeneruje teorię, 8 pytań
             różnych typów i frazy do Salonu. Edytujesz inline i akceptujesz.

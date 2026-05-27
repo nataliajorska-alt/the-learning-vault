@@ -270,12 +270,12 @@ function Hero({ totalDue }: { totalDue: number }) {
           <h1
             className="font-display italic"
             style={{
-              fontSize: "clamp(48px, 8vw, 84px)",
+              fontSize: "clamp(36px, 6vw, 60px)",
               lineHeight: 0.96,
               letterSpacing: "-0.02em",
               color: "var(--c-paper-100)",
               fontWeight: 600,
-              marginBottom: 20,
+              marginBottom: 16,
             }}
           >
             Ucz mnie

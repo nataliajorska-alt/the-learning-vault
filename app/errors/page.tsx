@@ -150,12 +150,12 @@ function Hero({ total }: { total: number }) {
         <h1
           className="font-display italic"
           style={{
-            fontSize: "clamp(56px, 8vw, 88px)",
+            fontSize: "clamp(40px, 6vw, 64px)",
             lineHeight: 0.96,
             letterSpacing: "-0.02em",
             color: "var(--c-paper-100)",
             fontWeight: 600,
-            marginBottom: 18,
+            marginBottom: 14,
           }}
         >
           Error Vault

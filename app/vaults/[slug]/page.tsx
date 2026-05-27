@@ -87,7 +87,7 @@ export default function VaultDetailPage({
         </div>
         <div>
           <div className="eyebrow">{vault.level}</div>
-          <h1 className="hero-italic text-5xl mt-1">{vault.name}</h1>
+          <h1 className="hero-italic text-4xl mt-1">{vault.name}</h1>
           <p className="text-muted mt-3 max-w-xl">
             {topics.length}{" "}
             {topics.length === 1 ? "temat" : topics.length < 5 ? "tematy" : "tematów"} w

@@ -287,12 +287,12 @@ function Hero({ totalTopics }: { totalTopics: number }) {
           <h1
             className="font-display italic"
             style={{
-              fontSize: "clamp(56px, 9vw, 96px)",
+              fontSize: "clamp(40px, 6vw, 64px)",
               lineHeight: 0.94,
               letterSpacing: "-0.02em",
               color: "var(--c-paper-100)",
               fontWeight: 600,
-              marginBottom: 20,
+              marginBottom: 16,
             }}
           >
             Salon

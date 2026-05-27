@@ -78,7 +78,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
 
       <header>
         <div className="eyebrow">{vault?.name ?? "Salon"}</div>
-        <h1 className="hero-italic text-5xl mt-2">{topic.title}</h1>
+        <h1 className="hero-italic text-4xl mt-2">{topic.title}</h1>
       </header>
 
       {topic.imageUrl && (
