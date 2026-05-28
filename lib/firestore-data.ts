@@ -21,7 +21,7 @@ import {
 } from "firebase/firestore";
 import { getFirebase } from "./firebase";
 import { useUser } from "./auth-context";
-import { applySrs } from "./spaced-repetition";
+import { applySrs, type Verdict } from "./spaced-repetition";
 import type {
   Question,
   SalonPhrase,
@@ -351,14 +351,17 @@ export async function recordAttempt(opts: {
   topic: Topic;
   question: Question;
   answer: string;
-  correct: boolean;
+  verdict: Verdict;
   timeTaken: number;
   vaultName: string;
 }): Promise<void> {
   const { db } = getFirebase();
-  const { userId, sessionId, topic, question, answer, correct, timeTaken } = opts;
+  const { userId, sessionId, topic, question, answer, verdict, timeTaken } = opts;
+  // partial liczy się jako zaliczenie dla trafności, ale jest neutralny dla
+  // Error Vault (patrz upsertErrorEntry) i łagodny dla SRS (patrz applySrs).
+  const countsCorrect = verdict !== "wrong";
 
-  const srs = applySrs(topic, correct);
+  const srs = applySrs(topic, verdict);
 
   const batch = writeBatch(db);
 
@@ -370,7 +373,8 @@ export async function recordAttempt(opts: {
     questionId: question.id,
     topicId: topic.id,
     answer,
-    isCorrect: correct,
+    isCorrect: countsCorrect,
+    verdict,
     timeTaken,
     createdAt: serverTimestamp(),
   });
@@ -384,7 +388,7 @@ export async function recordAttempt(opts: {
     nextReview: srs.nextReview,
     status: srs.status,
     totalAttempts: topic.totalAttempts + 1,
-    totalCorrect: topic.totalCorrect + (correct ? 1 : 0),
+    totalCorrect: topic.totalCorrect + (countsCorrect ? 1 : 0),
     updatedAt: serverTimestamp(),
   });
 
@@ -396,7 +400,7 @@ export async function recordAttempt(opts: {
     topic,
     question,
     answer,
-    correct,
+    verdict,
     vaultName: opts.vaultName,
   });
 }
@@ -406,11 +410,15 @@ async function upsertErrorEntry(opts: {
   topic: Topic;
   question: Question;
   answer: string;
-  correct: boolean;
+  verdict: Verdict;
   vaultName: string;
 }) {
   const { db } = getFirebase();
-  const { userId, topic, question, answer, correct, vaultName } = opts;
+  const { userId, topic, question, answer, verdict, vaultName } = opts;
+
+  // partial jest neutralny: nie tworzy wpisu, nie bije rehab, nie zeruje.
+  if (verdict === "partial") return;
+  const correct = verdict === "correct";
 
   const existingQ = query(
     collection(db, "errors"),

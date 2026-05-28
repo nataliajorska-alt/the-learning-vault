@@ -18,6 +18,7 @@ import { TheoryPhase } from "@/components/session/TheoryPhase";
 import { TestPhase } from "@/components/session/TestPhase";
 import { KorektaPhase } from "@/components/session/KorektaPhase";
 import type { Question, Topic, Vault } from "@/lib/types";
+import type { Verdict } from "@/lib/spaced-repetition";
 import type { Timestamp } from "firebase/firestore";
 
 function toMillis(v: unknown): number {
@@ -239,10 +240,10 @@ export function SessionRunner({
   }
 
   async function gradeOpen(answer: string): Promise<{
-    correct: boolean;
+    verdict: Verdict;
     feedback: string | null;
   }> {
-    if (!current) return { correct: false, feedback: null };
+    if (!current) return { verdict: "wrong", feedback: null };
     try {
       const idToken = (await user?.getIdToken()) ?? "";
       const res = await fetch("/api/grade", {
@@ -259,16 +260,20 @@ export function SessionRunner({
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as {
-        verdict?: "correct" | "partial" | "wrong";
+        verdict?: Verdict;
         feedback?: string;
       };
-      return {
-        correct: data.verdict === "correct",
-        feedback: data.feedback ?? null,
-      };
+      const verdict: Verdict =
+        data.verdict === "correct" || data.verdict === "partial"
+          ? data.verdict
+          : "wrong";
+      return { verdict, feedback: data.feedback ?? null };
     } catch (e) {
       console.error("grade failed, falling back to string match", e);
-      return { correct: checkAnswer(answer), feedback: null };
+      return {
+        verdict: checkAnswer(answer) ? "correct" : "wrong",
+        feedback: null,
+      };
     }
   }
 
@@ -277,16 +282,20 @@ export function SessionRunner({
     if (!user || !topic || !sessionId) return;
     setSubmitting(true);
 
-    let correct: boolean;
+    let verdict: Verdict;
     let aiFeedback: string | null = null;
 
     if (current.type === "open") {
       const result = await gradeOpen(String(answer));
-      correct = result.correct;
+      verdict = result.verdict;
       aiFeedback = result.feedback;
     } else {
-      correct = checkAnswer(answer);
+      verdict = checkAnswer(answer) ? "correct" : "wrong";
     }
+
+    // partial liczymy jako zaliczenie (zielony ptaszek + feedback co dodać),
+    // ale w SRS/Error Vault jest traktowany łagodnie — patrz recordAttempt.
+    const correct = verdict !== "wrong";
 
     const timeTaken = Math.round(
       (Date.now() - questionStartRef.current) / 1000
@@ -307,7 +316,7 @@ export function SessionRunner({
         topic,
         question: current,
         answer: String(answer),
-        correct,
+        verdict,
         timeTaken,
         vaultName,
       });

@@ -8,18 +8,25 @@ export interface SrsUpdate {
   status: TopicStatus;
 }
 
-export function applySrs(topic: Topic, correct: boolean): SrsUpdate {
-  let { interval, ease, correctStreak } = topic;
-  const totalAttempts = topic.totalAttempts + 1;
-  const totalCorrect = topic.totalCorrect + (correct ? 1 : 0);
+export type Verdict = "correct" | "partial" | "wrong";
 
-  if (correct) {
+export function applySrs(topic: Topic, verdict: Verdict): SrsUpdate {
+  let { interval, ease, correctStreak } = topic;
+  // partial liczy się jako zaliczenie dla statystyk, ale nie posuwa do mastery
+  const countsCorrect = verdict !== "wrong";
+  const totalAttempts = topic.totalAttempts + 1;
+  const totalCorrect = topic.totalCorrect + (countsCorrect ? 1 : 0);
+
+  if (verdict === "correct") {
     correctStreak += 1;
     if (correctStreak === 1) interval = 1;
     else if (correctStreak === 2) interval = 3;
     else if (correctStreak === 3) interval = 7;
     else interval = Math.round(interval * ease);
     ease = Math.min(3.0, ease + 0.1);
+  } else if (verdict === "partial") {
+    // łagodnie: bez kary (ease/streak bez zmian), ale wróci niedługo
+    interval = 2;
   } else {
     correctStreak = 0;
     interval = 1;
@@ -31,8 +38,11 @@ export function applySrs(topic: Topic, correct: boolean): SrsUpdate {
 
   let status: TopicStatus = "due";
   const wrongRatio = (totalAttempts - totalCorrect) / Math.max(1, totalAttempts);
-  if (correctStreak >= 4 && interval >= 30) status = "mastered";
-  else if (totalAttempts >= 4 && wrongRatio > 0.5) status = "struggling";
+  if (verdict === "correct" && correctStreak >= 4 && interval >= 30) {
+    status = "mastered";
+  } else if (totalAttempts >= 4 && wrongRatio > 0.5) {
+    status = "struggling";
+  }
 
   return { interval, ease, correctStreak, nextReview, status };
 }
