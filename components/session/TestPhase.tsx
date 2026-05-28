@@ -1455,8 +1455,11 @@ function BookmarkRibbon() {
   return (
     <div
       aria-hidden
-      className="absolute pointer-events-none"
-      style={{ top: -14, left: 60, width: 28, zIndex: 6 }}
+      className="pointer-events-none"
+      // position w inline style, bo `.tex-paper > * { position: relative }`
+      // z globals.css nadpisuje klasę Tailwinda `absolute` (równa specyficzność,
+      // reguła globalna jest później). Inline style ma pierwszeństwo.
+      style={{ position: "absolute", top: -14, left: 60, width: 28, zIndex: 6 }}
     >
       <svg
         width="28"
