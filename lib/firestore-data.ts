@@ -22,6 +22,11 @@ import {
 import { getFirebase } from "./firebase";
 import { useUser } from "./auth-context";
 import { applySrs, type Verdict } from "./spaced-repetition";
+import {
+  computeStreakUpdate,
+  rehabError,
+  streakStillValid,
+} from "./streak";
 import type {
   Question,
   SalonPhrase,
@@ -418,7 +423,6 @@ async function upsertErrorEntry(opts: {
 
   // partial jest neutralny: nie tworzy wpisu, nie bije rehab, nie zeruje.
   if (verdict === "partial") return;
-  const correct = verdict === "correct";
 
   const existingQ = query(
     collection(db, "errors"),
@@ -428,7 +432,7 @@ async function upsertErrorEntry(opts: {
   const existing = await getDocs(existingQ);
   const now = new Date();
 
-  if (!correct) {
+  if (verdict === "wrong") {
     const correctVersion =
       question.type === "abc" || question.type === "spot_error"
         ? (question.options ?? [])[Number(question.correctAnswer)] ?? String(question.correctAnswer)
@@ -451,12 +455,13 @@ async function upsertErrorEntry(opts: {
     } else {
       const ref = existing.docs[0]!.ref;
       const cur = existing.docs[0]!.data() as VaultError;
+      const next = rehabError({ correctStreak: cur.correctStreak ?? 0 }, "wrong")!;
       await updateDoc(ref, {
         timesWrong: (cur.timesWrong ?? 0) + 1,
         lastWrongAt: now,
         wrongVersion: answer || cur.wrongVersion,
-        status: "active",
-        correctStreak: 0,
+        status: next.status,
+        correctStreak: next.correctStreak,
       });
     }
     return;
@@ -466,10 +471,10 @@ async function upsertErrorEntry(opts: {
   if (!existing.empty) {
     const ref = existing.docs[0]!.ref;
     const cur = existing.docs[0]!.data() as VaultError;
-    const newStreak = (cur.correctStreak ?? 0) + 1;
+    const next = rehabError({ correctStreak: cur.correctStreak ?? 0 }, "correct")!;
     await updateDoc(ref, {
-      correctStreak: newStreak,
-      status: newStreak >= 3 ? "rehabilitated" : "active",
+      correctStreak: next.correctStreak,
+      status: next.status,
     });
   }
 }
@@ -570,18 +575,8 @@ export function useAttempts(daysBack: number) {
   return data;
 }
 
-function isSameLocalDay(a: Date, b: Date): boolean {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
-}
-
 export function effectiveStreak(userDoc: UserDoc | null): number {
   if (!userDoc) return 0;
-  const stored = userDoc.streak ?? 0;
-  if (stored === 0) return 0;
   // lastStudyAt to podstawa passy; fallback na lastActiveAt dla kont sprzed migracji
   const src = userDoc.lastStudyAt ?? userDoc.lastActiveAt;
   const last = src instanceof Timestamp
@@ -589,12 +584,7 @@ export function effectiveStreak(userDoc: UserDoc | null): number {
     : src instanceof Date
     ? src
     : null;
-  if (!last) return 0;
-  const now = new Date();
-  const yest = new Date(now);
-  yest.setDate(yest.getDate() - 1);
-  if (isSameLocalDay(last, now) || isSameLocalDay(last, yest)) return stored;
-  return 0;
+  return streakStillValid(last, userDoc.streak ?? 0, new Date());
 }
 
 // --- SESSIONS (lifecycle) --------------------------------------------------
@@ -650,10 +640,16 @@ async function bumpStreakIfNeeded() {
     ? toDate(data.lastStudyAt)
     : toDate(data.lastActiveAt);
 
+  const { alreadyToday, newStreak } = computeStreakUpdate(
+    lastStudy,
+    now,
+    data.streak
+  );
+
   // Już się dziś uczyła — passa stoi, odświeżamy znacznik aktywności.
   // Backfill lastStudyAt, jeśli konto jest sprzed migracji (inaczej zostanie
   // na zawsze w fallbacku na lastActiveAt).
-  if (isSameLocalDay(lastStudy, now) && data.streak > 0) {
+  if (alreadyToday) {
     await updateDoc(ref, {
       lastActiveAt: serverTimestamp(),
       ...(data.lastStudyAt ? {} : { lastStudyAt: serverTimestamp() }),
@@ -661,11 +657,6 @@ async function bumpStreakIfNeeded() {
     return;
   }
 
-  const yest = new Date(now);
-  yest.setDate(yest.getDate() - 1);
-  const wasYesterday = isSameLocalDay(lastStudy, yest);
-
-  const newStreak = wasYesterday ? data.streak + 1 : 1;
   await updateDoc(ref, {
     streak: newStreak,
     longestStreak: Math.max(data.longestStreak ?? 0, newStreak),
