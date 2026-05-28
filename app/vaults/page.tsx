@@ -206,7 +206,11 @@ export default function VaultsPage() {
           streak={streak}
         />
 
-        <div style={{ paddingBottom: 80 }}>
+        {/* Dekoracyjny regał z grzbietami książek — tylko desktop.
+            Na komórce grzbiety zajmują ~cały ekran każdy (13 książek =
+            ogromne scrollowanie), więc go ukrywamy. Lista katalogu niżej
+            pokazuje wszystkie sekcje czytelniej i kompaktowo. */}
+        <div className="hidden md:block" style={{ paddingBottom: 80 }}>
           <Bookcase
             shelf1={shelf1}
             shelf2={shelf2}
