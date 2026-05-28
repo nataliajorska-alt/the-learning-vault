@@ -68,8 +68,10 @@ export interface SalonPhrase {
 export interface VaultError {
   id: string;
   userId: string;
-  topicId: string;
-  questionId: string;
+  /** null dla błędów startowych (seed) — nie są powiązane z konkretnym tematem */
+  topicId: string | null;
+  /** null dla błędów startowych (seed) — nie są powiązane z konkretnym pytaniem */
+  questionId: string | null;
   vaultName: string;
   correctVersion: string;
   wrongVersion: string;

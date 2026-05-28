@@ -111,8 +111,8 @@ async function main() {
 
     await db.collection("errors").add({
       userId,
-      topicId: "",
-      questionId: "",
+      topicId: null,
+      questionId: null,
       vaultName: e.vaultName,
       correctVersion: e.correctVersion,
       wrongVersion: e.wrongVersion,

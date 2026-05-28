@@ -890,8 +890,8 @@ export async function seedFirstRun(userId: string): Promise<void> {
     for (const e of STARTER_ERRORS) {
       await addDoc(collection(db, "errors"), {
         userId,
-        topicId: "",
-        questionId: "",
+        topicId: null,
+        questionId: null,
         vaultName: e.vaultName,
         correctVersion: e.correctVersion,
         wrongVersion: e.wrongVersion,
