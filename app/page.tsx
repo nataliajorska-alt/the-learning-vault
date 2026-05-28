@@ -626,7 +626,7 @@ function InvitationRow({
     body:
       salonTopic?.phrase.short ??
       "Trzy zdania na temat. Krótko, rozbudowanie, pułapka. Praktyczne obycie, nie egzamin.",
-    meta: "Konwersacja AI · ocena finezji",
+    meta: "Ćwicz wypowiedź · ocena finezji AI",
     cta: "Wejdź do salonu",
     sealLabel: "S",
     sealTone: "burgundy" as const,

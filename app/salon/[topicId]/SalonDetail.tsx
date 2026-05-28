@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import {
@@ -10,12 +10,19 @@ import {
   useVaults,
 } from "@/lib/firestore-data";
 import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
+import { useUser } from "@/lib/auth-context";
 
 export function SalonDetail({ topicId }: { topicId: string }) {
+  const user = useUser();
   const topics = useTopics();
   const phrases = useSalonPhrases();
   const vaults = useVaults();
   const markedRef = useRef(false);
+
+  const [attempt, setAttempt] = useState("");
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [fbBusy, setFbBusy] = useState(false);
+  const [fbErr, setFbErr] = useState<string | null>(null);
 
   const topic = useMemo(
     () => topics?.find((t) => t.id === topicId) ?? null,
@@ -44,6 +51,51 @@ export function SalonDetail({ topicId }: { topicId: string }) {
       });
     }
   }, [topic, vault]);
+
+  async function evaluate() {
+    if (!topic || !phrase) return;
+    if (attempt.trim().length < 10) {
+      setFbErr("Powiedz coś więcej — przynajmniej zdanie.");
+      return;
+    }
+    setFbBusy(true);
+    setFbErr(null);
+    setFeedback(null);
+    try {
+      const idToken = (await user?.getIdToken()) ?? "";
+      const res = await fetch("/api/salon-feedback", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          topic: topic.title,
+          reference: {
+            short: phrase.short,
+            expand: phrase.expand,
+            trap: phrase.trap,
+          },
+          attempt,
+        }),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error ?? `HTTP ${res.status}`);
+      }
+      const data = (await res.json()) as { feedback?: string };
+      setFeedback(data.feedback ?? null);
+      void awardP30Xp({
+        xp: 5,
+        source: "vault:salon-finesse",
+        pillar: pillarForVaultSlug(vault?.slug),
+      });
+    } catch (e) {
+      setFbErr(e instanceof Error ? e.message : "Nie udało się ocenić.");
+    } finally {
+      setFbBusy(false);
+    }
+  }
 
   const loading = topics === null || phrases === null || vaults === null;
 
@@ -116,6 +168,39 @@ export function SalonDetail({ topicId }: { topicId: string }) {
           <p className="salon-menu-trap">{phrase.trap}</p>
         </div>
       </article>
+
+      <section className="salon-practice max-w-2xl">
+        <div className="eyebrow text-gold/70">Twoja wersja · ocena finezji</div>
+        <p className="text-sm text-muted mt-2">
+          Powiedz to swoimi słowami — tak, jakbyś rzuciła to przy stole. Ocenię
+          finezję i podpowiem, co dopracować.
+        </p>
+        <textarea
+          value={attempt}
+          onChange={(e) => setAttempt(e.target.value)}
+          disabled={fbBusy}
+          rows={4}
+          className="w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40 mt-4"
+          placeholder="Twoje dwa–trzy zdania na temat..."
+        />
+        <div className="flex items-center gap-3 mt-3">
+          <button
+            onClick={evaluate}
+            disabled={fbBusy || attempt.trim().length < 10}
+            className="btn-primary disabled:opacity-60"
+          >
+            {fbBusy ? "Oceniam..." : "Oceń finezję"}
+          </button>
+          {fbErr && <span className="text-sm text-danger">{fbErr}</span>}
+        </div>
+
+        {feedback && (
+          <div className="mt-5 border-t border-line pt-5">
+            <div className="eyebrow text-gold/70">Ocena finezji</div>
+            <p className="salon-menu-body mt-2">{feedback}</p>
+          </div>
+        )}
+      </section>
 
       <div className="flex gap-3">
         <Link href="/salon" className="btn-ghost">
