@@ -50,6 +50,21 @@ function formatMs(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/** Normalizacja odpowiedzi do porównania (fill/translate/open-fallback):
+ *  ignoruje wielkość liter, interpunkcję, krzywe apostrofy, podwójne spacje
+ *  i diakrytykę — "Regresé a casa." == "regrese a casa". Akcenty nie są
+ *  egzekwowane (świadoma decyzja: mniej fałszywych błędów przy uzupełnianiu). */
+function normalizeText(s: string): string {
+  return s
+    .replace(/[łŁ]/g, "l") // ł nie rozkłada się przez NFD
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "") // usuń znaki diakrytyczne
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ") // interpunkcja → spacja
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 /** Z puli tematów wybiera ten do sesji: najpierw zaległe (due/fresh/struggling)
  *  posortowane wg nextReview, w ostateczności pierwszy z brzegu. */
 function pickTopic(pool: Topic[]): string | null {
@@ -220,9 +235,7 @@ export function SessionRunner({
     if (current.type === "abc" || current.type === "spot_error") {
       return Number(answer) === Number(current.correctAnswer);
     }
-    const a = String(answer).trim().toLowerCase();
-    const c = String(current.correctAnswer).trim().toLowerCase();
-    return a === c;
+    return normalizeText(String(answer)) === normalizeText(String(current.correctAnswer));
   }
 
   async function gradeOpen(answer: string): Promise<{
