@@ -11,7 +11,6 @@ import {
 } from "@/lib/firestore-data";
 import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
-import { SpeakButton, langForVaultSlug } from "@/components/ui/SpeakButton";
 
 export function SalonDetail({ topicId }: { topicId: string }) {
   const user = useUser();
@@ -37,7 +36,6 @@ export function SalonDetail({ topicId }: { topicId: string }) {
     () => (topic && vaults ? vaults.find((v) => v.id === topic.vaultId) : null),
     [topic, vaults]
   );
-  const speakLang = langForVaultSlug(vault?.slug);
 
   // Bump lastShownInSalon once on mount, after we have the topic.
   // Plus best-effort XP do P30 (+5 za odsłonięcie salonowego tematu).
@@ -152,32 +150,14 @@ export function SalonDetail({ topicId }: { topicId: string }) {
 
       <article className="salon-menu max-w-2xl">
         <div className="relative">
-          <div className="flex items-center gap-2">
-            <div className="salon-menu-eyebrow">Krótko · 30 sekund</div>
-            {speakLang && (
-              <SpeakButton
-                text={phrase.short}
-                lang={speakLang}
-                className="inline-flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-cognac hover:text-gold-600 transition-colors"
-              />
-            )}
-          </div>
+          <div className="salon-menu-eyebrow">Krótko · 30 sekund</div>
           <p className="salon-menu-short">{phrase.short}</p>
 
           <div className="salon-menu-divider" aria-hidden>
             <span className="salon-menu-ornament">❦</span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="salon-menu-eyebrow">Rozbudowanie · 60 sekund</div>
-            {speakLang && (
-              <SpeakButton
-                text={phrase.expand}
-                lang={speakLang}
-                className="inline-flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-cognac hover:text-gold-600 transition-colors"
-              />
-            )}
-          </div>
+          <div className="salon-menu-eyebrow">Rozbudowanie · 60 sekund</div>
           <p className="salon-menu-body">{phrase.expand}</p>
 
           <div className="salon-menu-divider" aria-hidden>
