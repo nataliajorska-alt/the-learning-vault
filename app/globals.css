@@ -1298,6 +1298,14 @@
 .catalog-mobile-meta {
   display: none;
 }
+/* Poziomy scroll bez widocznego paska (mobilny pasek regału). */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 /* Mobile (≤767px) — Regał: skompaktowany wiersz katalogu. Ukrywamy boczne
    kolumny (progress, last-touched, today pill), zostawiamy: index, ikonę,
    tytuł z metą inline, chevron. Bez tego desktop grid 580px+ wymuszal

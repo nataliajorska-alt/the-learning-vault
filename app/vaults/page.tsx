@@ -206,10 +206,14 @@ export default function VaultsPage() {
           streak={streak}
         />
 
+        {/* Mobile — kompaktowa namiastka regału: poziomy pasek mini-grzbietów,
+            który przewija się w bok. Jeden rządek zamiast pełnoekranowych
+            książek. Zachowuje klimat regału bez ogromnego scrollowania. */}
+        <BookcaseStripMobile items={bookcaseItems} />
+
         {/* Dekoracyjny regał z grzbietami książek — tylko desktop.
             Na komórce grzbiety zajmują ~cały ekran każdy (13 książek =
-            ogromne scrollowanie), więc go ukrywamy. Lista katalogu niżej
-            pokazuje wszystkie sekcje czytelniej i kompaktowo. */}
+            ogromne scrollowanie), więc pełną wersję ukrywamy. */}
         <div className="hidden md:block" style={{ paddingBottom: 80 }}>
           <Bookcase
             shelf1={shelf1}
@@ -228,6 +232,152 @@ export default function VaultsPage() {
         />
 
         <PageFooter />
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   BookcaseStripMobile — kompaktowy poziomy regał (tylko mobile)
+   ============================================================ */
+function BookcaseStripMobile({ items }: { items: BookcaseVault[] }) {
+  return (
+    <div className="md:hidden" style={{ padding: "8px 0 32px" }}>
+      <div
+        className="eyebrow"
+        style={{
+          color: "var(--c-gold-400)",
+          padding: "0 24px",
+          marginBottom: 14,
+        }}
+      >
+        Regał · przesuń w bok
+      </div>
+      {/* wood shelf base under the spines */}
+      <div style={{ position: "relative" }}>
+        <div
+          className="hide-scrollbar"
+          style={{
+            display: "flex",
+            gap: 8,
+            overflowX: "auto",
+            padding: "0 24px 12px",
+            WebkitOverflowScrolling: "touch",
+            scrollSnapType: "x proximity",
+          }}
+        >
+          {items.map((b) => (
+            <Link
+              key={b.slug}
+              href={`/vaults/${b.slug}`}
+              className={`${b.spine} flex flex-col items-center flex-shrink-0`}
+              style={{
+                position: "relative",
+                width: 58,
+                height: 156,
+                borderRadius: "2px 2px 1px 1px",
+                padding: "12px 4px 10px",
+                textDecoration: "none",
+                scrollSnapAlign: "start",
+                boxShadow:
+                  "inset 1.5px 0 2px rgba(255,235,190,0.12), inset -2px 0 4px rgba(0,0,0,0.45), 0 2px 5px rgba(0,0,0,0.5)",
+                borderTop: "0.5px solid rgba(255,225,170,0.18)",
+              }}
+            >
+              {/* gilt band top */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 30,
+                  left: 0,
+                  right: 0,
+                  height: 1,
+                  background: "rgba(217,184,120,0.5)",
+                }}
+              />
+              {/* gilt band bottom */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 26,
+                  left: 0,
+                  right: 0,
+                  height: 1,
+                  background: "rgba(217,184,120,0.35)",
+                }}
+              />
+              {/* count badge */}
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  width: 22,
+                  height: 22,
+                  borderRadius: "50%",
+                  flexShrink: 0,
+                  background:
+                    b.count > 0
+                      ? "radial-gradient(circle at 32% 26%, #f3d791 0%, #d9b878 30%, #b08540 72%, #6f4e1f 100%)"
+                      : "rgba(217,184,120,0.14)",
+                  boxShadow:
+                    b.count > 0
+                      ? "inset 0 1px 0 rgba(255,235,180,0.6), 0 1px 2px rgba(0,0,0,0.5)"
+                      : "inset 0 0 0 0.5px rgba(217,184,120,0.3)",
+                  marginBottom: 8,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily:
+                      '"JetBrains Mono", ui-monospace, monospace',
+                    fontSize: 10,
+                    fontWeight: 700,
+                    color: b.count > 0 ? "#3a2410" : "rgba(217,184,120,0.6)",
+                  }}
+                >
+                  {b.count}
+                </span>
+              </div>
+              {/* icon */}
+              <GiltIcon name={b.icon} size={14} color="#e3c489" />
+              {/* vertical title */}
+              <div
+                className="font-display italic"
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  writingMode: "vertical-rl",
+                  transform: "rotate(180deg)",
+                  fontSize: 13,
+                  color: "var(--c-paper-100)",
+                  lineHeight: 1,
+                  letterSpacing: "0.01em",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+                  marginTop: 6,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxHeight: 84,
+                }}
+              >
+                {b.title}
+              </div>
+            </Link>
+          ))}
+        </div>
+        {/* shelf board */}
+        <div
+          style={{
+            margin: "0 16px",
+            height: 10,
+            borderRadius: 2,
+            background:
+              "linear-gradient(180deg, #5a3d24 0%, #3f2a18 60%, #2a1c10 100%)",
+            boxShadow:
+              "0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(217,184,120,0.25)",
+          }}
+        />
       </div>
     </div>
   );
