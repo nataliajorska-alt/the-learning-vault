@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Question, Topic, Vault } from "@/lib/types";
+import { SpeakButton, langForVaultSlug } from "@/components/ui/SpeakButton";
 
 /* ============================================================
    TEST PHASE — open-book question spread, librarian's notes,
@@ -140,6 +141,7 @@ export function TestPhase({
     : "pending";
 
   const isLast = currentIdx >= questions.length - 1;
+  const speakLang = langForVaultSlug(vault?.slug);
 
   return (
     <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
@@ -205,6 +207,7 @@ export function TestPhase({
           attemptAnswer={
             attempts.find((a) => a.questionId === q.id)?.answer ?? null
           }
+          speakLang={speakLang}
         />
       </div>
     </div>
@@ -605,6 +608,8 @@ interface BookSpreadProps {
   onAdvance: () => void;
   isLast: boolean;
   attemptAnswer: string | null;
+  /** kod języka TTS dla sekcji językowej (es/en); null = bez wymowy */
+  speakLang: string | null;
 }
 
 function BookSpread(props: BookSpreadProps) {
@@ -1393,6 +1398,7 @@ function NotesPage({
   idx,
   onAdvance,
   isLast,
+  speakLang,
 }: BookSpreadProps) {
   return (
     <div
@@ -1444,6 +1450,7 @@ function NotesPage({
             lastFeedback={lastFeedback}
             onAdvance={onAdvance}
             isLast={isLast}
+            speakLang={speakLang}
           />
         )}
       </div>
@@ -1603,12 +1610,14 @@ function NotesFilled({
   lastFeedback,
   onAdvance,
   isLast,
+  speakLang,
 }: {
   q: Question;
   state: QState;
   lastFeedback: string | null;
   onAdvance: () => void;
   isLast: boolean;
+  speakLang: string | null;
 }) {
   const isCorrect = state === "correct";
   const label = isCorrect ? "Tak. To samo." : "Nie. Tu jest sedno:";
@@ -1636,17 +1645,26 @@ function NotesFilled({
           >
             {isCorrect ? "✓  Trafiona" : "✗  Chybiona"}
           </div>
-          <div
-            className="font-display italic"
-            style={{
-              fontSize: 24,
-              color: "#1B1108",
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {label}
+          <div className="flex items-center" style={{ gap: 10 }}>
+            <div
+              className="font-display italic"
+              style={{
+                fontSize: 24,
+                color: "#1B1108",
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {label}
+            </div>
+            {speakLang && (
+              <SpeakButton
+                text={correctAnswerStr}
+                lang={speakLang}
+                className="inline-flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-cognac hover:text-gold-600 transition-colors"
+              />
+            )}
           </div>
         </div>
       </div>
