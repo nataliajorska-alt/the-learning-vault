@@ -165,9 +165,13 @@ export function AdminClient() {
     setSaved(null);
     try {
       const vaultName = vaults?.find((v) => v.id === vaultId)?.name ?? "";
+      const idToken = (await user?.getIdToken()) ?? "";
       const res = await fetch("/api/generate", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
         body: JSON.stringify({ notes, vaultName }),
       });
       if (!res.ok) {

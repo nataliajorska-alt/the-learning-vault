@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL_GRADE } from "@/lib/anthropic";
+import { requireAuth } from "@/lib/api-auth";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -22,6 +23,9 @@ interface GradeRequest {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAuth(req);
+  if (!auth.ok) return auth.response;
+
   let body: GradeRequest;
   try {
     body = (await req.json()) as GradeRequest;

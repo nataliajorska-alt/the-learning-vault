@@ -231,9 +231,13 @@ export function SessionRunner({
   }> {
     if (!current) return { correct: false, feedback: null };
     try {
+      const idToken = (await user?.getIdToken()) ?? "";
       const res = await fetch("/api/grade", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
         body: JSON.stringify({
           question: current.text,
           modelAnswer: String(current.correctAnswer),

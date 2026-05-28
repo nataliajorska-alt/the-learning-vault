@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL_GENERATE } from "@/lib/anthropic";
+import { requireAuth } from "@/lib/api-auth";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -82,6 +83,9 @@ interface GenerateRequest {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAuth(req);
+  if (!auth.ok) return auth.response;
+
   let body: GenerateRequest;
   try {
     body = (await req.json()) as GenerateRequest;
