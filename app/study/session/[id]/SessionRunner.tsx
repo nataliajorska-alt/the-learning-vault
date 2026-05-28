@@ -297,8 +297,9 @@ export function SessionRunner({
   async function gradeOpen(answer: string): Promise<{
     verdict: Verdict;
     feedback: string | null;
+    aiUnavailable: boolean;
   }> {
-    if (!current) return { verdict: "wrong", feedback: null };
+    if (!current) return { verdict: "wrong", feedback: null, aiUnavailable: false };
     try {
       const idToken = (await user?.getIdToken()) ?? "";
       const res = await fetch("/api/grade", {
@@ -322,12 +323,16 @@ export function SessionRunner({
         data.verdict === "correct" || data.verdict === "partial"
           ? data.verdict
           : "wrong";
-      return { verdict, feedback: data.feedback ?? null };
+      return { verdict, feedback: data.feedback ?? null, aiUnavailable: false };
     } catch (e) {
+      // Ocena AI padła (sieć / 429 / błąd modelu) — spadamy na dosłowne
+      // porównanie tekstu i sygnalizujemy to userce, bo przy pytaniu otwartym
+      // dosłowny match bywa zbyt surowy (false negative).
       console.error("grade failed, falling back to string match", e);
       return {
         verdict: checkAnswer(answer) ? "correct" : "wrong",
         feedback: null,
+        aiUnavailable: true,
       };
     }
   }
@@ -343,7 +348,9 @@ export function SessionRunner({
     if (current.type === "open") {
       const result = await gradeOpen(String(answer));
       verdict = result.verdict;
-      aiFeedback = result.feedback;
+      aiFeedback = result.aiUnavailable
+        ? "Ocena AI była chwilowo niedostępna — sprawdziłam tylko dosłowne brzmienie. Przy pytaniu otwartym potraktuj ten werdykt orientacyjnie."
+        : result.feedback;
     } else {
       verdict = checkAnswer(answer) ? "correct" : "wrong";
     }
