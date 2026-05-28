@@ -20,6 +20,17 @@ import { KorektaPhase } from "@/components/session/KorektaPhase";
 import type { Question, Topic, Vault } from "@/lib/types";
 import type { Verdict } from "@/lib/spaced-repetition";
 import type { Timestamp } from "firebase/firestore";
+import {
+  clearSavedSession,
+  isResumable,
+  loadSavedSession,
+  saveSession,
+} from "@/lib/session-persistence";
+import type {
+  SessionAttempt as Attempt,
+  SessionMode as Mode,
+  SessionPhase as Phase,
+} from "@/lib/session-persistence";
 
 function toMillis(v: unknown): number {
   if (!v) return 0;
@@ -28,15 +39,6 @@ function toMillis(v: unknown): number {
     return (v as Timestamp).toMillis();
   }
   return 0;
-}
-
-type Phase = "theory" | "test" | "review";
-type Mode = "mix" | "errors" | "vault" | "topic";
-
-interface Attempt {
-  questionId: string;
-  correct: boolean;
-  answer: string;
 }
 
 const PHASE_DURATION: Record<Phase, number> = {
@@ -112,6 +114,7 @@ export function SessionRunner({
   const sessionStartRef = useRef<number>(Date.now());
   const questionStartRef = useRef<number>(Date.now());
   const finishedRef = useRef(false);
+  const appliedRef = useRef(false);
   const testStartRef = useRef<number | null>(null);
   const testEndRef = useRef<number | null>(null);
   const korektaStartRef = useRef<number | null>(null);
@@ -132,13 +135,24 @@ export function SessionRunner({
     return pickTopic(allTopics);
   }, [topicId, allTopics, vaults, mode, vaultSlug]);
 
-  // Load topic + questions + open session
+  /* Niedokończona sesja z localStorage — wznawiamy ją zamiast otwierać nową,
+     żeby odświeżenie/zamknięcie karty nie tworzyło duplikatu sesji ani nie
+     kazało odpowiadać drugi raz na te same pytania (co psułoby SRS i błędy). */
+  const restored = useMemo(() => {
+    if (!user) return null;
+    const saved = loadSavedSession(user.uid);
+    return isResumable(saved, { topicId, mode, vaultSlug }) ? saved : null;
+  }, [user, topicId, mode, vaultSlug]);
+
+  const targetTopicId = restored ? restored.topicId : resolvedTopicId;
+
+  // Load topic + questions, then resume saved session or open a new one
   useEffect(() => {
-    if (!user || !resolvedTopicId) return;
+    if (!user || !targetTopicId || appliedRef.current) return;
     let cancelled = false;
     (async () => {
       try {
-        const t = await getTopic(resolvedTopicId);
+        const t = await getTopic(targetTopicId);
         if (!t) {
           setLoadErr("Nie znalazłam tego tematu.");
           return;
@@ -147,10 +161,29 @@ export function SessionRunner({
           setLoadErr("Ten temat nie należy do ciebie.");
           return;
         }
-        const qs = await getQuestionsForTopic(resolvedTopicId);
+        const qs = await getQuestionsForTopic(targetTopicId);
         if (cancelled) return;
         setTopic(t);
         setQuestions(qs);
+
+        if (restored) {
+          appliedRef.current = true;
+          setSessionId(restored.sessionId);
+          setPhase(restored.phase);
+          setIdx(restored.idx);
+          setAttempts(restored.attempts);
+          sessionStartRef.current = restored.sessionStartMs;
+          testStartRef.current = restored.testStartMs;
+          testEndRef.current = restored.testEndMs;
+          korektaStartRef.current = restored.korektaStartMs;
+          // Faza korekty = test już zaliczony i (z reguły) sfinalizowany.
+          // Nie wznawiamy finalizacji, by nie naliczyć XP drugi raz.
+          if (restored.phase === "review") {
+            finishedRef.current = true;
+            clearSavedSession(user.uid);
+          }
+          return;
+        }
 
         const sid = await startSession({
           userId: user.uid,
@@ -159,6 +192,7 @@ export function SessionRunner({
           topicIds: [t.id],
         });
         if (!cancelled) {
+          appliedRef.current = true;
           setSessionId(sid);
           sessionStartRef.current = Date.now();
         }
@@ -171,7 +205,28 @@ export function SessionRunner({
     return () => {
       cancelled = true;
     };
-  }, [user, resolvedTopicId, mode]);
+  }, [user, targetTopicId, mode, restored]);
+
+  // Persist in-progress session so a refresh resumes instead of restarting.
+  useEffect(() => {
+    if (!user || !sessionId || !topic || finishedRef.current) return;
+    saveSession({
+      v: 1,
+      uid: user.uid,
+      sessionId,
+      topicId: topic.id,
+      mode,
+      vaultSlug: vaultSlug ?? null,
+      phase,
+      idx,
+      attempts,
+      sessionStartMs: sessionStartRef.current,
+      testStartMs: testStartRef.current,
+      testEndMs: testEndRef.current,
+      korektaStartMs: korektaStartRef.current,
+      savedAt: Date.now(),
+    });
+  }, [user, sessionId, topic, mode, vaultSlug, phase, idx, attempts]);
 
   // phase timer
   useEffect(() => {
@@ -369,6 +424,7 @@ export function SessionRunner({
         pillar: pillarForVaultSlug(vault?.slug),
       });
     }
+    if (user) clearSavedSession(user.uid);
   }
 
   // Tryb "konkretna sekcja" bez wybranej sekcji — pokaż wybór półki.
@@ -389,7 +445,7 @@ export function SessionRunner({
 
   // Dane gotowe, ale nie udało się dobrać tematu → brak materiału w puli.
   const dataReady = allTopics !== null && (mode !== "vault" || vaults !== null);
-  if (!resolvedTopicId && dataReady) {
+  if (!targetTopicId && dataReady) {
     return (
       <div className="card max-w-xl">
         <p className="hero-italic text-2xl">
