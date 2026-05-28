@@ -51,6 +51,8 @@ export interface UserDoc {
   photoURL: string | null;
   createdAt: Timestamp | Date;
   lastActiveAt: Timestamp | Date;
+  /** ostatni dzień, w którym domknięto sesję — podstawa passy (odrębne od lastActiveAt) */
+  lastStudyAt: Timestamp | Date | null;
   streak: number;
   longestStreak: number;
   timezone: string;
@@ -70,6 +72,7 @@ export async function ensureUserDoc(): Promise<void> {
       photoURL: u.photoURL,
       createdAt: serverTimestamp(),
       lastActiveAt: serverTimestamp(),
+      lastStudyAt: null,
       streak: 0,
       longestStreak: 0,
       timezone: "Europe/Warsaw",
@@ -571,10 +574,12 @@ export function effectiveStreak(userDoc: UserDoc | null): number {
   if (!userDoc) return 0;
   const stored = userDoc.streak ?? 0;
   if (stored === 0) return 0;
-  const last = userDoc.lastActiveAt instanceof Timestamp
-    ? userDoc.lastActiveAt.toDate()
-    : userDoc.lastActiveAt instanceof Date
-    ? userDoc.lastActiveAt
+  // lastStudyAt to podstawa passy; fallback na lastActiveAt dla kont sprzed migracji
+  const src = userDoc.lastStudyAt ?? userDoc.lastActiveAt;
+  const last = src instanceof Timestamp
+    ? src.toDate()
+    : src instanceof Date
+    ? src
     : null;
   if (!last) return 0;
   const now = new Date();
@@ -629,27 +634,34 @@ async function bumpStreakIfNeeded() {
   const snap = await getDoc(ref);
   if (!snap.exists()) return;
   const data = snap.data() as UserDoc;
-  const last = toDate(data.lastActiveAt);
   const now = new Date();
+  // Passa liczona względem ostatniego DNIA NAUKI, nie ostatniej aktywności.
+  // lastActiveAt jest nadpisywany przy każdym wejściu (ensureUserDoc), więc
+  // nie nadaje się jako znacznik dnia sesji. Fallback dla kont sprzed migracji.
+  const lastStudy = data.lastStudyAt
+    ? toDate(data.lastStudyAt)
+    : toDate(data.lastActiveAt);
 
-  const sameDay =
-    last.getFullYear() === now.getFullYear() &&
-    last.getMonth() === now.getMonth() &&
-    last.getDate() === now.getDate();
-
-  if (sameDay && data.streak > 0) return;
+  // Już się dziś uczyła — passa stoi, odświeżamy znacznik aktywności.
+  // Backfill lastStudyAt, jeśli konto jest sprzed migracji (inaczej zostanie
+  // na zawsze w fallbacku na lastActiveAt).
+  if (isSameLocalDay(lastStudy, now) && data.streak > 0) {
+    await updateDoc(ref, {
+      lastActiveAt: serverTimestamp(),
+      ...(data.lastStudyAt ? {} : { lastStudyAt: serverTimestamp() }),
+    });
+    return;
+  }
 
   const yest = new Date(now);
   yest.setDate(yest.getDate() - 1);
-  const wasYesterday =
-    last.getFullYear() === yest.getFullYear() &&
-    last.getMonth() === yest.getMonth() &&
-    last.getDate() === yest.getDate();
+  const wasYesterday = isSameLocalDay(lastStudy, yest);
 
   const newStreak = wasYesterday ? data.streak + 1 : 1;
   await updateDoc(ref, {
     streak: newStreak,
     longestStreak: Math.max(data.longestStreak ?? 0, newStreak),
+    lastStudyAt: serverTimestamp(),
     lastActiveAt: serverTimestamp(),
   });
 }
