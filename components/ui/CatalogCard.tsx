@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Pencil } from "lucide-react";
 import type { ReactNode } from "react";
 
 export type StampColor = "red" | "green" | "blue" | "orange" | "gold";
@@ -19,6 +20,8 @@ interface CatalogCardProps {
   footer?: ReactNode;
   stamp?: { label: string; color: StampColor };
   href?: string;
+  /** jeśli podany, w rogu karty pojawia się dyskretna ikona edycji prowadząca tu */
+  editHref?: string;
   delayMs?: number;
 }
 
@@ -30,6 +33,7 @@ export function CatalogCard({
   footer,
   stamp,
   href,
+  editHref,
   delayMs = 0,
 }: CatalogCardProps) {
   const inner = (
@@ -72,12 +76,37 @@ export function CatalogCard({
     </article>
   );
 
+  const editButton = editHref ? (
+    <Link
+      href={editHref}
+      aria-label="Edytuj temat"
+      title="Edytuj temat"
+      className="absolute top-2 right-2 z-10 flex items-center justify-center w-7 h-7 rounded-full bg-cream/85 border border-line text-muted opacity-40 hover:opacity-100 hover:text-gold focus-visible:opacity-100 focus-visible:text-gold transition-opacity"
+    >
+      <Pencil className="w-3.5 h-3.5" />
+    </Link>
+  ) : null;
+
   if (href) {
-    return (
+    const link = (
       <Link href={href} className="catalog-link block group">
         {inner}
       </Link>
     );
+    if (!editButton) return link;
+    return (
+      <div className="relative">
+        {link}
+        {editButton}
+      </div>
+    );
   }
-  return inner;
+
+  if (!editButton) return inner;
+  return (
+    <div className="relative">
+      {inner}
+      {editButton}
+    </div>
+  );
 }

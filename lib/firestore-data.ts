@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -346,6 +347,146 @@ export async function commitSuggestion(opts: {
   }
 
   return { topicId: topicRef.id };
+}
+
+// --- EDYCJA ZATWIERDZONYCH TEMATÓW ----------------------------------------
+
+export interface EditableQuestionData {
+  type: Question["type"];
+  text: string;
+  options: string[] | null;
+  correctAnswer: string | number;
+  explanation: string;
+}
+
+export async function updateTopic(
+  topicId: string,
+  patch: { title: string; summary: string; theory: string }
+): Promise<void> {
+  const { db } = getFirebase();
+  await updateDoc(doc(db, "topics", topicId), {
+    title: patch.title,
+    summary: patch.summary,
+    theory: patch.theory,
+    updatedAt: new Date(),
+  });
+}
+
+export async function updateQuestion(
+  questionId: string,
+  patch: EditableQuestionData
+): Promise<void> {
+  const { db } = getFirebase();
+  await updateDoc(doc(db, "questions", questionId), {
+    type: patch.type,
+    text: patch.text,
+    options: patch.options ?? null,
+    correctAnswer: patch.correctAnswer,
+    explanation: patch.explanation,
+  });
+}
+
+export async function addQuestionToTopic(opts: {
+  userId: string;
+  topicId: string;
+  question: EditableQuestionData;
+}): Promise<string> {
+  const { db } = getFirebase();
+  // Nowe pytanie ląduje na końcu — kolejność = max(order) + 1.
+  const existing = await getDocs(
+    query(
+      collection(db, "questions"),
+      where("userId", "==", opts.userId),
+      where("topicId", "==", opts.topicId)
+    )
+  );
+  const maxOrder = existing.docs.reduce((m, d) => {
+    const o = (d.data() as Question).order ?? 0;
+    return o > m ? o : m;
+  }, 0);
+  const ref = await addDoc(collection(db, "questions"), {
+    userId: opts.userId,
+    topicId: opts.topicId,
+    type: opts.question.type,
+    text: opts.question.text,
+    options: opts.question.options ?? null,
+    correctAnswer: opts.question.correctAnswer,
+    explanation: opts.question.explanation,
+    order: maxOrder + 1,
+    createdAt: new Date(),
+  });
+  return ref.id;
+}
+
+export async function deleteQuestion(questionId: string): Promise<void> {
+  const { db } = getFirebase();
+  await deleteDoc(doc(db, "questions", questionId));
+}
+
+/** Tworzy / aktualizuje / usuwa frazę Salonu tematu. Pusty `short` = usuń. */
+export async function upsertSalonPhrase(opts: {
+  userId: string;
+  topicId: string;
+  short: string;
+  expand: string;
+  trap: string;
+}): Promise<void> {
+  const { db } = getFirebase();
+  const existing = await getDocs(
+    query(
+      collection(db, "salon_phrases"),
+      where("userId", "==", opts.userId),
+      where("topicId", "==", opts.topicId)
+    )
+  );
+  const empty = opts.short.trim().length === 0;
+
+  if (existing.empty) {
+    if (empty) return;
+    await addDoc(collection(db, "salon_phrases"), {
+      userId: opts.userId,
+      topicId: opts.topicId,
+      short: opts.short,
+      expand: opts.expand,
+      trap: opts.trap,
+    });
+    return;
+  }
+
+  const ref = existing.docs[0]!.ref;
+  if (empty) {
+    await deleteDoc(ref);
+    return;
+  }
+  await updateDoc(ref, {
+    short: opts.short,
+    expand: opts.expand,
+    trap: opts.trap,
+  });
+}
+
+/** Usuwa temat kaskadowo: pytania, frazy Salonu i wpisy Error Vault z tego
+ *  tematu. Próby (attempts) zostają jako historia statystyk. */
+export async function deleteTopic(opts: {
+  userId: string;
+  topicId: string;
+}): Promise<void> {
+  const { db } = getFirebase();
+  const { userId, topicId } = opts;
+  const batch = writeBatch(db);
+
+  for (const coll of ["questions", "salon_phrases", "errors"]) {
+    const snap = await getDocs(
+      query(
+        collection(db, coll),
+        where("userId", "==", userId),
+        where("topicId", "==", topicId)
+      )
+    );
+    snap.forEach((d) => batch.delete(d.ref));
+  }
+  batch.delete(doc(db, "topics", topicId));
+  await batch.commit();
 }
 
 // --- MUTATIONS: SRS + attempts + errors -----------------------------------

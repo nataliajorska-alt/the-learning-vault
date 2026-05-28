@@ -111,6 +111,7 @@ export default function VaultDetailPage({
             <CatalogCard
               key={t.id}
               href={`/study/session/new?topic=${t.id}`}
+              editHref={`/vaults/${vault.slug}/${t.id}`}
               signature={`${vaultSig(vault.name)} · ${idSig(t.id)}`}
               rightMeta={
                 t.totalAttempts > 0
