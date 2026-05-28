@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL_GENERATE } from "@/lib/anthropic";
 import { requireAuth } from "@/lib/api-auth";
+import { checkRateLimit, clientKey } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -85,6 +86,13 @@ interface GenerateRequest {
 export async function POST(req: Request) {
   const auth = await requireAuth(req);
   if (!auth.ok) return auth.response;
+
+  // Opus + 16k tokenow — ostry limit. Czlowiek generuje kilka tematow na minute.
+  const limited = checkRateLimit(clientKey(req, auth.uid, "generate"), {
+    limit: 10,
+    windowSec: 60,
+  });
+  if (limited) return limited;
 
   let body: GenerateRequest;
   try {

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnthropic, MODEL_GRADE } from "@/lib/anthropic";
 import { requireAuth } from "@/lib/api-auth";
+import { checkRateLimit, clientKey } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -25,6 +26,13 @@ interface GradeRequest {
 export async function POST(req: Request) {
   const auth = await requireAuth(req);
   if (!auth.ok) return auth.response;
+
+  // Haiku, tani; wolany przy ocenie pytan otwartych. Hojny limit dla sesji.
+  const limited = checkRateLimit(clientKey(req, auth.uid, "grade"), {
+    limit: 30,
+    windowSec: 60,
+  });
+  if (limited) return limited;
 
   let body: GradeRequest;
   try {
