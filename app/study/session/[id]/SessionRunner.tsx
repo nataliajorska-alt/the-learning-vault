@@ -50,9 +50,26 @@ function formatMs(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/** Z puli tematów wybiera ten do sesji: najpierw zaległe (due/fresh/struggling)
+ *  posortowane wg nextReview, w ostateczności pierwszy z brzegu. */
+function pickTopic(pool: Topic[]): string | null {
+  if (pool.length === 0) return null;
+  const now = Date.now();
+  const due = pool
+    .filter(
+      (t) =>
+        t.status === "fresh" ||
+        t.status === "struggling" ||
+        toMillis(t.nextReview) <= now
+    )
+    .sort((a, b) => toMillis(a.nextReview) - toMillis(b.nextReview));
+  return (due[0] ?? pool[0]).id;
+}
+
 export function SessionRunner({
   topicId,
   mode,
+  vaultSlug,
 }: {
   topicId: string | null;
   mode: Mode;
@@ -83,13 +100,29 @@ export function SessionRunner({
   const testEndRef = useRef<number | null>(null);
   const korektaStartRef = useRef<number | null>(null);
 
+  /* Temat do sesji: jeśli podany w URL — bierzemy go wprost. W przeciwnym razie
+     system dobiera sam — w trybie "vault" z wybranej sekcji, w pozostałych
+     z całej puli. Null oznacza "jeszcze nie wiadomo" (dane się ładują) albo
+     "brak materiału" (pusta pula) — rozróżnia to dalej logika renderu. */
+  const resolvedTopicId = useMemo(() => {
+    if (topicId) return topicId;
+    if (!allTopics) return null;
+    if (mode === "vault") {
+      if (!vaults) return null;
+      const v = vaultSlug ? vaults.find((x) => x.slug === vaultSlug) : null;
+      if (!v) return null;
+      return pickTopic(allTopics.filter((t) => t.vaultId === v.id));
+    }
+    return pickTopic(allTopics);
+  }, [topicId, allTopics, vaults, mode, vaultSlug]);
+
   // Load topic + questions + open session
   useEffect(() => {
-    if (!user || !topicId) return;
+    if (!user || !resolvedTopicId) return;
     let cancelled = false;
     (async () => {
       try {
-        const t = await getTopic(topicId);
+        const t = await getTopic(resolvedTopicId);
         if (!t) {
           setLoadErr("Nie znalazłam tego tematu.");
           return;
@@ -98,7 +131,7 @@ export function SessionRunner({
           setLoadErr("Ten temat nie należy do ciebie.");
           return;
         }
-        const qs = await getQuestionsForTopic(topicId);
+        const qs = await getQuestionsForTopic(resolvedTopicId);
         if (cancelled) return;
         setTopic(t);
         setQuestions(qs);
@@ -122,7 +155,7 @@ export function SessionRunner({
     return () => {
       cancelled = true;
     };
-  }, [user, topicId, mode]);
+  }, [user, resolvedTopicId, mode]);
 
   // phase timer
   useEffect(() => {
@@ -312,21 +345,9 @@ export function SessionRunner({
     }
   }
 
-  if (!topicId) {
-    return (
-      <div className="card max-w-xl">
-        <p className="hero-italic text-2xl">
-          Wybierz konkretny temat z listy sekcji.
-        </p>
-        <p className="text-sm text-muted mt-3">
-          Sesja "mix" w pełnej wersji dobierze temat sama (kolejna iteracja).
-          Na razie kliknij temat w widoku sekcji.
-        </p>
-        <Link href="/vaults" className="btn-primary mt-6">
-          Sekcje
-        </Link>
-      </div>
-    );
+  // Tryb "konkretna sekcja" bez wybranej sekcji — pokaż wybór półki.
+  if (mode === "vault" && !vaultSlug && !topicId) {
+    return <SectionPicker vaults={vaults} topics={allTopics} />;
   }
 
   if (loadErr) {
@@ -335,6 +356,26 @@ export function SessionRunner({
         <p className="hero-italic text-2xl text-danger">{loadErr}</p>
         <Link href="/study" className="btn-ghost mt-6">
           Wróć
+        </Link>
+      </div>
+    );
+  }
+
+  // Dane gotowe, ale nie udało się dobrać tematu → brak materiału w puli.
+  const dataReady = allTopics !== null && (mode !== "vault" || vaults !== null);
+  if (!resolvedTopicId && dataReady) {
+    return (
+      <div className="card max-w-xl">
+        <p className="hero-italic text-2xl">
+          {mode === "vault"
+            ? "Ta sekcja nie ma jeszcze żadnego tematu."
+            : "Nie ma jeszcze żadnego tematu do nauki."}
+        </p>
+        <p className="text-sm text-muted mt-3">
+          Wklej notatki w sekcji Admin, a AI wygeneruje strukturę i pytania.
+        </p>
+        <Link href="/vaults" className="btn-ghost mt-6">
+          Sekcje
         </Link>
       </div>
     );
@@ -446,4 +487,83 @@ function phaseLabel(p: Phase) {
   if (p === "theory") return "Etap 1 · Teoria";
   if (p === "test") return "Etap 2 · Test";
   return "Etap 3 · Korekta";
+}
+
+/* ============================================================
+   SectionPicker — wybór półki dla trybu "Konkretna sekcja"
+   ============================================================ */
+
+function SectionPicker({
+  vaults,
+  topics,
+}: {
+  vaults: Vault[] | null;
+  topics: Topic[] | null;
+}) {
+  if (!vaults || !topics) {
+    return <p className="hero-italic text-2xl text-muted">Ładuję sekcje...</p>;
+  }
+  const now = Date.now();
+  const ordered = [...vaults].sort((a, b) => a.order - b.order);
+
+  return (
+    <div className="space-y-8">
+      <header>
+        <div className="eyebrow">Konkretna sekcja</div>
+        <h1 className="hero-italic text-4xl mt-1">Z której półki dziś?</h1>
+        <p className="text-muted mt-3 max-w-xl">
+          Wybierz dziedzinę — system ułoży sesję z jej tematów, najpierw te
+          zaległe.
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {ordered.map((v) => {
+          const inVault = topics.filter((t) => t.vaultId === v.id);
+          const dueCount = inVault.filter(
+            (t) =>
+              t.status === "fresh" ||
+              t.status === "struggling" ||
+              toMillis(t.nextReview) <= now
+          ).length;
+          const empty = inVault.length === 0;
+          const meta = empty
+            ? "brak tematów"
+            : `${inVault.length} ${
+                inVault.length === 1
+                  ? "temat"
+                  : inVault.length < 5
+                  ? "tematy"
+                  : "tematów"
+              }${dueCount > 0 ? ` · ${dueCount} dziś` : ""}`;
+
+          if (empty) {
+            return (
+              <div key={v.id} className="card opacity-50">
+                <div className="eyebrow">{v.level}</div>
+                <div className="hero-italic text-2xl mt-1">{v.name}</div>
+                <div className="text-sm text-muted mt-2">{meta}</div>
+              </div>
+            );
+          }
+
+          return (
+            <Link
+              key={v.id}
+              href={`/study/session/new?mode=vault&vault=${v.slug}`}
+              className="card card-hover"
+            >
+              <div className="eyebrow">{v.level}</div>
+              <div className="hero-italic text-2xl mt-1">{v.name}</div>
+              <div className="text-sm text-muted mt-2">{meta}</div>
+            </Link>
+          );
+        })}
+      </div>
+
+      <Link href="/study" className="btn-ghost">
+        Wróć do trybów
+      </Link>
+    </div>
+  );
 }
