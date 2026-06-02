@@ -7810,4 +7810,321 @@ export const PRESETS: Preset[] = [
       salon: null,
     },
   },
+
+  // ============================================================
+  // 84. Hiszpański: desastres naturales (huracán, terremoto, volcán)
+  // ============================================================
+  // Z rozmowy konwersacyjnej o Meksyku (27.05.2026) — słownictwo katastrof.
+  // Temat „przy winie" (salon), bo to obycie kulturowe + konwersacja.
+  {
+    slug: "es-desastres-naturales-mexico",
+    vaultSlug: "es",
+    label: "Hiszpański — desastres naturales (huracán, terremoto, volcán)",
+    payload: {
+      title: "Desastres naturales — huracán, terremoto, volcán",
+      summary:
+        "Słownictwo o katastrofach naturalnych w Meksyku z rozmowy konwersacyjnej: huracán, tornado, terremoto (temblor / sismo), volcán, la falla. Klucz: huragan tworzy się NAD wodą i niesie deszcz, a tornado powstaje na lądzie i to sam wiatr, bez wody.",
+      theory:
+        "Meksyk leży w strefie wielu zagrożeń naturalnych naraz — stąd to słownictwo wraca w rozmowach o codziennym życiu.\n\nHURACÁN (huragan) kontra TORNADO:\n— el huracán tworzy się NAD wodą (sobre el agua / en el mar) i niesie silny wiatr ORAZ deszcz; uderza w wybrzeże (la costa).\n— el tornado powstaje na lądzie (en la tierra) i to sam wiatr, bez wody.\n— Zdanie z rozmowy: „Los huracanes se forman en el mar y los tornados en la tierra.\"\nHuragany dzieli się na kategorie 1–5 wg prędkości wiatru: categoría 1 (najsłabszy) → daños en techos y árboles; categoría 5 (najsilniejszy) → destrucción de techos y colapso de paredes. Pacyfik (el Pacífico) ma silniejsze huragany niż Atlantyk (el Atlántico).\n\nTERREMOTO i jego synonimy (to samo zjawisko, różny rejestr):\n— el terremoto = trzęsienie ziemi (formalnie, o dużych wstrząsach)\n— el temblor = wstrząs / drżenie (potocznie; „está temblando\" = trzęsie się)\n— el sismo = wstrząs sejsmiczny (technicznie, w mediach)\nDwa typy ruchu: oscilatorio (kołyszący, poziomy) i trepidatorio (skaczący, pionowy). Trzęsienie z 2017 połączyło oba — stąd było tak niszczące i trwało prawie minutę.\nla alerta sísmica = alarm sejsmiczny (daje tylko kilka–kilkanaście sekund).\nla falla = uskok geologiczny; la falla de San Andrés ciągnie się od Kalifornii na południe.\n\nVOLCÁN:\n— el volcán activo = czynny wulkan; lanzar ceniza = wyrzucać popiół; la lava = lawa.\n— la ceniza (popiół) trzeba zmiatać (barrer), bo z deszczem się zbryla; „no es nieve, es ceniza\".\n\nINNE:\n— la inundación = powódź; el daño / los daños = szkody; la costa = wybrzeże.\n— „es una zona de terremotos / de huracanes\" = to strefa trzęsień / huraganów.",
+      questions: [
+        {
+          type: "abc",
+          text: "Czym różni się huracán od tornado?",
+          options: [
+            "Huracán powstaje na lądzie, a tornado nad wodą",
+            "Huracán tworzy się nad wodą i niesie deszcz; tornado powstaje na lądzie i to sam wiatr",
+            "To dwa słowa na to samo zjawisko",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Los huracanes se forman en el mar y los tornados en la tierra.\" Huragan = woda + wiatr + deszcz; tornado = sam wiatr na lądzie, sin agua.",
+        },
+        {
+          type: "abc",
+          text: "Które słowa znaczą to samo co „terremoto\" (trzęsienie ziemi)?",
+          options: [
+            "temblor i sismo",
+            "tornado i huracán",
+            "ceniza i lava",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "el terremoto / el temblor / el sismo to to samo zjawisko, różny rejestr: terremoto formalnie o dużym, temblor potocznie, sismo technicznie / w mediach.",
+        },
+        {
+          type: "fill",
+          text: "Uskok San Andreas, źródło trzęsień: „la ___ de San Andrés\".",
+          options: null,
+          correctAnswer: "falla",
+          explanation:
+            "la falla = uskok geologiczny. Ciągnie się od Kalifornii na południe — stąd tyle trzęsień w tym regionie.",
+        },
+        {
+          type: "abc",
+          text: "Trzęsienie „trepidatorio\" to ruch:",
+          options: [
+            "poziomy, kołyszący",
+            "pionowy, skaczący",
+            "okrężny",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "trepidatorio = pionowy (skacze), oscilatorio = poziomy (kołysze). Sismo z 2017 połączył oba i dlatego był tak groźny.",
+        },
+        {
+          type: "fill",
+          text: "Wulkan wyrzuca popiół: „El volcán lanza ___\" (popiół).",
+          options: null,
+          correctAnswer: "ceniza",
+          explanation:
+            "la ceniza = popiół. Trzeba ją zmiatać (barrer), bo z deszczem się zbryla. Uwaga: „no es nieve, es ceniza\" — to nie śnieg.",
+        },
+        {
+          type: "abc",
+          text: "„Categoría 5\" huraganu oznacza:",
+          options: [
+            "najsłabszy, drobne szkody",
+            "najsilniejszy: zerwane dachy i zawalone ściany",
+            "tornado nad miastem",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Skala 1–5 wg prędkości wiatru. 1 → daños en techos y árboles; 5 → destrucción de techos y colapso de paredes. Pacyfik silniejszy niż Atlantyk.",
+        },
+        {
+          type: "open",
+          text: "Opisz po hiszpańsku różnicę między huracánem a tornado (jedno zdanie).",
+          options: null,
+          correctAnswer:
+            "„Los huracanes se forman en el mar (sobre el agua) y traen viento y lluvia; los tornados se forman en la tierra y son solo viento.\" Klucz: huracán = nad wodą + deszcz; tornado = na lądzie + sam wiatr.",
+          explanation:
+            "To dokładnie sformułowanie z rozmowy: se forman en el mar vs en la tierra.",
+        },
+        {
+          type: "spot_error",
+          text: "„Ayer hubo un tornado muy fuerte en el mar con mucha lluvia.\" — gdzie błąd?",
+          options: [
+            "wszystko OK",
+            "tornado nie tworzy się „en el mar\" ani nie niesie „lluvia\" — to opis huracánu; tornado powstaje na lądzie i to sam wiatr",
+            "powinno być „un terremoto\"",
+            "powinno być „muy fuerta\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka huracán / tornado. Nad wodą + deszcz = huracán. Tornado: en la tierra, solo viento, sin agua.",
+        },
+      ],
+      salon: {
+        short:
+          "Meksyk żyje naraz w strefie huraganów, trzęsień ziemi i czynnych wulkanów. Stąd codzienne słownictwo katastrof: huracán, temblor, ceniza.",
+        expand:
+          "Huragan tworzy się nad wodą i niesie wiatr z deszczem (kategorie 1–5, Pacyfik silniejszy niż Atlantyk); tornado to sam wiatr na lądzie. Trzęsienia bywają oscilatorios albo trepidatorios — to z 2017 połączyło oba i trwało prawie minutę. Alerta sísmica daje ledwie kilkanaście sekund.",
+        trap:
+          "Nie myl terremoto / temblor / sismo (to samo zjawisko, różny rejestr) ani huracánu z tornado: huragan jest NAD wodą i z deszczem, tornado na lądzie i bez wody.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 85. Hiszpański: el clima — temporada de lluvias, calor, humedad
+  // ============================================================
+  // Z tej samej rozmowy o Meksyku — jak mówić o pogodzie i porach roku.
+  {
+    slug: "es-clima-temporada-de-lluvias",
+    vaultSlug: "es",
+    label: "Hiszpański — clima y temporada de lluvias",
+    payload: {
+      title: "El clima — temporada de lluvias, calor, humedad",
+      summary:
+        "Jak mówić o pogodzie i porach roku w Meksyku: la temporada de lluvias / de secas, hace calor, baja el calor, la humedad, los mosquitos. Klucz: pogodę opisuje się przez „hacer\" (hace calor), a deszcz przez czasownik „llover\" (llueve) — nie „hace lluvia\".",
+      theory:
+        "Pory roku w Meksyku to nie zima / lato, tylko PORA SUCHA i PORA DESZCZOWA:\n— la temporada de secas (sucha) — kwiecień i maj (abril y mayo) to miesiące najgorętsze.\n— la temporada de lluvias (deszczowa) — zaczyna się około czerwca; pokrywa się z la temporada de huracanes.\n\nPOGODA przez „HACER\" (dosł. „robi\"):\n— hace calor = jest gorąco; hace mucho calor = bardzo gorąco; hace menos calor = mniej gorąco.\n— hace frío = jest zimno; hace sol = jest słonecznie.\nUWAGA: o pogodzie NIE mówi się „es caliente\" — używa się „hace calor\".\n\nDESZCZ przez czasownik „LLOVER\" (o→ue):\n— llueve = pada; está lloviendo = właśnie pada; empezó a llover = zaczęło padać.\n— „Aquí llueve solo en la noche.\" (Tu pada tylko w nocy.)\n\nSKUTKI pory deszczowej:\n— baja el calor / bajó el calor = spada / spadł upał.\n— la humedad = wilgoć („hay humedad\" = jest wilgotno).\n— el mosquito / los mosquitos = komary — pojawiają się przez wilgoć.\n— „Si llueve en la noche y hace sol en el día, entonces tienes humedad.\"\n\nPRZYDATNE:\n— casi verano = prawie lato; empieza la lluvia = zaczyna się deszcz.\n— es algo extraño = to coś dziwnego; el tiempo perfecto = idealna pogoda.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Jest bardzo gorąco\" po hiszpańsku:",
+          options: [
+            "Es muy caliente",
+            "Hace mucho calor",
+            "Está mucho calor",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pogodę opisuje się przez „hacer\": hace calor / hace frío / hace sol. „Es caliente\" to typowy błąd kalkowany z polskiego.",
+        },
+        {
+          type: "fill",
+          text: "„Tu pada tylko w nocy\": „Aquí ___ solo en la noche.\" (czasownik llover)",
+          options: null,
+          correctAnswer: "llueve",
+          explanation:
+            "llover (o→ue): llueve = pada. Deszcz to czasownik, nie „hace lluvia\".",
+        },
+        {
+          type: "abc",
+          text: "„La temporada de lluvias\" pokrywa się w Meksyku z:",
+          options: [
+            "la temporada de secas",
+            "la temporada de huracanes",
+            "el invierno",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pora deszczowa (od ~czerwca) zbiega się z porą huraganów. Pora sucha (secas) to m.in. gorące abril y mayo.",
+        },
+        {
+          type: "fill",
+          text: "Skutek deszczu w nocy i słońca w dzień: „hay ___\" (wilgoć).",
+          options: null,
+          correctAnswer: "humedad",
+          explanation:
+            "la humedad = wilgoć. Z wilgoci biorą się los mosquitos (komary).",
+        },
+        {
+          type: "abc",
+          text: "„Bajó el calor\" znaczy:",
+          options: [
+            "zrobiło się goręcej",
+            "spadł upał",
+            "zaczęło padać",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "bajar = spadać; „bajó el calor\" = upał zelżał — dzięki deszczowi w nocy.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Tu w kwietniu i maju jest bardzo gorąco, ale w czerwcu zaczyna się pora deszczowa\".",
+          options: null,
+          correctAnswer:
+            "„Aquí en abril y mayo hace mucho calor, pero en junio empieza la temporada de lluvias.\" Klucz: hace calor (pogoda przez hacer) + empieza la temporada de lluvias.",
+          explanation:
+            "Uwaga na „hace calor\" (nie „es caliente\") i na nazwę pory: la temporada de lluvias.",
+        },
+        {
+          type: "spot_error",
+          text: "„Hoy es muy caliente y hace mucha lluvia.\" — gdzie błędy?",
+          options: [
+            "wszystko OK",
+            "dwa błędy: pogoda to „hace mucho calor\" (nie „es caliente\"), a deszcz to czasownik „llueve mucho\" (nie „hace lluvia\")",
+            "tylko „caliente\" jest źle",
+            "powinno być „está caliente\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pogoda: hace calor. Deszcz: llueve / está lloviendo. „Es caliente\" i „hace lluvia\" to kalki, których Hiszpan nie powie.",
+        },
+      ],
+      salon: {
+        short:
+          "W Meksyku liczą się dwie pory: secas i lluvias. Deszcz pada w nocy, dzień zostaje słoneczny — ale przychodzą wilgoć i komary.",
+        expand:
+          "Abril y mayo to szczyt upału; około czerwca zaczyna się temporada de lluvias, która pokrywa się z temporada de huracanes. Upał spada (baja el calor), ale rośnie la humedad i wychodzą los mosquitos.",
+        trap:
+          "O pogodzie mów przez „hace\" (hace calor, hace frío), nie „es caliente\". Deszcz to czasownik: „llueve\", nie „hace lluvia\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 86. Hiszpański: ofertas de trabajo y tomar decisiones
+  // ============================================================
+  // Z tej samej rozmowy — początek o ofercie pracy i decydowaniu.
+  // Perełka idiomatyczna: „consultarlo con la almohada" (sleep on it).
+  {
+    slug: "es-ofertas-de-trabajo-y-decisiones",
+    vaultSlug: "es",
+    label: "Hiszpański — ofertas de trabajo y tomar decisiones",
+    payload: {
+      title: "Ofertas de trabajo y decisiones — consultarlo con la almohada",
+      summary:
+        "Słownictwo i zwroty do rozmowy o ofercie pracy i podejmowaniu decyzji: una oferta de trabajo, el sueldo, los beneficios, leer los detalles. Perełka: „consultarlo con la almohada\" = przespać się z decyzją (ang. sleep on it).",
+      theory:
+        "OFERTA PRACY — słownictwo:\n— una oferta de trabajo = oferta pracy; un trabajo = praca / posada.\n— el sueldo / el salario = pensja; los beneficios = benefity, dodatki.\n— las horas de trabajo = godziny pracy; viajar mucho = dużo podróżować.\n— el contrato / el trato = umowa, układ; leer los detalles = czytać szczegóły.\n— el currículum (vitae) = CV; enviar el currículum = wysłać CV.\n\nPODEJMOWANIE DECYZJI:\n— tomar una decisión = podjąć decyzję (NIE „hacer una decisión\"); decidir = decydować.\n— „No voy a decidir hoy.\" = Nie zdecyduję dziś.\n— Idiom: CONSULTARLO CON LA ALMOHADA = przespać się z decyzją (dosł. „skonsultować to z poduszką\"; la almohada = poduszka). Odpowiednik angielskiego „sleep on it\". W rozmowie padło swobodne „preguntar a la almohada\", ale utrwalona forma to „consultarlo con la almohada\".\n— „Cuando tengo una decisión importante, necesito dormir bien y después decidir.\"\n\nWAŻENIE ZA I PRZECIW:\n— los pros y los contras = za i przeciw; sopesar = ważyć (opcje).\n— „es una cosa por otra\" = coś za coś, kompromis (jedno kosztem drugiego).\n— „lo que sea mejor para ti\" = cokolwiek będzie dla ciebie lepsze.\n\nPRZYDATNE ZWROTY:\n— „Voy a leer todo y después decidir.\" = Przeczytam wszystko i potem zdecyduję.\n— „Si ya te hablaron, es porque están interesados en ti.\" = Skoro się odezwali, to znaczy, że są tobą zainteresowani.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Consultarlo con la almohada\" znaczy:",
+          options: [
+            "zapytać kogoś o radę",
+            "przespać się z decyzją przed wyborem",
+            "iść spać zamiast pracować",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "la almohada = poduszka. Idiom = „sleep on it\", przespać się z ważną decyzją. W rozmowie padło też swobodne „preguntar a la almohada\".",
+        },
+        {
+          type: "abc",
+          text: "„Podjąć decyzję\" po hiszpańsku:",
+          options: [
+            "hacer una decisión",
+            "tomar una decisión",
+            "tener una decisión",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Decyzję się „bierze\": tomar una decisión. „Hacer una decisión\" to kalka z angielskiego / polskiego.",
+        },
+        {
+          type: "fill",
+          text: "„Pensja jest lepsza, ale będę więcej pracować\": „El ___ es mejor, pero voy a trabajar más.\"",
+          options: null,
+          correctAnswer: "sueldo",
+          explanation:
+            "el sueldo / el salario = pensja. los beneficios = dodatki, benefity.",
+        },
+        {
+          type: "abc",
+          text: "„Es una cosa por otra\" oznacza:",
+          options: [
+            "to bez znaczenia",
+            "coś za coś, kompromis",
+            "to ta sama rzecz",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Idiom: jedno kosztem drugiego, trade-off. Np. lepsza pensja, ale więcej podróży.",
+        },
+        {
+          type: "fill",
+          text: "„Przeczytam wszystko i potem zdecyduję\": „Voy a ___ todo y después decidir.\" (czasownik: czytać)",
+          options: null,
+          correctAnswer: "leer",
+          explanation:
+            "leer = czytać; leer los detalles / el contrato = czytać szczegóły / umowę przed decyzją.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „To ważna decyzja, więc nie zdecyduję dziś — prześpię się z tym\".",
+          options: null,
+          correctAnswer:
+            "„Es una decisión importante, así que no voy a decidir hoy — lo voy a consultar con la almohada.\" Klucz: voy a decidir / tomar una decisión + idiom consultar con la almohada.",
+          explanation:
+            "Można też „necesito dormir y después decidir\". Idiom: consultarlo con la almohada.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mañana voy a hacer una decisión sobre el trabajo.\" — gdzie błąd?",
+          options: [
+            "wszystko OK",
+            "decyzję się „toma\", nie „hace\": „voy a tomar una decisión\"",
+            "powinno być „del trabajo\"",
+            "powinno być „un decisión\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "tomar una decisión = podjąć decyzję. „Hacer una decisión\" to kalka. (una decisión — rodzaj żeński.)",
+        },
+      ],
+      salon: {
+        short:
+          "Przy decyzji o pracy Meksykanin powie „lo voy a consultar con la almohada\" — prześpię się z tym. To ich „sleep on it\".",
+        expand:
+          "Wokół oferty pracy krąży zestaw słów: la oferta, el sueldo, los beneficios, las horas de trabajo, leer los detalles. Decyzję się „toma\" (tomar una decisión), a opcje się waży: los pros y los contras, es una cosa por otra.",
+        trap:
+          "„Consultarlo con la almohada\" to idiom o przespaniu się z decyzją — nie tłumacz dosłownie na „pytać poduszki\". I pamiętaj: tomar una decisión, nie „hacer\".",
+      },
+    },
+  },
 ];
