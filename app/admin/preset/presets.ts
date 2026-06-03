@@ -8236,4 +8236,125 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 88. Filozofia: sprawiedliwość (Rawls vs Nozick, kara)
+  // ============================================================
+  {
+    slug: "sprawiedliwosc",
+    vaultSlug: "phil",
+    label: "Sprawiedliwość — distributive vs retributive, Rawls vs Nozick",
+    payload: {
+      title: "Sprawiedliwość (what is justice)",
+      summary:
+        "Obszar, gdzie wszystkie teorie etyczne zderzają się w konkretnych decyzjach: kto co dostaje, kto za co odpowiada, jak karać. Dwa wielkie pytania: distributive justice (kto co dostaje — zasoby, prawa, możliwości) i retributive justice (kto za co odpowiada — kary, sankcje). Najważniejszy spór XX wieku to Rawls vs Nozick: równość kontra wolność.",
+      theory:
+        "Filozofia rozróżnia dwa typy sprawiedliwości, często mylone. Distributive justice pyta: kto co dostaje? (zasoby, możliwości, prawa). Retributive justice pyta: kto za co odpowiada? (kary, sankcje, odpowiedzialność). To dwa różne problemy — Rawls i Nozick to spór distributive, deterrence/rehabilitation/restorative to spór retributive.\n\nNajstarsza koncepcja to justice as harmony Platona („Państwo\"): sprawiedliwość = każdy robi to, do czego jest stworzony, i robi to dobrze. W społeczeństwie filozofowie rządzą, strażnicy chronią, rzemieślnicy produkują; w jednostce rozum rządzi, wola wykonuje, pożądania słuchają. Sprawiedliwy = uporządkowany wewnętrznie, w harmonii. Brzmi pięknie, ale i niepokojąco: kto decyduje, kto do czego jest „stworzony\"?\n\nDistributive justice ma cztery główne pozycje. (1) Egalitarianism (justice as equality): wszyscy dostają tyle samo; problem — czy traktowanie nierównych ludzi tak samo jest sprawiedliwe (zdrowy vs chory)? (2) Need-based: „od każdego według możliwości, każdemu według potrzeb\" (Marks); większa potrzeba = więcej; problem — kto definiuje potrzebę? (3) Merit-based: każdy według zasług (praca, talent, wkład), intuicja merytokratyczna; problem — czy talent to nie constitutive luck [[moral-luck]]? nie wybierałam genów ani środowiska. (4) Libertarian: sprawiedliwość = wolność wymiany i własności; nic się nie należy automatycznie, liczy się sposób nabycia — pozycja Nozicka.\n\nJohn Rawls, „A Theory of Justice\" (1971), justice as fairness. Narzędzie: original position + veil of ignorance. Wyobraź sobie, że projektujesz zasady społeczeństwa, ale za zasłoną niewiedzy — nie wiesz, czy będziesz bogata czy biedna, sprawna czy niepełnosprawna, w większości czy mniejszości. Rawls twierdzi, że racjonalnie wybierzemy: (1) Pierwsza zasada: każdy ma równe podstawowe wolności (słowa, religii, polityki), nie do negocjacji. (2) Difference principle: nierówności są dopuszczalne tylko, jeśli przynoszą korzyść najgorzej sytuowanym. Czyli nierówność OK, jeśli dzięki niej najbiedniejsi mają lepiej niż w społeczeństwie egalitarnym. Klasyczny argument za welfare state.\n\nRobert Nozick, „Anarchy, State, and Utopia\" (1974), odpowiada argumentem o Wilcie Chamberlainie. Załóżmy idealnie sprawiedliwą dystrybucję (jakkolwiek zdefiniowaną). Wilt Chamberlain gra w koszykówkę, milion ludzi dobrowolnie płaci mu 25 centów za bilet; po sezonie ma 250 000 dolarów więcej niż reszta. Dystrybucja stała się nierówna — czy jest niesprawiedliwa? Nozick: NIE, każdy dał pieniądze dobrowolnie. Jeśli ingerujemy, żeby przywrócić „sprawiedliwą dystrybucję\", gwałcimy wolność ludzi. Wniosek: każda teoria wymagająca ciągłej redystrybucji gwałci wolność osobistą; sprawiedliwa dystrybucja to ta, która powstała z wolnych transakcji.\n\nKlucz do Nozicka: negative vs positive rights. Negative rights — prawo do bycia nieniepokojonym (nie wolno mi zabrać twoich pieniędzy ani cię uderzyć), „wolność od\". Positive rights — prawo do otrzymania czegoś (edukacja, opieka zdrowotna, mieszkanie), „wolność do\". Libertarianie: tylko negative rights istnieją naprawdę, positive wymagają zmuszania innych do działania. Rawls/welfare state: positive rights też są fundamentalne, bez nich negative są pustą obietnicą („wolność umierania pod mostem\").\n\nRetributive justice — czemu i jak karzemy? (1) Retribution (odpłata): kara należna za czyn, zły czyn ma być odpłacony; lex talionis („oko za oko\") w cywilizowanej formie; Kantowska intuicja — kara wyraża godność sprawcy jako odpowiedzialnego; zarzut — brzmi jak zemsta przebrana w filozofię. (2) Deterrence (odstraszanie): kara ma odstraszać sprawcę i innych; uzasadnienie utylitarystyczne (kara to zło, ale prewencja daje większe dobro); zarzuty — karanie „dla przykładu\" używa człowieka jako środka (Kant), i brak dowodów, że surowe kary realnie odstraszają. (3) Rehabilitation (resocjalizacja): zmienić sprawcę, by nie wracał; model skandynawski; zarzut — co jeśli nie chce być rehabilitowany, co z ofiarami? (4) Welfare maximization: kara maksymalizująca dobrostan społeczny (mieszanka deterrence i rehabilitation); zarzut jak przy Util — teoretycznie można skazać niewinnego, jeśli to maksymalizuje dobrostan. (5) Restorative justice: cel to odbudować relacje i naprawić szkodę, sprawca spotyka ofiarę, słyszy o krzywdzie, próbuje naprawić; nie chodzi o karę, tylko o uleczenie; skuteczne np. przy przestępstwach nieletnich.\n\nKlasyczny case porównawczy: złodziej ukradł chleb, by nakarmić głodne dziecko. Retribution — zasłużył na karę proporcjonalną. Deterrence — ukarać, by inni nie kradli. Rehabilitation — zrozumieć przyczynę, pomóc znaleźć pracę. Restorative — niech przeprosi sklepikarza, zapłaci, sklepikarz może pomoże mu z pracą. Rawls — pytanie systemowe: dlaczego ktoś w naszym społeczeństwie musi kraść chleb? Nozick — kradzież narusza prawa własności sklepikarza, niezależnie od motywacji.",
+      questions: [
+        {
+          type: "abc",
+          text: "Pytanie „kto za co odpowiada — kary, sankcje\" to domena:",
+          options: [
+            "distributive justice",
+            "retributive justice",
+            "justice as harmony",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka: distributive (Rawls, Nozick) pyta KTO CO DOSTAJE. Retributive (deterrence, rehabilitation, restorative) pyta KTO ZA CO ODPOWIADA. Dwa różne problemy.",
+        },
+        {
+          type: "abc",
+          text: "Veil of ignorance Rawlsa polega na tym, że projektując zasady społeczeństwa:",
+          options: [
+            "znasz swoją przyszłą pozycję i optymalizujesz pod nią",
+            "nie wiesz, kim będziesz — bogata czy biedna, sprawna czy nie",
+            "głosujesz większością nad każdą zasadą",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Za zasłoną niewiedzy racjonalnie wybierzesz zasady chroniące najsłabszych, bo możesz okazać się jednym z nich. Stąd difference principle.",
+        },
+        {
+          type: "abc",
+          text: "Difference principle Rawlsa mówi, że nierówności są dopuszczalne tylko jeśli:",
+          options: [
+            "wynikają z dobrowolnych transakcji",
+            "przynoszą korzyść najgorzej sytuowanym",
+            "są zatwierdzone większością głosów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Nierówność OK, jeśli dzięki niej najbiedniejsi mają lepiej niż w pełni egalitarnym społeczeństwie. Klasyczny argument za welfare state. Wariant „dobrowolne transakcje\" to Nozick, nie Rawls.",
+        },
+        {
+          type: "abc",
+          text: "Argument o Wilcie Chamberlainie (Nozick) ma pokazać, że:",
+          options: [
+            "talent jest formą constitutive luck",
+            "każda teoria wymagająca ciągłej redystrybucji gwałci wolność",
+            "dystrybucja powinna być zawsze równa",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Skoro milion ludzi dobrowolnie zapłaciło Chamberlainowi, przywracanie „sprawiedliwej dystrybucji\" gwałci ich wolność. Sprawiedliwa dystrybucja = ta z wolnych transakcji.",
+        },
+        {
+          type: "fill",
+          text: "Prawo do bycia nieniepokojonym (nikt nie może zabrać ci pieniędzy ani cię uderzyć), „wolność od\", to _____ rights.",
+          options: null,
+          correctAnswer: "negative",
+          explanation:
+            "Negative rights = wolność od ingerencji. Positive rights = prawo do otrzymania czegoś (edukacja, opieka). Libertarianie uznają tylko negative; welfare state oba.",
+        },
+        {
+          type: "fill",
+          text: "Model kary, którego celem jest zmiana sprawcy, by nie wracał do przestępstwa (model skandynawski), to _____.",
+          options: null,
+          correctAnswer: "rehabilitation",
+          explanation:
+            "Rehabilitation (resocjalizacja). Odróżnij od retribution (odpłata za czyn), deterrence (odstraszanie) i restorative (naprawa relacji z ofiarą).",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij w jednym zdaniu, na czym polega spór Rawls vs Nozick.",
+          options: null,
+          correctAnswer:
+            "To spór między równością a wolnością: Rawls projektuje społeczeństwo za zasłoną niewiedzy i broni redystrybucji na rzecz najsłabszych (difference principle), a Nozick argumentem o Chamberlainie broni nienaruszalności wolnych transakcji i własności, uznając ciągłą redystrybucję za gwałt na wolności.",
+          explanation:
+            "Najważniejszy spór XX wieku w filozofii politycznej. Rawls = fairness/welfare state, Nozick = libertarianizm.",
+        },
+        {
+          type: "open",
+          text: "Pokaż, jak retribution, deterrence, rehabilitation i restorative justice różnie podchodzą do złodzieja chleba.",
+          options: null,
+          correctAnswer:
+            "Retribution: zasłużył na karę proporcjonalną do czynu. Deterrence: ukarać, żeby odstraszyć innych od kradzieży. Rehabilitation: zrozumieć, dlaczego kradł, i pomóc mu znaleźć pracę, by nie wracał. Restorative: niech przeprosi sklepikarza, naprawi szkodę (zapłaci), a sklepikarz być może pomoże mu znaleźć pracę — chodzi o uleczenie relacji, nie o karę.",
+          explanation:
+            "Cztery różne cele kary dają cztery różne reakcje na ten sam czyn. Rawls dodałby pytanie systemowe (dlaczego ktoś musi kraść chleb?), Nozick — naruszenie własności niezależnie od motywu.",
+        },
+        {
+          type: "spot_error",
+          text: "Według Rawlsa nierówności bogactwa są zawsze niesprawiedliwe i każdą z nich trzeba wyrównać do pełnej równości.",
+          options: [
+            "Według Rawlsa",
+            "nierówności są zawsze niesprawiedliwe i trzeba je wyrównać do pełnej równości",
+            "bogactwa",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Rawls NIE żąda pełnej równości. Difference principle dopuszcza nierówności, o ile poprawiają sytuację najgorzej sytuowanych. Żądanie matematycznej równości to egalitarianism, nie Rawls.",
+        },
+      ],
+      salon: {
+        short:
+          "Sprawiedliwość ma dwa wielkie pytania: kto co dostaje (distributive) i kto za co odpowiada (retributive). Najciekawszy spór XX wieku to Rawls vs Nozick — w istocie spór między wolnością a równością.",
+        expand:
+          "Rawls mówi: zaprojektujmy społeczeństwo za zasłoną niewiedzy, nie wiedząc, kim będziemy — wybierzemy zasady chroniące najsłabszych (difference principle: nierówność OK tylko, gdy pomaga najbiedniejszym). Nozick kontruje argumentem o Wilcie Chamberlainie: jeśli milion ludzi dobrowolnie płaci mu za bilet, czy państwo ma prawo wyrównywać dystrybucję? Pod spodem leży różnica między negative rights (wolność od) a positive rights (prawo do czegoś).",
+        trap:
+          "Nie myl distributive z retributive — to dwa osobne pytania. Rawls NIE żąda pełnej równości (to egalitarianism) — dopuszcza nierówności, gdy pomagają najsłabszym. I uważaj na merit-based: chwalenie „zasług\" zderza się z zarzutem, że talent to constitutive luck — nie wybierałaś swoich genów (wątek z moral luck).",
+      },
+    },
+  },
 ];
