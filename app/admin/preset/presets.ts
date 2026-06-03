@@ -8127,4 +8127,113 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 87. Filozofia: moral luck (Williams, Nagel)
+  // ============================================================
+  {
+    slug: "moral-luck",
+    vaultSlug: "phil",
+    label: "Moral luck — Williams, Nagel, paradoks szczęścia moralnego",
+    payload: {
+      title: "Moral luck",
+      summary:
+        "Paradoks zauważony przez Bernarda Williamsa (1976) i Thomasa Nagela (1979). Kantowska intuicja mówi: nie oceniaj moralnie tego, co nie zależy od człowieka. Ale w praktyce robimy to bez przerwy. Dwóch identycznie pijanych kierowców — jeden zabija dziecko, drugi nie — różni ich tylko los, a oceniamy ich inaczej. Nagel pokazuje: jeśli wyłączymy z oceny wszystko, co zależy od szczęścia, nic nie zostanie.",
+      theory:
+        "Punkt wyjścia to Kantowska zasada „ought implies can\" — powinność implikuje możliwość. Jeśli mam moralny obowiązek zrobić X, to muszę być w stanie X zrobić; nie można mnie obwiniać za to, na co nie miałam wpływu. Stąd intuicja, że oceniać należy wolę, intencję i zasadę, a nie skutki, które zależą od losu. Tu wchodzi kluczowe rozróżnienie. Causal responsibility to bycie fizyczną przyczyną: twoja noga nacisnęła pedał, twoje auto uderzyło — fakt fizyczny. Moral responsibility to bycie moralnie winnym i wymaga wolnej decyzji, świadomości i możliwości wyboru inaczej. Można być causally responsible bez moralnej winy (potknęłam się i zbiłam wazon) i odwrotnie — moralnie winnym, choć fizycznie nic się nie stało (planowałam morderstwo, w ostatniej chwili odpuściłam).\n\nKlasyczny przykład Nagela: dwóch pijanych kierowców wychodzi z baru, wsiada za kierownicę, jedzie do domu. Kierowca A dojeżdża bez zdarzeń. Kierowcy B z bocznej uliczki wybiega dziecko i ginie. Intencja, decyzja i charakter obu są identyczne — różni ich czysty los. Mimo to B trafia do więzienia i żyje z tym do końca życia, a A jutro wraca do pracy. Pytanie Nagela: czy słusznie oceniamy ich różnie?\n\nNagel wyróżnia cztery typy moral luck. (1) Resultant luck (wynikowy, consequent) — szczęście co do skutków działań: pijany kierowca A vs B, strzał, który chybia vs trafia. (2) Circumstantial luck (sytuacyjny) — szczęście co do sytuacji, w jakich się znajdujesz: ludzie w nazistowskich Niemczech, jedni stali się katami, inni bohaterami; czy jestem „lepsza\" od kolaboranta, czy tylko szczęściarą, że nie zostałam wystawiona na próbę? (3) Constitutive luck (konstytutywny) — szczęście co do tego, kim jesteś: temperament, charakter, geny, wychowanie; nie wybierałaś swojej osobowości, więc czy chwalenie kogoś za cierpliwość ma sens, jeśli on tak po prostu jest skonstruowany? (4) Causal luck (przyczynowy, antecedent) — szczęście co do wcześniejszych przyczyn twoich działań; to wraca do wolnej woli: jeśli wszystko jest zdeterminowane wcześniej, gdzie jest miejsce na odpowiedzialność?\n\nStanowisko Nagela: A i B powinni być oceniani moralnie tak samo, bo obaj zrobili tę samą złą rzecz (jazda po pijaku z ryzykiem zabicia), a różni ich wyłącznie los. W praktyce jednak nie oceniamy ich tak samo, bo praise i blame mają funkcję społeczną — ostrzegają, edukują, ustanawiają normy; surowsze potraktowanie B działa odstraszająco. Nie oceniamy wtedy „moralnej istoty osoby\", tylko działamy „dla społeczeństwa\". Dlatego Nagel zostawia paradoks otwarty: filozoficznie nielogiczne, praktycznie nieuniknione.\n\nWątek powiązany: W.K. Clifford z etyki wiary [[the-learning-vault-app-i-deploy]] wspiera pozycję Nagela. Clifford powiedziałby, że jazda po pijaku to nieuzasadniona wiara, że nic się nie stanie — ten sam grzech epistemiczny, co armator wysyłający dziurawy statek. Cliffordowi obojętne, czy statek dopłynął; nawet jeśli dopłynął, armator był winny. Stąd: A i B trzeba oceniać tak samo, bo oboje zaniedbali epistemicznie. Osobny, czasem mylony spór: czy szkoda istnieje, jeśli ofiara o niej nie wie (ktoś o tobie kłamał, nigdy się nie dowiedziałaś) — pozycja eksperiencjalna (szkoda = doświadczenie, brak cierpienia = brak szkody) vs obiektywna (szkoda = naruszenie interesu/godności, istnieje niezależnie od świadomości). To inny problem niż główny moral luck.",
+      questions: [
+        {
+          type: "abc",
+          text: "Czym jest moral luck?",
+          options: [
+            "tezą, że szczęście nie ma żadnego wpływu na ocenę moralną",
+            "paradoksem: oceniamy moralnie ludzi za to, co częściowo zależy od losu",
+            "poglądem, że tylko skutki, nigdy intencje, decydują o moralności",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Williams i Nagel nazwali tak napięcie: Kantowsko nie powinniśmy oceniać tego, co poza kontrolą, a jednak ciągle to robimy.",
+        },
+        {
+          type: "abc",
+          text: "Zasada „ought implies can\" (powinność implikuje możliwość) mówi, że:",
+          options: [
+            "skoro coś się stało, to musiało być możliwe do uniknięcia",
+            "mam obowiązek zrobić X tylko, jeśli jestem w stanie X zrobić",
+            "możliwość czegoś automatycznie tworzy obowiązek",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kantowska zasada: nie można mnie obwiniać za to, na co nie miałam wpływu. Stąd ocenia się wolę i zasadę, nie skutki zależne od losu.",
+        },
+        {
+          type: "abc",
+          text: "W przykładzie Nagela dwóch pijanych kierowców (A bez zdarzeń, B zabija dziecko) różni ich:",
+          options: [
+            "intencja i decyzja",
+            "charakter moralny",
+            "wyłącznie los",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Intencja, decyzja i charakter są identyczne. To resultant luck — szczęście co do skutków — sprawia, że oceniamy ich inaczej.",
+        },
+        {
+          type: "fill",
+          text: "Bycie fizyczną przyczyną zdarzenia (noga na pedale, auto uderza) to _____ responsibility, odrębne od winy moralnej.",
+          options: null,
+          correctAnswer: "causal",
+          explanation:
+            "Causal responsibility to fakt fizyczny. Moral responsibility wymaga wolnej decyzji, świadomości i możliwości wyboru inaczej — można mieć jedno bez drugiego.",
+        },
+        {
+          type: "fill",
+          text: "Szczęście co do tego, kim jesteś — temperament, charakter, geny, wychowanie — Nagel nazywa _____ luck.",
+          options: null,
+          correctAnswer: "constitutive",
+          explanation:
+            "Constitutive luck: nie wybierałaś swojej osobowości. Stąd pytanie, czy chwalenie kogoś za cierpliwość ma sens, jeśli on tak po prostu jest skonstruowany.",
+        },
+        {
+          type: "open",
+          text: "Wymień cztery typy moral luck u Nagela i podaj po krótkim przykładzie.",
+          options: null,
+          correctAnswer:
+            "Resultant (wynikowy) — szczęście co do skutków: kierowca A vs B, strzał chybia vs trafia. Circumstantial (sytuacyjny) — co do sytuacji, w jakich się znajdziesz: ludzie w nazistowskich Niemczech, kat vs bohater. Constitutive (konstytutywny) — co do tego, kim jesteś: temperament, charakter, geny. Causal (przyczynowy/antecedent) — co do wcześniejszych przyczyn działań: problem wolnej woli i determinizmu.",
+          explanation:
+            "Sedno argumentu Nagela: w każdym z tych obszarów los wpływa na ocenę. Jeśli wyłączymy wszystko, co zależy od szczęścia, nie zostanie nic do oceny.",
+        },
+        {
+          type: "open",
+          text: "Jak Nagel rozwiązuje paradoks dwóch kierowców i dlaczego mimo to oceniamy ich inaczej?",
+          options: null,
+          correctAnswer:
+            "Filozoficznie A i B powinni być oceniani tak samo, bo zrobili to samo (jazda po pijaku z ryzykiem), a różni ich tylko los. W praktyce oceniamy inaczej, bo praise i blame mają funkcję społeczną — ostrzegają, edukują, ustanawiają normy, odstraszają. Surowsze potraktowanie B nie ocenia „moralnej istoty osoby\", tylko działa „dla społeczeństwa\". Nagel zostawia paradoks otwarty: nielogiczny, ale praktycznie nieunikniony.",
+          explanation:
+            "Nagel nie znosi paradoksu — pokazuje, że jest nieusuwalny. To jego główna teza, nie jego porażka.",
+        },
+        {
+          type: "spot_error",
+          text: "Według Kantowskiej zasady „ought implies can\" oceniamy czyn po jego skutkach, bo skutki są tym, co realnie się wydarzyło.",
+          options: [
+            "„ought implies can\"",
+            "oceniamy czyn po jego skutkach",
+            "skutki są tym, co realnie się wydarzyło",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Dokładnie odwrotnie. Z „ought implies can\" wynika, że oceniać należy wolę, intencję i zasadę, a NIE skutki zależne od losu. Ocena po skutkach to właśnie to, co rodzi paradoks moral luck.",
+        },
+      ],
+      salon: {
+        short:
+          "Moral luck to fascynujący paradoks. Dwóch pijanych kierowców, jeden zabija dziecko, drugi nie — różni ich tylko los, intencja i decyzja były identyczne. Kantowsko powinniśmy oceniać tak samo, ale w praktyce oceniamy inaczej.",
+        expand:
+          "Nagel pokazuje, że jeśli wykluczymy z oceny wszystko, co zależy od losu, nic nie zostanie — bo nawet nasz charakter, nasze okoliczności i skutki naszych działań są wynikiem szczęścia. Wyróżnia cztery typy: resultant (skutki), circumstantial (sytuacja, np. nazistowskie Niemcy), constitutive (kim jesteś) i causal (wcześniejsze przyczyny). Klucz to rozróżnienie: causal responsibility (byłaś przyczyną) to nie to samo, co moral responsibility (jesteś winna).",
+        trap:
+          "Nie mów, że Nagel „rozwiązuje\" paradoks — on go celowo zostawia otwartym: filozoficznie nielogiczny, praktycznie nieunikniony. I nie myl „ought implies can\" z oceną po skutkach — zasada mówi coś przeciwnego. Surowszą karę dla kierowcy B tłumaczy funkcja społeczna kary (odstraszanie, normy), a nie większa wina moralna.",
+      },
+    },
+  },
 ];
