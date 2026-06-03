@@ -8357,4 +8357,128 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 89. Hiszpański: verbos de efecto — gustos y disgustos
+  // ============================================================
+  {
+    slug: "es-gustos-disgustos-verbos-efecto",
+    vaultSlug: "es",
+    label: "Hiszpański — gustos y disgustos (gustar, caer bien, chocar)",
+    payload: {
+      title: "Gustos y disgustos: verbos de efecto",
+      summary:
+        "Z lekcji konwersacyjnej (03.06.2026). Verbos de efecto / pronominales — gustar, encantar, caer bien/mal, molestar, chocar — odmieniają się inaczej niż polskie „lubię\": to rzecz „mi się podoba\", nie „ja lubię rzecz\". Sedno: czasownik zgadza się z tym, co się podoba (gusta/gustan), a osobę zaznacza zaimek me/te/le. Plus kluczowa pułapka: „me gusta\" o człowieku = atrakcja fizyczna, a sympatię do charakteru wyraża „me cae bien\".",
+      theory:
+        "Verbos de efecto (zwane też pronominalnymi w tym kontekście) działają odwrotnie niż polskie „lubić\". Po polsku „ja\" jest podmiotem: ja lubię kawę. Po hiszpańsku podmiotem jest to, co się podoba, a ty jesteś odbiorcą: „me gusta el café\" = dosł. „kawa mi się podoba\". Dlatego czasownik odmienia się tylko w 3. osobie i zgadza z rzeczą: liczba pojedyncza „me gusta el café / me gusta la ciudad\", liczba mnoga „me gustan los gatos / me gustan los mercados\". Osobę-odbiorcę zaznacza zaimek: me, te, le, nos, les (me gusta, te gusta, le gusta...). Częsty błąd Polaka to „me gustan la ciudad\" (zła zgoda) albo traktowanie „yo\" jak podmiotu.\n\nSkala natężenia (od + do −): me encanta (uwielbiam) > me gusta (lubię / podoba mi się) > me da igual / no me importa (jest mi obojętne) > me molesta / me choca (przeszkadza mi, irytuje) > me cae mal (nie lubię — o osobie). Wszystkie te same reguły zgody: me encantan los perros, me molestan los mosquitos.\n\nNajważniejsze rozróżnienia z lekcji. (1) caer bien / caer mal dotyczy WYŁĄCZNIE osób i ich charakteru: „tu amiga me cae bien\" = jest sympatyczna, miła (I like her as a person) — to nie atrakcja fizyczna. „Me cae mal\" = nie przepadam za nią (charakter). (2) Uwaga-pułapka: „me gusta\" powiedziane o osobie znaczy atrakcję fizyczną — „me gusta tu amigo\" = podoba mi się (pociąga mnie). Żeby powiedzieć neutralnie, że ktoś jest miły, użyj caer bien, nie gustar. (3) me choca = me molesta, oba znaczą „mi incomoda\" (przeszkadza mi). Różnica jest rejestrowa: „me molesta\" bardziej neutralne/formalne, „me choca\" bardziej potoczne (kolokwialne). Można je stosować i do rzeczy, i do sytuacji: „me choca el tráfico\", „me molesta el ruido\".\n\nSłownictwo kulturowe z lekcji: el mole to meksykański sos łączący chile (papryczkę chili) i chocolate (czekoladę) — brzmi dziwnie, ale działa; klasyczny przykład nieoczywistego połączenia smaków. Inne wątki kulinarne: la marquesita (karaibski deser, naleśnik z queso de bola — serem typu holenderskiego — i owocami), oraz pasta con fresas y yogur (letnia przekąska popularna w Polsce, dla Meksykanki egzotyczna).",
+      questions: [
+        {
+          type: "abc",
+          text: "Jak poprawnie: „Lubię koty\"?",
+          options: [
+            "Yo gusto los gatos",
+            "Me gusta los gatos",
+            "Me gustan los gatos",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Czasownik zgadza się z tym, co się podoba. „Los gatos\" to liczba mnoga → „gustan\". Podmiotem są koty, nie „yo\". Stąd zaimek „me\".",
+        },
+        {
+          type: "abc",
+          text: "„Tu amiga me cae bien\" znaczy:",
+          options: [
+            "twoja koleżanka mnie pociąga (atrakcja fizyczna)",
+            "twoja koleżanka jest sympatyczna, lubię ją jako osobę",
+            "twoja koleżanka mnie irytuje",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Caer bien dotyczy WYŁĄCZNIE osób i ich charakteru — sympatii, nie wyglądu. „Me cae bien\" = I like her (as a person).",
+        },
+        {
+          type: "abc",
+          text: "Jeśli powiesz o osobie „me gusta tu amigo\", Hiszpanowi zabrzmi to jako:",
+          options: [
+            "twój kolega jest miły, sympatyczny",
+            "podoba mi się fizycznie, pociąga mnie",
+            "twój kolega mnie nudzi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pułapka z lekcji: „me gusta\" o człowieku = atrakcja fizyczna. Żeby powiedzieć neutralnie, że ktoś jest miły, użyj „me cae bien\", nie „me gusta\".",
+        },
+        {
+          type: "abc",
+          text: "Jaka jest różnica między „me molesta\" a „me choca\"?",
+          options: [
+            "me choca jest dużo silniejsze niż me molesta",
+            "znaczą to samo (mi incomoda); me choca jest bardziej potoczne",
+            "me molesta dotyczy tylko osób, me choca tylko rzeczy",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Oba znaczą „przeszkadza mi / irytuje\". Różnica jest rejestrowa: „me molesta\" neutralniej/formalniej, „me choca\" bardziej kolokwialnie.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij: „Me _____ el tráfico de la ciudad\" (tráfico — l. poj.; przeszkadza mi korek).",
+          options: null,
+          correctAnswer: "choca",
+          explanation:
+            "Może być też „molesta\". „El tráfico\" jest w l. poj., więc czasownik w 3. os. l. poj. — me choca / me molesta el tráfico.",
+        },
+        {
+          type: "fill",
+          text: "Wyrażenie używane tylko o osobach (sympatia/antypatia do charakteru), nie o rzeczach, to „me cae bien\" lub „me cae _____\".",
+          options: null,
+          correctAnswer: "mal",
+          explanation:
+            "Caer bien / caer mal = lubię / nie lubię kogoś jako osobę. Do rzeczy używasz gustar, encantar, molestar, chocar — nie caer.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego „me gusta la ciudad\" jest poprawne, a „yo gusto la ciudad\" nie.",
+          options: null,
+          correctAnswer:
+            "Bo w hiszpańskim z gustar podmiotem jest to, co się podoba (la ciudad), a osoba jest odbiorcą oznaczonym zaimkiem (me). Dosłownie: „miasto mi się podoba\". Dlatego czasownik zgadza się z miastem (3. os.: gusta), a nie z „ja\". „Yo gusto\" traktuje błędnie „ja\" jako podmiot — kalka z polskiego „ja lubię\".",
+          explanation:
+            "To odwrócona konstrukcja względem polskiego. Klucz: gusta/gustan zgadza się z rzeczą, osobę niesie zaimek me/te/le/nos/les.",
+        },
+        {
+          type: "spot_error",
+          text: "Me gustan la Ciudad de México porque es muy hermosa y grande.",
+          options: [
+            "Me gustan",
+            "la Ciudad de México",
+            "es muy hermosa",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„La Ciudad de México\" to liczba pojedyncza, więc czasownik też: „Me gusta la Ciudad de México\". „Me gustan\" pasowałoby tylko do rzeczownika w l. mnogiej (me gustan los mercados).",
+        },
+        {
+          type: "abc",
+          text: "El mole to meksykański sos, który łączy:",
+          options: [
+            "chile (chili) i chocolate (czekoladę)",
+            "queso de bola i fresas",
+            "tequilę i limonkę",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Mole łączy chile i chocolate — brzmi dziwnie, ale działa. Klasyczny przykład nieoczywistego połączenia smaków z kuchni meksykańskiej.",
+        },
+      ],
+      salon: {
+        short:
+          "Klucz do gustos po hiszpańsku: to rzecz „mi się podoba\", nie „ja lubię rzecz\". Me gusta el café, me gustan los gatos — czasownik zgadza się z tym, co się podoba, a osobę niesie zaimek me/te/le.",
+        expand:
+          "Skala: me encanta > me gusta > me da igual / no me importa > me molesta / me choca > me cae mal. Dwa rozróżnienia, które łatwo pomylić: caer bien/mal jest tylko o ludziach i ich charakterze (sympatia, nie wygląd), a „me gusta\" o osobie znaczy atrakcję fizyczną. Me choca to po prostu potoczne „me molesta\".",
+        trap:
+          "Nie mów „yo gusto\" ani „me gustan la ciudad\" — czasownik zgadza się z rzeczą (gusta/gustan), nie z „ja\". I nie chwal czyjegoś charakteru przez „me gusta esa persona\" — to zabrzmi jak podryw; użyj „me cae bien\".",
+      },
+    },
+  },
 ];
