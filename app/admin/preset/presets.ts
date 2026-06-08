@@ -8590,4 +8590,132 @@ export const PRESETS: Preset[] = [
       salon: null,
     },
   },
+
+  // ============================================================
+  // 91. Sztuka: Botticelli — Narodziny Wenus (Great Art Explained)
+  // ============================================================
+  // Na podstawie transkrypcji filmu „The Birth of Venus by Botticelli:
+  // Great Art Explained” (kanał Great Art Explained, James Payne, 2022).
+  // Vault art, format konwersacyjny „przy winie” (salon obecny), bo to
+  // temat z obyciu, nie sucha gramatyka.
+  {
+    slug: "art-botticelli-narodziny-wenus",
+    vaultSlug: "art",
+    label: "Sztuka — Botticelli, Narodziny Wenus (Great Art Explained)",
+    payload: {
+      title: "Botticelli — Narodziny Wenus",
+      summary:
+        "Sandro Botticelli, ok. 1485, Florencja. Pierwszy od czasów antyku wielkoformatowy akt kobiecy o tematyce świeckiej — i to nie jako symbol wstydu (jak naga Ewa wyganiana z raju), lecz jako pochwała piękna. Scena nie pokazuje samych narodzin Wenus, ale jej przybycie na wyspę Cypr na muszli: spycha ją ku brzegowi wiatr Zefira, wita Hora. Klucz interpretacyjny daje renesansowy humanizm i „podwójna Wenus” Marsilia Ficina: niebiańska (miłość boska/intelektualna) i ziemska (płodność). Tempera jajeczna na płótnie, prawdopodobnie dla Medyceuszy jako pendant do „Primavery”.",
+      theory:
+        "KONTEKST. „Narodziny Wenus” odsłonięto we Florencji w 1485 r. Botticelli był jednym z pierwszych zachodnich artystów od czasów antyku, którzy podjęli temat świecki — idea, że sztuka może służyć przyjemności, a nie tylko Bogu, była nowa i radykalna. Niemal naturalnej wielkości akt kobiecy nie miał precedensu: to nie była naga Ewa zawstydzona grzechem ani potępieni z „Piekła” Dantego, lecz świętowanie nagiego ciała. Tłem jest renesans (dosł. „odrodzenie”) i humanizm — nie antychrześcijański, lecz przesuwający akcent na wolną wolę, jednostkę i jej możliwości. Mecenasami byli Medyceusze, najbogatsza bankierska rodzina Florencji; patronem Botticellego — Lorenzo de’ Medici.\n\nSCENA I POSTACIE. Wbrew tytułowi obraz nie przedstawia „faktycznych narodzin” Wenus (która według mitu zrodziła się z piany morskiej po tym, jak Saturn wykastrował Uranosa i wrzucił jego genitalia do morza), lecz kolejny moment: przybycie bogini na Cypr na muszli. Po lewej Zefir — ciepły wiatr wiosenny — dmuchaniem spycha ją ku brzegowi; jest spleciony z żoną Chloris. Wokół spadają róże ze złotym sercem (według legendy róże zakwitły przy narodzinach Wenus). Po prawej wita ją Hora, personifikacja pory roku, podając kwiecisty płaszcz; nosi mirtowy naszyjnik — roślinę poświęconą Wenus. W centrum naga Wenus (Afrodyta).\n\nPOZA I FORMA. Skromna poza Wenus to „Venus Pudica” (prawa ręka zasłania pierś, lewa łono); wzorem był antyczny posąg „Wenus Medycejskiej” z kolekcji Medyceuszy. Łacińskie „pudica” znaczy zarazem „genitalia” i „wstyd”. Ciało jest wydłużone w stylu gotyckim, o alabastrowej, marmurowej skórze, obrysowane ciemną linią, by odcinało się od jasnego tła. Wenus stoi w tzw. „gotyckim wygięciu” (wariant kontrapostu) — nie jest idealnie centralnie i nie rozkłada ciężaru równo; realna muszla by się przechyliła, ale to nie jest realny świat. Wszystkie postacie są nieważkie, na jednym planie, bez cieni. To NIE błąd, lecz świadomy zabieg: w obrazach religijnych Botticelli stosował realizm (głębia, cienie, różne plany), bo traktował je jako „rzeczywistość”; w mitologicznych celowo odrzucał realizm, by zasygnalizować, że to wytwór wyobraźni — oniryczna, teatralna przestrzeń pełna ruchu (wiatr we włosach, łopocąca tkanina, lecące róże).\n\nTECHNIKA I DETALE. Obraz powstał na płótnie (nie na drewnianej desce, jak zwykle wtedy) — co wskazuje na wiejską willę, bo płótno było tańsze, lżejsze i mniej oficjalne; pierwotnie dwa płótna zszyto. Technika to tempera jajeczna (pigment + żółtko), dominująca aż do ok. 1500, gdy wyparła ją farba olejna. Cienka warstwa tempery dała ciału Wenus świetlistość; tempera nie pozwala na mokre cieniowanie, więc Botticelli budował formę rytmicznymi liniami i kreskowaniem, dodając czyste złoto jako rozjaśnienia (szkolił się jako złotnik). Zaleta tempery: nie żółknie i nie blaknie. Pikantny detalik: pałki wodne (sitowie) — rosnące nie w słonej wodzie — to niemal na pewno subtelna aluzja falliczna do odciętego członka Uranosa, żart dla wykształconych florentczyków.\n\nZNACZENIE. Botticelli znał filozofa i kapłana Marsilia Ficina, który łączył antyczną filozofię z chrześcijaństwem. Ficino opisał „podwójną naturę” Wenus: niebiańską (inspirującą miłość intelektualną/boską) i ziemską (świętującą moc prokreacji). Muszla łączy oba porządki: w symbolice chrześcijańskiej to chrzest i zmartwychwstanie, w pogańskiej — płodność i kobiece organy. Geniusz Botticellego polegał na wzięciu pogańskiego mitu i nagiej kobiety oraz uczynieniu ich akceptowalnymi dla chrześcijańskiej wrażliwości. Obraz zamówił prawdopodobnie Lorenzo de’ Medici jako pendant do „Primavery” (ta była ślubnym prezentem dla jego kuzyna, też Lorenza) — stąd wątek dynastycznej prokreacji: przybycie panny młodej do łoża Medyceuszy odpowiada przybyciu Wenus na jałowy Cypr, który dzięki niej zakwitnie. Co ciekawe, Wenus jest wręcz „aseksualna”, jej nagość kliniczna — bo reprezentuje seks jako konieczną funkcję (prokreację w małżeństwie dynastycznym), nie zmysłowość.\n\nLOSY. 7 lutego 1497 r. dominikanin Savonarola urządził we Florencji „stos próżności”, paląc książki, obrazy, lustra i instrumenty — wszystko „frywolne”. Botticelli był jego gorliwym zwolennikiem i podobno sam wrzucił część własnych dzieł w ogień. Największe mitologiczne prace ocalały tylko dlatego, że były w willi Castello, poza zasięgiem Savonaroli i samego Botticellego. Po śmierci Savonaroli Botticelli uchodził za staroświeckiego; zamówienia wyschły, a artysta zmarł w 1510 r. niemal zapomniany. Dopiero później doceniono, że „Narodziny Wenus” były dziełem rewolucyjnym, które zmieniło bieg historii sztuki i do dziś wygląda zaskakująco nowocześnie — to jeden z najbardziej rozpoznawalnych obrazów świata.",
+      questions: [
+        {
+          type: "abc",
+          text: "Co czyniło „Narodziny Wenus” (1485) dziełem rewolucyjnym?",
+          options: [
+            "pierwszy realistyczny portret konkretnej florentynki",
+            "niemal naturalnej wielkości akt kobiecy o tematyce świeckiej — pierwszy taki od czasów antyku",
+            "pierwsze w Europie użycie farby olejnej",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przełom: wielki akt kobiecy NIE jako symbol wstydu (Ewa, potępieni Dantego), lecz jako pochwała piękna i ciała — temat świecki, niespotykany od antyku. Olej przyszedł później (po 1500), a obraz jest temperą.",
+        },
+        {
+          type: "abc",
+          text: "Co dokładnie przedstawia scena?",
+          options: [
+            "przybycie Wenus na wyspę Cypr na muszli",
+            "moment kastracji Uranosa przez Saturna",
+            "ślub Wenus z Marsem",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Mimo tytułu to nie „faktyczne narodziny” (z piany morskiej), lecz kolejny moment mitu: bogini dobija na muszli do brzegu Cypru.",
+        },
+        {
+          type: "abc",
+          text: "Postać po lewej, która wiatrem spycha Wenus ku brzegowi, to:",
+          options: [
+            "Hora, personifikacja pory roku",
+            "Zefir, ciepły wiatr wiosenny (spleciony z Chloris)",
+            "filozof Marsilio Ficino",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zefir dmie Wenus ku brzegowi, w uścisku z żoną Chloris. Hora jest po PRAWEJ — wita Wenus kwiecistym płaszczem.",
+        },
+        {
+          type: "fill",
+          text: "Skromna poza Wenus (prawa ręka na piersi, lewa zasłania łono) nosi nazwę „Venus ___” i wzorowana była na antycznym posągu Wenus Medycejskiej.",
+          options: null,
+          correctAnswer: "Pudica",
+          explanation:
+            "Łacińskie „pudica” znaczy zarazem „genitalia” i „wstyd”. To poza, której nie spotyka się u męskich posągów — naga męskość kojarzyła się z heroizmem, kobieca z biernym obiektem.",
+        },
+        {
+          type: "abc",
+          text: "Na czym i jaką techniką namalowano obraz?",
+          options: [
+            "olejem na drewnianej desce",
+            "freskiem na mokrym tynku",
+            "temperą jajeczną na płótnie",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Tempera jajeczna (pigment + żółtko) na płótnie. Płótno (tańsze, lżejsze) wskazuje na wiejską willę. Cienka warstwa tempery dała ciału świetlistość, a tempera nie żółknie ani nie blaknie.",
+        },
+        {
+          type: "abc",
+          text: "Filozof Marsilio Ficino opisał „podwójną naturę” Wenus jako:",
+          options: [
+            "boginię niebiańską (miłość intelektualna/boska) i ziemską (prokreacja)",
+            "boginię wojny i boginię pokoju",
+            "symbol grzechu pierworodnego i odkupienia",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Dwie Wenus: niebiańska inspiruje miłość intelektualną/boską, ziemska świętuje płodność. Muszla łączy porządki: chrześcijański (chrzest, zmartwychwstanie) i pogański (płodność).",
+        },
+        {
+          type: "fill",
+          text: "W 1497 r. dominikanin Savonarola urządził we Florencji „___ próżności”, paląc dzieła sztuki, książki i lustra; sam Botticelli był jego zwolennikiem.",
+          options: null,
+          correctAnswer: "stos",
+          explanation:
+            "„Stos próżności” (Bonfire of the Vanities). Mitologiczne arcydzieła ocalały tylko dlatego, że były w willi Castello — poza zasięgiem Savonaroli i samego Botticellego.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego postacie w obrazie są nieważkie, nie rzucają cieni i stoją na jednym planie? Co Botticelli przez to sygnalizował?",
+          options: null,
+          correctAnswer:
+            "To celowy zabieg, nie błąd. Brak cieni, nieważkość i jeden plan tworzą oniryczną, teatralną przestrzeń i mówią widzowi, że ogląda mit — wytwór wyobraźni. W obrazach religijnych Botticelli stosował realizm (głębię, cienie, różne plany), bo traktował je jako „rzeczywistość”; w mitologicznych świadomie z realizmu rezygnował, by zaznaczyć ich fikcyjność.",
+          explanation:
+            "Klucz: realizm vs styl jako sygnał gatunku. Religijne = „rzeczywistość”, mitologiczne = jawna fikcja.",
+        },
+        {
+          type: "spot_error",
+          text: "„Narodziny Wenus namalowano farbą olejną na drewnianej desce.” Wskaż błąd:",
+          options: [
+            "„farbą olejną”",
+            "„na drewnianej desce”",
+            "oba błędne — to tempera jajeczna na płótnie",
+            "wszystko OK",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Podwójny błąd: nie olej, lecz tempera jajeczna; nie deska, lecz płótno (zszyte z dwóch części). Olej wyparł temperę dopiero po 1500 r.",
+        },
+      ],
+      salon: {
+        short:
+          "„Narodziny Wenus” Botticellego (ok. 1485) to pierwszy od antyku wielkoformatowy akt świecki. Scena to nie same narodziny, lecz przybycie Wenus na Cypr na muszli: spycha ją wiatr Zefira, wita Hora. Nagość nie jako wstyd, lecz pochwała piękna.",
+        expand:
+          "Klucz daje Ficino i „podwójna Wenus”: niebiańska (miłość boska/intelektualna) i ziemska (płodność). Obraz powstał zapewne dla Medyceuszy jako pendant do „Primavery”, w kontekście dynastycznego małżeństwa — stąd wątek prokreacji. Forma jest celowo nierealistyczna: nieważkie postacie, brak cieni, jeden plan, alabastrowa skóra, złote wykończenia (Botticelli zaczynał jako złotnik). To mit, nie scena z natury.",
+        trap:
+          "Nie mów, że to dosłowne „narodziny” — to przybycie na Cypr. I nie chwal się, że to olej: to tempera jajeczna na płótnie. Druga pułapka: to nie obraz erotyczny — Wenus jest wręcz „aseksualna”, kliniczna; chodzi o płodność jako funkcję, nie zmysłowość.",
+      },
+    },
+  },
 ];
