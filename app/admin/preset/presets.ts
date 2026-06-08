@@ -8481,4 +8481,113 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 90. Hiszpański: pronombres personales de sujeto (zaimki podmiotu)
+  // ============================================================
+  // Format praktyczny (salon: null) — gramatyka recall, fundament.
+  // Bazuje na notatce z lekcji: zaimki yo/tú/él... i kluczowa zasada,
+  // że w hiszpańskim najczęściej się je POMIJA, bo końcówka czasownika
+  // już pokazuje osobę. Plus rozróżnienie tú/usted/él i „do niej" vs „o niej".
+  {
+    slug: "es-pronombres-sujeto",
+    vaultSlug: "es",
+    label: "Hiszpański — pronombres personales de sujeto (zaimki podmiotu)",
+    payload: {
+      title: "Pronombres personales de sujeto — zaimki podmiotu",
+      summary:
+        "Zaimki osobowe w funkcji podmiotu: yo, tú, él, ella, usted, nosotros/as, vosotros/as, ellos/as, ustedes. Najważniejsza zasada: w hiszpańskim te zaimki bardzo często się POMIJA, bo końcówka czasownika już pokazuje, kto coś robi (vivo = ja mieszkam). Zaimek dajesz tylko dla kontrastu, podkreślenia albo gdy forma jest niejednoznaczna (usted vive = on / ona / pan / pani).",
+      theory:
+        "Lista zaimków podmiotu:\n— yo = ja\n— tú = ty (nieformalnie)\n— él = on\n— ella = ona\n— usted = pan / pani (formalnie)\n— nosotros / nosotras = my\n— vosotros / vosotras = wy\n— ellos / ellas = oni / one\n— ustedes = państwo / wy (formalnie)\n\nNAJWAŻNIEJSZA ZASADA: zaimka często NIE trzeba pisać. Końcówka czasownika już mówi, kto coś robi. Nie mówi się „yo vivo, yo tengo, yo estoy\" cały czas. Naturalniej:\n— „Vivo en Granada.\" (Mieszkam w Granadzie.)\n— „Tengo dos hermanas.\" (Mam dwie siostry.)\n— „Estoy cansada.\" (Jestem zmęczona.)\nZaimka używasz głównie dla podkreślenia albo kontrastu: „Yo vivo en Murcia, pero ella vive en Madrid.\" (Ja mieszkam w Murcji, ale ona w Madrycie.)\n\nÉL vs TÚ vs USTED — to się najczęściej myli:\n— tú — gdy mówisz DO tej osoby nieformalnie: „¿Tú vives en Granada?\" (Czy ty mieszkasz w Granadzie?)\n— usted — gdy mówisz DO tej osoby formalnie (pan / pani): „¿Usted vive en Granada?\" (Czy pan/pani mieszka?). UWAGA: usted ma czasownik jak él/ella, ale znaczy „pan/pani\". „él vive\" = on mieszka; „usted vive\" = pan/pani mieszka.\n— él — gdy mówisz O nim, nie do niego: „¿Dónde está Alberto? Está en su habitación.\" Można „Él está en su habitación\", ale zaimek tu zbędny.\n\nDLACZEGO STARSZA OSOBA TO NIE ZAWSZE „USTED\": usted używasz tylko wtedy, gdy zwracasz się BEZPOŚREDNIO do tej osoby. Jeśli tylko mówisz o starszym panu — to nadal él.\n— Do pana: „Señor García, ¿usted vive aquí?\" (Panie García, czy pan tu mieszka?)\n— O panu: „¿Dónde está el señor García? Él está en casa.\" (Gdzie jest pan García? On jest w domu.)\nKluczowe pytanie: czy mówię DO niej, czy O niej? Wiek osoby nie wystarcza.\n\nGRUPA MIESZANA = ellos (forma męska mnoga). „¿De dónde son Pep y Concha?\" (mężczyzna + kobieta) → „Son españoles\" (najkrócej, bez zaimka) lub „Ellos son españoles\". NIE „ellas son españolas\", bo grupa mieszana bierze rodzaj męski. Samo „son\" już pokazuje, że to oni/one.\n\nKIEDY DAWAĆ ZAIMEK:\n1) kontrast — „Yo vivo aquí, pero ella vive allí.\"\n2) podkreślenie osoby — „Él no quiere venir.\"\n3) gdy forma czasownika jest niejednoznaczna — „¿Usted vive aquí?\", bo „vive\" samo może być on / ona / pan / pani.\n\nKIEDY NIE DAWAĆ (najczęściej, w zwykłych odpowiedziach):\n— „Soy polaca.\" / „Vivo en Varsovia.\" / „Estoy cansada.\" / „Son españoles.\" / „Está en su habitación.\"\nHiszpański lubi elegancję: mniej słów, więcej klasy.",
+      questions: [
+        {
+          type: "abc",
+          text: "Najnaturalniej po hiszpańsku „Mieszkam w Granadzie\" to:",
+          options: [
+            "Yo vivo en Granada",
+            "Vivo en Granada",
+            "Yo soy vivo en Granada",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Końcówka „-o\" w „vivo\" już oznacza „ja\". Zaimek „yo\" jest zbędny — dajesz go tylko dla kontrastu albo podkreślenia.",
+        },
+        {
+          type: "abc",
+          text: "Mówisz DO starszego pana, którego dobrze nie znasz: „Czy pan tu mieszka?\". Użyjesz:",
+          options: [
+            "¿Tú vives aquí?",
+            "¿Él vive aquí?",
+            "¿Usted vive aquí?",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Zwracasz się DO osoby formalnie → usted. „Tú\" byłoby zbyt poufałe, „él\" znaczyłoby „on\" (mówienie O kimś, nie DO kogoś).",
+        },
+        {
+          type: "abc",
+          text: "Mówisz O panu Garcíi do kogoś innego: „Gdzie jest pan García? ___ jest w domu.\" Wstaw zaimek (jeśli chcesz go użyć):",
+          options: [
+            "Usted está en casa",
+            "Él está en casa",
+            "Tú estás en casa",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Mówisz O nim, nie DO niego → él. Wiek nie czyni z niego „usted\" — usted byłoby tylko gdybyś zwracała się bezpośrednio do niego. (Naturalnie wystarczy „Está en casa\".)",
+        },
+        {
+          type: "abc",
+          text: "„¿De dónde son Pep y Concha?\" (Pep — mężczyzna, Concha — kobieta). Poprawna odpowiedź:",
+          options: [
+            "Ellas son españolas",
+            "Son españoles",
+            "Ella es española",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Grupa mieszana (mężczyzna + kobieta) bierze rodzaj męski mnogi → españoles, a zaimek ellos jest zbędny (samo „son\" pokazuje osobę). „Ellas/españolas\" byłoby tylko dla samych kobiet.",
+        },
+        {
+          type: "fill",
+          text: "Kontrast: „___ vivo en Murcia, pero ella vive en Madrid.\" (Ja mieszkam w Murcji, ale ona w Madrycie). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "Yo",
+          explanation:
+            "Tu zaimek „yo\" JEST potrzebny — bo budujesz kontrast ja kontra ona. Bez kontrastu samo „Vivo en Murcia\" wystarczy.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij zaimek formalny „pan/pani\" (l. poj.), który ma czasownik jak él/ella: „¿___ vive en Granada?\"",
+          options: null,
+          correctAnswer: "Usted",
+          explanation:
+            "Usted = pan/pani, ale odmienia się w 3. osobie (vive), tak jak él/ella. Dlatego dodanie zaimka usted bywa potrzebne, by ujednoznacznić, że chodzi o „pan/pani\".",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego w odpowiedzi na „Yo vivo en Murcia, ¿y tú?\" naturalniej jest powiedzieć „Vivo en Granada\" niż „Yo vivo en Granada\".",
+          options: null,
+          correctAnswer:
+            "Bo końcówka czasownika „vivo\" już oznacza „ja mieszkam\" — zaimek „yo\" jest zbędny. Powtarzanie „yo\" nie jest błędem, ale brzmi nienaturalnie. Zaimka użyłabyś tylko dla kontrastu lub podkreślenia, a tu pytanie wprost dotyczy ciebie, więc nic nie trzeba podkreślać.",
+          explanation:
+            "Klucz: hiszpański pomija zaimek, bo niesie go końcówka czasownika. Zaimek = kontrast / podkreślenie / ujednoznacznienie, nie domyślny dodatek.",
+        },
+        {
+          type: "spot_error",
+          text: "Mówiąc o starszej sąsiadce do koleżanki: „Usted está en casa\" (chcę powiedzieć „Ona jest w domu\").",
+          options: [
+            "OK, usted bo starsza osoba",
+            "BŁĄD — usted znaczy „pan/pani\" i używa się go tylko gdy mówisz DO tej osoby. Mówiąc O niej trzeba „ella\" (albo po prostu „Está en casa\")",
+            "powinno być „tú está\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Częsta pomyłka: wiek nie decyduje. Usted to forma adresowania DO kogoś formalnie. Gdy mówisz O kimś, używasz ella/él. Pytanie zawsze brzmi: DO niej czy O niej?",
+        },
+      ],
+      salon: null,
+    },
+  },
 ];
