@@ -1,12 +1,19 @@
 /**
- * Garda autoryzacji dla route'ów API, które kosztują (Anthropic).
+ * Garda autoryzacji dla route'ów API, które kosztują (Anthropic, P30 XP bridge).
  *
- * Wymaga nagłówka `Authorization: Bearer <firebase-id-token>`. Jeśli skonfigurowane
- * są env vary Firebase Admin (FIREBASE_PROJECT_ID/CLIENT_EMAIL/PRIVATE_KEY) —
- * token jest realnie weryfikowany przez verifyIdToken. Bez nich (np. lokalnie bez
- * service accounta) wpadamy w tryb luźny: wymagamy tylko obecności tokena.
+ * Wymaga nagłówka `Authorization: Bearer <firebase-id-token>`. Token jest
+ * weryfikowany przez verifyIdToken (Firebase Admin — FIREBASE_PROJECT_ID/
+ * CLIENT_EMAIL/PRIVATE_KEY). Jeśli te env vary nie są skonfigurowane:
+ *  - poza produkcją (np. lokalny `next dev`) wpadamy w tryb luźny — wymagamy
+ *    tylko obecności tokena, bez weryfikacji;
+ *  - na produkcji odmawiamy (fail-closed) — brak konfiguracji nie może
+ *    oznaczać otwartej bramy.
  *
- * Wzorzec spójny z app/api/projekt30-xp/route.ts.
+ * Apka jest jednoosobowa: jeśli ALLOWED_UIDS jest ustawione (CSV uidów),
+ * tylko te konta przechodzą — każdy inny zalogowany Google-użytkownik
+ * dostaje 403, mimo ważnego tokena Firebase.
+ *
+ * Wzorzec spójny z app/api/projekt30-xp/route.ts (korzysta z tej samej gardy).
  */
 
 import { NextResponse } from "next/server";
@@ -15,6 +22,11 @@ import { getAdmin } from "@/lib/firebase-admin";
 export type AuthResult =
   | { ok: true; uid: string | null }
   | { ok: false; response: NextResponse };
+
+const ALLOWED_UIDS = (process.env.ALLOWED_UIDS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 export async function requireAuth(req: Request): Promise<AuthResult> {
   const authHeader = req.headers.get("authorization") ?? "";
@@ -35,7 +47,19 @@ export async function requireAuth(req: Request): Promise<AuthResult> {
     !!process.env.FIREBASE_PRIVATE_KEY;
 
   if (!haveAdminCreds) {
-    console.info("api-auth: skipping verifyIdToken (no FIREBASE_ADMIN env vars)");
+    if (process.env.NODE_ENV === "production") {
+      console.error(
+        "api-auth: brak FIREBASE_ADMIN env vars na produkcji — odmowa (fail-closed)"
+      );
+      return {
+        ok: false,
+        response: NextResponse.json(
+          { error: "Serwer nieskonfigurowany." },
+          { status: 503 }
+        ),
+      };
+    }
+    console.info("api-auth: skipping verifyIdToken (no FIREBASE_ADMIN env vars, dev)");
     return { ok: true, uid: null };
   }
 
@@ -45,6 +69,16 @@ export async function requireAuth(req: Request): Promise<AuthResult> {
       m.getAuth(app)
     );
     const decoded = await adminAuth.verifyIdToken(idToken);
+    if (ALLOWED_UIDS.length > 0 && !ALLOWED_UIDS.includes(decoded.uid)) {
+      console.warn("api-auth: uid spoza allowlisty:", decoded.uid);
+      return {
+        ok: false,
+        response: NextResponse.json(
+          { error: "Brak dostępu." },
+          { status: 403 }
+        ),
+      };
+    }
     return { ok: true, uid: decoded.uid };
   } catch (e) {
     console.warn(
