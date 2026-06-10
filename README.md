@@ -27,7 +27,7 @@ Wszystkie 7 faz spec zamknięte:
 - [x] **Faza 2 — rdzeń nauki**: Auth Google, wszystkie widoki na Firestore, sesja 15 min z SRS + Error Vault dorzucaniem, streak
 - [x] **Faza 3 — Error Vault**: filtry (sekcja, uciążliwe), quiz tylko z błędów, logika rehabilitacji (3 z rzędu → wypada)
 - [x] **Faza 4 — Salon**: lista teaserów pogrupowana po sekcji, szczegół z trzema sekcjami (krótko/expand/pułapka), rotacja „tematu dnia" przez `lastShownInSalon`
-- [x] **Faza 5 — AI**: `/api/generate` (Opus 4.7 + prompt caching), `/api/grade` (Haiku 4.5 dla pytań open), `/admin` z inline edit propozycji + zapis topic+questions+salon
+- [x] **Faza 5 — AI**: `/api/generate` (Opus 4.8 + prompt caching), `/api/grade` (Haiku 4.5 dla pytań open), `/admin` z inline edit propozycji + zapis topic+questions+salon
 - [x] **Faza 6 — Statystyki**: heatmapa aktywności 90 dni (SVG), wykres trafności 30 dni (SVG), top sekcje, najtrudniejsze tematy, agregaty, effective streak (zeruje się po pominiętym dniu)
 - [x] **Faza 7 — PWA**: service worker (`public/sw.js`), Firestore offline persistence (IndexedDB), ikona SVG, indicator offline, mikroanimacje (fadeIn + stagger), respect `prefers-reduced-motion`
 
@@ -68,7 +68,7 @@ Aplikacja na <http://localhost:3000>. Wymaga skonfigurowanego Firebase (Auth Goo
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-Klucz tylko po stronie serwera (API routes), nigdy w `NEXT_PUBLIC_*`. Model do generowania: `claude-opus-4-7`, do oceniania: `claude-haiku-4-5` (patrz `lib/anthropic.ts`).
+Klucz tylko po stronie serwera (API routes), nigdy w `NEXT_PUBLIC_*`. Model do generowania: `claude-opus-4-8`, do oceniania: `claude-haiku-4-5` (patrz `lib/anthropic.ts`).
 
 ## Struktura katalogów
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, ArrowLeft, Sparkles, BookOpen } from "lucide-react";
 import { useUser } from "@/lib/auth-context";
@@ -10,7 +10,12 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
-import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
+import {
+  awardP30Xp,
+  pillarForVaultSlug,
+  P30_PILLAR_LABELS,
+} from "@/lib/projekt30-xp";
+import { XpToast, type XpAward } from "@/components/ui/XpToast";
 import { PRESETS } from "./presets";
 
 export function PresetClient() {
@@ -20,6 +25,8 @@ export function PresetClient() {
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [justSaved, setJustSaved] = useState<Record<string, string>>({});
+  const [xpAward, setXpAward] = useState<XpAward | null>(null);
+  const xpIdRef = useRef(0);
 
   // Detekcja: dla każdego presetSlug → znajdź topicId zaimportowanego wcześniej.
   // Najpierw po polu presetSlug (nowe importy), potem fallback po identycznym
@@ -75,6 +82,12 @@ export function PresetClient() {
         xp: 10,
         source: "vault:preset-import",
         pillar: pillarForVaultSlug(preset.vaultSlug),
+      });
+      xpIdRef.current += 1;
+      setXpAward({
+        xp: 10,
+        pillar: P30_PILLAR_LABELS[pillarForVaultSlug(preset.vaultSlug)],
+        id: xpIdRef.current,
       });
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : "Zapis nie powiódł się.");
@@ -227,6 +240,8 @@ export function PresetClient() {
         theory, 8 pytań, salon. Pole presetSlug pozwala oznaczyć temat jako
         zaimportowany — nie da się go dodać drugi raz.
       </p>
+
+      <XpToast award={xpAward} onDone={() => setXpAward(null)} />
     </div>
   );
 }

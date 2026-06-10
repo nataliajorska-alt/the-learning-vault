@@ -9,8 +9,13 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
-import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
+import {
+  awardP30Xp,
+  pillarForVaultSlug,
+  P30_PILLAR_LABELS,
+} from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
+import { XpToast, type XpAward } from "@/components/ui/XpToast";
 
 export function SalonDetail({ topicId }: { topicId: string }) {
   const user = useUser();
@@ -23,6 +28,17 @@ export function SalonDetail({ topicId }: { topicId: string }) {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [fbBusy, setFbBusy] = useState(false);
   const [fbErr, setFbErr] = useState<string | null>(null);
+  const [xpAward, setXpAward] = useState<XpAward | null>(null);
+  const xpIdRef = useRef(0);
+
+  function flashXp(xp: number, slug: string | undefined) {
+    xpIdRef.current += 1;
+    setXpAward({
+      xp,
+      pillar: P30_PILLAR_LABELS[pillarForVaultSlug(slug)],
+      id: xpIdRef.current,
+    });
+  }
 
   const topic = useMemo(
     () => topics?.find((t) => t.id === topicId) ?? null,
@@ -49,6 +65,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
         source: "vault:salon-view",
         pillar: pillarForVaultSlug(vault?.slug),
       });
+      flashXp(5, vault?.slug);
     }
   }, [topic, vault]);
 
@@ -90,6 +107,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
         source: "vault:salon-finesse",
         pillar: pillarForVaultSlug(vault?.slug),
       });
+      flashXp(5, vault?.slug);
     } catch (e) {
       setFbErr(e instanceof Error ? e.message : "Nie udało się ocenić.");
     } finally {
@@ -213,6 +231,8 @@ export function SalonDetail({ topicId }: { topicId: string }) {
           Przerób na quizie
         </Link>
       </div>
+
+      <XpToast award={xpAward} onDone={() => setXpAward(null)} />
     </div>
   );
 }

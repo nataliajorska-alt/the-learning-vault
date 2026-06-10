@@ -195,7 +195,7 @@ export function AdminClient() {
       if (!res.ok) {
         if (res.status === 504) {
           throw new Error(
-            "Opus 4.7 nie zmieścił się w 60s (Vercel Hobby). Spróbuj jeszcze raz albo skróć notatki o połowę."
+            "Opus 4.8 nie zmieścił się w 60s (Vercel Hobby). Spróbuj jeszcze raz albo skróć notatki o połowę."
           );
         }
         const data = (await res.json().catch(() => ({}))) as { error?: string };
