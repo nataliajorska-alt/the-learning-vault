@@ -89,12 +89,13 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
   const width = labelW + weeks.length * (cell + gap);
   const height = labelH + 7 * (cell + gap);
 
+  // Rendered on tex-paper: empty days are faint ink shadows, study days are
+  // gold stamps pressed into the ledger, deepening with session count.
   function shade(count: number): string {
-    if (count === 0) return "rgba(232,223,204,0.05)";
+    if (count === 0) return "rgba(60,40,20,0.07)";
     const t = Math.min(1, count / Math.max(1, maxCount));
-    // brass with varying alpha; bias intensity so 1 session is visible
-    const alpha = 0.25 + 0.7 * t;
-    return `rgba(184,146,77,${alpha.toFixed(2)})`;
+    const alpha = 0.32 + 0.6 * t;
+    return `rgba(146,112,55,${alpha.toFixed(2)})`;
   }
 
   return (
@@ -111,7 +112,7 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
             x={labelW + m.weekIdx * (cell + gap)}
             y={10}
             fontSize={9}
-            fill="#9AA3A8"
+            fill="#6b4a26"
             letterSpacing="0.1em"
           >
             {m.label}
@@ -125,7 +126,7 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
               x={0}
               y={labelH + i * (cell + gap) + cell - 2}
               fontSize={9}
-              fill="#9AA3A8"
+              fill="#6b4a26"
             >
               {d}
             </text>
@@ -158,6 +159,8 @@ export function ActivityHeatmap({ data, days = 90 }: Props) {
                 height={cell}
                 rx={2}
                 fill={shade(c.count)}
+                stroke={c.count > 0 ? "rgba(107,74,38,0.35)" : "none"}
+                strokeWidth={0.5}
               >
                 <title>
                   {c.iso} · {c.count}{" "}

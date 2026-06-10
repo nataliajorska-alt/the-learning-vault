@@ -59,16 +59,15 @@ export function AccuracyChart({ points }: Props) {
 
   if (!hasData) {
     return (
-      <div className="card text-center py-12">
-        <p className="text-sm text-muted">
-          Za mało danych do wykresu. Zrób parę sesji.
-        </p>
-      </div>
+      <p className="text-sm italic py-8 text-center" style={{ color: "#5a3f24" }}>
+        Za mało danych do wykresu. Zrób parę sesji.
+      </p>
     );
   }
 
+  // Ink line on ledger paper — oxblood ink, faint ruled gridlines.
   return (
-    <div className="card overflow-x-auto">
+    <div className="overflow-x-auto">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="w-full h-auto"
@@ -85,10 +84,10 @@ export function AccuracyChart({ points }: Props) {
                 x2={W - PAD_R}
                 y1={y}
                 y2={y}
-                stroke="rgba(232,223,204,0.10)"
+                stroke="rgba(60,40,20,0.14)"
                 strokeWidth={1}
               />
-              <text x={6} y={y + 3} fontSize={9} fill="#9AA3A8">
+              <text x={6} y={y + 3} fontSize={9} fill="#6b4a26">
                 {v}%
               </text>
             </g>
@@ -98,8 +97,8 @@ export function AccuracyChart({ points }: Props) {
         <path
           d={path}
           fill="none"
-          stroke="#B8924D"
-          strokeWidth={1.5}
+          stroke="#7a1f14"
+          strokeWidth={1.6}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -110,7 +109,7 @@ export function AccuracyChart({ points }: Props) {
             cx={d.x}
             cy={d.y}
             r={2.5}
-            fill="#C9622F"
+            fill="#8B2E1F"
           >
             <title>
               {d.p.iso} · {d.p.pct}% ({d.p.attempts}{" "}
@@ -126,7 +125,7 @@ export function AccuracyChart({ points }: Props) {
             x={PAD_L + (i / Math.max(1, points.length - 1)) * INNER_W}
             y={H - 6}
             fontSize={9}
-            fill="#9AA3A8"
+            fill="#6b4a26"
             textAnchor="middle"
           >
             {formatShortDate(points[i]!.iso)}
