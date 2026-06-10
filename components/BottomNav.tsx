@@ -9,6 +9,7 @@ import {
   GraduationCap,
   AlertTriangle,
   Wine,
+  User,
 } from "lucide-react";
 import { useTopics } from "@/lib/firestore-data";
 import type { Timestamp } from "firebase/firestore";
@@ -19,6 +20,7 @@ const nav = [
   { href: "/study", label: "Ucz", icon: GraduationCap, nudgeKey: "due" },
   { href: "/errors", label: "Errata", icon: AlertTriangle },
   { href: "/salon", label: "Salon", icon: Wine },
+  { href: "/more", label: "Więcej", icon: User },
 ];
 
 function toMillis(v: unknown): number {
@@ -58,12 +60,14 @@ export function BottomNav() {
         paddingBottom: "env(safe-area-inset-bottom)",
       }}
     >
-      <div className="grid grid-cols-5">
+      <div className="grid grid-cols-6">
         {nav.map((item) => {
           const Icon = item.icon;
           const active =
             pathname === item.href ||
-            (item.href !== "/" && pathname.startsWith(item.href));
+            (item.href !== "/" && pathname.startsWith(item.href)) ||
+            (item.href === "/more" &&
+              (pathname.startsWith("/stats") || pathname.startsWith("/admin")));
           const showDue = item.nudgeKey === "due" && dueToday > 0 && !active;
           return (
             <Link
