@@ -991,6 +991,22 @@ function ReceiptBox({ receipt }: { receipt: SessionReceipt }) {
           </div>
         ))}
       </div>
+      {receipt.errorsRehabilitated > 0 && (
+        <div
+          className="flex items-center justify-center"
+          style={{ marginTop: 16, marginBottom: 4 }}
+        >
+          <span className="rehab-stamp">
+            <span className="rehab-stamp-top">Errata · §</span>
+            <span className="rehab-stamp-main">Rehabilitowane</span>
+            {receipt.errorsRehabilitated > 1 && (
+              <span className="rehab-stamp-top" style={{ marginTop: 1 }}>
+                × {receipt.errorsRehabilitated}
+              </span>
+            )}
+          </span>
+        </div>
+      )}
       {(errataDelta > 0 || receipt.syncIssueCount > 0) && (
         <p
           className="caption"

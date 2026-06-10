@@ -303,10 +303,18 @@ export function ErrorsQuizRunner() {
                     >
                       {lastCorrect
                         ? lastRehabilitated
-                          ? "Tak. Trzeci raz z rzędu — wypada z Vault."
+                          ? "Tak. Trzeci raz z rzędu — karta wypisana z erraty."
                           : "Tak. Ślad się prostuje."
                         : "Nie. Poprawnie:"}
                     </div>
+                    {lastRehabilitated && (
+                      <div style={{ marginTop: 14, marginBottom: 2 }}>
+                        <span className="rehab-stamp">
+                          <span className="rehab-stamp-top">Errata · §</span>
+                          <span className="rehab-stamp-main">Rehabilitowane</span>
+                        </span>
+                      </div>
+                    )}
                     {!lastCorrect && (
                       <p
                         className="font-display italic"
@@ -399,8 +407,12 @@ export function ErrorsQuizRunner() {
                         </div>
                       )}
                       {r.rehabilitated && (
-                        <div className="text-[10px] uppercase tracking-eyebrow text-gold mt-1">
-                          Zrehabilitowane
+                        <div
+                          className="text-[10px] uppercase tracking-eyebrow mt-1 inline-flex items-center gap-1"
+                          style={{ color: "var(--c-racing, #1f3a26)" }}
+                        >
+                          <Check className="w-3 h-3 stroke-[2.5]" />
+                          Wypisane z erraty
                         </div>
                       )}
                     </div>
