@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
+import { PytanieDnia } from "@/components/PytanieDnia";
 import { DateStamp } from "@/components/ui/DateStamp";
 import { WaxSeal } from "@/components/ui/WaxSeal";
 import {
@@ -145,6 +146,28 @@ export default function DashboardPage() {
     return out;
   }, [topics]);
   const nextDueTopic = due[0] ?? null;
+
+  // Najsłabszy temat na „pytanie dnia": najpierw te z najniższą trafnością
+  // (po próbach), w razie remisu struggling i więcej prób; gdy brak prób —
+  // pierwszy nieopanowany temat.
+  const weakestTopic = useMemo(() => {
+    if (!topics) return null;
+    const live = topics.filter((t) => t.status !== "mastered");
+    if (live.length === 0) return null;
+    const tried = live.filter((t) => t.totalAttempts > 0);
+    const pool = tried.length > 0 ? tried : live;
+    return [...pool].sort((a, b) => {
+      const accA = a.totalAttempts > 0 ? a.totalCorrect / a.totalAttempts : 1;
+      const accB = b.totalAttempts > 0 ? b.totalCorrect / b.totalAttempts : 1;
+      if (accA !== accB) return accA - accB;
+      return b.totalAttempts - a.totalAttempts;
+    })[0];
+  }, [topics]);
+
+  const weakestVaultName = useMemo(() => {
+    if (!weakestTopic || !vaults) return "";
+    return vaults.find((v) => v.id === weakestTopic.vaultId)?.name ?? "";
+  }, [weakestTopic, vaults]);
 
   const mastered = topics?.filter((t) => t.status === "mastered").length ?? 0;
   const totalTopics = topics?.length ?? 0;
@@ -293,6 +316,9 @@ export default function DashboardPage() {
             weeklySessions={sessionCount}
             weeklyAccuracy={weeklyAccuracy}
           />
+          {weakestTopic && (
+            <PytanieDnia topic={weakestTopic} vaultName={weakestVaultName} />
+          )}
           <PlaqueRow stats={STATS} />
           <CuratorLetter
             dueCount={due.length}
