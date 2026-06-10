@@ -9,6 +9,7 @@ import {
   getTopic,
   recordAttempt,
   startSession,
+  useSessions,
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
@@ -103,6 +104,7 @@ export function SessionRunner({
   const user = useUser();
   const vaults = useVaults();
   const allTopics = useTopics();
+  const allSessions = useSessions(3650);
 
   const [topic, setTopic] = useState<Topic | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -583,6 +585,12 @@ export function SessionRunner({
   });
   const queueReason = topicQueueReason(topic);
 
+  // Numer domkniętej sesji na lakową pieczęć: wszystkie zakończone sesje plus
+  // ta bieżąca (liczona po id, nawet zanim endedAt dotrze ze snapshotu).
+  const sessionNumber = allSessions
+    ? allSessions.filter((s) => s.endedAt != null || s.id === sessionId).length
+    : null;
+
   return (
     <div className="space-y-10">
       {phase !== "theory" && phase !== "test" && phase !== "review" && (
@@ -663,6 +671,7 @@ export function SessionRunner({
           onDeck={onDeck}
           receipt={sessionReceipt}
           closeHref="/"
+          sessionNumber={sessionNumber}
         />
       )}
     </div>

@@ -3,6 +3,25 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { Question, Topic, Vault } from "@/lib/types";
+import { WaxSeal } from "@/components/ui/WaxSeal";
+
+function toRoman(n: number): string {
+  if (n <= 0) return "—";
+  const map: Array<[number, string]> = [
+    [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"],
+    [100, "C"], [90, "XC"], [50, "L"], [40, "XL"],
+    [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let r = "";
+  let x = n;
+  for (const [v, s] of map) {
+    while (x >= v) {
+      r += s;
+      x -= v;
+    }
+  }
+  return r;
+}
 
 /* ============================================================
    KOREKTA PHASE — session review (etap III).
@@ -73,6 +92,8 @@ interface KorektaPhaseProps {
   onDeck?: OnDeckItem[];
   receipt?: SessionReceipt;
   closeHref?: string;
+  /** Kolejny numer domkniętej sesji — na lakową pieczęć „ZALICZONO". */
+  sessionNumber?: number | null;
 }
 
 export interface SessionReceipt {
@@ -102,6 +123,7 @@ export function KorektaPhase({
   onDeck = [],
   receipt,
   closeHref = "/",
+  sessionNumber = null,
 }: KorektaPhaseProps) {
   const sigInfo = vault ? VAULT_SIGIL[vault.slug] : null;
   const sigil = sigInfo?.sigil ?? vault?.name?.[0]?.toUpperCase() ?? "·";
@@ -198,6 +220,7 @@ export function KorektaPhase({
           korektaBudgetSec={korektaBudgetSec}
           receipt={receipt}
           closeHref={closeHref}
+          sessionNumber={sessionNumber}
         />
 
         {onDeck.length > 0 && <OnDeckStrip items={onDeck} />}
@@ -390,6 +413,7 @@ interface SpreadProps {
   korektaBudgetSec: number;
   receipt?: SessionReceipt;
   closeHref: string;
+  sessionNumber?: number | null;
 }
 
 function BookSpread(props: SpreadProps) {
@@ -563,6 +587,7 @@ function PodsumowaniePage({
   korektaBudgetSec,
   receipt,
   closeHref,
+  sessionNumber,
 }: SpreadProps) {
   const correctWord =
     correctCount === 1
@@ -880,6 +905,9 @@ function PodsumowaniePage({
 
         <div style={{ flex: 1, minHeight: 16 }} />
 
+        {/* Lakowa pieczęć — rytuał domknięcia sesji */}
+        <ClosingSeal sessionNumber={sessionNumber ?? null} />
+
         {/* CTA */}
         <div
           className="flex items-center justify-between flex-wrap"
@@ -915,6 +943,56 @@ function PodsumowaniePage({
           >
             — Finis —
           </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ClosingSeal({ sessionNumber }: { sessionNumber: number | null }) {
+  const now = new Date();
+  const months = [
+    "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
+    "lipca", "sierpnia", "września", "października", "listopada", "grudnia",
+  ];
+  const dayLabel = `${now.getDate()} ${months[now.getMonth()]}`;
+  const sessionLabel =
+    sessionNumber && sessionNumber > 0
+      ? `Sesja ${toRoman(sessionNumber)} · ${dayLabel}`
+      : dayLabel;
+
+  return (
+    <div
+      className="flex items-center justify-center"
+      style={{ gap: 18, marginTop: 8, marginBottom: 4 }}
+    >
+      <div className="seal-press shrink-0">
+        <WaxSeal size={66} label="LV" tone="oxblood" rotate={-6} />
+      </div>
+      <div className="seal-engrave">
+        <div
+          className="font-display"
+          style={{
+            fontSize: 30,
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+            color: "var(--c-ink2)",
+            lineHeight: 1,
+          }}
+        >
+          ZALICZONO
+        </div>
+        <div
+          className="signature"
+          style={{
+            color: "rgba(27,17,8,0.55)",
+            fontSize: 11,
+            letterSpacing: "0.12em",
+            marginTop: 6,
+            textTransform: "uppercase",
+          }}
+        >
+          {sessionLabel}
         </div>
       </div>
     </div>

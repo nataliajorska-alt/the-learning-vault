@@ -179,6 +179,32 @@ body.bg-grain {
   }
 }
 
+/* Wax seal pressed at the end of a session — slams in, overshoots, settles.
+   The seal's own rotation lives on the inner element, so this only scales. */
+@keyframes seal-press {
+  0% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.86);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.seal-press {
+  animation: seal-press 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+/* "ZALICZONO" engraving fades up under the seal, just after it lands. */
+.seal-engrave {
+  animation: fadein 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.32s backwards;
+}
+
 /* "REHABILITOWANE" seal — green discharge stamp pressed when a card
    leaves the errata after three correct answers in a row. */
 .rehab-stamp {
@@ -221,6 +247,10 @@ body.bg-grain {
     animation: none;
   }
   .rehab-stamp {
+    animation: none;
+  }
+  .seal-press,
+  .seal-engrave {
     animation: none;
   }
   .card-hover {
