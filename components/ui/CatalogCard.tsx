@@ -19,6 +19,8 @@ interface CatalogCardProps {
   subtitle?: ReactNode;
   footer?: ReactNode;
   stamp?: { label: string; color: StampColor };
+  imageUrl?: string;
+  imageCaption?: string;
   href?: string;
   /** jeśli podany, w rogu karty pojawia się dyskretna ikona edycji prowadząca tu */
   editHref?: string;
@@ -32,6 +34,8 @@ export function CatalogCard({
   subtitle,
   footer,
   stamp,
+  imageUrl,
+  imageCaption,
   href,
   editHref,
   delayMs = 0,
@@ -53,6 +57,42 @@ export function CatalogCard({
       <div className="catalog-title">{title}</div>
 
       {subtitle && <div className="catalog-subtitle mt-2">{subtitle}</div>}
+
+      {imageUrl && (
+        <figure
+          className="mt-4 overflow-hidden"
+          style={{
+            border: "0.5px solid rgba(122,74,31,0.28)",
+            background: "rgba(27,17,8,0.08)",
+          }}
+        >
+          <img
+            src={imageUrl}
+            alt={imageCaption ?? (typeof title === "string" ? title : "Ilustracja tematu")}
+            loading="lazy"
+            style={{
+              width: "100%",
+              height: 150,
+              objectFit: "cover",
+              display: "block",
+              filter: "saturate(0.92) contrast(0.98)",
+            }}
+          />
+          {imageCaption && (
+            <figcaption
+              className="signature"
+              style={{
+                color: "rgba(27,17,8,0.55)",
+                fontSize: 9,
+                lineHeight: 1.35,
+                padding: "7px 9px",
+              }}
+            >
+              {imageCaption}
+            </figcaption>
+          )}
+        </figure>
+      )}
 
       {footer && <div className="catalog-footer mt-3">{footer}</div>}
 

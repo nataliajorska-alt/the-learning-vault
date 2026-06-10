@@ -294,6 +294,14 @@ export default function DashboardPage() {
             weeklyAccuracy={weeklyAccuracy}
           />
           <PlaqueRow stats={STATS} />
+          <CuratorLetter
+            dueCount={due.length}
+            errorsCount={activeErrors}
+            masteredCount={mastered}
+            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+            weeklySessions={sessionCount}
+            weeklyAccuracy={weeklyAccuracy}
+          />
           <InvitationRow
             errorsCount={activeErrors}
             errorsTopChips={
@@ -976,6 +984,83 @@ function PlaqueRow({
         ))}
       </div>
     </div>
+  );
+}
+
+function CuratorLetter({
+  dueCount,
+  errorsCount,
+  masteredCount,
+  weeklyMinutes,
+  weeklySessions,
+  weeklyAccuracy,
+}: {
+  dueCount: number;
+  errorsCount: number;
+  masteredCount: number;
+  weeklyMinutes: number;
+  weeklySessions: number;
+  weeklyAccuracy: string | null;
+}) {
+  const opening =
+    weeklySessions === 0
+      ? "Ten tydzień jeszcze nie ma wpisu w rejestrze."
+      : `W tym tygodniu zamknęłaś ${weeklySessions} ${weeklySessions === 1 ? "sesję" : "sesji"} i ${weeklyMinutes} minut pracy.`;
+  const accuracy = weeklyAccuracy
+    ? ` Średnia trafność: ${weeklyAccuracy}%.`
+    : "";
+  const next =
+    dueCount > 0
+      ? ` Na biurku leży ${dueCount} ${dueCount === 1 ? "temat" : dueCount < 5 ? "tematy" : "tematów"} do zdjęcia z kolejki.`
+      : " Kolejka jest czysta; dziś wystarczy Salon albo minimum day.";
+  const errata =
+    errorsCount > 0
+      ? ` Errata trzyma ${errorsCount} ${errorsCount === 1 ? "wpis" : "wpisów"}, więc warto rehabilitować jeden słaby punkt.`
+      : " Errata nie domaga się dziś uwagi.";
+
+  return (
+    <section className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+      <div
+        className="tex-paper tex-noise-fine relative"
+        style={{
+          padding: "28px 32px 26px",
+          boxShadow:
+            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 22px 46px -24px rgba(0,0,0,0.72)",
+        }}
+      >
+        <div
+          className="eyebrow"
+          style={{ color: "rgba(122,74,31,0.76)", marginBottom: 12 }}
+        >
+          List kuratora · tydzień bieżący
+        </div>
+        <p
+          className="font-display italic"
+          style={{
+            color: "#1B1108",
+            fontSize: "clamp(25px, 3.2vw, 38px)",
+            lineHeight: 1.12,
+            fontWeight: 600,
+            maxWidth: 920,
+          }}
+        >
+          {opening}
+          {accuracy}
+          {next}
+          {errata}
+        </p>
+        <div
+          className="signature"
+          style={{
+            color: "rgba(27,17,8,0.48)",
+            marginTop: 16,
+            textTransform: "uppercase",
+          }}
+        >
+          {masteredCount} opanowanych kart · bez fajerwerków, za to z ciągłością
+        </div>
+      </div>
+    </section>
   );
 }
 

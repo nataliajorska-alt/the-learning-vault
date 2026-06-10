@@ -19,12 +19,14 @@ interface EditableQuestion {
   options: string[] | null;
   correctAnswer: string | number;
   explanation: string;
+  skill: string;
 }
 
 interface EditableSuggestion {
   title: string;
   summary: string;
   theory: string;
+  learningPoints: string[];
   questions: EditableQuestion[];
   salon: { short: string; expand: string; trap: string };
 }
@@ -116,6 +118,7 @@ function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
         correctAnswer,
         explanation:
           typeof qr.explanation === "string" ? qr.explanation : "",
+        skill: typeof qr.skill === "string" ? qr.skill : "",
       };
     })
     .filter((q): q is EditableQuestion => q !== null);
@@ -135,9 +138,24 @@ function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
     title: r.title,
     summary: r.summary,
     theory: r.theory,
+    learningPoints: Array.isArray(r.learningPoints)
+      ? r.learningPoints
+          .filter((x): x is string => typeof x === "string")
+          .map((x) => x.trim())
+          .filter(Boolean)
+          .slice(0, 6)
+      : [],
     questions,
     salon,
   };
+}
+
+function parseLearningPoints(raw: string): string[] {
+  return raw
+    .split(/\n|,/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .slice(0, 6);
 }
 
 export function AdminClient() {
@@ -224,6 +242,7 @@ export function AdminClient() {
         title: suggestion.title,
         summary: suggestion.summary,
         theory: suggestion.theory,
+        learningPoints: suggestion.learningPoints,
         questions: suggestion.questions.map((q) => ({
           type: q.type,
           text: q.text,
@@ -233,6 +252,7 @@ export function AdminClient() {
               ? Number(q.correctAnswer)
               : String(q.correctAnswer),
           explanation: q.explanation,
+          skill: q.skill,
         })),
         salon: suggestion.salon.short.trim() ? suggestion.salon : null,
       };
@@ -405,6 +425,21 @@ export function AdminClient() {
                 className="mt-2 w-full book-input"
               />
             </div>
+            <div>
+              <label className="eyebrow">Mapa pojęć</label>
+              <textarea
+                value={suggestion.learningPoints.join("\n")}
+                onChange={(e) =>
+                  setSuggestion({
+                    ...suggestion,
+                    learningPoints: parseLearningPoints(e.target.value),
+                  })
+                }
+                rows={4}
+                className="mt-2 w-full book-input"
+                placeholder="Jedno pojęcie lub podumiejętność w linii..."
+              />
+            </div>
           </div>
 
           <div className="space-y-3">
@@ -428,6 +463,12 @@ export function AdminClient() {
                   value={q.text}
                   onChange={(e) => updateQuestion(q.id, { text: e.target.value })}
                   rows={2}
+                  className="w-full book-input"
+                />
+                <input
+                  value={q.skill}
+                  onChange={(e) => updateQuestion(q.id, { skill: e.target.value })}
+                  placeholder="Skill / pojęcie ćwiczone przez pytanie"
                   className="w-full book-input"
                 />
                 {q.options && (

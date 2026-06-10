@@ -16,6 +16,8 @@ Wymagania:
 - Dla typu "fill" i "open": pole correctAnswer = string (wzorcowa odpowiedź). Pole options = null
 - W spot_error opcje to fragmenty zdania + ostatnia opcja "wszystko OK"
 - "explanation": jedno krótkie zdanie, najlepiej w stylu "pułapka jest taka..."
+- "learningPoints": 3-5 krótkich pojęć/podumiejętności, które temat ma ćwiczyć
+- Każde pytanie może mieć "skill": jedno z learningPoints albo krótką etykietę podumiejętności
 - Nie powtarzaj treści z notatek dosłownie — przerób na własne sformułowania, ale zachowaj fakty
 - Salon: short = 2-3 zdania (30s mówienia), expand = co dodać (60s), trap = czego nie mówić`;
 
@@ -37,6 +39,12 @@ const SAVE_TOPIC_TOOL = {
       theory: {
         type: "string",
         description: "1-2 paragrafy treści teoretycznej, proza",
+      },
+      learningPoints: {
+        type: "array",
+        description:
+          "3-5 krótkich pojęć lub podumiejętności ćwiczonych w temacie",
+        items: { type: "string" },
       },
       questions: {
         type: "array",
@@ -60,6 +68,11 @@ const SAVE_TOPIC_TOOL = {
                 "Liczba (indeks 0-based) dla ABC/spot_error. String dla fill/open.",
             },
             explanation: { type: "string" },
+            skill: {
+              type: "string",
+              description:
+                "Krótka etykieta podumiejętności/pojęcia, którego dotyczy pytanie",
+            },
           },
           required: ["type", "text", "correctAnswer", "explanation"],
         },
@@ -74,7 +87,7 @@ const SAVE_TOPIC_TOOL = {
         required: ["short", "expand", "trap"],
       },
     },
-    required: ["title", "summary", "theory", "questions", "salon"],
+    required: ["title", "summary", "theory", "learningPoints", "questions", "salon"],
   },
 };
 

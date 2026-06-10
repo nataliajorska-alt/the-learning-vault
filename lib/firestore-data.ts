@@ -230,12 +230,14 @@ export interface SuggestionPayload {
   title: string;
   summary: string;
   theory: string;
+  learningPoints?: string[];
   questions: Array<{
     type: "abc" | "fill" | "open" | "spot_error" | "translate";
     text: string;
     options: string[] | null;
     correctAnswer: string | number;
     explanation: string;
+    skill?: string;
   }>;
   salon: {
     short: string;
@@ -320,11 +322,13 @@ export async function commitSuggestion(opts: {
   if (presetSlug) topicData.presetSlug = presetSlug;
   if (payload.imageUrl) topicData.imageUrl = payload.imageUrl;
   if (payload.imageCaption) topicData.imageCaption = payload.imageCaption;
+  const learningPoints = sanitizeLearningPoints(payload.learningPoints);
+  if (learningPoints.length > 0) topicData.learningPoints = learningPoints;
   const topicRef = await addDoc(collection(db, "topics"), topicData);
 
   for (let i = 0; i < payload.questions.length; i++) {
     const q = payload.questions[i]!;
-    await addDoc(collection(db, "questions"), {
+    const questionData: Record<string, unknown> = {
       userId,
       topicId: topicRef.id,
       type: q.type,
@@ -334,7 +338,9 @@ export async function commitSuggestion(opts: {
       explanation: q.explanation,
       order: i + 1,
       createdAt: now,
-    });
+    };
+    if (q.skill?.trim()) questionData.skill = q.skill.trim();
+    await addDoc(collection(db, "questions"), questionData);
   }
 
   if (payload.salon && payload.salon.short.trim().length > 0) {
@@ -358,17 +364,19 @@ export interface EditableQuestionData {
   options: string[] | null;
   correctAnswer: string | number;
   explanation: string;
+  skill?: string;
 }
 
 export async function updateTopic(
   topicId: string,
-  patch: { title: string; summary: string; theory: string }
+  patch: { title: string; summary: string; theory: string; learningPoints?: string[] }
 ): Promise<void> {
   const { db } = getFirebase();
   await updateDoc(doc(db, "topics", topicId), {
     title: patch.title,
     summary: patch.summary,
     theory: patch.theory,
+    learningPoints: sanitizeLearningPoints(patch.learningPoints),
     updatedAt: new Date(),
   });
 }
@@ -384,6 +392,7 @@ export async function updateQuestion(
     options: patch.options ?? null,
     correctAnswer: patch.correctAnswer,
     explanation: patch.explanation,
+    skill: patch.skill?.trim() ?? "",
   });
 }
 
@@ -413,10 +422,18 @@ export async function addQuestionToTopic(opts: {
     options: opts.question.options ?? null,
     correctAnswer: opts.question.correctAnswer,
     explanation: opts.question.explanation,
+    skill: opts.question.skill?.trim() ?? "",
     order: maxOrder + 1,
     createdAt: new Date(),
   });
   return ref.id;
+}
+
+function sanitizeLearningPoints(points: string[] | undefined): string[] {
+  return (points ?? [])
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .slice(0, 6);
 }
 
 export async function deleteQuestion(questionId: string): Promise<void> {
@@ -536,6 +553,7 @@ export async function recordAttempt(opts: {
       sessionId,
       questionId: question.id,
       topicId: topic.id,
+      skill: question.skill ?? null,
       answer,
       isCorrect: countsCorrect,
       verdict,
@@ -733,6 +751,7 @@ export interface AttemptRow {
   sessionId: string;
   questionId: string;
   topicId: string;
+  skill?: string | null;
   answer: string;
   isCorrect: boolean;
   timeTaken: number;

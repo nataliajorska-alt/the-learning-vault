@@ -63,6 +63,16 @@ function formatMs(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+function correctAnswerText(question: Question): string {
+  if (question.type === "abc" || question.type === "spot_error") {
+    return (
+      (question.options ?? [])[Number(question.correctAnswer)] ??
+      String(question.correctAnswer)
+    );
+  }
+  return String(question.correctAnswer);
+}
+
 /** Z puli tematów wybiera ten do sesji: najpierw zaległe (due/fresh/struggling)
  *  posortowane wg nextReview, w ostateczności pierwszy z brzegu. */
 function pickTopic(pool: Topic[]): string | null {
@@ -350,6 +360,34 @@ export function SessionRunner({
     }
   }
 
+  async function explainWrong(answer: string, question: Question): Promise<string> {
+    const fallback = `Pułapka jest tutaj: ${question.explanation} Poprawna wersja: ${correctAnswerText(question)}.`;
+    try {
+      const idToken = (await user?.getIdToken()) ?? "";
+      const res = await fetch("/api/wrong-note", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          question: question.text,
+          questionType: question.type,
+          modelAnswer: correctAnswerText(question),
+          userAnswer: answer,
+          explanation: question.explanation,
+          skill: question.skill,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = (await res.json()) as { feedback?: string };
+      return data.feedback?.trim() || fallback;
+    } catch (e) {
+      console.error("wrong-note failed, using fallback", e);
+      return fallback;
+    }
+  }
+
   async function submit(answer: string | number) {
     if (!current || revealed || submitting) return;
     if (!user || !topic || !sessionId) return;
@@ -366,6 +404,10 @@ export function SessionRunner({
         : result.feedback;
     } else {
       verdict = checkAnswer(answer) ? "correct" : "wrong";
+    }
+
+    if (verdict === "wrong") {
+      aiFeedback = await explainWrong(String(answer), current);
     }
 
     // partial liczymy jako zaliczenie (zielony ptaszek + feedback co dodać),

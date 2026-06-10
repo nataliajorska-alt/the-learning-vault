@@ -36,6 +36,7 @@ interface EditQ {
   options: string[] | null;
   correctAnswer: string | number;
   explanation: string;
+  skill: string;
 }
 
 function localKey() {
@@ -51,7 +52,16 @@ function toEditQ(q: Question): EditQ {
     options: q.options,
     correctAnswer: q.correctAnswer,
     explanation: q.explanation,
+    skill: q.skill ?? "",
   };
+}
+
+function parseLearningPoints(raw: string): string[] {
+  return raw
+    .split(/\n|,/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .slice(0, 6);
 }
 
 export function TopicEditor({
@@ -71,6 +81,7 @@ export function TopicEditor({
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [theory, setTheory] = useState("");
+  const [learningPoints, setLearningPoints] = useState<string[]>([]);
   const [questions, setQuestions] = useState<EditQ[]>([]);
   const [originalIds, setOriginalIds] = useState<string[]>([]);
   const [salon, setSalon] = useState({ short: "", expand: "", trap: "" });
@@ -103,6 +114,7 @@ export function TopicEditor({
         setTitle(t.title);
         setSummary(t.summary);
         setTheory(t.theory);
+        setLearningPoints(t.learningPoints ?? []);
         setQuestions(qs.map(toEditQ));
         setOriginalIds(qs.map((q) => q.id));
       } catch (e: unknown) {
@@ -163,6 +175,7 @@ export function TopicEditor({
         options: ["", "", ""],
         correctAnswer: 0,
         explanation: "",
+        skill: "",
       },
     ]);
     setSaved(false);
@@ -173,7 +186,7 @@ export function TopicEditor({
     setBusy(true);
     setErr(null);
     try {
-      await updateTopic(topicId, { title, summary, theory });
+      await updateTopic(topicId, { title, summary, theory, learningPoints });
 
       const currentIds = questions
         .map((q) => q.docId)
@@ -192,6 +205,7 @@ export function TopicEditor({
             ? Number(q.correctAnswer)
             : String(q.correctAnswer),
           explanation: q.explanation,
+          skill: q.skill,
         };
         if (q.docId) {
           await updateQuestion(q.docId, data);
@@ -284,6 +298,7 @@ export function TopicEditor({
           <div className="signature" style={{ color: "rgba(27,17,8,0.54)", marginTop: 4 }}>
             {questions.length === 1 ? "pytanie" : "pytań"} · Salon{" "}
             {salon.short.trim() ? "gotowy" : "pusty"}
+            {learningPoints.length > 0 ? ` · ${learningPoints.length} pojęć` : ""}
           </div>
         </div>
       </header>
@@ -324,6 +339,19 @@ export function TopicEditor({
             className="mt-2 w-full book-input"
           />
         </div>
+        <div>
+          <label className="eyebrow">Mapa pojęć</label>
+          <textarea
+            value={learningPoints.join("\n")}
+            onChange={(e) => {
+              setLearningPoints(parseLearningPoints(e.target.value));
+              setSaved(false);
+            }}
+            rows={4}
+            placeholder="Jedno pojęcie lub podumiejętność w linii..."
+            className="mt-2 w-full book-input"
+          />
+        </div>
       </section>
 
       <div className="space-y-3">
@@ -359,6 +387,12 @@ export function TopicEditor({
               rows={2}
               placeholder="Treść pytania"
               className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
+            />
+            <input
+              value={q.skill}
+              onChange={(e) => patchQ(q.key, { skill: e.target.value })}
+              placeholder="Skill / pojęcie ćwiczone przez pytanie"
+              className="w-full book-input"
             />
             {isMc(q.type) && q.options && (
               <div className="space-y-1.5">

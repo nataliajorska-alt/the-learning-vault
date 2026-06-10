@@ -150,6 +150,7 @@ export function TheoryPhase({
           signature={signature}
           title={topic.title}
           summary={topic.summary}
+          learningPoints={topic.learningPoints ?? []}
           paragraphs={paragraphs}
           queueReason={queueReason}
           compact={compact}
@@ -647,6 +648,7 @@ function BookSpread({
   signature,
   title,
   summary,
+  learningPoints,
   paragraphs,
   queueReason,
   compact,
@@ -657,6 +659,7 @@ function BookSpread({
   signature: string;
   title: string;
   summary: string;
+  learningPoints: string[];
   paragraphs: string[];
   queueReason: string;
   compact: boolean;
@@ -693,6 +696,7 @@ function BookSpread({
               signature={signature}
               title={title}
               intro={summary}
+              learningPoints={learningPoints}
               paragraphs={rectoBody}
               queueReason={queueReason}
               compact={compact}
@@ -882,6 +886,7 @@ function RectoPage({
   signature,
   title,
   intro,
+  learningPoints,
   paragraphs,
   queueReason,
   compact,
@@ -891,6 +896,7 @@ function RectoPage({
   signature: string;
   title: string;
   intro: string;
+  learningPoints: string[];
   paragraphs: string[];
   queueReason: string;
   compact: boolean;
@@ -1023,6 +1029,38 @@ function RectoPage({
             {queueReason}
           </p>
         </div>
+
+        {learningPoints.length > 0 && (
+          <div style={{ marginBottom: 20 }}>
+            <div
+              className="eyebrow"
+              style={{
+                color: "rgba(122,74,31,0.74)",
+                fontSize: 8.5,
+                marginBottom: 8,
+              }}
+            >
+              Mapa pojęć
+            </div>
+            <div className="flex flex-wrap" style={{ gap: 7 }}>
+              {learningPoints.map((point) => (
+                <span
+                  key={point}
+                  className="signature"
+                  style={{
+                    color: "rgba(27,17,8,0.68)",
+                    border: "0.5px solid rgba(122,74,31,0.24)",
+                    background: "rgba(122,74,31,0.055)",
+                    padding: "5px 8px",
+                    fontSize: 10,
+                  }}
+                >
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         {paragraphs.length > 0 && (
           <>

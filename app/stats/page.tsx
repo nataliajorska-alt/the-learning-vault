@@ -225,6 +225,28 @@ export default function StatsPage() {
       .filter((t) => t.wrongs > 0);
   }, [topics]);
 
+  const weakSkills = useMemo(() => {
+    const buckets = new Map<string, { total: number; wrong: number }>();
+    for (const a of attempts30 ?? []) {
+      const skill = a.skill?.trim();
+      if (!skill) continue;
+      const cur = buckets.get(skill) ?? { total: 0, wrong: 0 };
+      cur.total += 1;
+      if (!a.isCorrect) cur.wrong += 1;
+      buckets.set(skill, cur);
+    }
+    return [...buckets.entries()]
+      .map(([skill, b]) => ({
+        skill,
+        total: b.total,
+        wrong: b.wrong,
+        pct: b.total > 0 ? Math.round((b.wrong / b.total) * 100) : 0,
+      }))
+      .filter((x) => x.wrong > 0)
+      .sort((a, b) => b.pct - a.pct || b.wrong - a.wrong)
+      .slice(0, 4);
+  }, [attempts30]);
+
   const curatorNote = useMemo(() => {
     if (dueNow > 0) {
       return `${dueNow} ${dueNow === 1 ? "temat jest" : "tematów jest"} gotowych do powtórki. Najlepszy ruch: jedna sesja mix, zanim kolejka urośnie.`;
@@ -267,6 +289,29 @@ export default function StatsPage() {
             <LedgerMetric label="Krucha mastery" value={fragileMastery} />
             <LedgerMetric label="Sesje w 90 dni" value={sessionsAgg.count} />
           </div>
+          {weakSkills.length > 0 && (
+            <div style={{ marginTop: 22, paddingTop: 16, borderTop: "0.5px dashed rgba(27,17,8,0.20)" }}>
+              <div className="book-eyebrow">Kruche pojęcia</div>
+              <div className="mt-3 space-y-2">
+                {weakSkills.map((s) => (
+                  <div key={s.skill} className="flex items-baseline gap-3">
+                    <span
+                      className="signature"
+                      style={{ color: "rgba(27,17,8,0.58)", flex: 1 }}
+                    >
+                      {s.skill}
+                    </span>
+                    <span
+                      className="font-display italic"
+                      style={{ color: "#8B2E1F", fontSize: 21, lineHeight: 1 }}
+                    >
+                      {s.wrong}/{s.total}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </LedgerSheet>
       </section>
 

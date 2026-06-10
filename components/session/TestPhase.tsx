@@ -800,6 +800,19 @@ function QuestionPage({
               >
                 Pytanie · typ {typeLabel(q.type)}
               </div>
+              {q.skill && (
+                <div
+                  className="signature"
+                  style={{
+                    color: "rgba(122,74,31,0.72)",
+                    fontSize: 10,
+                    marginTop: 4,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Skill · {q.skill}
+                </div>
+              )}
               <div
                 className="signature"
                 style={{
@@ -1706,18 +1719,33 @@ function NotesFilled({
       )}
 
       {lastFeedback && (
-        <p
-          className="body-prose"
+        <div
           style={{
-            color: "rgba(27,17,8,0.85)",
-            fontSize: 14.5,
-            lineHeight: 1.65,
+            border: "0.5px solid rgba(122,74,31,0.24)",
+            background:
+              "linear-gradient(180deg, rgba(122,74,31,0.06), rgba(122,74,31,0.025))",
+            padding: "11px 13px",
             marginBottom: 14,
-            fontStyle: "italic",
           }}
         >
-          {lastFeedback}
-        </p>
+          <div
+            className="eyebrow"
+            style={{ color: "rgba(122,74,31,0.72)", fontSize: 8.5, marginBottom: 5 }}
+          >
+            Mikro-korekta
+          </div>
+          <p
+            className="body-prose"
+            style={{
+              color: "rgba(27,17,8,0.85)",
+              fontSize: 14.5,
+              lineHeight: 1.65,
+              fontStyle: "italic",
+            }}
+          >
+            {lastFeedback}
+          </p>
+        </div>
       )}
 
       <p

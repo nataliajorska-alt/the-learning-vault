@@ -39,6 +39,8 @@ export interface Topic {
   imageUrl?: string;
   /** podpis pod obrazem (autor + tytuł + rok) */
   imageCaption?: string;
+  /** 3-5 pojęć lub podumiejętności ćwiczonych w temacie */
+  learningPoints?: string[];
 }
 
 export type QuestionType = "abc" | "fill" | "open" | "spot_error" | "translate";
@@ -52,6 +54,8 @@ export interface Question {
   options: string[] | null;
   correctAnswer: string | number;
   explanation: string;
+  /** opcjonalna etykieta podumiejętności, np. "ser vs estar" */
+  skill?: string;
   order: number;
   createdAt: Timestamp | Date;
 }

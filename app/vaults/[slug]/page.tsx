@@ -120,6 +120,28 @@ export default function VaultDetailPage({
               }
               title={t.title}
               subtitle={t.summary}
+              imageUrl={t.imageUrl}
+              imageCaption={t.imageCaption}
+              footer={
+                t.learningPoints && t.learningPoints.length > 0 ? (
+                  <div className="flex flex-wrap gap-1.5">
+                    {t.learningPoints.slice(0, 4).map((point) => (
+                      <span
+                        key={point}
+                        className="signature"
+                        style={{
+                          color: "rgba(27,17,8,0.58)",
+                          border: "0.5px solid rgba(122,74,31,0.22)",
+                          padding: "3px 6px",
+                          fontSize: 9,
+                        }}
+                      >
+                        {point}
+                      </span>
+                    ))}
+                  </div>
+                ) : null
+              }
               stamp={{
                 label: statusLabel[t.status] ?? t.status,
                 color: statusStampColor[t.status] ?? "gold",
