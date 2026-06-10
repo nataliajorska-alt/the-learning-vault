@@ -25,9 +25,9 @@ import { getFirebase } from "./firebase";
 import { useUser } from "./auth-context";
 import { applySrs, type Verdict } from "./spaced-repetition";
 import {
-  computeStreakUpdate,
+  computeStreakUpdateWithGrace,
+  effectiveStreakWithGrace,
   rehabError,
-  streakStillValid,
 } from "./streak";
 import type {
   Question,
@@ -62,6 +62,8 @@ export interface UserDoc {
   lastStudyAt: Timestamp | Date | null;
   streak: number;
   longestStreak: number;
+  /** kiedy ostatnio zużyto „urlop dziekański" (1 dzień ochrony / 7 dni) */
+  lastGraceAt?: Timestamp | Date | null;
   timezone: string;
 }
 
@@ -82,6 +84,7 @@ export async function ensureUserDoc(): Promise<void> {
       lastStudyAt: null,
       streak: 0,
       longestStreak: 0,
+      lastGraceAt: null,
       timezone: "Europe/Warsaw",
     });
   } else {
@@ -787,7 +790,13 @@ export function effectiveStreak(userDoc: UserDoc | null): number {
     : src instanceof Date
     ? src
     : null;
-  return streakStillValid(last, userDoc.streak ?? 0, new Date());
+  const lastGrace = userDoc.lastGraceAt ? toDate(userDoc.lastGraceAt) : null;
+  return effectiveStreakWithGrace(
+    last,
+    userDoc.streak ?? 0,
+    lastGrace,
+    new Date()
+  );
 }
 
 // --- SESSIONS (lifecycle) --------------------------------------------------
@@ -843,10 +852,12 @@ async function bumpStreakIfNeeded() {
     ? toDate(data.lastStudyAt)
     : toDate(data.lastActiveAt);
 
-  const { alreadyToday, newStreak } = computeStreakUpdate(
+  const lastGrace = data.lastGraceAt ? toDate(data.lastGraceAt) : null;
+  const { alreadyToday, newStreak, graceUsed } = computeStreakUpdateWithGrace(
     lastStudy,
     now,
-    data.streak
+    data.streak,
+    lastGrace
   );
 
   // Już się dziś uczyła — passa stoi, odświeżamy znacznik aktywności.
@@ -865,6 +876,8 @@ async function bumpStreakIfNeeded() {
     longestStreak: Math.max(data.longestStreak ?? 0, newStreak),
     lastStudyAt: serverTimestamp(),
     lastActiveAt: serverTimestamp(),
+    // Urlop dziekański uratował jeden pominięty dzień — zapisz, że zużyty dziś.
+    ...(graceUsed ? { lastGraceAt: serverTimestamp() } : {}),
   });
 }
 

@@ -15,6 +15,11 @@ import {
   useUserDoc,
   useVaults,
 } from "@/lib/firestore-data";
+import {
+  graceAvailable,
+  reachedMilestone,
+  streakNarrative,
+} from "@/lib/streak";
 import type { Timestamp } from "firebase/firestore";
 
 function toDate(v: unknown): Date {
@@ -118,6 +123,10 @@ export default function StatsPage() {
 
   const streak = effectiveStreak(userDoc);
   const longest = userDoc?.longestStreak ?? 0;
+  const narrative = streakNarrative(streak);
+  const lastGrace = userDoc?.lastGraceAt ? toDate(userDoc.lastGraceAt) : null;
+  const graceReady = graceAvailable(lastGrace, new Date());
+  const milestoneToday = reachedMilestone(streak);
 
   const totalAttempts = topics?.reduce((s, t) => s + t.totalAttempts, 0) ?? 0;
   const totalCorrect = topics?.reduce((s, t) => s + t.totalCorrect, 0) ?? 0;
@@ -335,10 +344,43 @@ export default function StatsPage() {
           </div>
           <div className="brass-hint" style={{ marginTop: "0.65rem" }}>
             {streak === 0
-              ? "Gabinet czeka. Zacznij dziś."
+              ? longest > 0
+                ? "Rozdział zamknięty. Czas otworzyć nowy."
+                : "Gabinet czeka. Zacznij dziś."
               : longest > streak
               ? `${streak} ${plDni(streak)} · rekord: ${longest} ${plDni(longest)}`
               : `${streak} ${plDni(streak)} · to twój rekord`}
+          </div>
+
+          {/* Rozdział + droga do następnego kamienia */}
+          {streak > 0 && (
+            <div
+              className="brass-hint"
+              style={{ marginTop: "0.35rem", opacity: 0.85 }}
+            >
+              {milestoneToday
+                ? `Rozdział ${toRoman(narrative.chapter)} otwarty — ${milestoneToday} dni z rzędu.`
+                : narrative.toNext != null
+                ? `Rozdział ${toRoman(narrative.chapter + 1)} za ${narrative.toNext} ${plDni(narrative.toNext)}.`
+                : "Wszystkie rozdziały zdobyte."}
+            </div>
+          )}
+
+          {/* Urlop dziekański — łagodność, nie kara */}
+          <div
+            className="brass-hint"
+            style={{
+              marginTop: "0.55rem",
+              fontSize: "10px",
+              letterSpacing: "0.04em",
+              color: graceReady
+                ? "rgba(201,169,97,0.7)"
+                : "rgba(232,223,204,0.4)",
+            }}
+          >
+            {graceReady
+              ? "✦ Urlop dziekański dostępny — jeden dzień przerwy nie zrywa passy."
+              : "Urlop dziekański zużyty — odnowi się w ciągu tygodnia."}
           </div>
         </div>
 

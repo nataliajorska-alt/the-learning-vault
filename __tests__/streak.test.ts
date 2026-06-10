@@ -1,10 +1,16 @@
 import { describe, it, expect } from "vitest";
 import {
   computeStreakUpdate,
+  computeStreakUpdateWithGrace,
   createsErrorEntry,
+  effectiveStreakWithGrace,
+  graceAvailable,
   isSameLocalDay,
+  nextMilestone,
+  reachedMilestone,
   REHAB_THRESHOLD,
   rehabError,
+  streakChapter,
   streakStillValid,
 } from "@/lib/streak";
 
@@ -114,6 +120,77 @@ describe("rehabError", () => {
     c = rehabError(c, "correct")!; // 2
     const out = rehabError(c, "correct")!; // 3 → rehab
     expect(out).toEqual({ correctStreak: 3, status: "rehabilitated" });
+  });
+});
+
+describe("graceAvailable (urlop dziekański)", () => {
+  const now = d("2026-05-28T12:00:00");
+  it("nigdy nieużyty → dostępny", () => {
+    expect(graceAvailable(null, now)).toBe(true);
+  });
+  it("użyty 7 dni temu → znów dostępny", () => {
+    expect(graceAvailable(d("2026-05-21T12:00:00"), now)).toBe(true);
+  });
+  it("użyty 3 dni temu → niedostępny", () => {
+    expect(graceAvailable(d("2026-05-25T12:00:00"), now)).toBe(false);
+  });
+});
+
+describe("effectiveStreakWithGrace", () => {
+  const now = d("2026-05-28T12:00:00");
+  it("nauka wczoraj → passa stoi (bez urlopu)", () => {
+    expect(effectiveStreakWithGrace(d("2026-05-27T20:00:00"), 7, null, now)).toBe(7);
+  });
+  it("jeden pominięty dzień + urlop dostępny → passa stoi", () => {
+    expect(effectiveStreakWithGrace(d("2026-05-26T20:00:00"), 7, null, now)).toBe(7);
+  });
+  it("jeden pominięty dzień, ale urlop zużyty niedawno → 0", () => {
+    expect(
+      effectiveStreakWithGrace(d("2026-05-26T20:00:00"), 7, d("2026-05-24T12:00:00"), now)
+    ).toBe(0);
+  });
+  it("dwa pominięte dni → 0 nawet z urlopem", () => {
+    expect(effectiveStreakWithGrace(d("2026-05-25T20:00:00"), 7, null, now)).toBe(0);
+  });
+});
+
+describe("computeStreakUpdateWithGrace", () => {
+  it("wczoraj → +1, bez zużycia urlopu", () => {
+    const r = computeStreakUpdateWithGrace(d("2026-05-27T20:00:00"), d("2026-05-28T08:00:00"), 5, null);
+    expect(r).toEqual({ alreadyToday: false, newStreak: 6, graceUsed: false });
+  });
+  it("jeden pominięty dzień + urlop → +1, urlop zużyty", () => {
+    const r = computeStreakUpdateWithGrace(d("2026-05-26T20:00:00"), d("2026-05-28T08:00:00"), 5, null);
+    expect(r).toEqual({ alreadyToday: false, newStreak: 6, graceUsed: true });
+  });
+  it("jeden pominięty dzień, urlop zużyty → reset do 1", () => {
+    const r = computeStreakUpdateWithGrace(
+      d("2026-05-26T20:00:00"), d("2026-05-28T08:00:00"), 5, d("2026-05-24T12:00:00")
+    );
+    expect(r).toEqual({ alreadyToday: false, newStreak: 1, graceUsed: false });
+  });
+  it("ten sam dzień → bez zmian", () => {
+    const r = computeStreakUpdateWithGrace(d("2026-05-28T08:00:00"), d("2026-05-28T20:00:00"), 5, null);
+    expect(r).toEqual({ alreadyToday: true, newStreak: 5, graceUsed: false });
+  });
+});
+
+describe("kamienie milowe", () => {
+  it("reachedMilestone tylko dla dokładnych progów", () => {
+    expect(reachedMilestone(7)).toBe(7);
+    expect(reachedMilestone(30)).toBe(30);
+    expect(reachedMilestone(8)).toBeNull();
+  });
+  it("nextMilestone zwraca najbliższy próg przed nami", () => {
+    expect(nextMilestone(0)).toBe(7);
+    expect(nextMilestone(7)).toBe(30);
+    expect(nextMilestone(365)).toBeNull();
+  });
+  it("streakChapter liczy zdobyte kamienie", () => {
+    expect(streakChapter(3)).toBe(0);
+    expect(streakChapter(7)).toBe(1);
+    expect(streakChapter(30)).toBe(2);
+    expect(streakChapter(100)).toBe(3);
   });
 });
 

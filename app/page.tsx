@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
 import { PytanieDnia } from "@/components/PytanieDnia";
+import { StreakMilestone } from "@/components/StreakMilestone";
 import { DateStamp } from "@/components/ui/DateStamp";
 import { WaxSeal } from "@/components/ui/WaxSeal";
 import {
@@ -299,6 +300,7 @@ export default function DashboardPage() {
             dueCount={due.length}
             sessionNumber={sessionCount + 1}
           />
+          <StreakMilestone streak={streak} />
           <CuratorDesk
             dueCount={due.length}
             dueComposition={dueComposition}
