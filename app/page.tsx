@@ -13,6 +13,7 @@ import {
 import { FirstRunSeed } from "@/components/FirstRunSeed";
 import { PytanieDnia } from "@/components/PytanieDnia";
 import { StreakMilestone } from "@/components/StreakMilestone";
+import { WeeklyLetter } from "@/components/WeeklyLetter";
 import { DateStamp } from "@/components/ui/DateStamp";
 import { WaxSeal } from "@/components/ui/WaxSeal";
 import {
@@ -322,14 +323,27 @@ export default function DashboardPage() {
             <PytanieDnia topic={weakestTopic} vaultName={weakestVaultName} />
           )}
           <PlaqueRow stats={STATS} />
-          <CuratorLetter
-            dueCount={due.length}
-            errorsCount={activeErrors}
-            masteredCount={mastered}
-            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
-            weeklySessions={sessionCount}
-            weeklyAccuracy={weeklyAccuracy}
-          />
+          {new Date().getDay() === 0 ? (
+            <WeeklyLetter
+              stats={{
+                sessions: sessionCount,
+                minutes: Math.round(sessionTotalDuration / 60),
+                accuracy: weeklyAccuracy,
+                errata: activeErrors,
+                mastered,
+                streak,
+              }}
+            />
+          ) : (
+            <CuratorLetter
+              dueCount={due.length}
+              errorsCount={activeErrors}
+              masteredCount={mastered}
+              weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+              weeklySessions={sessionCount}
+              weeklyAccuracy={weeklyAccuracy}
+            />
+          )}
           <InvitationRow
             errorsCount={activeErrors}
             errorsTopChips={
