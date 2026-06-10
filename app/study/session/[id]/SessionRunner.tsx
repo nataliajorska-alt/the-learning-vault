@@ -12,7 +12,11 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
-import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
+import {
+  awardP30Xp,
+  pillarForVaultSlug,
+  P30_PILLAR_LABELS,
+} from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
 import { answersMatch } from "@/lib/answer-normalization";
 import {
@@ -660,7 +664,7 @@ function buildSessionReceipt(opts: {
     errorsRehabilitated: opts.sessionEffects.errorsRehabilitated,
     rehabProgress: opts.sessionEffects.rehabProgress,
     syncIssueCount: opts.syncIssueCount,
-    pillar: pillarForVaultSlug(opts.vaultSlug ?? undefined),
+    pillar: P30_PILLAR_LABELS[pillarForVaultSlug(opts.vaultSlug ?? undefined)],
   };
 }
 

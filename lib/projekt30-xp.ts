@@ -23,6 +23,17 @@ export const P30_PILLARS = [
 
 export type P30Pillar = (typeof P30_PILLARS)[number];
 
+/** Etykiety filarów do wyświetlenia (np. w rachunku sesji). */
+export const P30_PILLAR_LABELS: Record<P30Pillar, string> = {
+  pozycja: "Pozycja",
+  cialo: "Ciało",
+  styl: "Styl",
+  kapital: "Kapitał",
+  kariera: "Kariera",
+  tozsamosc: "Tożsamość",
+  milosc: "Miłość",
+};
+
 /**
  * Mapowanie vault.slug → filar P30.
  *

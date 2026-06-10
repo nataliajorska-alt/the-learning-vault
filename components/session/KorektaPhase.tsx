@@ -943,7 +943,7 @@ function ReceiptBox({ receipt }: { receipt: SessionReceipt }) {
     {
       label: "XP",
       value: `+${receipt.xp}`,
-      sub: receipt.pillar,
+      sub: `→ ${receipt.pillar}`,
     },
   ];
 
