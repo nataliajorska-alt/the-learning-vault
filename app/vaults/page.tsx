@@ -580,7 +580,16 @@ function Catalog({
             Pełny spis treści
           </h2>
         </div>
-        <div className="flex items-center" style={{ gap: 24 }}>
+        <div
+          className="flex items-center flex-wrap"
+          style={{
+            gap: 4,
+            padding: 4,
+            border: "1px solid rgba(184,146,77,0.18)",
+            background: "rgba(27,17,8,0.32)",
+            boxShadow: "inset 0 1px 0 rgba(255,220,160,0.05)",
+          }}
+        >
           <SortTab
             active={sortMode === "alpha"}
             onClick={() => onSortChange("alpha")}
@@ -638,13 +647,16 @@ function SortTab({
       style={{
         color: active ? "var(--c-gold-300)" : "var(--c-paper-300)",
         opacity: active ? 1 : 0.6,
-        borderBottom: active
-          ? "1px solid var(--c-gold-500)"
-          : "1px solid transparent",
-        paddingBottom: 4,
+        border: active
+          ? "0.5px solid rgba(184,146,77,0.38)"
+          : "0.5px solid transparent",
+        padding: "9px 12px 8px",
         cursor: "pointer",
-        background: "transparent",
-        transition: "color 180ms ease, opacity 180ms ease",
+        background: active
+          ? "linear-gradient(180deg, rgba(184,146,77,0.12), rgba(184,146,77,0.04))"
+          : "transparent",
+        transition:
+          "color 180ms ease, opacity 180ms ease, border-color 180ms ease, background 180ms ease",
       }}
     >
       {children}

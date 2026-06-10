@@ -3,7 +3,16 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogOut } from "lucide-react";
+import {
+  AlertTriangle,
+  GraduationCap,
+  LayoutGrid,
+  Library,
+  LineChart,
+  LogOut,
+  Sparkles,
+  Wine,
+} from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import {
   effectiveStreak,
@@ -21,14 +30,14 @@ function toMillis(v: unknown): number {
   return 0;
 }
 
-const NAV: Array<{ href: string; label: string; nudgeKey?: "due" }> = [
-  { href: "/", label: "Dziś", nudgeKey: "due" },
-  { href: "/vaults", label: "Sekcje" },
-  { href: "/study", label: "Ucz mnie", nudgeKey: "due" },
-  { href: "/errors", label: "Errata" },
-  { href: "/salon", label: "Salon" },
-  { href: "/stats", label: "Statystyki" },
-  { href: "/admin", label: "Admin" },
+const NAV = [
+  { href: "/", label: "Dziś", icon: LayoutGrid, nudgeKey: "due" },
+  { href: "/vaults", label: "Sekcje", icon: Library },
+  { href: "/study", label: "Ucz mnie", icon: GraduationCap, nudgeKey: "due" },
+  { href: "/errors", label: "Errata", icon: AlertTriangle },
+  { href: "/salon", label: "Salon", icon: Wine },
+  { href: "/stats", label: "Statystyki", icon: LineChart },
+  { href: "/admin", label: "Admin", icon: Sparkles },
 ];
 
 export function TopNav() {
@@ -54,40 +63,77 @@ export function TopNav() {
 
   return (
     <header
-      className="hidden md:block fixed top-0 inset-x-0 z-40"
+      className="hidden md:block fixed top-0 inset-x-0 z-40 vault-topbar"
       style={{
-        background: "rgba(18,10,4,0.94)",
+        background:
+          "linear-gradient(180deg, rgba(21,16,10,0.96), rgba(18,10,4,0.92))",
         backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         borderBottom: "1px solid rgba(184,146,77,0.22)",
+        boxShadow:
+          "inset 0 -1px 0 rgba(0,0,0,0.45), 0 18px 36px -28px rgba(0,0,0,0.85)",
       }}
     >
-      <div className="max-w-content mx-auto px-12 h-topnav flex items-center justify-between gap-8">
+      <div className="max-w-content mx-auto px-12 h-topnav flex items-center justify-between gap-7">
         {/* Wordmark */}
         <Link
           href="/"
-          className="flex items-baseline gap-2 shrink-0 group"
+          className="flex items-center gap-3 shrink-0 group"
+          style={{ textDecoration: "none" }}
         >
           <span
-            className="eyebrow"
-            style={{ color: "var(--c-paper-300)", opacity: 0.8 }}
-          >
-            The Learning
-          </span>
-          <span
-            className="font-display italic font-medium"
+            aria-hidden
+            className="flex items-center justify-center"
             style={{
-              fontSize: 22,
-              color: "var(--c-gold-400)",
-              lineHeight: 1,
+              width: 30,
+              height: 30,
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle at 35% 30%, #d9b878, #7a5c28 65%, #2a1808)",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,235,180,0.45), 0 2px 4px rgba(0,0,0,0.45)",
+              color: "#1B1108",
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 700,
+              fontSize: 14,
             }}
           >
-            Vault
+            LV
+          </span>
+          <span className="flex items-baseline gap-2">
+            <span
+              className="eyebrow"
+              style={{ color: "var(--c-paper-300)", opacity: 0.8 }}
+            >
+              The Learning
+            </span>
+            <span
+              className="font-display italic font-medium"
+              style={{
+                fontSize: 22,
+                color: "var(--c-gold-400)",
+                lineHeight: 1,
+              }}
+            >
+              Vault
+            </span>
           </span>
         </Link>
 
         {/* Center nav */}
-        <nav className="flex items-center" style={{ gap: 36 }}>
+        <nav
+          className="flex items-center"
+          style={{
+            gap: 4,
+            padding: 4,
+            border: "1px solid rgba(184,146,77,0.14)",
+            background: "rgba(27,17,8,0.28)",
+            boxShadow: "inset 0 1px 0 rgba(255,220,160,0.05)",
+          }}
+        >
           {NAV.map((item) => {
+            const Icon = item.icon;
             const active =
               pathname === item.href ||
               (item.href !== "/" && pathname.startsWith(item.href));
@@ -97,19 +143,24 @@ export function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="eyebrow relative"
+                className="eyebrow relative flex items-center"
                 style={{
+                  gap: 8,
                   color: active
                     ? "var(--c-gold-300)"
                     : "var(--c-paper-200)",
                   opacity: active ? 1 : 0.7,
-                  borderBottom: active
-                    ? "1px solid var(--c-gold-500)"
-                    : "1px solid transparent",
-                  paddingBottom: 6,
+                  padding: "9px 12px 8px",
+                  background: active
+                    ? "linear-gradient(180deg, rgba(184,146,77,0.13), rgba(184,146,77,0.05))"
+                    : "transparent",
+                  border: active
+                    ? "0.5px solid rgba(184,146,77,0.34)"
+                    : "0.5px solid transparent",
                   cursor: "pointer",
+                  textDecoration: "none",
                   transition:
-                    "color 180ms ease, opacity 180ms ease, border-color 180ms ease",
+                    "color 180ms ease, opacity 180ms ease, border-color 180ms ease, background 180ms ease",
                 }}
                 title={
                   showDue
@@ -117,22 +168,33 @@ export function TopNav() {
                     : undefined
                 }
               >
+                <Icon className="h-3.5 w-3.5 stroke-[1.6]" />
                 {item.label}
                 {showDue && (
                   <span
-                    aria-hidden
+                    className="signature"
                     style={{
                       position: "absolute",
-                      top: -2,
-                      right: -8,
-                      width: 5,
-                      height: 5,
-                      borderRadius: "50%",
+                      top: -8,
+                      right: -6,
+                      minWidth: 17,
+                      height: 17,
+                      borderRadius: 999,
                       background:
                         "radial-gradient(circle at 35% 30%, #f3d28a, #b08540 70%)",
-                      boxShadow: "0 0 4px rgba(216,179,107,0.55)",
+                      color: "#2a1808",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,235,180,0.6), 0 1px 4px rgba(0,0,0,0.55)",
+                      fontSize: 9,
+                      lineHeight: "17px",
+                      textAlign: "center",
+                      letterSpacing: 0,
+                      fontWeight: 700,
+                      padding: "0 4px",
                     }}
-                  />
+                  >
+                    {dueToday}
+                  </span>
                 )}
               </Link>
             );

@@ -2,6 +2,14 @@
 
 import { useEffect, useMemo } from "react";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpenCheck,
+  GraduationCap,
+  LibraryBig,
+  NotebookPen,
+  Sparkles,
+} from "lucide-react";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
 import { DateStamp } from "@/components/ui/DateStamp";
 import { WaxSeal } from "@/components/ui/WaxSeal";
@@ -105,6 +113,23 @@ export default function DashboardPage() {
         t.status === "struggling" ||
         toMillis(t.nextReview) <= now
     );
+  }, [topics]);
+
+  const dueComposition = useMemo(() => {
+    const out = { fresh: 0, review: 0, struggling: 0 };
+    if (!topics) return out;
+    const now = Date.now();
+    for (const t of topics) {
+      if (t.status === "mastered") continue;
+      if (t.status === "fresh") {
+        out.fresh += 1;
+      } else if (t.status === "struggling") {
+        out.struggling += 1;
+      } else if (toMillis(t.nextReview) <= now) {
+        out.review += 1;
+      }
+    }
+    return out;
   }, [topics]);
 
   const mastered = topics?.filter((t) => t.status === "mastered").length ?? 0;
@@ -236,6 +261,15 @@ export default function DashboardPage() {
             heroLead={heroLead}
             dueCount={due.length}
             sessionNumber={sessionCount + 1}
+          />
+          <CuratorDesk
+            dueCount={due.length}
+            dueComposition={dueComposition}
+            errorsCount={activeErrors}
+            salonTopic={salonTopic}
+            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+            weeklySessions={sessionCount}
+            weeklyAccuracy={weeklyAccuracy}
           />
           <PlaqueRow stats={STATS} />
           <InvitationRow
@@ -375,39 +409,22 @@ function Hero({
           <div className="flex items-center flex-wrap" style={{ gap: 14 }}>
             <Link
               href="/study"
-              className="eyebrow"
+              className="btn-primary"
               style={{
-                background:
-                  "linear-gradient(180deg, #6b1a14 0%, #4a1010 55%, #2c0808 100%)",
-                color: "var(--c-paper-100)",
-                padding: "16px 28px",
-                border: "0.5px solid rgba(184,146,77,0.55)",
-                letterSpacing: "0.22em",
-                fontWeight: 600,
-                boxShadow:
-                  "inset 0 1px 0 rgba(255,180,140,0.18), inset 0 -1px 0 rgba(0,0,0,0.45), 0 8px 20px -6px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.45)",
-                cursor: "pointer",
-                textShadow: "0 -1px 0 rgba(0,0,0,0.6)",
-                display: "inline-block",
                 textDecoration: "none",
               }}
             >
-              Otwórz sesję · 15 min →
+              <GraduationCap className="h-4 w-4 stroke-[1.5]" />
+              Otwórz sesję · 15 min
             </Link>
             <Link
               href="/vaults"
-              className="eyebrow"
+              className="btn-ghost"
               style={{
-                background: "transparent",
-                color: "var(--c-paper-200)",
-                padding: "16px 22px",
-                border: "1px solid rgba(184,146,77,0.4)",
-                opacity: 0.9,
-                cursor: "pointer",
-                display: "inline-block",
                 textDecoration: "none",
               }}
             >
+              <LibraryBig className="h-4 w-4 stroke-[1.5]" />
               Pokaż agendę
             </Link>
           </div>
@@ -486,6 +503,336 @@ function Hero({
         </div>
       </div>
     </div>
+  );
+}
+
+/* ============================================================
+   CuratorDesk — recommended next move + daily state
+   ============================================================ */
+
+interface CuratorDeskProps {
+  dueCount: number;
+  dueComposition: {
+    fresh: number;
+    review: number;
+    struggling: number;
+  };
+  errorsCount: number;
+  salonTopic: {
+    topic: { id: string; title: string };
+    phrase: { short: string };
+  } | null;
+  weeklyMinutes: number;
+  weeklySessions: number;
+  weeklyAccuracy: string | null;
+}
+
+function CuratorDesk({
+  dueCount,
+  dueComposition,
+  errorsCount,
+  salonTopic,
+  weeklyMinutes,
+  weeklySessions,
+  weeklyAccuracy,
+}: CuratorDeskProps) {
+  const hasDue = dueCount > 0;
+  const primary = hasDue
+    ? {
+        href: "/study",
+        label: "Zacznij sesję",
+        icon: GraduationCap,
+        note: `${dueCount} ${dueCount === 1 ? "temat czeka" : dueCount < 5 ? "tematy czekają" : "tematów czeka"} w kolejce spaced repetition.`,
+      }
+    : salonTopic
+    ? {
+        href: `/salon/${salonTopic.topic.id}`,
+        label: "Wejdź do salonu",
+        icon: Sparkles,
+        note: "Kolejka jest czysta. Najlepszy ruch: lekka rozmowa i obycie z tematem.",
+      }
+    : {
+        href: "/vaults",
+        label: "Przejrzyj regał",
+        icon: LibraryBig,
+        note: "Kolejka jest czysta. Możesz spokojnie wybrać tom do następnego wejścia.",
+      };
+
+  const PrimaryIcon = primary.icon;
+  const totalFocus = Math.max(
+    1,
+    dueComposition.fresh + dueComposition.review + dueComposition.struggling
+  );
+  const strips = [
+    {
+      label: "Nowe",
+      value: dueComposition.fresh,
+      color: "var(--c-cognac)",
+    },
+    {
+      label: "Powtórki",
+      value: dueComposition.review,
+      color: "var(--c-gold-500)",
+    },
+    {
+      label: "Trudne",
+      value: dueComposition.struggling,
+      color: "var(--c-ink)",
+    },
+  ];
+  const topicTitle = salonTopic?.topic.title ?? "Temat do swobodnej rozmowy";
+  const minutesLabel =
+    weeklyMinutes > 0
+      ? `${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min`
+      : "0 min";
+
+  return (
+    <section className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+      <div
+        className="grid grid-cols-1 lg:grid-cols-12"
+        style={{
+          gap: 20,
+        }}
+      >
+        <div className="lg:col-span-7">
+          <div
+            className="tex-paper tex-noise-fine relative h-full overflow-hidden"
+            style={{
+              minHeight: 286,
+              boxShadow:
+                "0 1px 0 rgba(255,250,235,0.65) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 24px 48px -18px rgba(0,0,0,0.72), 0 5px 10px rgba(0,0,0,0.35)",
+            }}
+          >
+            <div
+              aria-hidden
+              className="absolute pointer-events-none"
+              style={{
+                inset: 14,
+                border: "0.5px solid rgba(146,112,55,0.34)",
+                zIndex: 2,
+              }}
+            />
+            <div
+              aria-hidden
+              className="absolute pointer-events-none"
+              style={{
+                inset: "auto -10% -44% 20%",
+                height: 170,
+                background:
+                  "radial-gradient(ellipse 60% 70%, rgba(139,46,31,0.16), transparent 68%)",
+                zIndex: 2,
+              }}
+            />
+            <div
+              className="relative grid grid-cols-1 sm:grid-cols-[1fr_auto]"
+              style={{ zIndex: 3, gap: 24, padding: "34px 34px 30px" }}
+            >
+              <div>
+                <div
+                  className="eyebrow flex items-center"
+                  style={{
+                    gap: 10,
+                    color: "rgba(139,46,31,0.82)",
+                    marginBottom: 12,
+                  }}
+                >
+                  <NotebookPen className="h-3.5 w-3.5 stroke-[1.7]" />
+                  Plan dnia · curator note
+                </div>
+                <h2
+                  className="font-display italic"
+                  style={{
+                    fontSize: "clamp(32px, 4vw, 48px)",
+                    color: "#1B1108",
+                    lineHeight: 1.0,
+                    fontWeight: 600,
+                    letterSpacing: "-0.015em",
+                    marginBottom: 14,
+                  }}
+                >
+                  {hasDue ? "Najpierw nauka." : "Dziś lekko."}
+                </h2>
+                <p
+                  className="body-prose"
+                  style={{
+                    color: "rgba(27,17,8,0.78)",
+                    maxWidth: 540,
+                    marginBottom: 22,
+                  }}
+                >
+                  {primary.note}{" "}
+                  {errorsCount > 0
+                    ? `Errata ma ${errorsCount} ${errorsCount === 1 ? "aktywny wpis" : "aktywnych wpisów"}, więc po sesji warto zamknąć przynajmniej jeden.`
+                    : "Errata jest czysta, więc możesz trzymać rytm bez naprawiania zaległości."}
+                </p>
+                <div className="flex items-center flex-wrap" style={{ gap: 10 }}>
+                  <Link
+                    href={primary.href}
+                    className="vault-paper-action"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <PrimaryIcon className="h-4 w-4 stroke-[1.7]" />
+                    {primary.label}
+                    <ArrowRight className="h-3.5 w-3.5 stroke-[1.7]" />
+                  </Link>
+                  <Link
+                    href={errorsCount > 0 ? "/errors" : "/salon"}
+                    className="vault-paper-action secondary"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <BookOpenCheck className="h-4 w-4 stroke-[1.7]" />
+                    {errorsCount > 0 ? "Zobacz erratę" : "Salon po sesji"}
+                  </Link>
+                </div>
+              </div>
+
+              <div
+                className="hidden sm:flex flex-col items-center justify-center"
+                style={{
+                  width: 124,
+                  minHeight: 170,
+                  borderLeft: "0.5px dashed rgba(27,17,8,0.20)",
+                  paddingLeft: 24,
+                }}
+              >
+                <div
+                  className="font-display italic"
+                  style={{
+                    fontSize: 74,
+                    lineHeight: 0.85,
+                    color: hasDue ? "var(--c-ink)" : "var(--c-racing)",
+                    opacity: 0.86,
+                    fontWeight: 600,
+                  }}
+                >
+                  {String(dueCount).padStart(2, "0")}
+                </div>
+                <div
+                  className="signature"
+                  style={{
+                    color: "rgba(27,17,8,0.55)",
+                    marginTop: 12,
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {hasDue ? "w kolejce" : "zaległości"}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1" style={{ gap: 20 }}>
+          <div
+            className="relative"
+            style={{
+              border: "1px solid rgba(184,146,77,0.24)",
+              background:
+                "linear-gradient(145deg, rgba(228,214,186,0.055), rgba(228,214,186,0.018))",
+              padding: "24px 24px 22px",
+              boxShadow:
+                "inset 0 1px 0 rgba(184,146,77,0.10), 0 18px 36px -24px rgba(0,0,0,0.65)",
+            }}
+          >
+            <div
+              className="eyebrow"
+              style={{ color: "var(--c-gold-400)", marginBottom: 18 }}
+            >
+              Skład kolejki
+            </div>
+            <div style={{ display: "grid", gap: 13 }}>
+              {strips.map((s) => (
+                <div key={s.label}>
+                  <div
+                    className="flex items-center justify-between signature"
+                    style={{
+                      color: "var(--c-paper-300)",
+                      opacity: 0.72,
+                      marginBottom: 6,
+                    }}
+                  >
+                    <span>{s.label}</span>
+                    <span>{String(s.value).padStart(2, "0")}</span>
+                  </div>
+                  <div
+                    style={{
+                      height: 4,
+                      background: "rgba(184,146,77,0.12)",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      style={{
+                        height: "100%",
+                        width: `${Math.round((s.value / totalFocus) * 100)}%`,
+                        minWidth: s.value > 0 ? 18 : 0,
+                        background: s.color,
+                        boxShadow: `0 0 10px ${s.color}55`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="relative"
+            style={{
+              border: "1px solid rgba(184,146,77,0.24)",
+              background:
+                "linear-gradient(145deg, rgba(58,15,28,0.44), rgba(27,17,8,0.35))",
+              padding: "24px 24px 22px",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,200,180,0.08), 0 18px 36px -24px rgba(0,0,0,0.65)",
+            }}
+          >
+            <div
+              className="eyebrow"
+              style={{ color: "var(--c-gold-400)", marginBottom: 10 }}
+            >
+              Po sesji
+            </div>
+            <h3
+              className="font-display italic"
+              style={{
+                color: "var(--c-paper-100)",
+                fontSize: 28,
+                lineHeight: 1.05,
+                fontWeight: 500,
+                marginBottom: 10,
+              }}
+            >
+              {topicTitle}
+            </h3>
+            <p
+              className="caption"
+              style={{
+                color: "var(--c-paper-300)",
+                opacity: 0.68,
+                marginBottom: 16,
+              }}
+            >
+              Tydzień: {weeklySessions} {weeklySessions === 1 ? "sesja" : "sesji"} · {minutesLabel}
+              {weeklyAccuracy ? ` · śr. ${weeklyAccuracy}%` : ""}
+            </p>
+            <Link
+              href={salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon"}
+              className="eyebrow inline-flex items-center"
+              style={{
+                gap: 8,
+                color: "var(--c-gold-300)",
+                textDecoration: "none",
+              }}
+            >
+              Otwórz rozmowę
+              <ArrowRight className="h-3.5 w-3.5 stroke-[1.7]" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

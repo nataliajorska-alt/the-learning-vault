@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,17 +10,40 @@ import {
   AlertTriangle,
   Wine,
 } from "lucide-react";
+import { useTopics } from "@/lib/firestore-data";
+import type { Timestamp } from "firebase/firestore";
 
 const nav = [
-  { href: "/", label: "Dziś", icon: LayoutGrid },
+  { href: "/", label: "Dziś", icon: LayoutGrid, nudgeKey: "due" },
   { href: "/vaults", label: "Sekcje", icon: Library },
-  { href: "/study", label: "Ucz", icon: GraduationCap },
+  { href: "/study", label: "Ucz", icon: GraduationCap, nudgeKey: "due" },
   { href: "/errors", label: "Errata", icon: AlertTriangle },
   { href: "/salon", label: "Salon", icon: Wine },
 ];
 
+function toMillis(v: unknown): number {
+  if (!v) return 0;
+  if (v instanceof Date) return v.getTime();
+  if (typeof v === "object" && v && "toMillis" in v) {
+    return (v as Timestamp).toMillis();
+  }
+  return 0;
+}
+
 export function BottomNav() {
   const pathname = usePathname();
+  const topics = useTopics();
+
+  const dueToday = useMemo(() => {
+    if (!topics) return 0;
+    const now = Date.now();
+    return topics.filter(
+      (t) =>
+        t.status === "fresh" ||
+        t.status === "struggling" ||
+        toMillis(t.nextReview) <= now
+    ).length;
+  }, [topics]);
 
   return (
     <nav
@@ -40,6 +64,7 @@ export function BottomNav() {
           const active =
             pathname === item.href ||
             (item.href !== "/" && pathname.startsWith(item.href));
+          const showDue = item.nudgeKey === "due" && dueToday > 0 && !active;
           return (
             <Link
               key={item.href}
@@ -66,7 +91,34 @@ export function BottomNav() {
                   transition: "background 180ms ease",
                 }}
               />
-              <Icon className="w-5 h-5 stroke-[1.5]" />
+              <span className="relative">
+                <Icon className="w-5 h-5 stroke-[1.5]" />
+                {showDue && (
+                  <span
+                    className="signature absolute"
+                    style={{
+                      top: -9,
+                      right: -12,
+                      minWidth: 16,
+                      height: 16,
+                      borderRadius: 999,
+                      background:
+                        "radial-gradient(circle at 35% 30%, #f3d28a, #b08540 70%)",
+                      color: "#2a1808",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,235,180,0.6), 0 1px 4px rgba(0,0,0,0.55)",
+                      fontSize: 8.5,
+                      lineHeight: "16px",
+                      textAlign: "center",
+                      letterSpacing: 0,
+                      fontWeight: 700,
+                      padding: "0 4px",
+                    }}
+                  >
+                    {dueToday}
+                  </span>
+                )}
+              </span>
               <span
                 style={{
                   fontSize: 9,
