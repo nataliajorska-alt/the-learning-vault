@@ -227,7 +227,7 @@ export function SessionRunner({
     return () => {
       cancelled = true;
     };
-  }, [user, targetTopicId, mode, restored]);
+  }, [user, targetTopicId, mode, restored, questionLimit]);
 
   // Persist in-progress session so a refresh resumes instead of restarting.
   useEffect(() => {

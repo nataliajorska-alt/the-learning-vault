@@ -505,7 +505,7 @@ export function TopicEditor({
         ) : (
           <div className="card border-danger/30 space-y-3">
             <p className="text-sm">
-              Usunąć temat „{title}"? Zniknie wraz z pytaniami, frazą Salonu i
+              Usunąć temat „{title}&rdquo;? Zniknie wraz z pytaniami, frazą Salonu i
               powiązanymi wpisami w Error Vault. Tej operacji nie cofniesz.
             </p>
             <div className="flex gap-3">
