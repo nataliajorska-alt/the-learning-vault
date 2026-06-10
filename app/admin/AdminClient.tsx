@@ -289,7 +289,7 @@ export function AdminClient() {
             <select
               value={vaultId}
               onChange={(e) => setVaultId(e.target.value)}
-              className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
+              className="mt-2 w-full book-input"
             >
               <option value="">Wybierz...</option>
               {vaults?.map((v) => (
@@ -306,7 +306,11 @@ export function AdminClient() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={10}
-              className="mt-2 w-full border border-line rounded px-4 py-3 text-sm bg-cream focus:outline-none focus:border-gold/40 font-mono leading-relaxed"
+              className="mt-2 w-full book-input leading-relaxed"
+              style={{
+                fontFamily:
+                  '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
+              }}
               placeholder="Wklej notatki z lekcji, fragmentu książki, filmu, podcastu..."
             />
             <div className="text-xs text-muted mt-2">
@@ -337,7 +341,13 @@ export function AdminClient() {
                 onChange={(e) =>
                   setSuggestion({ ...suggestion, title: e.target.value })
                 }
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 hero-italic text-2xl bg-cream focus:outline-none focus:border-gold/40"
+                className="mt-2 w-full book-input"
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                  fontSize: "1.5rem",
+                }}
               />
             </div>
             <div>
@@ -348,7 +358,7 @@ export function AdminClient() {
                   setSuggestion({ ...suggestion, summary: e.target.value })
                 }
                 rows={3}
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
+                className="mt-2 w-full book-input"
               />
             </div>
             <div>
@@ -359,7 +369,7 @@ export function AdminClient() {
                   setSuggestion({ ...suggestion, theory: e.target.value })
                 }
                 rows={6}
-                className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
+                className="mt-2 w-full book-input"
               />
             </div>
           </div>
@@ -385,7 +395,7 @@ export function AdminClient() {
                   value={q.text}
                   onChange={(e) => updateQuestion(q.id, { text: e.target.value })}
                   rows={2}
-                  className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
+                  className="w-full book-input"
                 />
                 {q.options && (
                   <div className="space-y-1.5">
@@ -406,7 +416,7 @@ export function AdminClient() {
                             next[oi] = e.target.value;
                             updateQuestion(q.id, { options: next });
                           }}
-                          className="flex-1 border border-line rounded px-3 py-1.5 text-xs bg-cream focus:outline-none focus:border-gold/40"
+                          className="flex-1 book-input"
                         />
                       </div>
                     ))}
@@ -419,7 +429,7 @@ export function AdminClient() {
                       updateQuestion(q.id, { correctAnswer: e.target.value })
                     }
                     placeholder="Poprawna odpowiedź"
-                    className="w-full border border-line rounded px-3 py-2 text-xs bg-cream focus:outline-none focus:border-gold/40"
+                    className="w-full book-input"
                   />
                 )}
                 <input
@@ -428,7 +438,7 @@ export function AdminClient() {
                     updateQuestion(q.id, { explanation: e.target.value })
                   }
                   placeholder="Wyjaśnienie..."
-                  className="w-full border border-line rounded px-3 py-2 text-xs text-muted bg-cream focus:outline-none focus:border-gold/40"
+                  className="w-full book-input"
                 />
               </div>
             ))}
@@ -446,7 +456,7 @@ export function AdminClient() {
               }
               rows={2}
               placeholder="Krótko (30s)..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
+              className="w-full book-input"
             />
             <textarea
               value={suggestion.salon.expand}
@@ -458,7 +468,7 @@ export function AdminClient() {
               }
               rows={3}
               placeholder="Rozbudowanie (60s)..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
+              className="w-full book-input"
             />
             <textarea
               value={suggestion.salon.trap}
@@ -470,7 +480,7 @@ export function AdminClient() {
               }
               rows={2}
               placeholder="Pułapka..."
-              className="w-full border border-line rounded px-3 py-2 text-sm bg-cream focus:outline-none focus:border-gold/40"
+              className="w-full book-input"
             />
           </div>
 
