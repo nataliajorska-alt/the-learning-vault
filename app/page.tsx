@@ -24,6 +24,7 @@ import {
   useUserDoc,
   useVaults,
 } from "@/lib/firestore-data";
+import { topicQueueReason } from "@/lib/learning-copy";
 import type { Timestamp } from "firebase/firestore";
 
 /* ---------- helpers ----------------------------------------------------- */
@@ -87,6 +88,12 @@ function formatDuration(seconds: number): string {
   return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
+function topicPriority(t: { status: string }): number {
+  if (t.status === "struggling") return 0;
+  if (t.status === "fresh") return 1;
+  return 2;
+}
+
 /* ---------- Page -------------------------------------------------------- */
 
 export default function DashboardPage() {
@@ -107,12 +114,18 @@ export default function DashboardPage() {
   const due = useMemo(() => {
     if (!topics) return [];
     const now = Date.now();
-    return topics.filter(
-      (t) =>
-        t.status === "fresh" ||
-        t.status === "struggling" ||
-        toMillis(t.nextReview) <= now
-    );
+    return topics
+      .filter(
+        (t) =>
+          t.status === "fresh" ||
+          t.status === "struggling" ||
+          toMillis(t.nextReview) <= now
+      )
+      .sort(
+        (a, b) =>
+          topicPriority(a) - topicPriority(b) ||
+          toMillis(a.nextReview) - toMillis(b.nextReview)
+      );
   }, [topics]);
 
   const dueComposition = useMemo(() => {
@@ -131,6 +144,7 @@ export default function DashboardPage() {
     }
     return out;
   }, [topics]);
+  const nextDueTopic = due[0] ?? null;
 
   const mastered = topics?.filter((t) => t.status === "mastered").length ?? 0;
   const totalTopics = topics?.length ?? 0;
@@ -265,6 +279,14 @@ export default function DashboardPage() {
           <CuratorDesk
             dueCount={due.length}
             dueComposition={dueComposition}
+            nextTopic={
+              nextDueTopic
+                ? {
+                    title: nextDueTopic.title,
+                    reason: topicQueueReason(nextDueTopic),
+                  }
+                : null
+            }
             errorsCount={activeErrors}
             salonTopic={salonTopic}
             weeklyMinutes={Math.round(sessionTotalDuration / 60)}
@@ -427,6 +449,15 @@ function Hero({
               <LibraryBig className="h-4 w-4 stroke-[1.5]" />
               Pokaż agendę
             </Link>
+            <Link
+              href="/study/session/new?mode=mix&limit=3"
+              className="btn-ghost"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              Minimum day · 3 pytania
+            </Link>
           </div>
         </div>
 
@@ -517,6 +548,7 @@ interface CuratorDeskProps {
     review: number;
     struggling: number;
   };
+  nextTopic: { title: string; reason: string } | null;
   errorsCount: number;
   salonTopic: {
     topic: { id: string; title: string };
@@ -530,6 +562,7 @@ interface CuratorDeskProps {
 function CuratorDesk({
   dueCount,
   dueComposition,
+  nextTopic,
   errorsCount,
   salonTopic,
   weeklyMinutes,
@@ -661,6 +694,10 @@ function CuratorDesk({
                   }}
                 >
                   {primary.note}{" "}
+                  {nextTopic
+                    ? `Pierwszy w kolejce: ${nextTopic.title}. ${nextTopic.reason}`
+                    : ""}
+                  {" "}
                   {errorsCount > 0
                     ? `Errata ma ${errorsCount} ${errorsCount === 1 ? "aktywny wpis" : "aktywnych wpisów"}, więc po sesji warto zamknąć przynajmniej jeden.`
                     : "Errata jest czysta, więc możesz trzymać rytm bez naprawiania zaległości."}

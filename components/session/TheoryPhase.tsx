@@ -59,6 +59,8 @@ interface OnDeckItem {
 interface TheoryPhaseProps {
   topic: Topic;
   vault: Vault | null;
+  queueReason: string;
+  compact?: boolean;
   elapsedSec: number;
   totalSec: number;
   onProceed: () => void;
@@ -68,6 +70,8 @@ interface TheoryPhaseProps {
 export function TheoryPhase({
   topic,
   vault,
+  queueReason,
+  compact = false,
   elapsedSec,
   totalSec,
   onProceed,
@@ -138,6 +142,7 @@ export function TheoryPhase({
           elapsedSec={elapsedSec}
           totalSec={totalSec}
           remainingDisplay={`${remMin}:${String(remSec).padStart(2, "0")}`}
+          compact={compact}
         />
         <BookSpread
           sigil={sigil}
@@ -146,6 +151,8 @@ export function TheoryPhase({
           title={topic.title}
           summary={topic.summary}
           paragraphs={paragraphs}
+          queueReason={queueReason}
+          compact={compact}
           onProceed={onProceed}
         />
         <ReadingToolbar />
@@ -177,6 +184,7 @@ function ReadingHeader({
   elapsedSec,
   totalSec,
   remainingDisplay,
+  compact,
 }: {
   sectionName: string;
   roman: string;
@@ -186,6 +194,7 @@ function ReadingHeader({
   elapsedSec: number;
   totalSec: number;
   remainingDisplay: string;
+  compact: boolean;
 }) {
   const d = new Date();
   const time = `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
@@ -229,7 +238,7 @@ function ReadingHeader({
             fontSize: 11,
           }}
         >
-          {dateStr}
+          {compact ? "Minimum day · 3 pytania" : dateStr}
         </span>
       </div>
 
@@ -639,6 +648,8 @@ function BookSpread({
   title,
   summary,
   paragraphs,
+  queueReason,
+  compact,
   onProceed,
 }: {
   sigil: string;
@@ -647,6 +658,8 @@ function BookSpread({
   title: string;
   summary: string;
   paragraphs: string[];
+  queueReason: string;
+  compact: boolean;
   onProceed: () => void;
 }) {
   /* split paragraphs across pages: ~40% on recto, rest on verso */
@@ -681,6 +694,8 @@ function BookSpread({
               title={title}
               intro={summary}
               paragraphs={rectoBody}
+              queueReason={queueReason}
+              compact={compact}
             />
             <Gutter />
             <VersoPage
@@ -868,6 +883,8 @@ function RectoPage({
   title,
   intro,
   paragraphs,
+  queueReason,
+  compact,
 }: {
   sigil: string;
   sectionName: string;
@@ -875,6 +892,8 @@ function RectoPage({
   title: string;
   intro: string;
   paragraphs: string[];
+  queueReason: string;
+  compact: boolean;
 }) {
   const firstChar = intro?.[0] ?? "—";
   const rest = intro?.slice(1) ?? "";
@@ -970,6 +989,40 @@ function RectoPage({
             {rest}
           </p>
         )}
+
+        <div
+          style={{
+            border: "0.5px solid rgba(122,74,31,0.22)",
+            background:
+              "linear-gradient(180deg, rgba(122,74,31,0.065), rgba(122,74,31,0.025))",
+            padding: "12px 14px",
+            marginBottom: 20,
+          }}
+        >
+          <div
+            className="eyebrow"
+            style={{
+              color: "rgba(122,74,31,0.74)",
+              fontSize: 8.5,
+              marginBottom: 5,
+            }}
+          >
+            {compact ? "Dlaczego tylko minimum" : "Dlaczego ten temat teraz"}
+          </div>
+          <p
+            className="caption"
+            style={{
+              color: "rgba(27,17,8,0.72)",
+              lineHeight: 1.55,
+              fontSize: 12.5,
+            }}
+          >
+            {compact
+              ? "Dzisiaj wystarczy mały ślad: trzy pytania, bez rozkręcania całej machiny. "
+              : ""}
+            {queueReason}
+          </p>
+        </div>
 
         {paragraphs.length > 0 && (
           <>

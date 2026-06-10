@@ -92,6 +92,7 @@ interface TestPhaseProps {
   /* timer */
   elapsedSec: number;
   totalSec: number;
+  compact?: boolean;
   /* actions */
   onSubmit: (answer: string | number) => void | Promise<void>;
   onAdvance: () => void;
@@ -111,6 +112,7 @@ export function TestPhase({
   submitting,
   elapsedSec,
   totalSec,
+  compact = false,
   onSubmit,
   onAdvance,
 }: TestPhaseProps) {
@@ -184,6 +186,7 @@ export function TestPhase({
           title={topic.title}
           elapsedSec={elapsedSec}
           totalSec={totalSec}
+          compact={compact}
         />
         <ProgressTabs
           states={states}
@@ -225,6 +228,7 @@ function TestHeader({
   title,
   elapsedSec,
   totalSec,
+  compact,
 }: {
   roman: string;
   sectionName: string;
@@ -232,6 +236,7 @@ function TestHeader({
   title: string;
   elapsedSec: number;
   totalSec: number;
+  compact: boolean;
 }) {
   return (
     <div style={{ padding: "32px 24px 8px" }}>
@@ -264,7 +269,7 @@ function TestHeader({
             fontSize: 11,
           }}
         >
-          Dziesięć minut · bez powrotu
+          {compact ? "Minimum day · trzy pytania" : "Dziesięć minut · bez powrotu"}
         </span>
       </div>
 

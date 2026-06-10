@@ -14,6 +14,12 @@ import {
 } from "@/lib/firestore-data";
 import { awardP30Xp, pillarForVaultSlug } from "@/lib/projekt30-xp";
 import { useUser } from "@/lib/auth-context";
+import { answersMatch } from "@/lib/answer-normalization";
+import {
+  reviewDateLabel,
+  topicQueueReason,
+  topicStatusLabel,
+} from "@/lib/learning-copy";
 import { TheoryPhase } from "@/components/session/TheoryPhase";
 import { TestPhase } from "@/components/session/TestPhase";
 import { KorektaPhase } from "@/components/session/KorektaPhase";
@@ -53,21 +59,6 @@ function formatMs(seconds: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-/** Normalizacja odpowiedzi do porównania (fill/translate/open-fallback):
- *  ignoruje wielkość liter, interpunkcję, krzywe apostrofy, podwójne spacje
- *  i diakrytykę — "Regresé a casa." == "regrese a casa". Akcenty nie są
- *  egzekwowane (świadoma decyzja: mniej fałszywych błędów przy uzupełnianiu). */
-function normalizeText(s: string): string {
-  return s
-    .replace(/[łŁ]/g, "l") // ł nie rozkłada się przez NFD
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "") // usuń znaki diakrytyczne
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ") // interpunkcja → spacja
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 /** Z puli tematów wybiera ten do sesji: najpierw zaległe (due/fresh/struggling)
  *  posortowane wg nextReview, w ostateczności pierwszy z brzegu. */
 function pickTopic(pool: Topic[]): string | null {
@@ -88,10 +79,12 @@ export function SessionRunner({
   topicId,
   mode,
   vaultSlug,
+  questionLimit,
 }: {
   topicId: string | null;
   mode: Mode;
   vaultSlug: string | null;
+  questionLimit: number | null;
 }) {
   const user = useUser();
   const vaults = useVaults();
@@ -111,10 +104,19 @@ export function SessionRunner({
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [timeLeft, setTimeLeft] = useState(PHASE_DURATION.theory);
   const [submitting, setSubmitting] = useState(false);
+  const [syncIssueCount, setSyncIssueCount] = useState(0);
+  const [sessionEffects, setSessionEffects] = useState({
+    errorsAdded: 0,
+    errorsReinforced: 0,
+    errorsRehabilitated: 0,
+    rehabProgress: 0,
+  });
   const sessionStartRef = useRef<number>(Date.now());
   const questionStartRef = useRef<number>(Date.now());
   const finishedRef = useRef(false);
   const appliedRef = useRef(false);
+  const initialTopicRef = useRef<Topic | null>(null);
+  const attemptsRef = useRef<Attempt[]>([]);
   const testStartRef = useRef<number | null>(null);
   const testEndRef = useRef<number | null>(null);
   const korektaStartRef = useRef<number | null>(null);
@@ -141,8 +143,10 @@ export function SessionRunner({
   const restored = useMemo(() => {
     if (!user) return null;
     const saved = loadSavedSession(user.uid);
-    return isResumable(saved, { topicId, mode, vaultSlug }) ? saved : null;
-  }, [user, topicId, mode, vaultSlug]);
+    return isResumable(saved, { topicId, mode, vaultSlug, questionLimit })
+      ? saved
+      : null;
+  }, [user, topicId, mode, vaultSlug, questionLimit]);
 
   const targetTopicId = restored ? restored.topicId : resolvedTopicId;
 
@@ -163,8 +167,11 @@ export function SessionRunner({
         }
         const qs = await getQuestionsForTopic(targetTopicId);
         if (cancelled) return;
+        const sessionQuestions =
+          questionLimit && questionLimit > 0 ? qs.slice(0, questionLimit) : qs;
         setTopic(t);
-        setQuestions(qs);
+        initialTopicRef.current = t;
+        setQuestions(sessionQuestions);
 
         if (restored) {
           appliedRef.current = true;
@@ -172,6 +179,7 @@ export function SessionRunner({
           setPhase(restored.phase);
           setIdx(restored.idx);
           setAttempts(restored.attempts);
+          attemptsRef.current = restored.attempts;
           sessionStartRef.current = restored.sessionStartMs;
           testStartRef.current = restored.testStartMs;
           testEndRef.current = restored.testEndMs;
@@ -224,9 +232,10 @@ export function SessionRunner({
       testStartMs: testStartRef.current,
       testEndMs: testEndRef.current,
       korektaStartMs: korektaStartRef.current,
+      questionLimit,
       savedAt: Date.now(),
     });
-  }, [user, sessionId, topic, mode, vaultSlug, phase, idx, attempts]);
+  }, [user, sessionId, topic, mode, vaultSlug, phase, idx, attempts, questionLimit]);
 
   // phase timer
   useEffect(() => {
@@ -291,7 +300,7 @@ export function SessionRunner({
     if (current.type === "abc" || current.type === "spot_error") {
       return Number(answer) === Number(current.correctAnswer);
     }
-    return normalizeText(String(answer)) === normalizeText(String(current.correctAnswer));
+    return answersMatch(String(answer), String(current.correctAnswer));
   }
 
   async function gradeOpen(answer: string): Promise<{
@@ -362,17 +371,25 @@ export function SessionRunner({
     const timeTaken = Math.round(
       (Date.now() - questionStartRef.current) / 1000
     );
+    const nextAttempt: Attempt = {
+      questionId: current.id,
+      correct,
+      answer: String(answer),
+      verdict,
+      timeTaken,
+    };
 
     setLastCorrect(correct);
     setLastFeedback(aiFeedback);
     setRevealed(true);
-    setAttempts((prev) => [
-      ...prev,
-      { questionId: current.id, correct, answer: String(answer) },
-    ]);
+    setAttempts((prev) => {
+      const nextAttempts = [...prev, nextAttempt];
+      attemptsRef.current = nextAttempts;
+      return nextAttempts;
+    });
 
     try {
-      await recordAttempt({
+      const result = await recordAttempt({
         userId: user.uid,
         sessionId,
         topic,
@@ -382,8 +399,25 @@ export function SessionRunner({
         timeTaken,
         vaultName,
       });
+      setTopic(result.topic);
+      setSessionEffects((prev) => {
+        if (result.error.kind === "created") {
+          return { ...prev, errorsAdded: prev.errorsAdded + 1 };
+        }
+        if (result.error.kind === "reinforced") {
+          return { ...prev, errorsReinforced: prev.errorsReinforced + 1 };
+        }
+        if (result.error.kind === "rehabilitated") {
+          return { ...prev, errorsRehabilitated: prev.errorsRehabilitated + 1 };
+        }
+        if (result.error.kind === "rehab_progress") {
+          return { ...prev, rehabProgress: prev.rehabProgress + 1 };
+        }
+        return prev;
+      });
     } catch (e) {
       console.error("recordAttempt failed", e);
+      setSyncIssueCount((n) => n + 1);
     } finally {
       setSubmitting(false);
     }
@@ -409,10 +443,11 @@ export function SessionRunner({
     if (finishedRef.current || !sessionId) return;
     finishedRef.current = true;
     const duration = Math.round((Date.now() - sessionStartRef.current) / 1000);
-    const correctCount = attempts.filter((a) => a.correct).length;
+    const finalAttempts = attemptsRef.current;
+    const correctCount = finalAttempts.filter((a) => a.correct).length;
     try {
       await finishSession(sessionId, {
-        attempted: attempts.length,
+        attempted: finalAttempts.length,
         correct: correctCount,
         duration,
       });
@@ -425,8 +460,9 @@ export function SessionRunner({
     if (topic && vaults) {
       const vault = vaults.find((v) => v.id === topic.vaultId);
       const correctBonus = Math.min(correctCount, 8);
+      const baseXp = questionLimit && questionLimit <= 3 ? 10 : 25;
       void awardP30Xp({
-        xp: 25 + correctBonus,
+        xp: baseXp + correctBonus,
         source: "vault:finish-session",
         pillar: pillarForVaultSlug(vault?.slug),
       });
@@ -490,6 +526,17 @@ export function SessionRunner({
     );
   }
 
+  const sessionReceipt = buildSessionReceipt({
+    topic,
+    initialTopic: initialTopicRef.current,
+    attempts,
+    sessionEffects,
+    syncIssueCount,
+    vaultSlug: currentVault?.slug ?? null,
+    compact: Boolean(questionLimit && questionLimit <= 3),
+  });
+  const queueReason = topicQueueReason(topic);
+
   return (
     <div className="space-y-10">
       {phase !== "theory" && phase !== "test" && phase !== "review" && (
@@ -512,6 +559,8 @@ export function SessionRunner({
         <TheoryPhase
           topic={topic}
           vault={currentVault}
+          queueReason={queueReason}
+          compact={Boolean(questionLimit && questionLimit <= 3)}
           elapsedSec={Math.max(0, PHASE_DURATION.theory - timeLeft)}
           totalSec={PHASE_DURATION.theory}
           onProceed={() => {
@@ -537,6 +586,7 @@ export function SessionRunner({
           submitting={submitting}
           elapsedSec={Math.max(0, PHASE_DURATION.test - timeLeft)}
           totalSec={PHASE_DURATION.test}
+          compact={Boolean(questionLimit && questionLimit <= 3)}
           onSubmit={submit}
           onAdvance={next}
         />
@@ -565,11 +615,53 @@ export function SessionRunner({
           )}
           korektaBudgetSec={PHASE_DURATION.review}
           onDeck={onDeck}
+          receipt={sessionReceipt}
           closeHref="/"
         />
       )}
     </div>
   );
+}
+
+function buildSessionReceipt(opts: {
+  topic: Topic;
+  initialTopic: Topic | null;
+  attempts: Attempt[];
+  sessionEffects: {
+    errorsAdded: number;
+    errorsReinforced: number;
+    errorsRehabilitated: number;
+    rehabProgress: number;
+  };
+  syncIssueCount: number;
+  vaultSlug: string | null;
+  compact: boolean;
+}) {
+  const baseline = opts.initialTopic ?? opts.topic;
+  const attemptsDelta = Math.max(
+    opts.attempts.length,
+    (opts.topic.totalAttempts ?? 0) - (baseline.totalAttempts ?? 0)
+  );
+  const correctDelta = Math.max(
+    opts.attempts.filter((a) => a.correct).length,
+    (opts.topic.totalCorrect ?? 0) - (baseline.totalCorrect ?? 0)
+  );
+  const correctBonus = Math.min(correctDelta, 8);
+  const baseXp = opts.compact ? 10 : 25;
+  return {
+    attemptsDelta,
+    correctDelta,
+    xp: baseXp + correctBonus,
+    nextReview: reviewDateLabel(opts.topic.nextReview),
+    status: topicStatusLabel(opts.topic.status),
+    correctStreak: opts.topic.correctStreak ?? 0,
+    errorsAdded: opts.sessionEffects.errorsAdded,
+    errorsReinforced: opts.sessionEffects.errorsReinforced,
+    errorsRehabilitated: opts.sessionEffects.errorsRehabilitated,
+    rehabProgress: opts.sessionEffects.rehabProgress,
+    syncIssueCount: opts.syncIssueCount,
+    pillar: pillarForVaultSlug(opts.vaultSlug ?? undefined),
+  };
 }
 
 function phaseLabel(p: Phase) {

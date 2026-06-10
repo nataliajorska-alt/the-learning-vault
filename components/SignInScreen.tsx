@@ -117,7 +117,7 @@ export function SignInScreen() {
             <button
               onClick={handle}
               disabled={busy}
-              className="eyebrow inline-flex items-center justify-center"
+              className="eyebrow sign-in-cta inline-flex items-center justify-center"
               style={{
                 gap: 10,
                 marginTop: 36,
@@ -127,8 +127,10 @@ export function SignInScreen() {
                 color: "var(--c-paper-100)",
                 padding: "17px 28px",
                 border: "0.5px solid rgba(184,146,77,0.55)",
-                letterSpacing: "0.22em",
+                letterSpacing: "0.18em",
                 fontWeight: 600,
+                whiteSpace: "nowrap",
+                lineHeight: 1.1,
                 boxShadow:
                   "inset 0 1px 0 rgba(255,180,140,0.18), inset 0 -1px 0 rgba(0,0,0,0.45), 0 8px 20px -6px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.45)",
                 cursor: busy ? "wait" : "pointer",

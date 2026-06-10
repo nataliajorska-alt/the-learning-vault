@@ -124,6 +124,18 @@ export default function StatsPage() {
   const overallAccuracy =
     totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
   const mastered = topics?.filter((t) => t.status === "mastered").length ?? 0;
+  const now = Date.now();
+  const dueNow =
+    topics?.filter((t) => {
+      const d = toDate(t.nextReview).getTime();
+      return t.status === "fresh" || t.status === "struggling" || d <= now;
+    }).length ?? 0;
+  const fragileMastery =
+    topics?.filter(
+      (t) =>
+        t.status === "mastered" &&
+        ((t.correctStreak ?? 0) <= 4 || (t.interval ?? 0) < 45)
+    ).length ?? 0;
 
   // Session aggregates
   const sessionsAgg = useMemo(() => {
@@ -213,12 +225,50 @@ export default function StatsPage() {
       .filter((t) => t.wrongs > 0);
   }, [topics]);
 
+  const curatorNote = useMemo(() => {
+    if (dueNow > 0) {
+      return `${dueNow} ${dueNow === 1 ? "temat jest" : "tematów jest"} gotowych do powtórki. Najlepszy ruch: jedna sesja mix, zanim kolejka urośnie.`;
+    }
+    if (fragileMastery > 0) {
+      return `${fragileMastery} ${fragileMastery === 1 ? "opanowany temat jest jeszcze kruchy" : "opanowane tematy są jeszcze kruche"}. Dobry moment na spokojny Salon albo krótką kontrolę.`;
+    }
+    if (sessionsAgg.count === 0) {
+      return "Gabinet jest pusty w tym oknie. Zacznij od minimum day: trzy pytania wystarczą, żeby zbudować ślad.";
+    }
+    return "Rytm jest czysty. Kolejna dobra decyzja to utrzymać krótką, regularną sesję zamiast dokładać ciężar.";
+  }, [dueNow, fragileMastery, sessionsAgg.count]);
+
   return (
     <div className="space-y-12">
       <header>
         <div className="eyebrow">Statystyki · Twój rytm</div>
         <h1 className="hero-italic text-4xl mt-2">Gabinet osiągnięć</h1>
       </header>
+
+      <section className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-5">
+        <LedgerSheet>
+          <div className="book-eyebrow">Nota kuratora</div>
+          <p
+            className="font-display italic mt-4"
+            style={{
+              color: "#1B1108",
+              fontSize: "clamp(25px, 4vw, 36px)",
+              lineHeight: 1.08,
+              fontWeight: 600,
+            }}
+          >
+            {curatorNote}
+          </p>
+        </LedgerSheet>
+        <LedgerSheet>
+          <div className="book-eyebrow">Ryzyko zapomnienia</div>
+          <div className="mt-5 space-y-3">
+            <LedgerMetric label="W kolejce dziś" value={dueNow} />
+            <LedgerMetric label="Krucha mastery" value={fragileMastery} />
+            <LedgerMetric label="Sesje w 90 dni" value={sessionsAgg.count} />
+          </div>
+        </LedgerSheet>
+      </section>
 
       {/* --- Ściana plakiet -------------------------------------------- */}
       <section className="space-y-4">
@@ -435,6 +485,22 @@ export default function StatsPage() {
           EX ARCHIVO · 90 DIES
         </p>
       </section>
+    </div>
+  );
+}
+
+function LedgerMetric({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="flex items-baseline gap-3">
+      <span className="signature" style={{ color: "rgba(27,17,8,0.55)", flex: 1 }}>
+        {label}
+      </span>
+      <span
+        className="font-display italic"
+        style={{ color: "#1B1108", fontSize: 28, lineHeight: 1 }}
+      >
+        {value}
+      </span>
     </div>
   );
 }

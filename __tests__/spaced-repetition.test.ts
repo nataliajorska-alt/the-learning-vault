@@ -45,6 +45,21 @@ describe("applySrs — correct", () => {
     expect(r.interval).toBeGreaterThanOrEqual(30); // round(15*2.5)=38
     expect(r.status).toBe("mastered");
   });
+
+  it("kolejne próby muszą być liczone na zaktualizowanym stanie tematu", () => {
+    const start = topic();
+    const first = applySrs(start, "correct");
+    const afterFirst = topic({
+      interval: first.interval,
+      ease: first.ease,
+      correctStreak: first.correctStreak,
+      totalAttempts: 1,
+      totalCorrect: 1,
+    });
+    const second = applySrs(afterFirst, "correct");
+    expect(second.correctStreak).toBe(2);
+    expect(second.interval).toBe(3);
+  });
 });
 
 describe("applySrs — wrong", () => {

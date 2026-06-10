@@ -1568,5 +1568,12 @@ select:focus-visible {
   }
 }
 
+@media (max-width: 420px) {
+  .sign-in-cta {
+    padding-inline: 16px !important;
+    letter-spacing: 0.11em !important;
+    font-size: 9px;
+  }
+}
 
 

@@ -246,7 +246,7 @@ export function TopicEditor({
   }
 
   return (
-    <div className="space-y-8 max-w-2xl">
+    <div className="space-y-8 max-w-5xl">
       <Link
         href={`/vaults/${slug}`}
         className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors"
@@ -254,12 +254,41 @@ export function TopicEditor({
         <ArrowLeft className="w-4 h-4" /> Sekcja
       </Link>
 
-      <header>
-        <div className="eyebrow">Edycja tematu</div>
-        <h1 className="hero-italic text-4xl mt-1">{title || "Bez tytułu"}</h1>
+      <header className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-5 items-end">
+        <div>
+          <div className="eyebrow">Edycja tematu · karta źródłowa</div>
+          <h1 className="hero-italic text-4xl mt-1">{title || "Bez tytułu"}</h1>
+          <p className="text-muted mt-3 max-w-2xl">
+            Tu poprawiasz materiał, który później pracuje w sesjach, Erracie i
+            Salonie. Najlepsze zmiany są małe: jedno ostrzejsze pytanie, jedno
+            lepsze wyjaśnienie, jedna fraza do rozmowy.
+          </p>
+        </div>
+        <div
+          className="tex-paper tex-noise-fine"
+          style={{
+            padding: "18px 20px",
+            boxShadow:
+              "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 14px 32px -18px rgba(0,0,0,0.62)",
+          }}
+        >
+          <div className="eyebrow" style={{ color: "rgba(122,74,31,0.72)" }}>
+            Zawartość
+          </div>
+          <div
+            className="font-display italic"
+            style={{ color: "#1B1108", fontSize: 30, lineHeight: 1, marginTop: 8 }}
+          >
+            {questions.length}
+          </div>
+          <div className="signature" style={{ color: "rgba(27,17,8,0.54)", marginTop: 4 }}>
+            {questions.length === 1 ? "pytanie" : "pytań"} · Salon{" "}
+            {salon.short.trim() ? "gotowy" : "pusty"}
+          </div>
+        </div>
       </header>
 
-      <section className="card space-y-4">
+      <section className="card space-y-4 max-w-3xl">
         <div>
           <label className="eyebrow">Tytuł</label>
           <input
@@ -268,7 +297,7 @@ export function TopicEditor({
               setTitle(e.target.value);
               setSaved(false);
             }}
-            className="mt-2 w-full border border-line rounded px-4 py-2.5 hero-italic text-2xl bg-cream focus:outline-none focus:border-gold/40"
+            className="mt-2 w-full book-input hero-italic text-2xl"
           />
         </div>
         <div>
@@ -280,7 +309,7 @@ export function TopicEditor({
               setSaved(false);
             }}
             rows={3}
-            className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
+            className="mt-2 w-full book-input"
           />
         </div>
         <div>
@@ -292,7 +321,7 @@ export function TopicEditor({
               setSaved(false);
             }}
             rows={6}
-            className="mt-2 w-full border border-line rounded px-4 py-2.5 text-sm bg-cream focus:outline-none focus:border-gold/40"
+            className="mt-2 w-full book-input"
           />
         </div>
       </section>

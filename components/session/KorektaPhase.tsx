@@ -71,7 +71,23 @@ interface KorektaPhaseProps {
   korektaElapsedSec: number;
   korektaBudgetSec: number;
   onDeck?: OnDeckItem[];
+  receipt?: SessionReceipt;
   closeHref?: string;
+}
+
+export interface SessionReceipt {
+  attemptsDelta: number;
+  correctDelta: number;
+  xp: number;
+  nextReview: string;
+  status: string;
+  correctStreak: number;
+  errorsAdded: number;
+  errorsReinforced: number;
+  errorsRehabilitated: number;
+  rehabProgress: number;
+  syncIssueCount: number;
+  pillar: string;
 }
 
 export function KorektaPhase({
@@ -84,6 +100,7 @@ export function KorektaPhase({
   korektaElapsedSec,
   korektaBudgetSec,
   onDeck = [],
+  receipt,
   closeHref = "/",
 }: KorektaPhaseProps) {
   const sigInfo = vault ? VAULT_SIGIL[vault.slug] : null;
@@ -179,6 +196,7 @@ export function KorektaPhase({
           testBudgetSec={testBudgetSec}
           korektaElapsedSec={korektaElapsedSec}
           korektaBudgetSec={korektaBudgetSec}
+          receipt={receipt}
           closeHref={closeHref}
         />
 
@@ -370,6 +388,7 @@ interface SpreadProps {
   testBudgetSec: number;
   korektaElapsedSec: number;
   korektaBudgetSec: number;
+  receipt?: SessionReceipt;
   closeHref: string;
 }
 
@@ -542,6 +561,7 @@ function PodsumowaniePage({
   testBudgetSec,
   korektaElapsedSec,
   korektaBudgetSec,
+  receipt,
   closeHref,
 }: SpreadProps) {
   const correctWord =
@@ -805,6 +825,8 @@ function PodsumowaniePage({
           </p>
         </div>
 
+        {receipt && <ReceiptBox receipt={receipt} />}
+
         <div
           className="rule-gold"
           style={{
@@ -895,6 +917,95 @@ function PodsumowaniePage({
           </span>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ReceiptBox({ receipt }: { receipt: SessionReceipt }) {
+  const errataDelta =
+    receipt.errorsAdded + receipt.errorsReinforced + receipt.errorsRehabilitated;
+  const rows = [
+    {
+      label: "Postęp",
+      value: `+${receipt.correctDelta}/${receipt.attemptsDelta}`,
+      sub: "trafień w tym temacie",
+    },
+    {
+      label: "Następny wpis",
+      value: receipt.nextReview,
+      sub: `status: ${receipt.status}`,
+    },
+    {
+      label: "Seria",
+      value: String(receipt.correctStreak),
+      sub: "poprawnych kroków",
+    },
+    {
+      label: "XP",
+      value: `+${receipt.xp}`,
+      sub: receipt.pillar,
+    },
+  ];
+
+  return (
+    <div
+      style={{
+        border: "0.5px solid rgba(122,74,31,0.24)",
+        background:
+          "linear-gradient(180deg, rgba(122,74,31,0.06), rgba(122,74,31,0.025))",
+        padding: "12px 14px 10px",
+        marginBottom: 18,
+      }}
+    >
+      <div
+        className="eyebrow"
+        style={{ color: "rgba(122,74,31,0.72)", fontSize: 8.5, marginBottom: 8 }}
+      >
+        Rachunek sesji
+      </div>
+      <div style={{ display: "grid", gap: 6 }}>
+        {rows.map((r) => (
+          <div
+            key={r.label}
+            className="flex items-baseline"
+            style={{ gap: 10 }}
+          >
+            <span
+              className="signature"
+              style={{ color: "rgba(27,17,8,0.52)", minWidth: 82, fontSize: 10 }}
+            >
+              {r.label}
+            </span>
+            <span
+              className="font-display italic"
+              style={{ color: "#1B1108", fontSize: 17, lineHeight: 1 }}
+            >
+              {r.value}
+            </span>
+            <span
+              className="caption"
+              style={{ color: "rgba(27,17,8,0.52)", fontSize: 11 }}
+            >
+              {r.sub}
+            </span>
+          </div>
+        ))}
+      </div>
+      {(errataDelta > 0 || receipt.syncIssueCount > 0) && (
+        <p
+          className="caption"
+          style={{
+            color: receipt.syncIssueCount > 0 ? "var(--c-ink2)" : "rgba(27,17,8,0.62)",
+            lineHeight: 1.5,
+            marginTop: 9,
+          }}
+        >
+          {errataDelta > 0 &&
+            `${receipt.errorsAdded} nowych wpisów, ${receipt.errorsReinforced} wzmocnionych, ${receipt.errorsRehabilitated} zrehabilitowanych.`}
+          {receipt.syncIssueCount > 0 &&
+            ` ${receipt.syncIssueCount} zapisów wymaga odświeżenia po odzyskaniu sieci.`}
+        </p>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import type { ElementType } from "react";
 import Link from "next/link";
 import {
   useErrors,
@@ -22,6 +23,12 @@ function toMillis(v: unknown): number {
 
 const MONTHS_PL_SHORT = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"];
 const WEEKDAYS_PL = ["Niedziela","Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota"];
+
+function topicPriority(t: { status: string }): number {
+  if (t.status === "struggling") return 0;
+  if (t.status === "fresh") return 1;
+  return 2;
+}
 
 /* Vault slug → monogram motif + accent for the rail */
 const VAULT_VISUALS: Record<string, { motif: string; accent: string }> = {
@@ -50,12 +57,18 @@ export default function StudyPage() {
   const due = useMemo(() => {
     if (!topics) return [];
     const now = Date.now();
-    return topics.filter(
-      (t) =>
-        t.status === "fresh" ||
-        t.status === "struggling" ||
-        toMillis(t.nextReview) <= now
-    );
+    return topics
+      .filter(
+        (t) =>
+          t.status === "fresh" ||
+          t.status === "struggling" ||
+          toMillis(t.nextReview) <= now
+      )
+      .sort(
+        (a, b) =>
+          topicPriority(a) - topicPriority(b) ||
+          toMillis(a.nextReview) - toMillis(b.nextReview)
+      );
   }, [topics]);
 
   const totalTopics = topics?.length ?? 0;
@@ -104,6 +117,14 @@ export default function StudyPage() {
       <div className="relative" style={{ zIndex: 1 }}>
         <Hero totalDue={totalDueAll} />
         <SessionAnatomy />
+        <MinimumDayStrip
+          disabled={totalTopics === 0}
+          href={
+            mixTopicId
+              ? `/study/session/new?mode=mix&topic=${mixTopicId}&limit=3`
+              : "/study/session/new?mode=mix&limit=3"
+          }
+        />
         <ModesGrid
           dueCount={totalDueAll}
           errorsCount={activeErrors}
@@ -390,6 +411,72 @@ function SessionAnatomy() {
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+function MinimumDayStrip({
+  href,
+  disabled,
+}: {
+  href: string;
+  disabled: boolean;
+}) {
+  const Wrapper: ElementType = disabled ? "div" : Link;
+  const props = disabled ? { "aria-disabled": true as const } : { href };
+  return (
+    <div style={{ padding: "0 24px 48px" }}>
+      <Wrapper
+        {...props}
+        className="tex-paper tex-noise-fine block"
+        style={{
+          textDecoration: "none",
+          opacity: disabled ? 0.55 : 1,
+          cursor: disabled ? "not-allowed" : "pointer",
+          borderLeft: "3px solid rgba(184,146,77,0.82)",
+          boxShadow:
+            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 38px -18px rgba(0,0,0,0.66)",
+        }}
+      >
+        <div
+          className="flex items-center justify-between flex-wrap"
+          style={{ gap: 18, padding: "22px 26px" }}
+        >
+          <div style={{ minWidth: 0, flex: "1 1 420px" }}>
+            <div
+              className="eyebrow"
+              style={{ color: "rgba(122,74,31,0.72)", marginBottom: 7 }}
+            >
+              Minimum day
+            </div>
+            <div
+              className="font-display italic"
+              style={{
+                color: "#1B1108",
+                fontSize: "clamp(25px, 3vw, 34px)",
+                lineHeight: 1.05,
+                fontWeight: 600,
+              }}
+            >
+              Trzy pytania. Wystarczy, żeby nie wypaść z rytmu.
+            </div>
+          </div>
+          <div
+            className="flex items-baseline"
+            style={{ gap: 10, color: "rgba(27,17,8,0.62)" }}
+          >
+            <span
+              className="font-display italic"
+              style={{ fontSize: 36, color: "var(--c-cognac)", lineHeight: 1 }}
+            >
+              03
+            </span>
+            <span className="signature" style={{ textTransform: "uppercase" }}>
+              {disabled ? "brak tematów" : "szybki ślad ->"}
+            </span>
+          </div>
+        </div>
+      </Wrapper>
     </div>
   );
 }

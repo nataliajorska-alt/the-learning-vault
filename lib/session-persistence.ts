@@ -5,6 +5,8 @@ export interface SessionAttempt {
   questionId: string;
   correct: boolean;
   answer: string;
+  verdict?: "correct" | "partial" | "wrong";
+  timeTaken?: number;
 }
 
 export interface SavedSession {
@@ -21,6 +23,7 @@ export interface SavedSession {
   testStartMs: number | null;
   testEndMs: number | null;
   korektaStartMs: number | null;
+  questionLimit?: number | null;
   savedAt: number;
 }
 
@@ -28,6 +31,7 @@ export interface SessionRoute {
   topicId: string | null;
   mode: SessionMode;
   vaultSlug: string | null;
+  questionLimit?: number | null;
 }
 
 const STORAGE_VERSION = 1 as const;
@@ -80,6 +84,7 @@ export function isResumable(
   if (!saved) return false;
   if (now - saved.savedAt > RESUME_TTL_MS) return false;
   if (saved.mode !== route.mode) return false;
+  if ((saved.questionLimit ?? null) !== (route.questionLimit ?? null)) return false;
   if (route.topicId) return saved.topicId === route.topicId;
   if (route.mode === "vault") return saved.vaultSlug === (route.vaultSlug ?? null);
   return true;

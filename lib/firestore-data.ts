@@ -11,6 +11,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  runTransaction,
   serverTimestamp,
   setDoc,
   updateDoc,
@@ -500,48 +501,68 @@ export async function recordAttempt(opts: {
   verdict: Verdict;
   timeTaken: number;
   vaultName: string;
-}): Promise<void> {
+}): Promise<RecordAttemptResult> {
   const { db } = getFirebase();
   const { userId, sessionId, topic, question, answer, verdict, timeTaken } = opts;
   // partial liczy się jako zaliczenie dla trafności, ale jest neutralny dla
   // Error Vault (patrz upsertErrorEntry) i łagodny dla SRS (patrz applySrs).
   const countsCorrect = verdict !== "wrong";
 
-  const srs = applySrs(topic, verdict);
-
-  const batch = writeBatch(db);
-
-  // 1. attempts/{auto}
   const attemptRef = doc(collection(db, "attempts"));
-  batch.set(attemptRef, {
-    userId,
-    sessionId,
-    questionId: question.id,
-    topicId: topic.id,
-    answer,
-    isCorrect: countsCorrect,
-    verdict,
-    timeTaken,
-    createdAt: serverTimestamp(),
-  });
-
-  // 2. topics/{id} — SRS update
   const topicRef = doc(db, "topics", topic.id);
-  batch.update(topicRef, {
-    interval: srs.interval,
-    ease: srs.ease,
-    correctStreak: srs.correctStreak,
-    nextReview: srs.nextReview,
-    status: srs.status,
-    totalAttempts: topic.totalAttempts + 1,
-    totalCorrect: topic.totalCorrect + (countsCorrect ? 1 : 0),
-    updatedAt: serverTimestamp(),
-  });
 
-  await batch.commit();
+  const result = await runTransaction(db, async (tx) => {
+    const topicSnap = await tx.get(topicRef);
+    if (!topicSnap.exists()) {
+      throw new Error("Nie znalazłam tematu do zapisania próby.");
+    }
+    const freshTopic = { id: topicSnap.id, ...topicSnap.data() } as Topic;
+    const srs = applySrs(freshTopic, verdict);
+    const nextTopic: Topic = {
+      ...freshTopic,
+      interval: srs.interval,
+      ease: srs.ease,
+      correctStreak: srs.correctStreak,
+      nextReview: srs.nextReview,
+      status: srs.status,
+      totalAttempts: (freshTopic.totalAttempts ?? 0) + 1,
+      totalCorrect: (freshTopic.totalCorrect ?? 0) + (countsCorrect ? 1 : 0),
+      updatedAt: new Date(),
+    };
+
+    // 1. attempts/{auto}
+    tx.set(attemptRef, {
+      userId,
+      sessionId,
+      questionId: question.id,
+      topicId: topic.id,
+      answer,
+      isCorrect: countsCorrect,
+      verdict,
+      timeTaken,
+      createdAt: serverTimestamp(),
+    });
+
+    // 2. topics/{id} — SRS update from the current database state.
+    tx.update(topicRef, {
+      interval: srs.interval,
+      ease: srs.ease,
+      correctStreak: srs.correctStreak,
+      nextReview: srs.nextReview,
+      status: srs.status,
+      totalAttempts: nextTopic.totalAttempts,
+      totalCorrect: nextTopic.totalCorrect,
+      updatedAt: serverTimestamp(),
+    });
+
+    return {
+      topic: nextTopic,
+      countsCorrect,
+    };
+  });
 
   // 3. errors/{...} — bump or create / rehabilitate
-  await upsertErrorEntry({
+  const error = await upsertErrorEntry({
     userId,
     topic,
     question,
@@ -549,7 +570,22 @@ export async function recordAttempt(opts: {
     verdict,
     vaultName: opts.vaultName,
   });
+
+  return { ...result, error };
 }
+
+export interface RecordAttemptResult {
+  topic: Topic;
+  countsCorrect: boolean;
+  error: ErrorAttemptEffect;
+}
+
+export type ErrorAttemptEffect =
+  | { kind: "none" }
+  | { kind: "created" }
+  | { kind: "reinforced"; timesWrong: number }
+  | { kind: "rehab_progress"; correctStreak: number }
+  | { kind: "rehabilitated"; correctStreak: number };
 
 async function upsertErrorEntry(opts: {
   userId: string;
@@ -558,12 +594,12 @@ async function upsertErrorEntry(opts: {
   answer: string;
   verdict: Verdict;
   vaultName: string;
-}) {
+}): Promise<ErrorAttemptEffect> {
   const { db } = getFirebase();
   const { userId, topic, question, answer, verdict, vaultName } = opts;
 
   // partial jest neutralny: nie tworzy wpisu, nie bije rehab, nie zeruje.
-  if (verdict === "partial") return;
+  if (verdict === "partial") return { kind: "none" };
 
   const existingQ = query(
     collection(db, "errors"),
@@ -593,19 +629,21 @@ async function upsertErrorEntry(opts: {
         status: "active",
         correctStreak: 0,
       });
+      return { kind: "created" };
     } else {
       const ref = existing.docs[0]!.ref;
       const cur = existing.docs[0]!.data() as VaultError;
       const next = rehabError({ correctStreak: cur.correctStreak ?? 0 }, "wrong")!;
+      const timesWrong = (cur.timesWrong ?? 0) + 1;
       await updateDoc(ref, {
-        timesWrong: (cur.timesWrong ?? 0) + 1,
+        timesWrong,
         lastWrongAt: now,
         wrongVersion: answer || cur.wrongVersion,
         status: next.status,
         correctStreak: next.correctStreak,
       });
+      return { kind: "reinforced", timesWrong };
     }
-    return;
   }
 
   // correct + has existing error => bump streak; rehabilitate at 3
@@ -617,7 +655,12 @@ async function upsertErrorEntry(opts: {
       correctStreak: next.correctStreak,
       status: next.status,
     });
+    return next.status === "rehabilitated"
+      ? { kind: "rehabilitated", correctStreak: next.correctStreak }
+      : { kind: "rehab_progress", correctStreak: next.correctStreak };
   }
+
+  return { kind: "none" };
 }
 
 // --- ERRORS QUIZ -----------------------------------------------------------
@@ -626,11 +669,11 @@ export async function bumpErrorOnAnswer(opts: {
   errorId: string;
   correct: boolean;
   givenAnswer: string;
-}): Promise<{ rehabilitated: boolean }> {
+}): Promise<{ rehabilitated: boolean; correctStreak: number }> {
   const { db } = getFirebase();
   const ref = doc(db, "errors", opts.errorId);
   const snap = await getDoc(ref);
-  if (!snap.exists()) return { rehabilitated: false };
+  if (!snap.exists()) return { rehabilitated: false, correctStreak: 0 };
   const cur = snap.data() as VaultError;
 
   if (opts.correct) {
@@ -640,7 +683,7 @@ export async function bumpErrorOnAnswer(opts: {
       correctStreak: newStreak,
       status: rehabilitated ? "rehabilitated" : "active",
     });
-    return { rehabilitated };
+    return { rehabilitated, correctStreak: newStreak };
   } else {
     await updateDoc(ref, {
       timesWrong: (cur.timesWrong ?? 0) + 1,
@@ -649,7 +692,7 @@ export async function bumpErrorOnAnswer(opts: {
       correctStreak: 0,
       status: "active",
     });
-    return { rehabilitated: false };
+    return { rehabilitated: false, correctStreak: 0 };
   }
 }
 
