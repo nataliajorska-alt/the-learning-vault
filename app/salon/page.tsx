@@ -139,7 +139,7 @@ export default function SalonPage() {
 
         {loading ? (
           <div className="px-6 md:px-12 lg:px-24 pb-10">
-            <p className="hero-italic text-2xl text-muted">Ładuję...</p>
+            <p className="hero-italic text-2xl text-muted animate-candle">Ładuję...</p>
           </div>
         ) : entries.length === 0 ? (
           <div className="px-6 md:px-12 lg:px-24 pb-10">

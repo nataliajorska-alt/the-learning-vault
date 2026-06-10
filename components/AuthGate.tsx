@@ -9,8 +9,30 @@ export function AuthGate({ children }: { children: ReactNode }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-ivory bg-grain">
-        <div className="hero-italic text-3xl text-muted">Ładuję...</div>
+      <div className="tex-mahogany min-h-screen flex items-center justify-center">
+        <div className="text-center animate-candle">
+          <div
+            className="font-display italic"
+            style={{
+              fontSize: 30,
+              color: "var(--c-gold-400)",
+              lineHeight: 1,
+            }}
+            aria-hidden
+          >
+            ❦
+          </div>
+          <div
+            className="font-display italic"
+            style={{
+              fontSize: 24,
+              color: "rgba(228,214,186,0.7)",
+              marginTop: 14,
+            }}
+          >
+            Otwieram archiwum…
+          </div>
+        </div>
       </div>
     );
   }

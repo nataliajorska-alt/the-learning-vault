@@ -112,7 +112,7 @@ export function ErrorsQuizRunner() {
   }
 
   if (errors === null) {
-    return <p className="hero-italic text-2xl text-muted">Ładuję...</p>;
+    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję...</p>;
   }
 
   if (errors.length === 0) {
@@ -130,7 +130,7 @@ export function ErrorsQuizRunner() {
   }
 
   if (!queue) {
-    return <p className="hero-italic text-2xl text-muted">Ładuję kolejkę...</p>;
+    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję kolejkę...</p>;
   }
 
   return (

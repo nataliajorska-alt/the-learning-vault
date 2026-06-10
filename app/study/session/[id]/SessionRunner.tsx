@@ -472,7 +472,7 @@ export function SessionRunner({
 
   if (!topic || !questions) {
     return (
-      <p className="hero-italic text-2xl text-muted">Ładuję sesję...</p>
+      <p className="hero-italic text-2xl text-muted animate-candle">Ładuję sesję...</p>
     );
   }
 
@@ -590,7 +590,7 @@ function SectionPicker({
   topics: Topic[] | null;
 }) {
   if (!vaults || !topics) {
-    return <p className="hero-italic text-2xl text-muted">Ładuję sekcje...</p>;
+    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję sekcje...</p>;
   }
   const now = Date.now();
   const ordered = [...vaults].sort((a, b) => a.order - b.order);

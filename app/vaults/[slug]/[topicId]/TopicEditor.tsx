@@ -242,7 +242,7 @@ export function TopicEditor({
   }
 
   if (!topic) {
-    return <p className="hero-italic text-2xl text-muted">Ładuję temat...</p>;
+    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję temat...</p>;
   }
 
   return (

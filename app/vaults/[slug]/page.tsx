@@ -46,7 +46,7 @@ export default function VaultDetailPage({
   const allTopics = useTopics(vault?.id);
 
   if (vault === undefined) {
-    return <div className="text-muted hero-italic text-2xl">Ładuję...</div>;
+    return <div className="text-muted hero-italic text-2xl animate-candle">Ładuję...</div>;
   }
   if (!vault) {
     return (

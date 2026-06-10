@@ -44,19 +44,59 @@
   }
 
   .card {
-    @apply bg-cream border border-line rounded p-6 transition-all duration-300 ease-gentle;
+    @apply bg-cream border rounded p-6 transition-all duration-300 ease-gentle;
+    border-color: rgba(184, 146, 77, 0.22);
+    background-image: linear-gradient(
+      170deg,
+      rgba(255, 210, 160, 0.04) 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(184, 146, 77, 0.1),
+      0 12px 28px -16px rgba(0, 0, 0, 0.6);
   }
 
   .card-hover {
-    @apply hover:-translate-y-0.5 hover:shadow-lift hover:border-gold/20;
+    @apply hover:-translate-y-0.5 hover:shadow-lift hover:border-gold/40;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-gold text-ivory px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:bg-gold-2 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase transition-all duration-200 ease-gentle hover:-translate-y-0.5;
+    background: linear-gradient(180deg, #6b1a14 0%, #4a1010 55%, #2c0808 100%);
+    color: var(--c-paper-100, #ecdfc4);
+    border: 0.5px solid rgba(184, 146, 77, 0.55);
+    border-radius: 0;
+    letter-spacing: 0.2em;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 180, 140, 0.18),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+      0 8px 20px -6px rgba(0, 0, 0, 0.7),
+      0 2px 4px rgba(0, 0, 0, 0.45);
+  }
+
+  .btn-primary:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 180, 140, 0.24),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+      0 12px 26px -8px rgba(0, 0, 0, 0.75),
+      0 3px 6px rgba(0, 0, 0, 0.45);
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-line text-ink px-5 py-2.5 rounded text-sm font-medium tracking-wide transition-all duration-200 ease-gentle hover:border-gold/40 hover:text-gold hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-semibold uppercase transition-all duration-200 ease-gentle hover:-translate-y-0.5;
+    color: var(--c-paper-200, #e2d6ba);
+    border: 1px solid rgba(184, 146, 77, 0.4);
+    border-radius: 0;
+    letter-spacing: 0.2em;
+    opacity: 0.9;
+  }
+
+  .btn-ghost:hover {
+    color: var(--c-gold-300, #d9b878);
+    border-color: rgba(184, 146, 77, 0.65);
+    opacity: 1;
   }
 
   .dot {
@@ -83,6 +123,17 @@
   background-size: 24px 24px;
 }
 
+/* Candlelight vignette baked into the page background: warm spill from the
+   top, darkened base. Fixed so it doesn't scroll with content. */
+body.bg-grain {
+  background-image:
+    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(255, 210, 160, 0.055), transparent 70%),
+    radial-gradient(ellipse 130% 60% at 50% 115%, rgba(0, 0, 0, 0.35), transparent 65%),
+    radial-gradient(circle at 1px 1px, rgba(232, 223, 204, 0.025) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  background-attachment: fixed, fixed, scroll;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -98,8 +149,25 @@
   animation: fadein 0.35s cubic-bezier(0.4, 0, 0.2, 1) backwards;
 }
 
+/* Slow candle-glow pulse — loading states */
+@keyframes candle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-candle {
+  animation: candle 2.6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fadein {
+    animation: none;
+  }
+  .animate-candle {
     animation: none;
   }
   .card-hover {

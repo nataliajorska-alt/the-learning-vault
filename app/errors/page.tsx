@@ -77,7 +77,7 @@ export default function ErrorsPage() {
 
   if (errors === null) {
     return (
-      <div className="text-muted hero-italic text-2xl">Ładuję Errata...</div>
+      <div className="text-muted hero-italic text-2xl animate-candle">Ładuję Errata...</div>
     );
   }
 

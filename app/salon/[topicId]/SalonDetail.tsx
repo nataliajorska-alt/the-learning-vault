@@ -100,7 +100,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
   const loading = topics === null || phrases === null || vaults === null;
 
   if (loading) {
-    return <p className="hero-italic text-2xl text-muted">Ładuję...</p>;
+    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję...</p>;
   }
 
   if (!topic || !phrase) {

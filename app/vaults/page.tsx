@@ -154,7 +154,7 @@ export default function VaultsPage() {
 
   if (vaults === null) {
     return (
-      <div className="text-muted hero-italic text-2xl">Ładuję sekcje...</div>
+      <div className="text-muted hero-italic text-2xl animate-candle">Ładuję sekcje...</div>
     );
   }
 
