@@ -326,9 +326,8 @@ export default function DashboardPage() {
 
   /* ---------- Greeting fragments ---------- */
 
-  const displayDate = new Date().toLocaleDateString("pl-PL", {
-    weekday: "long", day: "numeric", month: "long",
-  });
+  const now = new Date();
+  const displayDate = `${now.toLocaleDateString("pl-PL", { weekday: "long" })} · ${now.toLocaleDateString("pl-PL", { day: "numeric", month: "long" })} · ${toRoman(now.getFullYear())}`;
   const chapterRoman = toRoman(Math.max(streak, 1));
   const hasDue = due.length > 0;
 
