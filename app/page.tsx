@@ -957,8 +957,12 @@ function NextCardStack({
           href={`/study/session/new?topic=${topic.id}&mode=topic`}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          className="tex-paper tex-noise-fine absolute inset-0 flex flex-col"
+          className="tex-paper tex-noise-fine flex flex-col"
           style={{
+            // inline, bo .tex-paper nadpisuje Tailwindowe `absolute`
+            // swoim position: relative
+            position: "absolute",
+            inset: 0,
             transform: hover
               ? "rotate(-0.4deg) translateY(-4px)"
               : "rotate(-0.4deg)",
