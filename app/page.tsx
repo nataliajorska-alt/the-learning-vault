@@ -1403,16 +1403,23 @@ function SalonFeaturedV3({
         minHeight: 340,
       }}
     >
+      {/* pozycje inline, bo .tex-velvet > * nadpisuje Tailwindowe
+          `absolute` swoim position: relative */}
       <div
         aria-hidden
-        className="absolute pointer-events-none"
-        style={{ inset: 8, border: "0.5px solid rgba(184,146,77,0.4)" }}
+        className="pointer-events-none"
+        style={{
+          position: "absolute",
+          inset: 8,
+          border: "0.5px solid rgba(184,146,77,0.4)",
+        }}
       />
       {/* ornament w tle */}
       <div
         aria-hidden
-        className="absolute pointer-events-none font-display"
+        className="pointer-events-none font-display"
         style={{
+          position: "absolute",
           right: -28,
           bottom: -64,
           fontSize: 250,
