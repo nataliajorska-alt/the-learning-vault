@@ -30,6 +30,15 @@ function topicPriority(t: { status: string }): number {
   return 2;
 }
 
+/* Polish plural: 1 → one, 2–4 (poza 12–14) → few, reszta → many */
+function plPlural(n: number, one: string, few: string, many: string): string {
+  if (n === 1) return one;
+  const d10 = n % 10;
+  const d100 = n % 100;
+  if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) return few;
+  return many;
+}
+
 /* Vault slug → monogram motif + accent for the rail */
 const VAULT_VISUALS: Record<string, { motif: string; accent: string }> = {
   es:        { motif: "ñ",  accent: "#7a3a1f" },
@@ -160,12 +169,16 @@ function dueByVault(
    SessionClock — 15-segment ring (3 teoria + 10 test + 2 korekta)
    ============================================================ */
 
-function SessionClock({ size = 200 }: { size?: number }) {
+function SessionClock({ size = 224 }: { size?: number }) {
   const segments = 15;
-  const radius = size / 2 - 18;
+  const radius = size / 2 - 20;
   const cx = size / 2;
   const cy = size / 2;
-  const stroke = 12;
+  const stroke = 9;
+
+  const phaseAt = (i: number) => (i < 3 ? "teoria" : i < 13 ? "test" : "korekta");
+  const colors = { teoria: "#8a5a28", test: "#74281b", korekta: "#c8a25c" } as const;
+  const alphas = { teoria: 0.9, test: 0.62, korekta: 0.95 } as const;
 
   return (
     <svg
@@ -178,56 +191,65 @@ function SessionClock({ size = 200 }: { size?: number }) {
       <circle
         cx={cx}
         cy={cy}
-        r={radius + stroke / 2 + 6}
+        r={radius + stroke / 2 + 7}
         fill="none"
-        stroke="rgba(184,146,77,0.20)"
+        stroke="rgba(184,146,77,0.22)"
         strokeWidth="0.5"
       />
       <circle
         cx={cx}
         cy={cy}
-        r={radius + stroke / 2 + 10}
+        r={radius - stroke / 2 - 7}
         fill="none"
-        stroke="rgba(184,146,77,0.10)"
+        stroke="rgba(184,146,77,0.14)"
         strokeWidth="0.5"
       />
       {Array.from({ length: segments }).map((_, i) => {
         const startA = (i / segments) * Math.PI * 2 - Math.PI / 2;
         const endA = ((i + 1) / segments) * Math.PI * 2 - Math.PI / 2;
-        const gap = 0.014;
+        const gap = 0.022;
         const sa = startA + gap;
         const ea = endA - gap;
         const x1 = cx + Math.cos(sa) * radius;
         const y1 = cy + Math.sin(sa) * radius;
         const x2 = cx + Math.cos(ea) * radius;
         const y2 = cy + Math.sin(ea) * radius;
-        const largeArc = ea - sa > Math.PI ? 1 : 0;
-        const d = `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}`;
-        let color = "#7a4a1f";
-        if (i >= 3 && i < 13) color = "#8B2E1F";
-        if (i >= 13) color = "#c8a25c";
-        const opacity = i < 3 ? 0.85 : i < 13 ? 0.78 : 0.95;
+        const d = `M ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2}`;
+        const ph = phaseAt(i);
         return (
           <path
             key={i}
             d={d}
             fill="none"
-            stroke={color}
+            stroke={colors[ph]}
             strokeWidth={stroke}
             strokeLinecap="butt"
-            opacity={opacity}
+            opacity={alphas[ph]}
           />
         );
       })}
-      <circle cx={cx} cy={cy - radius - 2} r="1.4" fill="var(--c-gold-300)" />
+      {/* złote znaczniki na granicach faz: 0', 3', 13' */}
+      {[0, 3, 13].map((m) => {
+        const a = (m / segments) * Math.PI * 2 - Math.PI / 2;
+        const r = radius + stroke / 2 + 7;
+        return (
+          <circle
+            key={m}
+            cx={cx + Math.cos(a) * r}
+            cy={cy + Math.sin(a) * r}
+            r="1.6"
+            fill="var(--c-gold-300)"
+          />
+        );
+      })}
       <text
         x={cx}
-        y={cy - 6}
+        y={cy - 4}
         textAnchor="middle"
         fontFamily="Cormorant Garamond, serif"
         fontStyle="italic"
         fontWeight="600"
-        fontSize="52"
+        fontSize="58"
         fill="var(--c-paper-100)"
         letterSpacing="-2"
       >
@@ -235,23 +257,23 @@ function SessionClock({ size = 200 }: { size?: number }) {
       </text>
       <text
         x={cx}
-        y={cy + 16}
+        y={cy + 20}
         textAnchor="middle"
         fontFamily="JetBrains Mono, monospace"
         fontSize="9.5"
         fill="var(--c-gold-400)"
-        letterSpacing="3"
+        letterSpacing="3.5"
       >
         MINUT
       </text>
       <text
         x={cx}
-        y={cy + 32}
+        y={cy + 38}
         textAnchor="middle"
         fontFamily="JetBrains Mono, monospace"
-        fontSize="8"
-        fill="rgba(212,195,158,0.5)"
-        letterSpacing="2"
+        fontSize="8.5"
+        fill="rgba(212,195,158,0.55)"
+        letterSpacing="2.5"
       >
         3 · 10 · 2
       </text>
@@ -296,40 +318,35 @@ function Hero({ totalDue }: { totalDue: number }) {
               letterSpacing: "-0.02em",
               color: "var(--c-paper-100)",
               fontWeight: 600,
-              marginBottom: 16,
+              marginBottom: 20,
             }}
           >
             Ucz mnie
           </h1>
-          <p
-            className="lead"
-            style={{
-              color: "var(--c-paper-300)",
-              opacity: 0.82,
-              maxWidth: 560,
-            }}
-          >
-            Wybierz format.{" "}
-            <em style={{ color: "var(--c-gold-300)" }}>
-              Trzy minuty teorii, dziesięć testu, dwie korekty.
-            </em>{" "}
-            Bez presji, ale z timerem — krótko, gęsto, do końca.
-            {totalDue > 0 && (
-              <>
-                {" "}Dziś{" "}
-                <span
-                  className="font-display italic"
-                  style={{ color: "var(--c-gold-300)", fontSize: 22 }}
-                >
-                  {totalDue}
-                </span>{" "}
-                {totalDue === 1 ? "temat" : totalDue < 5 ? "tematy" : "tematów"} w kolejce.
-              </>
-            )}
-          </p>
+          {/* licznik kolejki — osobny wers, nie w zdaniu */}
+          <div className="flex items-baseline" style={{ gap: 14, marginTop: 8 }}>
+            <span
+              className="font-display italic"
+              style={{
+                fontSize: 34,
+                color: "var(--c-gold-300)",
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {totalDue}
+            </span>
+            <span
+              className="eyebrow"
+              style={{ color: "var(--c-paper-300)", opacity: 0.7, fontSize: 10 }}
+            >
+              {plPlural(totalDue, "temat czeka", "tematy czekają", "tematów czeka")} dziś w kolejce
+            </span>
+          </div>
         </div>
-        <div style={{ paddingTop: 8 }}>
-          <SessionClock size={200} />
+        <div style={{ paddingTop: 4 }}>
+          <SessionClock size={224} />
         </div>
       </div>
     </div>
@@ -344,18 +361,21 @@ const SESSION_ANATOMY = [
   {
     mark: "03",
     label: "Teoria",
+    min: 3,
     body: "Trzy zdania na temat. Najmniejsza dawka, żeby coś zobaczyć.",
     tone: "teoria" as const,
   },
   {
     mark: "10",
     label: "Test",
+    min: 10,
     body: "Dziesięć pytań. Połowa otwartych, połowa ABCD. Gęsto, bez wstawek.",
     tone: "test" as const,
   },
   {
     mark: "02",
     label: "Korekta",
+    min: 2,
     body: "Dwie minuty na zobaczenie, gdzie ramię było za nisko. Bez wymówek.",
     tone: "korekta" as const,
   },
@@ -366,7 +386,7 @@ function SessionAnatomy() {
     <div style={{ padding: "0 24px 48px" }}>
       <div
         className="flex items-center flex-wrap"
-        style={{ gap: 16, marginBottom: 18 }}
+        style={{ gap: 16, marginBottom: 20 }}
       >
         <span
           className="eyebrow"
@@ -425,57 +445,70 @@ function MinimumDayStrip({
   const Wrapper: ElementType = disabled ? "div" : Link;
   const props = disabled ? { "aria-disabled": true as const } : { href };
   return (
-    <div style={{ padding: "0 24px 48px" }}>
+    <div style={{ padding: "0 24px 56px" }}>
       <Wrapper
         {...props}
-        className="tex-paper tex-noise-fine block"
+        className={`minimum-slip relative flex items-center flex-wrap ${
+          disabled ? "is-disabled" : ""
+        }`}
         style={{
+          gap: 28,
+          padding: "18px 28px 18px 24px",
           textDecoration: "none",
           opacity: disabled ? 0.55 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
-          borderLeft: "3px solid rgba(184,146,77,0.82)",
-          boxShadow:
-            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 38px -18px rgba(0,0,0,0.66)",
         }}
       >
+        <span className="stamp" style={{ flexShrink: 0, opacity: 0.95 }}>
+          Minimum Day
+        </span>
         <div
-          className="flex items-center justify-between flex-wrap"
-          style={{ gap: 18, padding: "22px 26px" }}
+          className="font-display italic"
+          style={{
+            flex: 1,
+            minWidth: 220,
+            fontSize: 27,
+            lineHeight: 1.1,
+            color: "var(--c-paper-100)",
+            fontWeight: 500,
+            letterSpacing: "-0.01em",
+            textWrap: "balance",
+          }}
         >
-          <div style={{ minWidth: 0, flex: "1 1 420px" }}>
-            <div
-              className="eyebrow"
-              style={{ color: "rgba(122,74,31,0.72)", marginBottom: 7 }}
-            >
-              Minimum day
-            </div>
-            <div
-              className="font-display italic"
-              style={{
-                color: "#1B1108",
-                fontSize: "clamp(25px, 3vw, 34px)",
-                lineHeight: 1.05,
-                fontWeight: 600,
-              }}
-            >
-              Trzy pytania. Wystarczy, żeby nie wypaść z rytmu.
-            </div>
-          </div>
-          <div
-            className="flex items-baseline"
-            style={{ gap: 10, color: "rgba(27,17,8,0.62)" }}
-          >
-            <span
-              className="font-display italic"
-              style={{ fontSize: 36, color: "var(--c-cognac)", lineHeight: 1 }}
-            >
-              03
-            </span>
-            <span className="signature" style={{ textTransform: "uppercase" }}>
-              {disabled ? "brak tematów" : "szybki ślad ->"}
-            </span>
-          </div>
+          Trzy pytania. Wystarczy, żeby nie wypaść z rytmu.
         </div>
+        <div className="flex items-baseline" style={{ gap: 8, flexShrink: 0 }}>
+          <span
+            className="font-display italic"
+            style={{
+              fontSize: 26,
+              color: "var(--c-gold-300)",
+              fontWeight: 500,
+              lineHeight: 1,
+            }}
+          >
+            03
+          </span>
+          <span
+            className="signature"
+            style={{ fontSize: 10, color: "rgba(212,195,158,0.55)" }}
+          >
+            pytania
+          </span>
+        </div>
+        <span
+          className="eyebrow flex items-center minimum-slip-cta"
+          style={{ flexShrink: 0, gap: 10, fontSize: 10, padding: "11px 18px" }}
+        >
+          {disabled ? (
+            "Brak tematów"
+          ) : (
+            <>
+              Szybki ślad{" "}
+              <span style={{ fontSize: 13, lineHeight: 1 }}>→</span>
+            </>
+          )}
+        </span>
       </Wrapper>
     </div>
   );
@@ -494,34 +527,35 @@ function AnatomyBlock({
     korekta: { bar: "#c8a25c", text: "var(--c-gold-400)" },
   } as const;
   const c = palette[item.tone];
-  const widths = { teoria: "20%", test: "67%", korekta: "13%" } as const;
+  const pct = Math.round((item.min / 15) * 1000) / 10;
   return (
     <div
       className="relative flex-1 anatomy-block"
       style={{
         borderRight: isLast ? "none" : "0.5px solid rgba(184,146,77,0.18)",
-        padding: "18px 22px",
+        padding: "20px 28px 22px",
       }}
     >
       <div
         className="flex items-baseline"
-        style={{ gap: 12, marginBottom: 8 }}
+        style={{ gap: 12, marginBottom: 12 }}
       >
         <span
           className="font-display italic"
           style={{
-            fontSize: 36,
+            fontSize: 38,
             color: c.text,
             fontWeight: 500,
             lineHeight: 1,
             letterSpacing: "-0.02em",
+            minWidth: 52,
           }}
         >
           {item.mark}
         </span>
         <span
           className="eyebrow"
-          style={{ color: "var(--c-paper-300)", opacity: 0.75 }}
+          style={{ color: "var(--c-paper-200)", opacity: 0.8 }}
         >
           {item.label}
         </span>
@@ -534,12 +568,23 @@ function AnatomyBlock({
         >
           min
         </span>
+        <span
+          className="signature"
+          style={{
+            marginLeft: "auto",
+            color: "rgba(212,195,158,0.35)",
+            fontSize: 10,
+          }}
+        >
+          {pct}%
+        </span>
       </div>
+      {/* wspólny tor — wypełnienie proporcjonalne do udziału w 15' */}
       <div
         style={{
-          height: 3,
-          background: "rgba(184,146,77,0.10)",
-          marginBottom: 10,
+          height: 2,
+          background: "rgba(184,146,77,0.12)",
+          marginBottom: 12,
           position: "relative",
         }}
       >
@@ -549,10 +594,9 @@ function AnatomyBlock({
             top: 0,
             left: 0,
             height: "100%",
-            width: widths[item.tone],
+            width: `${pct}%`,
             background: c.bar,
-            opacity: 0.85,
-            boxShadow: `0 0 6px ${c.bar}55`,
+            opacity: 0.9,
           }}
         />
       </div>
@@ -560,9 +604,10 @@ function AnatomyBlock({
         className="caption"
         style={{
           color: "var(--c-paper-300)",
-          opacity: 0.65,
+          opacity: 0.62,
           fontSize: 12.5,
           lineHeight: 1.55,
+          textWrap: "pretty",
         }}
       >
         {item.body}
@@ -572,140 +617,7 @@ function AnatomyBlock({
 }
 
 /* ============================================================
-   ModeGlyph — ornamental SVG per mode
-   ============================================================ */
-
-type GlyphKind = "shuffle" | "errata" | "shelf" | "pin";
-
-function ModeGlyph({
-  kind,
-  color,
-  size = 68,
-}: {
-  kind: GlyphKind;
-  color: string;
-  size?: number;
-}) {
-  const stroke = {
-    fill: "none" as const,
-    stroke: color,
-    strokeWidth: 0.9,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
-  switch (kind) {
-    case "shuffle":
-      return (
-        <svg width={size} height={size} viewBox="0 0 76 76" aria-hidden>
-          <rect
-            x="14"
-            y="22"
-            width="32"
-            height="42"
-            rx="1"
-            {...stroke}
-            transform="rotate(-10 30 43)"
-          />
-          <rect
-            x="22"
-            y="18"
-            width="32"
-            height="42"
-            rx="1"
-            {...stroke}
-            transform="rotate(2 38 39)"
-          />
-          <rect
-            x="30"
-            y="14"
-            width="32"
-            height="42"
-            rx="1"
-            {...stroke}
-            transform="rotate(14 46 35)"
-          />
-          <circle cx="44" cy="20" r="1" fill={color} />
-          <circle cx="50" cy="32" r="1" fill={color} />
-          <circle cx="56" cy="28" r="1" fill={color} />
-        </svg>
-      );
-    case "errata":
-      return (
-        <svg width={size} height={size} viewBox="0 0 76 76" aria-hidden>
-          <circle cx="38" cy="38" r="22" {...stroke} strokeWidth="1.2" />
-          <circle
-            cx="38"
-            cy="38"
-            r="18"
-            {...stroke}
-            strokeWidth="0.4"
-            opacity="0.45"
-          />
-          <path
-            d="M28 28 L48 48 M48 28 L28 48"
-            {...stroke}
-            strokeWidth="2.4"
-          />
-          <path
-            d="M38 8 v8 M38 60 v8 M8 38 h8 M60 38 h8"
-            {...stroke}
-            opacity="0.55"
-          />
-          <path
-            d="M16 16 l6 6 M60 16 l-6 6 M16 60 l6 -6 M60 60 l-6 -6"
-            {...stroke}
-            opacity="0.4"
-          />
-        </svg>
-      );
-    case "shelf":
-      return (
-        <svg width={size} height={size} viewBox="0 0 76 76" aria-hidden>
-          <rect x="14" y="14" width="12" height="48" {...stroke} />
-          <rect x="32" y="20" width="12" height="42" {...stroke} />
-          <rect x="50" y="10" width="12" height="52" {...stroke} />
-          <path d="M16 22 h8 M16 54 h8" {...stroke} strokeWidth="0.6" />
-          <path d="M34 28 h8 M34 56 h8" {...stroke} strokeWidth="0.6" />
-          <path d="M52 18 h8 M52 54 h8" {...stroke} strokeWidth="0.6" />
-          <circle cx="20" cy="38" r="1" fill={color} />
-          <circle cx="38" cy="42" r="1" fill={color} />
-          <circle cx="56" cy="36" r="1" fill={color} />
-          <path d="M8 64 h60" {...stroke} strokeWidth="0.6" opacity="0.6" />
-        </svg>
-      );
-    case "pin":
-      return (
-        <svg width={size} height={size} viewBox="0 0 76 76" aria-hidden>
-          <circle cx="38" cy="38" r="24" {...stroke} strokeWidth="1.2" />
-          <circle
-            cx="38"
-            cy="38"
-            r="17"
-            {...stroke}
-            strokeWidth="0.4"
-            opacity="0.5"
-          />
-          <circle
-            cx="38"
-            cy="38"
-            r="10"
-            {...stroke}
-            strokeWidth="0.4"
-            opacity="0.5"
-          />
-          <circle cx="38" cy="38" r="3.4" fill={color} />
-          <path
-            d="M38 10 v6 M38 60 v6 M10 38 h6 M60 38 h6"
-            {...stroke}
-            strokeWidth="0.8"
-          />
-        </svg>
-      );
-  }
-}
-
-/* ============================================================
-   ModeCard + ModesGrid
+   ModesGrid — rejestr trybów (karta księgi) + ModeRow
    ============================================================ */
 
 interface Mode {
@@ -717,9 +629,7 @@ interface Mode {
   count: number | string;
   countLabel: string;
   accent: string;
-  accentSoft: string;
   duration: string;
-  glyph: GlyphKind;
   href: string;
   disabled?: boolean;
 }
@@ -745,11 +655,9 @@ function ModesGrid({
       eyebrow: "Algorytm",
       body: "System wybiera dziś. Spaced repetition na priorytecie, świeże tematy w tle. Bez decyzji rano — najprostsze wejście.",
       count: dueCount,
-      countLabel: dueCount === 1 ? "temat w kolejce" : "tematów w kolejce",
+      countLabel: plPlural(dueCount, "temat w kolejce", "tematy w kolejce", "tematów w kolejce"),
       accent: "#B8924D",
-      accentSoft: "rgba(184,146,77,0.45)",
       duration: "15 min · pełna sesja",
-      glyph: "shuffle",
       href: mixTopicId
         ? `/study/session/new?mode=mix&topic=${mixTopicId}`
         : "/study/session/new?mode=mix",
@@ -762,12 +670,14 @@ function ModesGrid({
       eyebrow: "Error Vault",
       body: "Wracają tylko te, na których się potknęłaś. Krótsza sesja, większy ciężar — tu zostaje to, co umyka.",
       count: errorsCount,
-      countLabel:
-        errorsCount === 1 ? "aktywny do oczyszczenia" : "aktywnych do oczyszczenia",
+      countLabel: plPlural(
+        errorsCount,
+        "aktywny do oczyszczenia",
+        "aktywne do oczyszczenia",
+        "aktywnych do oczyszczenia"
+      ),
       accent: "#8B2E1F",
-      accentSoft: "rgba(139,46,31,0.45)",
       duration: "8 min · krótka sesja",
-      glyph: "errata",
       href: "/errors/quiz",
       disabled: errorsCount === 0,
     },
@@ -778,11 +688,9 @@ function ModesGrid({
       eyebrow: "Półka",
       body: "Wybierasz dziedzinę: Hiszpański, Filozofia, Wino. System tasuje w jej granicach. Dobry tryb po dłuższej przerwie w temacie.",
       count: sectionsCount,
-      countLabel: sectionsCount === 1 ? "półka do wyboru" : "półek do wyboru",
+      countLabel: plPlural(sectionsCount, "półka do wyboru", "półki do wyboru", "półek do wyboru"),
       accent: "#7a4a1f",
-      accentSoft: "rgba(122,74,31,0.55)",
       duration: "15 min · z jednej półki",
-      glyph: "shelf",
       href: "/study/session/new?mode=vault",
     },
     {
@@ -792,11 +700,9 @@ function ModesGrid({
       eyebrow: "Pinezka",
       body: "Otwórz sekcję, kliknij temat. Cała sesja kręci się wokół jednego punktu — gramatyki, reguły, autora. Bez błąkania.",
       count: topicsCount,
-      countLabel: topicsCount === 1 ? "temat w katalogu" : "tematów w katalogu",
+      countLabel: plPlural(topicsCount, "temat w katalogu", "tematy w katalogu", "tematów w katalogu"),
       accent: "#1f3a26",
-      accentSoft: "rgba(31,58,38,0.55)",
-      duration: "wariable · ile trzeba",
-      glyph: "pin",
+      duration: "zmienna · ile trzeba",
       href: "/vaults",
     },
   ];
@@ -805,7 +711,7 @@ function ModesGrid({
     <div style={{ padding: "0 24px 56px" }}>
       <div
         className="flex items-center flex-wrap"
-        style={{ gap: 16, marginBottom: 22 }}
+        style={{ gap: 16, marginBottom: 20 }}
       >
         <span
           className="eyebrow"
@@ -835,16 +741,40 @@ function ModesGrid({
           Wybierz jeden · zawsze możesz zmienić
         </span>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: 24 }}>
-        {modes.map((m) => (
-          <ModeCard key={m.key} mode={m} />
-        ))}
+      {/* rejestr — kremowa karta księgi z czterema wpisami */}
+      <div
+        className="tex-paper tex-noise-fine relative"
+        style={{
+          boxShadow:
+            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 22px 48px -18px rgba(0,0,0,0.72), 0 5px 10px rgba(0,0,0,0.42)",
+        }}
+      >
+        <div
+          aria-hidden
+          className="absolute"
+          style={{
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 3,
+            zIndex: 3,
+            background:
+              "linear-gradient(90deg, var(--c-gold-600), var(--c-gold-400), var(--c-gold-600))",
+          }}
+        />
+        <div className="relative" style={{ zIndex: 3 }}>
+          {modes.map((m, i) => (
+            <ModeRow key={m.key} mode={m} isLast={i === modes.length - 1} />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-function ModeCard({ mode }: { mode: Mode }) {
+/* Wpis rejestru — zwarty wiersz księgi z grzbietem akcentowym.
+   Na <lg opis spada do własnej linii, czas chowa się na wąskich ekranach. */
+function ModeRow({ mode, isLast }: { mode: Mode; isLast: boolean }) {
   const Wrapper: React.ElementType = mode.disabled ? "div" : Link;
   const wrapperProps = mode.disabled
     ? { "aria-disabled": true as const }
@@ -853,183 +783,138 @@ function ModeCard({ mode }: { mode: Mode }) {
   return (
     <Wrapper
       {...wrapperProps}
-      className={`mode-card tex-paper tex-noise-fine relative ${
+      className={`mode-row flex flex-wrap lg:flex-nowrap items-center ${
         mode.disabled ? "is-disabled" : ""
       }`}
-      style={{
-        boxShadow:
-          "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 38px -16px rgba(0,0,0,0.68), 0 4px 8px rgba(0,0,0,0.4)",
-        transition: "transform .22s ease, box-shadow .22s ease",
-        cursor: mode.disabled ? "not-allowed" : "pointer",
-        minHeight: 340,
-        display: "flex",
-        flexDirection: "column",
-        textDecoration: "none",
-        opacity: mode.disabled ? 0.55 : 1,
-      }}
+      style={
+        {
+          "--row-accent": mode.accent,
+          gap: 24,
+          padding: "20px 28px 20px 24px",
+          borderBottom: isLast ? "none" : "0.5px dashed rgba(27,17,8,0.25)",
+          cursor: mode.disabled ? "not-allowed" : "pointer",
+          textDecoration: "none",
+          opacity: mode.disabled ? 0.55 : 1,
+          transition: "background .18s",
+        } as React.CSSProperties
+      }
     >
-      {/* gilt double-rule frame */}
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          inset: 12,
-          border: "0.5px solid rgba(146,112,55,0.35)",
-          zIndex: 2,
-        }}
-      />
-
-      {/* top-edge accent */}
-      <div
-        aria-hidden
-        className="absolute"
-        style={{
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: mode.accent,
-          opacity: 0.95,
-          boxShadow: `0 0 10px ${mode.accentSoft}`,
-          zIndex: 3,
-        }}
-      />
-
-      <div
-        className="relative"
-        style={{
-          zIndex: 3,
-          padding: "30px 32px 26px",
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      {/* № + eyebrow */}
+      <div style={{ width: 86, flexShrink: 0 }}>
         <div
-          className="flex items-start justify-between"
-          style={{ marginBottom: 16, gap: 16 }}
-        >
-          <div>
-            <div
-              className="font-display italic"
-              style={{
-                fontSize: 26,
-                color: mode.accent,
-                fontWeight: 500,
-                lineHeight: 1,
-                letterSpacing: "-0.01em",
-                marginBottom: 8,
-                opacity: 0.9,
-              }}
-            >
-              № {mode.roman}
-            </div>
-            <span
-              className="eyebrow"
-              style={{ color: "rgba(27,17,8,0.55)", fontSize: 10 }}
-            >
-              {mode.eyebrow}
-            </span>
-          </div>
-          <div
-            className="mode-card-glyph"
-            style={{
-              marginTop: -4,
-              opacity: 0.72,
-              transition: "opacity .2s",
-            }}
-          >
-            <ModeGlyph kind={mode.glyph} color={mode.accent} size={64} />
-          </div>
-        </div>
-
-        <h2
           className="font-display italic"
           style={{
-            fontSize: 40,
-            lineHeight: 1.0,
-            color: "#1B1108",
-            fontWeight: 600,
-            letterSpacing: "-0.015em",
-            marginBottom: 14,
+            fontSize: 26,
+            color: mode.accent,
+            fontWeight: 500,
+            lineHeight: 1,
+            marginBottom: 5,
           }}
         >
-          {mode.title}
-        </h2>
-
-        <p
-          className="body-prose"
-          style={{
-            color: "rgba(27,17,8,0.78)",
-            fontSize: 14,
-            lineHeight: 1.6,
-            marginBottom: 20,
-            flex: 1,
-          }}
-        >
-          {mode.body}
-        </p>
-
-        <div
-          className="flex items-baseline"
-          style={{ gap: 10, marginBottom: 16 }}
-        >
-          <span
-            className="font-display italic"
-            style={{
-              fontSize: 34,
-              color: "#1B1108",
-              fontWeight: 500,
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {mode.count}
-          </span>
-          <span
-            className="caption"
-            style={{
-              color: "rgba(27,17,8,0.55)",
-              fontSize: 12.5,
-              fontStyle: "italic",
-            }}
-          >
-            {mode.countLabel}
-          </span>
+          № {mode.roman}
         </div>
-
         <div
-          className="flex items-center justify-between"
+          className="eyebrow"
           style={{
-            borderTop: "0.5px dashed rgba(27,17,8,0.22)",
-            paddingTop: 14,
+            color: "rgba(27,17,8,0.5)",
+            fontSize: 8.5,
+            letterSpacing: "0.18em",
           }}
         >
-          <span
-            className="signature"
-            style={{
-              color: "rgba(27,17,8,0.55)",
-              fontSize: 10.5,
-              letterSpacing: "0.08em",
-            }}
-          >
-            {mode.duration}
-          </span>
-          <span
-            className="eyebrow flex items-center mode-card-cta"
-            style={{
-              color: "rgba(27,17,8,0.62)",
-              fontSize: 10,
-              gap: 8,
-              transition: "color .2s",
-            }}
-            data-accent={mode.accent}
-          >
-            {mode.disabled ? "Brak materiału" : "Rozpocznij"}{" "}
-            <span style={{ fontSize: 13, lineHeight: 1 }}>→</span>
-          </span>
+          {mode.eyebrow}
         </div>
       </div>
+
+      {/* tytuł */}
+      <div
+        className="font-display italic flex-1 min-w-[170px] lg:flex-none lg:w-[250px]"
+        style={{
+          fontSize: 30,
+          lineHeight: 1.02,
+          color: "#1B1108",
+          fontWeight: 600,
+          letterSpacing: "-0.01em",
+          textWrap: "balance",
+        }}
+      >
+        {mode.title}
+      </div>
+
+      {/* opis */}
+      <p
+        className="caption order-last basis-full lg:order-none lg:basis-auto lg:flex-1 lg:max-w-[420px]"
+        style={{
+          color: "rgba(27,17,8,0.72)",
+          fontSize: 12.5,
+          lineHeight: 1.55,
+          textWrap: "pretty",
+          margin: 0,
+        }}
+      >
+        {mode.body}
+      </p>
+
+      {/* licznik */}
+      <div
+        className="flex items-baseline lg:w-[168px]"
+        style={{ gap: 8, flexShrink: 0 }}
+      >
+        <span
+          className="font-display italic"
+          style={{
+            fontSize: 28,
+            color: "#1B1108",
+            fontWeight: 500,
+            lineHeight: 1,
+            letterSpacing: "-0.02em",
+          }}
+        >
+          {mode.count}
+        </span>
+        <span
+          className="caption"
+          style={{
+            color: "rgba(27,17,8,0.55)",
+            fontSize: 11.5,
+            fontStyle: "italic",
+          }}
+        >
+          {mode.countLabel}
+        </span>
+      </div>
+
+      {/* czas */}
+      <span
+        className="signature hidden md:block lg:w-[140px]"
+        style={{
+          flexShrink: 0,
+          color: "rgba(27,17,8,0.5)",
+          fontSize: 10.5,
+          letterSpacing: "0.06em",
+        }}
+      >
+        {mode.duration}
+      </span>
+
+      {/* CTA */}
+      <span
+        className="eyebrow flex items-center justify-end mode-row-cta lg:w-[118px]"
+        style={{
+          flexShrink: 0,
+          gap: 8,
+          fontSize: 10,
+          color: "rgba(27,17,8,0.62)",
+          marginLeft: "auto",
+        }}
+      >
+        {mode.disabled ? "Brak materiału" : "Rozpocznij"}{" "}
+        <span
+          className="mode-row-arrow"
+          style={{ fontSize: 13, lineHeight: 1 }}
+        >
+          →
+        </span>
+      </span>
     </Wrapper>
   );
 }
@@ -1054,7 +939,7 @@ function SectionsRail({
     <div style={{ padding: "0 24px 56px" }}>
       <div
         className="flex items-baseline flex-wrap"
-        style={{ gap: 16, marginBottom: 22 }}
+        style={{ gap: 16, marginBottom: 20 }}
       >
         <span
           className="eyebrow"
@@ -1081,8 +966,8 @@ function SectionsRail({
             fontSize: 11,
           }}
         >
-          {vaults.length} {vaults.length === 1 ? "półka" : "półek"} · {totalDue}{" "}
-          {totalDue === 1 ? "temat dziś" : "tematów dziś"}
+          {vaults.length} {plPlural(vaults.length, "półka", "półki", "półek")} · {totalDue}{" "}
+          {plPlural(totalDue, "temat dziś", "tematy dziś", "tematów dziś")}
         </span>
       </div>
       <div
@@ -1126,14 +1011,16 @@ function SectionChip({
   return (
     <Link
       href={`/vaults/${slug}`}
-      className="section-chip relative flex items-center"
+      className={`section-chip relative flex items-center ${
+        count === 0 ? "is-empty" : ""
+      }`}
       style={{
         gap: 14,
-        padding: "12px 16px 12px 12px",
+        padding: "14px 16px 14px 14px",
         background: "rgba(27,17,8,0.30)",
         border: "0.5px solid rgba(184,146,77,0.22)",
         cursor: "pointer",
-        transition: "background .18s, border-color .18s, transform .18s",
+        transition: "background .18s, border-color .18s, transform .18s, opacity .18s",
         textDecoration: "none",
         // CSS variable consumed by hover rule for accent border
         ["--chip-accent" as string]: accent,
@@ -1177,7 +1064,7 @@ function SectionChip({
         <div
           className="font-display italic"
           style={{
-            fontSize: 18,
+            fontSize: 19,
             color: "var(--c-paper-100)",
             fontWeight: 500,
             letterSpacing: "-0.005em",
@@ -1193,11 +1080,12 @@ function SectionChip({
       <span
         className="signature section-chip-count"
         style={{
-          color: count > 0 ? "var(--c-gold-300)" : "var(--c-paper-300)",
-          opacity: count > 0 ? 0.85 : 0.5,
+          color: "var(--c-paper-300)",
+          opacity: count > 0 ? 0.55 : 0.35,
           fontSize: 11,
           letterSpacing: "0.05em",
           flexShrink: 0,
+          transition: "color .18s, opacity .18s",
         }}
       >
         {String(count).padStart(2, "0")}
