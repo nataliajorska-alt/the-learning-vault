@@ -1,21 +1,15 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpenCheck,
-  GraduationCap,
-  LibraryBig,
-  NotebookPen,
-  Sparkles,
-} from "lucide-react";
 import { FirstRunSeed } from "@/components/FirstRunSeed";
 import { PytanieDnia } from "@/components/PytanieDnia";
 import { StreakMilestone } from "@/components/StreakMilestone";
 import { WeeklyLetter } from "@/components/WeeklyLetter";
 import { DateStamp } from "@/components/ui/DateStamp";
-import { WaxSeal } from "@/components/ui/WaxSeal";
+import { Reveal } from "@/components/ui/Reveal";
+import { ShelfStrip, type ShelfStripVault } from "@/components/ui/ShelfStrip";
+import { WaxSeal, type WaxTone } from "@/components/ui/WaxSeal";
 import {
   effectiveStreak,
   ensureUserDoc,
@@ -28,9 +22,14 @@ import {
   useVaults,
 } from "@/lib/firestore-data";
 import { topicQueueReason } from "@/lib/learning-copy";
+import { idSig, vaultSig } from "@/lib/sig";
 import type { Timestamp } from "firebase/firestore";
+import type { TopicStatus } from "@/lib/types";
 
 /* ---------- helpers ----------------------------------------------------- */
+
+const GOLD_RULE_SOFT = "rgba(184,146,77,0.22)";
+const GOLD_RULE = "rgba(184,146,77,0.35)";
 
 function toMillis(v: unknown): number {
   if (!v) return 0;
@@ -59,23 +58,6 @@ function toRoman(n: number): string {
   return r;
 }
 
-function vaultSig(name: string): string {
-  return name
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-zA-Z]/g, "")
-    .slice(0, 4)
-    .toUpperCase();
-}
-
-function idSig(id: string): string {
-  let hash = 0;
-  for (let i = 0; i < id.length; i++) {
-    hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
-  }
-  return String(hash % 1000).padStart(3, "0");
-}
-
 const MONTHS_PL_SHORT = [
   "I", "II", "III", "IV", "V", "VI",
   "VII", "VIII", "IX", "X", "XI", "XII",
@@ -95,6 +77,28 @@ function topicPriority(t: { status: string }): number {
   if (t.status === "struggling") return 0;
   if (t.status === "fresh") return 1;
   return 2;
+}
+
+/* "sięga po Sztukę" — prosty biernik dla nazw sekcji */
+function accusative(name: string): string {
+  return name.endsWith("a") ? name.slice(0, -1) + "ę" : name;
+}
+
+const TOME_WORDS: Record<number, string> = {
+  10: "Dziesięć", 11: "Jedenaście", 12: "Dwanaście", 13: "Trzynaście",
+  14: "Czternaście", 15: "Piętnaście", 16: "Szesnaście",
+};
+
+function tomesPhrase(n: number): string {
+  if (n === 1) return "Jeden tom";
+  if (n >= 2 && n <= 4) return `${n} tomy`;
+  return `${TOME_WORDS[n] ?? n} tomów`;
+}
+
+function statusWords(status: TopicStatus): { tag: string; card: string } {
+  if (status === "fresh") return { tag: "nowa", card: "nowa karta" };
+  if (status === "struggling") return { tag: "trudna", card: "trudna karta" };
+  return { tag: "powtórka", card: "powtórka" };
 }
 
 /* ---------- Page -------------------------------------------------------- */
@@ -148,6 +152,10 @@ export default function DashboardPage() {
     return out;
   }, [topics]);
   const nextDueTopic = due[0] ?? null;
+  const nextDueVaultName = useMemo(() => {
+    if (!nextDueTopic || !vaults) return "";
+    return vaults.find((v) => v.id === nextDueTopic.vaultId)?.name ?? "";
+  }, [nextDueTopic, vaults]);
 
   // Najsłabszy temat na „pytanie dnia": najpierw te z najniższą trafnością
   // (po próbach), w razie remisu struggling i więcej prób; gdy brak prób —
@@ -182,6 +190,19 @@ export default function DashboardPage() {
 
   const activeErrors = errors?.length ?? 0;
 
+  // Sekcje, do których najczęściej wracają błędy — do wpisu „Słabe ogniwa"
+  const errorVaultNames = useMemo(() => {
+    if (!errors || errors.length === 0) return [];
+    const counts = new Map<string, number>();
+    for (const e of errors) {
+      counts.set(e.vaultName, (counts.get(e.vaultName) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2)
+      .map(([name]) => name);
+  }, [errors]);
+
   const salonTopic = useMemo(() => {
     if (!topics || !salonPhrases || salonPhrases.length === 0) return null;
     const sorted = [...salonPhrases].sort((a, b) => {
@@ -193,6 +214,45 @@ export default function DashboardPage() {
     const topic = topics.find((t) => t.id === pick?.topicId);
     return topic && pick ? { topic, phrase: pick } : null;
   }, [topics, salonPhrases]);
+
+  // „Na stole" — najbliższe trzy wątki salonu (kolejka rotacji)
+  const salonThreads = useMemo(() => {
+    if (!topics || !salonPhrases || salonPhrases.length === 0) return [];
+    const seen = new Set<string>();
+    const ordered = [...salonPhrases].sort((a, b) => {
+      const ta = topics.find((t) => t.id === a.topicId);
+      const tb = topics.find((t) => t.id === b.topicId);
+      return toMillis(ta?.lastShownInSalon) - toMillis(tb?.lastShownInSalon);
+    });
+    const titles: string[] = [];
+    for (const p of ordered) {
+      if (seen.has(p.topicId)) continue;
+      seen.add(p.topicId);
+      const t = topics.find((x) => x.id === p.topicId);
+      if (t) titles.push(t.title);
+      if (titles.length === 3) break;
+    }
+    return titles;
+  }, [topics, salonPhrases]);
+
+  // Najliczniejsza sekcja — do podpisu pod półką
+  const topVaultName = useMemo(() => {
+    if (!vaults || !topics || vaults.length === 0) return "";
+    const counts = new Map<string, number>();
+    for (const t of topics) {
+      counts.set(t.vaultId, (counts.get(t.vaultId) ?? 0) + 1);
+    }
+    let best = vaults[0];
+    let bestN = -1;
+    for (const v of vaults) {
+      const n = counts.get(v.id) ?? 0;
+      if (n > bestN) {
+        best = v;
+        bestN = n;
+      }
+    }
+    return best?.name ?? "";
+  }, [vaults, topics]);
 
   const sessionCount = sessions?.length ?? 0;
   const sessionTotalDuration = sessions?.reduce((s, x) => s + (x.duration ?? 0), 0) ?? 0;
@@ -227,26 +287,30 @@ export default function DashboardPage() {
     );
   }
 
-  /* ---------- Stats for spis treści (index) ---------- */
+  /* ---------- Bilans (kompaktowy pasek) ---------- */
 
   const STATS: Array<{
     label: string;
     value: string;
+    suffix: string | null;
     sub: string;
   }> = [
     {
       label: "Passa",
       value: String(streak || 0),
+      suffix: null,
       sub: `${streak === 1 ? "dzień" : "dni"} z rzędu`,
     },
     {
       label: "Trafność",
-      value: accuracy7d != null ? `${accuracy7d}%` : "—",
+      value: accuracy7d != null ? String(accuracy7d) : "—",
+      suffix: accuracy7d != null ? "%" : null,
       sub: "z ostatnich 7 dni",
     },
     {
       label: "Opanowano",
       value: String(mastered),
+      suffix: null,
       sub:
         totalTopics > 0
           ? `z ${totalTopics} kart · ${Math.round((mastered / totalTopics) * 100)}%`
@@ -255,6 +319,7 @@ export default function DashboardPage() {
     {
       label: "Errata",
       value: String(activeErrors),
+      suffix: null,
       sub: activeErrors === 1 ? "karta do upilnowania" : "kart do upilnowania",
     },
   ];
@@ -265,22 +330,56 @@ export default function DashboardPage() {
     weekday: "long", day: "numeric", month: "long",
   });
   const chapterRoman = toRoman(Math.max(streak, 1));
+  const hasDue = due.length > 0;
 
   const heroLead =
     due.length === 0
       ? "Dziś masz wolne. Trzynaście dziedzin czeka — możesz zajrzeć na przegląd albo zostawić księgę zamkniętą."
-      : `${due.length === 1 ? "Jeden temat" : `${due.length} ${due.length < 5 ? "tematy" : "tematów"}`} w kolejce. Piętnaście minut, trzy fazy — powtórki, nowe karty, quiz z oceną AI.`;
+      : nextDueTopic
+      ? `Wieczorny kwadrans w czytelni. Dziś otwiera go ${nextDueTopic.title} — ${
+          due.length > 1
+            ? "reszta czeka cierpliwie w kolejce"
+            : "jedyna karta w dzisiejszej kolejce"
+        }.`
+      : `${due.length} ${due.length < 5 ? "tematy" : "tematów"} w kolejce. Piętnaście minut, trzy fazy — powtórki, nowe karty, quiz z oceną AI.`;
+
+  /* ---------- List kuratora ---------- */
+
+  const letterNote = hasDue
+    ? `${due.length} ${due.length === 1 ? "temat czeka" : due.length < 5 ? "tematy czekają" : "tematów czeka"} w kolejce spaced repetition.`
+    : salonTopic
+    ? "Kolejka jest czysta. Najlepszy ruch: lekka rozmowa i obycie z tematem."
+    : "Kolejka jest czysta. Możesz spokojnie wybrać tom do następnego wejścia.";
+
+  const letterBody = [
+    letterNote,
+    nextDueTopic
+      ? `Pierwszy w kolejce: ${nextDueTopic.title}. ${topicQueueReason(nextDueTopic)}`
+      : "",
+    activeErrors > 0
+      ? `Errata ma ${activeErrors} ${activeErrors === 1 ? "aktywny wpis" : "aktywnych wpisów"}, więc po sesji warto zamknąć przynajmniej jeden.`
+      : "Errata jest czysta, więc możesz trzymać rytm bez naprawiania zaległości.",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const today = new Date();
+  const letterDateline = `No. ${toRoman(sessionCount + 1)} · ${today.getDate()} ${
+    MONTHS_PL_SHORT[today.getMonth()]
+  } ${toRoman(today.getFullYear())}`;
+
+  const isSunday = today.getDay() === 0;
 
   /* ---------- Render ---------- */
 
   return (
     // Bust out of the standard max-w-content wrapper for a wider canvas
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12">
-      <div className="relative" style={{ overflow: "hidden" }}>
-        {/* Top light spill */}
+    <div className="today-v3 -mx-6 md:-mx-12 -mt-10 md:-mt-12">
+      <div className="relative anim-on" style={{ overflow: "hidden" }}>
+        {/* Top light spill — candle breathes (reduced-motion: static) */}
         <div
           aria-hidden
-          className="absolute pointer-events-none"
+          className="candle-glow absolute pointer-events-none"
           style={{
             top: 0,
             left: 0,
@@ -298,74 +397,82 @@ export default function DashboardPage() {
             chapterRoman={chapterRoman}
             streak={streak}
             heroLead={heroLead}
-            dueCount={due.length}
-            sessionNumber={sessionCount + 1}
           />
           <StreakMilestone streak={streak} />
-          <CuratorDesk
-            dueCount={due.length}
-            dueComposition={dueComposition}
-            nextTopic={
-              nextDueTopic
-                ? {
-                    title: nextDueTopic.title,
-                    reason: topicQueueReason(nextDueTopic),
-                  }
-                : null
-            }
-            errorsCount={activeErrors}
-            salonTopic={salonTopic}
-            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
-            weeklySessions={sessionCount}
-            weeklyAccuracy={weeklyAccuracy}
-          />
-          {weakestTopic && (
-            <PytanieDnia topic={weakestTopic} vaultName={weakestVaultName} />
-          )}
-          <PlaqueRow stats={STATS} />
-          {new Date().getDay() === 0 ? (
-            <WeeklyLetter
-              stats={{
-                sessions: sessionCount,
-                minutes: Math.round(sessionTotalDuration / 60),
-                accuracy: weeklyAccuracy,
-                errata: activeErrors,
-                mastered,
-                streak,
-              }}
-            />
-          ) : (
-            <CuratorLetter
+          <Reveal>
+            <PlanDniaV3
+              hasDue={hasDue}
               dueCount={due.length}
+              dueComposition={dueComposition}
+              letterBody={letterBody}
+              letterDateline={letterDateline}
+              nextTopic={
+                nextDueTopic
+                  ? {
+                      id: nextDueTopic.id,
+                      title: nextDueTopic.title,
+                      status: nextDueTopic.status,
+                      vaultName: nextDueVaultName,
+                    }
+                  : null
+              }
+            />
+          </Reveal>
+          <Reveal>
+            <BilansStrip stats={STATS} />
+          </Reveal>
+          {isSunday && (
+            <Reveal>
+              <WeeklyLetter
+                stats={{
+                  sessions: sessionCount,
+                  minutes: Math.round(sessionTotalDuration / 60),
+                  accuracy: weeklyAccuracy,
+                  errata: activeErrors,
+                  mastered,
+                  streak,
+                }}
+              />
+            </Reveal>
+          )}
+          {weakestTopic && (
+            <Reveal>
+              <PytanieDnia topic={weakestTopic} vaultName={weakestVaultName} />
+            </Reveal>
+          )}
+          {vaults && vaults.length > 0 && (
+            <Reveal>
+              <ShelfSection
+                vaults={vaults}
+                topVaultName={topVaultName}
+                sessionVaultName={nextDueVaultName}
+              />
+            </Reveal>
+          )}
+          <Reveal>
+            <RitualsV3
               errorsCount={activeErrors}
-              masteredCount={mastered}
+              errorVaultNames={errorVaultNames}
+              salonTopic={salonTopic}
+              salonThreads={salonThreads}
+              accuracy7d={accuracy7d}
+              weeklyMinutes={Math.round(sessionTotalDuration / 60)}
+              weeklySessions={sessionCount}
+            />
+          </Reveal>
+          <Reveal>
+            <ErrataSection errors={errors ?? []} />
+          </Reveal>
+          <Reveal>
+            <WeeklyLedger
+              sessions={sessions ?? []}
+              topics={topics ?? []}
+              vaults={vaults ?? []}
               weeklyMinutes={Math.round(sessionTotalDuration / 60)}
               weeklySessions={sessionCount}
               weeklyAccuracy={weeklyAccuracy}
             />
-          )}
-          <InvitationRow
-            errorsCount={activeErrors}
-            errorsTopChips={
-              errors
-                ?.slice(0, 3)
-                .map((e) => `${e.timesWrong}× ${e.correctVersion.split(" ").slice(0, 2).join(" ")}`)
-                .join(" · ") ?? "—"
-            }
-            salonTopic={salonTopic}
-            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
-            weeklySessions={sessionCount}
-            weeklyAccuracy={weeklyAccuracy}
-          />
-          <ErrataShelf errors={errors ?? []} />
-          <WeeklyLedger
-            sessions={sessions ?? []}
-            topics={topics ?? []}
-            vaults={vaults ?? []}
-            weeklyMinutes={Math.round(sessionTotalDuration / 60)}
-            weeklySessions={sessionCount}
-            weeklyAccuracy={weeklyAccuracy}
-          />
+          </Reveal>
         </div>
       </div>
     </div>
@@ -373,7 +480,108 @@ export default function DashboardPage() {
 }
 
 /* ============================================================
-   Hero — greeting + agenda
+   CTA — oxblood ze złotą podwójną ramką (Dziś v3)
+   ============================================================ */
+
+function OxbloodCta({
+  href,
+  label,
+  detail,
+}: {
+  href: string;
+  label: string;
+  detail?: string;
+}) {
+  const [hover, setHover] = useState(false);
+  return (
+    <Link
+      href={href}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="relative inline-flex items-center"
+      style={{
+        background: hover
+          ? "linear-gradient(180deg, #7a201a 0%, #531413 55%, #320a0a 100%)"
+          : "linear-gradient(180deg, #6b1a14 0%, #4a1010 55%, #2c0808 100%)",
+        color: "var(--c-paper-100)",
+        padding: detail ? "15px 16px 15px 26px" : "15px 26px",
+        textDecoration: "none",
+        boxShadow: hover
+          ? "0 13px 30px -8px rgba(0,0,0,0.78), inset 0 1px 0 rgba(255,190,150,0.22), inset 0 -1px 0 rgba(0,0,0,0.5)"
+          : "0 8px 20px -6px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,180,140,0.18), inset 0 -1px 0 rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.45)",
+        transform: hover ? "translateY(-1px)" : "translateY(0)",
+        transition:
+          "transform .18s ease, box-shadow .18s ease, background .18s ease",
+      }}
+    >
+      <span
+        aria-hidden
+        className="absolute pointer-events-none"
+        style={{ inset: 4, border: "0.5px solid rgba(184,146,77,0.55)" }}
+      />
+      <span
+        aria-hidden
+        className="absolute pointer-events-none"
+        style={{ inset: 6, border: "0.5px solid rgba(184,146,77,0.20)" }}
+      />
+      <span
+        className="eyebrow"
+        style={{
+          letterSpacing: "0.2em",
+          fontWeight: 600,
+          fontSize: 11,
+          color: "var(--c-paper-100)",
+          textShadow: "0 -1px 0 rgba(0,0,0,0.6)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {label}
+      </span>
+      {detail && (
+        <>
+          <span
+            aria-hidden
+            style={{
+              width: 1,
+              height: 17,
+              background: "rgba(184,146,77,0.4)",
+              margin: "0 14px",
+            }}
+          />
+          <span
+            className="signature"
+            style={{
+              color: "var(--c-gold-300)",
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              textShadow: "0 -1px 0 rgba(0,0,0,0.5)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {detail}
+          </span>
+        </>
+      )}
+      <span
+        aria-hidden
+        style={{
+          color: "var(--c-gold-300)",
+          fontSize: 15,
+          lineHeight: 1,
+          marginLeft: 16,
+          paddingRight: 4,
+          transform: hover ? "translateX(2px)" : "translateX(0)",
+          transition: "transform .18s ease",
+        }}
+      >
+        →
+      </span>
+    </Link>
+  );
+}
+
+/* ============================================================
+   Hero — powitanie; program sesji zszedł ze sceny (v3)
    ============================================================ */
 
 interface HeroProps {
@@ -381,18 +589,10 @@ interface HeroProps {
   chapterRoman: string;
   streak: number;
   heroLead: string;
-  dueCount: number;
-  sessionNumber: number;
 }
 
-function Hero({
-  displayDate,
-  chapterRoman,
-  streak,
-  heroLead,
-  dueCount,
-  sessionNumber,
-}: HeroProps) {
+function Hero({ displayDate, chapterRoman, streak, heroLead }: HeroProps) {
+  const [minHover, setMinHover] = useState(false);
   return (
     <div className="px-6 md:px-12 lg:px-16 pt-12 md:pt-16 pb-8 md:pb-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -400,7 +600,7 @@ function Hero({
         <div className="lg:col-span-7">
           <div
             className="eyebrow flex items-center"
-            style={{ color: "var(--c-gold-400)", marginBottom: 20, gap: 16 }}
+            style={{ color: "var(--c-gold-400)", marginBottom: 22, gap: 16 }}
           >
             <span style={{ textTransform: "uppercase" }}>
               {displayDate} · MMXXVI
@@ -409,7 +609,7 @@ function Hero({
               style={{
                 flex: 1,
                 height: 1,
-                background: "rgba(184,146,77,0.35)",
+                background: GOLD_RULE,
               }}
             />
           </div>
@@ -472,115 +672,43 @@ function Hero({
             style={{
               color: "rgba(228,214,186,0.74)",
               maxWidth: 540,
-              marginBottom: 32,
+              marginBottom: 30,
             }}
           >
             {heroLead}
           </p>
 
-          <div className="flex items-center flex-wrap" style={{ gap: 14 }}>
-            <Link
-              href="/study"
-              className="btn-primary"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <GraduationCap className="h-4 w-4 stroke-[1.5]" />
-              Otwórz sesję · 15 min
-            </Link>
-            <Link
-              href="/vaults"
-              className="btn-ghost"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <LibraryBig className="h-4 w-4 stroke-[1.5]" />
+          <div className="flex items-center flex-wrap" style={{ gap: 16 }}>
+            <OxbloodCta href="/study" label="Otwórz sesję" detail="15 min" />
+            <Link href="/vaults" className="btn-ghost" style={{ textDecoration: "none" }}>
               Pokaż agendę
             </Link>
             <Link
               href="/study/session/new?mode=mix&limit=3"
-              className="btn-ghost"
+              onMouseEnter={() => setMinHover(true)}
+              onMouseLeave={() => setMinHover(false)}
+              className="signature"
               style={{
+                color: minHover ? "var(--c-gold-300)" : "var(--c-paper-300)",
+                opacity: minHover ? 1 : 0.75,
+                borderBottom: "1px dotted rgba(184,146,77,0.5)",
+                paddingBottom: 2,
+                marginLeft: 6,
                 textDecoration: "none",
+                transition: "color .18s ease",
+                whiteSpace: "nowrap",
               }}
             >
-              Minimum day · 3 pytania
+              Dzień minimum · 3 pytania
             </Link>
           </div>
         </div>
 
-        {/* RIGHT — date stamp + agenda */}
+        {/* RIGHT — date stamp */}
         <div className="lg:col-span-5 flex flex-col lg:items-end">
           <div className="lg:self-end mt-2 lg:mt-0">
             <DateStamp />
           </div>
-
-          <div
-            className="mt-8 w-full lg:max-w-[360px] lg:self-end"
-          >
-            <div
-              className="eyebrow flex items-center"
-              style={{
-                color: "var(--c-gold-400)",
-                marginBottom: 12,
-                gap: 12,
-                opacity: 0.85,
-              }}
-            >
-              <span>
-                Sesja {toRoman(sessionNumber)} · {dueCount > 0 ? "dziś" : "wstrzymana"}
-              </span>
-              <span
-                style={{
-                  flex: 1,
-                  height: 0.5,
-                  background: "rgba(184,146,77,0.25)",
-                }}
-              />
-            </div>
-            {[
-              { ph: "I", t: "Teoria", dur: "3:00" },
-              { ph: "II", t: "Test", dur: "10:00" },
-              { ph: "III", t: "Korekta", dur: "2:00" },
-            ].map((p) => (
-              <div
-                key={p.ph}
-                className="flex items-baseline"
-                style={{ padding: "6px 0", gap: 14 }}
-              >
-                <span
-                  className="font-display italic"
-                  style={{
-                    color: "var(--c-gold-400)",
-                    fontSize: 14,
-                    width: 24,
-                    flexShrink: 0,
-                    opacity: 0.85,
-                  }}
-                >
-                  {p.ph}
-                </span>
-                <span
-                  style={{
-                    flex: 1,
-                    color: "var(--c-paper-200)",
-                    fontSize: 14,
-                    opacity: 0.85,
-                  }}
-                >
-                  {p.t}
-                </span>
-                <span
-                  className="signature"
-                  style={{ color: "var(--c-paper-300)", opacity: 0.55 }}
-                >
-                  {p.dur}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -588,518 +716,561 @@ function Hero({
 }
 
 /* ============================================================
-   CuratorDesk — recommended next move + daily state
+   Plan dnia v3 — list kuratora ze składem kolejki w marginaliach
+   + stosik kart katalogowych „Pierwszy w kolejce"
    ============================================================ */
 
-interface CuratorDeskProps {
+interface PlanDniaV3Props {
+  hasDue: boolean;
   dueCount: number;
-  dueComposition: {
-    fresh: number;
-    review: number;
-    struggling: number;
-  };
-  nextTopic: { title: string; reason: string } | null;
-  errorsCount: number;
-  salonTopic: {
-    topic: { id: string; title: string };
-    phrase: { short: string };
+  dueComposition: { fresh: number; review: number; struggling: number };
+  letterBody: string;
+  letterDateline: string;
+  nextTopic: {
+    id: string;
+    title: string;
+    status: TopicStatus;
+    vaultName: string;
   } | null;
-  weeklyMinutes: number;
-  weeklySessions: number;
-  weeklyAccuracy: string | null;
 }
 
-function CuratorDesk({
+function PlanDniaV3({
+  hasDue,
   dueCount,
   dueComposition,
+  letterBody,
+  letterDateline,
   nextTopic,
-  errorsCount,
-  salonTopic,
-  weeklyMinutes,
-  weeklySessions,
-  weeklyAccuracy,
-}: CuratorDeskProps) {
-  const hasDue = dueCount > 0;
-  const primary = hasDue
-    ? {
-        href: "/study",
-        label: "Zacznij sesję",
-        icon: GraduationCap,
-        note: `${dueCount} ${dueCount === 1 ? "temat czeka" : dueCount < 5 ? "tematy czekają" : "tematów czeka"} w kolejce spaced repetition.`,
-      }
-    : salonTopic
-    ? {
-        href: `/salon/${salonTopic.topic.id}`,
-        label: "Wejdź do salonu",
-        icon: Sparkles,
-        note: "Kolejka jest czysta. Najlepszy ruch: lekka rozmowa i obycie z tematem.",
-      }
-    : {
-        href: "/vaults",
-        label: "Przejrzyj regał",
-        icon: LibraryBig,
-        note: "Kolejka jest czysta. Możesz spokojnie wybrać tom do następnego wejścia.",
-      };
-
-  const PrimaryIcon = primary.icon;
-  const totalFocus = Math.max(
-    1,
-    dueComposition.fresh + dueComposition.review + dueComposition.struggling
-  );
-  const strips = [
-    {
-      label: "Nowe",
-      value: dueComposition.fresh,
-      color: "var(--c-cognac)",
-    },
-    {
-      label: "Powtórki",
-      value: dueComposition.review,
-      color: "var(--c-gold-500)",
-    },
-    {
-      label: "Trudne",
-      value: dueComposition.struggling,
-      color: "var(--c-ink)",
-    },
+}: PlanDniaV3Props) {
+  const queueRows: Array<[string, number]> = [
+    ["Nowe", dueComposition.fresh],
+    ["Powtórki", dueComposition.review],
+    ["Trudne", dueComposition.struggling],
   ];
-  const topicTitle = salonTopic?.topic.title ?? "Temat do swobodnej rozmowy";
-  const minutesLabel =
-    weeklyMinutes > 0
-      ? `${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min`
-      : "0 min";
 
   return (
     <section className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
-      <div
-        className="grid grid-cols-1 lg:grid-cols-12"
-        style={{
-          gap: 20,
-        }}
-      >
-        <div className="lg:col-span-7">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* LIST KURATORA */}
+        <div className="lg:col-span-8">
           <div
-            className="tex-paper tex-noise-fine relative h-full overflow-hidden"
+            className="tex-paper tex-noise-fine relative h-full"
             style={{
-              minHeight: 286,
+              padding: 12,
+              boxSizing: "border-box",
               boxShadow:
-                "0 1px 0 rgba(255,250,235,0.65) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 24px 48px -18px rgba(0,0,0,0.72), 0 5px 10px rgba(0,0,0,0.35)",
+                "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 24px 48px -16px rgba(0,0,0,0.78), 0 2px 6px rgba(0,0,0,0.35)",
             }}
           >
             <div
-              aria-hidden
-              className="absolute pointer-events-none"
+              className="relative flex flex-col"
               style={{
-                inset: 14,
-                border: "0.5px solid rgba(146,112,55,0.34)",
-                zIndex: 2,
+                border: "0.5px solid rgba(27,17,8,0.28)",
+                padding: "22px 28px 22px",
+                height: "100%",
+                boxSizing: "border-box",
               }}
-            />
-            <div
-              aria-hidden
-              className="absolute pointer-events-none"
-              style={{
-                inset: "auto -10% -44% 20%",
-                height: 170,
-                background:
-                  "radial-gradient(ellipse 60% 70%, rgba(139,46,31,0.16), transparent 68%)",
-                zIndex: 2,
-              }}
-            />
-            <div
-              className="relative grid grid-cols-1 sm:grid-cols-[1fr_auto]"
-              style={{ zIndex: 3, gap: 24, padding: "34px 34px 30px" }}
             >
-              <div>
-                <div
-                  className="eyebrow flex items-center"
-                  style={{
-                    gap: 10,
-                    color: "rgba(139,46,31,0.82)",
-                    marginBottom: 12,
-                  }}
-                >
-                  <NotebookPen className="h-3.5 w-3.5 stroke-[1.7]" />
-                  Plan dnia · curator note
-                </div>
-                <h2
-                  className="font-display italic"
-                  style={{
-                    fontSize: "clamp(32px, 4vw, 48px)",
-                    color: "#1B1108",
-                    lineHeight: 1.0,
-                    fontWeight: 600,
-                    letterSpacing: "-0.015em",
-                    marginBottom: 14,
-                  }}
-                >
-                  {hasDue ? "Najpierw nauka." : "Dziś lekko."}
-                </h2>
-                <p
-                  className="body-prose"
-                  style={{
-                    color: "rgba(27,17,8,0.78)",
-                    maxWidth: 540,
-                    marginBottom: 22,
-                  }}
-                >
-                  {primary.note}{" "}
-                  {nextTopic
-                    ? `Pierwszy w kolejce: ${nextTopic.title}. ${nextTopic.reason}`
-                    : ""}
-                  {" "}
-                  {errorsCount > 0
-                    ? `Errata ma ${errorsCount} ${errorsCount === 1 ? "aktywny wpis" : "aktywnych wpisów"}, więc po sesji warto zamknąć przynajmniej jeden.`
-                    : "Errata jest czysta, więc możesz trzymać rytm bez naprawiania zaległości."}
-                </p>
-                <div className="flex items-center flex-wrap" style={{ gap: 10 }}>
-                  <Link
-                    href={primary.href}
-                    className="vault-paper-action"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <PrimaryIcon className="h-4 w-4 stroke-[1.7]" />
-                    {primary.label}
-                    <ArrowRight className="h-3.5 w-3.5 stroke-[1.7]" />
-                  </Link>
-                  <Link
-                    href={errorsCount > 0 ? "/errors" : "/salon"}
-                    className="vault-paper-action secondary"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <BookOpenCheck className="h-4 w-4 stroke-[1.7]" />
-                    {errorsCount > 0 ? "Zobacz erratę" : "Salon po sesji"}
-                  </Link>
-                </div>
-              </div>
-
               <div
-                className="hidden sm:flex flex-col items-center justify-center"
-                style={{
-                  width: 124,
-                  minHeight: 170,
-                  borderLeft: "0.5px dashed rgba(27,17,8,0.20)",
-                  paddingLeft: 24,
-                }}
-              >
-                <div
-                  className="font-display italic"
-                  style={{
-                    fontSize: 74,
-                    lineHeight: 0.85,
-                    color: hasDue ? "var(--c-ink)" : "var(--c-racing)",
-                    opacity: 0.86,
-                    fontWeight: 600,
-                  }}
-                >
-                  {String(dueCount).padStart(2, "0")}
+                aria-hidden
+                className="absolute pointer-events-none"
+                style={{ inset: 4, border: "0.5px solid rgba(27,17,8,0.12)" }}
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-12 flex-1" style={{ gap: 32 }}>
+                {/* text column */}
+                <div className="sm:col-span-8 flex flex-col">
+                  <div
+                    className="eyebrow"
+                    style={{ color: "var(--c-ink)", opacity: 0.85, marginBottom: 12 }}
+                  >
+                    Plan dnia · list kuratora
+                  </div>
+                  <h2
+                    className="h3"
+                    style={{
+                      fontSize: 30,
+                      color: "#1B1108",
+                      marginBottom: 10,
+                      lineHeight: 1.02,
+                    }}
+                  >
+                    {hasDue ? "Najpierw nauka." : "Dziś lekko."}
+                  </h2>
+                  <p
+                    className="body-prose"
+                    style={{
+                      color: "rgba(27,17,8,0.8)",
+                      fontSize: 13.5,
+                      lineHeight: 1.55,
+                      marginBottom: 18,
+                      maxWidth: 440,
+                    }}
+                  >
+                    {letterBody}
+                  </p>
+                  <div style={{ flex: 1 }} />
+                  <div
+                    className="flex items-baseline justify-between flex-wrap"
+                    style={{ gap: 16 }}
+                  >
+                    <span
+                      className="signature"
+                      style={{ color: "rgba(27,17,8,0.45)", fontSize: 10 }}
+                    >
+                      {letterDateline}
+                    </span>
+                    <span
+                      className="font-display italic"
+                      style={{
+                        fontSize: 21,
+                        color: "var(--c-ink)",
+                        opacity: 0.85,
+                        transform: "rotate(-2deg)",
+                      }}
+                    >
+                      — kurator zbiorów
+                    </span>
+                  </div>
                 </div>
+                {/* marginalia: licznik + skład kolejki */}
                 <div
-                  className="signature"
-                  style={{
-                    color: "rgba(27,17,8,0.55)",
-                    marginTop: 12,
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                  }}
+                  className="sm:col-span-4 flex flex-col items-center justify-center sm:border-l border-t sm:border-t-0 pt-6 sm:pt-0 sm:pl-7"
+                  style={{ borderColor: "rgba(27,17,8,0.22)" }}
                 >
-                  {hasDue ? "w kolejce" : "zaległości"}
+                  <div style={{ textAlign: "center", marginBottom: 18 }}>
+                    <div
+                      className="font-display italic font-medium"
+                      style={{
+                        fontSize: 60,
+                        lineHeight: 0.9,
+                        color: hasDue ? "var(--c-ink)" : "var(--c-racing)",
+                        letterSpacing: "-0.03em",
+                      }}
+                    >
+                      {dueCount}
+                    </div>
+                    <div
+                      className="eyebrow"
+                      style={{
+                        color: "rgba(27,17,8,0.55)",
+                        marginTop: 8,
+                        fontSize: 9,
+                      }}
+                    >
+                      W kolejce
+                    </div>
+                  </div>
+                  <div style={{ alignSelf: "stretch" }}>
+                    {queueRows.map(([label, n], i) => (
+                      <div
+                        key={label}
+                        className="flex items-baseline"
+                        style={{
+                          gap: 10,
+                          padding: "7px 0",
+                          borderTop:
+                            i === 0
+                              ? "0.5px solid rgba(27,17,8,0.22)"
+                              : "0.5px solid rgba(27,17,8,0.12)",
+                        }}
+                      >
+                        <span
+                          className="body-prose"
+                          style={{ fontSize: 12.5, color: "rgba(27,17,8,0.75)" }}
+                        >
+                          {label}
+                        </span>
+                        <span
+                          aria-hidden
+                          style={{
+                            flex: 1,
+                            borderBottom: "1px dotted rgba(27,17,8,0.3)",
+                            transform: "translateY(-3px)",
+                          }}
+                        />
+                        <span
+                          className="signature"
+                          style={{ fontSize: 11, color: "rgba(27,17,8,0.65)" }}
+                        >
+                          {String(n).padStart(2, "0")}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1" style={{ gap: 20 }}>
-          <div
-            className="relative"
-            style={{
-              border: "1px solid rgba(184,146,77,0.24)",
-              background:
-                "linear-gradient(145deg, rgba(228,214,186,0.055), rgba(228,214,186,0.018))",
-              padding: "24px 24px 22px",
-              boxShadow:
-                "inset 0 1px 0 rgba(184,146,77,0.10), 0 18px 36px -24px rgba(0,0,0,0.65)",
-            }}
-          >
-            <div
-              className="eyebrow"
-              style={{ color: "var(--c-gold-400)", marginBottom: 18 }}
-            >
-              Skład kolejki
-            </div>
-            <div style={{ display: "grid", gap: 13 }}>
-              {strips.map((s) => (
-                <div key={s.label}>
-                  <div
-                    className="flex items-center justify-between signature"
-                    style={{
-                      color: "var(--c-paper-300)",
-                      opacity: 0.72,
-                      marginBottom: 6,
-                    }}
-                  >
-                    <span>{s.label}</span>
-                    <span>{String(s.value).padStart(2, "0")}</span>
-                  </div>
-                  <div
-                    style={{
-                      height: 4,
-                      background: "rgba(184,146,77,0.12)",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      style={{
-                        height: "100%",
-                        width: `${Math.round((s.value / totalFocus) * 100)}%`,
-                        minWidth: s.value > 0 ? 18 : 0,
-                        background: s.color,
-                        boxShadow: `0 0 10px ${s.color}55`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className="relative"
-            style={{
-              border: "1px solid rgba(184,146,77,0.24)",
-              background:
-                "linear-gradient(145deg, rgba(58,15,28,0.44), rgba(27,17,8,0.35))",
-              padding: "24px 24px 22px",
-              boxShadow:
-                "inset 0 1px 0 rgba(255,200,180,0.08), 0 18px 36px -24px rgba(0,0,0,0.65)",
-            }}
-          >
-            <div
-              className="eyebrow"
-              style={{ color: "var(--c-gold-400)", marginBottom: 10 }}
-            >
-              Po sesji
-            </div>
-            <h3
-              className="font-display italic"
-              style={{
-                color: "var(--c-paper-100)",
-                fontSize: 28,
-                lineHeight: 1.05,
-                fontWeight: 500,
-                marginBottom: 10,
-              }}
-            >
-              {topicTitle}
-            </h3>
-            <p
-              className="caption"
-              style={{
-                color: "var(--c-paper-300)",
-                opacity: 0.68,
-                marginBottom: 16,
-              }}
-            >
-              Tydzień: {weeklySessions} {weeklySessions === 1 ? "sesja" : "sesji"} · {minutesLabel}
-              {weeklyAccuracy ? ` · śr. ${weeklyAccuracy}%` : ""}
-            </p>
-            <Link
-              href={salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon"}
-              className="eyebrow inline-flex items-center"
-              style={{
-                gap: 8,
-                color: "var(--c-gold-300)",
-                textDecoration: "none",
-              }}
-            >
-              Otwórz rozmowę
-              <ArrowRight className="h-3.5 w-3.5 stroke-[1.7]" />
-            </Link>
-          </div>
+        {/* PIERWSZY W KOLEJCE — stosik kart */}
+        <div className="lg:col-span-4 flex flex-col">
+          {nextTopic ? (
+            <NextCardStack topic={nextTopic} total={dueCount} />
+          ) : (
+            <QueueClearCard />
+          )}
         </div>
       </div>
     </section>
   );
 }
 
-/* ============================================================
-   PlaqueRow — StatRowIndex (dot-leader spis treści)
-   ============================================================ */
-
-function PlaqueRow({
-  stats,
+/* Stosik kart katalogowych — wierzchnia karta to pierwszy w kolejce */
+function NextCardStack({
+  topic,
+  total,
 }: {
-  stats: Array<{ label: string; value: string; sub: string }>;
+  topic: { id: string; title: string; status: TopicStatus; vaultName: string };
+  total: number;
 }) {
+  const [hover, setHover] = useState(false);
+  const words = statusWords(topic.status);
+  const backCard = (rot: number, dx: number, dy: number): CSSProperties => ({
+    position: "absolute",
+    inset: 0,
+    background: "#d8c69b",
+    transform: `rotate(${rot}deg) translate(${dx}px, ${dy}px)`,
+    boxShadow: "0 10px 22px -10px rgba(0,0,0,0.65)",
+  });
+
   return (
-    <div className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+    <div className="flex-1 flex flex-col" style={{ minHeight: 230 }}>
       <div
-        style={{
-          padding: "28px 0 8px",
-          borderTop: "1px solid rgba(184,146,77,0.35)",
-        }}
+        className="eyebrow flex items-center"
+        style={{ color: "var(--c-gold-400)", marginBottom: 16, gap: 12 }}
       >
-        <div
-          className="eyebrow flex items-center"
+        <span style={{ whiteSpace: "nowrap" }}>Pierwszy w kolejce</span>
+        <span
+          aria-hidden
+          style={{ flex: 1, height: 0.5, background: "rgba(184,146,77,0.25)" }}
+        />
+        <span style={{ opacity: 0.6, whiteSpace: "nowrap" }}>1 / {total}</span>
+      </div>
+
+      <div className="relative" style={{ flex: 1, minHeight: 185 }}>
+        {/* karty pod spodem — reszta kolejki */}
+        <div aria-hidden style={backCard(2.2, 5, 7)} />
+        <div aria-hidden style={backCard(-1.4, -4, 3)} />
+
+        {/* wierzchnia karta */}
+        <Link
+          href={`/study/session/new?topic=${topic.id}&mode=topic`}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          className="tex-paper tex-noise-fine absolute inset-0 flex flex-col"
           style={{
-            color: "var(--c-gold-400)",
-            marginBottom: 18,
-            gap: 16,
+            transform: hover
+              ? "rotate(-0.4deg) translateY(-4px)"
+              : "rotate(-0.4deg)",
+            boxShadow: hover
+              ? "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 26px 46px -16px rgba(0,0,0,0.8), 0 3px 6px rgba(0,0,0,0.4)"
+              : "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -16px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.35)",
+            transition: "transform .2s ease, box-shadow .2s ease",
+            textDecoration: "none",
           }}
         >
-          <span>Bilans · stan na dziś</span>
-          <span
-            style={{ flex: 1, height: 1, background: "rgba(184,146,77,0.2)" }}
-          />
-          <span style={{ opacity: 0.6 }}>
-            {new Date().toLocaleDateString("pl-PL", {
-              day: "numeric",
-              month: "long",
-            })}
-          </span>
-        </div>
-
-        {stats.map((s, i) => (
           <div
-            key={s.label}
-            className="flex items-baseline"
             style={{
-              padding: "14px 0",
-              borderTop:
-                i === 0 ? "none" : "0.5px solid rgba(184,146,77,0.15)",
-              gap: 18,
+              height: 24,
+              borderBottom: "0.5px dashed rgba(27,17,8,0.28)",
+              position: "relative",
+              flexShrink: 0,
             }}
           >
             <span
-              className="signature"
+              className="signature absolute"
               style={{
-                color: "var(--c-gold-500)",
-                width: 28,
-                flexShrink: 0,
+                left: 18,
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "rgba(27,17,8,0.6)",
+                fontSize: 10,
+                letterSpacing: "0.1em",
+                whiteSpace: "nowrap",
               }}
             >
-              {String(i + 1).padStart(2, "0")}
+              {vaultSig(topic.vaultName)} · {idSig(topic.id)}
             </span>
+            <span
+              className="signature absolute"
+              style={{
+                right: 18,
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "rgba(27,17,8,0.55)",
+                fontSize: 10,
+              }}
+            >
+              ✦ {words.tag}
+            </span>
+          </div>
+
+          <div
+            className="flex flex-col"
+            style={{ padding: "20px 22px 18px", flex: 1, position: "relative" }}
+          >
+            <div
+              className="font-display italic font-medium"
+              style={{
+                fontSize: 23,
+                color: "#1B1108",
+                lineHeight: 1.12,
+                marginBottom: 7,
+              }}
+            >
+              {topic.title}
+            </div>
+            <div className="signature" style={{ color: "rgba(27,17,8,0.55)", fontSize: 11 }}>
+              {topic.vaultName} · {words.card}
+            </div>
+            <div style={{ flex: 1, minHeight: 18 }} />
+            <div className="flex items-end justify-between">
+              <span
+                className="eyebrow"
+                style={{
+                  color: "var(--c-ink)",
+                  fontSize: 9,
+                  opacity: hover ? 1 : 0.8,
+                  transition: "opacity .18s ease",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Zacznij od tej karty →
+              </span>
+              <span
+                aria-hidden
+                style={{
+                  transform: "rotate(-4deg)",
+                  border: "1.5px solid var(--c-ink)",
+                  color: "var(--c-ink)",
+                  padding: "3px 8px 2px",
+                  fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+                  fontSize: 8,
+                  letterSpacing: "0.18em",
+                  fontWeight: 600,
+                  opacity: 0.85,
+                }}
+              >
+                NA DZIŚ
+              </span>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* Pusta kolejka — cicha gablota zamiast stosiku */
+function QueueClearCard() {
+  return (
+    <div className="flex-1 flex flex-col" style={{ minHeight: 230 }}>
+      <div
+        className="eyebrow flex items-center"
+        style={{ color: "var(--c-gold-400)", marginBottom: 16, gap: 12 }}
+      >
+        <span style={{ whiteSpace: "nowrap" }}>Pierwszy w kolejce</span>
+        <span
+          aria-hidden
+          style={{ flex: 1, height: 0.5, background: "rgba(184,146,77,0.25)" }}
+        />
+      </div>
+      <div
+        className="flex-1 flex flex-col justify-center"
+        style={{
+          border: `1px solid ${GOLD_RULE_SOFT}`,
+          background: "rgba(228,214,186,0.025)",
+          padding: "24px 28px",
+        }}
+      >
+        <div
+          className="font-display italic font-medium"
+          style={{ fontSize: 24, color: "var(--c-paper-100)", lineHeight: 1.15 }}
+        >
+          Kolejka jest czysta.
+        </div>
+        <div
+          className="signature"
+          style={{ color: "var(--c-paper-300)", opacity: 0.6, marginTop: 8 }}
+        >
+          Wróć jutro — albo zajrzyj wieczorem do salonu.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   Bilans — kompaktowy pasek: jedna linia, cztery wskaźniki
+   ============================================================ */
+
+function BilansStrip({
+  stats,
+}: {
+  stats: Array<{ label: string; value: string; suffix: string | null; sub: string }>;
+}) {
+  return (
+    <section className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+      <div
+        className="flex flex-wrap items-stretch"
+        style={{
+          borderTop: `1px solid ${GOLD_RULE}`,
+          borderBottom: `1px solid ${GOLD_RULE_SOFT}`,
+        }}
+      >
+        <div
+          className="flex flex-col justify-center w-full sm:w-auto"
+          style={{ padding: "16px 32px 16px 0", minWidth: 124, flexShrink: 0 }}
+        >
+          <div className="eyebrow" style={{ color: "var(--c-gold-400)", fontSize: 10 }}>
+            Bilans
+          </div>
+          <div
+            className="signature"
+            style={{
+              color: "var(--c-paper-300)",
+              opacity: 0.55,
+              marginTop: 3,
+              fontSize: 11,
+            }}
+          >
+            {new Date().toLocaleDateString("pl-PL", { day: "numeric", month: "long" })}
+          </div>
+        </div>
+        {stats.map((s) => (
+          <div
+            key={s.label}
+            className="flex items-center basis-1/2 sm:basis-0 sm:flex-1"
+            style={{
+              gap: 16,
+              padding: "16px 24px",
+              borderLeft: `1px solid ${GOLD_RULE_SOFT}`,
+            }}
+          >
             <span
               className="font-display italic font-medium"
               style={{
-                fontSize: "clamp(20px, 2.2vw, 26px)",
-                color: "var(--c-paper-100)",
-                letterSpacing: "-0.01em",
-                minWidth: 140,
-              }}
-            >
-              {s.label}
-            </span>
-            <span
-              style={{
-                flex: 1,
-                borderBottom: "1px dotted rgba(184,146,77,0.4)",
-                transform: "translateY(-6px)",
-              }}
-            />
-            <span
-              className="signature hidden sm:inline"
-              style={{
-                color: "var(--c-paper-300)",
-                opacity: 0.65,
-                textAlign: "right",
-              }}
-            >
-              {s.sub}
-            </span>
-            <span
-              className="font-display italic font-medium"
-              style={{
-                fontSize: "clamp(24px, 2.6vw, 32px)",
-                color: "var(--c-gold-400)",
+                fontSize: 38,
                 lineHeight: 1,
-                minWidth: 80,
-                textAlign: "right",
+                color: "var(--c-paper-100)",
                 letterSpacing: "-0.02em",
+                whiteSpace: "nowrap",
               }}
             >
               {s.value}
+              {s.suffix ? (
+                <span style={{ fontSize: 22, color: "var(--c-gold-400)" }}>
+                  {s.suffix}
+                </span>
+              ) : (
+                ""
+              )}
+            </span>
+            <span style={{ minWidth: 0 }}>
+              <span
+                className="eyebrow"
+                style={{
+                  display: "block",
+                  color: "var(--c-gold-400)",
+                  fontSize: 9,
+                  marginBottom: 2,
+                }}
+              >
+                {s.label}
+              </span>
+              <span
+                className="signature"
+                style={{
+                  display: "block",
+                  color: "var(--c-paper-300)",
+                  opacity: 0.6,
+                  fontSize: 11,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {s.sub}
+              </span>
             </span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
-function CuratorLetter({
-  dueCount,
-  errorsCount,
-  masteredCount,
-  weeklyMinutes,
-  weeklySessions,
-  weeklyAccuracy,
+/* ============================================================
+   Z półek — sekcje jako grzbiety na półce
+   ============================================================ */
+
+function ShelfSection({
+  vaults,
+  topVaultName,
+  sessionVaultName,
 }: {
-  dueCount: number;
-  errorsCount: number;
-  masteredCount: number;
-  weeklyMinutes: number;
-  weeklySessions: number;
-  weeklyAccuracy: string | null;
+  vaults: ShelfStripVault[];
+  topVaultName: string;
+  sessionVaultName: string;
 }) {
-  const opening =
-    weeklySessions === 0
-      ? "Ten tydzień jeszcze nie ma wpisu w rejestrze."
-      : `W tym tygodniu zamknęłaś ${weeklySessions} ${weeklySessions === 1 ? "sesję" : "sesji"} i ${weeklyMinutes} minut pracy.`;
-  const accuracy = weeklyAccuracy
-    ? ` Średnia trafność: ${weeklyAccuracy}%.`
-    : "";
-  const next =
-    dueCount > 0
-      ? ` Na biurku leży ${dueCount} ${dueCount === 1 ? "temat" : dueCount < 5 ? "tematy" : "tematów"} do zdjęcia z kolejki.`
-      : " Kolejka jest czysta; dziś wystarczy Salon albo minimum day.";
-  const errata =
-    errorsCount > 0
-      ? ` Errata trzyma ${errorsCount} ${errorsCount === 1 ? "wpis" : "wpisów"}, więc warto rehabilitować jeden słaby punkt.`
-      : " Errata nie domaga się dziś uwagi.";
+  const shelfCopy = [
+    "Każda karta wraca na swoją półkę.",
+    topVaultName ? ` Najliczniej — ${topVaultName}` : "",
+    topVaultName && sessionVaultName
+      ? `; dzisiejsza sesja sięga po ${accusative(sessionVaultName)}.`
+      : topVaultName
+      ? "."
+      : "",
+  ].join("");
 
   return (
-    <section className="px-6 md:px-12 lg:px-16 pb-12 md:pb-14">
+    <section className="px-6 md:px-12 lg:px-16 pb-16 md:pb-20">
       <div
-        className="tex-paper tex-noise-fine relative"
-        style={{
-          padding: "28px 32px 26px",
-          boxShadow:
-            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 22px 46px -24px rgba(0,0,0,0.72)",
-        }}
+        className="eyebrow flex items-center"
+        style={{ color: "var(--c-gold-400)", marginBottom: 26, gap: 16 }}
       >
-        <div
+        <span style={{ whiteSpace: "nowrap" }}>Z półek · sekcje w obiegu</span>
+        <span
+          aria-hidden
+          style={{ flex: 1, height: 1, background: "rgba(184,146,77,0.2)" }}
+        />
+        <Link
+          href="/vaults"
           className="eyebrow"
-          style={{ color: "rgba(122,74,31,0.76)", marginBottom: 12 }}
+          style={{
+            color: "var(--c-gold-400)",
+            whiteSpace: "nowrap",
+            textDecoration: "none",
+          }}
         >
-          List kuratora · tydzień bieżący
+          Wszystkie sekcje →
+        </Link>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="lg:col-span-8">
+          <ShelfStrip vaults={vaults} height={148} />
         </div>
-        <p
-          className="font-display italic"
-          style={{
-            color: "#1B1108",
-            fontSize: "clamp(25px, 3.2vw, 38px)",
-            lineHeight: 1.12,
-            fontWeight: 600,
-            maxWidth: 920,
-          }}
-        >
-          {opening}
-          {accuracy}
-          {next}
-          {errata}
-        </p>
-        <div
-          className="signature"
-          style={{
-            color: "rgba(27,17,8,0.48)",
-            marginTop: 16,
-            textTransform: "uppercase",
-          }}
-        >
-          {masteredCount} opanowanych kart · bez fajerwerków, za to z ciągłością
+        <div className="lg:col-span-4 lg:pb-8 lg:pl-4">
+          <div
+            className="font-display italic font-medium"
+            style={{
+              fontSize: 30,
+              color: "var(--c-paper-100)",
+              lineHeight: 1.1,
+              marginBottom: 12,
+            }}
+          >
+            {tomesPhrase(vaults.length)}, jedna czytelnia.
+          </div>
+          <p
+            className="body-prose"
+            style={{
+              color: "rgba(228,214,186,0.68)",
+              fontSize: 13.5,
+              lineHeight: 1.6,
+            }}
+          >
+            {shelfCopy}
+          </p>
         </div>
       </div>
     </section>
@@ -1107,281 +1278,348 @@ function CuratorLetter({
 }
 
 /* ============================================================
-   InvitationRow — RitualsC: Salon featured (velvet) + 2 sides
+   Po sesji · wieczorne rytuały — salon z „na stole" + ornament
    ============================================================ */
 
-interface InvitationRowProps {
+interface RitualsV3Props {
   errorsCount: number;
-  errorsTopChips: string;
+  errorVaultNames: string[];
   salonTopic: {
     topic: { id: string; title: string };
     phrase: { short: string };
   } | null;
+  salonThreads: string[];
+  accuracy7d: number | null;
   weeklyMinutes: number;
   weeklySessions: number;
-  weeklyAccuracy: string | null;
 }
 
-function InvitationRow({
+function RitualsV3({
   errorsCount,
-  errorsTopChips,
+  errorVaultNames,
   salonTopic,
+  salonThreads,
+  accuracy7d,
   weeklyMinutes,
   weeklySessions,
-  weeklyAccuracy,
-}: InvitationRowProps) {
-  const featured = {
-    href: salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon",
-    eyebrow: salonTopic ? "Salon · temat dnia" : "Salon",
-    title: salonTopic?.topic.title ?? "Wybierz temat",
-    body:
-      salonTopic?.phrase.short ??
-      "Trzy zdania na temat. Krótko, rozbudowanie, pułapka. Praktyczne obycie, nie egzamin.",
-    meta: "Ćwicz wypowiedź · ocena finezji AI",
-    cta: "Wejdź do salonu",
-    sealLabel: "S",
-    sealTone: "burgundy" as const,
-  };
+}: RitualsV3Props) {
+  const errataBody =
+    errorVaultNames.length > 0
+      ? `Karty, na których powtórki widzą niepewność. Najczęściej wraca ${errorVaultNames
+          .map((n) => n.toLowerCase())
+          .join(" i ")}.`
+      : "Karty, na których powtórki widzą niepewność. Dziś rejestr jest czysty.";
+
+  const statsBody =
+    accuracy7d != null
+      ? `Trafność ${accuracy7d}% z ostatniego tygodnia. ${weeklySessions} ${
+          weeklySessions === 1 ? "sesja" : weeklySessions < 5 ? "sesje" : "sesji"
+        } · ${weeklyMinutes} min przy biurku.`
+      : "Tydzień jeszcze bez wpisów w dzienniku — pierwsza sesja otworzy statystyki.";
 
   const sides = [
     {
       href: "/errors",
       eyebrow: `Errata · ${errorsCount} ${errorsCount === 1 ? "karta" : "kart"}`,
       title: "Słabe ogniwa",
-      meta: errorsTopChips,
+      body: errataBody,
       cta: "Otwórz erratę",
-      ord: "I",
+      sealLabel: "E",
+      sealTone: "oxblood" as WaxTone,
     },
     {
       href: "/stats",
-      eyebrow: `Tydzień · ${weeklySessions} ${weeklySessions === 1 ? "sesja" : "sesji"}`,
+      eyebrow: "Statystyki · 7 dni",
       title: "Dziennik postępów",
-      meta:
-        weeklySessions > 0
-          ? `${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min · śr. ${weeklyAccuracy ?? "—"}%`
-          : "Brak sesji w tym tygodniu",
+      body: statsBody,
       cta: "Otwórz statystyki",
-      ord: "III",
+      sealLabel: "D",
+      sealTone: "umber" as WaxTone,
     },
   ];
 
   return (
-    <div className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
+    <section className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
       <div
-        className="flex items-baseline"
-        style={{ marginBottom: 22, gap: 20 }}
+        className="eyebrow flex items-center"
+        style={{ color: "var(--c-gold-400)", marginBottom: 20, gap: 16 }}
       >
-        <h2
-          className="h2"
-          style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
-        >
-          Po sesji
-        </h2>
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            background: "rgba(184,146,77,0.3)",
-            transform: "translateY(-8px)",
-          }}
-        />
+        <span style={{ whiteSpace: "nowrap" }}>Po sesji · wieczorne rytuały</span>
         <span
-          className="signature"
-          style={{ color: "var(--c-paper-300)", opacity: 0.6 }}
-        >
-          III rytuały
-        </span>
+          aria-hidden
+          style={{ flex: 1, height: 1, background: "rgba(184,146,77,0.2)" }}
+        />
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 items-stretch">
-        {/* Salon featured */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div className="lg:col-span-7">
-          <Link
-            href={featured.href}
-            className="block h-full"
-            style={{ minHeight: 340 }}
-          >
-            <div
-              className="tex-velvet relative h-full flex flex-col"
-              style={{
-                boxShadow:
-                  "0 24px 48px -20px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(184,146,77,0.32)",
-              }}
-            >
-              <div
-                className="relative flex-1 flex flex-col"
-                style={{
-                  margin: 14,
-                  border: "0.5px solid rgba(184,146,77,0.45)",
-                  padding: "28px 28px 24px",
-                }}
-              >
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    inset: 4,
-                    border: "0.5px solid rgba(184,146,77,0.20)",
-                  }}
-                />
-                <div
-                  className="flex items-start justify-between"
-                  style={{ marginBottom: 18 }}
-                >
-                  <span
-                    className="eyebrow"
-                    style={{ color: "var(--c-gold-300)" }}
-                  >
-                    {featured.eyebrow}
-                  </span>
-                  <WaxSeal
-                    size={52}
-                    label={featured.sealLabel}
-                    tone={featured.sealTone}
-                  />
-                </div>
-                <h3
-                  className="h3"
-                  style={{
-                    fontSize: 34,
-                    color: "var(--c-paper-100)",
-                    marginBottom: 12,
-                    lineHeight: 1.05,
-                  }}
-                >
-                  {featured.title}
-                </h3>
-                <p
-                  className="body-prose"
-                  style={{
-                    color: "rgba(228,214,186,0.78)",
-                    marginBottom: 16,
-                    fontSize: 14,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {featured.body}
-                </p>
-                <div
-                  className="signature"
-                  style={{
-                    color: "rgba(228,214,186,0.55)",
-                    marginBottom: 16,
-                  }}
-                >
-                  {featured.meta}
-                </div>
-                <div style={{ flex: 1 }} />
-                <div
-                  style={{
-                    height: 1,
-                    background:
-                      "linear-gradient(90deg, transparent, rgba(184,146,77,0.4), transparent)",
-                    marginBottom: 16,
-                  }}
-                />
-                <div className="flex items-center justify-between">
-                  <span
-                    className="eyebrow"
-                    style={{ color: "var(--c-gold-300)" }}
-                  >
-                    {featured.cta}
-                  </span>
-                  <span
-                    style={{ color: "var(--c-gold-300)", fontSize: 16 }}
-                  >
-                    →
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
+          <SalonFeaturedV3 salonTopic={salonTopic} threads={salonThreads} />
         </div>
-
-        {/* Two side entries */}
-        <div className="lg:col-span-5 flex flex-col gap-4 md:gap-[18px]">
+        <div className="lg:col-span-5 flex flex-col gap-6">
           {sides.map((r) => (
-            <Link
-              key={r.href}
-              href={r.href}
-              className="block flex-1"
-            >
-              <div
-                className="relative h-full"
-                style={{
-                  border: "1px solid rgba(184,146,77,0.28)",
-                  padding: "28px 28px 24px",
-                  background: "rgba(228,214,186,0.03)",
-                  display: "flex",
-                  flexDirection: "column",
-                  minHeight: 160,
-                }}
-              >
-                <div
-                  className="eyebrow flex items-center justify-between"
-                  style={{ color: "var(--c-gold-400)", marginBottom: 10 }}
-                >
-                  <span>{r.eyebrow}</span>
-                  <span
-                    style={{ color: "var(--c-paper-300)", opacity: 0.5 }}
-                  >
-                    {r.ord}
-                  </span>
-                </div>
-                <div
-                  className="font-display italic"
-                  style={{
-                    fontSize: 24,
-                    color: "var(--c-paper-100)",
-                    fontWeight: 500,
-                    lineHeight: 1.1,
-                    marginBottom: 8,
-                  }}
-                >
-                  {r.title}
-                </div>
-                <div
-                  className="signature"
-                  style={{
-                    color: "var(--c-paper-300)",
-                    opacity: 0.6,
-                    marginBottom: 14,
-                  }}
-                >
-                  {r.meta}
-                </div>
-                <div style={{ flex: 1 }} />
-                <div
-                  style={{
-                    height: 1,
-                    background:
-                      "linear-gradient(90deg, transparent, rgba(184,146,77,0.35), transparent)",
-                    marginBottom: 14,
-                  }}
-                />
-                <div className="flex items-center justify-between">
-                  <span
-                    className="eyebrow"
-                    style={{ color: "var(--c-gold-300)" }}
-                  >
-                    {r.cta}
-                  </span>
-                  <span
-                    style={{ color: "var(--c-gold-400)", fontSize: 14 }}
-                  >
-                    →
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <RitualSideEntry key={r.href} r={r} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
+  );
+}
+
+function SalonFeaturedV3({
+  salonTopic,
+  threads,
+}: {
+  salonTopic: {
+    topic: { id: string; title: string };
+    phrase: { short: string };
+  } | null;
+  threads: string[];
+}) {
+  const [hover, setHover] = useState(false);
+  const href = salonTopic ? `/salon/${salonTopic.topic.id}` : "/salon";
+  const title = salonTopic?.topic.title ?? "Wybierz temat";
+  const body =
+    salonTopic?.phrase.short ??
+    "Trzy zdania na temat. Krótko, rozbudowanie, pułapka. Praktyczne obycie, nie egzamin.";
+  const romans = ["i.", "ii.", "iii."];
+
+  return (
+    <Link
+      href={href}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="tex-velvet relative flex flex-col h-full"
+      style={{
+        padding: "30px 34px",
+        boxShadow: hover
+          ? "0 26px 50px -18px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(184,146,77,0.45)"
+          : "0 20px 44px -18px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(184,146,77,0.32)",
+        transition: "box-shadow .2s ease",
+        boxSizing: "border-box",
+        overflow: "hidden",
+        textDecoration: "none",
+        minHeight: 340,
+      }}
+    >
+      <div
+        aria-hidden
+        className="absolute pointer-events-none"
+        style={{ inset: 8, border: "0.5px solid rgba(184,146,77,0.4)" }}
+      />
+      {/* ornament w tle */}
+      <div
+        aria-hidden
+        className="absolute pointer-events-none font-display"
+        style={{
+          right: -28,
+          bottom: -64,
+          fontSize: 250,
+          lineHeight: 1,
+          color: "rgba(184,146,77,0.07)",
+          transform: "rotate(-10deg)",
+          userSelect: "none",
+        }}
+      >
+        ❦
+      </div>
+      <div
+        className="relative flex items-start justify-between"
+        style={{ gap: 16, marginBottom: 16 }}
+      >
+        <div className="eyebrow" style={{ color: "var(--c-gold-300)", paddingTop: 6 }}>
+          Salon · temat dnia
+        </div>
+        <WaxSeal size={50} label="S" tone="burgundy" />
+      </div>
+      <div
+        className="relative font-display italic font-medium"
+        style={{
+          fontSize: "clamp(28px, 3.4vw, 38px)",
+          color: "var(--c-paper-100)",
+          lineHeight: 1.04,
+          marginBottom: 12,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        {title}
+      </div>
+      <p
+        className="relative body-prose"
+        style={{
+          color: "rgba(228,214,186,0.75)",
+          fontSize: 14.5,
+          lineHeight: 1.6,
+          maxWidth: 380,
+          marginBottom: 20,
+        }}
+      >
+        {body}
+      </p>
+
+      {/* na stole — najbliższe wątki rozmowy */}
+      {threads.length > 0 && (
+        <div className="relative" style={{ maxWidth: 340, marginBottom: 22 }}>
+          <div
+            className="eyebrow"
+            style={{
+              color: "var(--c-gold-400)",
+              fontSize: 9,
+              marginBottom: 8,
+              opacity: 0.85,
+            }}
+          >
+            Na stole
+          </div>
+          {threads.map((t, i) => (
+            <div
+              key={t}
+              className="flex items-baseline"
+              style={{
+                gap: 12,
+                padding: "7px 0",
+                borderTop: i === 0 ? "none" : "0.5px solid rgba(184,146,77,0.16)",
+              }}
+            >
+              <span
+                className="font-display italic"
+                style={{
+                  color: "var(--c-gold-300)",
+                  fontSize: 15,
+                  width: 20,
+                  flexShrink: 0,
+                  lineHeight: 1,
+                }}
+              >
+                {romans[i]}
+              </span>
+              <span
+                className="font-display italic font-medium"
+                style={{
+                  color: "var(--c-paper-100)",
+                  fontSize: 19,
+                  lineHeight: 1.1,
+                  opacity: 0.92,
+                }}
+              >
+                {t}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div style={{ flex: 1 }} />
+      <div className="relative flex items-center justify-between">
+        <span
+          className="eyebrow flex items-center"
+          style={{
+            color: hover ? "var(--c-gold-300)" : "var(--c-gold-400)",
+            gap: 8,
+            transition: "color .18s ease",
+          }}
+        >
+          <span>Wejdź do salonu</span>
+          <span
+            aria-hidden
+            style={{
+              transform: hover ? "translateX(2px)" : "none",
+              transition: "transform .18s ease",
+            }}
+          >
+            →
+          </span>
+        </span>
+        <span className="signature" style={{ color: "rgba(228,214,186,0.45)" }}>
+          ok. 10 min
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function RitualSideEntry({
+  r,
+}: {
+  r: {
+    href: string;
+    eyebrow: string;
+    title: string;
+    body: string;
+    cta: string;
+    sealLabel: string;
+    sealTone: WaxTone;
+  };
+}) {
+  const [hover, setHover] = useState(false);
+  return (
+    <Link
+      href={r.href}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="flex flex-col flex-1"
+      style={{
+        padding: "24px 28px",
+        border: `1px solid ${hover ? GOLD_RULE : GOLD_RULE_SOFT}`,
+        background: hover ? "rgba(228,214,186,0.045)" : "rgba(228,214,186,0.025)",
+        transition: "background .18s ease, border-color .18s ease",
+        textDecoration: "none",
+        minHeight: 160,
+      }}
+    >
+      <div className="flex items-start justify-between" style={{ gap: 16, marginBottom: 12 }}>
+        <div className="eyebrow" style={{ color: "var(--c-gold-400)", paddingTop: 4 }}>
+          {r.eyebrow}
+        </div>
+        <WaxSeal size={38} label={r.sealLabel} tone={r.sealTone} />
+      </div>
+      <div
+        className="font-display italic font-medium"
+        style={{
+          fontSize: 26,
+          color: "var(--c-paper-100)",
+          lineHeight: 1.08,
+          marginBottom: 10,
+        }}
+      >
+        {r.title}
+      </div>
+      <p
+        className="body-prose"
+        style={{
+          color: "rgba(228,214,186,0.68)",
+          fontSize: 13.5,
+          lineHeight: 1.55,
+          marginBottom: 16,
+        }}
+      >
+        {r.body}
+      </p>
+      <div style={{ flex: 1 }} />
+      <div
+        className="eyebrow flex items-center"
+        style={{
+          color: hover ? "var(--c-gold-300)" : "var(--c-gold-400)",
+          gap: 8,
+          fontSize: 10,
+          transition: "color .18s ease",
+        }}
+      >
+        <span>{r.cta}</span>
+        <span
+          aria-hidden
+          style={{
+            transform: hover ? "translateX(2px)" : "none",
+            transition: "transform .18s ease",
+          }}
+        >
+          →
+        </span>
+      </div>
+    </Link>
   );
 }
 
 /* ============================================================
-   ErrataShelf — oxblood leather pad with 3 catalog cards
+   Błędy do upilnowania — karteczki na pulpicie, bez ciężkiej ramy
    ============================================================ */
 
 interface ErrataItem {
@@ -1393,82 +1631,69 @@ interface ErrataItem {
   timesWrong: number;
 }
 
-function ErrataShelf({ errors }: { errors: ErrataItem[] }) {
+const ERRATA_ROTATES = [-1.1, 0.5, 1.3];
+
+function ErrataSection({ errors }: { errors: ErrataItem[] }) {
   if (!errors || errors.length === 0) return null;
   const items = errors.slice(0, 3);
-  const rotates = [-1.2, 0.4, 1.6];
 
   return (
-    <div className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
-      <div className="flex items-baseline justify-between" style={{ marginBottom: 24 }}>
-        <div>
-          <div
-            className="eyebrow"
-            style={{ color: "var(--c-ink2)", marginBottom: 8 }}
-          >
-            Error Vault · {errors.length} {errors.length === 1 ? "wpis" : "wpisów"}
-          </div>
+    <section className="px-6 md:px-12 lg:px-16 pb-14 md:pb-16">
+      <div
+        className="flex items-baseline justify-between flex-wrap"
+        style={{ marginBottom: 26, gap: 24 }}
+      >
+        <div className="flex items-baseline" style={{ gap: 24, minWidth: 0, flex: 1 }}>
           <h2
             className="h2"
-            style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
+            style={{
+              fontSize: "clamp(28px, 3.4vw, 36px)",
+              color: "var(--c-paper-100)",
+              whiteSpace: "nowrap",
+            }}
           >
-            Ostatnie błędy do upilnowania
+            Błędy do upilnowania
           </h2>
+          <div
+            aria-hidden
+            className="hidden sm:block"
+            style={{
+              flex: 1,
+              height: 1,
+              background: GOLD_RULE_SOFT,
+              transform: "translateY(-8px)",
+            }}
+          />
         </div>
         <Link
           href="/errors"
           className="eyebrow"
-          style={{ color: "var(--c-gold-400)" }}
+          style={{
+            color: "var(--c-gold-400)",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+            textDecoration: "none",
+          }}
         >
-          Wszystkie →
+          Errata · {errors.length} {errors.length === 1 ? "wpis" : "wpisów"} →
         </Link>
       </div>
 
-      <div
-        className="tex-leather relative"
-        style={{
-          padding: "32px 24px 40px",
-          boxShadow:
-            "inset 0 1px 0 rgba(255,180,140,0.12), inset 0 -3px 8px rgba(0,0,0,0.55), 0 24px 48px -16px rgba(0,0,0,0.75), 0 4px 8px rgba(0,0,0,0.4)",
-          isolation: "isolate",
-        }}
-      >
-        {/* gold-tooled double inner rule */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            inset: 14,
-            border: "0.5px solid rgba(184,146,77,0.55)",
-            boxShadow: "inset 0 0 0 0.5px rgba(0,0,0,0.5)",
-          }}
-        />
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            inset: 22,
-            border: "0.5px solid rgba(184,146,77,0.22)",
-          }}
-        />
-
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start" style={{ zIndex: 2 }}>
-          {items.map((e, i) => (
-            <div
-              key={e.id}
-              style={{ transform: `rotate(${(rotates[i] ?? 0) * 0.6}deg)` }}
-            >
-              <ErratumCard
-                sig={`${vaultSig(e.vaultName)} · ${idSig(e.id)}`}
-                times={e.timesWrong}
-                front={e.correctVersion}
-                wrong={e.wrongVersion}
-                context={e.context}
-                stamp={e.timesWrong >= 3 ? "UCIĄŻLIWE" : "DO UPILNOWANIA"}
-              />
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7 items-stretch">
+        {items.map((e, i) => (
+          <ErratumCard
+            key={e.id}
+            sig={`${vaultSig(e.vaultName)} · ${idSig(e.id)}`}
+            times={e.timesWrong}
+            front={e.correctVersion}
+            wrong={e.wrongVersion}
+            context={e.context}
+            stamp={e.timesWrong >= 3 ? "UCIĄŻLIWE" : "DO UPILNOWANIA"}
+            rotate={ERRATA_ROTATES[i] ?? 0}
+          />
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -1479,6 +1704,7 @@ function ErratumCard({
   wrong,
   context,
   stamp,
+  rotate,
 }: {
   sig: string;
   times: number;
@@ -1486,21 +1712,31 @@ function ErratumCard({
   wrong: string;
   context: string;
   stamp: string;
+  rotate: number;
 }) {
+  const [hover, setHover] = useState(false);
   return (
     <div
-      className="tex-paper tex-noise-fine relative"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="tex-paper tex-noise-fine relative flex flex-col"
       style={{
-        boxShadow:
-          "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -16px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.35)",
+        transform: `rotate(${rotate}deg)${hover ? " translateY(-3px)" : ""}`,
+        boxShadow: hover
+          ? "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 24px 44px -16px rgba(0,0,0,0.8), 0 3px 6px rgba(0,0,0,0.4)"
+          : "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -16px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.35)",
+        transition: "transform .2s ease, box-shadow .2s ease",
+        height: "100%",
+        boxSizing: "border-box",
       }}
     >
       {/* perforated top */}
       <div
         style={{
-          height: 22,
+          height: 24,
           borderBottom: "0.5px dashed rgba(27,17,8,0.28)",
           position: "relative",
+          flexShrink: 0,
         }}
       >
         <div
@@ -1510,6 +1746,8 @@ function ErratumCard({
             top: "50%",
             transform: "translateY(-50%)",
             color: "rgba(27,17,8,0.6)",
+            fontSize: 10,
+            letterSpacing: "0.1em",
           }}
         >
           {sig}
@@ -1521,43 +1759,37 @@ function ErratumCard({
             top: "50%",
             transform: "translateY(-50%)",
             color: "rgba(27,17,8,0.55)",
+            fontSize: 10,
           }}
         >
           × {times}
         </div>
       </div>
 
-      <div style={{ padding: "22px 24px 36px", position: "relative" }}>
+      <div
+        className="flex flex-col"
+        style={{ padding: "22px 24px 40px", position: "relative", flex: 1 }}
+      >
         <p
-          className="font-display italic"
+          className="font-display italic font-medium"
           style={{
-            fontSize: 20,
+            fontSize: 21,
             color: "#1B1108",
-            lineHeight: 1.32,
+            lineHeight: 1.3,
             marginBottom: 14,
-            fontWeight: 500,
           }}
         >
           {front}
         </p>
         <div
-          style={{
-            height: 0.5,
-            background: "rgba(27,17,8,0.22)",
-            margin: "14px 0",
-          }}
+          aria-hidden
+          style={{ height: 0.5, background: "rgba(27,17,8,0.22)", marginBottom: 14 }}
         />
         <p
           className="body-prose"
-          style={{
-            color: "rgba(27,17,8,0.78)",
-            fontSize: 13,
-            lineHeight: 1.55,
-          }}
+          style={{ color: "rgba(27,17,8,0.78)", fontSize: 13, lineHeight: 1.55 }}
         >
-          <span style={{ color: "rgba(27,17,8,0.6)", fontStyle: "italic" }}>
-            nie:{" "}
-          </span>
+          <span style={{ color: "rgba(27,17,8,0.6)", fontStyle: "italic" }}>nie: </span>
           <span
             style={{
               textDecoration: "line-through",
@@ -1574,16 +1806,16 @@ function ErratumCard({
             </>
           )}
         </p>
-
+        <div style={{ flex: 1 }} />
         <div
           className="absolute"
           style={{
             right: 16,
-            bottom: 16,
-            transform: "rotate(-6deg)",
-            border: "1.5px solid var(--c-ink2)",
-            color: "var(--c-ink2)",
-            padding: "4px 9px 3px",
+            bottom: 14,
+            transform: "rotate(-5deg)",
+            border: "1.5px solid var(--c-ink)",
+            color: "var(--c-ink)",
+            padding: "4px 10px 3px",
             fontFamily: '"JetBrains Mono", ui-monospace, monospace',
             fontSize: 9,
             letterSpacing: "0.18em",
@@ -1593,26 +1825,13 @@ function ErratumCard({
         >
           {stamp}
         </div>
-
-        <div
-          className="absolute"
-          style={{
-            bottom: -3,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 6,
-            height: 6,
-            borderRadius: "50%",
-            background: "rgba(27,17,8,0.45)",
-          }}
-        />
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   WeeklyLedger — last 7 sessions table
+   Ostatnie sesje — dziennik bez ciężkiej ramy
    ============================================================ */
 
 interface WeeklyLedgerProps {
@@ -1670,42 +1889,55 @@ function WeeklyLedger({
   }, [sessions, topics, vaults]);
 
   return (
-    <div className="px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
+    <section className="px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
       <div
         className="flex items-baseline justify-between flex-wrap"
-        style={{ marginBottom: 24, gap: 16 }}
+        style={{ marginBottom: 8, gap: 24 }}
       >
-        <div>
-          <div
-            className="eyebrow"
-            style={{ color: "var(--c-gold-400)", marginBottom: 8 }}
-          >
-            Dziennik · tydzień
-          </div>
+        <div className="flex items-baseline" style={{ gap: 24, minWidth: 0, flex: 1 }}>
           <h2
             className="h2"
-            style={{ fontSize: "clamp(28px, 3.4vw, 36px)", color: "var(--c-paper-100)" }}
+            style={{
+              fontSize: "clamp(28px, 3.4vw, 36px)",
+              color: "var(--c-paper-100)",
+              whiteSpace: "nowrap",
+            }}
           >
             Ostatnie sesje
           </h2>
+          <div
+            aria-hidden
+            className="hidden sm:block"
+            style={{
+              flex: 1,
+              height: 1,
+              background: GOLD_RULE_SOFT,
+              transform: "translateY(-8px)",
+            }}
+          />
         </div>
-        <div
+        <span
           className="signature"
-          style={{ color: "var(--c-paper-300)", opacity: 0.7 }}
+          style={{
+            color: "var(--c-paper-300)",
+            opacity: 0.7,
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
         >
           {weeklySessions === 0
             ? "Brak sesji"
-            : `${weeklySessions} ${weeklySessions === 1 ? "sesja" : "sesji"} · ${Math.floor(weeklyMinutes / 60)}h ${weeklyMinutes % 60}min${weeklyAccuracy ? ` · śr. ${weeklyAccuracy}%` : ""}`}
-        </div>
+            : `${weeklySessions} ${weeklySessions === 1 ? "sesja" : "sesji"} · ${Math.floor(weeklyMinutes / 60)} h ${String(weeklyMinutes % 60).padStart(2, "0")} min${weeklyAccuracy ? ` · śr. ${weeklyAccuracy}%` : ""}`}
+        </span>
       </div>
 
       {rows.length === 0 ? (
         <div
           style={{
-            background: "rgba(228,214,186,0.03)",
-            border: "1px solid rgba(184,146,77,0.18)",
-            padding: "32px",
+            borderTop: `1px solid ${GOLD_RULE}`,
+            padding: "40px 0",
             textAlign: "center",
+            marginTop: 16,
           }}
         >
           <p
@@ -1727,42 +1959,34 @@ function WeeklyLedger({
           </p>
         </div>
       ) : (
-        <div
-          style={{
-            background: "rgba(228,214,186,0.035)",
-            border: "1px solid rgba(184,146,77,0.22)",
-            padding: "16px 24px",
-          }}
-        >
+        <div>
           <div
             className="eyebrow grid grid-cols-12"
             style={{
               color: "var(--c-gold-400)",
-              opacity: 0.7,
-              paddingBottom: 12,
-              borderBottom: "1px solid rgba(184,146,77,0.22)",
+              opacity: 0.75,
+              padding: "18px 0 12px",
+              borderBottom: `1px solid ${GOLD_RULE}`,
+              fontSize: 10,
               gap: 8,
             }}
           >
             <span className="col-span-2 md:col-span-1">Data</span>
-            <span className="col-span-6 md:col-span-6">Tom</span>
-            <span className="col-span-2 md:col-span-2">Karty</span>
-            <span className="col-span-1 md:col-span-2">Trafn.</span>
+            <span className="col-span-6 md:col-span-7">Tom</span>
+            <span className="col-span-2 md:col-span-1">Karty</span>
+            <span className="col-span-1 md:col-span-2">Trafność</span>
             <span className="col-span-1 md:col-span-1 text-right">Czas</span>
           </div>
 
           {rows.map((row, i) => (
             <div
               key={i}
-              className="grid grid-cols-12 body-prose"
+              className="grid grid-cols-12 body-prose items-baseline"
               style={{
-                padding: "12px 0",
-                borderBottom:
-                  i < rows.length - 1
-                    ? "0.5px solid rgba(184,146,77,0.12)"
-                    : "none",
+                padding: "15px 0",
+                borderBottom: "0.5px solid rgba(184,146,77,0.13)",
                 color: "var(--c-paper-200)",
-                fontSize: 14,
+                fontSize: 15,
                 gap: 8,
               }}
             >
@@ -1773,26 +1997,35 @@ function WeeklyLedger({
                 {row.date}
               </span>
               <span
-                className="col-span-6 md:col-span-6"
-                style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}
+                className="col-span-6 md:col-span-7"
+                style={{
+                  opacity: 0.88,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
               >
                 {row.tom}
               </span>
-              <span className="col-span-2 md:col-span-2 signature">
+              <span className="col-span-2 md:col-span-1 signature" style={{ opacity: 0.8 }}>
                 {row.cards}
               </span>
               <span
                 className="col-span-1 md:col-span-2 signature"
                 style={{
                   color:
-                    parseInt(row.acc) >= 90
+                    parseInt(row.acc) >= 85
                       ? "var(--c-gold-300)"
                       : "var(--c-paper-200)",
+                  opacity: 0.9,
                 }}
               >
                 {row.acc}
               </span>
-              <span className="col-span-1 md:col-span-1 signature text-right">
+              <span
+                className="col-span-1 md:col-span-1 signature text-right"
+                style={{ opacity: 0.8 }}
+              >
                 {row.time}
               </span>
             </div>
@@ -1804,7 +2037,7 @@ function WeeklyLedger({
       <div
         className="ornament-sep"
         style={{
-          marginTop: 48,
+          marginTop: 56,
           color: "var(--c-gold-500)",
           opacity: 0.6,
           fontSize: 14,
@@ -1818,11 +2051,11 @@ function WeeklyLedger({
           color: "var(--c-paper-300)",
           opacity: 0.45,
           textAlign: "center",
-          marginTop: 14,
+          marginTop: 16,
         }}
       >
         Sub gratia studiorum · The Learning Vault · Anno MMXXVI
       </div>
-    </div>
+    </section>
   );
 }

@@ -16,6 +16,24 @@ export type GiltIconName =
   | "globe" | "glass" | "translate" | "palette" | "music" | "crown"
   | "brain" | "columns" | "trend" | "spade" | "plane" | "sheet" | "trophy";
 
+/* slug → spine class (each book its own colour) — shared by Sekcje
+   and the dashboard shelf strip */
+export const SPINE_BY_SLUG: Record<string, SpineClass> = {
+  es: "spine-terracotta",
+  wine: "spine-wine",
+  en: "spine-oxford",
+  art: "spine-lapis",
+  music: "spine-aubergine",
+  savoir: "spine-buff",
+  phil: "spine-slate",
+  hist: "spine-forest-v2",
+  econ: "spine-oxford",
+  blackjack: "spine-racing-v2",
+  avia: "spine-steel",
+  excel: "spine-moss",
+  sport: "spine-maroon",
+};
+
 export interface BookcaseVault {
   slug: string;
   title: string;

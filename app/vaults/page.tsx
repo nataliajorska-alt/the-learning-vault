@@ -5,9 +5,9 @@ import Link from "next/link";
 import {
   Bookcase,
   GiltIcon,
+  SPINE_BY_SLUG,
   type BookcaseVault,
   type GiltIconName,
-  type SpineClass,
 } from "@/components/ui/Bookcase";
 import {
   effectiveStreak,
@@ -27,23 +27,6 @@ function toMillis(v: unknown): number {
   }
   return 0;
 }
-
-/* slug → spine class (each book its own colour) */
-const SPINE_BY_SLUG: Record<string, SpineClass> = {
-  es: "spine-terracotta",
-  wine: "spine-wine",
-  en: "spine-oxford",
-  art: "spine-lapis",
-  music: "spine-aubergine",
-  savoir: "spine-buff",
-  phil: "spine-slate",
-  hist: "spine-forest-v2",
-  econ: "spine-oxford",
-  blackjack: "spine-racing-v2",
-  avia: "spine-steel",
-  excel: "spine-moss",
-  sport: "spine-maroon",
-};
 
 /* shelf assignment: I — cultural; II — practical/strategy */
 const SHELF_BY_SLUG: Record<string, 1 | 2> = {

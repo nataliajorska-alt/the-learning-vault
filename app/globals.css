@@ -1734,3 +1734,41 @@ select:focus-visible {
 }
 
 
+
+/* --- "Dziś" v3 ---------------------------------------------------------- */
+/* Etykiety w Manrope (węższy tracking) zamiast monospace — tylko na
+   stronie Dziś; stemple i sygnatury pieczątek zostają w JetBrains Mono
+   przez inline font-family. */
+.today-v3 .eyebrow {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.today-v3 .signature {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+/* Wejścia sekcji: stan bazowy WIDOCZNY; klasa .is-in odpala animację od
+   ukrytego do widocznego, a .settled zdejmuje ją po zakończeniu — zrzuty,
+   eksporty i reduced-motion zawsze widzą pełną stronę. */
+.reveal { opacity: 1; }
+.reveal.settled { animation: none !important; }
+@media (prefers-reduced-motion: no-preference) {
+  .anim-on .reveal.is-in {
+    animation: reveal-up 0.7s ease both;
+  }
+  .anim-on .candle-glow {
+    animation: candle-breathe 9s ease-in-out infinite;
+  }
+}
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes candle-breathe {
+  0%, 100% { opacity: 1; }
+  42%      { opacity: 0.68; }
+  58%      { opacity: 0.84; }
+}
