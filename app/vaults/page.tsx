@@ -158,7 +158,7 @@ export default function VaultsPage() {
 
   return (
     /* Bust the container so the bookcase has room */
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
       {/* subtle dot pattern */}
       <div
         aria-hidden
@@ -182,7 +182,7 @@ export default function VaultsPage() {
         }}
       />
 
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative max-w-content mx-auto" style={{ zIndex: 1 }}>
         <Hero
           sectionsCount={vaults.length}
           totalDue={totalDue}

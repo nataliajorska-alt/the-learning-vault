@@ -100,7 +100,7 @@ export default function SalonPage() {
   }, [entries]);
 
   return (
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
       {/* dot pattern */}
       <div
         aria-hidden
@@ -134,7 +134,7 @@ export default function SalonPage() {
         }}
       />
 
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative max-w-content mx-auto" style={{ zIndex: 1 }}>
         <Hero totalTopics={entries.length} />
 
         {loading ? (

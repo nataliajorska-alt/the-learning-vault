@@ -138,7 +138,7 @@ export function ErrorsQuizRunner() {
   }
 
   return (
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -158,7 +158,7 @@ export function ErrorsQuizRunner() {
         }}
       />
 
-      <div className="relative" style={{ zIndex: 1, padding: "34px 24px 56px" }}>
+      <div className="relative max-w-content mx-auto" style={{ zIndex: 1, padding: "34px 24px 56px" }}>
         <Link
           href="/errors"
           className="inline-flex items-center gap-2 text-sm text-muted hover:text-gold transition-colors"

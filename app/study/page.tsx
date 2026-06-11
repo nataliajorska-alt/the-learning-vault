@@ -8,6 +8,7 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
+import { plPlural } from "@/lib/plural";
 import type { Timestamp } from "firebase/firestore";
 
 /* ---------- helpers --------------------------------------------------- */
@@ -28,15 +29,6 @@ function topicPriority(t: { status: string }): number {
   if (t.status === "struggling") return 0;
   if (t.status === "fresh") return 1;
   return 2;
-}
-
-/* Polish plural: 1 → one, 2–4 (poza 12–14) → few, reszta → many */
-function plPlural(n: number, one: string, few: string, many: string): string {
-  if (n === 1) return one;
-  const d10 = n % 10;
-  const d100 = n % 100;
-  if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) return few;
-  return many;
 }
 
 /* Vault slug → monogram motif + accent for the rail */
@@ -89,7 +81,7 @@ export default function StudyPage() {
   const totalSectionTopics = totalTopics;
 
   return (
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
       {/* dot pattern */}
       <div
         aria-hidden
@@ -123,7 +115,7 @@ export default function StudyPage() {
         }}
       />
 
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative max-w-content mx-auto" style={{ zIndex: 1 }}>
         <Hero totalDue={totalDueAll} />
         <SessionAnatomy />
         <MinimumDayStrip

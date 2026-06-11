@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useErrors } from "@/lib/firestore-data";
+import { plPlural } from "@/lib/plural";
 import type { VaultError } from "@/lib/types";
 
 /* ---------- helpers ---------------------------------------------------- */
@@ -83,7 +84,7 @@ export default function ErrorsPage() {
 
   return (
     /* bust container for wide canvas */
-    <div className="-mx-6 md:-mx-12 -mt-10 md:-mt-12 relative overflow-hidden">
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
       {/* dot pattern */}
       <div
         aria-hidden
@@ -107,7 +108,7 @@ export default function ErrorsPage() {
         }}
       />
 
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative max-w-content mx-auto" style={{ zIndex: 1 }}>
         <Hero total={errors.length} />
         <FilterBar
           totalChronic={chronicCount}
@@ -121,7 +122,7 @@ export default function ErrorsPage() {
         />
         <div style={{ paddingBottom: 40 }}>
           <VaultSurface>
-            <ErrataGrid items={filtered} />
+            <GroupedErrata items={filtered} />
           </VaultSurface>
         </div>
         <PageFooter />
@@ -145,7 +146,7 @@ function Hero({ total }: { total: number }) {
           className="eyebrow"
           style={{ color: "var(--c-ink2)", marginBottom: 18, opacity: 0.92 }}
         >
-          Twoje błędy · {total} {total === 1 ? "wpis" : "wpisów"}
+          Twoje błędy · {total} {plPlural(total, "wpis", "wpisy", "wpisów")}
         </div>
         <h1
           className="font-display italic"
@@ -227,7 +228,7 @@ function QuizButton({ count }: { count: number }) {
           letterSpacing: "0.14em",
         }}
       >
-        {count} {count === 1 ? "wpis" : "wpisów"}
+        {count} {plPlural(count, "wpis", "wpisy", "wpisów")}
       </span>
       <span
         style={{ color: "var(--c-gold-400)", fontSize: 14, marginLeft: 2 }}
@@ -433,7 +434,7 @@ function VaultSurface({ children }: { children: React.ReactNode }) {
       className="relative mx-auto"
       style={{
         maxWidth: 1280,
-        padding: "48px 32px 56px",
+        padding: "44px 32px 46px",
         background:
           "radial-gradient(ellipse 90% 80% at 30% 18%, #4a1410 0%, #310c0a 55%, #1a0604 100%)",
         boxShadow:
@@ -519,7 +520,9 @@ function CornerFleuron({
 }
 
 /* ============================================================
-   Grid — masonry via CSS columns
+   Grid — balanced two-column masonry: estimate each card's height
+   and greedily assign to the shorter column, so neither column
+   ends with a hole in the leather mat
    ============================================================ */
 
 function ErrataGrid({ items }: { items: VaultError[] }) {
@@ -559,24 +562,125 @@ function ErrataGrid({ items }: { items: VaultError[] }) {
     );
   }
 
+  const estimate = (card: VaultError) => {
+    const compact = card.correctVersion.length < 60;
+    const frontH = Math.ceil(card.correctVersion.length / 50) * 29;
+    const restH =
+      Math.ceil((card.wrongVersion.length + card.context.length) / 78) * 20;
+    return (compact ? 96 : 130) + frontH + restH;
+  };
+  const cols: Array<Array<{ card: VaultError; i: number }>> = [[], []];
+  const heights = [0, 0];
+  items.forEach((card, i) => {
+    const k = heights[0] <= heights[1] ? 0 : 1;
+    cols[k].push({ card, i });
+    heights[k] += estimate(card) + 28;
+  });
+
   return (
-    <div
-      style={{
-        columnCount: 2,
-        columnGap: 28,
-      }}
-      className="errata-masonry"
-    >
-      {items.map((card, i) => (
-        <ErratumCard key={card.id} card={card} rotate={rotateFor(i)} />
+    <div className="flex flex-col md:flex-row md:items-start" style={{ gap: 32 }}>
+      {cols.map((col, ci) => (
+        <div key={ci} style={{ flex: 1, minWidth: 0 }}>
+          {col.map(({ card, i }) => (
+            <ErratumCard key={card.id} card={card} rotate={rotateFor(i)} />
+          ))}
+        </div>
       ))}
     </div>
   );
 }
 
 /* ============================================================
-   ErratumCard — refined: tally + rehab pips + chronic stamp
+   Grouping — chronic on top, rest below a gilt divider
    ============================================================ */
+
+function GroupDivider({
+  label,
+  sub,
+  first,
+}: {
+  label: string;
+  sub: string;
+  first?: boolean;
+}) {
+  return (
+    <div
+      className="flex items-center"
+      style={{ gap: 16, margin: first ? "2px 4px 26px" : "14px 4px 26px" }}
+    >
+      <span
+        className="eyebrow"
+        style={{ color: "var(--c-gold-300)", fontSize: 10, whiteSpace: "nowrap" }}
+      >
+        {label}
+      </span>
+      <span
+        className="signature"
+        style={{
+          color: "var(--c-paper-300)",
+          opacity: 0.55,
+          fontSize: 11,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {sub}
+      </span>
+      <span
+        style={{
+          flex: 1,
+          height: 1,
+          background:
+            "linear-gradient(90deg, rgba(184,146,77,0.5), rgba(184,146,77,0.06))",
+        }}
+      />
+    </div>
+  );
+}
+
+function GroupedErrata({ items }: { items: VaultError[] }) {
+  const chronic = items.filter((e) => e.timesWrong >= 3);
+  const rest = items.filter((e) => e.timesWrong < 3);
+  if (items.length === 0) return <ErrataGrid items={[]} />;
+  return (
+    <>
+      {chronic.length > 0 && (
+        <>
+          <GroupDivider
+            first
+            label="Uciążliwe"
+            sub={`3+ pomyłki · ${chronic.length}`}
+          />
+          <ErrataGrid items={chronic} />
+        </>
+      )}
+      {rest.length > 0 && (
+        <>
+          <GroupDivider
+            first={chronic.length === 0}
+            label="Obserwacja"
+            sub={`${rest.length} ${plPlural(rest.length, "wpis", "wpisy", "wpisów")}`}
+          />
+          <ErrataGrid items={rest} />
+        </>
+      )}
+    </>
+  );
+}
+
+/* ============================================================
+   ErratumCard — refined: tally + rehab pips + chronic stamp.
+   Compact variant for short fronts; long wrong answers get the
+   strikethrough on its own muted line with the note below.
+   ============================================================ */
+
+/* Section ink markers — z palety grzbietów książek */
+const SECTION_INK: Record<string, string> = {
+  HIST: "#5a1410", // oxblood
+  FILO: "#1f3a26", // butelkowa zieleń
+  HISZ: "#7a4a1f", // koniak
+  EKON: "#14213a", // granat
+  MUZY: "#3a0f1c", // burgund
+};
 
 function ErratumCard({
   card,
@@ -587,7 +691,10 @@ function ErratumCard({
 }) {
   const chronic = card.timesWrong >= 3;
   const shortFront = card.correctVersion.length < 60;
-  const sig = `${vaultSig(card.vaultName)} · ${idSig(card.id)}`;
+  const compact = shortFront;
+  const longWrong = card.wrongVersion.length > 48;
+  const prefix = vaultSig(card.vaultName);
+  const sig = `${prefix} · ${idSig(card.id)}`;
 
   return (
     <div
@@ -598,29 +705,40 @@ function ErratumCard({
         transform: rotate ? `rotate(${rotate}deg)` : undefined,
         boxShadow:
           "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -16px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.35)",
-        display: "inline-block",
-        width: "100%",
       }}
     >
-      {/* header */}
+      {/* header — sig + section ink left, tally right */}
       <div
         className="relative flex items-center justify-between"
         style={{
-          height: 36,
-          padding: "0 22px",
+          height: compact ? 32 : 36,
+          padding: compact ? "0 18px" : "0 22px",
           borderBottom: "0.5px dashed rgba(27,17,8,0.28)",
         }}
       >
-        <div
-          className="signature"
-          style={{
-            color: "rgba(27,17,8,0.7)",
-            fontSize: 11.5,
-            letterSpacing: "0.18em",
-            fontWeight: 600,
-          }}
-        >
-          {sig}
+        <div className="flex items-center" style={{ gap: 9 }}>
+          <span
+            aria-hidden
+            style={{
+              width: 3,
+              height: 12,
+              borderRadius: 0.5,
+              background: SECTION_INK[prefix] ?? "rgba(27,17,8,0.5)",
+              opacity: 0.85,
+              boxShadow: "inset 0 0.5px 0 rgba(255,255,255,0.25)",
+            }}
+          />
+          <div
+            className="signature"
+            style={{
+              color: "rgba(27,17,8,0.7)",
+              fontSize: 11.5,
+              letterSpacing: "0.18em",
+              fontWeight: 600,
+            }}
+          >
+            {sig}
+          </div>
         </div>
         <div className="flex items-center" style={{ gap: 10 }}>
           <span
@@ -631,23 +749,29 @@ function ErratumCard({
               letterSpacing: "0.22em",
             }}
           >
-            {card.timesWrong === 1 ? "pomyłka" : "pomyłki"}
+            {plPlural(card.timesWrong, "pomyłka", "pomyłki", "pomyłek")}
           </span>
           <TallyMark count={card.timesWrong} />
         </div>
       </div>
 
       {/* body */}
-      <div style={{ padding: "22px 26px 20px", position: "relative" }}>
+      <div
+        style={{
+          padding: compact ? "16px 20px 14px" : "24px 26px 20px",
+          position: "relative",
+        }}
+      >
         <p
           className="font-display italic"
           style={{
-            fontSize: shortFront ? 26 : 21,
+            fontSize: shortFront ? 27 : 22,
             color: "#1B1108",
             lineHeight: 1.32,
-            marginBottom: 14,
+            marginBottom: compact ? 10 : 14,
             fontWeight: 500,
             letterSpacing: shortFront ? "-0.005em" : 0,
+            textWrap: "pretty",
           }}
         >
           {card.correctVersion}
@@ -656,45 +780,92 @@ function ErratumCard({
           style={{
             height: 0.5,
             background: "rgba(27,17,8,0.22)",
-            margin: "14px 0",
+            margin: compact ? "10px 0" : "14px 0",
           }}
         />
-        <p
-          className="body-prose"
-          style={{
-            color: "rgba(27,17,8,0.82)",
-            fontSize: 13,
-            lineHeight: 1.55,
-          }}
-        >
-          <span style={{ color: "rgba(27,17,8,0.55)", fontStyle: "italic" }}>
-            nie:{" "}
-          </span>
-          <span
+        {longWrong ? (
+          <>
+            <p
+              className="body-prose"
+              style={{
+                color: "rgba(27,17,8,0.62)",
+                fontSize: 12.5,
+                lineHeight: 1.5,
+                textWrap: "pretty",
+                marginBottom: card.context ? 7 : 0,
+              }}
+            >
+              <span
+                style={{ color: "rgba(139,46,31,0.78)", fontStyle: "italic" }}
+              >
+                nie:{" "}
+              </span>
+              <span
+                style={{
+                  textDecoration: "line-through",
+                  textDecorationThickness: "1px",
+                  opacity: 0.72,
+                }}
+              >
+                {card.wrongVersion}
+              </span>
+            </p>
+            {card.context && (
+              <p
+                className="body-prose"
+                style={{
+                  color: "rgba(27,17,8,0.85)",
+                  fontSize: 13,
+                  lineHeight: 1.55,
+                  textWrap: "pretty",
+                }}
+              >
+                {card.context}
+              </p>
+            )}
+          </>
+        ) : (
+          <p
+            className="body-prose"
             style={{
-              textDecoration: "line-through",
-              textDecorationThickness: "1px",
-              opacity: 0.62,
+              color: "rgba(27,17,8,0.85)",
+              fontSize: 13,
+              lineHeight: 1.55,
+              textWrap: "pretty",
             }}
           >
-            {card.wrongVersion}
-          </span>
-          {card.context && (
-            <>
-              <span style={{ color: "rgba(27,17,8,0.4)" }}> · </span>
-              {card.context}
-            </>
-          )}
-        </p>
+            <span
+              style={{ color: "rgba(139,46,31,0.78)", fontStyle: "italic" }}
+            >
+              nie:{" "}
+            </span>
+            <span
+              style={{
+                textDecoration: "line-through",
+                textDecorationThickness: "1px",
+                opacity: 0.6,
+                color: "rgba(27,17,8,0.72)",
+              }}
+            >
+              {card.wrongVersion}
+            </span>
+            {card.context && (
+              <>
+                <span style={{ color: "rgba(27,17,8,0.4)" }}> · </span>
+                {card.context}
+              </>
+            )}
+          </p>
+        )}
       </div>
 
       {/* footer */}
       <div
         className="relative flex items-center justify-between"
         style={{
-          padding: "12px 22px 14px",
+          padding: compact ? "8px 18px 9px" : "12px 22px 14px",
           borderTop: "0.5px dashed rgba(27,17,8,0.28)",
-          minHeight: 44,
+          minHeight: compact ? 34 : 44,
         }}
       >
         <RehabPips value={Math.min(3, card.correctStreak)} />

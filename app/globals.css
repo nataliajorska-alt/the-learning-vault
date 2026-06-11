@@ -1574,13 +1574,6 @@ select.book-input {
   }
 }
 
-/* Errata masonry — collapse to 1 column on narrow screens */
-@media (max-width: 767px) {
-  .errata-masonry {
-    column-count: 1 !important;
-  }
-}
-
 /* Salon — carte du jour card hover */
 .carte-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -1707,6 +1700,19 @@ select.book-input {
 .section-chip:hover .section-chip-count {
   color: var(--c-gold-300);
   opacity: 0.95;
+}
+
+/* --- Full-bleed page canvas -------------------------------------------
+   Pages with their own background layers (dots, vignettes) stretch past
+   the centered content column so the layers reach the viewport edges —
+   otherwise the flat body color shows as bands on both sides. Content
+   inside re-constrains itself with .max-w-content.mx-auto. */
+html {
+  overflow-x: clip; /* 100vw includes the scrollbar gutter */
+}
+.page-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
 /* --- Production polish: shell, focus rings, dashboard actions ---------- */
