@@ -82,6 +82,8 @@ export function TopicEditor({
   const [summary, setSummary] = useState("");
   const [theory, setTheory] = useState("");
   const [learningPoints, setLearningPoints] = useState<string[]>([]);
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageCaption, setImageCaption] = useState("");
   const [questions, setQuestions] = useState<EditQ[]>([]);
   const [originalIds, setOriginalIds] = useState<string[]>([]);
   const [salon, setSalon] = useState({ short: "", expand: "", trap: "" });
@@ -115,6 +117,8 @@ export function TopicEditor({
         setSummary(t.summary);
         setTheory(t.theory);
         setLearningPoints(t.learningPoints ?? []);
+        setImageUrl(t.imageUrl ?? "");
+        setImageCaption(t.imageCaption ?? "");
         setQuestions(qs.map(toEditQ));
         setOriginalIds(qs.map((q) => q.id));
       } catch (e: unknown) {
@@ -186,7 +190,14 @@ export function TopicEditor({
     setBusy(true);
     setErr(null);
     try {
-      await updateTopic(topicId, { title, summary, theory, learningPoints });
+      await updateTopic(topicId, {
+        title,
+        summary,
+        theory,
+        learningPoints,
+        imageUrl,
+        imageCaption,
+      });
 
       const currentIds = questions
         .map((q) => q.docId)
@@ -352,6 +363,67 @@ export function TopicEditor({
             className="mt-2 w-full book-input"
           />
         </div>
+        <div>
+          <label className="eyebrow">Obraz · ścieżka</label>
+          <input
+            value={imageUrl}
+            onChange={(e) => {
+              setImageUrl(e.target.value);
+              setSaved(false);
+            }}
+            placeholder="/art/botticelli-narodziny-wenus.jpg"
+            className="mt-2 w-full book-input"
+          />
+          <p className="signature mt-1" style={{ color: "rgba(27,17,8,0.5)", fontSize: 11 }}>
+            Plik z folderu <code>public/art/</code> albo pełny adres https. Puste = bez obrazu.
+          </p>
+        </div>
+        <div>
+          <label className="eyebrow">Obraz · podpis</label>
+          <input
+            value={imageCaption}
+            onChange={(e) => {
+              setImageCaption(e.target.value);
+              setSaved(false);
+            }}
+            placeholder="Sandro Botticelli, Narodziny Wenus, ok. 1485, Uffizi, Florencja"
+            className="mt-2 w-full book-input"
+          />
+        </div>
+        {imageUrl.trim() && (
+          <figure
+            style={{
+              marginTop: 4,
+              padding: 8,
+              background: "linear-gradient(180deg, #241710 0%, #1a0f08 100%)",
+              maxWidth: 360,
+            }}
+          >
+            <div style={{ padding: 4, border: "0.5px solid rgba(184,146,77,0.45)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imageUrl}
+                alt={imageCaption || "Podgląd obrazu"}
+                style={{ display: "block", width: "100%", height: "auto" }}
+              />
+            </div>
+            {imageCaption.trim() && (
+              <figcaption
+                className="signature"
+                style={{
+                  color: "var(--c-paper-300)",
+                  opacity: 0.7,
+                  fontSize: 10,
+                  fontStyle: "italic",
+                  textAlign: "center",
+                  marginTop: 7,
+                }}
+              >
+                {imageCaption}
+              </figcaption>
+            )}
+          </figure>
+        )}
       </section>
 
       <div className="space-y-3">

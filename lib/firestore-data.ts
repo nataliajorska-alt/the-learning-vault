@@ -372,7 +372,14 @@ export interface EditableQuestionData {
 
 export async function updateTopic(
   topicId: string,
-  patch: { title: string; summary: string; theory: string; learningPoints?: string[] }
+  patch: {
+    title: string;
+    summary: string;
+    theory: string;
+    learningPoints?: string[];
+    imageUrl?: string;
+    imageCaption?: string;
+  }
 ): Promise<void> {
   const { db } = getFirebase();
   await updateDoc(doc(db, "topics", topicId), {
@@ -380,6 +387,9 @@ export async function updateTopic(
     summary: patch.summary,
     theory: patch.theory,
     learningPoints: sanitizeLearningPoints(patch.learningPoints),
+    // pusty string czyści obraz (render sprawdza `imageUrl &&`)
+    imageUrl: patch.imageUrl?.trim() ?? "",
+    imageCaption: patch.imageCaption?.trim() ?? "",
     updatedAt: new Date(),
   });
 }
