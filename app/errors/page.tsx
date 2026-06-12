@@ -84,26 +84,18 @@ export default function ErrorsPage() {
 
   return (
     /* bust container for wide canvas */
-    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
-      {/* dot pattern */}
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden anim-on">
+      {/* top light spill — jak w Dziś, oddycha (reduced-motion: statyczne) */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
+        className="candle-glow absolute pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(184,146,77,0.07) 1px, transparent 1.5px)",
-          backgroundSize: "32px 32px",
-          opacity: 0.5,
-          zIndex: 0,
-        }}
-      />
-      {/* vignette */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 600,
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)",
+            "radial-gradient(ellipse 55% 70% at 50% 0%, rgba(255,210,160,0.10), transparent 70%)",
           zIndex: 0,
         }}
       />

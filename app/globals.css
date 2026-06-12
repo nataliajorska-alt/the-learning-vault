@@ -1574,6 +1574,24 @@ select.book-input {
   }
 }
 
+/* Salon — temat dnia CTA hover */
+.salon-cta {
+  transition: background-color .2s ease;
+}
+.salon-cta:hover,
+.salon-cta:focus-visible {
+  background: rgba(146,112,55,0.10);
+  outline: none;
+}
+.salon-cta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+}
+.salon-cta:hover .salon-cta-arrow,
+.salon-cta:focus-visible .salon-cta-arrow {
+  transform: translateX(3px);
+}
+
 /* Salon — carte du jour card hover */
 .carte-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;

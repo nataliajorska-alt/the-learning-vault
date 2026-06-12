@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import Link from "next/link";
-import { WaxSeal } from "@/components/ui/WaxSeal";
 import {
   useSalonPhrases,
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
+import { plPlural } from "@/lib/plural";
 import type { SalonPhrase, Topic, Vault } from "@/lib/types";
 import type { Timestamp } from "firebase/firestore";
 
@@ -100,36 +100,18 @@ export default function SalonPage() {
   }, [entries]);
 
   return (
-    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden">
-      {/* dot pattern */}
+    <div className="page-bleed -mt-10 md:-mt-12 relative overflow-hidden anim-on">
+      {/* top light spill — jak w Dziś, oddycha (reduced-motion: statyczne) */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
+        className="candle-glow absolute pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(184,146,77,0.07) 1px, transparent 1.5px)",
-          backgroundSize: "32px 32px",
-          opacity: 0.5,
-          zIndex: 0,
-        }}
-      />
-      {/* warm center pool */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 600,
           background:
-            "radial-gradient(ellipse 70% 40% at 50% 18%, rgba(180,80,80,0.10), transparent 60%)",
-          zIndex: 0,
-        }}
-      />
-      {/* vignette */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)",
+            "radial-gradient(ellipse 55% 70% at 50% 0%, rgba(255,210,160,0.10), transparent 70%)",
           zIndex: 0,
         }}
       />
@@ -167,13 +149,18 @@ export default function SalonPage() {
         ) : (
           <>
             {topicOfDay && <TematDnia entry={topicOfDay} />}
-            <OrnamentDivider />
-            {grouped.map((g) => (
-              <SectionTable
-                key={g.vault.id}
-                vault={g.vault}
-                items={g.items}
-              />
+            <RegalyHeader
+              sections={grouped.length}
+              available={grouped.reduce(
+                (a, g) => a + Math.min(2, g.items.length),
+                0
+              )}
+            />
+            {grouped.map((g, i) => (
+              <Fragment key={g.vault.id}>
+                <SectionTable vault={g.vault} items={g.items} />
+                {i < grouped.length - 1 && <OrnamentDivider />}
+              </Fragment>
             ))}
           </>
         )}
@@ -187,76 +174,6 @@ export default function SalonPage() {
 /* ============================================================
    Hero
    ============================================================ */
-
-function GobletFlourish({
-  size = 56,
-  color = "rgba(184,146,77,0.55)",
-}: {
-  size?: number;
-  color?: string;
-}) {
-  return (
-    <svg
-      width={size}
-      height={size * 1.4}
-      viewBox="0 0 64 90"
-      fill="none"
-      style={{ display: "block" }}
-      aria-hidden
-    >
-      <path
-        d="M14 8 Q14 38 32 42 Q50 38 50 8 Z"
-        stroke={color}
-        strokeWidth="0.8"
-        fill="none"
-      />
-      <path
-        d="M18 12 Q32 18 46 12"
-        stroke={color}
-        strokeWidth="0.5"
-        fill="none"
-        opacity="0.6"
-      />
-      <line x1="32" y1="42" x2="32" y2="72" stroke={color} strokeWidth="0.8" />
-      <circle cx="32" cy="58" r="1.2" fill={color} />
-      <ellipse
-        cx="32"
-        cy="74"
-        rx="14"
-        ry="2"
-        stroke={color}
-        strokeWidth="0.8"
-        fill="none"
-      />
-      <ellipse
-        cx="32"
-        cy="74"
-        rx="10"
-        ry="1.4"
-        stroke={color}
-        strokeWidth="0.4"
-        fill="none"
-        opacity="0.6"
-      />
-      <path
-        d="M6 16 Q10 14 14 16"
-        stroke={color}
-        strokeWidth="0.5"
-        fill="none"
-        opacity="0.55"
-      />
-      <path
-        d="M50 16 Q54 14 58 16"
-        stroke={color}
-        strokeWidth="0.5"
-        fill="none"
-        opacity="0.55"
-      />
-      <circle cx="6" cy="18" r="0.8" fill={color} opacity="0.55" />
-      <circle cx="58" cy="18" r="0.8" fill={color} opacity="0.55" />
-    </svg>
-  );
-}
 
 function Hero({ totalTopics }: { totalTopics: number }) {
   return (
@@ -282,7 +199,7 @@ function Hero({ totalTopics }: { totalTopics: number }) {
               }}
             />
             Rozmowa przy winie · {totalTopics}{" "}
-            {totalTopics === 1 ? "temat w salonie" : "tematów w salonie"}
+            {plPlural(totalTopics, "temat w salonie", "tematy w salonie", "tematów w salonie")}
           </div>
           <h1
             className="font-display italic"
@@ -302,19 +219,48 @@ function Hero({ totalTopics }: { totalTopics: number }) {
             style={{
               color: "var(--c-paper-300)",
               opacity: 0.78,
-              maxWidth: 580,
+              maxWidth: 560,
+              textWrap: "pretty",
             }}
           >
             Trzy zdania na temat.{" "}
-            <em style={{ color: "var(--c-gold-300)" }}>
+            <em
+              className="font-display italic"
+              style={{ color: "var(--c-gold-300)", fontSize: 21 }}
+            >
               Krótko, rozbudowanie, pułapka.
-            </em>{" "}
-            Praktyczne obycie, nie egzamin — wyjdziesz z tematem do rozmowy, nie
-            z notatką do zapamiętania.
+            </em>
           </p>
         </div>
-        <div style={{ paddingBottom: 4, marginRight: 8, opacity: 0.85 }}>
-          <GobletFlourish size={56} />
+        {/* hedera — typograficzny ornament, przygaszony jak znak wodny */}
+        <div
+          aria-hidden
+          className="relative flex flex-col items-center justify-center"
+          style={{ marginRight: 32, paddingBottom: 8 }}
+        >
+          <div
+            className="absolute"
+            style={{
+              inset: "-30px -70px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(ellipse at center, rgba(139,46,31,0.10), transparent 65%)",
+              pointerEvents: "none",
+            }}
+          />
+          <span
+            className="font-display relative"
+            style={{
+              fontSize: 136,
+              lineHeight: 1,
+              color: "var(--c-gold-600)",
+              opacity: 0.34,
+              transform: "rotate(-90deg)",
+              display: "block",
+            }}
+          >
+            ☙
+          </span>
         </div>
       </div>
     </div>
@@ -322,18 +268,238 @@ function Hero({ totalTopics }: { totalTopics: number }) {
 }
 
 /* ============================================================
-   Temat dnia — featured paper card with three-sentence ladder
+   Wax seal — wytłoczony lak na lewym górnym rogu karty
    ============================================================ */
+
+function SalonSeal({ size = 68, label = "S" }: { size?: number; label?: string }) {
+  return (
+    <div
+      aria-hidden
+      className="relative"
+      style={{ width: size, height: size, transform: "rotate(-7deg)" }}
+    >
+      <div
+        className="absolute"
+        style={{
+          inset: 0,
+          clipPath:
+            "polygon(50% 0%, 64% 4%, 78% 10%, 90% 22%, 96% 38%, 100% 52%, 95% 68%, 86% 82%, 72% 92%, 56% 98%, 40% 99%, 24% 92%, 12% 80%, 4% 64%, 1% 48%, 6% 32%, 14% 18%, 28% 8%, 42% 2%)",
+          background:
+            "radial-gradient(circle at 30% 26%, #c64523 0%, #a02d16 28%, #761e12 56%, #470d07 90%, #2a0604 100%)",
+          boxShadow:
+            "inset 5px 5px 9px rgba(255,205,165,0.22), inset -4px -6px 12px rgba(20,2,2,0.65), 2px 4px 8px rgba(0,0,0,0.55), 0 1px 1px rgba(0,0,0,0.4)",
+        }}
+      />
+      {/* wytłoczony krąg sygnetu — podwójny ring */}
+      <div
+        className="absolute"
+        style={{
+          inset: "13%",
+          borderRadius: "50%",
+          border: "0.8px solid rgba(50,6,3,0.55)",
+          boxShadow:
+            "inset 0 1px 1px rgba(255,180,140,0.30), 0 1px 1px rgba(255,170,130,0.18), inset 0 -1px 2px rgba(20,0,0,0.4)",
+        }}
+      />
+      <div
+        className="absolute"
+        style={{
+          inset: "19%",
+          borderRadius: "50%",
+          border: "0.5px solid rgba(255,170,130,0.20)",
+        }}
+      />
+      {/* monogram z kropkami */}
+      <div
+        className="absolute flex items-center justify-center"
+        style={{ inset: 0, gap: size * 0.07 }}
+      >
+        <span
+          style={{
+            width: 2.5,
+            height: 2.5,
+            borderRadius: "50%",
+            background: "rgba(50,6,3,0.6)",
+            boxShadow: "0 1px 0 rgba(255,180,140,0.3)",
+            marginTop: 2,
+          }}
+        />
+        <span
+          className="font-display italic"
+          style={{
+            fontSize: size * 0.46,
+            fontWeight: 600,
+            color: "rgba(56,7,3,0.9)",
+            letterSpacing: "-0.02em",
+            lineHeight: 1,
+            textShadow:
+              "0 1px 0 rgba(255,180,140,0.40), 0 -1px 1px rgba(20,0,0,0.7), 0 0 2px rgba(0,0,0,0.35)",
+            transform: "translateY(-1px)",
+          }}
+        >
+          {label}
+        </span>
+        <span
+          style={{
+            width: 2.5,
+            height: 2.5,
+            borderRadius: "50%",
+            background: "rgba(50,6,3,0.6)",
+            boxShadow: "0 1px 0 rgba(255,180,140,0.3)",
+            marginTop: 2,
+          }}
+        />
+      </div>
+      {/* bliki — główny i kontrowy */}
+      <div
+        className="absolute"
+        style={{
+          top: "13%",
+          left: "18%",
+          width: "24%",
+          height: "15%",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(ellipse at center, rgba(255,210,180,0.40), transparent 70%)",
+          filter: "blur(2px)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        className="absolute"
+        style={{
+          bottom: "16%",
+          right: "20%",
+          width: "16%",
+          height: "10%",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(ellipse at center, rgba(255,160,120,0.18), transparent 70%)",
+          filter: "blur(2px)",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ============================================================
+   Temat dnia — tytuł i krótko po lewej, trzy stopnie pionowo
+   po prawej; lak wisi na lewym rogu, nic nie zasłania
+   ============================================================ */
+
+function StepRow({
+  step,
+  last,
+}: {
+  step: { n: string; label: string; text: string; trap?: boolean };
+  last: boolean;
+}) {
+  const labelColor = step.trap ? "var(--c-ink2)" : "rgba(27,17,8,0.55)";
+  /* romby — jak ♢ w eyebrow i ✦ w ornamentach */
+  const diamondStyle = step.trap
+    ? {
+        background: "radial-gradient(circle at 35% 30%, #c8512f, #7a1f14 85%)",
+        border: "0.6px solid rgba(60,8,4,0.6)",
+        boxShadow:
+          "0 0 6px rgba(168,48,24,0.30), inset 0 1px 0 rgba(255,200,170,0.25)",
+      }
+    : step.n === "02"
+    ? {
+        background: "radial-gradient(circle at 35% 30%, #d9b878, #927037 85%)",
+        border: "0.6px solid rgba(106,81,40,0.7)",
+        boxShadow: "inset 0 1px 0 rgba(255,245,220,0.4)",
+      }
+    : {
+        background: "transparent",
+        border: "0.7px solid rgba(27,17,8,0.5)",
+        boxShadow: "inset 0 1px 0 rgba(255,250,235,0.35)",
+      };
+  return (
+    <div
+      className="relative flex"
+      style={{
+        gap: 18,
+        paddingBottom: last ? 0 : 26,
+        flex: last ? "0 0 auto" : "1 0 auto",
+      }}
+    >
+      {/* romb + linia prowadząca */}
+      <div
+        aria-hidden
+        className="relative flex flex-col items-center"
+        style={{ width: 14, flexShrink: 0 }}
+      >
+        <span
+          style={{
+            width: 9,
+            height: 9,
+            transform: "rotate(45deg)",
+            flexShrink: 0,
+            marginTop: 4,
+            ...diamondStyle,
+          }}
+        />
+        {!last && (
+          <span
+            style={{
+              width: 0.5,
+              flex: 1,
+              background: "rgba(27,17,8,0.22)",
+              marginTop: 8,
+            }}
+          />
+        )}
+      </div>
+      <div style={{ flex: 1 }}>
+        <div className="flex items-baseline" style={{ gap: 12, marginBottom: 8 }}>
+          <span
+            className="signature"
+            style={{
+              color: "rgba(27,17,8,0.4)",
+              fontSize: 10.5,
+              letterSpacing: "0.1em",
+            }}
+          >
+            {step.n}
+          </span>
+          <span
+            className="eyebrow"
+            style={{ color: labelColor, fontSize: 10, letterSpacing: "0.24em" }}
+          >
+            {step.label}
+          </span>
+        </div>
+        <p
+          className="body-prose"
+          style={{
+            color: "rgba(27,17,8,0.82)",
+            fontSize: 13.5,
+            lineHeight: 1.62,
+            textWrap: "pretty",
+          }}
+        >
+          {step.text}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 function TematDnia({ entry }: { entry: SalonEntry }) {
   const d = new Date();
   const dateStr = `${d.getDate()} ${MONTHS_PL_LONG[d.getMonth()]} · ${entry.vault.name}`;
+  const steps = [
+    { n: "01", label: "Krótko", text: entry.phrase.short },
+    { n: "02", label: "Rozbudowanie", text: entry.phrase.expand },
+    { n: "03", label: "Pułapka", text: entry.phrase.trap, trap: true },
+  ];
 
   return (
     <div style={{ padding: "0 24px 56px" }}>
       <div
         className="flex items-center"
-        style={{ gap: 16, marginBottom: 18 }}
+        style={{ gap: 16 }}
       >
         <span
           className="eyebrow"
@@ -363,9 +529,11 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
         </span>
       </div>
 
+      {/* odstęp 44px — lak ma własny pas powietrza, nie dotyka nagłówka */}
       <div
         className="tex-paper tex-noise-fine relative"
         style={{
+          marginTop: 44,
           boxShadow:
             "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 24px 50px -20px rgba(0,0,0,0.75), 0 4px 8px rgba(0,0,0,0.4)",
         }}
@@ -380,23 +548,20 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
           }}
         />
 
-        {/* wax seal — hangs off top-right corner */}
-        <div
-          className="absolute"
-          style={{ top: -28, right: -22, zIndex: 5 }}
-        >
-          <WaxSeal size={72} label="S" tone="oxblood" rotate={-7} />
+        {/* lak — duży, na lewym rogu karty; po prawej u góry jest hedera */}
+        <div className="absolute" style={{ top: -24, left: -24, zIndex: 5 }}>
+          <SalonSeal size={92} label="S" />
         </div>
 
         <div
           className="relative grid grid-cols-1 lg:grid-cols-12"
           style={{ zIndex: 3 }}
         >
-          {/* LEFT — title + lede + trap callout + CTA */}
+          {/* LEFT — tytuł + krótko + CTA */}
           <div
             className="lg:col-span-5"
             style={{
-              padding: "36px 32px 32px 36px",
+              padding: "40px 36px 36px 44px",
               borderRight: "0.5px dashed rgba(27,17,8,0.22)",
             }}
           >
@@ -404,22 +569,24 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
               className="eyebrow flex items-center"
               style={{
                 color: "rgba(139,46,31,0.82)",
-                marginBottom: 14,
+                marginBottom: 16,
                 gap: 8,
+                paddingLeft: 56,
               }}
             >
-              <span style={{ fontSize: 14, lineHeight: 1 }}>♢</span>
+              <span style={{ fontSize: 13, lineHeight: 1 }}>♢</span>
               <span>{entry.vault.name} · 3 zdania</span>
             </div>
             <h2
               className="font-display italic"
               style={{
-                fontSize: "clamp(36px, 5vw, 54px)",
-                lineHeight: 1.0,
+                fontSize: "clamp(36px, 5vw, 50px)",
+                lineHeight: 1.04,
                 color: "#1B1108",
                 fontWeight: 600,
                 letterSpacing: "-0.015em",
-                marginBottom: 20,
+                marginBottom: 22,
+                textWrap: "balance",
               }}
             >
               {entry.topic.title}
@@ -428,57 +595,26 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
               className="body-prose"
               style={{
                 color: "rgba(27,17,8,0.82)",
-                fontSize: 15,
+                fontSize: 14.5,
                 lineHeight: 1.6,
-                marginBottom: 22,
+                marginBottom: 30,
+                textWrap: "pretty",
               }}
             >
               {entry.phrase.short}
             </p>
 
-            {/* trap callout */}
-            <div
-              style={{
-                borderLeft: "2px solid var(--c-ink2)",
-                padding: "8px 0 8px 16px",
-                marginBottom: 28,
-                opacity: 0.92,
-              }}
-            >
-              <div
-                className="eyebrow"
-                style={{
-                  color: "var(--c-ink2)",
-                  fontSize: 9.5,
-                  marginBottom: 6,
-                  letterSpacing: "0.22em",
-                }}
-              >
-                Pułapka
-              </div>
-              <p
-                className="body-prose"
-                style={{
-                  color: "rgba(27,17,8,0.78)",
-                  fontSize: 13.5,
-                  lineHeight: 1.55,
-                  fontStyle: "italic",
-                }}
-              >
-                {entry.phrase.trap}
-              </p>
-            </div>
-
             <Link
               href={`/salon/${entry.topic.id}`}
-              className="inline-flex items-baseline"
+              className="salon-cta inline-flex items-baseline"
               style={{
                 gap: 14,
-                padding: "12px 22px 11px",
+                padding: "13px 24px 12px",
                 background: "transparent",
                 border: "0.5px solid rgba(146,112,55,0.7)",
                 cursor: "pointer",
                 textDecoration: "none",
+                whiteSpace: "nowrap",
               }}
             >
               <span
@@ -510,6 +646,7 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
                 3 minuty
               </span>
               <span
+                className="salon-cta-arrow"
                 style={{
                   color: "var(--c-ink2)",
                   fontSize: 14,
@@ -521,14 +658,14 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
             </Link>
           </div>
 
-          {/* RIGHT — ladder of three sentences */}
+          {/* RIGHT — trzy stopnie pionowo, rozciągnięte na wysokość karty */}
           <div
-            className="lg:col-span-7"
-            style={{ padding: "36px 40px 32px 36px" }}
+            className="lg:col-span-7 flex flex-col"
+            style={{ padding: "40px 44px 40px 40px" }}
           >
             <div
               className="flex items-baseline justify-between"
-              style={{ marginBottom: 18 }}
+              style={{ marginBottom: 24 }}
             >
               <span
                 className="signature"
@@ -549,10 +686,14 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
                   letterSpacing: "0.12em",
                 }}
               >
-                ← krótko    głębiej →
+                głębiej ↓
               </span>
             </div>
-            <SentenceLadder phrase={entry.phrase} />
+            <div className="flex flex-col" style={{ flex: 1 }}>
+              {steps.map((s, i) => (
+                <StepRow key={s.n} step={s} last={i === steps.length - 1} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -560,150 +701,50 @@ function TematDnia({ entry }: { entry: SalonEntry }) {
   );
 }
 
-function SentenceLadder({ phrase }: { phrase: SalonPhrase }) {
-  const rungs = [
-    {
-      mark: "01",
-      label: "Krótko",
-      tone: "soft" as const,
-      text: phrase.short,
-    },
-    {
-      mark: "02",
-      label: "Rozbudowanie",
-      tone: "strong" as const,
-      text: phrase.expand,
-    },
-    {
-      mark: "03",
-      label: "Pułapka",
-      tone: "top" as const,
-      text: phrase.trap,
-    },
-  ];
+/* ============================================================
+   Regały — nagłówek pasa sekcji + section table
+   ============================================================ */
 
+function RegalyHeader({
+  sections,
+  available,
+}: {
+  sections: number;
+  available: number;
+}) {
   return (
-    <div className="relative" style={{ paddingLeft: 8 }}>
-      <div
-        aria-hidden
+    <div
+      className="flex items-center"
+      style={{ gap: 16, padding: "0 24px", marginBottom: 40 }}
+    >
+      <span
+        className="eyebrow"
         style={{
-          position: "absolute",
-          left: 32,
-          top: 12,
-          bottom: 12,
-          width: 0.5,
-          background: "rgba(27,17,8,0.22)",
+          color: "var(--c-gold-400)",
+          letterSpacing: "0.28em",
+          whiteSpace: "nowrap",
         }}
+      >
+        ✦ Regały
+      </span>
+      <div
+        style={{ flex: 1, height: 0.5, background: "rgba(184,146,77,0.35)" }}
       />
-      {rungs.map((s, i) => {
-        const intensity = (i + 1) / rungs.length;
-        const barWidth = 36 + intensity * 120;
-        const barColor =
-          s.tone === "soft"
-            ? "rgba(146,112,55,0.42)"
-            : s.tone === "strong"
-            ? "rgba(184,146,77,0.78)"
-            : "rgba(184,146,77,1)";
-        const isTop = i === rungs.length - 1;
-        return (
-          <div
-            key={s.mark}
-            className="relative flex items-start"
-            style={{ gap: 14, padding: "10px 0" }}
-          >
-            {/* node */}
-            <div
-              aria-hidden
-              style={{
-                position: "relative",
-                zIndex: 1,
-                width: 16,
-                height: 16,
-                marginLeft: 24,
-                marginTop: 4,
-                borderRadius: "50%",
-                border: "0.8px solid rgba(27,17,8,0.55)",
-                background: isTop
-                  ? "radial-gradient(circle at 35% 30%, #d9b878, #927037 80%)"
-                  : i === 1
-                  ? "rgba(184,146,77,0.6)"
-                  : "rgba(27,17,8,0.08)",
-                boxShadow: isTop
-                  ? "0 0 8px rgba(217,184,120,0.6)"
-                  : "none",
-                flexShrink: 0,
-              }}
-            />
-            <div
-              className="flex flex-col flex-1"
-              style={{ gap: 4 }}
-            >
-              <div
-                className="flex items-baseline"
-                style={{ gap: 12 }}
-              >
-                <span
-                  className="signature"
-                  style={{
-                    color: "rgba(27,17,8,0.45)",
-                    fontSize: 10.5,
-                    letterSpacing: "0.1em",
-                    minWidth: 18,
-                  }}
-                >
-                  {s.mark}
-                </span>
-                <span
-                  className="eyebrow"
-                  style={{
-                    color:
-                      s.label === "Pułapka"
-                        ? "var(--c-ink2)"
-                        : "rgba(27,17,8,0.6)",
-                    fontSize: 9.5,
-                    letterSpacing: "0.22em",
-                  }}
-                >
-                  {s.label}
-                </span>
-              </div>
-              <p
-                className="font-display italic"
-                style={{
-                  fontSize: 17,
-                  fontWeight: 500,
-                  color: s.label === "Pułapka" ? "#5a1a14" : "#1B1108",
-                  letterSpacing: "-0.005em",
-                  lineHeight: 1.35,
-                  marginLeft: 30,
-                }}
-              >
-                {s.text}
-              </p>
-            </div>
-            {/* intensity bar */}
-            <div
-              aria-hidden
-              style={{
-                width: barWidth,
-                height: 2,
-                marginTop: 12,
-                background: barColor,
-                boxShadow: isTop
-                  ? "0 0 4px rgba(217,184,120,0.5)"
-                  : "none",
-              }}
-            />
-          </div>
-        );
-      })}
+      <span
+        className="signature"
+        style={{
+          color: "var(--c-paper-300)",
+          opacity: 0.6,
+          fontSize: 11,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {sections} {plPlural(sections, "sekcja", "sekcje", "sekcji")} ·{" "}
+        {available} {plPlural(available, "dostępny", "dostępne", "dostępnych")} dziś
+      </span>
     </div>
   );
 }
-
-/* ============================================================
-   Section table — monogram + label + count + cards grid
-   ============================================================ */
 
 function SectionMonogram({
   motif,
@@ -755,11 +796,11 @@ function SectionTable({
   const remaining = Math.max(0, items.length - 2);
 
   return (
-    <div style={{ marginBottom: 56 }}>
+    <div style={{ marginBottom: 64 }}>
       {/* header */}
       <div
         className="flex items-center flex-wrap"
-        style={{ gap: 16, padding: "0 24px 20px" }}
+        style={{ gap: 16, padding: "0 24px 24px" }}
       >
         <SectionMonogram motif={visuals.motif} accent={visuals.accent} />
         <div className="flex items-baseline" style={{ gap: 14 }}>
@@ -785,7 +826,7 @@ function SectionTable({
             }}
           >
             {String(items.length).padStart(2, "0")}{" "}
-            {items.length === 1 ? "temat" : "tematów"}
+            {plPlural(items.length, "temat", "tematy", "tematów")}
           </span>
         </div>
         <div
@@ -812,7 +853,7 @@ function SectionTable({
 
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-        style={{ gap: 22, padding: "0 24px" }}
+        style={{ gap: 24, padding: "0 24px" }}
       >
         {visibleItems.map((e, i) => (
           <CarteCard
@@ -851,7 +892,7 @@ function CarteCard({
       style={{
         boxShadow:
           "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 10px 22px -10px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.35)",
-        minHeight: 240,
+        minHeight: 250,
         display: "flex",
         flexDirection: "column",
         textDecoration: "none",
@@ -899,12 +940,13 @@ function CarteCard({
         <h4
           className="font-display italic"
           style={{
-            fontSize: 22,
+            fontSize: 24,
             color: "#1B1108",
             fontWeight: 500,
             lineHeight: 1.15,
             letterSpacing: "-0.005em",
             marginBottom: 10,
+            textWrap: "balance",
           }}
         >
           {entry.topic.title}
@@ -929,16 +971,7 @@ function CarteCard({
           borderTop: "0.5px dashed rgba(27,17,8,0.22)",
         }}
       >
-        <span
-          className="signature"
-          style={{
-            color: "rgba(27,17,8,0.55)",
-            fontSize: 10.5,
-            letterSpacing: "0.08em",
-          }}
-        >
-          krótko · rozbudowanie · pułapka
-        </span>
+        <StepPips />
         <span
           className="eyebrow flex items-center carte-card-cta"
           style={{
@@ -951,6 +984,30 @@ function CarteCard({
         </span>
       </div>
     </Link>
+  );
+}
+
+function StepPips() {
+  return (
+    <span className="flex items-baseline" style={{ gap: 8 }}>
+      {["krótko", "rozbudowanie", "pułapka"].map((l, i) => (
+        <span key={l} className="flex items-baseline" style={{ gap: 8 }}>
+          {i > 0 && (
+            <span style={{ color: "rgba(27,17,8,0.3)", fontSize: 9 }}>·</span>
+          )}
+          <span
+            className="signature"
+            style={{
+              color: "rgba(27,17,8,0.5)",
+              fontSize: 10,
+              letterSpacing: "0.08em",
+            }}
+          >
+            {l}
+          </span>
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -970,7 +1027,7 @@ function MoreCard({
       href={`/vaults/${vaultSlug}`}
       className="more-card relative flex flex-col items-center justify-center"
       style={{
-        minHeight: 240,
+        minHeight: 250,
         background: "rgba(27,17,8,0.35)",
         border: "0.5px dashed rgba(184,146,77,0.3)",
         cursor: "pointer",
@@ -984,21 +1041,22 @@ function MoreCard({
       <div
         className="flex items-center justify-center"
         style={{
-          width: 56,
-          height: 56,
+          width: 54,
+          height: 54,
           borderRadius: "50%",
-          background: `radial-gradient(circle at 32% 28%, ${accent}, rgba(0,0,0,0.5))`,
-          opacity: 0.55,
-          border: "0.5px solid rgba(184,146,77,0.3)",
+          background: `radial-gradient(circle at 32% 28%, ${accent} 0%, rgba(0,0,0,0.5) 115%)`,
+          opacity: 0.7,
+          border: "0.5px solid rgba(184,146,77,0.4)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,235,180,0.14), 0 2px 6px rgba(0,0,0,0.4)",
         }}
       >
         <span
           className="font-display italic"
           style={{
-            fontSize: 24,
+            fontSize: 23,
             color: "var(--c-gold-300)",
             fontWeight: 500,
-            opacity: 0.85,
           }}
         >
           +{count}
