@@ -155,6 +155,8 @@ export function TheoryPhase({
           queueReason={queueReason}
           compact={compact}
           onProceed={onProceed}
+          imageUrl={topic.imageUrl}
+          imageCaption={topic.imageCaption}
         />
         <ReadingToolbar />
         {onDeck.length > 0 && <OnDeckStrip items={onDeck} />}
@@ -653,6 +655,8 @@ function BookSpread({
   queueReason,
   compact,
   onProceed,
+  imageUrl,
+  imageCaption,
 }: {
   sigil: string;
   sectionName: string;
@@ -664,6 +668,8 @@ function BookSpread({
   queueReason: string;
   compact: boolean;
   onProceed: () => void;
+  imageUrl?: string;
+  imageCaption?: string;
 }) {
   /* split paragraphs across pages: ~40% on recto, rest on verso */
   const split = Math.max(1, Math.ceil(paragraphs.length * 0.4));
@@ -706,6 +712,8 @@ function BookSpread({
               signature={signature}
               paragraphs={versoBody}
               onProceed={onProceed}
+              imageUrl={imageUrl}
+              imageCaption={imageCaption}
             />
           </div>
         </div>
@@ -1105,14 +1113,77 @@ function RectoPage({
   );
 }
 
+/* ============================================================
+   Theory plate — framed reproduction with museum-label caption
+   ============================================================ */
+
+function TheoryPlate({
+  imageUrl,
+  imageCaption,
+}: {
+  imageUrl: string;
+  imageCaption?: string;
+}) {
+  return (
+    <figure
+      style={{
+        margin: "0 0 24px",
+        padding: 10,
+        background: "linear-gradient(180deg, #241710 0%, #1a0f08 100%)",
+        boxShadow:
+          "0 14px 30px -16px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,230,180,0.12)",
+      }}
+    >
+      <div
+        style={{
+          padding: 4,
+          border: "0.5px solid rgba(184,146,77,0.45)",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imageUrl}
+          alt={imageCaption ?? "Reprodukcja dzieła"}
+          style={{
+            display: "block",
+            width: "100%",
+            height: "auto",
+          }}
+        />
+      </div>
+      {imageCaption && (
+        <figcaption
+          className="signature"
+          style={{
+            color: "var(--c-paper-300)",
+            opacity: 0.7,
+            fontSize: 10,
+            fontStyle: "italic",
+            textAlign: "center",
+            letterSpacing: "0.02em",
+            marginTop: 9,
+            lineHeight: 1.5,
+          }}
+        >
+          {imageCaption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
 function VersoPage({
   signature,
   paragraphs,
   onProceed,
+  imageUrl,
+  imageCaption,
 }: {
   signature: string;
   paragraphs: string[];
   onProceed: () => void;
+  imageUrl?: string;
+  imageCaption?: string;
 }) {
   return (
     <div
@@ -1131,7 +1202,11 @@ function VersoPage({
           signature={signature}
         />
 
-        {paragraphs.length === 0 ? (
+        {imageUrl && (
+          <TheoryPlate imageUrl={imageUrl} imageCaption={imageCaption} />
+        )}
+
+        {paragraphs.length === 0 && !imageUrl ? (
           <p
             className="body-prose"
             style={{
