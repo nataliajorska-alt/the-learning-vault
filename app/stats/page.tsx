@@ -362,6 +362,11 @@ export default function StatsPage() {
                     { label: "Sesje w 90 dni", value: String(sessionsAgg.count) },
                   ]}
                   weakSkills={weakSkills}
+                  footnote={
+                    dueNow > 0
+                      ? "Kolejka rośnie z każdym dniem bez powtórek."
+                      : "Kolejka czysta — nowe powtórki wrócą z kalendarzem."
+                  }
                 />
               </div>
             </div>
@@ -736,7 +741,7 @@ function NotaKuratora({
       <div
         className="relative"
         style={{
-          padding: "26px 36px 24px 40px",
+          padding: "22px 32px 18px 36px",
           zIndex: 3,
           flex: 1,
           display: "flex",
@@ -745,7 +750,7 @@ function NotaKuratora({
       >
         <div
           className="flex items-start justify-between"
-          style={{ marginBottom: 18, paddingLeft: 40 }}
+          style={{ marginBottom: 14, paddingLeft: 40 }}
         >
           <span className="eyebrow" style={{ color: "rgba(139,46,31,0.82)", fontSize: 10 }}>
             Nota kuratora
@@ -759,12 +764,12 @@ function NotaKuratora({
         </div>
 
         {/* wielka cyfra atramentem + rada kuratora */}
-        <div className="flex flex-col sm:flex-row sm:items-center" style={{ gap: 30, flex: 1 }}>
+        <div className="flex flex-col sm:flex-row sm:items-center" style={{ gap: 24, flex: 1 }}>
           <div style={{ flexShrink: 0, textAlign: "center" }}>
             <div
               className="font-display italic"
               style={{
-                fontSize: "clamp(64px, 7vw, 88px)",
+                fontSize: "clamp(54px, 6vw, 72px)",
                 lineHeight: 1,
                 fontWeight: 600,
                 color: "var(--c-ink2)",
@@ -779,7 +784,7 @@ function NotaKuratora({
               style={{
                 color: "rgba(27,17,8,0.55)",
                 fontSize: 9,
-                marginTop: 12,
+                marginTop: 8,
                 letterSpacing: "0.24em",
               }}
             >
@@ -793,14 +798,14 @@ function NotaKuratora({
               width: 0.5,
               alignSelf: "stretch",
               background: "rgba(27,17,8,0.22)",
-              margin: "6px 0",
+              margin: "4px 0",
             }}
           />
           <div style={{ flex: 1 }}>
             <p
               className="font-display italic"
               style={{
-                fontSize: "clamp(20px, 2.5vw, 26px)",
+                fontSize: "clamp(19px, 2.2vw, 24px)",
                 lineHeight: 1.24,
                 color: "#1B1108",
                 fontWeight: 500,
@@ -817,7 +822,7 @@ function NotaKuratora({
                 color: "rgba(139,46,31,0.7)",
                 fontSize: 10.5,
                 letterSpacing: "0.14em",
-                marginTop: 12,
+                marginTop: 8,
               }}
             >
               — Kurator zbioru
@@ -828,8 +833,8 @@ function NotaKuratora({
         <div
           className="flex items-center justify-between"
           style={{
-            marginTop: 20,
-            paddingTop: 12,
+            marginTop: 14,
+            paddingTop: 10,
             borderTop: "0.5px dashed rgba(27,17,8,0.22)",
           }}
         >
@@ -863,9 +868,11 @@ const RYZYKO_NUMERALS = ["i", "ii", "iii"];
 function RyzykoZapomnienia({
   rows,
   weakSkills,
+  footnote,
 }: {
   rows: Array<{ label: string; value: string; strong?: boolean }>;
   weakSkills: Array<{ skill: string; total: number; wrong: number }>;
+  footnote: string;
 }) {
   return (
     <div
@@ -883,15 +890,15 @@ function RyzykoZapomnienia({
       <div
         className="relative"
         style={{
-          padding: "26px 36px 24px",
+          padding: "22px 32px 18px",
           zIndex: 3,
           height: "100%",
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <div style={{ marginBottom: 20 }}>
-          <div className="flex items-center" style={{ gap: 10, marginBottom: 8 }}>
+        <div style={{ marginBottom: 14 }}>
+          <div className="flex items-center" style={{ gap: 10, marginBottom: 7 }}>
             <span
               aria-hidden
               style={{
@@ -913,7 +920,7 @@ function RyzykoZapomnienia({
           <div
             className="font-display italic"
             style={{
-              fontSize: 24,
+              fontSize: 22,
               color: "#1B1108",
               fontWeight: 600,
               letterSpacing: "-0.01em",
@@ -923,7 +930,7 @@ function RyzykoZapomnienia({
             Ryzyko zapomnienia
           </div>
         </div>
-        <div className="flex flex-col justify-center" style={{ gap: 18, flex: 1 }}>
+        <div className="flex flex-col justify-center" style={{ gap: 12, flex: 1 }}>
           {rows.map((r, i) => (
             <div key={r.label} className="flex items-baseline" style={{ gap: 12 }}>
               <span
@@ -953,7 +960,7 @@ function RyzykoZapomnienia({
               <span
                 className="font-display italic"
                 style={{
-                  fontSize: 26,
+                  fontSize: 24,
                   fontWeight: 600,
                   lineHeight: 1,
                   color: r.strong ? "var(--c-ink2)" : "#1B1108",
@@ -967,7 +974,7 @@ function RyzykoZapomnienia({
         </div>
         {weakSkills.length > 0 && (
           <div
-            style={{ marginTop: 18, paddingTop: 14, borderTop: "0.5px dashed rgba(27,17,8,0.25)" }}
+            style={{ marginTop: 14, paddingTop: 12, borderTop: "0.5px dashed rgba(27,17,8,0.25)" }}
           >
             <div
               className="eyebrow"
@@ -1010,6 +1017,16 @@ function RyzykoZapomnienia({
             </div>
           </div>
         )}
+        <div
+          style={{ marginTop: 14, paddingTop: 10, borderTop: "0.5px dashed rgba(27,17,8,0.25)" }}
+        >
+          <span
+            className="caption"
+            style={{ color: "rgba(27,17,8,0.55)", fontSize: 12, fontStyle: "italic" }}
+          >
+            {footnote}
+          </span>
+        </div>
       </div>
     </div>
   );
