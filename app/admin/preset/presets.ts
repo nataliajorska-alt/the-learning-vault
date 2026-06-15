@@ -8718,4 +8718,130 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 92. Hiszpański: pronombres de objeto directo (me/te/lo/la/los/las)
+  // ============================================================
+  // Format praktyczny (salon: null) — gramatyka recall. Z podręcznika,
+  // rozdz. 29 „Te amo”. Dopełnienie bliższe (biernik, kogo? co?):
+  // me, te, lo, la, nos, os, los, las. Świadomie różni się od
+  // es-zaimki-pozycja (le/les = celownik, komu? czemu?) — kluczowy
+  // kontrast lo/los vs le/les (leísmo) plus rodzaj rzeczy decyduje o lo/la.
+  // Pułapka-punkt zaczepienia: w ćwiczeniu 29.1.3 padło „No les veo” dla
+  // „tus amigos”; poprawnie „No los veo”.
+  {
+    slug: "es-pronombres-objeto-directo",
+    vaultSlug: "es",
+    label: "Hiszpański — pronombres de objeto directo (me/te/lo/la/los/las)",
+    payload: {
+      title:
+        "Pronombres de objeto directo — me, te, lo, la, nos, os, los, las",
+      summary:
+        "Zaimki dopełnienia bliższego (OD): me, te, lo, la, nos, os, los, las. Zastępują osobę lub rzecz, na którą BEZPOŚREDNIO działa czasownik (kogo? co? — biernik). „Te amo\" (Kocham cię), „¿Dónde está el pan? No lo encuentro\" (Nie znajduję go). Stoją PRZED odmienionym czasownikiem, a „no\" idzie przed zaimek: „No la veo\". Dwie pułapki dla Polki: lo/la/los/las muszą zgadzać się z RODZAJEM hiszpańskiego rzeczownika (la corbata → la), a do osób używasz lo/los, NIE le/les.",
+      theory:
+        "Dopełnienie bliższe (objeto directo, OD) to ten, na kogo albo co BEZPOŚREDNIO przechodzi czynność — odpowiada na pytanie „kogo? co?\" (polski biernik). „Kocham [kogo?] ciebie\" → te amo. „Nie znajduję [czego?] chleba\" → no lo encuentro. To nie to samo co dopełnienie dalsze (komu? czemu?), o którym w pułapce 2.\n\nPEŁNA TABELA ZAIMKÓW OD:\nLICZBA POJEDYNCZA\n— (yo) → me = mnie\n— (tú) → te = ciebie\n— (usted-mężczyzna / él / rzecz rodzaju męskiego) → lo = pana / jego / to\n— (usted-kobieta / ella / rzecz rodzaju żeńskiego) → la = panią / ją / to\nLICZBA MNOGA\n— (nosotros / nosotras) → nos = nas\n— (vosotros / vosotras) → os = was\n— (ustedes-mężczyźni / ellos / rzeczy r. męskiego) → los = panów / ich / je\n— (ustedes-kobiety / ellas / rzeczy r. żeńskiego) → las = panie / je\n\nZASADA 1 — GRUPA MIESZANA = rodzaj męski mnogi (los). „¿Veis mucho a Almudena y a Luis?\" (kobieta + mężczyzna) → „No, no los vemos mucho.\" Wystarczy jeden mężczyzna w grupie, by całość brała los, nie las.\n\nZASADA 2 — KIEDY ICH UŻYWASZ:\na) do osób OBECNYCH, do których mówisz: „¿Me amas, Lola? —Sí, Carlos, te amo.\" / „¿Quién eres? No te conozco.\" / „¿Nos recuerdas? —Ahora os recuerdo.\"\nb) do osób, zwierząt lub rzeczy WSPOMNIANYCH wcześniej: „¿Dónde está el pan? No lo encuentro.\" / „¿Amas a Ana? —Sí, la amo.\" / „¿Quieres este libro? —No, no lo quiero.\" / „¿Amas a tus padres? —Sí, los amo.\"\n\nZASADA 3 — POZYCJA (colocación): (no) + me/te/lo… + odmieniony czasownik. Zaimek stoi tuż PRZED odmienioną formą czasownika, a przeczenie „no\" idzie jeszcze przed zaimek.\n— „Yo os conozco.\" (Znam was.)\n— „¿Dónde está Marisa? No la veo.\" (Nie widzę jej.)\n— „¿Quieres una raqueta? —No, gracias. No la necesito.\" (Nie potrzebuję jej.)\nKolejność jest sztywna: no + zaimek + czasownik. W czasie teraźniejszym oznajmującym nie wrzucaj zaimka po czasowniku ani między „no\" a zaimek.\n\nPUŁAPKA 1 (najważniejsza dla Polki) — RODZAJ RZECZY decyduje o lo czy la. Po polsku „nie widzę GO\" pasuje do wielu rzeczy, ale hiszpański zaimek bierze rodzaj KONKRETNEGO rzeczownika:\n— el teléfono (męski) → „No lo veo.\"\n— la entrada (żeński) → „No la veo.\"\n— este libro (męski) → „No lo quiero.\"\n— esta corbata (żeński) → „No la quiero.\"\nZanim wybierzesz lo/la, przypomnij sobie rodzaj rzeczownika PO HISZPAŃSKU, nie po polsku — polski „krawat\" jest męski, a hiszpańska „corbata\" żeńska → la.\n\nPUŁAPKA 2 — lo/los, NIE le/les do dopełnienia bliższego. To dwa różne zestawy zaimków:\n— OD (biernik, kogo? co?): lo, la, los, las → „¿Ves a tus amigos? Sí, los veo.\" (widzę ich)\n— OI (celownik, komu? czemu?): le, les → „Le doy un regalo.\" (daję mu prezent)\nCzasowniki ver, conocer, amar, querer, encontrar, recordar, necesitar, ayudar, llamar pytają „kogo?\", więc biorą OD: lo/la/los/las. „¿Dónde están tus amigos? No los veo.\" (NIE „les veo\"). Wstawianie le/les w funkcji dopełnienia bliższego (tzw. leísmo) to najczęstszy błąd — do „kogo? co?\" trzymaj się los/las.\n\nPUŁAPKA 3 — me↔te, nos↔os: zaimek OBRACA SIĘ w odpowiedzi. „¿Me amas?\" (mnie?) → „Sí, te amo.\" (ciebie). „¿Nos quieres, mamá?\" (nas?) → „Os quiero mucho.\" (was), bo z perspektywy mamy dzieci to „wy\". Nie odpowiadaj „me amo\" (to znaczy „kocham siebie\") ani „nos quiero\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„¿Dónde están tus amigos? No ___ veo.\" (Nie widzę ich — tus amigos to dopełnienie bliższe: widzę kogo?). Wstaw zaimek:",
+          options: ["les", "los", "las"],
+          correctAnswer: 1,
+          explanation:
+            "Dopełnienie bliższe (widzę KOGO? — ich): lo/la/los/las. Grupa męska w l. mnogiej → los. „Les\" to celownik (komu?) — wstawienie go tutaj to leísmo, najczęstszy błąd. (To dokładnie potknięcie z ćw. 29.1.3.)",
+        },
+        {
+          type: "abc",
+          text: "„¿Dónde está la entrada? No ___ veo.\" Wstaw zaimek:",
+          options: ["lo", "la", "le"],
+          correctAnswer: 1,
+          explanation:
+            "„la entrada\" jest rodzaju żeńskiego → la. Zaimek bierze rodzaj hiszpańskiego rzeczownika, nie polskiego („wejście\" tłumaczymy „go\", co myli).",
+        },
+        {
+          type: "abc",
+          text: "„Usted es la madre de Rosario. Yo ___ conozco.\" (mówisz formalnie DO kobiety). Wstaw zaimek:",
+          options: ["lo", "la", "te"],
+          correctAnswer: 1,
+          explanation:
+            "usted-kobieta odmienia się jak ella → la. „Lo\" byłoby do mężczyzny (usted-mężczyzna), „te\" jest nieformalne (ty). Forma „usted\" zawsze bierze zaimek 3. osoby.",
+        },
+        {
+          type: "abc",
+          text: "„¿Ves mucho a Pepe y a Luisa? —Sí, ___ veo mucho.\" (Pepe — mężczyzna, Luisa — kobieta). Wstaw zaimek:",
+          options: ["las", "los", "les"],
+          correctAnswer: 1,
+          explanation:
+            "Grupa mieszana (mężczyzna + kobieta) bierze rodzaj męski mnogi → los. Wystarczy jeden mężczyzna, by nie było „las\". I znów: widzę KOGO? → OD, więc los, nie les.",
+        },
+        {
+          type: "abc",
+          text: "„¿Me amas?\" — jak odpowiesz „Tak, kocham cię\"?",
+          options: ["Sí, me amo", "Sí, te amo", "Sí, lo amo"],
+          correctAnswer: 1,
+          explanation:
+            "Zaimek obraca się względem pytania: „me?\" (mnie?) → „te\" (ciebie). „Me amo\" znaczyłoby „kocham siebie\", a „lo amo\" — „kocham go\".",
+        },
+        {
+          type: "fill",
+          text: "„Vosotros sois compañeros de Ramón. Yo ___ conozco.\" (Znam was). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "os",
+          explanation:
+            "„Wy\" (vosotros / vosotras) jako dopełnienie bliższe → os. Niezależnie od tego, czy grupa jest męska, żeńska czy mieszana — zawsze os.",
+        },
+        {
+          type: "fill",
+          text: "„¿Nos quieres, mamá? —Sí, ___ quiero mucho.\" (odpowiada mama). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "os",
+          explanation:
+            "Dzieci pytają „nas?\" (nos), ale z perspektywy mamy to „wy\" → os. Zaimek obraca się: nos (pytanie) ↔ os (odpowiedź), tak samo jak me ↔ te.",
+        },
+        {
+          type: "fill",
+          text: "„¿Quieres esta corbata? —No, no ___ quiero.\" Wstaw zaimek:",
+          options: null,
+          correctAnswer: "la",
+          explanation:
+            "„la corbata\" jest żeński → la (choć polski „krawat\" jest męski!). Kolejność: no + la + quiero — zaimek przed czasownikiem, „no\" przed zaimkiem.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego na „¿Dónde está el teléfono?\" odpowiadamy „No lo veo\", a na „¿Dónde está la entrada?\" — „No la veo\", skoro po polsku w obu mówimy „nie widzę GO\".",
+          options: null,
+          correctAnswer:
+            "Bo hiszpański zaimek dopełnienia bliższego zgadza się z RODZAJEM hiszpańskiego rzeczownika, a nie z polskim tłumaczeniem. „el teléfono\" jest rodzaju męskiego → lo; „la entrada\" jest rodzaju żeńskiego → la. Polskie „go\" nie niesie informacji o rodzaju, więc trzeba pamiętać rodzajnik (el/la) rzeczownika po hiszpańsku i dopiero potem dobrać lo/la.",
+          explanation:
+            "Klucz: lo/la = rodzaj hiszpańskiego rzeczownika (el → lo, la → la), nie polskie „go/ją\". Sprawdzaj el/la, zanim wybierzesz zaimek.",
+        },
+        {
+          type: "spot_error",
+          text: "„¿Dónde están tus amigos? No les veo.\" — chcę powiedzieć „Nie widzę ich\" (tus amigos = koledzy).",
+          options: [
+            "OK, „les\" bo mowa o ludziach",
+            "BŁĄD — to dopełnienie bliższe (widzę kogo? — ich), więc „los\", nie „les\". „Les\" to celownik (komu?)",
+            "powinno być „las\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Najczęstszy błąd (leísmo). „Widzieć\" rządzi dopełnieniem bliższym (kogo?) → lo/la/los/las. „Les\" zostaw dla celownika (komu? czemu?: „les doy\", „les digo\"). Męska grupa „kogo?\" → los.",
+        },
+        {
+          type: "spot_error",
+          text: "„Veo no la.\" — chcę powiedzieć „Nie widzę jej\". Wskaż błąd:",
+          options: [
+            "OK, „veo no la\" jest poprawne",
+            "BŁĄD — kolejność jest sztywna: no + zaimek + czasownik → „No la veo\"",
+            "powinno być „la veo no\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zaimek OD stoi PRZED odmienionym czasownikiem, a „no\" przed zaimkiem: no + la + veo. W czasie teraźniejszym oznajmującym zaimek nigdy nie idzie po czasowniku.",
+        },
+      ],
+      salon: null,
+    },
+  },
 ];
