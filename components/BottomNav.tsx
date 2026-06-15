@@ -76,7 +76,7 @@ export function BottomNav() {
               aria-current={active ? "page" : undefined}
               className="relative flex flex-col items-center justify-center gap-1 py-3"
               style={{
-                color: active ? "var(--c-gold-300)" : "rgba(228,214,186,0.55)",
+                color: active ? "var(--c-gold-300)" : "rgba(228,214,186,0.72)",
                 transition: "color 180ms ease",
               }}
             >

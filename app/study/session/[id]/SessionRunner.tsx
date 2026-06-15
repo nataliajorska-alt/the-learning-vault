@@ -259,6 +259,18 @@ export function SessionRunner({
     setTimeLeft(PHASE_DURATION[phase]);
   }, [phase]);
 
+  // Przy zmianie fazy przenieś fokus na obszar treści — czytnik ekranu i
+  // klawiatura lądują w nowej fazie, nie na znikniętym przycisku. Na starcie nie
+  // ruszamy (phaseRef startuje od bieżącej fazy).
+  const contentRef = useRef<HTMLDivElement>(null);
+  const phaseRef = useRef(phase);
+  useEffect(() => {
+    if (phaseRef.current !== phase) {
+      phaseRef.current = phase;
+      contentRef.current?.focus();
+    }
+  }, [phase]);
+
   useEffect(() => {
     if (timeLeft <= 0) return;
     const t = setInterval(() => setTimeLeft((s) => Math.max(0, s - 1)), 1000);
@@ -602,7 +614,7 @@ export function SessionRunner({
     : "";
 
   return (
-    <div className="space-y-10">
+    <div ref={contentRef} tabIndex={-1} className="space-y-10 focus:outline-none">
       {/* Ogłoszenia dla czytnika ekranu: faza / numer pytania / werdykt */}
       <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
         {liveMsg}

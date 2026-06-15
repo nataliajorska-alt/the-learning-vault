@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { LineChart, Sparkles, LogOut, ChevronRight, Download } from "lucide-react";
+import {
+  LineChart,
+  Sparkles,
+  LogOut,
+  ChevronRight,
+  Download,
+  Search,
+} from "lucide-react";
 import { useAuth, useUser } from "@/lib/auth-context";
 import {
   effectiveStreak,
@@ -108,6 +115,22 @@ export default function MorePage() {
       </div>
 
       <div className="space-y-3">
+        <button
+          type="button"
+          onClick={() =>
+            window.dispatchEvent(new CustomEvent("open-command-palette"))
+          }
+          className="card card-hover flex items-center gap-4 w-full text-left"
+        >
+          <Search className="w-5 h-5 text-gold shrink-0" />
+          <div className="flex-1 min-w-0">
+            <div className="hero-italic text-lg">Szukaj w zbiorze</div>
+            <div className="text-xs text-muted mt-0.5">
+              Tematy i sekcje · ⌘K
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-muted shrink-0" />
+        </button>
         {LINKS.map((l) => {
           const Icon = l.icon;
           return (
