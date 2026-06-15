@@ -5,6 +5,7 @@ import { AuthGate } from "./AuthGate";
 import { TopNav } from "./TopNav";
 import { BottomNav } from "./BottomNav";
 import { OfflineIndicator } from "./OfflineIndicator";
+import { CommandPalette } from "./CommandPalette";
 
 export function AppShell({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -47,6 +48,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </main>
       <BottomNav />
+      <CommandPalette />
     </AuthGate>
   );
 }

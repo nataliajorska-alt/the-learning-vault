@@ -10,6 +10,7 @@ import {
   Library,
   LineChart,
   LogOut,
+  Search,
   Sparkles,
   Wine,
 } from "lucide-react";
@@ -249,6 +250,16 @@ export function TopNav() {
           >
             {initial}
           </div>
+          <button
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("open-command-palette"))
+            }
+            className="text-paper/40 hover:text-paper/90 transition-colors"
+            aria-label="Szukaj"
+            title="Szukaj (⌘K)"
+          >
+            <Search className="w-4 h-4 stroke-[1.5]" />
+          </button>
           <button
             onClick={() => signOut()}
             className="text-paper/40 hover:text-paper/90 transition-colors"
