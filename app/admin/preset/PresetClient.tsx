@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Check, ArrowLeft, Sparkles, BookOpen } from "lucide-react";
 import { useUser } from "@/lib/auth-context";
@@ -16,7 +16,7 @@ import {
   P30_PILLAR_LABELS,
 } from "@/lib/projekt30-xp";
 import { XpToast, type XpAward } from "@/components/ui/XpToast";
-import { PRESETS } from "./presets";
+import type { Preset } from "./presets";
 
 export function PresetClient() {
   const user = useUser();
@@ -28,6 +28,19 @@ export function PresetClient() {
   const [xpAward, setXpAward] = useState<XpAward | null>(null);
   const xpIdRef = useRef(0);
 
+  // 636 KB presetów ładujemy dynamicznie (osobny chunk), by nie obciążać
+  // wejściowego bundla tej admin-route'y.
+  const [presets, setPresets] = useState<Preset[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    import("./presets").then((m) => {
+      if (!cancelled) setPresets(m.PRESETS);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // Detekcja: dla każdego presetSlug → znajdź topicId zaimportowanego wcześniej.
   // Najpierw po polu presetSlug (nowe importy), potem fallback po identycznym
   // title (stare importy sprzed wprowadzenia presetSlug).
@@ -37,7 +50,7 @@ export function PresetClient() {
     for (const t of topics) {
       if (t.presetSlug) m[t.presetSlug] = t.id;
     }
-    for (const p of PRESETS) {
+    for (const p of presets ?? []) {
       if (m[p.slug]) continue;
       const match = topics.find(
         (t) =>
@@ -46,10 +59,10 @@ export function PresetClient() {
       if (match) m[p.slug] = match.id;
     }
     return m;
-  }, [topics]);
+  }, [topics, presets]);
 
   async function addPreset(presetSlug: string) {
-    const preset = PRESETS.find((p) => p.slug === presetSlug);
+    const preset = presets?.find((p) => p.slug === presetSlug);
     if (!preset || !user || !vaults) return;
     let vaultId = vaults.find((v) => v.slug === preset.vaultSlug)?.id;
     if (!vaultId && !preset.vaultMeta) {
@@ -98,7 +111,7 @@ export function PresetClient() {
 
   const totalImported =
     Object.keys(importedMap).filter((k) =>
-      PRESETS.some((p) => p.slug === k)
+      (presets ?? []).some((p) => p.slug === k)
     ).length;
 
   return (
@@ -121,15 +134,18 @@ export function PresetClient() {
         {topics !== null && (
           <p className="text-xs text-muted mt-4">
             Zaimportowane: <span className="text-gold">{totalImported}</span> z{" "}
-            {PRESETS.length}
+            {presets?.length ?? 0}
           </p>
         )}
       </header>
 
       <section className="space-y-6">
+        {presets === null && (
+          <p className="text-muted hero-italic text-xl">Ładuję gotowe tematy…</p>
+        )}
         {/* Nowe presety dodawane są na końcu tablicy PRESETS w pliku — w UI
             wyświetlamy je od ostatnio dodanych (najświeższy import na górze). */}
-        {[...PRESETS].reverse().map((p) => {
+        {[...(presets ?? [])].reverse().map((p) => {
           const justSavedTopicId = justSaved[p.slug];
           const previouslyImportedTopicId = importedMap[p.slug];
           const importedTopicId = justSavedTopicId ?? previouslyImportedTopicId;

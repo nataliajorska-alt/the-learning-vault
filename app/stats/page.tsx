@@ -1366,10 +1366,17 @@ function RejestrObecnosci({
             style={{ padding: "36px 36px 32px 44px", overflowX: "auto" }}
           >
             <div
-              className="eyebrow"
-              style={{ color: "rgba(27,17,8,0.55)", fontSize: 10, marginBottom: 22 }}
+              className="eyebrow flex items-center justify-between"
+              style={{ color: "rgba(27,17,8,0.62)", fontSize: 10, marginBottom: 22, gap: 12 }}
             >
-              Każdy romb to jeden dzień
+              <span>Każdy romb to jeden dzień</span>
+              <span
+                className="lg:hidden"
+                aria-hidden
+                style={{ opacity: 0.85, whiteSpace: "nowrap" }}
+              >
+                przesuń w bok →
+              </span>
             </div>
             <LedgerHeatmap data={data} />
           </div>
@@ -1815,13 +1822,16 @@ function ErrataRow({
   last: boolean;
 }) {
   return (
-    <div
+    <Link
+      href={`/study/session/new?topic=${item.id}&mode=topic`}
+      title={`Ucz się: ${item.title}`}
       className="errata-stat-row relative flex items-center"
       style={{
         padding: "18px 28px",
         gap: 18,
         borderBottom: last ? "none" : "0.5px dashed rgba(184,146,77,0.2)",
         transition: "background .2s",
+        textDecoration: "none",
       }}
     >
       <span
@@ -1878,7 +1888,7 @@ function ErrataRow({
       >
         {item.got} / {item.total}
       </span>
-    </div>
+    </Link>
   );
 }
 
