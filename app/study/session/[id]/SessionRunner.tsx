@@ -9,7 +9,7 @@ import {
   getTopic,
   recordAttempt,
   startSession,
-  useSessions,
+  getSessionCount,
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
@@ -105,11 +105,11 @@ export function SessionRunner({
   const user = useUser();
   const vaults = useVaults();
   const allTopics = useTopics();
-  const allSessions = useSessions(3650);
 
   const [topic, setTopic] = useState<Topic | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [sessionCount, setSessionCount] = useState<number | null>(null);
   const [loadErr, setLoadErr] = useState<string | null>(null);
 
   const [phase, setPhase] = useState<Phase>("theory");
@@ -270,6 +270,22 @@ export function SessionRunner({
       contentRef.current?.focus();
     }
   }, [phase]);
+
+  // Numer sesji na lakową pieczęć — jeden count zamiast realtime listenera całej
+  // historii. Pobieramy, gdy sesja już istnieje (sessionId), więc liczba obejmuje
+  // też bieżącą; przy błędzie zostaje null (pieczęć ma fallback bez numeru).
+  useEffect(() => {
+    if (!user || !sessionId) return;
+    let cancelled = false;
+    getSessionCount(user.uid)
+      .then((n) => {
+        if (!cancelled) setSessionCount(n);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [user, sessionId]);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -596,11 +612,8 @@ export function SessionRunner({
   });
   const queueReason = topicQueueReason(topic);
 
-  // Numer domkniętej sesji na lakową pieczęć: wszystkie zakończone sesje plus
-  // ta bieżąca (liczona po id, nawet zanim endedAt dotrze ze snapshotu).
-  const sessionNumber = allSessions
-    ? allSessions.filter((s) => s.endedAt != null || s.id === sessionId).length
-    : null;
+  // Numer sesji na lakową pieczęć (count obejmuje bieżącą — patrz efekt wyżej).
+  const sessionNumber = sessionCount;
 
   const liveMsg = revealed
     ? (lastCorrect ? "Poprawnie." : "Niepoprawnie.") +

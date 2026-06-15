@@ -3,7 +3,21 @@
 // fall back to cache when offline. Skip Firebase/API traffic entirely
 // so writes still queue via Firestore offline persistence.
 
-const CACHE = "tlv-shell-v1";
+// Bump przy każdym istotnym wydaniu — activate kasuje stare cache (!== CACHE),
+// więc to czyści też zalegające hashowane chunki z poprzednich deployów.
+const CACHE = "tlv-shell-v2";
+// Twardy limit wpisów — runtime cache (HTML, _next, ~5 MB grafik z /art) nie
+// rośnie już w nieskończoność; najstarsze wpisy wypadają (LRU po kolejności).
+const MAX_ENTRIES = 64;
+
+async function trimCache(cacheName, max) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length <= max) return;
+  await Promise.all(
+    keys.slice(0, keys.length - max).map((k) => cache.delete(k))
+  );
+}
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -40,7 +54,11 @@ self.addEventListener("fetch", (event) => {
         const fresh = await fetch(request);
         if (fresh && fresh.status === 200 && fresh.type === "basic") {
           const copy = fresh.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy)).catch(() => {});
+          caches
+            .open(CACHE)
+            .then((c) => c.put(request, copy))
+            .then(() => trimCache(CACHE, MAX_ENTRIES))
+            .catch(() => {});
         }
         return fresh;
       } catch (err) {

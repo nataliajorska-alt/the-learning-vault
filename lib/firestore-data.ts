@@ -6,6 +6,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   onSnapshot,
@@ -768,6 +769,17 @@ export async function exportAllData(
     out[c] = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
   }
   return { app: "the-learning-vault", uid, ...out };
+}
+
+/** Liczba sesji użytkowniczki — jednorazowy count zamiast 10-letniego realtime
+ *  listenera, który służył tylko do ponumerowania lakowej pieczęci. Filtruje
+ *  wyłącznie po userId, więc wystarcza indeks pojedynczego pola. */
+export async function getSessionCount(uid: string): Promise<number> {
+  const { db } = getFirebase();
+  const snap = await getCountFromServer(
+    query(collection(db, "sessions"), where("userId", "==", uid))
+  );
+  return snap.data().count;
 }
 
 // --- SESSIONS / ATTEMPTS QUERIES (stats) -----------------------------------
