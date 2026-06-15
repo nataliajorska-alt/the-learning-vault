@@ -13,6 +13,7 @@ import {
 } from "@/lib/firestore-data";
 import { graceAvailable } from "@/lib/streak";
 import { plPlural } from "@/lib/plural";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { Timestamp } from "firebase/firestore";
 
 /* ---------- helpers ---------------------------------------------------- */
@@ -345,9 +346,7 @@ export default function StatsPage() {
 
         {loading ? (
           <div style={{ padding: "0 24px 48px" }}>
-            <p className="hero-italic text-2xl text-muted animate-candle">
-              Ładuję...
-            </p>
+            <PageSkeleton header={false} rows={3} />
           </div>
         ) : (
           <>

@@ -28,6 +28,7 @@ import {
 import { TheoryPhase } from "@/components/session/TheoryPhase";
 import { TestPhase } from "@/components/session/TestPhase";
 import { KorektaPhase } from "@/components/session/KorektaPhase";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { Question, Topic, Vault } from "@/lib/types";
 import type { Verdict } from "@/lib/spaced-repetition";
 import type { Timestamp } from "firebase/firestore";
@@ -555,9 +556,7 @@ export function SessionRunner({
   }
 
   if (!topic || !questions) {
-    return (
-      <p className="hero-italic text-2xl text-muted animate-candle">Ładuję sesję...</p>
-    );
+    return <PageSkeleton rows={3} />;
   }
 
   if (questions.length === 0) {
@@ -752,7 +751,7 @@ function SectionPicker({
   topics: Topic[] | null;
 }) {
   if (!vaults || !topics) {
-    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję sekcje...</p>;
+    return <PageSkeleton header={false} rows={3} />;
   }
   const now = Date.now();
   const ordered = [...vaults].sort((a, b) => a.order - b.order);

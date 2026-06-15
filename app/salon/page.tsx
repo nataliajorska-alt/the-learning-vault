@@ -8,6 +8,7 @@ import {
   useVaults,
 } from "@/lib/firestore-data";
 import { plPlural } from "@/lib/plural";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { SalonPhrase, Topic, Vault } from "@/lib/types";
 import type { Timestamp } from "firebase/firestore";
 
@@ -121,7 +122,7 @@ export default function SalonPage() {
 
         {loading ? (
           <div className="px-6 md:px-12 lg:px-24 pb-10">
-            <p className="hero-italic text-2xl text-muted animate-candle">Ładuję...</p>
+            <PageSkeleton header={false} rows={3} />
           </div>
         ) : entries.length === 0 ? (
           <div className="px-6 md:px-12 lg:px-24 pb-10">

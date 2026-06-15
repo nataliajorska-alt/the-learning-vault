@@ -8,6 +8,7 @@ import {
   markErrorRehabilitated,
 } from "@/lib/firestore-data";
 import { plPlural } from "@/lib/plural";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { VaultError } from "@/lib/types";
 
 /* ---------- helpers ---------------------------------------------------- */
@@ -81,9 +82,7 @@ export default function ErrorsPage() {
   }, [sorted, onlyChronic, section, sectionOptions]);
 
   if (errors === null) {
-    return (
-      <div className="text-muted hero-italic text-2xl animate-candle">Ładuję Errata...</div>
-    );
+    return <PageSkeleton rows={4} />;
   }
 
   return (

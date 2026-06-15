@@ -1,9 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { LineChart, Sparkles, LogOut, ChevronRight } from "lucide-react";
+import { LineChart, Sparkles, LogOut, ChevronRight, Download } from "lucide-react";
 import { useAuth, useUser } from "@/lib/auth-context";
-import { effectiveStreak, useUserDoc } from "@/lib/firestore-data";
+import {
+  effectiveStreak,
+  exportAllData,
+  useUserDoc,
+} from "@/lib/firestore-data";
 
 function plDni(n: number): string {
   return n === 1 ? "dzień" : "dni";
@@ -32,6 +37,31 @@ export default function MorePage() {
   const displayName =
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "Czytelniczka";
   const initial = (displayName?.[0] ?? "·").toUpperCase();
+  const [exporting, setExporting] = useState(false);
+
+  async function handleExport() {
+    if (!user || exporting) return;
+    setExporting(true);
+    try {
+      const data = await exportAllData(user.uid);
+      const stamp = new Date().toISOString().slice(0, 10);
+      const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `learning-vault-backup-${stamp}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      alert("Nie udało się wyeksportować zbioru. Spróbuj ponownie.");
+    } finally {
+      setExporting(false);
+    }
+  }
 
   return (
     <div className="space-y-10 pb-6">
@@ -96,6 +126,15 @@ export default function MorePage() {
           );
         })}
       </div>
+
+      <button
+        onClick={handleExport}
+        disabled={exporting}
+        className="btn-ghost w-full"
+      >
+        <Download className="w-4 h-4" />
+        {exporting ? "Eksportuję…" : "Eksportuj zbiór (kopia JSON)"}
+      </button>
 
       <button onClick={() => signOut()} className="btn-ghost w-full">
         <LogOut className="w-4 h-4" />

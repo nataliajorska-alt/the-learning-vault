@@ -9,6 +9,7 @@ import {
   useTopics,
   useVaults,
 } from "@/lib/firestore-data";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import {
   awardP30Xp,
   pillarForVaultSlug,
@@ -118,7 +119,7 @@ export function SalonDetail({ topicId }: { topicId: string }) {
   const loading = topics === null || phrases === null || vaults === null;
 
   if (loading) {
-    return <p className="hero-italic text-2xl text-muted animate-candle">Ładuję...</p>;
+    return <PageSkeleton rows={2} />;
   }
 
   if (!topic || !phrase) {

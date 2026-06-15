@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { CatalogCard, type StampColor } from "@/components/ui/CatalogCard";
 import { VaultIcon } from "@/components/ui/VaultIcon";
 import { useTopics, useVaultBySlug } from "@/lib/firestore-data";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 
 const statusLabel: Record<string, string> = {
   fresh: "świeże",
@@ -46,7 +47,7 @@ export default function VaultDetailPage({
   const allTopics = useTopics(vault?.id);
 
   if (vault === undefined) {
-    return <div className="text-muted hero-italic text-2xl animate-candle">Ładuję...</div>;
+    return <PageSkeleton rows={4} />;
   }
   if (!vault) {
     return (

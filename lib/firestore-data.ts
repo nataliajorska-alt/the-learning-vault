@@ -745,6 +745,31 @@ export async function markErrorRehabilitated(errorId: string): Promise<void> {
   });
 }
 
+// --- EXPORT / BACKUP -------------------------------------------------------
+
+/** Jednorazowy zrzut całego, ręcznie kurowanego zbioru użytkowniczki do
+ *  backupu (JSON): sekcje, tematy, pytania, frazy Salonu i Errata. */
+export async function exportAllData(
+  uid: string
+): Promise<Record<string, unknown>> {
+  const { db } = getFirebase();
+  const collections = [
+    "vaults",
+    "topics",
+    "questions",
+    "salon_phrases",
+    "errors",
+  ] as const;
+  const out: Record<string, unknown[]> = {};
+  for (const c of collections) {
+    const snap = await getDocs(
+      query(collection(db, c), where("userId", "==", uid))
+    );
+    out[c] = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  }
+  return { app: "the-learning-vault", uid, ...out };
+}
+
 // --- SESSIONS / ATTEMPTS QUERIES (stats) -----------------------------------
 
 function startOfDayDaysAgo(daysBack: number): Date {

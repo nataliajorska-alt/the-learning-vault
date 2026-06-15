@@ -15,6 +15,7 @@ import {
   useUserDoc,
   useVaults,
 } from "@/lib/firestore-data";
+import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { Timestamp } from "firebase/firestore";
 
 /* ---------- helpers ---------------------------------------------------- */
@@ -136,9 +137,7 @@ export default function VaultsPage() {
   }, [topics]);
 
   if (vaults === null) {
-    return (
-      <div className="text-muted hero-italic text-2xl animate-candle">Ładuję sekcje...</div>
-    );
+    return <PageSkeleton rows={4} />;
   }
 
   const bookcaseItems: BookcaseVault[] = vaults.map((v) => ({
