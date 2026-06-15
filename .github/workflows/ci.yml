@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Anuluj starszy bieg dla tej samej gałęzi, gdy wpadnie nowy push.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Typecheck + testy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalacja zależności
+        run: npm ci
+
+      # Siatka bezpieczeństwa, której nie ma lokalnie (tsc/vitest wieszają się
+      # na maszynie). Tu łapiemy błędy typów, zanim wywali się build Vercela.
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Testy jednostkowe
+        run: npm run test:run
