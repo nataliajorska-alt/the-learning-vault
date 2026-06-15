@@ -1521,7 +1521,7 @@ function ErrataRow({
                 fontStyle: "italic",
                 fontSize: 13.5,
                 lineHeight: 1.5,
-                color: "rgba(27,17,8,0.55)",
+                color: "rgba(27,17,8,0.62)",
                 marginTop: 8,
                 maxWidth: 520,
               }}

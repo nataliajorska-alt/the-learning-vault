@@ -1623,7 +1623,7 @@ function NotesEmpty() {
         className="font-display italic"
         style={{
           fontSize: 18,
-          color: "rgba(27,17,8,0.45)",
+          color: "rgba(27,17,8,0.62)",
           fontWeight: 400,
           marginTop: 20,
           textAlign: "center",
