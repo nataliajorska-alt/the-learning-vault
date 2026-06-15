@@ -229,7 +229,7 @@ export function CommandPalette() {
                 fontSize: 12,
               }}
             >
-              Nic nie znaleziono dla „{q}".
+              Nic nie znaleziono dla „{q}”.
             </p>
           ) : (
             results.map((r, i) => {
