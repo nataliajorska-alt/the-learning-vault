@@ -591,8 +591,23 @@ export function SessionRunner({
     ? allSessions.filter((s) => s.endedAt != null || s.id === sessionId).length
     : null;
 
+  const liveMsg = revealed
+    ? (lastCorrect ? "Poprawnie." : "Niepoprawnie.") +
+      (lastFeedback ? ` ${lastFeedback}` : "")
+    : phase === "theory"
+    ? "Faza teorii."
+    : phase === "test"
+    ? `Pytanie ${idx + 1} z ${questions?.length ?? 0}.`
+    : phase === "review"
+    ? "Faza korekty — podsumowanie sesji."
+    : "";
+
   return (
     <div className="space-y-10">
+      {/* Ogłoszenia dla czytnika ekranu: faza / numer pytania / werdykt */}
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {liveMsg}
+      </div>
       {phase !== "theory" && phase !== "test" && phase !== "review" && (
         <header className="flex items-start justify-between gap-6">
           <div>

@@ -1254,6 +1254,10 @@ select.book-input {
 
   --c-ink:       #8B2E1F;
   --c-ink2:      #8B2E1F; /* alias — TSX uses ink2 to avoid clash with cream `ink` in Tailwind */
+  /* Oksblood #8B2E1F na ciemnym mahoniu daje ~2.2:1 (poniżej WCAG AA). Ten
+     jaśniejszy ceglasty wariant trzyma ~5:1 — do drobnych etykiet na ciemnym
+     tle (np. eyebrow w fazie testu). Na papierze zostaje ink2. */
+  --c-ink-on-dark: #d4624e;
   --c-burgundy:  #3a0f1c;
 
   --gold-rule:   rgba(184,146,77,0.45);

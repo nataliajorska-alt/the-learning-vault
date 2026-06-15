@@ -291,7 +291,7 @@ function TestHeader({
         <span
           className="eyebrow"
           style={{
-            color: "var(--c-ink2)",
+            color: "var(--c-ink-on-dark)",
             letterSpacing: "0.28em",
           }}
         >
@@ -413,7 +413,7 @@ function PocketWatch({
       <span
         className="eyebrow"
         style={{
-          color: "var(--c-ink2)",
+          color: "var(--c-ink-on-dark)",
           fontSize: 10,
           marginBottom: 6,
           letterSpacing: "0.28em",
@@ -518,7 +518,7 @@ function ProgressTabs({
           <span
             style={{
               marginLeft: 14,
-              color: "var(--c-ink2)",
+              color: "var(--c-ink-on-dark)",
               opacity: 0.95,
             }}
           >
