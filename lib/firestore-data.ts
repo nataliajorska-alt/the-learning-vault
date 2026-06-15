@@ -643,9 +643,16 @@ async function upsertErrorEntry(opts: {
   const now = new Date();
 
   if (verdict === "wrong") {
+    // Dla abc/spot_error „poprawną wersją" jest tekst opcji. Gdy opcje są
+    // wybrakowane (zepsute pytanie z AI), nie zapisuj gołego indeksu („2") —
+    // sięgnij po wyjaśnienie, a dopiero w ostateczności po surową wartość.
+    const correctOption =
+      question.type === "abc" || question.type === "spot_error"
+        ? (question.options ?? [])[Number(question.correctAnswer)]
+        : undefined;
     const correctVersion =
       question.type === "abc" || question.type === "spot_error"
-        ? (question.options ?? [])[Number(question.correctAnswer)] ?? String(question.correctAnswer)
+        ? correctOption ?? (question.explanation || String(question.correctAnswer))
         : String(question.correctAnswer);
 
     if (existing.empty) {

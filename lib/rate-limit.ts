@@ -18,8 +18,15 @@ interface Bucket {
 
 const buckets = new Map<string, Bucket>();
 
+let lastPruneAt = 0;
+const PRUNE_INTERVAL_MS = 60_000;
+
 function prune(now: number) {
-  if (buckets.size < 500) return;
+  // Wygasłe wpisy sprzątamy najwyżej raz na minutę (zamiast czekać, aż mapa
+  // urośnie do 500) — bez kosztu O(n) na każde żądanie. Twardy cap 500 nadal
+  // wymusza sprzątanie natychmiast, gdyby mapa jednak spuchła.
+  if (now - lastPruneAt < PRUNE_INTERVAL_MS && buckets.size < 500) return;
+  lastPruneAt = now;
   for (const [k, b] of buckets) {
     if (b.resetAt <= now) buckets.delete(k);
   }
