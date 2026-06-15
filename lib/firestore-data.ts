@@ -28,6 +28,7 @@ import {
   computeStreakUpdateWithGrace,
   effectiveStreakWithGrace,
   rehabError,
+  REHAB_THRESHOLD,
 } from "./streak";
 import type {
   Question,
@@ -725,6 +726,23 @@ export async function bumpErrorOnAnswer(opts: {
     });
     return { rehabilitated: false, correctStreak: 0 };
   }
+}
+
+/** Ręczne usunięcie wpisu z Error Vault (np. fałszywie zalogowany błąd, gdy
+ *  fallback string-match w ocenie uznał poprawną odpowiedź za błędną). */
+export async function deleteError(errorId: string): Promise<void> {
+  const { db } = getFirebase();
+  await deleteDoc(doc(db, "errors", errorId));
+}
+
+/** Ręczne oznaczenie wpisu jako opanowanego — znika z aktywnej listy bez
+ *  trzech poprawnych z rzędu (useErrors filtruje status == "active"). */
+export async function markErrorRehabilitated(errorId: string): Promise<void> {
+  const { db } = getFirebase();
+  await updateDoc(doc(db, "errors", errorId), {
+    status: "rehabilitated",
+    correctStreak: REHAB_THRESHOLD,
+  });
 }
 
 // --- SESSIONS / ATTEMPTS QUERIES (stats) -----------------------------------

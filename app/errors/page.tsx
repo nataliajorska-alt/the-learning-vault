@@ -2,7 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useErrors } from "@/lib/firestore-data";
+import {
+  useErrors,
+  deleteError,
+  markErrorRehabilitated,
+} from "@/lib/firestore-data";
 import { plPlural } from "@/lib/plural";
 import type { VaultError } from "@/lib/types";
 
@@ -861,23 +865,96 @@ function ErratumCard({
         }}
       >
         <RehabPips value={Math.min(3, card.correctStreak)} />
-        {chronic ? (
-          <ErrataStamp
-            rotate={-4 - ((card.timesWrong * 7) % 5)}
-          />
-        ) : (
-          <span
-            className="signature"
-            style={{
-              color: "rgba(27,17,8,0.4)",
-              fontSize: 10.5,
-              letterSpacing: "0.08em",
-            }}
-          >
-            obserwacja
-          </span>
-        )}
+        <div className="flex items-center" style={{ gap: 14 }}>
+          <ErratumActions card={card} />
+          {chronic ? (
+            <ErrataStamp
+              rotate={-4 - ((card.timesWrong * 7) % 5)}
+            />
+          ) : (
+            <span
+              className="signature"
+              style={{
+                color: "rgba(27,17,8,0.4)",
+                fontSize: 10.5,
+                letterSpacing: "0.08em",
+              }}
+            >
+              obserwacja
+            </span>
+          )}
+        </div>
       </div>
+    </div>
+  );
+}
+
+/* Ręczne akcje na wpisie — opanowane (rehabilituj) / usuń. Po sukcesie karta
+   znika ze snapshotu useErrors (status≠active albo skasowana), więc busy nie
+   resetujemy przy powodzeniu. */
+function ErratumActions({ card }: { card: VaultError }) {
+  const [busy, setBusy] = useState(false);
+
+  async function run(fn: () => Promise<void>) {
+    if (busy) return;
+    setBusy(true);
+    try {
+      await fn();
+    } catch {
+      setBusy(false); // błąd — pozwól spróbować ponownie
+    }
+  }
+
+  const btn: React.CSSProperties = {
+    background: "transparent",
+    border: "none",
+    padding: "2px 3px",
+    cursor: busy ? "default" : "pointer",
+    fontFamily: "var(--font-manrope), system-ui, sans-serif",
+    fontSize: 9,
+    letterSpacing: "0.16em",
+    textTransform: "uppercase",
+    transition: "opacity .15s ease",
+  };
+  const hover = (e: React.MouseEvent<HTMLButtonElement>, on: boolean) => {
+    if (!busy) e.currentTarget.style.opacity = on ? "1" : "0.6";
+  };
+
+  return (
+    <div className="flex items-center" style={{ gap: 7 }}>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={() => run(() => markErrorRehabilitated(card.id))}
+        onMouseEnter={(e) => hover(e, true)}
+        onMouseLeave={(e) => hover(e, false)}
+        title="Oznacz jako opanowane — wpis zniknie z Erraty"
+        style={{ ...btn, color: "rgba(31,58,38,0.9)", opacity: busy ? 0.4 : 0.6 }}
+      >
+        opanowane
+      </button>
+      <span aria-hidden style={{ color: "rgba(27,17,8,0.25)", fontSize: 9 }}>
+        ·
+      </span>
+      <button
+        type="button"
+        disabled={busy}
+        onClick={() => {
+          if (
+            window.confirm(
+              `Usunąć wpis „${card.correctVersion}" z Erraty? Tego nie cofniesz.`
+            )
+          ) {
+            run(() => deleteError(card.id));
+          }
+        }}
+        onMouseEnter={(e) => hover(e, true)}
+        onMouseLeave={(e) => hover(e, false)}
+        title="Usuń wpis z Error Vault"
+        style={{ ...btn, color: "rgba(139,46,31,0.9)", opacity: busy ? 0.4 : 0.6 }}
+      >
+        usuń
+      </button>
     </div>
   );
 }
