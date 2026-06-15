@@ -64,8 +64,12 @@ function coerceQuestionType(raw: unknown): QuestionType | null {
   return null;
 }
 
+const debugLog = (...args: unknown[]) => {
+  if (process.env.NODE_ENV !== "production") console.info(...args);
+};
+
 function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
-  console.info("[AdminClient] raw suggestion from API:", raw);
+  debugLog("[AdminClient] raw suggestion from API:", raw);
   if (!raw || typeof raw !== "object") {
     console.warn("normalizeSuggestion: raw not object", raw);
     return null;
@@ -80,7 +84,7 @@ function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
     return null;
   }
   const rawQuestions = Array.isArray(r.questions) ? r.questions : [];
-  console.info(
+  debugLog(
     `[AdminClient] ${rawQuestions.length} raw questions from model`
   );
 
@@ -124,7 +128,7 @@ function normalizeSuggestion(raw: unknown): EditableSuggestion | null {
     })
     .filter((q): q is EditableQuestion => q !== null);
 
-  console.info(
+  debugLog(
     `[AdminClient] ${questions.length} questions passed validation`
   );
 

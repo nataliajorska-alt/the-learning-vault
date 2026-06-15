@@ -47,18 +47,24 @@ function QuizAnswerV3({
   const [hover, setHover] = useState(false);
   const showHover = hover && !disabled;
   return (
-    <div
+    <button
+      type="button"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => {
         if (!disabled) onSelect();
       }}
-      role="button"
-      aria-disabled={disabled}
-      className="flex items-baseline relative"
+      disabled={disabled}
+      className="flex items-baseline relative w-full text-left"
       style={{
         gap: 18,
         padding: "14px 16px 13px",
+        font: "inherit",
+        color: "inherit",
+        appearance: "none",
+        WebkitAppearance: "none",
+        border: "none",
+        borderTop: "0.5px solid rgba(184,146,77,0.15)",
         cursor: disabled ? "default" : "pointer",
         background:
           state === "correct"
@@ -68,7 +74,6 @@ function QuizAnswerV3({
             : showHover
             ? "rgba(228,214,186,0.035)"
             : "transparent",
-        borderTop: "0.5px solid rgba(184,146,77,0.15)",
         transition: "background .15s ease",
       }}
     >
@@ -127,7 +132,7 @@ function QuizAnswerV3({
       >
         {state === "correct" ? "✓" : state === "wrong" ? "✗" : "→"}
       </span>
-    </div>
+    </button>
   );
 }
 

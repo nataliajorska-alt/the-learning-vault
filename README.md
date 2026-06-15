@@ -15,7 +15,6 @@ Aktywna nauka dla Natalii. Old money po cichu — bez fajerwerków, bez emoji, b
 - **Cormorant Garamond** + **Manrope** (Google Fonts)
 - **Lucide React** — ikony
 - **Anthropic SDK** — generowanie pytań przez API route
-- **Zustand** — globalny stan
 - **date-fns** — daty
 - **PWA** — manifest + service worker (offline dla powtórek)
 
@@ -83,7 +82,7 @@ app/
 components/
   Sidebar.tsx, BottomNav.tsx, TopNav.tsx
   session/                     — Theory/Test/Korekta
-  ui/StatCard, StatusDot, VaultIcon
+  ui/VaultIcon, WaxSeal, Reveal, SpeakButton, …
 lib/
   firebase.ts                  — klient
   firebase-admin.ts            — server / seed
@@ -91,7 +90,6 @@ lib/
   firestore-data.ts            — hooki + mutacje + seed startowy
   spaced-repetition.ts         — SM-2
   api-auth.ts, rate-limit.ts   — garda + limiter route'ów AI
-  store.ts                     — Zustand
 scripts/
   seed.ts                      — 13 sekcji + błędy
 firestore.rules                — userId-scoped read/write

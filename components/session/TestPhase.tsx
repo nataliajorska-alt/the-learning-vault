@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Question, Topic, Vault } from "@/lib/types";
 import { SpeakButton, langForVaultSlug } from "@/components/ui/SpeakButton";
 
@@ -134,6 +134,50 @@ export function TestPhase({
   );
 
   const q = questions[currentIdx];
+
+  // Skróty klawiszowe: 1–9 / a–i wybierają opcję ABC; po odsłonięciu Enter lub
+  // Spacja przechodzą dalej. Nie ruszamy, gdy ktoś pisze w polu tekstowym ani
+  // gdy fokus stoi na natywnym przycisku (żeby nie zdublować akcji kliknięcia).
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (!q) return;
+      const el = e.target as HTMLElement | null;
+      const tag = el?.tagName;
+      const typing =
+        tag === "INPUT" || tag === "TEXTAREA" || el?.isContentEditable === true;
+
+      if (revealed) {
+        if (
+          (e.key === "Enter" || e.key === " ") &&
+          !typing &&
+          tag !== "BUTTON" &&
+          tag !== "A"
+        ) {
+          e.preventDefault();
+          onAdvance();
+        }
+        return;
+      }
+
+      const isMc = q.type === "abc" || q.type === "spot_error";
+      if (!isMc || submitting || typing) return;
+      const opts = q.options ?? [];
+      let pick = -1;
+      if (/^[1-9]$/.test(e.key)) pick = Number(e.key) - 1;
+      else {
+        const lower = e.key.toLowerCase();
+        if (/^[a-i]$/.test(lower)) pick = lower.charCodeAt(0) - 97;
+      }
+      if (pick >= 0 && pick < opts.length) {
+        e.preventDefault();
+        onSubmit(pick);
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [revealed, submitting, q, onSubmit, onAdvance]);
+
   if (!q) return null;
 
   const currentState: QState = revealed

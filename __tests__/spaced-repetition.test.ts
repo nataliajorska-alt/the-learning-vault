@@ -94,6 +94,12 @@ describe("applySrs — partial (łagodnie)", () => {
     expect(r.status).not.toBe("mastered");
   });
 
+  it("dojrzałej karty nie zrzuca z długiego interwału do 2 — tylko skraca", () => {
+    const r = applySrs(topic({ correctStreak: 10, interval: 90, ease: 3.0 }), "partial");
+    expect(r.interval).toBe(45); // round(90/2), nie 2
+    expect(r.correctStreak).toBe(10); // streak nietknięty
+  });
+
   it("liczy się jako zaliczenie — nie wpada w struggling", () => {
     // 3 dotychczasowe próby, 1 trafna; partial dolicza się jako trafna → ratio 0.5, nie >0.5
     const r = applySrs(topic({ totalAttempts: 3, totalCorrect: 1 }), "partial");

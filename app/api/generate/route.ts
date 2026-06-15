@@ -165,10 +165,28 @@ export async function POST(req: Request) {
     const qCount = Array.isArray(input.questions)
       ? input.questions.length
       : 0;
-    console.log("generate qCount=" + qCount);
-    console.log("generate stop=" + response.stop_reason);
-    console.log("generate outputTokens=" + response.usage.output_tokens);
-    console.log("generate inputTokens=" + response.usage.input_tokens);
+
+    // Ucięcie na limicie tokenów daje częściowy tool_use (np. mniej pytań,
+    // ostatnie urwane) — klient po cichu odfiltrowałby wadliwe. Lepiej zgłosić.
+    if (response.stop_reason === "max_tokens") {
+      console.error(
+        "generate: ucięte na max_tokens, qCount=" + qCount
+      );
+      return NextResponse.json(
+        {
+          error:
+            "Odpowiedź ucięta na limicie tokenów — skróć notatki i spróbuj ponownie.",
+        },
+        { status: 502 }
+      );
+    }
+
+    if (process.env.NODE_ENV !== "production") {
+      console.log("generate qCount=" + qCount);
+      console.log("generate stop=" + response.stop_reason);
+      console.log("generate outputTokens=" + response.usage.output_tokens);
+      console.log("generate inputTokens=" + response.usage.input_tokens);
+    }
 
     return NextResponse.json({
       suggestion: input,

@@ -25,8 +25,10 @@ export function applySrs(topic: Topic, verdict: Verdict): SrsUpdate {
     else interval = Math.round(interval * ease);
     ease = Math.min(3.0, ease + 0.1);
   } else if (verdict === "partial") {
-    // łagodnie: bez kary (ease/streak bez zmian), ale wróci niedługo
-    interval = 2;
+    // łagodnie: bez kary dla ease/streaku. Świeży/słaby temat wraca niedługo,
+    // ale dojrzałej karty (długi interwał) nie zrzucamy z 60–90 dni do 2 — tylko
+    // ją skracamy, by wróciła wcześniej bez resetu całego postępu nauki.
+    interval = interval >= 14 ? Math.max(7, Math.round(interval / 2)) : 2;
   } else {
     correctStreak = 0;
     interval = 1;

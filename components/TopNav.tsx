@@ -143,6 +143,7 @@ export function TopNav() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className="eyebrow relative flex items-center"
                 style={{
                   gap: 8,

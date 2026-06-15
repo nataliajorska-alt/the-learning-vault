@@ -25,6 +25,10 @@ import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/api-auth";
 
 export const runtime = "nodejs";
+export const maxDuration = 15;
+
+// Zawieszony Projekt 30 nie może blokować requestu — twardy timeout na forward.
+const UPSTREAM_TIMEOUT_MS = 8000;
 
 const ALLOWED_PILLARS = [
   "pozycja",
@@ -108,6 +112,7 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({ xp, source: sourceSafe, pillar }),
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
     });
     const data = await upstream.json().catch(() => ({}));
     if (!upstream.ok) {
