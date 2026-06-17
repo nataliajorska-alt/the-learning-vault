@@ -8844,4 +8844,400 @@ export const PRESETS: Preset[] = [
       salon: null,
     },
   },
+
+  // ============================================================
+  // 93. Hiszpański: vocabulario de bodas (novios, ceremonia, luna de miel)
+  // ============================================================
+  // Z rozmowy 2026-06-17 o ślubach. Baza słownictwa + pułapka rodzaju:
+  // „la boda" jest żeńska (Nati: „esta boda fue pequeño").
+  {
+    slug: "es-vocabulario-de-bodas",
+    vaultSlug: "es",
+    label: "Hiszpański — vocabulario de bodas (novios, ceremonia, luna de miel)",
+    payload: {
+      title: "Vocabulario de bodas — la ceremonia, los novios, la luna de miel",
+      summary:
+        "Podstawowe słownictwo o ślubie i weselu: la boda, los novios, casarse, la ceremonia (por la iglesia / por lo civil), los invitados, la luna de miel, la mesa de regalos. Plus rozmiary wesela i pułapka rodzaju: „la boda\" jest ŻEŃSKA → „una boda pequeña / fue muy bonita\", nigdy „pequeño\".",
+      theory:
+        "SŁOWNICTWO BAZOWE:\n— la boda = ślub/wesele; casarse = brać ślub („se casan en junio\").\n— el novio / la novia = pan młody / panna młoda; los novios = para młoda. UWAGA: novio/novia to też chłopak/dziewczyna — rozróżnia kontekst.\n— el marido / la mujer (albo el esposo / la esposa) = mąż / żona.\n— los invitados = goście; la fiesta = przyjęcie/wesele; el banquete / la cena = bankiet.\n\nRODZAJ CEREMONII:\n— la boda religiosa / por la iglesia = ślub kościelny.\n— la boda civil / por lo civil / en el registro civil = ślub cywilny / w USC; hacer las firmas = składać podpisy.\n\nPO WESELU:\n— la luna de miel = miesiąc miodowy; irse de luna de miel = jechać w podróż poślubną („los novios se van de luna de miel\"). Zwrotne „irse\" + przyimek „de\".\n— los regalos = prezenty; la mesa de regalos = lista prezentów (rejestr w sklepie: „eligen los regalos y tú los compras online\").\n\nROZMIARY:\n— una boda pequeña / grande; „una boda para cien personas\" = wesele na sto osób.\n\nPUŁAPKA RODZAJU: „la boda\" jest RODZAJU ŻEŃSKIEGO → przymiotnik też żeński: „la boda fue pequeña / muy bonita / grande\" — NIE „fue pequeño\". To kalka z polskiego, gdzie „ślub\" jest męski.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Para młoda\" (oboje) po hiszpańsku to:",
+          options: [
+            "los novios",
+            "los maridos",
+            "los invitados",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "los novios = para młoda (i pan, i panna). Samo novio/novia to też chłopak/dziewczyna — rozróżnia kontekst. los invitados to goście.",
+        },
+        {
+          type: "spot_error",
+          text: "„Esta boda fue muy pequeño y bonito.\" — gdzie błąd?",
+          options: [
+            "wszystko OK",
+            "BŁĄD rodzaju — „la boda\" jest żeńska: „fue muy pequeña y bonita\"",
+            "powinno być „está pequeño\"",
+            "tylko „bonito\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "la boda = rodzaj żeński, więc przymiotniki żeńskie: pequeña, bonita. Kalka z polskiego („ślub\" męski) daje błędne „pequeño\".",
+        },
+        {
+          type: "fill",
+          text: "„Nowożeńcy jadą w podróż poślubną\": „Los novios se van ___ luna de miel.\"",
+          options: null,
+          correctAnswer: "de",
+          explanation:
+            "irse de luna de miel — zwrotne „irse\" + przyimek „de\". „Se van de luna de miel\".",
+        },
+        {
+          type: "abc",
+          text: "Ślub cywilny (w USC) to:",
+          options: [
+            "la boda por la iglesia",
+            "la boda por lo civil / en el registro civil",
+            "la luna de miel",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "por lo civil / en el registro civil = cywilnie / w USC (tam „hacen las firmas\"). Po kościelnemu = por la iglesia / la boda religiosa.",
+        },
+        {
+          type: "fill",
+          text: "Lista prezentów, z której goście wybierają w sklepie: „la ___ de regalos\".",
+          options: null,
+          correctAnswer: "mesa",
+          explanation:
+            "la mesa de regalos = rejestr prezentów; goście wybierają i kupują (często online), zamiast przynosić własny prezent.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wesele było małe, na jakieś sto osób, ale bardzo ładne\".",
+          options: null,
+          correctAnswer:
+            "„La boda fue pequeña, para unas cien personas, pero muy bonita.\" Klucz: rodzaj żeński (pequeña, bonita) + „para ... personas\".",
+          explanation:
+            "Pamiętaj o żeńskich przymiotnikach (la boda → pequeña, bonita) i o konstrukcji „para cien personas\".",
+        },
+        {
+          type: "open",
+          text: "Przetłumacz na hiszpański: „Pobierają się w czerwcu i jadą w podróż poślubną\".",
+          options: null,
+          correctAnswer:
+            "„Se casan en junio y se van de luna de miel.\" Klucz: casarse → se casan; irse de luna de miel → se van de luna de miel.",
+          explanation:
+            "Dwa zwrotne czasowniki: casarse (se casan) oraz irse de luna de miel (se van de luna de miel).",
+        },
+      ],
+      salon: {
+        short:
+          "O ślubie mów: la boda, los novios, casarse. Wesele kościelne = por la iglesia, cywilne = por lo civil. Po weselu para młoda jedzie de luna de miel.",
+        expand:
+          "Goście (los invitados) dają prezenty albo wybierają z „mesa de regalos\". Wesele bywa pequeña (na 10 osób) albo grande (na 200–300). „Una boda para cien personas\" brzmi naturalnie.",
+        trap:
+          "„La boda\" jest ŻEŃSKA — „la boda fue muy bonita / pequeña\", nigdy „bonito/pequeño\". I „irse DE luna de miel\", ze zwrotnym „irse\" i przyimkiem „de\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 94. Hiszpański: tradiciones de boda — México y Polonia
+  // ============================================================
+  // Z tej samej rozmowy. Słownictwo kulturowe: tornaboda, la liga,
+  // la víbora de la mar, el mole (MX) vs pan y vodka, clavar cuchillos (PL).
+  {
+    slug: "es-tradiciones-boda-mexico-polonia",
+    vaultSlug: "es",
+    label: "Hiszpański — tradiciones de boda: México y Polonia",
+    payload: {
+      title: "Tradiciones de boda — México y Polonia",
+      summary:
+        "Słownictwo do opowiadania o tradycjach weselnych: la tornaboda, la liga, la víbora de la mar, el mole, el mariachi (Meksyk) oraz pan y vodka, clavar cuchillos contra la lluvia, la fiesta del día siguiente (Polska). Idealne na small talk o różnicach kulturowych.",
+      theory:
+        "MÉXICO — wesele wieczorem, trwa do rana:\n— la tornaboda = pikantne danie podawane nad ranem (ok. 4–5 de la mañana) dla gości, którzy jeszcze się bawią / są „borrachos\" (typowo los chilaquiles). „Sirven la tornaboda como a las cuatro de la mañana\".\n— los novios se van temprano (de luna de miel) y la fiesta continúa sin ellos.\n— Zabawy: lanzan al novio al cielo (podrzucają pana młodego); el novio saca con los dientes la liga de la novia (la liga = podwiązka); todos bailan „la víbora de la mar\" (taniec-wąż); sacan sombreros y antifaces.\n— Jedzenie: el mole (gęsty sos z wieloma składnikami i czekoladą — z indykiem, kurczakiem albo wieprzowiną, con arroz), el chile relleno; muzyka: el mariachi.\n— W pueblos: bodas que duran dos, tres o cuatro días; regalos grandes — muebles (mesas, sillas, un ropero = szafa), a veces animales (vacas, cerditos).\n\nPOLONIA (wg Nati):\n— Los padres de los novios reciben a la pareja con pan y una copa de vodka; los novios comen el pan, beben y „tiran la copa\" (tłuką kieliszek). Tradycyjnie też „pan y sal\".\n— Tradycja przeciw deszczowi: la gente clava cuchillos en el jardín „para que no llueva\" (wbijają nóż w ziemię).\n— Al día siguiente hay otra fiesta, más pequeña, solo para los más cercanos (po polsku „poprawiny\").\n\nPREZENTY: dinero (gdy nowożeńcy przeprowadzają się gdzie indziej) albo regalo z „mesa de regalos\" (gdy zostają).",
+      questions: [
+        {
+          type: "abc",
+          text: "„La tornaboda\" na meksykańskim weselu to:",
+          options: [
+            "pierwszy taniec pary młodej",
+            "pikantne danie podawane nad ranem dla bawiących się gości",
+            "lista prezentów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "tornaboda = pikantna potrawa (np. los chilaquiles) serwowana ok. 4–5 rano dla gości („para los borrachos\"), gdy wesele trwa do świtu.",
+        },
+        {
+          type: "fill",
+          text: "Pan młody zdejmuje zębami „la ___\" panny młodej (podwiązka).",
+          options: null,
+          correctAnswer: "liga",
+          explanation:
+            "la liga = podwiązka; klasyczna meksykańska zabawa weselna — „sacar la liga con los dientes\".",
+        },
+        {
+          type: "abc",
+          text: "Taniec-wąż, w którym bawią się wszyscy na meksykańskim weselu, to:",
+          options: [
+            "la víbora de la mar",
+            "el mariachi",
+            "el mole",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„la víbora de la mar\" = taniec-wąż. el mariachi to zespół muzyczny, a el mole to potrawa.",
+        },
+        {
+          type: "spot_error",
+          text: "„En México lanzan al novio al cielo y el mole se hace con chocolate.\" — czy to prawda?",
+          options: [
+            "nie, oba zdania są zmyślone",
+            "tak — podrzucają pana młodego, a mole faktycznie zawiera czekoladę",
+            "tylko pierwsze jest prawdą",
+            "tylko drugie jest prawdą",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Oba prawdziwe: „lanzar al novio al cielo\" (podrzucanie) oraz el mole — gęsty sos, w wielu wersjach (np. mole poblano) zawiera czekoladę.",
+        },
+        {
+          type: "fill",
+          text: "Polska tradycja: rodzice witają parę chlebem i kieliszkiem wódki, a nowożeńcy potem „___ la copa\" (tłuką kieliszek).",
+          options: null,
+          correctAnswer: "tiran",
+          explanation:
+            "tirar = rzucić; „tiran la copa\" = tłuką kieliszek (na szczęście). Można też „rompen la copa\".",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij po hiszpańsku, czemu w meksykańskich pueblos prezenty bywają „grandes\".",
+          options: null,
+          correctAnswer:
+            "„En los pueblos los novios no tienen muebles, entonces los invitados regalan cosas grandes: muebles como mesas, sillas o un ropero, y a veces animales como vacas o cerditos — para amueblar su nueva casa.\"",
+          explanation:
+            "Logika: para amueblar la nueva casa — stąd muebles (un ropero = szafa) i animales.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „W Polsce dzień po weselu jest druga, mniejsza impreza, tylko dla najbliższych\".",
+          options: null,
+          correctAnswer:
+            "„En Polonia, el día después de la boda hay otra fiesta, más pequeña, solo para los más cercanos.\" (To polskie „poprawiny\".)",
+          explanation:
+            "„el día después de la boda\" + „los más cercanos\" (najbliżsi).",
+        },
+      ],
+      salon: {
+        short:
+          "México: la boda dura hasta el amanecer — tornaboda nad ranem, la víbora de la mar, la liga i el mariachi. Los novios se van temprano de luna de miel.",
+        expand:
+          "W pueblos bodas trwają kilka dni, a prezenty bywają „grandes\" — muebles, un ropero, czasem animales. El mole (z czekoladą) i el chile relleno to klasyka.",
+        trap:
+          "tornaboda to NIE pierwszy taniec, lecz pikantne danie nad ranem. W Polsce para dostaje pan y copa de vodka i „tiran la copa\"; przeciw deszczowi „clavan cuchillos en el jardín\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 95. Hiszpański: tradiciones de boda en el mundo
+  // ============================================================
+  // Z tej samej rozmowy. Korea/Brazylia/Serbia/USA — struktury porównawcze
+  // i „dice que" do anegdot (relacja influencerki, nie pewnik).
+  {
+    slug: "es-tradiciones-boda-mundo",
+    vaultSlug: "es",
+    label: "Hiszpański — tradiciones de boda en el mundo (Corea, Brasil, Serbia, EE.UU.)",
+    payload: {
+      title: "Tradiciones de boda en el mundo — Corea, Brasil, Serbia, EE.UU.",
+      summary:
+        "Porównawcze słownictwo do rozmowy o ślubach w różnych krajach: el ensayo de boda (USA), comprar a la novia (Serbia, simbólico), un buffet de pasteles (Brazylia/Norwegia), ropa sencilla / bolso de diseñador / llegar puntual (Korea). Plus struktura „dice que...\" do relacjonowania anegdot.",
+      theory:
+        "STRUKTURY PORÓWNAWCZE: „En Corea / En Serbia + presente\"; „dice que...\" — gdy to anegdota albo film influencerki, używaj „dice que\" / „según ella\", żeby nie podawać tego jako pewnika.\n\nEE.UU.:\n— el ensayo de boda = próba ślubu (rehearsal), dzień wcześniej; los novios se van temprano de luna de miel.\n\nBRASIL / NORUEGA (anegdota studentki):\n— cada invitado lleva un pastel → „un buffet de pasteles\" (stół pełen ciast).\n— fiestas cortas: empiezan a las cuatro y terminan a las seis („son dos horas\").\n\nSERBIA:\n— „comprar a la novia\" = symboliczny wykup panny młodej; reúnen dinero y se lo pagan a los padres. Es solo simbólico. Usan el calendario juliano.\n\nCOREA (wg influencerki — „dice que\"):\n— hay que ir con ropa sencilla / informal, para no opacar a la novia (żeby nie przyćmić panny młodej).\n— hay que llegar puntual: la ceremonia es corta (~10 min) y la comida es limitada (por tickets); si llegas tarde, te quedas sin comida.\n— el matrimonio legal puede ser años después de la ceremonia.\n— los accesorios de diseñador (el bolso, los zapatos) son socialmente importantes.\n\nSŁÓWKA: opacar = przyćmić, zaćmić; sencillo/a = prosty, skromny; puntual = punktualny; el ensayo = próba; de diseñador = markowy / od projektanta.",
+      questions: [
+        {
+          type: "abc",
+          text: "„El ensayo de boda\" (USA) to:",
+          options: [
+            "przyjęcie po weselu",
+            "próba ślubu dzień wcześniej (rehearsal)",
+            "lista prezentów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "el ensayo = próba; „el ensayo de boda\" = wedding rehearsal, dzień przed ślubem.",
+        },
+        {
+          type: "fill",
+          text: "W Korei (wg influencerki) idziesz w skromnym ubraniu, żeby nie „___ a la novia\" (przyćmić panny młodej).",
+          options: null,
+          correctAnswer: "opacar",
+          explanation:
+            "opacar = przyćmić, zaćmić. „No opacar a la novia\" — nie przyćmić panny młodej.",
+        },
+        {
+          type: "abc",
+          text: "W Serbii „comprar a la novia\" jest:",
+          options: [
+            "dosłowne — naprawdę kupują pannę młodą",
+            "tylko symboliczne — zbierają pieniądze dla rodziców",
+            "zakazane prawem",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "To tradycja symboliczna („es solo simbólico\") — reúnen dinero i dają rodzicom, a nie realna transakcja.",
+        },
+        {
+          type: "fill",
+          text: "W Brazylii/Norwegii każdy gość przynosi ciasto, więc powstaje „un ___ de pasteles\".",
+          options: null,
+          correctAnswer: "buffet",
+          explanation:
+            "un buffet de pasteles = stół-bufet pełen ciast (el pastel = ciasto/tort).",
+        },
+        {
+          type: "spot_error",
+          text: "„En Corea la comida es ilimitada y no importa si llegas tarde.\" — wg tego, co opowiada influencerka:",
+          options: [
+            "zgadza się",
+            "odwrotnie — la comida es limitada (por tickets) y hay que llegar puntual, bo inaczej zostajesz bez jedzenia",
+            "tylko o jedzeniu jest źle",
+            "tylko o spóźnieniu jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wg relacji: jedzenie jest ograniczone (na bilety), a ceremonia krótka — spóźnialski zostaje bez jedzenia. Stąd „hay que llegar puntual\".",
+        },
+        {
+          type: "open",
+          text: "Czemu lepiej powiedzieć „dice que en Corea...\" niż „en Corea...\", relacjonując film influencerki?",
+          options: null,
+          correctAnswer:
+            "Bo to relacja z drugiej ręki / anegdota, a nie sprawdzony fakt — „dice que\" / „según ella\" sygnalizuje, że powtarzasz czyjeś słowa, a nie twierdzisz to na pewno.",
+          explanation:
+            "„dice que + zdanie\" dystansuje cię od twierdzenia (mowa zależna) — grzeczniej i ostrożniej przy stereotypach.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „W Stanach jest próba ślubu dzień przed, a nowożeńcy szybko wyjeżdżają w podróż poślubną\".",
+          options: null,
+          correctAnswer:
+            "„En Estados Unidos hay un ensayo de boda el día antes, y los novios se van pronto / temprano de luna de miel.\"",
+          explanation:
+            "el ensayo de boda + irse de luna de miel (se van de luna de miel). „el día antes\" / „la víspera\".",
+        },
+      ],
+      salon: {
+        short:
+          "Do porównań: „En Corea dice que...\", „En Serbia...\", „En Estados Unidos hay un ensayo de boda\". Struktura „dice que\" ratuje cię, gdy to anegdota.",
+        expand:
+          "Korea (wg influencerki): ropa sencilla para no opacar a la novia, llegar puntual, comida limitada por tickets, bolso de diseñador. Brasil/Noruega: un buffet de pasteles i krótkie fiestas (dos horas). Serbia: comprar a la novia (simbólico).",
+        trap:
+          "opacar = przyćmić (nie myl z „ocupar\"). Przy stereotypach z internetu mów „dice que / según ella\", nie podawaj ich jako pewnika.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 96. Hiszpański: hablar de salud y cómo te sientes
+  // ============================================================
+  // Z początku rozmowy (Nati była „un poco enferma"). Dwie kalki do wyplenienia:
+  // „fue más mejor" → „estuve mejor"; „para dos días" → „por/durante dos días".
+  {
+    slug: "es-hablar-de-salud",
+    vaultSlug: "es",
+    label: "Hiszpański — hablar de salud y cómo te sientes (estar enfermo, el estómago)",
+    payload: {
+      title: "Hablar de salud — estar enfermo, el estómago, ya estoy mejor",
+      summary:
+        "Small talk o zdrowiu i samopoczuciu: estar enfermo/a, sentirse mal, problemas de estómago, ya estoy mejor, recuperarse, ¿cómo has estado? Plus dwie częste kalki Nati: „estuve mejor\" (nie „fue más mejor\") i „por/durante dos días\" (nie „para dos días\").",
+      theory:
+        "PYTANIA o samopoczucie:\n— ¿Cómo has estado? = Jak się miewasz? (present perfect — okres od ostatniego spotkania). ¿Qué has hecho? = Co porabiałaś?\n— Odpowiedź: „Pues bien\" / „Más o menos\" / „He estado un poco enferma\".\n\nCHOROBA:\n— estar enfermo / enferma = być chorym; sentirse mal / no sentirse bien = źle się czuć („no me siento muy bien\").\n— una enfermedad leve = lekka choroba; problemas de estómago / problemas estomacales = problemy żołądkowe; me duele el estómago = boli mnie żołądek.\n\nPOPRAWA / ZDROWIENIE:\n— ya estoy mejor / ya me siento mejor = już mi lepiej; me recuperé (rápido) = wyzdrowiałam (szybko); se me pasó = przeszło mi.\n\nPUŁAPKA 1: „mejor\" już znaczy „lepiej/lepszy\", więc NIE dokładaj „más\": „estuve mejor\" / „ya estoy mejor\", NIGDY „fue más mejor\".\nPUŁAPKA 2: czas trwania to „por\" albo „durante\", nie „para\": „estuve enferma POR dos días / DURANTE dos días\" (nie „para dos días\"). „Para\" = cel/termin, nie czas trwania.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Jak się miewasz?\" (od ostatniego spotkania) po hiszpańsku:",
+          options: [
+            "¿Cómo estás ahora?",
+            "¿Cómo has estado?",
+            "¿Cómo eres?",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "¿Cómo has estado? — present perfect obejmuje okres od ostatniego razu do teraz. „¿Cómo eres?\" pyta o charakter/wygląd.",
+        },
+        {
+          type: "spot_error",
+          text: "„Estuve enferma para dos días y después fue más mejor.\" — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„por/durante dos días\" (nie „para\") oraz „estuve mejor / me sentí mejor\" (nie „fue más mejor\")",
+            "tylko „para\" jest źle",
+            "tylko „más mejor\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Czas trwania: „por dos días\" / „durante dos días\". I „mejor\" już jest stopniem wyższym — bez „más\"; podmiotem jest osoba: „estuve mejor / me sentí mejor\".",
+        },
+        {
+          type: "fill",
+          text: "„Byłam trochę chora\": „Estuve un poco ___.\" (rodzaj żeński)",
+          options: null,
+          correctAnswer: "enferma",
+          explanation:
+            "estar enfermo/enferma. Nati jest rodzaju żeńskiego → „enferma\". „Estuve enferma\" = byłam chora (i już nie).",
+        },
+        {
+          type: "abc",
+          text: "„Miałam problemy żołądkowe\" to:",
+          options: [
+            "Tenía problemas de estómago",
+            "Hacía problemas de estómago",
+            "Era problemas de estómago",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "tener problemas de estómago = mieć problemy żołądkowe (albo „problemas estomacales\"). Nie „hacer\" ani „ser\".",
+        },
+        {
+          type: "fill",
+          text: "„Chorowałam przez dwa dni\": „Estuve enferma ___ dos días.\" (przyimek czasu trwania)",
+          options: null,
+          correctAnswer: "por",
+          explanation:
+            "Czas trwania = „por\" albo „durante\": „por dos días\" / „durante dos días\". „Para\" = cel/termin, nie trwanie.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Czułam się trochę źle przez dwa dni, ale już mi lepiej, szybko wyzdrowiałam\".",
+          options: null,
+          correctAnswer:
+            "„Me sentí un poco mal por/durante dos días, pero ya estoy mejor, me recuperé rápido.\"",
+          explanation:
+            "Klucz: sentirse mal + „por/durante dos días\" + „ya estoy mejor\" (bez „más\") + recuperarse.",
+        },
+        {
+          type: "open",
+          text: "Czemu „fue más mejor\" jest błędne i jak powiedzieć to poprawnie?",
+          options: null,
+          correctAnswer:
+            "Bo „mejor\" to już stopień wyższy od „bien/bueno\" — „más\" jest zbędne (jak „bardziej lepiej\" po polsku). O samopoczuciu: „estuve mejor\" / „me sentí mejor\" / „ya estoy mejor\".",
+          explanation:
+            "„mejor\" = „lepiej/lepszy\" samo w sobie. Podwójny komparatyw („más mejor\") to kalka; o samopoczuciu użyj estar/sentirse, nie „ser/fue\".",
+        },
+      ],
+      salon: {
+        short:
+          "Na „¿Cómo has estado?\" odpowiesz „Pues bien\" albo „He estado un poco enferma\". Choroba: estar enfermo, sentirse mal, problemas de estómago. Poprawa: „ya estoy mejor\", „me recuperé\".",
+        expand:
+          "O przebytej chorobie mów w przeszłości: „estuve enferma por dos días, me dolía el estómago, pero se me pasó / me recuperé rápido\". „Una enfermedad leve\" = lekka niedyspozycja.",
+        trap:
+          "Dwie kalki: „fue más mejor\" → „estuve mejor\" (mejor już = lepiej, bez „más\"); „para dos días\" → „por/durante dos días\" (czas trwania).",
+      },
+    },
+  },
 ];
