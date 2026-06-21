@@ -100,38 +100,70 @@ export function WeeklyLetter({ stats }: { stats: WeeklyStats }) {
       <div
         className="tex-paper tex-noise-fine relative"
         style={{
-          padding: "28px 32px 26px",
+          padding: "40px 48px 36px",
           boxShadow:
-            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 22px 46px -24px rgba(0,0,0,0.72)",
+            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 28px 56px -24px rgba(0,0,0,0.68)",
         }}
       >
+        {/* double-ruled inner frame */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 14,
+            border: "1px solid rgba(122,92,40,0.32)",
+            borderRadius: 1,
+            pointerEvents: "none",
+            zIndex: 3,
+          }}
+        />
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 20,
+            border: "1px solid rgba(122,92,40,0.14)",
+            borderRadius: 1,
+            pointerEvents: "none",
+            zIndex: 3,
+          }}
+        />
+
         <div
           className="eyebrow"
-          style={{ color: "rgba(122,74,31,0.76)", marginBottom: 12 }}
+          style={{
+            color: "rgba(122,74,31,0.72)",
+            marginBottom: 16,
+            textAlign: "center",
+          }}
         >
           List od bibliotekarza · niedziela
+        </div>
+
+        <div className="weekly-letter-rule" aria-hidden>
+          <span />
         </div>
 
         {loading && !letter ? (
           <p
             className="font-display italic animate-candle"
             style={{
-              color: "rgba(27,17,8,0.55)",
-              fontSize: "clamp(22px, 3vw, 30px)",
-              lineHeight: 1.15,
+              color: "rgba(27,17,8,0.50)",
+              fontSize: "clamp(18px, 2.3vw, 25px)",
+              lineHeight: 1.2,
             }}
           >
             Bibliotekarz składa pióro do listu...
           </p>
         ) : (
           <p
-            className="font-display italic"
+            className="weekly-letter-body font-display italic"
             style={{
               color: "#1B1108",
-              fontSize: "clamp(22px, 3vw, 32px)",
-              lineHeight: 1.22,
-              fontWeight: 600,
-              maxWidth: 920,
+              fontSize: "clamp(18px, 2.3vw, 26px)",
+              lineHeight: 1.4,
+              fontWeight: 500,
+              maxWidth: 880,
               whiteSpace: "pre-line",
             }}
           >
@@ -141,14 +173,29 @@ export function WeeklyLetter({ stats }: { stats: WeeklyStats }) {
 
         {letter && (
           <div
-            className="signature"
             style={{
-              color: "rgba(27,17,8,0.48)",
-              marginTop: 18,
-              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              marginTop: 28,
             }}
           >
-            — Bibliotekarz
+            <span
+              aria-hidden
+              className="font-display"
+              style={{ color: "rgba(122,92,40,0.5)", fontSize: 18, lineHeight: 1 }}
+            >
+              ❧
+            </span>
+            <div
+              className="signature"
+              style={{
+                color: "rgba(27,17,8,0.42)",
+                textTransform: "uppercase",
+              }}
+            >
+              Bibliotekarz
+            </div>
           </div>
         )}
       </div>

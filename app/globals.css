@@ -934,6 +934,50 @@ select.book-input {
   margin-top: 0.55rem;
 }
 
+/* --- Weekly letter (List od bibliotekarza) ---------------------------- */
+/* Illuminated initial — drop cap on the first letter of the letter body. */
+.weekly-letter-body::first-letter {
+  float: left;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3.4em;
+  line-height: 0.74;
+  margin: 0.06em 0.1em 0 0;
+  padding-right: 0.04em;
+  color: var(--c-cognac, #7a4a1f);
+  text-shadow: 0 1px 0 rgba(255, 250, 235, 0.5);
+}
+
+/* Centred ornamental rule: two gold hairlines flanking a small lozenge. */
+.weekly-letter-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.weekly-letter-rule::before,
+.weekly-letter-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-rule, rgba(184, 146, 77, 0.45)) 40%,
+    var(--gold-rule, rgba(184, 146, 77, 0.45)) 60%,
+    transparent
+  );
+}
+.weekly-letter-rule span {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  transform: rotate(45deg);
+  background: var(--c-gold-500, #b8924d);
+  box-shadow: 0 0 0 1px rgba(255, 250, 235, 0.4);
+}
+
 .notice-body {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 0.8125rem;
