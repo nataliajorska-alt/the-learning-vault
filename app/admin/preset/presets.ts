@@ -9240,4 +9240,308 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 97. Hiszpański: el clima y la temperatura
+  // ============================================================
+  // Z small talku o pogodzie (Nati i koleżanka porównują grados PL vs MX).
+  // Trzy kalki do wyplenienia: „tengo 22 grados" → „hace/están a 22 grados";
+  // „la sala está calor" → „hace calor"; „es muy bien" → „está muy bien".
+  {
+    slug: "es-el-clima-y-la-temperatura",
+    vaultSlug: "es",
+    label: "Hiszpański — el clima y la temperatura (hace calor, los grados, la lluvia)",
+    payload: {
+      title: "El clima y la temperatura — hace calor, ¿cuántos grados hace?, la lluvia",
+      summary:
+        "Small talk o pogodzie: ¿qué tiempo hace?, ¿cuántos grados hace?, hace calor/frío/sol, el verano, la lluvia, los rayos, peligroso, el aire acondicionado. Plus trzy kalki Nati: „hace/están a 22 grados\" (nie „tengo 22 grados\"), „hace calor\" (nie „está calor\"), „está muy bien\" (nie „es muy bien\").",
+      theory:
+        "PYTAĆ O POGODĘ I TEMPERATURĘ:\n— ¿Qué tiempo hace? = Jaka jest pogoda? ¿Cuántos grados hace? / ¿A cuántos grados están? = Ile jest stopni?\n— Temperaturę podajesz przez HACE albo ESTAR A, nie przez „tener\": „Hace 22 grados\" / „Están a 22 grados\". NIGDY „tengo 22 grados\" (to kalka z „mam 22 stopnie\").\n\nCIEPŁO/ZIMNO — to RZECZOWNIK z czasownikiem HACER:\n— hace (mucho) calor = jest (bardzo) gorąco; hace frío = jest zimno; hace sol = jest słonecznie; hace buen/mal tiempo = jest ładna/brzydka pogoda.\n— O pomieszczeniu też: „hace mucho calor en esta sala\" (NIE „la sala está calor\" — calor to rzeczownik, nie przymiotnik).\n\nOCENA POGODY:\n— „está muy bien\" / „es agradable\" / „es bueno\" = jest super/przyjemnie. NIE „es muy bien\" („bien\" to przysłówek, nie łączy się z „ser\" jako orzecznik).\n\nLATO I ZJAWISKA:\n— el verano = lato (en verano = latem); la lluvia = deszcz, llover/llueve = padać; los rayos = pioruny; peligroso = niebezpieczny; no es seguro = to nie jest bezpieczne; el aire acondicionado = klimatyzacja.\n— „Si hay lluvia o rayos, no es seguro\" = Jak jest deszcz albo pioruny, nie jest bezpiecznie.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Ile jest teraz stopni?\" po hiszpańsku:",
+          options: [
+            "¿Cuántos grados tienes?",
+            "¿Cuántos grados hace?",
+            "¿Cómo grados hay?",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "O temperaturze otoczenia: „¿Cuántos grados hace?\" albo „¿A cuántos grados están?\". „tienes\" = kalka z „masz/mam stopnie\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Ahora tengo 22 grados y esta sala está muy calor.\" — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„hace 22 grados / están a 22 grados\" (nie „tengo\") oraz „hace mucho calor\" (nie „está calor\")",
+            "tylko „tengo\" jest źle",
+            "tylko „está calor\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Temperaturę i upał wyraża HACER: „hace 22 grados\", „hace mucho calor\". Calor to rzeczownik, więc nie „está calor\"; a stopni się nie „ma\".",
+        },
+        {
+          type: "fill",
+          text: "„Jest bardzo gorąco\": „___ mucho calor.\" (czasownik)",
+          options: null,
+          correctAnswer: "Hace",
+          explanation:
+            "hace calor = jest gorąco (hacer + rzeczownik). Nie „es/está calor\".",
+        },
+        {
+          type: "abc",
+          text: "„Jeśli są pioruny, nie jest bezpiecznie\" to:",
+          options: [
+            "Si hay rayos, no es seguro",
+            "Si hace rayos, no es secura",
+            "Si tiene rayos, no es seguro",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "los rayos = pioruny; „hay rayos\" = są pioruny; „no es seguro\" = nie jest bezpiecznie (peligroso = niebezpieczny).",
+        },
+        {
+          type: "fill",
+          text: "„Latem jest bardzo gorąco\": „En ___ hace mucho calor.\"",
+          options: null,
+          correctAnswer: "verano",
+          explanation:
+            "el verano = lato; „en verano\" = latem (w tej konstrukcji bez rodzajnika).",
+        },
+        {
+          type: "spot_error",
+          text: "„Veinticinco grados es muy bien.\" — co jest nie tak?",
+          options: [
+            "nic, jest OK",
+            "„bien\" to przysłówek — powiedz „está muy bien\" albo „es muy agradable/bueno\"",
+            "powinno być „hace\" zamiast „es\"",
+            "trzeba dodać „más\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„es muy bien\" miesza „ser\" z przysłówkiem. O pogodzie/temperaturze: „está muy bien\" / „es agradable\" / „es bueno\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „W weekend będzie 37 stopni, to za dużo. Jak będzie deszcz albo pioruny, nie pójdziemy, bo to niebezpieczne\".",
+          options: null,
+          correctAnswer:
+            "„El fin de semana va a hacer 37 grados, es demasiado. Si hay lluvia o rayos, no vamos / no iremos, porque es peligroso.\"",
+          explanation:
+            "Klucz: „va a hacer 37 grados\" (nie „tener\"), „demasiado\", „si hay lluvia/rayos\", „es peligroso / no es seguro\".",
+        },
+      ],
+      salon: {
+        short:
+          "Pogoda: „¿Qué tiempo hace? ¿Cuántos grados hace?\" → „Hace 22 grados, hace mucho calor\". Lato: el verano, la lluvia, los rayos, peligroso, el aire acondicionado.",
+        expand:
+          "Temperaturę i upał wyrażaj przez HACER (hace 22 grados, hace calor/frío/sol) albo ESTAR A (están a 22 grados). Ocena: „está muy bien\" / „es agradable\". Ostrzeżenie: „Si hay rayos, no es seguro\".",
+        trap:
+          "Trzy kalki: „tengo 22 grados\" → „hace/están a 22 grados\"; „está calor\" → „hace calor\" (calor to rzeczownik); „es muy bien\" → „está muy bien / es agradable\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 98. Hiszpański: hacer ejercicio y salud mental
+  // ============================================================
+  // Z rozmowy o silks/yoga/aeróbicos (ćwiczenia „dla głowy, nie dla ciała").
+  // Trzy kalki: „me pongo clases" → „tomo/voy a clases"; „estos clases" →
+  // „estas clases" (la clase); „me recomiendo" → „te lo recomiendo".
+  {
+    slug: "es-hacer-ejercicio-y-salud-mental",
+    vaultSlug: "es",
+    label: "Hiszpański — hacer ejercicio y salud mental (tomar clases, yoga, el gimnasio)",
+    payload: {
+      title: "Hacer ejercicio y salud mental — tomar clases, yoga, por la cabeza no por el cuerpo",
+      summary:
+        "Mówienie o ćwiczeniach i ich roli dla głowy: hacer ejercicio, tomar/ir a clases de yoga/aeróbic, el gimnasio (repetitivo, aburrido), la acrobacia en telas, relajarse, desconectar del trabajo. Plus trzy kalki Nati: „tomo/voy a clases\" (nie „me pongo clases\"), „estas clases\" (la clase jest żeńska), „te lo recomiendo\" (nie „me recomiendo\").",
+      theory:
+        "MÓWIĆ O ĆWICZENIACH:\n— hacer ejercicio = ćwiczyć (hago ejercicio); tomar clases de / ir a clases de = chodzić na zajęcia z. NIE „ponerse clases\" (kalka): „tomo clases de yoga\" / „voy a clases de aeróbic(os)\".\n— Uwaga na rodzaj: „la clase\" jest ŻEŃSKA → „estas clases\", „todas estas clases\" (nie „estos clases\").\n\nRODZAJE AKTYWNOŚCI:\n— los aeróbicos / el aeróbic = aerobik; el yoga = joga; el gimnasio = siłownia (repetitivo = monotonny, aburrido = nudny); la acrobacia en telas = akrobatyka na szarfach (telas/„silks\").\n— levantar el peso de tu cuerpo = unosić ciężar własnego ciała; caerse = upaść; romperse un brazo = złamać rękę.\n\nPO CO — DLA GŁOWY, NIE TYLKO CIAŁA:\n— „Voy a estas clases por la cabeza, no por el cuerpo\" = chodzę dla głowy, nie dla ciała.\n— relajarse = zrelaksować się; despejar la mente = oczyścić umysł; desconectar del trabajo = odciąć się od pracy.\n\nPOLECAĆ:\n— „Te lo recomiendo (mucho)\" = bardzo ci to polecam. NIE „me recomiendo\" (to znaczy „polecam samą siebie\").\n\nMAŁY TRIK:\n— „Me estaciono lejos para caminar\" = parkuję daleko, żeby się przejść (estacionarse = parkować, MX).",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Hoy me pongo clases de aeróbic y voy a todos estos clases por mi cabeza.\" — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„tomo clases / voy a clases\" (nie „me pongo clases\") oraz „todas estas clases\" (la clase jest żeńska)",
+            "tylko „me pongo\" jest źle",
+            "tylko „estos clases\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zajęcia się „bierze\" lub na nie „chodzi\": „tomar clases\" / „ir a clases\". „La clase\" jest rodzaju żeńskiego → „todas estas clases\".",
+        },
+        {
+          type: "abc",
+          text: "„Bardzo ci to polecam\" to:",
+          options: [
+            "Me recomiendo mucho",
+            "Te lo recomiendo mucho",
+            "Lo recomiendo a mí",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Te lo recomiendo\" = polecam ci to. „Me recomiendo\" = polecam samą siebie.",
+        },
+        {
+          type: "fill",
+          text: "„Ćwiczę / uprawiam aktywność fizyczną\": „Yo ___ ejercicio.\" (czasownik)",
+          options: null,
+          correctAnswer: "hago",
+          explanation:
+            "hacer ejercicio = ćwiczyć; 1. os. → „hago ejercicio\".",
+        },
+        {
+          type: "abc",
+          text: "„Siłownia jest monotonna i nudna\":",
+          options: [
+            "El gimnasio es repetitivo y aburrido",
+            "El gimnasio está repetitivo y aburrido",
+            "El gimnasio hace repetitivo y aburrido",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Cecha stała → SER: „el gimnasio es repetitivo y aburrido\". (Z „estar\" + aburrido = „znudzony\", o osobie.)",
+        },
+        {
+          type: "fill",
+          text: "„Chodzę na te zajęcia dla głowy, nie dla ciała\": „Voy a estas clases por la cabeza, no por el ___.\"",
+          options: null,
+          correctAnswer: "cuerpo",
+          explanation:
+            "el cuerpo = ciało; „por la cabeza, no por el cuerpo\" = dla głowy, nie dla ciała.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Joga nie jest taka trudna, ale unoszenie ciężaru własnego ciała jest trudne. Musisz spróbować — bardzo ci to polecam\".",
+          options: null,
+          correctAnswer:
+            "„El yoga no es tan difícil, pero levantar el peso de tu cuerpo es difícil. Tienes que probar — te lo recomiendo mucho.\"",
+          explanation:
+            "Klucz: „no es tan difícil\", „levantar el peso de tu cuerpo\", „tienes que probar\", „te lo recomiendo\" (nie „me recomiendo\").",
+        },
+        {
+          type: "open",
+          text: "Jak powiedzieć, że chodzisz na aerobik, żeby się zrelaksować i odciąć od pracy?",
+          options: null,
+          correctAnswer:
+            "„Voy a clases de aeróbic(os) / Tomo clases de aeróbic para relajarme y desconectar del trabajo.\"",
+          explanation:
+            "„ir a / tomar clases de aeróbic\", „para relajarme\", „desconectar del trabajo\" = odciąć się od pracy. Nie „ponerse clases\".",
+        },
+      ],
+      salon: {
+        short:
+          "Ćwiczenia: hacer ejercicio, tomar/ir a clases de yoga/aeróbic. „Te lo recomiendo mucho\". Chodzę na nie „por la cabeza, no por el cuerpo\".",
+        expand:
+          "Rodzaje: aeróbicos, yoga, gimnasio (repetitivo, aburrido), acrobacia en telas. Cel: relajarse, despejar la mente, desconectar del trabajo. Trik: „me estaciono lejos para caminar\".",
+        trap:
+          "Trzy kalki: „me pongo clases\" → „tomo/voy a clases\"; „estos clases\" → „estas clases\" (la clase); „me recomiendo\" → „te lo recomiendo\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 99. Hiszpański: el estrés laboral y un mal jefe
+  // ============================================================
+  // Z dłuższego wątku o zmianie pracy i okropnej gerente.
+  // Dwie kalki: „cambiar mi trabajo" → „cambiar de trabajo";
+  // „pensar sobre trabajo" → „pensar en el trabajo" (EN + rodzajnik).
+  {
+    slug: "es-estres-laboral-mal-jefe",
+    vaultSlug: "es",
+    label: "Hiszpański — el estrés laboral y un mal jefe (cambiar de trabajo, no confía en los demás)",
+    payload: {
+      title: "El estrés laboral y un mal jefe — cambiar de trabajo, pensar en el trabajo",
+      summary:
+        "Mówienie o stresie w pracy i opisanie złej szefowej: el estrés laboral, estar estresada, cambiar de trabajo, no confiar en los demás, no tener vida, dejar de pensar en el trabajo. Plus dwie kalki Nati: „cambiar de trabajo\" (nie „cambiar mi trabajo\") i „pensar en el trabajo\" (nie „pensar sobre trabajo\").",
+      theory:
+        "PRACA I STRES:\n— el trabajo = praca; el estrés laboral = stres w pracy; estar (muy) estresada = być (bardzo) zestresowaną; estar cansada de todo = mieć wszystkiego dość.\n— cambiar DE trabajo = zmienić pracę (na inną). NIE „cambiar mi trabajo\" (= przerobić/zmodyfikować obecną pracę): „Voy a cambiar de trabajo en septiembre\".\n\nMYŚLEĆ O PRACY — pensar EN:\n— pensar EN el trabajo = myśleć o pracy; „no puede dejar de pensar en el trabajo\" = nie potrafi przestać myśleć o pracy. NIE „pensar sobre trabajo\" (zły przyimek + brak rodzajnika). Tak samo: hablar del trabajo = rozmawiać o pracy.\n\nOPISAĆ ZŁEGO SZEFA:\n— el/la gerente = menedżer(ka); el jefe / la jefa = szef(owa); un mal gerente / una mala jefa.\n— no confía en los demás = nie ufa innym; no es muy simpática = nie jest zbyt miła; no tiene empatía = brak jej empatii; trabaja demasiado y crea un ambiente estresante = za dużo pracuje i tworzy stresującą atmosferę.\n\nRÓWNOWAGA PRACA–ŻYCIE:\n— no tener vida (real) = nie mieć (prawdziwego) życia; el equilibrio entre el trabajo y la vida = balans praca–życie; „necesito algo después del trabajo\" = potrzebuję czegoś po pracy.\n— Kontekst Nati: proyectos en (la oficina de) un cliente, los clientes extranjeros, de martes a jueves.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Voy a cambiar mi trabajo porque no puedo dejar de pensar sobre trabajo.\" — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„cambiar de trabajo\" (nie „cambiar mi trabajo\") oraz „pensar en el trabajo\" (nie „pensar sobre trabajo\")",
+            "tylko „cambiar mi trabajo\" jest źle",
+            "tylko „pensar sobre\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„cambiar de trabajo\" = zmienić pracę na inną. Myśleć o czymś = „pensar EN\" + rodzajnik: „pensar en el trabajo\".",
+        },
+        {
+          type: "abc",
+          text: "„Ona nie ufa innym\" to:",
+          options: [
+            "No confía en los demás",
+            "No confía a los demás",
+            "No tiene confianza los demás",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "confiar EN alguien = ufać komuś; „no confía en los demás\" = nie ufa innym.",
+        },
+        {
+          type: "fill",
+          text: "„Jestem bardzo zestresowana\": „Estoy muy ___.\" (rodzaj żeński)",
+          options: null,
+          correctAnswer: "estresada",
+          explanation:
+            "estar estresado/estresada = być zestresowanym. Nati → „estresada\".",
+        },
+        {
+          type: "abc",
+          text: "„Zmienię pracę we wrześniu\":",
+          options: [
+            "Voy a cambiar mi trabajo en septiembre",
+            "Voy a cambiar de trabajo en septiembre",
+            "Voy a cambiar el trabajo en septiembre",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "cambiar DE trabajo = zmienić pracę na inną. „cambiar mi/el trabajo\" = zmodyfikować obecną pracę.",
+        },
+        {
+          type: "fill",
+          text: "„Nie potrafi przestać myśleć o pracy\": „No puede dejar de pensar ___ el trabajo.\" (przyimek)",
+          options: null,
+          correctAnswer: "en",
+          explanation:
+            "pensar EN algo = myśleć o czymś. „dejar de + bezokolicznik\" = przestać coś robić.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Moja szefowa jest bardzo zestresowana, nie ufa innym i tworzy stresującą atmosferę. Nie ma życia poza pracą\".",
+          options: null,
+          correctAnswer:
+            "„Mi jefa está muy estresada, no confía en los demás y crea un ambiente estresante. No tiene vida fuera del trabajo.\"",
+          explanation:
+            "Klucz: „está estresada\", „no confía en los demás\", „crea un ambiente estresante\", „no tiene vida fuera del trabajo\".",
+        },
+        {
+          type: "open",
+          text: "Jak powiedzieć, że każdy potrzebuje czegoś po pracy, żeby odpocząć — na przykład spotkania ze znajomymi?",
+          options: null,
+          correctAnswer:
+            "„Cada persona necesita algo después del trabajo para descansar / despejarse, por ejemplo una reunión con los amigos.\"",
+          explanation:
+            "„después del trabajo\", „para descansar/relajarse\", „una reunión con los amigos\". To kontrast do szefowej, która „no puede dejar de pensar en el trabajo\".",
+        },
+      ],
+      salon: {
+        short:
+          "Praca: el estrés laboral, estar estresada, cambiar de trabajo. Zła szefowa: no confía en los demás, no tiene empatía, crea un ambiente estresante.",
+        expand:
+          "Równowaga: „necesito algo después del trabajo\", „no tener vida fuera del trabajo\". Kontekst: proyectos en (la oficina de) un cliente, clientes extranjeros, de martes a jueves.",
+        trap:
+          "Dwie kalki: „cambiar mi trabajo\" → „cambiar de trabajo\"; „pensar sobre trabajo\" → „pensar en el trabajo\" (przyimek EN + rodzajnik).",
+      },
+    },
+  },
 ];
