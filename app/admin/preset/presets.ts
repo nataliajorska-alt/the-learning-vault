@@ -9856,4 +9856,162 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 103. Angielski: second conditional (fundamenty, znaczenie, pułapki)
+  // ============================================================
+  {
+    slug: "angielski-second-conditional",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — second conditional (fundamenty i pułapki)",
+    payload: {
+      title: "Second conditional — forma, znaczenie i pułapki",
+      summary:
+        "Second conditional: hipoteza o teraźniejszości/przyszłości, która jest nierealna albo mało prawdopodobna. Forma: „If + Past Simple, would + bezokolicznik\". „If I had more time, I'd learn Italian.\" Kontrast z first conditional (realna możliwość: „If I have time, I'll...\"). Najczęstszy polski błąd: „would\" w if-clause („If I would have time\" — źle). Plus „were\" zamiast „was\" w hipotezie i could/might zamiast samego would.",
+      theory:
+        "ZNACZENIE: second conditional opisuje sytuację NIEREALNĄ albo mało prawdopodobną teraz lub w przyszłości — wyobrażenie, nie plan. Po polsku to „gdyby...\". „If I won the lottery, I'd quit consulting.\" (raczej nie wygram). „If I were taller, I'd play basketball.\" (nie jestem).\n\nKONTRAST z FIRST conditional — to najważniejsza decyzja przed wyborem czasu:\n— First (realne, prawdopodobne): „If it rains tomorrow, I'll take a taxi.\" (deszcz jest możliwy)\n— Second (hipotetyczne, mało prawdopodobne): „If it rained gold, I'd never work again.\" (raczej nie)\nTen sam scenariusz, różne nastawienie: „If we win this client, we'll hire two people\" (realnie liczymy) vs „If we won the lottery, we'd open an office in Lisbon\" (marzenie). Po polsku oba bywają „jeśli/gdyby\", więc czas trzeba wybrać świadomie.\n\nFORMA: „If + Past Simple, [podmiot] + would + bezokolicznik\".\n— „If I knew her email, I would send it now.\"\n— Skrót: would → 'd: „I'd call him if I had his number.\"\n— Kolejność dowolna; gdy if-clause jest pierwsza, stawiasz przecinek: „If I had the budget, I'd hire her.\" = „I'd hire her if I had the budget.\"\n\n„WERE\" (subjunctive) — w hipotezie dla WSZYSTKICH osób poprawne jest „were\", nie „was\": „If I were you...\", „If he were honest...\". W mowie potocznej słychać „if I was\", ale w pracy i piśmie zostań przy „were\". Idiom rady: „If I were you, I'd...\".\n\nNIE TYLKO „WOULD\" w wyniku — could (= byłbym w stanie / mógłbym) i might (= może):\n— „If we had more data, we could decide today.\" (bylibyśmy w stanie)\n— „If she joined the team, things might change.\" (może)\n\nTOP POLSKI BŁĄD: „would\" w if-clause. Po polsku „gdybym MIAŁ czas\" kusi do „If I WOULD have time\" — źle. W if-clause idzie sam Past Simple: „If I HAD time, I would help.\" „Would\" mieszka wyłącznie w części wynikowej.\n\nSECOND vs THIRD vs MIXED (szybko): second = teraz/przyszłość nierealnie („If I had..., I would do\"); third = przeszłość nierealnie („If I had had..., I would have done\"); mixed łączy osie czasu (osobny temat). Jeśli mówisz o teraz — second.",
+      questions: [
+        {
+          type: "abc",
+          text: "Marzenie, mało realne: „If I _____ the lottery, I'd buy a vineyard.\"",
+          options: ["win", "won", "would win"],
+          correctAnswer: 1,
+          explanation:
+            "Hipoteza mało realna → second conditional → Past Simple „won\". „would win\" w if-clause to błąd; „win\" dałoby first conditional (realne).",
+        },
+        {
+          type: "abc",
+          text: "Rada w formalnym mailu: „If I _____ you, I'd wait for the revised contract.\"",
+          options: ["was", "were", "would be"],
+          correctAnswer: 1,
+          explanation:
+            "Idiom rady „If I were you, I'd...\". W hipotezie „were\" dla każdej osoby, zwłaszcza w piśmie. „If I was you\" słychać potocznie, ale nie w pracy.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij BEZ „would\": „If I _____ (have) his number, I'd call him now.\"",
+          options: null,
+          correctAnswer: "had",
+          explanation:
+            "W if-clause sam Past Simple („had\"); „would\" tylko w części wynikowej. „If I had..., I would call...\".",
+        },
+        {
+          type: "fill",
+          text: "„If we had more data, we _____ decide today.\" (= bylibyśmy w stanie). Wpisz jeden modal:",
+          options: null,
+          correctAnswer: "could",
+          explanation:
+            "W wyniku second conditional zamiast „would\" można dać „could\" (zdolność/możliwość) albo „might\" (może). Tu „could\" = bylibyśmy w stanie.",
+        },
+        {
+          type: "spot_error",
+          text: "„If she would be more flexible, we would reach an agreement.\"",
+          options: [
+            "would be — błąd, ma być „were\": „If she were more flexible...\"",
+            "would reach — błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Top polski błąd: „would\" w if-clause. Poprawnie: „If she were more flexible, we would reach an agreement.\" „Would\" zostaje tylko w wyniku.",
+        },
+        {
+          type: "open",
+          text: "Odpowiedz hipotetycznie na pytanie szefa: „What would you change if you ran this team?\"",
+          options: null,
+          correctAnswer:
+            "Przykład: „If I ran this team, I'd cut the weekly status meeting and put that time into client prep. And if we had one more analyst, I could take on the second workstream.\" Druga część pokazuje „could\" zamiast „would\".",
+          explanation:
+            "Second conditional do hipotetycznej propozycji brzmi pewnie, a zarazem dyplomatycznie — mówisz „gdybym\", nie krytykujesz wprost. Pamiętaj: w if-clause sam Past Simple, „would/could\" w wyniku.",
+        },
+      ],
+      salon: {
+        short:
+          "Second conditional = hipoteza nierealna/mało prawdopodobna teraz lub w przyszłości: „If + Past Simple, would + bezokolicznik\". „If I had more time, I'd learn Italian.\"",
+        expand:
+          "Kontrast z first: real („If it rains, I'll...\") vs hypothetical („If it rained, I'd...\"). „Were\" dla każdej osoby w hipotezie (zwł. „If I were you, I'd...\"). W wyniku zamiast „would\" bywa „could\" (zdolność) / „might\" (może).",
+        trap:
+          "Top polski błąd: „would\" w if-clause („If I would have time\" → „If I had time\"). „Would\" mieszka tylko w części wynikowej. Second = teraz/przyszłość; third = przeszłość.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 104. Angielski: second conditional w biznesie (dyplomacja, inwersja)
+  // ============================================================
+  {
+    slug: "angielski-second-conditional-biznes",
+    vaultSlug: "en",
+    label: "Angielski C1 — second conditional w biznesie (If I were you, Were I to, dyplomatyczne hipotezy)",
+    payload: {
+      title: "Second conditional — elegancja i dyplomacja w biznesie",
+      summary:
+        "Second conditional jako narzędzie dyplomatyczne w pracy: „If I were you, I'd...\" (rada), „If we were to...\" i inwersja „Were I to...\" (formalna, ostrożna propozycja), „Suppose/What if + Past\" (testowanie pomysłu), „What would you do...?\" (pytanie hipotetyczne). Mówiąc „gdyby\", proponujesz coś bez nacisku i zostawiasz rozmówcy przestrzeń.",
+      theory:
+        "Second conditional to nie tylko gramatyka — to rejestr dyplomatyczny. Mówiąc „gdyby\", proponujesz coś, nie naciskając; testujesz pomysł, nie zobowiązując się.\n\nRADA — „If I were you, I'd...\": miękki sposób na sugestię. „If I were you, I'd raise this with the partner before the meeting.\" Brzmi jak wsparcie, nie rozkaz. Mocniejszy wariant: „If I were in your position, I'd...\".\n\nOSTROŻNA PROPOZYCJA — „If we were to + bezokolicznik\": dystansuje od deklaracji, sygnalizuje „rozważmy hipotetycznie\". „If we were to restructure the team, what would the impact be?\" — nie mówisz, że restrukturyzujesz, tylko pytasz.\n\nINWERSJA (C1, pismo formalne) — „Were + podmiot + to + V\" zastępuje „if\": „Were I to take on this project, I'd need two more analysts.\" = „If I were to take on...\". Bez „if\", brzmi elegancko i ostrożnie. Używaj w mailach/dokumentach, rzadziej w mowie.\n\nTESTOWANIE POMYSŁU — „Suppose / Imagine / What if + Past Simple\": „Suppose we lowered the price by 10% — would volume offset the margin?\" / „What if we ran the pilot in just one region first?\". Otwiera burzę mózgów bez zobowiązań.\n\nPYTANIE HIPOTETYCZNE — „What would you do...?\": „What would you do if you were leading this account?\" zaprasza do perspektywy bez presji.\n\n„UNLESS\" = „if not\" w hipotezie: „I wouldn't sign unless the terms changed.\" (= if the terms didn't change). Zwięźlej niż „if... not\" — i tak jak po „if\", po „unless\" NIE ma „would\".\n\nREJESTR: te formy brzmią C1, ale nie nadużywaj inwersji — „Were I to...\" raz w mailu robi wrażenie, pięć razy brzmi pretensjonalnie. W mowie zostań przy „If we were to...\", inwersję trzymaj na pismo.",
+      questions: [
+        {
+          type: "abc",
+          text: "Dyplomatyczna rada koledze: „_____, I'd talk to HR before escalating.\"",
+          options: ["If I was you", "If I were you", "If I would be you"],
+          correctAnswer: 1,
+          explanation:
+            "Idiom rady „If I were you, I'd...\". „Were\" dla każdej osoby w hipotezie; „would\" w if-clause to błąd, a „if I was you\" jest zbyt potoczne na pracę.",
+        },
+        {
+          type: "abc",
+          text: "Ostrożna, hipotetyczna propozycja na spotkaniu: „If we _____ merge the two teams, we'd save on overhead.\"",
+          options: ["were to", "would", "will"],
+          correctAnswer: 0,
+          explanation:
+            "„If we were to + bezokolicznik\" dystansuje od deklaracji — „rozważmy hipotetycznie\". Brzmi mniej zobowiązująco niż „If we merge...\" i grzeczniej niż gołe „we should\".",
+        },
+        {
+          type: "fill",
+          text: "Zamień na inwersję bez „if\": „If I were to lead this, I'd restructure first.\" → „_____ I to lead this, I'd restructure first.\" (jeden wyraz)",
+          options: null,
+          correctAnswer: "were",
+          explanation:
+            "Inwersja „Were + podmiot + to + V\" zastępuje „if\" w formalnym piśmie: „Were I to lead this, I'd...\". Elegancko i ostrożnie.",
+        },
+        {
+          type: "fill",
+          text: "Testujesz pomysł: „Suppose we _____ (lower) the price — would volume offset the margin?\" (forma czasownika)",
+          options: null,
+          correctAnswer: "lowered",
+          explanation:
+            "„Suppose / What if + Past Simple\" otwiera hipotezę jak second conditional; wynik z „would\". „Suppose we lowered...\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Unless the client would agree to the new scope, I wouldn't sign.\"",
+          options: [
+            "would agree — błąd, po „unless\" idzie sam czas: „Unless the client agreed...\"",
+            "wouldn't sign — błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Unless\" = „if not\"; tak jak po „if\", nie wstawiamy „would\". Poprawnie: „Unless the client agreed to the new scope, I wouldn't sign.\"",
+        },
+        {
+          type: "open",
+          text: "Zaproponuj dyplomatycznie zmianę procesu w zespole, używając hipotezy („If we were to...\" albo „What if...\").",
+          options: null,
+          correctAnswer:
+            "Przykład: „What if we moved the review to Thursdays? If we were to do that, the team would have Fridays clear for deep work. It might ease the end-of-week crunch.\" Hipoteza zamiast „we should\" zostawia przestrzeń na dyskusję.",
+          explanation:
+            "Framing przez second conditional (were to / what if + would/might) brzmi jak propozycja do rozmowy, nie dyrektywa — kluczowe w pracy z klientem i szefem.",
+        },
+      ],
+      salon: {
+        short:
+          "Second conditional jako dyplomacja: „If I were you, I'd...\" (rada), „If we were to...\" (ostrożna propozycja), „What if / Suppose + Past\" (test pomysłu).",
+        expand:
+          "Inwersja „Were I to + V\" = formalne „If I were to...\" bez „if\" (pismo). „Unless\" = „if not\" — bez „would\" po nim. Pytanie „What would you do if...?\" zaprasza perspektywę bez presji.",
+        trap:
+          "Po „if / unless / suppose\" nie ma „would\" — sam Past Simple. Inwersji „Were I to...\" nie nadużywaj: w mowie zostań przy „If we were to...\", inwersję trzymaj na pismo.",
+      },
+    },
+  },
 ];
