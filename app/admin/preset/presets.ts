@@ -9544,4 +9544,316 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 100. Hiszpański: pronombres combinados (me lo / se lo) — orden y posición
+  // ============================================================
+  // Z notatek Natalii 2026-06-29 o pronombres de objeto indirecto + directo.
+  // Mechanika łączenia dwóch zaimków: kolejność KOMU+CO, reguła le/les→se,
+  // pozycja przed haber (he dado). Kontynuacja #92 (OD) i #82 (pozycja).
+  {
+    slug: "es-pronombres-combinados-orden",
+    vaultSlug: "es",
+    label: "Hiszpański — pronombres combinados (me lo, nos la, se lo): orden y posición",
+    payload: {
+      title: "Pronombres combinados — me lo, nos la, se lo (orden y posición)",
+      summary:
+        "Gdy w zdaniu są DWA zaimki — KOMU? (dopełnienie dalsze: me/te/le/nos/os/les) i CO? (dopełnienie bliższe: lo/la/los/las) — idą razem przed czasownikiem, w kolejności KOMU + CO: „Me lo ha dado\" (Dał mi to), „Nos la ha hecho\" (Zrobił nam ją). Zbitki le lo / les las nie istnieją: le/les zamienia się w SE → „Se lo he dado\". Przy czasach złożonych (he dado) oba zaimki stoją PRZED haber, nie w środku.",
+      theory:
+        "Gdy w zdaniu są DWA zaimki — KOMU coś zrobiono (dopełnienie dalsze, OI) i CO zrobiono (dopełnienie bliższe, OD) — nie powtarzasz rzeczowników, tylko stawiasz oba zaimki razem przed czasownikiem. „He dado el libro a María\" → „Se lo he dado\" (Dałam jej ją). Zawsze najpierw pytaj: CO? (rzecz → lo/la/los/las) i KOMU? (osoba → me/te/le/nos/os/les).\n\nKOLEJNOŚĆ: najpierw KOMU (OI), potem CO (OD):\n— me + lo → me lo: „Me lo ha dado\" (Dał mi to).\n— te + la → te la: „Te la ha traído\" (Przyniósł ci ją).\n— nos + los → nos los: „Nos los ha enseñado\" (Pokazał nam je).\n— os + las → os las: „Os las ha comprado\" (Kupił wam je).\nOdwrotnie („lo me\", „la te\") nie istnieje.\n\nREGUŁA le/les → SE. Hiszpański nie znosi zbitek le lo, le la, les los, les las. Gdy po le/les ma iść lo/la/los/las, le/les zamienia się w SE:\n— ❌ le lo → ✅ se lo\n— ❌ le la → ✅ se la\n— ❌ les los → ✅ se los\n— ❌ les las → ✅ se las\n„Le he echado sal a la sopa\" → „Se la he echado\" (sal = la; a la sopa = le → se). UWAGA: me, te, nos, os NIE zmieniają się w se — to dotyczy tylko le/les.\n\nPOZYCJA przy czasach złożonych (pretérito perfecto: he/has/ha/hemos/habéis/han + participio). Oba zaimki stoją PRZED całym czasownikiem (przed formą haber), nigdy w środku:\n— ✅ „Se lo he dado.\" / „Nos la ha hecho.\" / „Me la ha enseñado.\" / „Se los ha presentado.\"\n— ❌ „He se lo dado.\" / ❌ „Ha nos la hecho.\"\nPrzeczenie „no\" idzie jeszcze przed zaimki: „No se lo he dado\".\n\nPUŁAPKA — rodzaj rzeczy decyduje o lo/la, nawet gdy polskie „go/ją\" myli. „agua\" jest rodzaju ŻEŃSKIEGO (mówimy „el agua\" tylko dla wymowy, ale: mucha agua, la he bebido) → „Han echado agua a las plantas\" → „Se la han echado\". Najpierw przypomnij sobie rodzaj rzeczownika po hiszpańsku, potem wybieraj lo/la.\n\nMETODA NA KAŻDE ZDANIE (4 kroki). „Le has echado sal a la sopa\":\n1) CO? sal → la.\n2) KOMU/CZEMU? a la sopa → le.\n3) le + la → se la.\n4) przed czasownikiem → „Se la has echado\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„Alberto nos ha hecho la sopa.\" Jak skrócić zdanie do dwóch zaimków?",
+          options: ["Nos la ha hecho", "La nos ha hecho", "Se la ha hecho"],
+          correctAnswer: 0,
+          explanation:
+            "Kolejność KOMU + CO: nos (nam) + la (la sopa) → „nos la\". „nos\" zostaje nos (w se zmienia się tylko le/les). „Se la\" znaczyłoby „zrobił JEJ/IM ją\".",
+        },
+        {
+          type: "abc",
+          text: "„He dado el libro a María.\" Jak to skrócić?",
+          options: ["Le lo he dado", "Se lo he dado", "Lo le he dado"],
+          correctAnswer: 1,
+          explanation:
+            "el libro = lo, a María = le; le + lo nie istnieje → se lo. Przy czasie złożonym oba zaimki przed haber: „Se lo he dado\".",
+        },
+        {
+          type: "fill",
+          text: "„Han echado agua a las plantas.\" → „Se ___ han echado.\" (CO wlali? agua). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "la",
+          explanation:
+            "„agua\" jest rodzaju żeńskiego (mimo „el agua\") → la. a las plantas = les → przed la zmienia się w se → „Se la han echado\".",
+        },
+        {
+          type: "abc",
+          text: "„Dał mi to\" (a mí + lo):",
+          options: ["Me lo ha dado", "Lo me ha dado", "Se lo ha dado"],
+          correctAnswer: 0,
+          explanation:
+            "a mí = me, rzecz = lo; kolejność KOMU + CO → „me lo\". „Se lo\" byłoby „dał mu/jej to\".",
+        },
+        {
+          type: "fill",
+          text: "„Pokazał wam je\" (a vosotros + los cuadros): „Os ___ ha enseñado.\" Wstaw zaimek:",
+          options: null,
+          correctAnswer: "los",
+          explanation:
+            "los cuadros = los; os + los → „os los\". „os\" nie zmienia się w se (to tylko le/les).",
+        },
+        {
+          type: "spot_error",
+          text: "„He se lo dado.\" — chcę powiedzieć „Dałam mu to\". Wskaż błąd:",
+          options: [
+            "OK, „he se lo dado\" jest poprawne",
+            "BŁĄD — przy czasach złożonych oba zaimki idą PRZED czasownikiem: „Se lo he dado\"",
+            "powinno być „He lo se dado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zaimki nie wchodzą między haber a participio. Stoją przed całym czasownikiem: (no) + se lo + he dado → „Se lo he dado\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Le lo he prestado.\" — chcę powiedzieć „Pożyczyłam mu to\". Wskaż błąd:",
+          options: [
+            "OK, „le lo\" jest poprawne",
+            "BŁĄD — le + lo nie istnieje; le zmienia się w se → „Se lo he prestado\"",
+            "powinno być „Lo le he prestado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zawsze, gdy po le/les idzie lo/la/los/las, le/les → se. „Le lo\", „les las\" itd. nie istnieją.",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij krok po kroku, jak z „Sara ha presentado sus amigos a sus padres\" zrobić zdanie z dwoma zaimkami.",
+          options: null,
+          correctAnswer:
+            "1) KOGO przedstawiła? sus amigos → los (przy presentar osoba przedstawiana to dopełnienie bliższe). 2) KOMU? a sus padres → les. 3) les + los → se los. 4) przed czasownikiem: „Se los ha presentado\" (Przedstawiła ich swoim rodzicom).",
+          explanation:
+            "Przy presentar osoba przedstawiana = OD (los), odbiorca = OI (les → se). Stąd „se los\", nigdy „los los\".",
+        },
+      ],
+      salon: {
+        short:
+          "Dwa zaimki razem przed czasownikiem, kolejność KOMU + CO: me lo, te la, nos los, os las. „Me lo ha dado\", „Nos la ha hecho\".",
+        expand:
+          "le/les + lo/la/los/las → SE: se lo, se la, se los, se las. „Le he dado el libro a María\" → „Se lo he dado\". Przy he/ha dado oba zaimki przed haber: „Se lo he dado\", nie „He se lo dado\".",
+        trap:
+          "agua jest żeńskie (mimo „el agua\") → „Se la han echado\". I me/te/nos/os NIE zmieniają się w se — tylko le/les.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 101. Hiszpański: respuestas con dos pronombres — cambio de perspectiva
+  // ============================================================
+  // Z notatek 2026-06-29: zbudowane wprost z 10 błędów Natalii. Główna oś:
+  // przy odpowiedzi zaimki obracają się (a usted→me, a ustedes→nos,
+  // ¿le has…?→se lo he). To jej #1 źródło pomyłek w tym dziale.
+  {
+    slug: "es-pronombres-combinados-perspectiva",
+    vaultSlug: "es",
+    label: "Hiszpański — respuestas con dos pronombres: cambio de perspectiva (a usted → me, ¿le has…? → se lo he)",
+    payload: {
+      title: "Respuestas con me lo / nos lo — el cambio de perspectiva",
+      summary:
+        "Przy ODPOWIADANIU zaimki obracają się względem pytania — największe źródło błędów. Pytają „a usted\" (do Pani) → odpowiadasz „me\" (mnie); „a ustedes\" (do was) → „nos\" (nam); „nos\" → zostaje „nos\". „¿Le has cortado el pelo al perro?\" → „Sí, se lo HE cortado\" (czasownik przechodzi z has na he, bo mówisz o SOBIE). Mylenie perspektywy daje „se lo\" zamiast „nos lo\".",
+      theory:
+        "Gdy ODPOWIADASZ na pytanie z zaimkami, musisz obrócić perspektywę: pytanie patrzy na Ciebie od zewnątrz, a Ty odpowiadasz z własnej perspektywy. To tu robi się najwięcej błędów.\n\nPYTANIE → ODPOWIEDŹ (jak obracają się zaimki):\n— pytają „a usted\" (do Pani/Pana) → odpowiadasz „me\" (mnie): „¿Le ha enseñado a usted su casa? —Sí, me la ha enseñado\".\n— pytają „a ustedes\" (do was, formalnie) → „nos\" (nam): „¿Quién les ha enseñado el museo a ustedes? —Nos lo ha enseñado un guía\".\n— pytają „nos\" (nam) → zostaje „nos\": „¿Quién nos ha hecho la sopa? —Nos la ha hecho Alberto\".\n— pytają „¿Le has…?\" (czy TY zrobiłaś…) → „se lo HE…\" (tak, JA zrobiłam) — czasownik przechodzi z has na he.\n\nDLACZEGO „nos\", a nie „se\". Jeśli na pytanie „a ustedes\" odpowiesz „se lo ha enseñado\", powiesz „pokazał to IM/Państwu\" — wypadasz z grupy „wam/nam\". Skoro pytanie dotyczy Ciebie (jako części „wam\"), odpowiadasz „nos lo ha enseñado\" (pokazał NAM). „Se\" zostaw, gdy mówisz o kimś TRZECIM.\n\nDLACZEGO „he\", a nie „has\". „¿Le has cortado el pelo al perro?\" pyta: czy TY (has) obcięłaś psu sierść? Ty odpowiadasz o SOBIE → „Sí, se lo HE cortado\" (he). „Se lo HAS cortado\" znaczyłoby „to TY mu obciąłeś\" — nadal mówisz o „ty\", nie o sobie. Tak samo: „¿Le has echado sal a la sopa? —No, no se la HE echado\".\n\nDWA TRYBY TEGO SAMEGO ZDANIA:\n— ĆWICZENIE „przekształć zdanie\" (zachowaj osobę): „Le has echado sal a la sopa\" → „Se la has echado\" (zostaje has).\n— ODPOWIEDŹ na pytanie o Ciebie: „¿Le has echado sal…? —No, no se la he echado\" (he).\nRóżnica: czy tylko zamieniasz rzeczowniki na zaimki (has), czy odpowiadasz o sobie (he).\n\nMETODA: 1) Kto pyta i o kim? 2) Czy ja jestem w grupie „wam/nam\"? Jeśli tak → nos (nie se). 3) Czy pytają „czy TY…?\" → odpowiadam „he\" (nie has).",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„¿Quién les ha enseñado el museo a ustedes?\" Odpowiedź: „Se lo ha enseñado un guía turístico.\"",
+          options: [
+            "OK — „se lo\" jest poprawne",
+            "BŁĄD — pytają „a ustedes\" (was), więc odpowiadasz „Nos lo ha enseñado\" (nam); „se\" = jemu/im/Państwu",
+            "powinno być „os lo ha enseñado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Odpowiadasz jako część „wam\" → „nos\". „Se lo ha enseñado\" mówi „pokazał to IM\", czyli wypadasz z grupy. el museo = lo → „Nos lo ha enseñado un guía\".",
+        },
+        {
+          type: "spot_error",
+          text: "Pytanie do Ciebie: „¿Le has cortado el pelo al perro?\" Odpowiedź: „Sí, se lo has cortado.\"",
+          options: [
+            "OK — „se lo has cortado\" jest poprawne",
+            "BŁĄD — mówisz o SOBIE, więc czasownik z has → he: „Sí, se lo he cortado\"",
+            "powinno być „se lo ha cortado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„se lo has cortado\" znaczy „to TY mu obciąłeś\". Odpowiadając o sobie → „he\": „Sí, se lo he cortado\". (el pelo = lo; al perro = le → se.)",
+        },
+        {
+          type: "abc",
+          text: "„¿Le ha enseñado a usted su casa?\" — odpowiedz „Tak, pokazał mi ją\":",
+          options: ["Sí, le la ha enseñado", "Sí, me la ha enseñado", "Sí, se la ha enseñado"],
+          correctAnswer: 1,
+          explanation:
+            "Pytają „a usted\" (do Pani) → w odpowiedzi „me\". su casa = la → „me la\". „le la\" w ogóle nie istnieje; „se la\" = pokazał komuś trzeciemu.",
+        },
+        {
+          type: "fill",
+          text: "„¿Quién nos ha hecho la sopa? —Nos ___ ha hecho Alberto.\" (CO zrobił? la sopa). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "la",
+          explanation:
+            "Pytają „nos\" → zostaje „nos\". la sopa = la → „Nos la ha hecho Alberto\". (Tu perspektywa się nie obraca — pytanie już jest „nam\".)",
+        },
+        {
+          type: "fill",
+          text: "„¿Les ha enseñado a ustedes los cuadros? —Sí, nos ___ ha enseñado.\" (pokazał nam). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "los",
+          explanation:
+            "a ustedes → z Twojej perspektywy „nos\"; los cuadros = los → „nos los\". „Se los\" znaczyłoby „pokazał IM\".",
+        },
+        {
+          type: "fill",
+          text: "„¿Nos ha traído el camarero la comida? —Sí, nos ___ ha traído.\" (przyniósł nam). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "la",
+          explanation:
+            "Pytają „nos\" → zostaje „nos\"; la comida = la → „nos la\". (Nie „os lo\".)",
+        },
+        {
+          type: "abc",
+          text: "„Han echado agua a las plantas.\" Przekształć zdanie (samo zamienienie rzeczowników na zaimki):",
+          options: ["Se le han echado", "Se la han echado", "Se las han echado"],
+          correctAnswer: 1,
+          explanation:
+            "agua = la (żeńskie); a las plantas = les → se → „Se la han echado\". „Se le\" miesza dopełnienie bliższe z dalszym.",
+        },
+        {
+          type: "open",
+          text: "„¿Les ha presentado Sara su novia a sus padres?\" Odpowiedz przecząco i wyjaśnij wybór zaimków.",
+          options: null,
+          correctAnswer:
+            "„No, no se la ha presentado.\" su novia (kobieta, którą się przedstawia) = dopełnienie bliższe żeńskie → la; a sus padres = les → przed la zmienia się w se → se la. Gdyby chodziło o „su novio\" (mężczyzna) → lo → „No, no se lo ha presentado\". lo/la zależy od osoby PRZEDSTAWIANEJ, nie od rodziców.",
+          explanation:
+            "Przy presentar: osoba przedstawiana = OD (novia → la / novio → lo), rodzice = OI (les → se). Pułapka z notatki: „se lo\" byłoby poprawne tylko, gdyby oryginał miał „su novio\".",
+        },
+      ],
+      salon: {
+        short:
+          "Odpowiadając, obróć perspektywę: pytają „a usted\" → „me\"; „a ustedes\" → „nos\"; „nos\" → zostaje „nos\".",
+        expand:
+          "„¿Le has…?\" (czy TY?) → „se lo HE…\" (ja). „Se\" = ktoś trzeci (jemu/im); jeśli jesteś w grupie „wam\" → „nos\", nie „se\": „Nos lo ha enseñado un guía\".",
+        trap:
+          "Przekształcenie zdania zachowuje osobę („Se la HAS echado\"), ale odpowiedź o sobie zmienia na „he\" („No, no se la HE echado\").",
+      },
+    },
+  },
+
+  // ============================================================
+  // 102. Hiszpański: verbos de dar/echar/prestar/presentar + objetos
+  // ============================================================
+  // Słownictwo z tej samej lekcji 2026-06-29: czasowniki łączące się z
+  // dwoma zaimkami (dar, echar, prestar, presentar, curar, cortar, alquilar,
+  // enseñar, comprar) + rzeczowniki-pułapki rodzaju (bombones, pendientes,
+  // apuntes, entradas, la pata, el agua).
+  {
+    slug: "es-verbos-dar-objetos-vocabulario",
+    vaultSlug: "es",
+    label: "Hiszpański — verbos de dar/echar/prestar/presentar + objetos (bombones, pendientes, apuntes, la pata)",
+    payload: {
+      title: "Vocabulario — dar, echar, prestar, presentar, curar, cortar y los objetos",
+      summary:
+        "Czasowniki i słówka z lekcji o dwóch zaimkach: dar (dawać), echar (nalać/dodać/wyrzucić/tęsknić), prestar (pożyczyć KOMUŚ) vs pedir prestado (pożyczyć OD kogoś), presentar (przedstawić — osoba = dopełnienie bliższe), curar (leczyć/opatrywać), cortar (obciąć), alquilar (wynająć), enseñar (pokazać/uczyć). Rzeczowniki-pułapki rodzaju: los bombones, los pendientes, los apuntes, las entradas, la pata, el agua (żeńskie!).",
+      theory:
+        "CZASOWNIKI Z TEJ LEKCJI (wszystkie łączą się z dwoma zaimkami: komu + co):\n— dar = dawać (participio: dado). „Me lo ha dado\" (Dał mi to).\n— echar = zależnie od kontekstu: echar agua = nalać/polać wody; echar sal = dodać soli; echar a alguien = wyrzucić kogoś; echar de menos = tęsknić (participio: echado). „Le he echado sal a la sopa\" → „Se la he echado\".\n— prestar = pożyczyć KOMUŚ (dać w pożyczkę). „Le he prestado mi libro a Ana\" → „Se lo he prestado\". Pożyczyć OD kogoś = pedir prestado / tomar prestado.\n— presentar = przedstawić. Osoba przedstawiana to dopełnienie bliższe: „Presentar a mis amigos a mis padres\" → kogo? a mis amigos (los); komu? a mis padres (les → se) → „Se los ha presentado\".\n— curar = leczyć / opatrywać. „Le han curado la pata al perro\" → „Se la han curado\".\n— cortar = ciąć / obcinać. „Le he cortado el pelo al perro\" → „Se lo he cortado\".\n— alquilar = wynajmować. „Hemos alquilado un coche\" → „Lo hemos alquilado\".\n— enseñar = pokazać ALBO uczyć. „Nos ha enseñado el museo\" (Pokazał nam muzeum) / „Me ha enseñado español\" (Nauczył mnie hiszpańskiego).\n— comprar = kupić. „Le he comprado bombones a mi madre\" → „Se los he comprado\".\n\nRZECZOWNIKI (rodzaj decyduje o lo/la/los/las):\n— los bombones = czekoladki, pralinki (męski, mnogi → los).\n— los pendientes = kolczyki (męski, mnogi → los). „pendiente\" osobno = zaległy/oczekujący: „tareas pendientes\".\n— los apuntes = notatki z zajęć (męski, mnogi → los). „Me los ha prestado\" (Pożyczył mi je).\n— las entradas = bilety, wejściówki (żeński, mnogi → las). „Las he comprado\" / „Se las he comprado a mi hermana\".\n— la pata = łapa lub noga zwierzęcia; też noga stołu: „la pata de la mesa\" (żeński → la).\n— el agua = woda, ale rodzaj ŻEŃSKI (mucha agua, la he bebido) → w zaimku la.\n\nPUŁAPKA prestar: „prestar\" to dać komuś w pożyczkę (z mojej strony). Gdy to JA biorę od kogoś — „pedir prestado\": „Le he prestado el coche\" (pożyczyłem mu auto) ≠ „Le he pedido prestado el coche\" (pożyczyłem od niego auto).",
+      questions: [
+        {
+          type: "abc",
+          text: "Co znaczy „Te echo de menos\"?",
+          options: ["Wyrzucam cię", "Tęsknię za tobą", "Dodaję ci soli"],
+          correctAnswer: 1,
+          explanation:
+            "echar de menos = tęsknić. „echar\" ma wiele znaczeń: echar agua (nalać), echar sal (dodać), echar a alguien (wyrzucić kogoś).",
+        },
+        {
+          type: "abc",
+          text: "„Pożyczyłam Anie moją książkę\" (dałam jej w pożyczkę):",
+          options: [
+            "Le he pedido prestado mi libro a Ana",
+            "Le he prestado mi libro a Ana",
+            "Le he tomado prestado mi libro a Ana",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "prestar = pożyczyć KOMUŚ (dać). pedir/tomar prestado = pożyczyć OD kogoś (wziąć).",
+        },
+        {
+          type: "fill",
+          text: "„Pożyczył mi swoje notatki — pożyczył mi je\": „Me ___ ha prestado.\" (los apuntes). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "los",
+          explanation:
+            "los apuntes = rodzaj męski mnogi → los; me + los → „me los\".",
+        },
+        {
+          type: "fill",
+          text: "„Kupiłam je\" (o biletach): „___ he comprado.\" (las entradas). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "las",
+          explanation:
+            "las entradas = rodzaj żeński mnogi → las. „Las he comprado\".",
+        },
+        {
+          type: "abc",
+          text: "„Opatrzyli psu łapę — opatrzyli mu ją\":",
+          options: ["Se la han curado", "Se lo han curado", "Le la han curado"],
+          correctAnswer: 0,
+          explanation:
+            "la pata = żeński → la; al perro = le → se → „Se la han curado\". curar = leczyć/opatrywać.",
+        },
+        {
+          type: "fill",
+          text: "„Kupiłam mamie czekoladki — kupiłam jej je\": „___ los he comprado.\" (a mi madre + los bombones). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "se",
+          explanation:
+            "a mi madre = le → przed los zmienia się w se; los bombones = los → „Se los he comprado\".",
+        },
+        {
+          type: "open",
+          text: "Przetłumacz i wyjaśnij zaimki: (a) zamień „Hemos alquilado un coche\" na zdanie z zaimkiem; (b) powiedz „Pokazał nam muzeum\" pełnym zdaniem i ze skrótem.",
+          options: null,
+          correctAnswer:
+            "(a) „Lo hemos alquilado\" — un coche jest rodzaju męskiego → lo; przy czasie złożonym zaimek przed haber. (b) „Nos ha enseñado el museo\" → „Nos lo ha enseñado\" — enseñar = pokazać; nos = nam; el museo = lo.",
+          explanation:
+            "alquilar = wynająć; enseñar = pokazać/uczyć. Zaimek bliższy bierze rodzaj rzeczownika: coche → lo, museo → lo.",
+        },
+        {
+          type: "spot_error",
+          text: "Chcę powiedzieć „Pożyczyłam OD Any książkę\" i mówię: „Le he prestado un libro a Ana.\"",
+          options: [
+            "OK — „prestar\" pasuje",
+            "BŁĄD — „prestar\" to pożyczyć KOMUŚ; pożyczyć OD kogoś = „pedir prestado\": „Le he pedido prestado un libro a Ana\"",
+            "powinno być „se lo he prestado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "prestar (dać w pożyczkę) ≠ pedir prestado (wziąć w pożyczkę). „Le he prestado un libro\" znaczy „dałam jej książkę w pożyczkę\".",
+        },
+      ],
+      salon: {
+        short:
+          "Czasowniki: dar, echar (nalać/dodać/wyrzucić/tęsknić), prestar (komuś!), presentar (osoba = OD), curar, cortar, alquilar, enseñar (pokazać/uczyć).",
+        expand:
+          "Rodzaj rzeczy → lo/la/los/las: los bombones, los pendientes (kolczyki), los apuntes, las entradas, la pata, el agua (żeńskie → la).",
+        trap:
+          "prestar = pożyczyć KOMUŚ; pożyczyć OD kogoś = pedir/tomar prestado. „pendientes\" = kolczyki LUB zaległe (tareas pendientes).",
+      },
+    },
+  },
 ];
