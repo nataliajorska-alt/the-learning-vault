@@ -12,6 +12,7 @@ import {
   FileSpreadsheet,
   Languages,
   Trophy,
+  Compass,
   BookOpen,
 } from "lucide-react";
 
@@ -29,6 +30,7 @@ const map: Record<string, React.ComponentType<{ className?: string }>> = {
   FileSpreadsheet,
   Languages,
   Trophy,
+  Compass,
 };
 
 export function VaultIcon({

@@ -38,8 +38,8 @@ export const P30_PILLAR_LABELS: Record<P30Pillar, string> = {
  * Mapowanie vault.slug → filar P30.
  *
  * Logika:
- * - phil/art/music/savoir/sport/wine/es/hist/avia → TOŻSAMOŚĆ (obycie kulturowe,
- *   budowanie tożsamości intelektualnej)
+ * - phil/art/music/savoir/sport/wine/es/hist/avia/psy → TOŻSAMOŚĆ (obycie kulturowe,
+ *   budowanie tożsamości intelektualnej, samowiedza)
  * - en/excel → KARIERA (umiejętności zawodowe — angielski biznesowy, narzędzia)
  * - econ/blackjack → KAPITAŁ (rozumienie pieniądza, ryzyka, strategii)
  *
@@ -55,6 +55,7 @@ export const VAULT_TO_PILLAR: Record<string, P30Pillar> = {
   es: "tozsamosc",
   hist: "tozsamosc",
   avia: "tozsamosc",
+  psy: "tozsamosc",
   en: "kariera",
   excel: "kariera",
   econ: "kapital",

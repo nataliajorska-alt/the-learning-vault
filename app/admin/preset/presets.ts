@@ -10014,4 +10014,382 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 105. Psychologia: zniekształcenia poznawcze (katalog) — vault psy
+  // ============================================================
+  // Pierwszy preset sekcji Psychologia. vaultMeta tworzy vault on-demand
+  // (ensureVault), jeśli user go jeszcze nie ma. Charakter: psychologia
+  // STOSOWANA, „dla siebie" — zazębia się z modułem /mysli w Projekcie 30.
+  // Pełny katalog 10 zniekształceń: opis + sygnał rozpoznawczy + antidotum.
+  {
+    slug: "psychologia-znieksztalcenia-poznawcze",
+    vaultSlug: "psy",
+    label: "Psychologia — zniekształcenia poznawcze (katalog)",
+    vaultMeta: {
+      name: "Psychologia",
+      icon: "Compass",
+      level: "Dla siebie",
+      color: "gold",
+      order: 14
+    },
+    payload: {
+      title: "Zniekształcenia poznawcze: 10 pułapek umysłu i jak je zbijać",
+      summary: "Większość cierpienia nie bierze się z faktów, tylko z przekłamanych myśli o faktach. Ta lekcja to pełny katalog dziesięciu zniekształceń poznawczych — z konkretnymi sygnałami, po których rozpoznasz je u siebie, i narzędziami, którymi je zbijesz. Cel nie jest ładny: chodzi o dokładność, nie o pozytywne myślenie.",
+      theory: "Twój mózg nieustannie opowiada ci historie o tym, co się dzieje — i większość z nich bierzesz za pewnik, zanim zdążysz je sprawdzić. Problem w tym, że te automatyczne myśli bywają systematycznie przekłamane: nie zmyślają faktów, tylko przekręcają ich znaczenie i wagę. Sam pomysł, że za naszym cierpieniem stoją takie błędy myślenia, należy do Aarona Becka — twórcy terapii poznawczej. Popularną listę dziesięciu nazwanych pułapek („wszystko albo nic”, „czytanie w myślach” i reszta) rozpisał i spopularyzował David Burns w „Feeling Good”. Jeszcze jedna z nich — tyrania powinności — pochodzi od Alberta Ellisa (REBT), który złośliwie ochrzcił ją „musturbacją”. Warto wiedzieć, że różni autorzy grupują te błędy nieco inaczej (np. czytanie w myślach i przepowiadanie przyszłości bywają łączone w jedno „wyciąganie pochopnych wniosków”, a filtr i odrzucanie pozytywów raz są osobno, raz razem) — nie istnieje jedna jedyna kanoniczna lista. My bierzemy najbardziej praktyczny podział.\n\nKlucz, który łatwo przeoczyć: to NIE jest trening pozytywnego myślenia. Nie chodzi o to, żeby myśleć ładniej, tylko PRAWDZIWIEJ — bliżej tego, co naprawdę pokazują dowody. Czasem dokładniejsza myśl jest spokojniejsza, czasem nadal niewygodna, ale zawsze bliższa rzeczywistości. Mechanizm pracy jest zawsze ten sam: złap automatyczną myśl → nazwij zniekształcenie → sprawdź dowody → sformułuj wersję realistyczną (prawdziwszą, nie ładniejszą). Oto twoja mapa dziesięciu najczęstszych pułapek.\n\n— Myślenie czarno-białe (wszystko albo nic). Esencja: świat w dwóch kubełkach — idealnie albo katastrofa, sukces albo porażka, bez szarości pomiędzy. Brakuje suwaka 0–100%; jest tylko włącznik zero/sto. Przykład: Asia planowała pięć biegów, pobiegła trzy i myśli „znowu mi nie wyszło, kompletnie odpuściłam” — trzy przebiegnięte trasy znikają, bo nie pięć. Po czym poznasz: słowa „albo… albo”, „zawsze / nigdy”, „totalnie”, „kompletnie”, „w ogóle”, „bez sensu”; jeden minus unieważnia wszystkie plusy. Test: czy mieści się tu opcja „częściowo”, „w 60%”? Jeśli nie — to czarno-białe. Antidotum: wyceń na skali 0–100% (Asia: 3 z 5 = 60%, nie 0%) i dokończ „częściowo mi wyszło, bo…” z 2–3 faktami.\n\n— Nadmierne uogólnianie. Esencja: z jednego zdarzenia robisz regułę na zawsze i wszędzie — jedno „nie” staje się dowodem, że „zawsze tak będzie”. Przykład: po jednej nieudanej randce Ola myśli „nigdy nikogo nie poznam, zawsze kończy się tak samo”. Po czym poznasz: słowa „zawsze”, „nigdy”, „wszyscy”, „każdy”, „znowu to samo”, „typowe dla mnie”; pojedynczy fakt rozciągnięty na całą przyszłość i wszystkie sytuacje. Różnica wobec etykietowania: tu robisz regułę o ZDARZENIACH („zawsze tak wychodzi”), przy etykiecie — wyrok o TOŻSAMOŚCI („jestem do niczego”). Antidotum: zamień „zawsze/nigdy” na konkret — „TYM razem nie wyszło”; poszukaj kontrprzykładów (kiedy było inaczej?) i policz, ile naprawdę miałaś takich sytuacji, a ile zakładasz.\n\n— Filtr mentalny i odrzucanie pozytywów. Uwaga: to właściwie DWA osobne zniekształcenia z listy Burnsa, świadomie połączone tu w jedną kartę, bo działają w tandemie. Filtr mentalny: wyławiasz z całości jeden negatywny szczegół i fiksujesz się na nim, aż barwi ci cały obraz — jak kropla atramentu w szklance wody (to bierna, selektywna uwaga na minus). Odrzucanie pozytywów: aktywnie unieważniasz dobre rzeczy, które się wydarzyły („to się nie liczy”, „mówił tak z grzeczności”) — to nie przeoczenie, tylko odpychanie dobra. Przykład: dziesięć pochwał za prezentację i jedna uwaga; wieczór schodzi wyłącznie na tej jednej uwadze (filtr), a pochwały „nie wchodzą, bo to przecież nic takiego” (odrzucanie). Po czym poznasz: cała uwaga wisi na jednym minusie, pozytywy „nie wchodzą” albo są zbywane; pytanie „a co poszło dobrze?” brzmi dla ciebie nie na miejscu. Antidotum: zrób pełny bilans — wypisz wszystkie fakty, plusy i minusy, i zobacz proporcje (10 pochwał vs 1 uwaga). Pozytywów nie wolno przekreślać: jeśli się wydarzyły, to są dane, nie przypadek.\n\n— Czytanie w myślach. Esencja: bez dowodu zakładasz, że wiesz, co ktoś o tobie myśli, i traktujesz domysł jak fakt. Twój mózg gra scenarzystę cudzej głowy. Przykład: koleżanka przeczytała wiadomość i nie odpisuje dwie godziny — „ma mnie dość, myśli, że znowu zawracam jej głowę”; wieczorem okazuje się, że padł jej telefon. Po czym poznasz: czasownik mentalny („myśli, że”, „uważa mnie za”, „na pewno sądzi”) skierowany na ciebie plus ZERO przytoczonego faktu — tylko cudza mina, cisza albo krótka odpowiedź. Test: „skąd to wiem — co dokładnie zostało powiedziane lub zrobione?”. Antidotum: rozdziel FAKT (przeczytała, nie odpisała) od DOMYSŁU (ma mnie dość), wypisz 2–3 inne wyjaśnienia i — jeśli ważne — zapytaj wprost zamiast zgadywać.\n\n— Przepowiadanie przyszłości i katastrofizacja. Esencja: twój umysł odpala film o przyszłości i zawsze jest to horror — pewność „będzie źle” bez jednego dowodu, podkręcona do rozmiarów katastrofy bez wyjścia. Przykład: szefowa nie odpisała na maila o urlopie przez cztery godziny — „jest wkurzona, wytną mnie, nie znajdę pracy, stracę mieszkanie”. Po czym poznasz: zdanie w czasie przyszłym + „na pewno” bez danych + lawina („a potem…, a potem…”); ciało często wie pierwsze — ścisk na myśl o czymś, co się jeszcze nie stało. Antidotum: dekatastrofizacja, której RDZENIEM jest pytanie „a gdyby najgorsze naprawdę się wydarzyło — czy dałabym sobie radę i jak konkretnie?” (ocena radzenia sobie, nie sama groza). Rozpisz trzy scenariusze (najgorszy / najlepszy / najbardziej realny), zaplanuj krok na najgorszy wariant, a dopiero na koniec — jako uzupełnienie — oszacuj prawdopodobieństwo w procentach. To połączenie planu na najgorsze i twardej cyfry rozbraja „na pewno”.\n\n— Umniejszanie i wyolbrzymianie (lornetka). Esencja: patrzysz na życie przez lornetkę, obracając ją wedle wygody — swoje sukcesy i cudze wady przez „zły koniec” (kurczą się do pyłka), swoje wpadki i cudze osiągnięcia przez właściwy (puchną do billboardu). Ten sam fakt zmienia rozmiar zależnie od tego, czyj jest. Przykład: Ola dostaje awans i myśli „każdy by go dostał”, a trzysekundową pomyłkę imienia przeżywa trzy dni jako zagrożenie projektu. Po czym poznasz: minimalizacja („to się nie liczy”, „każdy by to zrobił”, „to tylko fart”) kontra wyolbrzymianie („katastrofa”, „wszystko zepsułam”); ten sam typ faktu dostaje DWIE różne wagi. Antidotum: zważ tą samą wagą — „gdyby DOKŁADNIE to samo zrobiła przyjaciółka, też nazwałabym jej sukces przypadkiem, a błąd katastrofą?”. Jeśli waga skacze — masz lornetkę.\n\n— Uzasadnienie emocjonalne. Esencja: bierzesz uczucie za dowód — „skoro tak się czuję, to znaczy, że tak jest”. Emocja zamienia się w fakt bez sprawdzania, czy fakty się z nią zgadzają. Przykład: przed prezentacją Marta czuje lęk i wnioskuje „czuję, że to będzie katastrofa” — choć ćwiczyła trzy razy i miała dobry feedback. Po czym poznasz: konstrukcja „czuję, że…” użyta tam, gdzie chodzi o „myślę/sądzę, że…” („czuję, że mnie nie lubią”, „czuję, że sobie nie poradzę”); jedyne, co podpiera tezę o faktach, to twój stan. Test: dokończ „wiem to, bo…” — jeśli jedyne dokończenie brzmi „bo tak się czuję”, to uzasadnienie emocjonalne. Antidotum: dwie kolumny — „CO CZUJĘ” (lęk 7/10) i „CO MÓWIĄ FAKTY” (tylko to, co da się nagrać kamerą). Pusta prawa kolumna = to było czucie, nie werdykt.\n\n— Etykietowanie. Esencja: z jednego potknięcia robisz wyrok na całą siebie — zamiast „zrobiłam coś źle” mówisz „JESTEM beznadziejna”. To skrajne uogólnianie sklejone z tożsamością. Przykład: Asia zapomniała załącznika w mailu i myśli „jestem kompletną idiotką, do niczego się nie nadaję”. Po czym poznasz: czasownik „jestem” sklejony z rzeczownikiem-etykietą po jednym zdarzeniu („jestem porażką”, „ze mnie nieudacznica”); pada też o innych („on jest dupkiem” zamiast „spóźnił się i nie uprzedził”). Test: czy zdanie opisuje, co ZROBIŁAŚ (da się zmienić), czy ogłasza, KIM JESTEŚ (stałe i totalne)? Antidotum: przetłumacz etykietę z powrotem na zachowanie — „jestem beznadziejna” → „zapomniałam załącznika w jednym mailu z dwudziestu”. Zachowanie ma datę, kontekst i naprawialność; etykieta nie ma żadnej z tych trzech.\n\n— Personalizacja (i jej odwrotność: obwinianie innych). Esencja: bierzesz na siebie winę lub odpowiedzialność za coś, na co nie miałaś pełnego wpływu — czyjś nastrój, cudzą decyzję, splot okoliczności czytasz jako „to przeze mnie”. Przykład: partner wraca milczący po pracy, a Kasia od razu „coś zrobiłam nie tak, obraziłam go” — choć miał po prostu ciężki dzień. Po czym poznasz: cudza emocja lub zdarzenie automatycznie ma przyczynę w tobie („to moja wina”, „gdybym lepiej…, to by…”), bierzesz 100% odpowiedzialności za rzecz wieloprzyczynową. Ta sama pułapka ma drugą twarz — OBWINIANIE INNYCH, czyli oddanie całej winy na zewnątrz przy własnym udziale zero. Po czym poznasz ten wariant: „wyłącznie przez niego”, „gdyby on nie był taki…”, „nie mam sobie nic do zarzucenia” — przyczyna w 100% poza tobą. Obie skrajności to ten sam błąd: rozdanie odpowiedzialności jako 0% albo 100% zamiast realnych proporcji. Antidotum (na oba kierunki): tort odpowiedzialności — wypisz WSZYSTKIE czynniki (inni ludzie, okoliczności, przypadek, ty) i rozdaj procenty; twój realny kawałek prawie nigdy nie jest ani „wszystko”, ani „nic”. Pytanie kontrolne: „co tu naprawdę zależało ode mnie?”.\n\n— Tyrania powinności (musizm). Esencja: wewnętrzny dyktator zamienia preferencje w żelazne prawa — nie „wolałabym”, tylko „MUSZĘ”, „POWINNAM”, „NIE WOLNO MI”. Albert Ellis nazwał to złośliwie „musturbacją”. Przykład: Marta patrzy na telefon — „powinnam była dawno odpisać Oli, porządny człowiek tak nie odpuszcza” — i czuje kamień w brzuchu zamiast ochoty. Po czym poznasz: „muszę”, „powinnam”, „nie wolno mi”, „należy”, „trzeba”, „mam obowiązek”; rozkaz zamiast preferencji. Kierunek emocji zdradza cel: powinności wobec SIEBIE rodzą winę, wobec INNYCH („on POWINIEN się domyślić”) — złość i rozczarowanie. Antidotum: przepisz na preferencję („muszę odpisać” → „WOLAŁABYM odpisać, bo zależy mi”) i zapytaj „kto to ustalił? gdzie jest ta ustawa?”. Najczęściej autorką regulaminu jesteś ty sama.\n\n„Skrzynka narzędziowa” — sześć technik zbijania, które działają na większość zniekształceń. Wybierasz tę, która pasuje do złapanej myśli:\n\n— Badanie dowodów. Po złapaniu myśli pytasz: „jakie mam TWARDE dowody za i przeciw?” — tylko rzeczy, które dałoby się nagrać kamerą. Rozbraja czytanie w myślach, uzasadnienie emocjonalne i katastrofizację.\n— Podwójny standard / co powiedziałabyś przyjaciółce. „Gdyby dokładnie to samo spotkało bliską osobę — co bym jej powiedziała?”. Demaskuje lornetkę, etykietowanie i powinności, bo ujawnia, że dla siebie masz surowszą miarkę.\n— Dekatastrofizacja. Najpierw: „a gdyby najgorsze się wydarzyło — czy dam radę i jak?” (plan radzenia sobie), potem trzy scenariusze (najgorszy / najlepszy / realny), a na końcu procent prawdopodobieństwa jako uzupełnienie. Na katastrofizację i przepowiadanie przyszłości.\n— Kontinuum zamiast czerni-bieli. Wyceń na skali 0–100% zamiast zero/sto i poszukaj odcienia szarości. Na myślenie czarno-białe i perfekcjonizm.\n— Tort odpowiedzialności. Narysuj koło, wypisz wszystkich i wszystko, co dołożyło się do sytuacji, rozdaj procenty. Na personalizację (gdy bierzesz za dużo) i obwinianie innych (gdy oddajesz całość).\n— Opis zachowania zamiast etykiety. Zamień „jestem X” na „zrobiłam X wtedy i wtedy” — bez ani jednego przymiotnika o sobie. Na etykietowanie i nadmierne uogólnianie.\n\nZłota zasada na koniec: cel każdej z tych technik to DOKŁADNOŚĆ, nie pocieszenie. Nie szukasz myśli przyjemniejszej — szukasz prawdziwszej, lepiej opartej na dowodach. Czasem okaże się łagodniejsza, czasem nie. To wystarczy.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "Kasia po rozmowie kwalifikacyjnej: „Zacięłam się przy jednym pytaniu o budżet. Wypadłam fatalnie — totalna kompromitacja, cała rozmowa do kosza. Albo perfekcyjnie, albo w ogóle nie ma o czym mówić”. Które zniekształcenie działa tu najwyraźniej?",
+          options: [
+            "Czytanie w myślach — Kasia zakłada, co myślą o niej rekruterzy",
+            "Myślenie czarno-białe — jedna potknięta odpowiedź zamienia całą rozmowę w „totalną kompromitację”, bez miejsca na „w większości poszło dobrze”",
+            "Katastrofizacja — Kasia wyolbrzymia rozmiar przyszłych konsekwencji potknięcia",
+            "Etykietowanie — Kasia przykleja sobie globalną łatkę „jestem do niczego”"
+          ],
+          correctAnswer: 1,
+          explanation: "To podręcznikowe myślenie czarno-białe: jeden moment („zacięłam się przy jednym pytaniu”) przeskakuje od razu do skrajnej kategorii („cała rozmowa do kosza”, „albo perfekcyjnie, albo w ogóle”), a słowa „totalna” i „albo… albo” zdradzają brak środka. Dystraktory chybiają: Kasia nie zgaduje cudzych myśli (czytanie w myślach), nie projektuje lawiny przyszłych skutków (katastrofizacja) ani nie nazywa siebie globalną etykietą — cały sąd dotyczy jednego wydarzenia ściśniętego do dwóch skrajności."
+        },
+        {
+          type: "abc",
+          text: "Tomek odpisał na jedno ogłoszenie o pracę i dostał odmowę. Myśli: „Nigdy nie znajdę niczego sensownego, zawsze tak kończy każda moja próba”. Które zniekształcenie pasuje najlepiej?",
+          options: [
+            "Etykietowanie — Tomek ogłasza, kim jest jako osoba",
+            "Nadmierne uogólnianie — z jednej odmowy robi sztywną regułę „zawsze/nigdy” na całą przyszłość",
+            "Myślenie czarno-białe — Tomek dzieli szukanie pracy na „sukces albo nic” bez stanów pośrednich",
+            "Czytanie w myślach — Tomek zakłada, co myśli o nim rekruter"
+          ],
+          correctAnswer: 1,
+          explanation: "Klucz to „zawsze/nigdy/każda próba” — jedno zdarzenie (jedna odmowa) zostaje rozciągnięte w regułę obowiązującą zawsze i wszędzie. To nie etykieta (nie mówi „jestem nieudacznikiem”, tylko „zawsze tak wychodzi” — reguła o ZDARZENIACH, nie o tożsamości). Najbliższym mylonym sąsiadem jest myślenie czarno-białe, ale tu rdzeniem nie są dwa kubełki w jednej sytuacji, lecz jedno zdarzenie naciągnięte na całą przyszłość. Antidotum: „TYM razem odmówili” + policzenie, ile naprawdę było prób."
+        },
+        {
+          type: "abc",
+          text: "Pod swoim zdjęciem z wakacji Ela dostaje dziewięć ciepłych komentarzy i jeden uszczypliwy o tle, które „zepsuło kadr”. Cały wieczór wraca myślami tylko do tego jednego, dziewięć miłych „jakoś do niej nie dociera”. Które zniekształcenie działa tu najsilniej?",
+          options: [
+            "Filtr mentalny i odrzucanie pozytywów — wyławia jeden negatyw i fiksuje się na nim, a dziewięć pozytywów aktywnie zbywa („nie dociera”)",
+            "Katastrofizacja — wyolbrzymia przyszłe skutki jednego komentarza",
+            "Czytanie w myślach — zakłada, co sądzą obserwujący",
+            "Myślenie czarno-białe — ocenia zdjęcie zerojedynkowo"
+          ],
+          correctAnswer: 0,
+          explanation: "Działają tu dwa spokrewnione mechanizmy naraz. Filtr mentalny: z całości (9 plusów + 1 minus) Ela wybiera jeden negatyw i fiksuje się na nim. Odrzucanie pozytywów: dziewięć ciepłych komentarzy zostaje aktywnie unieważnionych („nie dociera”) — to nie bierne przeoczenie, lecz odpychanie dobra. U Burnsa to dwa osobne zniekształcenia, świadomie połączone tu w jedną kartę. Nie ma prognozy katastrofy ani zgadywania cudzych myśli. Antidotum: pełny bilans i policzenie proporcji (9 vs 1)."
+        },
+        {
+          type: "spot_error",
+          text: "Marta prowadzi prezentację na zespole. W połowie zauważa, że szef patrzy w laptopa i nie podnosi wzroku. Myśli: „Nudzę go. Uważa, że to, co mówię, jest bez sensu i że się nie nadaję do prowadzenia takich spotkań”. Które zniekształcenie tu działa?",
+          options: [
+            "Katastrofizacja — Marta wyolbrzymia skutki i przewiduje najgorszy finał",
+            "Etykietowanie — Marta przykleja sobie trwałą łatkę „jestem do niczego”",
+            "Czytanie w myślach — z faktu „patrzy w laptopa” Marta wyciąga pewność, co szef o niej myśli, bez żadnego dowodu",
+            "Filtr mentalny — Marta skupia się tylko na jednym negatywnym szczególe"
+          ],
+          correctAnswer: 2,
+          explanation: "To czytanie w myślach: jedyny fakt to „szef patrzy w laptopa”, a Marta dokleja do niego gotową treść jego myśli („nudzę go”, „uważa, że się nie nadaję”) bez ani jednego słowa, które by padło. Sygnał: czasownik mentalny skierowany na nią plus zero dowodu. Szef może notować jej tezy albo czytać pilnego maila. Uwaga: gdyby myśl brzmiała „zaraz wszyscy zobaczą i stracę pracę”, to byłaby katastrofizacja."
+        },
+        {
+          type: "spot_error",
+          text: "Ania czeka na wyniki badania krwi. Po południu łapie się na myśli: „Na pewno wyjdzie coś złego, lekarz powie, że to poważne, będę miesiącami w szpitalu, a wszystko w życiu się przez to rozsypie”. Które zniekształcenie najlepiej opisuje tę myśl?",
+          options: [
+            "Przepowiadanie przyszłości i katastrofizacja — pewność najgorszego scenariusza bez dowodów plus lawina coraz gorszych skutków",
+            "Czytanie w myślach — zakładanie, co konkretna osoba TERAZ o niej sądzi",
+            "Etykietowanie — przyklejenie sobie globalnej łatki zamiast opisu sytuacji",
+            "Filtr mentalny — skupienie się wyłącznie na jednym negatywnym szczególe"
+          ],
+          correctAnswer: 0,
+          explanation: "To klasyczne przepowiadanie przyszłości z katastrofizacją: myśl jest w czasie przyszłym („wyjdzie coś złego”, „będę w szpitalu”), pełna pewności („na pewno”) bez dowodu i rozkręca się w lawinę („wszystko się rozsypie”). Czytanie w myślach dotyczyłoby tego, co ktoś myśli TERAZ; etykietowanie to łatka na sobie; filtr mentalny to wybiórcze widzenie teraźniejszości — tu rdzeniem jest prognoza katastrofy. Antidotum: trzy scenariusze plus przede wszystkim plan „a gdyby najgorsze — jak sobie poradzę?”."
+        },
+        {
+          type: "spot_error",
+          text: "Kasia prowadzi warsztat dla 20 osób, ankiety wychodzą świetne. Myśli: „Grupa była po prostu wyjątkowo sympatyczna, każdy by ich poprowadził”. Wieczorem przypomina sobie, że zapomniała wspomnieć o jednym narzędziu: „Przez to cały warsztat był do niczego”. Które zniekształcenie działa NAJWYRAŹNIEJ?",
+          options: [
+            "Czytanie w myślach — zakłada, co inni o niej sądzą",
+            "Personalizacja — bierze na siebie winę za cudzy nastrój",
+            "Nadmierne uogólnianie — z jednego zdarzenia wyciąga regułę na zawsze",
+            "Umniejszanie i wyolbrzymianie (lornetka) — sukces skurczony do „każdy by to zrobił”, drobne przeoczenie rozdęte do „cały warsztat do niczego”"
+          ],
+          correctAnswer: 3,
+          explanation: "Kluczem jest ten sam dzień, dwie różne wagi: realny sukces (świetne ankiety od 20 osób) zostaje zminimalizowany („każdy by to zrobił”), a jedno drobne przeoczenie wyolbrzymione do „cały warsztat do niczego”. To definicja lornetki — plus oglądany przez zły koniec, minus przez właściwy. Dystraktory chybiają: nie ma tu domysłu o cudzych myślach, brania winy za cudzy nastrój ani reguły „zawsze/nigdy”; sednem jest przekręcona WAGA plusu kontra minusu."
+        },
+        {
+          type: "spot_error",
+          text: "Po wyjątkowo cichym wieczorze z partnerem Marta czuje narastający niepokój i mówi: „Czuję, że ten związek się rozpada — na pewno coś się psuje”. A przecież rano śmiali się razem przy kawie, wczoraj zaplanowali wspólny wyjazd, on właśnie zrobił jej herbatę. Które zniekształcenie jest TU najwyraźniejsze?",
+          options: [
+            "Uzasadnienie emocjonalne — z samego niepokoju robi pewnik, że „związek się rozpada”, mimo że fakty (śmiech rano, wspólny wyjazd, herbata) mówią co innego",
+            "Czytanie w myślach — zakłada, co myśli partner, bez dowodów",
+            "Etykietowanie — przykleja sobie globalną łatkę na podstawie jednej sytuacji",
+            "Filtr mentalny — wyłapuje tylko negatywy i pomija pozytywne fakty"
+          ],
+          correctAnswer: 0,
+          explanation: "Rdzeń myśli to „CZUJĘ niepokój, WIĘC związek się rozpada” — emocja użyta jako dowód na to, jak się rzeczy mają, wbrew konkretnym faktom (śmiech rano, zaplanowany wyjazd, herbata). To definicja uzasadnienia emocjonalnego. Pojawiają się echa innych zniekształceń, ale MOTOREM jest zamiana uczucia w fakt — i po tym je rozpoznajesz: jedynym dowodem jest stan emocjonalny. Antidotum: dwie kolumny — „co czuję” kontra „co da się nagrać kamerą”."
+        },
+        {
+          type: "spot_error",
+          text: "Marta prowadzi spotkanie zespołu, myli imię nowej osoby i czuje, jak płoną jej policzki. Wieczorem wraca do tej sceny i myśli: „Jestem żenującą, niezdarną osobą — kompletnie nie nadaję się do kontaktu z ludźmi”. Które zniekształcenie najtrafniej opisuje TĘ myśl?",
+          options: [
+            "Czytanie w myślach — zakłada, co inni o niej pomyśleli",
+            "Katastrofizacja — wyolbrzymia rozmiar przyszłych skutków pomyłki",
+            "Etykietowanie — z jednej pomyłki robi globalny wyrok na tożsamość („jestem żenującą osobą”), zamiast opisać samo zachowanie",
+            "Filtr mentalny — skupia się tylko na jednym negatywnym szczególe spotkania"
+          ],
+          correctAnswer: 2,
+          explanation: "To etykietowanie: kluczem jest konstrukcja „JESTEM [rzeczownik]” doklejona do jednego zdarzenia — pomyłka w imieniu staje się trwałą cechą całej osoby. Czytanie w myślach dotyczyłoby domysłów o cudzych myślach; katastrofizacja rozdmuchiwałaby przyszłe skutki; filtr mentalny wybierałby jeden zły szczegół, ale nie zamieniałby go w globalne „jestem X”. Antidotum: wróć do zachowania — „pomyliłam imię raz, na początku spotkania”."
+        },
+        {
+          type: "abc",
+          text: "Kuba wraca z pracy małomówny i zamknięty. Jego partnerka Ania od razu myśli: „Na pewno coś zrobiłam nie tak, pewnie go czymś uraziłam rano — to przeze mnie jest taki oziębły”. Później okazuje się, że miał ostre spięcie z szefem. Które zniekształcenie pasuje najlepiej?",
+          options: [
+            "Czytanie w myślach — Ania zgaduje konkretną treść jego myśli",
+            "Obwinianie innych — Ania zrzuca całą winę na partnera",
+            "Personalizacja — Ania bierze na siebie odpowiedzialność za cudzy nastrój, który ma inne, niezależne od niej przyczyny",
+            "Katastrofizacja — Ania przewiduje najgorszy scenariusz na przyszłość"
+          ],
+          correctAnswer: 2,
+          explanation: "To personalizacja: Ania automatycznie czyni siebie przyczyną cudzego nastroju („to przeze mnie”), biorąc 100% odpowiedzialności za coś wieloprzyczynowego — a realna przyczyna leżała poza nią. To odwrotność obwiniania innych (tam cała wina szłaby na partnera). Element czytania w myślach jest obecny, ale rdzeń to przypisanie sobie sprawstwa. Antidotum: tort odpowiedzialności i pytanie „co tu naprawdę zależało ode mnie?”."
+        },
+        {
+          type: "spot_error",
+          text: "Kasia nie dostała awansu, na który liczyła. Myśli: „Szefowa POWINNA była to docenić. Pracowałam tyle nadgodzin — NALEŻY mi się ten awans. Nie wolno tak traktować lojalnych ludzi”. Czuje narastającą złość i rozżalenie. Które zniekształcenie najtrafniej opisuje TEN sposób myślenia?",
+          options: [
+            "Czytanie w myślach — Kasia zakłada, co szefowa o niej myśli",
+            "Katastrofizacja — Kasia wyolbrzymia skutki braku awansu do rozmiarów katastrofy",
+            "Personalizacja — Kasia bierze całą winę za brak awansu na siebie",
+            "Tyrania powinności — sztywne nakazy „powinna”, „należy mi się”, „nie wolno” narzucone światu jak prawo, stąd złość i rozżalenie"
+          ],
+          correctAnswer: 3,
+          explanation: "Sygnały są jednoznaczne: „powinna była”, „należy mi się”, „nie wolno” — to rozkazy wystawione rzeczywistości, nie opis faktów ani prognoza. Charakterystyczny jest kierunek emocji: powinności wobec INNYCH rodzą złość i rozżalenie (wobec siebie rodziłyby winę). To odróżnia tyranię powinności od czytania w myślach, katastrofizacji i personalizacji. Antidotum: przepisz nakaz na preferencję i zapytaj „kto to ustalił, gdzie jest ta ustawa?”."
+        },
+        {
+          type: "spot_error",
+          text: "Kasia po rozstaniu mówi przyjaciółce: „Ten związek rozpadł się wyłącznie przez niego. Gdyby on nie był takim egoistą, dalej bylibyśmy razem. Ja dawałam z siebie wszystko, naprawdę nie mam sobie nic do zarzucenia”. Które zniekształcenie najlepiej pasuje do tej wypowiedzi?",
+          options: [
+            "Personalizacja — bierze całą winę za rozpad na siebie",
+            "Czytanie w myślach — zakłada, co myśli druga osoba",
+            "Katastrofizacja — wyolbrzymia skutki rozstania",
+            "Obwinianie innych — cała wina spada na drugą osobę, a własny udział = zero"
+          ],
+          correctAnswer: 3,
+          explanation: "To podręcznikowe obwinianie innych. Sygnały: „wyłącznie przez niego”, „gdyby on nie był…”, „nie mam sobie nic do zarzucenia” — przyczyna w 100% po stronie partnera, własny udział zero. To dokładna ODWROTNOŚĆ personalizacji (tam byłoby: „to wszystko moja wina”). Antidotum: tort odpowiedzialności — jaki kawałek realnie należy do Kasi, jaki do niego, a jaki do okoliczności?"
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij nazwę zniekształcenia. Przed ważną rozmową czujesz lęk i wnioskujesz: „Skoro tak się boję, to znaczy, że na pewno pójdzie źle” — choć przygotowałaś się i wcześniej takie rozmowy szły dobrze. Bierzesz emocję za dowód na fakty. To ________. Antidotum: rozdziel „co czuję” od „co mówią dowody, które da się nagrać kamerą”.",
+          options: null,
+          correctAnswer: "uzasadnienie emocjonalne",
+          explanation: "To uzasadnienie emocjonalne. Sygnał: konstrukcja „skoro tak się czuję, to znaczy, że tak jest” — jedynym oparciem tezy o faktach jest stan emocjonalny, mimo że konkretne dowody (przygotowanie, wcześniejsze udane rozmowy) mówią co innego. Antidotum: dwie kolumny — „co czuję” kontra „co mówią fakty” (tylko to, co da się nagrać kamerą); pusta prawa kolumna znaczy, że to było czucie, nie werdykt."
+        },
+        {
+          type: "open",
+          text: "Weź tę zniekształconą myśl i przeformułuj ją realistycznie (prawdziwiej, nie ładniej): „Szefowa nie odpisała na mój mail przez trzy godziny — na pewno jest na mnie wściekła i wkrótce mnie wytną”. Nazwij zniekształcenie i napisz wersję opartą na faktach.",
+          options: null,
+          correctAnswer: "Tu łączą się dwa zniekształcenia: czytanie w myślach („na pewno jest wściekła”) i katastrofizacja („wkrótce mnie wytną”). FAKT: wysłałam mail trzy godziny temu i nie ma jeszcze odpowiedzi. DOMYSŁY: że jest wściekła i że mnie zwolnią — nie mam na to żadnego dowodu. Inne wyjaśnienia braku odpowiedzi: jest na spotkaniach, ma dziesiątki maili, odpisze później, sprawa nie jest pilna. Wersja realistyczna: „Szefowa jeszcze nie odpisała na mój mail; trzy godziny w środku dnia pracy to nic nadzwyczajnego. Nie wiem, co myśli, dopóki czegoś nie powie. Jeśli do jutra nie będzie odpowiedzi, dopytam wprost. A nawet gdyby coś było nie tak — najpierw bym o tym usłyszała i miałabym czas zareagować”. To nie jest ładniejsze — jest dokładniejsze: trzyma się tego, co naprawdę wiadomo, i sprawdza, czy z najgorszym wariantem dałabym sobie radę.",
+          explanation: "Dobre przeformułowanie nazywa zniekształcenie (czytanie w myślach + katastrofizacja), oddziela FAKT od DOMYSŁU, wymienia alternatywne wyjaśnienia i kończy wersją sprawdzalną oraz konkretnym krokiem (dopytać wprost) plus oceną radzenia sobie z najgorszym wariantem. Kluczowe: cel to dokładność, nie ładniejsza wersja — nowe zdanie ma być bliższe dowodom, a nie po prostu pocieszające."
+        }
+      ],
+      salon: {
+        short: "Zniekształcenia poznawcze to powtarzalne błędy myślenia, które przekręcają nie fakty, ale ich wagę i znaczenie — i to one, a nie same wydarzenia, produkują większość cierpienia. Praca polega na tym, by złapać automatyczną myśl, nazwać zniekształcenie, sprawdzić dowody i ułożyć wersję prawdziwszą.",
+        expand: "Koncept zniekształceń pochodzi od Aarona Becka (terapia poznawcza), a popularną listę nazwanych pułapek rozpisał David Burns w „Feeling Good”; tyranię powinności dorzucił Albert Ellis. Różni autorzy grupują je trochę inaczej, więc traktuj to jako mapę, nie świętą dziesiątkę. Najczęstsze: myślenie czarno-białe (zero/sto bez szarości), nadmierne uogólnianie („zawsze/nigdy” z jednego zdarzenia), filtr mentalny i odrzucanie pozytywów (jeden negatyw barwi całość, a dobro jest unieważniane), czytanie w myślach (domysł o cudzej głowie jako fakt), katastrofizacja (horror o przyszłości bez dowodów), lornetka (swój sukces mały, swój błąd ogromny), uzasadnienie emocjonalne („czuję, więc tak jest”), etykietowanie (z błędu wyrok na tożsamość), personalizacja wraz z jej odwrotnością obwinianiem innych (biorę całą winę albo oddaję ją w całości) i tyrania powinności („muszę/powinnam” zamiast „wolałabym”). Do zbijania służy kilka narzędzi: badanie dowodów, podwójny standard („co powiedziałabym przyjaciółce?”), dekatastrofizacja (z naciskiem na „czy dam radę?”), kontinuum 0–100% zamiast czerni-bieli, tort odpowiedzialności i zamiana etykiety na opis zachowania.",
+        trap: "Dwie pułapki przy stole. Pierwsza: to NIE jest „myślenie pozytywne” ani afirmacje — chodzi o DOKŁADNOŚĆ, o myśl bliższą dowodom, która bywa spokojniejsza, ale czasem nadal niewygodna. Druga: nie diagnozuj na żywo cudzych wypowiedzi („o, właśnie katastrofizujesz”) — to narzędzie do pracy z WŁASNYMI myślami, a wytykanie zniekształceń innym brzmi jak protekcjonalna diagnoza i zamyka rozmowę zamiast pomagać."
+      }
+    }
+  },
+
+  // ============================================================
+  // 106. Psychologia: style przywiązania
+  // ============================================================
+  {
+    slug: "psychologia-style-przywiazania",
+    vaultSlug: "psy",
+    label: "Psychologia — style przywiązania",
+    payload: {
+      title: "Style przywiązania",
+      summary:
+        "Bowlby i Ainsworth: to, jak reagował na nas opiekun w pierwszych latach, układa się w wzorzec, który nieświadomie odtwarzamy w dorosłych relacjach. Cztery style — i jedna dobra wiadomość: styl nie jest wyrokiem.",
+      theory:
+        "Teoria przywiązania zaczęła się od Bowlby'ego i Ainsworth: to, jak w pierwszych latach życia reagował na nas opiekun, układa się w wzorzec, który potem nieświadomie odtwarzamy w bliskich relacjach dorosłych. Nie chodzi o obwinianie rodziców — chodzi o rozpoznanie własnego domyślnego ustawienia pod stresem w relacji.\n\nCztery style:\n— Bezpieczny — bliskość nie jest zagrożeniem, samodzielność też nie. Umiesz prosić o wsparcie i umiesz być sama. Punkt odniesienia, nie nieosiągalny ideał.\n— Lękowy (lękowo-ambiwalentny) — rdzeń to lęk przed porzuceniem. Pod stresem szukasz bliskości intensywnie, czytasz sygnały na minus, pojawia się protest: dopytywanie, testowanie, „czy na pewno mnie nie zostawisz\".\n— Unikający (oddalający) — pod stresem robisz odwrotnie: zwiększasz dystans, tłumisz potrzebę bliskości, „poradzę sobie sama\". To nie brak uczuć, tylko ich dezaktywacja.\n— Zdezorganizowany (lękowo-unikający) — naraz pragniesz bliskości i się jej boisz; sygnały sprzeczne, bo źródło ukojenia bywało kiedyś źródłem zagrożenia.\n\nNajczęstsza pułapka pary to taniec, w którym im bardziej lękowa strona napiera po kontakt, tym bardziej unikająca się wycofuje — i każde z nich potwierdza sobie najgorszy scenariusz. Najważniejsze na koniec: styl nie jest wyrokiem. Istnieje zdobyta bezpieczność — przez świadomość, relacje korekcyjne i pracę można przesunąć się w stronę bezpiecznego.",
+      questions: [
+        {
+          type: "abc",
+          text: "Rdzeń stylu lękowego to:",
+          options: [
+            "lęk przed bliskością",
+            "lęk przed porzuceniem",
+            "brak potrzeby relacji",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Lękowy boi się porzucenia i pod stresem szuka bliskości — stąd protest i dopytywanie.",
+        },
+        {
+          type: "abc",
+          text: "Osoba o stylu unikającym pod stresem w relacji najczęściej:",
+          options: [
+            "zwiększa dystans i tłumi potrzebę bliskości",
+            "natychmiast szuka bliskiego kontaktu",
+            "całkowicie przestaje cokolwiek czuć",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "To dezaktywacja — nie brak uczuć, tylko odcięcie od potrzeby. „Poradzę sobie sama\".",
+        },
+        {
+          type: "abc",
+          text: "Bezpieczny styl przywiązania oznacza, że:",
+          options: [
+            "nigdy nie potrzebujesz nikogo",
+            "bliskość i samodzielność współistnieją — umiesz prosić o wsparcie i umiesz być sama",
+            "zawsze jesteś w związku",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bezpieczny to elastyczność: ani lęk przed bliskością, ani przed samotnością.",
+        },
+        {
+          type: "fill",
+          text: "Styl przywiązania nie jest wyrokiem — przez świadomość i relacje korekcyjne można przesunąć się w stronę bezpiecznego. Nazywamy to zdobytą _____.",
+          options: null,
+          correctAnswer: "bezpiecznością",
+          explanation:
+            "„Zdobyta bezpieczność\" (earned security) — styl da się zmienić, nie jest stałą cechą charakteru.",
+        },
+        {
+          type: "fill",
+          text: "Dopytywanie, testowanie i domaganie się zapewnień u osoby lękowej to tzw. zachowania _____ (protest behavior).",
+          options: null,
+          correctAnswer: "protestu",
+          explanation:
+            "Zachowania protestu to próby przywrócenia bliskości, gdy włącza się lęk przed porzuceniem.",
+        },
+        {
+          type: "spot_error",
+          text: "„Mój partner ma styl unikający, więc to się nie zmieni — przywiązanie to stała cecha charakteru, z którą się rodzimy.\"",
+          options: [
+            "zgoda, styl jest wrodzony i stały",
+            "nie — styl kształtuje się we wczesnych relacjach i może się zmieniać; istnieje zdobyta bezpieczność",
+            "to znaczy, że unikający nie potrafią kochać",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Styl nie jest genem ani wyrokiem. Powstaje w relacjach i w relacjach (oraz w terapii) może się przesuwać.",
+        },
+        {
+          type: "open",
+          text: "Opisz krótko, dlaczego para „lękowy + unikający\" tak łatwo się zapętla.",
+          options: null,
+          correctAnswer:
+            "Im bardziej lękowa strona napiera po kontakt i potwierdzenie, tym bardziej unikająca zwiększa dystans, żeby się regulować. Wycofanie nasila lęk przed porzuceniem, a napieranie nasila potrzebę dystansu — każde potwierdza sobie najgorszy scenariusz i pętla się zaciska.",
+          explanation:
+            "Dwie przeciwne strategie regulacji pod stresem napędzają się nawzajem.",
+        },
+      ],
+      salon: {
+        short:
+          "Bowlby i Ainsworth: to, jak reagował na nas opiekun w dzieciństwie, układa się w wzorzec, który odtwarzamy w dorosłych relacjach. Cztery style: bezpieczny, lękowy, unikający, zdezorganizowany.",
+        expand:
+          "Lękowy boi się porzucenia i napiera po kontakt; unikający pod stresem zwiększa dystans. Stąd klasyczny zapętlony taniec par. Ale styl nie jest wyrokiem — istnieje zdobyta bezpieczność: przez świadomość i relacje korekcyjne da się go przesunąć.",
+        trap:
+          "Nie traktuj stylów jak horoskopu ani jak etykiety do przyklejenia partnerowi („ty to typowy unikający\"). To rama do rozumienia własnych reakcji pod stresem, nie diagnoza i nie wyrok.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 107. Psychologia: okno tolerancji i regulacja emocji
+  // ============================================================
+  {
+    slug: "psychologia-okno-tolerancji",
+    vaultSlug: "psy",
+    label: "Psychologia — okno tolerancji i regulacja emocji",
+    payload: {
+      title: "Okno tolerancji",
+      summary:
+        "Pojęcie Dana Siegela: strefa pobudzenia, w której jednocześnie czujesz i myślisz. Nad nią jest hiperpobudzenie (walcz/uciekaj), pod nią hipopobudzenie (zamrożenie). Poza oknem „weź się w garść\" nie działa — najpierw ciało, potem rozmowa.",
+      theory:
+        "Okno tolerancji to pojęcie Dana Siegela: strefa pobudzenia, w której jednocześnie czujesz i myślisz. W oknie emocje są obecne, ale dasz radę je przetworzyć — masz dostęp i do uczuć, i do rozsądku. Stres, zmęczenie i wyzwalacze zwężają to okno; trauma potrafi je zwęzić na dłużej.\n\nPoza oknem są dwa stany:\n— Hiperpobudzenie (góra) — układ współczulny, tryb walcz/uciekaj: lęk, panika, złość, gonitwa myśli, napięcie ciała, „za dużo\".\n— Hipopobudzenie (dół) — tryb zamrożenia: odrętwienie, pustka, odcięcie, ospałość, „nic\" i „mnie tu nie ma\".\n\nKluczowa zmiana perspektywy: gdy jesteś poza oknem, problemem nie jest „weź się w garść\". Z poziomu rozdygotanego ciała nie da się przemówić sobie do rozsądku, bo myśląca część mózgu jest chwilowo offline. Najpierw regulacja ciała, dopiero potem rozmowa. Co realnie wraca w okno:\n— Wydłużony WYDECH — dłuższy wydech niż wdech uruchamia układ przywspółczulny (hamulec). To nie to samo co głębokie oddychanie na siłę.\n— Uziemienie 5-4-3-2-1 — 5 rzeczy, które widzisz, 4 które słyszysz, 3 których dotykasz, 2 które czujesz węchem, 1 smak. Wyciąga z głowy do zmysłów.\n— Ruch i zimno — rozładowują hiperpobudzenie; przy hipopobudzeniu raczej delikatna aktywacja niż dalsze wyciszanie.\n— Współregulacja — spokojny układ nerwowy drugiej osoby realnie reguluje twój. Nie jesteśmy zaprojektowani, żeby regulować się zawsze w pojedynkę.",
+      questions: [
+        {
+          type: "abc",
+          text: "Hiperpobudzenie (górna granica okna) to:",
+          options: [
+            "odrętwienie i pustka",
+            "tryb walcz/uciekaj — lęk, panika, gonitwa myśli",
+            "stan spokojnej obecności",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Góra to nadmiar: układ współczulny, „za dużo\". Dół (hipopobudzenie) to odrętwienie.",
+        },
+        {
+          type: "abc",
+          text: "Odrętwienie, pustka i poczucie „mnie tu nie ma\" to:",
+          options: [
+            "hiperpobudzenie",
+            "hipopobudzenie (zamrożenie)",
+            "stan w oknie tolerancji",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Dolny stan to zamrożenie — odcięcie i wyłączenie, nie spokój.",
+        },
+        {
+          type: "abc",
+          text: "Co najszybciej uruchamia układ przywspółczulny (hamulec) i pomaga wrócić w okno?",
+          options: [
+            "szybkie, głębokie wdechy",
+            "wydech dłuższy niż wdech",
+            "wstrzymanie oddechu",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Liczy się wydłużony wydech, nie samo „głębokie oddychanie\". Dłuższy wydech aktywuje nerw błędny.",
+        },
+        {
+          type: "fill",
+          text: "Technika „5 rzeczy, które widzisz, 4 które słyszysz...\" (5-4-3-2-1) to technika _____.",
+          options: null,
+          correctAnswer: "uziemienia",
+          explanation:
+            "Uziemienie (grounding) wyciąga uwagę z gonitwy myśli do zmysłów i ciała tu i teraz.",
+        },
+        {
+          type: "fill",
+          text: "Aby aktywować układ przywspółczulny, wydłużasz przede wszystkim _____.",
+          options: null,
+          correctAnswer: "wydech",
+          explanation:
+            "Dłuższy wydech niż wdech to hamulec układu nerwowego — kluczowa różnica wobec oddychania „na siłę\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Jak ktoś ma atak paniki albo zamrożenie, najlepiej powiedzieć »uspokój się i myśl racjonalnie« — to kwestia silnej woli.\"",
+          options: [
+            "zgoda, to kwestia silnej woli",
+            "nie — poza oknem część myśląca mózgu jest offline; najpierw regulacja ciała, dopiero potem rozmowa",
+            "to znaczy, że trzeba zostawić osobę samą",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Weź się w garść\" nie działa poza oknem, bo kora przedczołowa jest niedostępna. Najpierw ciało (oddech, uziemienie, współregulacja), potem słowa.",
+        },
+        {
+          type: "open",
+          text: "Dlaczego, gdy ktoś jest poza oknem tolerancji, mówienie „uspokój się\" nie działa — i co działa zamiast tego?",
+          options: null,
+          correctAnswer:
+            "Poza oknem myśląca część mózgu (kora przedczołowa) jest praktycznie offline, więc apel do rozsądku nie ma do czego trafić. Działa najpierw regulacja ciała: wydłużony wydech, uziemienie 5-4-3-2-1, ruch, a często współregulacja — spokojny układ nerwowy drugiej osoby. Rozmowa dopiero, gdy wrócisz w okno.",
+          explanation:
+            "Kolejność jest odwrotna do intuicji: najpierw ciało, potem głowa.",
+        },
+      ],
+      salon: {
+        short:
+          "Okno tolerancji (Dan Siegel) to strefa, w której jednocześnie czujesz i myślisz. Nad nim jest hiperpobudzenie (walcz/uciekaj), pod nim hipopobudzenie (zamrożenie). Wyzwalacze zwężają okno.",
+        expand:
+          "Najważniejsza zmiana perspektywy: poza oknem „weź się w garść\" nie działa, bo myśląca część mózgu jest offline. Najpierw regulujesz ciało — wydłużony wydech, uziemienie 5-4-3-2-1, ruch, współregulacja — a dopiero potem wracasz do rozmowy i rozsądku.",
+        trap:
+          "Nie mów osobie w panice czy zamrożeniu „uspokój się i myśl racjonalnie\" — to apel do części mózgu, która jest chwilowo niedostępna. I nie myl wydłużonego wydechu z „głębokim oddychaniem\" na siłę, które potrafi pobudzenie nasilić.",
+      },
+    },
+  },
 ];
