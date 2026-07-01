@@ -10392,4 +10392,496 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 108. Hiszpański: el fútbol y el Mundial — vocabulario del partido
+  // ============================================================
+  // Z rozmowy o Mundialu 2026 (Nati i koleżanka oglądają mecze Meksyku).
+  // Klucz: ganar A alguien / perder CON-CONTRA alguien; meter vs recibir gol;
+  // la playera (MX) = la camiseta; la afición / los aficionados.
+  {
+    slug: "es-el-futbol-y-el-mundial",
+    vaultSlug: "es",
+    label: "Hiszpański — el fútbol y el Mundial (ganar/perder, gol, la afición, la playera)",
+    payload: {
+      title: "El fútbol y el Mundial — el partido, ganar/perder, meter un gol, la afición",
+      summary:
+        "Słownictwo meczowe z Mundialu: el partido/el juego, la selección, el jugador, ganar/perder/empatar, meter y recibir un gol, los aficionados, la camiseta/la playera (MX), agotado. Plus dwie rekcje: „ganar A alguien\" (pokonać kogoś) i „perder CON/CONTRA alguien\" (przegrać z kimś).",
+      theory:
+        "MECZ I DRUŻYNY:\n— el partido = mecz (też: el juego, MX; el encuentro / el duelo w prasie); la selección (nacional) = reprezentacja; el equipo = drużyna; el jugador / la jugadora = zawodnik/czka; el/la aficionado(a), la afición, los fanáticos = kibice.\n\nWYNIK — ganar / perder / empatar:\n— ganar A alguien = pokonać kogoś (z osobowym „a\"): „México ganó A Ecuador\", „venció A Ecuador 2 a 0\".\n— perder CON / CONTRA alguien = przegrać z kimś: „Polonia perdió con(tra) Suecia\".\n— empatar = zremisować; el empate = remis; „quedaron empatados\" = był remis. Wynik: „ganó 2 a 0\" (dos a cero).\n\nGOLE:\n— meter / marcar un gol = strzelić gola; recibir un gol = stracić bramkę. „Sigue sin recibir un solo gol\" = wciąż nie stracił ani jednej bramki (na zero z tyłu).\n\nKIBICE I KOSZULKA:\n— apoyar / animar a un equipo = kibicować; „todo el mundo está loco por la Copa\" = wszyscy szaleją na punkcie Mundialu.\n— la camiseta = koszulka; w Meksyku częściej la playera; „las camisetas están agotadas\" = koszulki są wyprzedane; „la original / la fake\" = oryginalna / podróbka.",
+      questions: [
+        {
+          type: "abc",
+          text: "„Kibice (ogół kibiców)\" po hiszpańsku:",
+          options: [
+            "los jugadores",
+            "los aficionados / la afición",
+            "las selecciones",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "los aficionados / la afición / los fanáticos = kibice. los jugadores = zawodnicy.",
+        },
+        {
+          type: "fill",
+          text: "„Strzelić gola\": „___ un gol\" (czasownik).",
+          options: null,
+          correctAnswer: "meter",
+          explanation:
+            "meter un gol (albo marcar un gol) = strzelić gola. Stracić bramkę = recibir un gol.",
+        },
+        {
+          type: "fill",
+          text: "„Meksyk wciąż nie stracił ani jednej bramki\": „México sigue sin ___ un solo gol.\"",
+          options: null,
+          correctAnswer: "recibir",
+          explanation:
+            "recibir un gol = stracić bramkę; „sin recibir un solo gol\" = bez straty gola (na zero z tyłu).",
+        },
+        {
+          type: "spot_error",
+          text: "„Ayer México ganó con Ecuador 2 a 0.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "„ganar A alguien\" = pokonać: „ganó A Ecuador\"; „ganar con\" jest błędne (przegrać to „perder con/contra\")",
+            "powinno być „perdió\"",
+            "powinno być „empató\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Pokonać kogoś = „ganar A alguien\" (osobowe „a\"): „ganó a Ecuador\". „Con/contra\" idzie z „perder\": „perdió con(tra) Suecia\".",
+        },
+        {
+          type: "abc",
+          text: "W Meksyku „koszulka (reprezentacji)\" to najczęściej:",
+          options: [
+            "la playera (albo la camiseta)",
+            "la ropa",
+            "el uniforme y nada más",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "la playera = koszulka (MX); w Hiszpanii la camiseta. „Están agotadas\" = są wyprzedane.",
+        },
+        {
+          type: "fill",
+          text: "„Wszystkie koszulki są wyprzedane\": „Todas las playeras están ___.\"",
+          options: null,
+          correctAnswer: "agotadas",
+          explanation:
+            "agotado/agotada = wyprzedany/wyczerpany; „están agotadas\" = nie ma ich już w sprzedaży.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wczoraj Meksyk pokonał Ekwador 2:0 i nie stracił żadnej bramki, a kibice świętowali na ulicach\".",
+          options: null,
+          correctAnswer:
+            "„Ayer México ganó / venció a Ecuador 2 a 0 y no recibió ningún gol, y los aficionados celebraron en las calles.\"",
+          explanation:
+            "Klucz: „ganó/venció A Ecuador\" (osobowe „a\"), „no recibió ningún gol\", „los aficionados celebraron\".",
+        },
+      ],
+      salon: {
+        short:
+          "Mecz: el partido/el juego, la selección, el jugador, la afición. Wynik: ganar A alguien, perder CON/CONTRA alguien, empatar. Gole: meter / recibir un gol.",
+        expand:
+          "„Ganar a Ecuador\" (osobowe „a\"), „perder con(tra) Suecia\", „empatar / quedar empatados\". „Meter/marcar un gol\" vs „recibir un gol\"; „sin recibir un solo gol\". Kibice: los aficionados/la afición; koszulka: la playera (MX) / la camiseta, agotada.",
+        trap:
+          "„ganar con\" ≠ pokonać — pokonać to „ganar A alguien\"; z „con/contra\" łączy się „perder\". I „recibir un gol\" = STRACIĆ bramkę (nie „dostać\" w sensie zdobyć).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 109. Hiszpański: las fases del Mundial — avanzar, quedar eliminado
+  // ============================================================
+  // Struktura turnieju z tej samej rozmowy: grupy → octavos → cuartos →
+  // semifinal → final; eliminatorias (przed turniejem) ≠ octavos; penales, tiempo extra.
+  {
+    slug: "es-fases-del-mundial-avanzar-eliminado",
+    vaultSlug: "es",
+    label: "Hiszpański — las fases del Mundial (octavos, cuartos, avanzar, quedar eliminado)",
+    payload: {
+      title: "Las fases del Mundial — avanzar, pasar a octavos, quedar eliminado, penales",
+      summary:
+        "Struktura turnieju i awans/odpadnięcie: la fase de grupos, los octavos/cuartos de final, la semifinal, la final; avanzar / pasar a, quedar eliminado / quedar fuera, las eliminatorias, el tiempo extra, los penales. Uwaga: „avanzar/pasar A una fase\" (nie „ganar\"), a „eliminatorias\" to kwalifikacje PRZED turniejem.",
+      theory:
+        "FAZY (od najszerszej):\n— la fase de grupos = faza grupowa → los octavos de final = 1/8 finału → los cuartos de final = ćwierćfinał → la semifinal = półfinał → la final = finał. (32 equipos → 16 en octavos…)\n— UWAGA: „las eliminatorias\" to KWALIFIKACJE rozgrywane PRZED Mundialem (nie „octavos\"): „Polonia fue eliminada en las eliminatorias\".\n\nAWANSOWAĆ:\n— avanzar a / pasar a = awansować do: „México pasó / avanzó a (los) octavos de final\". Można też clasificarse = zakwalifikować się. NIE „ganar a octavos\" — do fazy się „przechodzi\", nie „wygrywa\" ją.\n\nODPAŚĆ:\n— quedar eliminado / ser eliminado / quedar fuera = odpaść; potocznie „se fue\" / „ya se fueron\" = odpadł/odpadli. „Fue eliminada POR Suecia\" = został wyeliminowany przez Szwecję.\n\nJAK ROZSTRZYGA SIĘ MECZ:\n— el tiempo extra / la prórroga = dogrywka; „se fueron a tiempo extra\"; los penales (MX) / los penaltis (ES) = rzuty karne; „ganó en penales\" = wygrał w karnych.\n— „avanzó a octavos por primera vez en 40 años\" = awansował do 1/8 po raz pierwszy od 40 lat.",
+      questions: [
+        {
+          type: "abc",
+          text: "Po fazie grupowej (la fase de grupos) następują:",
+          options: [
+            "los cuartos de final",
+            "los octavos de final",
+            "la semifinal",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kolejność: grupy → octavos (1/8) → cuartos (1/4) → semifinal → final.",
+        },
+        {
+          type: "fill",
+          text: "„Meksyk awansował do 1/8 finału\": „México pasó a ___ de final.\"",
+          options: null,
+          correctAnswer: "octavos",
+          explanation:
+            "los octavos de final = 1/8 finału; „pasar a / avanzar a octavos\" = awansować do 1/8.",
+        },
+        {
+          type: "abc",
+          text: "„Polska została wyeliminowana przez Szwecję\":",
+          options: [
+            "Polonia fue eliminada por Suecia",
+            "Polonia perdió Suecia",
+            "Polonia salió a Suecia",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "ser/quedar eliminado POR alguien = zostać wyeliminowanym przez kogoś. Przegrać z kimś = „perder con/contra\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Con la victoria, México ganó a octavos de final.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "do fazy się „pasa/avanza\": „pasó / avanzó A octavos\" (nie „ganó a octavos\")",
+            "powinno być „perdió\"",
+            "powinno być „los cuartos\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„ganar\" = wygrać mecz, nie awansować. Do kolejnej fazy się „pasa a / avanza a\": „pasó a octavos\".",
+        },
+        {
+          type: "fill",
+          text: "„Wygrali w rzutach karnych\": „Ganaron en ___.\" (l.mn., wariant meksykański)",
+          options: null,
+          correctAnswer: "penales",
+          explanation:
+            "los penales (MX) / los penaltis (ES) = rzuty karne; „ganar en penales\" = wygrać w karnych. Dogrywka = el tiempo extra / la prórroga.",
+        },
+        {
+          type: "abc",
+          text: "„Las eliminatorias\" to:",
+          options: [
+            "1/8 finału (już w trakcie Mundialu)",
+            "kwalifikacje rozgrywane PRZED Mundialem",
+            "finał",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "las eliminatorias = eliminacje/kwalifikacje przed turniejem (tu odpadła Polska). 1/8 to „los octavos\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Meksyk awansował do 1/8 finału po raz pierwszy od 40 lat, a Polska odpadła w eliminacjach — przegrała ze Szwecją\".",
+          options: null,
+          correctAnswer:
+            "„México pasó / avanzó a los octavos de final por primera vez en 40 años, y Polonia quedó eliminada en las eliminatorias — perdió con(tra) Suecia.\"",
+          explanation:
+            "Klucz: „pasó/avanzó a los octavos\", „por primera vez en 40 años\", „quedó eliminada en las eliminatorias\", „perdió con(tra) Suecia\".",
+        },
+      ],
+      salon: {
+        short:
+          "Fazy: fase de grupos → octavos → cuartos → semifinal → final. Awans: „pasar a / avanzar a octavos\". Odpaść: „quedar eliminado / quedar fuera\", potocznie „se fue\".",
+        expand:
+          "„avanzar/pasar A una fase\" (nie „ganar\" ją); clasificarse = zakwalifikować się. „ser/quedar eliminado POR alguien\". Rozstrzygnięcie: el tiempo extra / la prórroga, los penales (MX)/penaltis (ES), „ganó en penales\".",
+        trap:
+          "„las eliminatorias\" = KWALIFIKACJE przed turniejem, nie „octavos\" (1/8). I do fazy się „pasa/avanza\", a nie „gana\": „pasó a octavos\", nie „ganó a octavos\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 110. Hiszpański: probabilidades y apuestas del Mundial
+  // ============================================================
+  // Druga połowa rozmowy to typowanie: „le dan el 45% a Inglaterra", „voy con
+  // Senegal", „yo aposté por Brasil", „me da miedo apostar". apostar O→UE.
+  {
+    slug: "es-probabilidades-y-apuestas",
+    vaultSlug: "es",
+    label: "Hiszpański — probabilidades y apuestas (le dan el 45%, apostar, ir con un equipo)",
+    payload: {
+      title: "Probabilidades y apuestas — le dan el 45%, apostar por, ir con un equipo",
+      summary:
+        "Typowanie i prawdopodobieństwa: apostar (O→UE), la apuesta, las probabilidades/posibilidades, „le dan el 45% a X\", ir con / apostar por un equipo, la predicción, „por lógica\", „hay sorpresas\". Plus czasownik apostar odmienia się z wymianą O→UE: „yo apuesto\".",
+      theory:
+        "OBSTAWIAĆ:\n— apostar = obstawiać, stawiać (czasownik z wymianą O→UE: apuesto, apuestas, apuesta, apostamos, apuestan). la apuesta = zakład.\n— apostar POR / apostar A un equipo = obstawiać drużynę: „aposté por Brasil\". „Me da miedo apostar\" = boję się obstawiać.\n\nSZANSE I TYPOWANIE:\n— las probabilidades / las posibilidades = szanse, prawdopodobieństwo.\n— „le dan el 45% a Inglaterra\" = dają/typują Anglii 45% (szans): dar + procent + A + drużyna. „El 31% de probabilidad de tiempo extra\".\n— ir con / ir por un equipo = trzymać z, stawiać na: „personalmente voy con Senegal\".\n\nPRZEWIDYWANIA:\n— la predicción / el pronóstico = przewidywanie; predecir = przewidywać.\n— „por lógica va a ganar Argentina\" = z automatu/logicznie wygra Argentyna; „es un juego ganado\" = mecz z góry wygrany.\n— „este Mundial está dando muchas sorpresas\" / „hay sorpresas\" = ten Mundial daje dużo niespodzianek (dar una sorpresa = zaskoczyć).",
+      questions: [
+        {
+          type: "abc",
+          text: "„Obstawiać (zakład)\" po hiszpańsku:",
+          options: ["apostar", "apuntar", "aportar"],
+          correctAnswer: 0,
+          explanation:
+            "apostar = obstawiać; la apuesta = zakład. (apuntar = notować/celować; aportar = wnosić.)",
+        },
+        {
+          type: "fill",
+          text: "„Dają Anglii 45% szans\": „Le ___ el 45% a Inglaterra.\" (czasownik)",
+          options: null,
+          correctAnswer: "dan",
+          explanation:
+            "„le dan el 45% a X\" = typują/dają X 45% szans (dar + procent + a + drużyna).",
+        },
+        {
+          type: "abc",
+          text: "„Stawiam na Senegal / trzymam z Senegalem\":",
+          options: ["Voy con Senegal", "Voy en Senegal", "Salgo con Senegal"],
+          correctAnswer: 0,
+          explanation:
+            "ir con / ir por un equipo = trzymać z, stawiać na. Też: apostar por Senegal.",
+        },
+        {
+          type: "fill",
+          text: "„Boję się obstawiać\": „Me da ___ apostar.\"",
+          options: null,
+          correctAnswer: "miedo",
+          explanation:
+            "dar miedo = bać się (dosł. „to budzi we mnie strach\"): „me da miedo apostar\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Normalmente yo aposto por el equipo de casa.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "apostar ma wymianę O→UE: „yo apuesto\" (nie „aposto\")",
+            "powinno być „por a\"",
+            "powinno być „apostamos\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "apostar to czasownik O→UE: apuesto, apuestas, apuesta, apuestan (ale apostamos). Forma „aposto\" nie istnieje.",
+        },
+        {
+          type: "abc",
+          text: "„Ten Mundial daje dużo niespodzianek\":",
+          options: [
+            "Este Mundial está dando muchas sorpresas",
+            "Este Mundial hace muchas sorpresas",
+            "Este Mundial tiene muchos sorprendidos",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "dar una sorpresa = zaskoczyć; „está dando muchas sorpresas\" = daje dużo niespodzianek. Nie „hacer sorpresas\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Dają Argentynie 70%, ale są niespodzianki. Ja nie obstawiam, bo się boję — chociaż wszyscy tu obstawiają\".",
+          options: null,
+          correctAnswer:
+            "„Le dan el 70% a Argentina, pero hay sorpresas. Yo no apuesto porque me da miedo, aunque todos aquí apuestan.\"",
+          explanation:
+            "Klucz: „le dan el 70% a Argentina\", „hay sorpresas\", „no apuesto\", „me da miedo\", „todos apuestan\" (apostar O→UE).",
+        },
+      ],
+      salon: {
+        short:
+          "Typowanie: apostar (O→UE: apuesto), la apuesta, las probabilidades. „Le dan el 45% a Inglaterra\". „Voy con / apuesto por Senegal\".",
+        expand:
+          "apostar por / a un equipo; „me da miedo apostar\". la predicción / el pronóstico; „por lógica va a ganar\", „es un juego ganado\". „Está dando muchas sorpresas\" / „hay sorpresas\".",
+        trap:
+          "apostar to czasownik O→UE: „yo apuesto\", nie „aposto\". Procenty: „le dan el X% A alguien\". Niespodzianka: „dar una sorpresa\", nie „hacer\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 111. Hiszpański: ser vs estar con cualidades — „somos malos", no „estamos malos"
+  // ============================================================
+  // Powtarzalny błąd Nati z tej rozmowy: „no estamos buenos jugadores" i „estamos
+  // malos" → cecha/tożsamość to SER; „estar malo" znaczy „być CHORYM".
+  {
+    slug: "es-ser-vs-estar-cualidades",
+    vaultSlug: "es",
+    label: "Hiszpański — ser vs estar con cualidades (somos malos, no estamos malos)",
+    payload: {
+      title: "Ser vs estar con cualidades — somos malos (no estamos malos), la comida está fría",
+      summary:
+        "Cecha stała / tożsamość → SER (somos buenos/malos jugadores, Messi es el mejor); stan chwilowy lub wynik zmiany → ESTAR (estoy cansada, la comida está fría). Pułapka znaczeniowa: „estar malo\" = być CHORYM, a „ser malo\" = być złym/kiepskim. Z realnych błędów Nati: „no estamos buenos jugadores\" → „no somos buenos jugadores\".",
+      theory:
+        "SER — cecha stała, tożsamość, ocena „jacy jesteśmy\":\n— „(nosotros) somos buenos/malos jugadores\" = jesteśmy dobrzy/słabi; „Messi es el mejor\"; „el gimnasio es aburrido y repetitivo\" (cecha miejsca); narodowość, zawód, opis: „es impresionante\".\n\nESTAR — stan chwilowy, samopoczucie, wynik zmiany, położenie:\n— „estoy cansada / estoy enojada\" = jestem zmęczona/zła (teraz); „la comida está fría\" = jedzenie jest zimne (wystygło); „están agotadas\" = są wyprzedane; „México está jugando bien\" = teraz gra dobrze.\n\nPUŁAPKA — te same przymiotniki, inne znaczenie:\n— „estar malo\" = być CHORYM (!), „ser malo\" = być złym / kiepskim. Więc „estamos malos\" mówi „jesteśmy chorzy\", a chodziło o „somos malos\" = jesteśmy słabi.\n— „ser aburrido\" = nudny (cecha) vs „estar aburrido\" = znudzony (o osobie).\n— „ser bueno\" = dobry vs „estar bueno\" = smaczny / (potocznie) atrakcyjny.\n\nBŁĘDY NATI DO WYPLENIENIA:\n— „en Polonia no estamos buenos jugadores\" → „no SOMOS buenos jugadores\".\n— „estamos malos\" → „SOMOS malos\" (chyba że naprawdę chcesz powiedzieć, że jesteście chorzy).",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„En Polonia no estamos buenos jugadores, estamos malos.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "cecha/tożsamość → SER: „no SOMOS buenos jugadores… SOMOS malos\" (a „estar malo\" znaczy „być chorym\")",
+            "tylko „buenos\" jest źle",
+            "powinno być „hace malos\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Bycie (dobrym/słabym) zawodnikiem to cecha → SER: „somos buenos/malos jugadores\". „Estamos malos\" dosłownie znaczy „jesteśmy chorzy\".",
+        },
+        {
+          type: "abc",
+          text: "„Estar malo\" znaczy:",
+          options: ["być kiepskim/złym", "być chorym", "być zmęczonym"],
+          correctAnswer: 1,
+          explanation:
+            "„estar malo\" = być chorym; „być złym/kiepskim\" to „ser malo\".",
+        },
+        {
+          type: "fill",
+          text: "„Messi jest najlepszy\": „Messi ___ el mejor.\"",
+          options: null,
+          correctAnswer: "es",
+          explanation:
+            "Tożsamość/ocena stała → SER: „Messi es el mejor\".",
+        },
+        {
+          type: "fill",
+          text: "„Jestem zmęczona (teraz)\": „___ cansada.\"",
+          options: null,
+          correctAnswer: "Estoy",
+          explanation:
+            "Stan chwilowy/samopoczucie → ESTAR: „estoy cansada\".",
+        },
+        {
+          type: "abc",
+          text: "„Jedzenie jest zimne (wystygło)\":",
+          options: [
+            "La comida es fría",
+            "La comida está fría",
+            "La comida hace frío",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wynik zmiany/stan chwilowy → ESTAR: „la comida está fría\". (Z „ser\" brzmiałoby jak stała cecha potrawy.)",
+        },
+        {
+          type: "spot_error",
+          text: "„El gimnasio está aburrido y repetitivo, por eso no voy.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "cecha miejsca → „el gimnasio ES aburrido\"; „estar aburrido\" = być znudzonym (o osobie)",
+            "powinno być „hace aburrido\"",
+            "tylko „repetitivo\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„ser aburrido\" = nudny (cecha); „estar aburrido\" = znudzony (chwilowy stan osoby). Siłownia jako miejsce → „es aburrido\".",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij po hiszpańsku różnicę: „W Polsce nie jesteśmy dobrzy w piłce, jesteśmy słabi — ale to nie znaczy, że jesteśmy chorzy!\" (pokaż ser vs estar malo).",
+          options: null,
+          correctAnswer:
+            "„En Polonia no somos buenos en el fútbol, somos malos — pero eso no significa que estemos malos (enfermos).\"",
+          explanation:
+            "„somos malos\" = jesteśmy słabi (cecha, SER); „estamos malos\" = jesteśmy chorzy (stan, ESTAR). Po „no significa que\" idzie subjuntivo: „estemos\".",
+        },
+      ],
+      salon: {
+        short:
+          "Cecha/tożsamość → SER: „somos malos jugadores\", „Messi es el mejor\", „el gimnasio es aburrido\". Stan chwilowy/wynik zmiany → ESTAR: „estoy cansada\", „la comida está fría\".",
+        expand:
+          "Te same przymiotniki, inne znaczenie: „estar malo\" = być CHORYM vs „ser malo\" = być złym/kiepskim; „ser aburrido\" (nudny) vs „estar aburrido\" (znudzony); „ser bueno\" vs „estar bueno\" (smaczny). Tożsamość drużyny/gracza → ser.",
+        trap:
+          "Błąd Nati: „estamos malos\" / „no estamos buenos jugadores\" → „SOMOS malos\" / „no SOMOS buenos jugadores\". „Estar malo\" przypadkiem mówi, że jesteś chory.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 112. Hiszpański: „ojalá" y las palabras árabes en el español
+  // ============================================================
+  // Z końcówki rozmowy: „ojalá que le ganen a Inglaterra", tłumaczenie „ojalá"
+  // (arabskie „lo que Dios quiera") i wpływ arabski (Al-Ándalus, al- = rodzajnik).
+  {
+    slug: "es-ojala-y-palabras-arabes",
+    vaultSlug: "es",
+    label: "Hiszpański — „ojalá\" y las palabras árabes (ojalá + subjuntivo, Al-Ándalus)",
+    payload: {
+      title: "Ojalá y las palabras árabes — ojalá + subjuntivo, la herencia de Al-Ándalus",
+      summary:
+        "„Ojalá\" = oby / mam nadzieję, że; pochodzi z arabskiego (in šā' Allāh, „lo que Dios quiera\") i wymaga SUBJUNTIVO: „ojalá gane México\". Plus wpływ arabski na hiszpański (obecność w Hiszpanii 711–1492, Al-Ándalus → Andalucía): almohada, aceite, alcalde, aldea, álgebra, azúcar. „al-\" na początku to często arabski rodzajnik.",
+      theory:
+        "OJALÁ:\n— znaczenie: „oby\", „mam nadzieję, że\" (NIE „być może\" — to „quizás / tal vez\"). Pochodzi z arabskiego law/in šā' Allāh, dosł. „jeśli Bóg zechce\", „lo que Dios quiera\".\n— SKŁADNIA: ojalá (+ que) + SUBJUNTIVO. Teraźniejszy tryb łączący dla realnej nadziei: „Ojalá gane México\" = oby wygrał Meksyk; „Ojalá que le ganen a Inglaterra\".\n— Imperfecto de subjuntivo = życzenie mniej prawdopodobne / nierealne: „Ojalá lloviera\" = oby (choć wątpię) padało.\n\nWPŁYW ARABSKI:\n— Arabowie byli na Półwyspie Iberyjskim od 711 do 1492 r. (Al-Ándalus); stąd nazwa Andalucía. To ~8 wieków, dlatego hiszpański ma setki słów pochodzenia arabskiego.\n— „al-\" na początku to często arabski rodzajnik. Przykłady: almohada = poduszka, alcalde = burmistrz, aldea = wioska, álgebra, aluminio, alcachofa = karczoch; a także aceite = oliwa/olej, azúcar = cukier, naranja = pomarańcza, ojalá.\n— Hiszpański czerpał też z łaciny, greki, angielskiego, a w Meksyku z języków rdzennych (np. chocolate, tomate z náhuatl).",
+      questions: [
+        {
+          type: "abc",
+          text: "Po „ojalá\" używamy trybu:",
+          options: [
+            "indicativo („ojalá gana\")",
+            "subjuntivo („ojalá gane\")",
+            "infinitivo („ojalá ganar\")",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„ojalá\" zawsze łączy się z subjuntivo: „ojalá gane México\", „ojalá que ganen\".",
+        },
+        {
+          type: "fill",
+          text: "„Oby wygrał Meksyk\": „Ojalá ___ México.\" (od ganar, subjuntivo)",
+          options: null,
+          correctAnswer: "gane",
+          explanation:
+            "Presente de subjuntivo od „ganar\" → „gane\": „Ojalá gane México\".",
+        },
+        {
+          type: "abc",
+          text: "„Ojalá\" znaczy najbliżej:",
+          options: [
+            "być może (perhaps)",
+            "oby / mam nadzieję, że",
+            "na pewno",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„ojalá\" = oby / mam nadzieję. „Być może\" to „quizás / tal vez\" (też z subjuntivo, ale inne znaczenie).",
+        },
+        {
+          type: "fill",
+          text: "Słowo „ojalá\" pochodzi z języka ___.",
+          options: null,
+          correctAnswer: "árabe",
+          explanation:
+            "„ojalá\" pochodzi z arabskiego (in šā' Allāh → „lo que Dios quiera\").",
+        },
+        {
+          type: "abc",
+          text: "Które słowo NIE pochodzi z arabskiego?",
+          options: ["almohada", "aceite", "computadora"],
+          correctAnswer: 2,
+          explanation:
+            "almohada i aceite są arabskiego pochodzenia; „computadora\" jest z łaciny/angielskiego.",
+        },
+        {
+          type: "spot_error",
+          text: "„Ojalá México gana el domingo.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "po „ojalá\" musi być subjuntivo: „Ojalá (que) México gane el domingo\"",
+            "powinno być „ojalá ganar\"",
+            "powinno być „quizás\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„gana\" to indicativo; po „ojalá\" idzie subjuntivo: „gane\". „Ojalá (que) gane el domingo\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Oby Meksyk wygrał w niedzielę! »Ojalá« to arabskie słowo — Arabowie byli w Hiszpanii od 711 do 1492 roku, dlatego hiszpański ma dużo słów z arabskiego, jak almohada czy aceite\".",
+          options: null,
+          correctAnswer:
+            "„¡Ojalá (que) gane México el domingo! „Ojalá\" es una palabra árabe — los árabes estuvieron en España desde el 711 hasta 1492, por eso el español tiene muchas palabras del árabe, como almohada o aceite.\"",
+          explanation:
+            "Klucz: „ojalá gane\" (subjuntivo), „es una palabra árabe\", „estuvieron en España\", „el español tiene muchas palabras del árabe\".",
+        },
+      ],
+      salon: {
+        short:
+          "„Ojalá\" + SUBJUNTIVO = oby…: „ojalá gane México\", „ojalá que ganen\". Pochodzi z arabskiego („lo que Dios quiera\"), nie znaczy „być może\".",
+        expand:
+          "Presente de subj. dla realnej nadziei („ojalá gane\"), imperfecto de subj. dla mniej realnej („ojalá lloviera\"). Wpływ arabski (Al-Ándalus 711–1492 → Andalucía): al- = rodzajnik; almohada, alcalde, aldea, álgebra, azúcar, naranja, aceite.",
+        trap:
+          "Po „ojalá\" NIGDY indicativo: „ojalá gana\" ✗ → „ojalá gane\" ✓. I „ojalá\" ≠ „quizás/tal vez\" (być może) — to życzenie/nadzieja.",
+      },
+    },
+  },
 ];
