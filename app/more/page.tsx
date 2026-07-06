@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   LineChart,
@@ -14,11 +14,29 @@ import { useAuth, useUser } from "@/lib/auth-context";
 import {
   effectiveStreak,
   exportAllData,
+  getSessionCount,
+  useSessions,
   useUserDoc,
 } from "@/lib/firestore-data";
+import { streakNarrative } from "@/lib/streak";
 
 function plDni(n: number): string {
   return n === 1 ? "dzień" : "dni";
+}
+
+const MONTHS_PL = [
+  "STY", "LUT", "MAR", "KWI", "MAJ", "CZE",
+  "LIP", "SIE", "WRZ", "PAŹ", "LIS", "GRU",
+];
+
+/* Kolejne stemple lekko skręcone, jak przybijane ręcznie. */
+const STAMP_ROTATES = [-3, 2, -1.5, 3, -2];
+
+const ROMAN_CHAPTERS = ["I", "II", "III", "IV", "V"];
+
+function toDateMs(v: Date | { toDate(): Date } | null): number {
+  if (!v) return 0;
+  return v instanceof Date ? v.getTime() : v.toDate().getTime();
 }
 
 const LINKS = [
@@ -43,8 +61,39 @@ export default function MorePage() {
   const streak = effectiveStreak(userDoc);
   const displayName =
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "Czytelniczka";
-  const initial = (displayName?.[0] ?? "·").toUpperCase();
   const [exporting, setExporting] = useState(false);
+
+  /* Karta czytelnika: stemple ostatnich wizyt + licznik wypożyczeń + rozdział passy */
+  const sessions30 = useSessions(30);
+  const [totalSessions, setTotalSessions] = useState<number | null>(null);
+  useEffect(() => {
+    if (!user) return;
+    getSessionCount(user.uid)
+      .then(setTotalSessions)
+      .catch(() => {});
+  }, [user]);
+
+  const stampDays = useMemo(() => {
+    if (!sessions30) return null;
+    const seen = new Set<string>();
+    const days: Date[] = [];
+    const sorted = [...sessions30].sort(
+      (a, b) => toDateMs(b.startedAt) - toDateMs(a.startedAt)
+    );
+    for (const s of sorted) {
+      const d = new Date(toDateMs(s.startedAt));
+      if (!d.getTime()) continue;
+      d.setHours(0, 0, 0, 0);
+      const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      days.push(d);
+      if (days.length === 5) break;
+    }
+    return days.reverse();
+  }, [sessions30]);
+
+  const narrative = streakNarrative(streak);
 
   async function handleExport() {
     if (!user || exporting) return;
@@ -78,39 +127,126 @@ export default function MorePage() {
       </header>
 
       <div
-        className="brass-plaque flex items-center gap-5"
-        style={{ padding: "1.25rem 1.5rem" }}
+        className="tex-paper tex-noise-fine relative"
+        style={{
+          padding: "22px 24px 20px",
+          boxShadow:
+            "0 1px 0 rgba(255,250,235,0.6) inset, 0 -1px 0 rgba(80,50,20,0.18) inset, 0 18px 36px -14px rgba(0,0,0,0.7)",
+        }}
       >
         <div
-          className="font-display italic font-medium flex items-center justify-center shrink-0"
+          className="flex items-baseline justify-between flex-wrap"
+          style={{ gap: 12 }}
+        >
+          <span
+            className="eyebrow"
+            style={{ color: "rgba(122,74,31,0.75)", fontSize: 9 }}
+          >
+            Rejestr czytelni
+          </span>
+          <div className="text-right min-w-0">
+            <div
+              className="font-display italic truncate"
+              style={{ fontSize: 22, color: "#1B1108" }}
+            >
+              {displayName}
+            </div>
+            <div
+              className="signature truncate"
+              style={{ fontSize: 10, color: "rgba(27,17,8,0.55)" }}
+            >
+              {user?.email}
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="rule-gold"
+          style={{ height: 0.5, margin: "14px 0 16px", opacity: 0.7 }}
+        />
+
+        {stampDays && stampDays.length > 0 ? (
+          <div
+            className="flex flex-wrap items-center"
+            style={{ gap: 10 }}
+            role="img"
+            aria-label={`Stemple ostatnich wizyt: ${stampDays
+              .map((d) =>
+                d.toLocaleDateString("pl-PL", { day: "numeric", month: "long" })
+              )
+              .join(", ")}`}
+          >
+            {stampDays.map((d, i) => {
+              const color = i % 2 === 0 ? "#8B2E1F" : "#1f3a26";
+              return (
+                <span
+                  key={d.getTime()}
+                  aria-hidden
+                  style={{
+                    transform: `rotate(${STAMP_ROTATES[i % STAMP_ROTATES.length]}deg)`,
+                    border: `1.5px solid ${color}`,
+                    color,
+                    fontFamily:
+                      '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    padding: "4px 8px 3px",
+                    opacity: 0.85,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {String(d.getDate()).padStart(2, "0")} {MONTHS_PL[d.getMonth()]}
+                </span>
+              );
+            })}
+          </div>
+        ) : (
+          <p
+            className="signature"
+            style={{
+              fontSize: 11,
+              fontStyle: "italic",
+              color: "rgba(27,17,8,0.55)",
+            }}
+          >
+            {stampDays
+              ? "Pierwsze stemple pojawią się po sesjach w czytelni."
+              : "…"}
+          </p>
+        )}
+
+        <div
+          className="flex items-baseline justify-between flex-wrap"
           style={{
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle at 35% 30%, #d9b878, #6a4a1c 70%, #2a1808)",
-            color: "#1B1108",
-            fontSize: 22,
-            boxShadow:
-              "inset 0 1px 0 rgba(255,235,180,0.4), 0 2px 4px rgba(0,0,0,0.4)",
+            borderTop: "0.5px dashed rgba(27,17,8,0.24)",
+            marginTop: 16,
+            paddingTop: 12,
+            gap: 10,
           }}
         >
-          {initial}
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="hero-italic text-xl truncate" style={{ color: "#C9A961" }}>
-            {displayName}
-          </div>
-          <div className="brass-hint truncate" style={{ marginTop: "0.2rem" }}>
-            {user?.email}
-          </div>
-        </div>
-        <div className="text-right shrink-0">
-          <div className="brass-label">Passa</div>
-          <div className="brass-value" style={{ fontSize: "1.75rem", marginTop: "0.2rem" }}>
-            {streak}
-          </div>
-          <div className="brass-hint">{plDni(streak)}</div>
+          <span
+            className="signature"
+            style={{ fontSize: 11, color: "rgba(27,17,8,0.62)" }}
+          >
+            Wypożyczeń: {totalSessions ?? "—"}
+          </span>
+          <span
+            className="signature"
+            style={{ fontSize: 11, color: "rgba(27,17,8,0.62)" }}
+          >
+            Passa: {streak} {plDni(streak)}
+          </span>
+          <span
+            className="signature"
+            style={{ fontSize: 11, color: "rgba(27,17,8,0.62)" }}
+          >
+            {narrative.next != null && narrative.toNext != null
+              ? `Rozdział ${
+                  ROMAN_CHAPTERS[narrative.chapter] ?? narrative.chapter + 1
+                } za ${narrative.toNext} ${plDni(narrative.toNext)}`
+              : "Wszystkie rozdziały zdobyte"}
+          </span>
         </div>
       </div>
 

@@ -151,6 +151,27 @@ export default function DashboardPage() {
     }
     return out;
   }, [topics]);
+  // Terminy zwrotów: powroty poza dzisiejszą kolejką (jutro / 2–7 dni).
+  // Fresh/struggling pomijamy — one siedzą w kolejce „dziś" niezależnie od daty.
+  const returnForecast = useMemo(() => {
+    const out = { tomorrow: 0, week: 0 };
+    if (!topics) return out;
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    const DAY = 24 * 60 * 60 * 1000;
+    for (const t of topics) {
+      if (t.status === "fresh" || t.status === "struggling") continue;
+      const ms = toMillis(t.nextReview);
+      if (!ms) continue;
+      const day = new Date(ms);
+      day.setHours(0, 0, 0, 0);
+      const diff = Math.round((day.getTime() - startOfToday.getTime()) / DAY);
+      if (diff === 1) out.tomorrow += 1;
+      else if (diff >= 2 && diff <= 7) out.week += 1;
+    }
+    return out;
+  }, [topics]);
+
   const nextDueTopic = due[0] ?? null;
   const nextDueVaultName = useMemo(() => {
     if (!nextDueTopic || !vaults) return "";
@@ -403,6 +424,7 @@ export default function DashboardPage() {
               hasDue={hasDue}
               dueCount={due.length}
               dueComposition={dueComposition}
+              forecast={returnForecast}
               letterBody={letterBody}
               letterDateline={letterDateline}
               nextTopic={
@@ -723,6 +745,7 @@ interface PlanDniaV3Props {
   hasDue: boolean;
   dueCount: number;
   dueComposition: { fresh: number; review: number; struggling: number };
+  forecast: { tomorrow: number; week: number };
   letterBody: string;
   letterDateline: string;
   nextTopic: {
@@ -733,10 +756,56 @@ interface PlanDniaV3Props {
   } | null;
 }
 
+/* Wiersz marginaliów listu kuratora: etykieta … kropkowany leader … liczba. */
+function MarginaliaRow({
+  label,
+  n,
+  first,
+}: {
+  label: string;
+  n: number;
+  first: boolean;
+}) {
+  return (
+    <div
+      className="flex items-baseline"
+      style={{
+        gap: 10,
+        padding: "7px 0",
+        borderTop: first
+          ? "0.5px solid rgba(27,17,8,0.22)"
+          : "0.5px solid rgba(27,17,8,0.12)",
+      }}
+    >
+      <span
+        className="body-prose"
+        style={{ fontSize: 12.5, color: "rgba(27,17,8,0.75)" }}
+      >
+        {label}
+      </span>
+      <span
+        aria-hidden
+        style={{
+          flex: 1,
+          borderBottom: "1px dotted rgba(27,17,8,0.3)",
+          transform: "translateY(-3px)",
+        }}
+      />
+      <span
+        className="signature"
+        style={{ fontSize: 11, color: "rgba(27,17,8,0.65)" }}
+      >
+        {String(n).padStart(2, "0")}
+      </span>
+    </div>
+  );
+}
+
 function PlanDniaV3({
   hasDue,
   dueCount,
   dueComposition,
+  forecast,
   letterBody,
   letterDateline,
   nextTopic,
@@ -861,40 +930,32 @@ function PlanDniaV3({
                   </div>
                   <div style={{ alignSelf: "stretch" }}>
                     {queueRows.map(([label, n], i) => (
-                      <div
+                      <MarginaliaRow
                         key={label}
-                        className="flex items-baseline"
-                        style={{
-                          gap: 10,
-                          padding: "7px 0",
-                          borderTop:
-                            i === 0
-                              ? "0.5px solid rgba(27,17,8,0.22)"
-                              : "0.5px solid rgba(27,17,8,0.12)",
-                        }}
-                      >
-                        <span
-                          className="body-prose"
-                          style={{ fontSize: 12.5, color: "rgba(27,17,8,0.75)" }}
-                        >
-                          {label}
-                        </span>
-                        <span
-                          aria-hidden
-                          style={{
-                            flex: 1,
-                            borderBottom: "1px dotted rgba(27,17,8,0.3)",
-                            transform: "translateY(-3px)",
-                          }}
-                        />
-                        <span
-                          className="signature"
-                          style={{ fontSize: 11, color: "rgba(27,17,8,0.65)" }}
-                        >
-                          {String(n).padStart(2, "0")}
-                        </span>
-                      </div>
+                        label={label}
+                        n={n}
+                        first={i === 0}
+                      />
                     ))}
+                  </div>
+                  {/* Terminy zwrotów — prognoza powrotów spoza dzisiejszej kolejki */}
+                  <div style={{ alignSelf: "stretch", marginTop: 18 }}>
+                    <div
+                      className="eyebrow"
+                      style={{
+                        color: "rgba(27,17,8,0.5)",
+                        fontSize: 8.5,
+                        marginBottom: 3,
+                      }}
+                    >
+                      Terminy zwrotów
+                    </div>
+                    <MarginaliaRow label="Jutro" n={forecast.tomorrow} first />
+                    <MarginaliaRow
+                      label="Do 7 dni"
+                      n={forecast.week}
+                      first={false}
+                    />
                   </div>
                 </div>
               </div>
