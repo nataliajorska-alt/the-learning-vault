@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import type { Topic, Vault } from "@/lib/types";
+import { ZoomTrigger } from "@/components/ui/Lightbox";
 
 /* ============================================================
    THEORY PHASE — book spread with reading header, dial, breadcrumb,
@@ -1140,16 +1141,18 @@ function TheoryPlate({
           border: "0.5px solid rgba(184,146,77,0.45)",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageUrl}
-          alt={imageCaption ?? "Reprodukcja dzieła"}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "auto",
-          }}
-        />
+        <ZoomTrigger src={imageUrl} caption={imageCaption}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageUrl}
+            alt={imageCaption ?? "Reprodukcja dzieła"}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </ZoomTrigger>
       </div>
       {imageCaption && (
         <figcaption

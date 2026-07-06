@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Pencil } from "lucide-react";
 import type { ReactNode } from "react";
+import { ZoomTrigger } from "@/components/ui/Lightbox";
 
 export type StampColor = "red" | "green" | "blue" | "orange" | "gold";
 
@@ -111,18 +112,25 @@ export function CatalogCard({
             background: "rgba(27,17,8,0.08)",
           }}
         >
-          <img
+          {/* stopLink: karta jest Linkiem — klik w obraz powiększa, nie nawiguje */}
+          <ZoomTrigger
             src={imageUrl}
-            alt={imageCaption ?? (typeof title === "string" ? title : "Ilustracja tematu")}
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: 150,
-              objectFit: "cover",
-              display: "block",
-              filter: "saturate(0.92) contrast(0.98)",
-            }}
-          />
+            caption={imageCaption ?? (typeof title === "string" ? title : undefined)}
+            stopLink
+          >
+            <img
+              src={imageUrl}
+              alt={imageCaption ?? (typeof title === "string" ? title : "Ilustracja tematu")}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: 150,
+                objectFit: "cover",
+                display: "block",
+                filter: "saturate(0.92) contrast(0.98)",
+              }}
+            />
+          </ZoomTrigger>
           {imageCaption && (
             <figcaption
               className="signature"

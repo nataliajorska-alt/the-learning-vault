@@ -11,6 +11,7 @@ import {
 } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ZoomTrigger } from "@/components/ui/Lightbox";
 import {
   markTopicShownInSalon,
   useSalonPhrases,
@@ -269,13 +270,15 @@ export function SalonDetail({ topicId }: { topicId: string }) {
               className="absolute pointer-events-none"
               style={{ inset: 6, border: "0.5px solid rgba(184,146,77,0.4)", zIndex: 2 }}
             />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={topic.imageUrl}
-              alt={topic.imageCaption ?? topic.title}
-              className="w-full h-auto block"
-              style={{ border: "1px solid rgba(184,146,77,0.3)" }}
-            />
+            <ZoomTrigger src={topic.imageUrl} caption={topic.imageCaption}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={topic.imageUrl}
+                alt={topic.imageCaption ?? topic.title}
+                className="w-full h-auto block"
+                style={{ border: "1px solid rgba(184,146,77,0.3)" }}
+              />
+            </ZoomTrigger>
             {topic.imageCaption && (
               <figcaption
                 className="signature"

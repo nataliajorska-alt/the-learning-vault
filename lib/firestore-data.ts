@@ -202,6 +202,28 @@ export function useErrors() {
   return errors;
 }
 
+/** Rehabilitowane wpisy Erraty — archiwum („półka honorowa") na /errors.
+ *  Bez orderBy w zapytaniu: same równości nie wymagają indeksu złożonego,
+ *  a kolejność (lastWrongAt malejąco) ustala klient. */
+export function useRehabilitatedErrors() {
+  const user = useUser();
+  const [errors, setErrors] = useState<VaultError[] | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    const { db } = getFirebase();
+    const q = query(
+      collection(db, "errors"),
+      where("userId", "==", user.uid),
+      where("status", "==", "rehabilitated")
+    );
+    const unsub = onSnapshot(q, (snap) => setErrors(unwrap<VaultError>(snap)));
+    return () => unsub();
+  }, [user]);
+
+  return errors;
+}
+
 // --- SALON -----------------------------------------------------------------
 
 export function useSalonPhrases() {

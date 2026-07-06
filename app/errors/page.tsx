@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import {
   useErrors,
+  useRehabilitatedErrors,
   deleteError,
   markErrorRehabilitated,
 } from "@/lib/firestore-data";
@@ -120,9 +122,151 @@ export default function ErrorsPage() {
             <GroupedErrata items={filtered} />
           </VaultSurface>
         </div>
+        <RehabArchive />
         <PageFooter />
       </div>
     </div>
+  );
+}
+
+/* ============================================================
+   Półka honorowa — archiwum rehabilitowanych wpisów.
+   Zwinięta domyślnie; wpis znika z aktywnej listy, ale zostaje
+   tu ślad zwycięstwa zamiast pustki.
+   ============================================================ */
+
+function toDateSafe(v: VaultError["lastWrongAt"]): Date | null {
+  if (!v) return null;
+  if (v instanceof Date) return v;
+  if (typeof v === "object" && "toDate" in v) return v.toDate();
+  return null;
+}
+
+function RehabArchive() {
+  const rehabbed = useRehabilitatedErrors();
+  const [open, setOpen] = useState(false);
+
+  const sorted = useMemo(() => {
+    if (!rehabbed) return [];
+    return [...rehabbed].sort(
+      (a, b) =>
+        (toDateSafe(b.lastWrongAt)?.getTime() ?? 0) -
+        (toDateSafe(a.lastWrongAt)?.getTime() ?? 0)
+    );
+  }, [rehabbed]);
+
+  if (!rehabbed || rehabbed.length === 0) return null;
+
+  return (
+    <section style={{ padding: "0 24px 48px" }}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="w-full flex items-center justify-between gap-4"
+        style={{
+          padding: "14px 4px",
+          borderTop: "0.5px solid rgba(184,146,77,0.35)",
+          borderBottom: "0.5px solid rgba(184,146,77,0.2)",
+          background: "transparent",
+          cursor: "pointer",
+        }}
+      >
+        <span className="flex items-baseline gap-3 min-w-0 flex-wrap">
+          <span
+            className="eyebrow"
+            style={{ color: "rgba(184,146,77,0.8)", fontSize: 9 }}
+          >
+            Półka honorowa
+          </span>
+          <span
+            className="font-display italic"
+            style={{ fontSize: 20, color: "var(--c-paper-100)" }}
+          >
+            Rehabilitowane · {sorted.length}
+          </span>
+        </span>
+        <ChevronDown
+          className="w-4 h-4 shrink-0"
+          style={{
+            color: "rgba(184,146,77,0.8)",
+            transform: open ? "rotate(180deg)" : "none",
+            transition: "transform 0.25s ease",
+          }}
+          aria-hidden
+        />
+      </button>
+      {open && (
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: 14, marginTop: 18 }}
+        >
+          {sorted.map((e) => {
+            const d = toDateSafe(e.lastWrongAt);
+            return (
+              <article
+                key={e.id}
+                className="tex-paper tex-noise-fine relative animate-fadein"
+                style={{ padding: "14px 16px 12px", opacity: 0.94 }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span
+                    className="signature"
+                    style={{
+                      fontSize: 9,
+                      letterSpacing: "0.14em",
+                      color: "rgba(27,17,8,0.55)",
+                    }}
+                  >
+                    {vaultSig(e.vaultName)} · {idSig(e.id)}
+                  </span>
+                  <span
+                    aria-hidden
+                    style={{
+                      border: "1.5px solid var(--c-racing, #1f3a26)",
+                      color: "var(--c-racing, #1f3a26)",
+                      fontFamily: "ui-monospace, Menlo, monospace",
+                      fontSize: 8,
+                      fontWeight: 700,
+                      letterSpacing: "0.22em",
+                      padding: "2px 6px",
+                      transform: "rotate(3deg)",
+                      textTransform: "uppercase",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Rehabilitowane
+                  </span>
+                </div>
+                <p
+                  className="font-display italic"
+                  style={{
+                    fontSize: 15.5,
+                    lineHeight: 1.35,
+                    color: "#1B1108",
+                    marginTop: 10,
+                    marginBottom: 8,
+                  }}
+                >
+                  {e.correctVersion}
+                </p>
+                <p
+                  className="caption"
+                  style={{ fontSize: 10.5, color: "rgba(27,17,8,0.55)" }}
+                >
+                  {e.timesWrong}{" "}
+                  {plPlural(e.timesWrong, "upadek", "upadki", "upadków")},
+                  zanim weszło w krew
+                  {d
+                    ? ` · ostatni ${d.getDate()} ${MONTHS_PL_SHORT[d.getMonth()]}`
+                    : ""}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 }
 
