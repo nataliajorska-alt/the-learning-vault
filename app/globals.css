@@ -309,6 +309,40 @@ body.bg-grain {
   letter-spacing: 0.16em;
 }
 
+/* "OPANOWANE" — złoty stempel katalogu głównego, przybijany w Korekcie,
+   gdy sesja przenosi temat w status mastered. */
+.mastered-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0.55rem 1.3rem 0.6rem;
+  border: 2.5px solid var(--c-gold-600, #927037);
+  border-radius: 3px;
+  color: var(--c-gold-700, #6a5128);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 800;
+  text-transform: uppercase;
+  background-color: rgba(184, 146, 77, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(146, 112, 55, 0.3);
+  transform: rotate(-4deg);
+  opacity: 0.94;
+  pointer-events: none;
+  user-select: none;
+  animation: stamp-press 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s backwards;
+}
+
+.mastered-stamp-top {
+  font-size: 8px;
+  letter-spacing: 0.32em;
+  opacity: 0.8;
+}
+
+.mastered-stamp-main {
+  font-size: 16px;
+  letter-spacing: 0.18em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fadein {
     animation: none;
@@ -317,6 +351,9 @@ body.bg-grain {
     animation: none;
   }
   .rehab-stamp {
+    animation: none;
+  }
+  .mastered-stamp {
     animation: none;
   }
   .seal-press,

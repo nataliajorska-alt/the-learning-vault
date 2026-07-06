@@ -19,6 +19,8 @@ interface CatalogCardProps {
   subtitle?: ReactNode;
   footer?: ReactNode;
   stamp?: { label: string; color: StampColor };
+  /** postęp serii do opanowania — wypełnione pipsy z total (+ opcjonalna nota) */
+  mastery?: { filled: number; total: number; note?: string };
   imageUrl?: string;
   imageCaption?: string;
   href?: string;
@@ -34,6 +36,7 @@ export function CatalogCard({
   subtitle,
   footer,
   stamp,
+  mastery,
   imageUrl,
   imageCaption,
   href,
@@ -57,6 +60,48 @@ export function CatalogCard({
       <div className="catalog-title">{title}</div>
 
       {subtitle && <div className="catalog-subtitle mt-2">{subtitle}</div>}
+
+      {mastery && (
+        <div
+          className="mt-3 flex items-center flex-wrap"
+          style={{ gap: 6 }}
+          role="img"
+          aria-label={`Postęp opanowania: ${mastery.filled} z ${mastery.total}${
+            mastery.note ? ` — ${mastery.note}` : ""
+          }`}
+        >
+          {Array.from({ length: mastery.total }, (_, i) => (
+            <span
+              key={i}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                background:
+                  i < mastery.filled ? "var(--c-gold-500, #B8924D)" : "transparent",
+                border: "1px solid rgba(146,112,55,0.75)",
+                boxShadow:
+                  i < mastery.filled
+                    ? "inset 0 -1px 1px rgba(0,0,0,0.25)"
+                    : "none",
+              }}
+            />
+          ))}
+          {mastery.note && (
+            <span
+              className="signature"
+              style={{
+                color: "rgba(27,17,8,0.6)",
+                fontSize: 10,
+                fontStyle: "italic",
+                marginLeft: 4,
+              }}
+            >
+              {mastery.note}
+            </span>
+          )}
+        </div>
+      )}
 
       {imageUrl && (
         <figure

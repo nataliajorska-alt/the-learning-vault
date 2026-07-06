@@ -2,7 +2,7 @@
 
 import { useId } from "react";
 
-export type WaxTone = "oxblood" | "burgundy" | "umber";
+export type WaxTone = "oxblood" | "burgundy" | "umber" | "gold";
 
 const PALETTES: Record<
   WaxTone,
@@ -28,6 +28,14 @@ const PALETTES: Record<
     lo: "#3e1c0a",
     shadow: "#170a04",
     shape: "50% 50% 53% 47% / 53% 49% 51% 47%",
+  },
+  // złoty lak — zarezerwowany dla momentu przejścia tematu w "mastered"
+  gold: {
+    hi: "#d9b878",
+    mid: "#a8823f",
+    lo: "#5f4720",
+    shadow: "#241a08",
+    shape: "51% 49% 50% 50% / 49% 53% 47% 51%",
   },
 };
 

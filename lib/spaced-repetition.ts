@@ -48,3 +48,13 @@ export function applySrs(topic: Topic, verdict: Verdict): SrsUpdate {
 
   return { interval, ease, correctStreak, nextReview, status };
 }
+
+/** Próg serii wymagany do statusu "mastered" — tyle pipsów postępu pokazuje UI. */
+export const MASTERY_STREAK = 4;
+
+/** Czy jedna kolejna bezbłędna powtórka przeniesie temat w "mastered".
+    Symuluje applySrs, bo mastery zależy też od interwału, nie tylko serii. */
+export function nextCorrectMasters(topic: Topic): boolean {
+  if (topic.status === "mastered") return false;
+  return applySrs(topic, "correct").status === "mastered";
+}

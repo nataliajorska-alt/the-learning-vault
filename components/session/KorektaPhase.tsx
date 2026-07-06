@@ -103,6 +103,10 @@ export interface SessionReceipt {
   nextReview: string;
   status: string;
   correctStreak: number;
+  /** ta sesja przeniosła temat w status "mastered" — złoty stempel i lak */
+  justMastered: boolean;
+  /** jedna kolejna bezbłędna powtórka opanuje temat */
+  oneAwayFromMastery: boolean;
   errorsAdded: number;
   errorsReinforced: number;
   errorsRehabilitated: number;
@@ -627,18 +631,22 @@ function PodsumowaniePage({
       : String(totalQ);
   const summary = `Korekta · ${correctWord} z ${totalWord}`;
 
-  const errorWord =
-    wrongCount === 0
-      ? "Bez błędów."
-      : wrongCount === 1
-      ? "Jeden błąd poszedł"
-      : wrongCount < 5
-      ? `${wrongCount} błędy poszły`
-      : `${wrongCount} błędów poszło`;
-  const tail =
-    wrongCount === 0
-      ? "Temat wraca później, na lżejszych warunkach."
-      : "do Error Vault. Wrócą same — krócej, częściej, do skutku.";
+  // komplet trafień (bez pominiętych pytań) dostaje własne zdanie
+  const perfect = totalQ > 0 && correctCount === totalQ;
+  const errorWord = perfect
+    ? "Bez jednej skazy."
+    : wrongCount === 0
+    ? "Bez błędów."
+    : wrongCount === 1
+    ? "Jeden błąd poszedł"
+    : wrongCount < 5
+    ? `${wrongCount} błędy poszły`
+    : `${wrongCount} błędów poszło`;
+  const tail = receipt?.justMastered
+    ? "Temat przechodzi do katalogu głównego — odtąd wraca tylko kontrolnie."
+    : wrongCount === 0
+    ? "Temat wraca później, na lżejszych warunkach."
+    : "do Error Vault. Wrócą same — krócej, częściej, do skutku.";
 
   return (
     <div
@@ -850,6 +858,21 @@ function PodsumowaniePage({
           </p>
         </div>
 
+        {receipt?.justMastered && (
+          <div
+            className="flex justify-center"
+            style={{ marginTop: 2, marginBottom: 20 }}
+          >
+            <span className="mastered-stamp">
+              <span className="mastered-stamp-top">Katalog główny · §</span>
+              <span className="mastered-stamp-main">Opanowane</span>
+              <span className="mastered-stamp-top" style={{ marginTop: 1 }}>
+                {signature}
+              </span>
+            </span>
+          </div>
+        )}
+
         {receipt && <ReceiptBox receipt={receipt} />}
 
         <div
@@ -905,8 +928,11 @@ function PodsumowaniePage({
 
         <div style={{ flex: 1, minHeight: 16 }} />
 
-        {/* Lakowa pieczęć — rytuał domknięcia sesji */}
-        <ClosingSeal sessionNumber={sessionNumber ?? null} />
+        {/* Lakowa pieczęć — rytuał domknięcia sesji; złoty lak przy opanowaniu */}
+        <ClosingSeal
+          sessionNumber={sessionNumber ?? null}
+          gold={Boolean(receipt?.justMastered)}
+        />
 
         {/* CTA */}
         <div
@@ -949,7 +975,13 @@ function PodsumowaniePage({
   );
 }
 
-function ClosingSeal({ sessionNumber }: { sessionNumber: number | null }) {
+function ClosingSeal({
+  sessionNumber,
+  gold = false,
+}: {
+  sessionNumber: number | null;
+  gold?: boolean;
+}) {
   const now = new Date();
   const months = [
     "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
@@ -967,7 +999,7 @@ function ClosingSeal({ sessionNumber }: { sessionNumber: number | null }) {
       style={{ gap: 18, marginTop: 8, marginBottom: 4 }}
     >
       <div className="seal-press shrink-0">
-        <WaxSeal size={66} label="LV" tone="oxblood" rotate={-6} />
+        <WaxSeal size={66} label="LV" tone={gold ? "gold" : "oxblood"} rotate={-6} />
       </div>
       <div className="seal-engrave">
         <div
@@ -1069,6 +1101,19 @@ function ReceiptBox({ receipt }: { receipt: SessionReceipt }) {
           </div>
         ))}
       </div>
+      {receipt.oneAwayFromMastery && (
+        <p
+          className="caption"
+          style={{
+            color: "rgba(107,79,37,0.95)",
+            fontStyle: "italic",
+            lineHeight: 1.5,
+            marginTop: 9,
+          }}
+        >
+          Jeszcze jedna bezbłędna powtórka i temat trafi do katalogu głównego.
+        </p>
+      )}
       {receipt.errorsRehabilitated > 0 && (
         <div
           className="flex items-center justify-center"

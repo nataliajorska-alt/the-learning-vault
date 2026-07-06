@@ -30,7 +30,7 @@ import { TestPhase } from "@/components/session/TestPhase";
 import { KorektaPhase } from "@/components/session/KorektaPhase";
 import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { Question, Topic, Vault } from "@/lib/types";
-import type { Verdict } from "@/lib/spaced-repetition";
+import { nextCorrectMasters, type Verdict } from "@/lib/spaced-repetition";
 import type { Timestamp } from "firebase/firestore";
 import {
   clearSavedSession,
@@ -742,6 +742,8 @@ function buildSessionReceipt(opts: {
   );
   const correctBonus = Math.min(correctDelta, 8);
   const baseXp = opts.compact ? 10 : 25;
+  const justMastered =
+    baseline.status !== "mastered" && opts.topic.status === "mastered";
   return {
     attemptsDelta,
     correctDelta,
@@ -749,6 +751,8 @@ function buildSessionReceipt(opts: {
     nextReview: reviewDateLabel(opts.topic.nextReview),
     status: topicStatusLabel(opts.topic.status),
     correctStreak: opts.topic.correctStreak ?? 0,
+    justMastered,
+    oneAwayFromMastery: !justMastered && nextCorrectMasters(opts.topic),
     errorsAdded: opts.sessionEffects.errorsAdded,
     errorsReinforced: opts.sessionEffects.errorsReinforced,
     errorsRehabilitated: opts.sessionEffects.errorsRehabilitated,

@@ -6,6 +6,7 @@ import { CatalogCard, type StampColor } from "@/components/ui/CatalogCard";
 import { VaultIcon } from "@/components/ui/VaultIcon";
 import { useTopics, useVaultBySlug } from "@/lib/firestore-data";
 import { PageSkeleton } from "@/components/ui/PageSkeleton";
+import { MASTERY_STREAK, nextCorrectMasters } from "@/lib/spaced-repetition";
 
 const statusLabel: Record<string, string> = {
   fresh: "świeże",
@@ -146,6 +147,13 @@ export default function VaultDetailPage({
               stamp={{
                 label: statusLabel[t.status] ?? t.status,
                 color: statusStampColor[t.status] ?? "gold",
+              }}
+              mastery={{
+                filled: Math.min(t.correctStreak ?? 0, MASTERY_STREAK),
+                total: MASTERY_STREAK,
+                note: nextCorrectMasters(t)
+                  ? "jeszcze 1 bezbłędna powtórka"
+                  : undefined,
               }}
               delayMs={i * 35}
             />
