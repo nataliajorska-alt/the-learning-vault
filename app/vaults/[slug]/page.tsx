@@ -7,6 +7,7 @@ import { VaultIcon } from "@/components/ui/VaultIcon";
 import { useTopics, useVaultBySlug } from "@/lib/firestore-data";
 import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import { MASTERY_STREAK, nextCorrectMasters } from "@/lib/spaced-repetition";
+import { isTopicDue, reviewDateLabel } from "@/lib/learning-copy";
 
 const statusLabel: Record<string, string> = {
   fresh: "świeże",
@@ -100,8 +101,17 @@ export default function VaultDetailPage({
 
       {topics.length === 0 ? (
         <div className="card text-center py-16">
+          <div
+            className="ornament-sep mx-auto"
+            style={{ maxWidth: 220, opacity: 0.75, marginBottom: 18 }}
+            aria-hidden
+          >
+            <span className="font-display italic" style={{ fontSize: 17 }}>
+              ❧
+            </span>
+          </div>
           <p className="hero-italic text-2xl text-muted">
-            Tu jeszcze nic nie ma.
+            Ta półka czeka na pierwszy tom.
           </p>
           <p className="text-sm text-muted mt-2">
             Wklej notatki w sekcji Admin, a ja podpowiem strukturę.
@@ -117,9 +127,21 @@ export default function VaultDetailPage({
               readHref={`/czytelnia/${t.id}`}
               signature={`${vaultSig(vault.name)} · ${idSig(t.id)}`}
               rightMeta={
-                t.totalAttempts > 0
-                  ? `${Math.round((t.totalCorrect / t.totalAttempts) * 100)}%`
-                  : "—"
+                <span
+                  className="flex flex-col items-end"
+                  style={{ gap: 2, textAlign: "right" }}
+                >
+                  <span>
+                    {t.totalAttempts > 0
+                      ? `${Math.round((t.totalCorrect / t.totalAttempts) * 100)}%`
+                      : "—"}
+                  </span>
+                  <span style={{ fontSize: 8.5, opacity: 0.8 }}>
+                    {isTopicDue(t)
+                      ? "w kolejce dziś"
+                      : `wraca ${reviewDateLabel(t.nextReview)}`}
+                  </span>
+                </span>
               }
               title={t.title}
               subtitle={t.summary}

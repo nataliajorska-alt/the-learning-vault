@@ -10,6 +10,7 @@ import {
   markErrorRehabilitated,
 } from "@/lib/firestore-data";
 import { plPlural } from "@/lib/plural";
+import { reviewDateLabel } from "@/lib/learning-copy";
 import { PageSkeleton } from "@/components/ui/PageSkeleton";
 import type { VaultError } from "@/lib/types";
 
@@ -680,6 +681,15 @@ function ErrataGrid({ items }: { items: VaultError[] }) {
         style={{ padding: "80px 0", gap: 18 }}
       >
         <div
+          className="ornament-sep"
+          style={{ width: 220, opacity: 0.75 }}
+          aria-hidden
+        >
+          <span className="font-display italic" style={{ fontSize: 17 }}>
+            ❦
+          </span>
+        </div>
+        <div
           className="font-display italic"
           style={{ fontSize: 42, color: "var(--c-paper-100)" }}
         >
@@ -1007,7 +1017,20 @@ function ErratumCard({
           minHeight: compact ? 34 : 44,
         }}
       >
-        <RehabPips value={Math.min(3, card.correctStreak)} />
+        <div className="flex items-center min-w-0" style={{ gap: 10 }}>
+          <RehabPips value={Math.min(3, card.correctStreak)} />
+          <span
+            className="signature"
+            style={{
+              fontSize: 9.5,
+              color: "rgba(27,17,8,0.5)",
+              letterSpacing: "0.06em",
+              whiteSpace: "nowrap",
+            }}
+          >
+            ostatnia: {reviewDateLabel(card.lastWrongAt)}
+          </span>
+        </div>
         <div className="flex items-center" style={{ gap: 14 }}>
           <ErratumActions card={card} />
           {chronic ? (

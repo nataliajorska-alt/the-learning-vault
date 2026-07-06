@@ -1215,6 +1215,15 @@ function QueueClearCard() {
         }}
       >
         <div
+          className="ornament-sep"
+          style={{ marginBottom: 14, opacity: 0.7, maxWidth: 220 }}
+          aria-hidden
+        >
+          <span className="font-display italic" style={{ fontSize: 15 }}>
+            ❦
+          </span>
+        </div>
+        <div
           className="font-display italic font-medium"
           style={{ fontSize: 24, color: "var(--c-paper-100)", lineHeight: 1.15 }}
         >

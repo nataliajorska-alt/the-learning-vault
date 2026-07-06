@@ -284,6 +284,7 @@ export default function StatsPage() {
       value: String(streak),
       unit: plPlural(streak, "dzień", "dni", "dni"),
       note: passaNote,
+      sigil: "❦",
     },
     {
       key: "trafnosc",
@@ -291,6 +292,7 @@ export default function StatsPage() {
       value: String(overallAccuracy),
       unit: "%",
       note: `z ${totalAttempts} ${plPlural(totalAttempts, "próby", "prób", "prób")}`,
+      sigil: "✦",
     },
     {
       key: "opanowane",
@@ -298,12 +300,14 @@ export default function StatsPage() {
       value: String(mastered),
       unit: `/ ${topics?.length ?? 0}`,
       note: "plakiet w tablicy honorowej",
+      sigil: "❧",
     },
     {
       key: "sesje",
       label: "Sesje",
       value: String(sessionsAgg.count),
       unit: "",
+      sigil: "§",
       note:
         sessionsAgg.avgDuration > 0
           ? `90 dni · średnio ${Math.round(sessionsAgg.avgDuration / 60)} min`
@@ -1059,6 +1063,8 @@ interface Miara {
   value: string;
   unit: string;
   note: string;
+  /** znak wodny plakiety — każda miara ma własny sygiel */
+  sigil?: string;
 }
 
 function MiaraPlaque({ m }: { m: Miara }) {
@@ -1077,9 +1083,30 @@ function MiaraPlaque({ m }: { m: Miara }) {
         display: "flex",
         flexDirection: "column",
         gap: 14,
+        overflow: "hidden",
       }}
     >
       <CornerDots />
+      {m.sigil && (
+        <span
+          aria-hidden
+          className="font-display italic"
+          style={{
+            position: "absolute",
+            right: 10,
+            bottom: -14,
+            fontSize: 68,
+            lineHeight: 1,
+            color: "var(--c-gold-400)",
+            opacity: hover ? 0.16 : 0.1,
+            transform: "rotate(-8deg)",
+            pointerEvents: "none",
+            transition: "opacity .2s",
+          }}
+        >
+          {m.sigil}
+        </span>
+      )}
       <span className="eyebrow" style={{ color: "var(--c-gold-400)", fontSize: 10 }}>
         {m.label}
       </span>
