@@ -114,6 +114,7 @@ export default function VaultDetailPage({
               key={t.id}
               href={`/study/session/new?topic=${t.id}`}
               editHref={`/vaults/${vault.slug}/${t.id}`}
+              readHref={`/czytelnia/${t.id}`}
               signature={`${vaultSig(vault.name)} · ${idSig(t.id)}`}
               rightMeta={
                 t.totalAttempts > 0

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Pencil } from "lucide-react";
+import { BookOpen, Pencil } from "lucide-react";
 import type { ReactNode } from "react";
 import { ZoomTrigger } from "@/components/ui/Lightbox";
 
@@ -27,6 +27,8 @@ interface CatalogCardProps {
   href?: string;
   /** jeśli podany, w rogu karty pojawia się dyskretna ikona edycji prowadząca tu */
   editHref?: string;
+  /** jeśli podany, pod ikoną edycji pojawia się wejście do czytelni (lektura bez testu) */
+  readHref?: string;
   delayMs?: number;
 }
 
@@ -42,6 +44,7 @@ export function CatalogCard({
   imageCaption,
   href,
   editHref,
+  readHref,
   delayMs = 0,
 }: CatalogCardProps) {
   const inner = (
@@ -180,26 +183,45 @@ export function CatalogCard({
     </Link>
   ) : null;
 
+  const readButton = readHref ? (
+    <Link
+      href={readHref}
+      aria-label="Otwórz w czytelni (lektura bez testu)"
+      title="Czytelnia — lektura bez testu"
+      className="absolute top-11 right-2 z-10 flex items-center justify-center w-7 h-7 rounded-full bg-cream/85 border border-line text-muted opacity-40 hover:opacity-100 hover:text-gold focus-visible:opacity-100 focus-visible:text-gold transition-opacity"
+    >
+      <BookOpen className="w-3.5 h-3.5" />
+    </Link>
+  ) : null;
+
+  const corner =
+    editButton || readButton ? (
+      <>
+        {editButton}
+        {readButton}
+      </>
+    ) : null;
+
   if (href) {
     const link = (
       <Link href={href} className="catalog-link block group">
         {inner}
       </Link>
     );
-    if (!editButton) return link;
+    if (!corner) return link;
     return (
       <div className="relative">
         {link}
-        {editButton}
+        {corner}
       </div>
     );
   }
 
-  if (!editButton) return inner;
+  if (!corner) return inner;
   return (
     <div className="relative">
       {inner}
-      {editButton}
+      {corner}
     </div>
   );
 }

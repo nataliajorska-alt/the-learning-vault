@@ -21,6 +21,7 @@ import {
   useUserDoc,
   useVaults,
 } from "@/lib/firestore-data";
+import { STREAK_MILESTONES, nextMilestone } from "@/lib/streak";
 import { topicQueueReason } from "@/lib/learning-copy";
 import { idSig, vaultSig } from "@/lib/sig";
 import type { Timestamp } from "firebase/firestore";
@@ -614,6 +615,15 @@ interface HeroProps {
 
 function Hero({ displayDate, chapterRoman, streak, heroLead }: HeroProps) {
   const [minHover, setMinHover] = useState(false);
+  // pasek do następnego kamienia passy (7/30/100/365)
+  const nextM = nextMilestone(streak);
+  const prevM =
+    [...STREAK_MILESTONES].reverse().find((m) => m <= streak) ?? 0;
+  const fill =
+    nextM != null
+      ? Math.min(1, Math.max(0, (streak - prevM) / (nextM - prevM)))
+      : 1;
+  const toNext = nextM != null ? nextM - streak : 0;
   return (
     <div className="px-6 md:px-12 lg:px-16 pt-12 md:pt-16 pb-8 md:pb-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -656,7 +666,7 @@ function Hero({ displayDate, chapterRoman, streak, heroLead }: HeroProps) {
               style={{
                 color: "var(--c-paper-300)",
                 opacity: 0.78,
-                marginBottom: 24,
+                marginBottom: nextM != null ? 10 : 24,
                 gap: 10,
                 fontSize: 14,
               }}
@@ -684,6 +694,62 @@ function Hero({ displayDate, chapterRoman, streak, heroLead }: HeroProps) {
                 </span>{" "}
                 — {streak === 1 ? "pierwszy" : `${streak === 2 ? "drugi" : streak === 3 ? "trzeci" : `${streak}.`}`}{" "}
                 dzień Twojej passy.
+              </span>
+            </div>
+          )}
+
+          {streak > 0 && nextM != null && (
+            <div
+              className="flex items-center"
+              style={{
+                gap: 12,
+                marginBottom: 24,
+                paddingLeft: 28,
+                maxWidth: 380,
+              }}
+            >
+              <div
+                aria-hidden
+                style={{
+                  flex: 1,
+                  height: 2,
+                  background: "rgba(184,146,77,0.16)",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: `${Math.round(fill * 100)}%`,
+                    background:
+                      "linear-gradient(90deg, rgba(184,146,77,0.35), var(--c-gold-400))",
+                  }}
+                />
+                <span
+                  style={{
+                    position: "absolute",
+                    left: `${Math.round(fill * 100)}%`,
+                    top: "50%",
+                    width: 5,
+                    height: 5,
+                    background: "var(--c-gold-300)",
+                    transform: "translate(-50%, -50%) rotate(45deg)",
+                  }}
+                />
+              </div>
+              <span
+                className="signature"
+                style={{
+                  fontSize: 11,
+                  color: "var(--c-paper-300)",
+                  opacity: 0.75,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                kamień {nextM} · za {toNext} {toNext === 1 ? "dzień" : "dni"}
               </span>
             </div>
           )}
