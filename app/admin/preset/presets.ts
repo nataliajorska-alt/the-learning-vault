@@ -10884,4 +10884,209 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 113. Hiszpański: ¿objeto directo o indirecto? — la quiero vs le doy
+  // ============================================================
+  // Z notatek Natalii 2026-07-06 (teoria + 19 jej błędów w dziale OD/OI).
+  // Oś: „a" osobowe NIE przesądza OI; test „ktoś daje/mówi COŚ komuś" → le/les;
+  // rodziny czasowników (ver/querer/conocer → lo vs dar/decir/regalar → le);
+  // le NIE zależy od płci (a mi padre/madre → le). Kontynuacja #92 (OD)
+  // i #100–102 (pronombres combinados / se lo).
+  {
+    slug: "es-objeto-directo-vs-indirecto",
+    vaultSlug: "es",
+    label: "Hiszpański — ¿objeto directo o indirecto? (la quiero vs le doy)",
+    payload: {
+      title:
+        "¿Objeto directo o indirecto? — la quiero (OD) vs le doy (OI)",
+      summary:
+        "Największe źródło pomyłek: wybór między lo/la/los/las (OD, „kogo? co?\") a le/les (OI, „komu? dla kogo?\"). Pułapka: „a\" przy osobie NIE przesądza OI — „Veo a Ana → La veo\" (nie „le\"), bo Ana to „kogo widzę\". Test na OI: czy jest RZECZ, którą ktoś komuś daje / mówi / kupuje / pożycza? Wtedy osoba = le/les: „Le presté 100 euros a Ivana\". Rodziny czasowników: ver/querer/conocer/llamar/buscar → OD (lo/la), a dar/decir/comprar/regalar/prestar/ofrecer → OI (le). le NIE zależy od płci osoby: „A mi padre/madre le he comprado…\".",
+      theory:
+        "Największe źródło pomyłek w tym dziale to wybór między DWOMA zestawami zaimków 3. osoby:\n— OBJETO DIRECTO (OD, biernik, „kogo? co?\"): lo, la, los, las. To ten, na kogo/co czasownik działa BEZPOŚREDNIO.\n— OBJETO INDIRECTO (OI, celownik, „komu? dla kogo?\"): le, les. To osoba, która coś DOSTAJE, której coś mówisz, kupujesz, pożyczasz, dajesz, pokazujesz.\n\nPUŁAPKA GŁÓWNA — „a\" przy osobie NIE znaczy automatycznie OI. Hiszpański stawia „a\" przed każdą osobą-dopełnieniem, także gdy to OD: „Veo a Ana\" ma „a\" osobowe, ale Ana to „kogo widzę?\" → OD → „La veo\", nie „Le veo\". „Quiero a Ana → La quiero\". „He visto a Andrés → Lo he visto\". Sama obecność „a\" nie wystarcza — zawsze zapytaj: to „kogo/co\" czy „komu/dla kogo\"?\n\nTEST NA OI (najpewniejszy): czy w zdaniu jest RZECZ, którą ktoś komuś daje / mówi / kupuje / pożycza / przynosi / oferuje / pokazuje? Jeśli tak — osoba jest odbiorcą → le/les.\n„Presté 100 euros a Ivana\": CO? 100 euros; KOMU? a Ivana → „Le presté 100 euros a Ivana\". Ivana nie jest rzeczą pożyczoną, tylko osobą, która dostaje → le (nie „la\").\n\nDWIE RODZINY CZASOWNIKÓW:\n— Zwykle OD (lo/la/los/las) — osoba jest wprost obiektem czynności: ver (widzieć), querer (kochać/chcieć), conocer (znać), llamar (wołać/dzwonić), esperar (czekać na), buscar (szukać). „Quiero a Ana → La quiero\"; „He visto a mis padres → Los he visto\"; „He visto a Inés y María → Las he visto\"; „Llaman a la señora → La llaman\".\n— Zwykle OI (le/les) — osoba jest odbiorcą/adresatem: dar (dać), prestar (pożyczyć), comprar (kupić), decir (powiedzieć), regalar (podarować), ofrecer (zaoferować), dejar (zostawić/pożyczyć), traer (przynieść), enseñar (pokazać/uczyć). „Le he comprado un libro a Ana\"; „Les he dicho la verdad\"; „Le he ofrecido ayuda a Teresa\"; „Le he regalado bombones a Sarita\".\n\nle NIE ZALEŻY OD PŁCI OSOBY. le = jemu / jej / panu / pani. „A mi padre le he comprado un libro\" i „A mi madre le he comprado un pañuelo\" — oba le. Wstawienie tu lo/la brzmiałoby, jakbyś „kupiła ojca\" albo „kupiła matkę\" (bo lo/la = OD: „kogo kupuję?\"). Rodzaj wpływa TYLKO na OD (lo vs la), nigdy na OI.\n\nGDY ZASTĘPUJESZ TEŻ RZECZ: le/les + lo/la/los/las → SE (zbitka „le lo\" nie istnieje). „Se los he prestado\" (100 euros = los), „Se la he comprado\" (la televisión = la), „Se lo dije\" (całą informację = lo). Mechanika w osobnej lekcji o pronombres combinados.\n\nUWAGA: w części Hiszpanii słyszy się „A Juan le vi\" zamiast „lo vi\" (leísmo, głównie męska osoba w l. poj.). Na Twoim etapie i w ćwiczeniach trzymaj się neutralnej zasady: OD → lo/la/los/las, OI → le/les.\n\nŚCIĄGA — 2 pytania na każde zdanie:\n1) Czy osoba jest WIDZIANA / KOCHANA / ZNANA / WOŁANA / SZUKANA? → OD: lo/la/los/las.\n2) Czy osoba coś DOSTAJE / SŁYSZY / MA KUPIONE / POŻYCZONE / POWIEDZIANE? → OI: le/les.",
+      questions: [
+        {
+          type: "abc",
+          text: "„¿Quieres a Ana?\" — jak odpowiesz „Tak, kocham ją\"? (kochać KOGO? → Anę)",
+          options: ["Sí, le quiero", "Sí, la quiero", "Sí, lo quiero"],
+          correctAnswer: 1,
+          explanation:
+            "„querer a alguien\" = kochać/lubić kogoś; to dopełnienie bliższe (kogo? — Anę) → la. „Le quiero\" to leísmo; „lo quiero\" byłoby o mężczyźnie. (To dokładnie Twój błąd „le quiero a Ana\".)",
+        },
+        {
+          type: "abc",
+          text: "„¿Han visto ustedes a mis padres?\" → „No, no ___ hemos visto.\" (widzieć KOGO? — ich)",
+          options: ["les", "los", "las"],
+          correctAnswer: 1,
+          explanation:
+            "„ver a alguien\" rządzi dopełnieniem bliższym (kogo?) → lo/la/los/las. Grupa męsko-mieszana w l. mnogiej → los. „Les\" to celownik (komu?) — tu byłby błędem (leísmo).",
+        },
+        {
+          type: "spot_error",
+          text: "„La he prestado 100 euros a Ivana.\" — chcę powiedzieć „Pożyczyłam Ivanie 100 euro\". Wskaż błąd:",
+          options: [
+            "OK, „la\" bo Ivana to kobieta",
+            "BŁĄD — Ivana to odbiorca (komu? → OI), nie rzecz pożyczona; powinno być „Le he prestado 100 euros a Ivana\"",
+            "powinno być „lo he prestado\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Rzeczą pożyczoną są 100 euros (OD), a Ivana jest osobą, KTÓREJ pożyczasz (OI) → le. Płeć osoby nie robi z niej „la\": le = jemu/jej. Gdybyś zastąpiła też pieniądze: „Se los he prestado\".",
+        },
+        {
+          type: "fill",
+          text: "„___ he comprado una televisión a mis padres.\" (Kupiłam rodzicom telewizor — komu? → im). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "Les",
+          explanation:
+            "Rodzice są odbiorcami (komu kupiłam? → im) → OI l. mnoga → les. Telewizor to rzecz kupiona (OD). „Los he comprado\" znaczyłoby, że kupiłaś… rodziców. Zastępując też telewizor: „Se la he comprado\".",
+        },
+        {
+          type: "spot_error",
+          text: "„La dije a Juana que no tengo dinero.\" — chcę powiedzieć „Powiedziałam Juanie, że nie mam pieniędzy\". Wskaż błąd:",
+          options: [
+            "OK, „la\" bo Juana to kobieta",
+            "BŁĄD — „decir algo a alguien\": Juana to odbiorca (komu? → OI) → „Le dije a Juana…\"",
+            "powinno być „lo dije a Juana\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Mówisz COŚ (que no tengo dinero = OD) KOMUŚ (a Juana = OI) → le, niezależnie od płci. Zastępując całą informację: „Se lo dije\".",
+        },
+        {
+          type: "fill",
+          text: "„¿Dónde está Andrés? No sé, no ___ he visto.\" (widzieć KOGO? — jego). Wstaw zaimek:",
+          options: null,
+          correctAnswer: "lo",
+          explanation:
+            "„ver a alguien\" → dopełnienie bliższe (kogo?). Andrés — mężczyzna, l. poj. → lo. „No le he visto\" to leísmo. (Neutralnie: lo.)",
+        },
+        {
+          type: "abc",
+          text: "„A mi padre ___ he comprado un libro.\" (kupiłam ojcu książkę). Wstaw zaimek:",
+          options: ["lo", "la", "le"],
+          correctAnswer: 2,
+          explanation:
+            "Ojciec to odbiorca (komu kupiłam? → jemu) → le. le NIE zależy od płci: „a mi madre le he comprado un pañuelo\" też le. „Lo he comprado\" znaczyłoby „kupiłam ojca\".",
+        },
+        {
+          type: "open",
+          text: "Oba zdania mają „a Ana\", a mimo to raz jest „La quiero\", a raz „Le doy un libro\". Wyjaśnij, dlaczego, i jak rozpoznać, który zaimek wybrać.",
+          options: null,
+          correctAnswer:
+            "„a\" przy osobie to tylko „a\" osobowe — nie przesądza, czy osoba jest dopełnieniem bliższym czy dalszym. Trzeba zapytać o funkcję. „Quiero a Ana\": kocham KOGO? → Anę = dopełnienie bliższe (OD) → la → „La quiero\". „Doy un libro a Ana\": daję CO? → un libro (to jest OD), a Ana to KOMU daję? → dopełnienie dalsze (OI) → le → „Le doy un libro\". Test: jeśli w zdaniu jest osobna rzecz, którą ktoś komuś daje/mówi/kupuje, osoba jest odbiorcą → le/les; jeśli osoba sama jest tym, kogo się widzi/kocha/zna, → lo/la/los/las.",
+          explanation:
+            "Klucz: „a\" osobowe ≠ OI. Rozstrzyga pytanie „kogo/co\" (OD: lo/la) vs „komu/dla kogo\" (OI: le). Gdy jest rzecz dawana/mówiona → osoba = le/les.",
+        },
+      ],
+      salon: {
+        short:
+          "„a\" przy osobie NIE przesądza OI. Zapytaj: „kogo/co\" (OD: lo/la/los/las) czy „komu/dla kogo\" (OI: le/les)? „Veo a Ana → La veo\", ale „Doy un libro a Ana → Le doy un libro\".",
+        expand:
+          "Test na OI: jest RZECZ, którą ktoś komuś daje/mówi/kupuje/pożycza? → osoba = le/les (dar, decir, comprar, regalar, prestar, ofrecer). Zwykłe OD: ver, querer, conocer, llamar, esperar, buscar → lo/la/los/las. le NIE zależy od płci: „A mi padre/madre le he comprado…\".",
+        trap:
+          "Błędy Nati: „le quiero a Ana\" ✗ → „la quiero\"; „la he prestado 100 euros\" ✗ → „le he prestado\"; „los he comprado una tele a mis padres\" ✗ → „les\"; „la dije a Juana\" ✗ → „le dije\". Rodzaj zmienia tylko lo/la (OD), nigdy le.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 114. Hiszpański: „lo" neutro — Lo sé, No lo entiendo, Lo es, No lo parece
+  // ============================================================
+  // Z tych samych notatek 2026-07-06: „lo" zastępuje CAŁY fakt/ideę/cechę,
+  // nie rzeczownik męski. Błędy Nati: „la sé" → „lo sé"; „no se parece" →
+  // „no lo parece" (parecer ≠ parecerse); „él se quiere" → „él la quiere"
+  // (se zwrotne ≠ la OD). Osobne od #92 (lo = rzeczownik męski).
+  {
+    slug: "es-lo-neutro",
+    vaultSlug: "es",
+    label: "Hiszpański — „lo\" neutro (Lo sé, No lo entiendo, Lo es, No lo parece)",
+    payload: {
+      title:
+        "„Lo\" neutro — Lo sé, No lo entiendo, Lo es, No lo parece",
+      summary:
+        "Oprócz „lo\" = „go\" (el libro → lo) istnieje „lo\" NEUTRALNE, które zastępuje CAŁY fakt, zdanie, ideę albo cechę — nie rzeczownik męski. „¿Sabes que Ana es escritora? —Sí, lo sé\" (wiem TO, nie „la sé\"). „No lo entiendo\" (nie rozumiem tego). Po ser/parecer zastępuje przymiotnik NIEZALEŻNIE od rodzaju podmiotu: „¿Ángela es inteligente? —Lo es, pero no lo parece\" (jest taka, ale nie wygląda na taką) — „lo\", nie „la\", nawet o kobiecie. Uwaga: „no lo parece\" (nie wygląda na taką) ≠ „no se parece\" (nie jest podobna).",
+      theory:
+        "Znasz już „lo\" jako zaimek dopełnienia bliższego rodzaju męskiego („¿Dónde está el libro? No lo veo\"). Ale hiszpański ma DRUGIE, NEUTRALNE „lo\", które nie odnosi się do żadnego męskiego rzeczownika — zastępuje CAŁĄ MYŚL: fakt, całe zdanie, ideę albo cechę. Po polsku najczęściej „to\".\n\n1) „lo\" = CAŁY FAKT / CAŁE ZDANIE. Zamiast powtarzać całe „że…\", mówisz „lo\":\n— „¿Sabes que Ana es escritora? —Sí, lo sé\" (wiem TO — NIE „la sé\"! nie wiesz „Anę\", wiesz FAKT, że jest pisarką).\n— „No lo entiendo\" (nie rozumiem tego). „Lo sabía\" (wiedziałam to). „No lo creo\" (nie sądzę). „Te lo prometo\" (obiecuję ci to).\nCzasowniki saber, entender, creer, decir, prometer często biorą to neutralne „lo\" dla całej informacji: „Dije que no tengo dinero → Se lo dije\" (powiedziałam to).\n\n2) „lo\" = CECHA / ORZECZNIK po ser, estar, parecer. Gdy odpowiadasz, powtarzając przymiotnik albo rzeczownik-orzecznik, zastępujesz go przez „lo\" — ZAWSZE „lo\", niezależnie od rodzaju i liczby podmiotu:\n— „¿Ángela es inteligente? —Lo es\" (jest taka) — o KOBIECIE, ale „lo\", nie „la\".\n— „¿Estáis cansados? —Lo estamos\" (jesteśmy).\n— „Parece simpática, pero no lo es\" (wydaje się miła, ale taka nie jest).\n\n3) parecer + lo neutro to NIE parecerse. Dwa różne czasowniki:\n— „No lo parece\" = nie wygląda na taką / nie sprawia takiego wrażenia (parecer + „lo\").\n— „No se parece (a…)\" = nie jest podobna (do kogoś). „Se parece a su madre\" (jest podobna do mamy).\nPułapka: „Ángela es inteligente. Lo es, pero no LO parece\" (nie wygląda na taką) — NIE „no se parece\" (to znaczyłoby „nie jest do nikogo podobna\").\n\nPUŁAPKA — „se\" zwrotne to NIE zaimek dopełnienia. „Juan y Lola se van a casar. Lo sabía, él LA quiere mucho\": on kocha JĄ (Lolę) → la. „Él SE quiere mucho\" znaczy „on kocha SAMEGO SIEBIE\" (se zwrotne). Gdy chcesz „on ją kocha\" — „él la quiere\"; „oni się kochają\" — „ellos se quieren\".\n\nKRÓTKO: gdy zastępujesz CAŁĄ IDEĘ, FAKT albo CECHĘ (a nie konkretny rzeczownik), użyj neutralnego „lo\": Lo sé. No lo entiendo. Lo sabía. Lo es. No lo parece.",
+      questions: [
+        {
+          type: "abc",
+          text: "„¿Sabes que Ana es escritora? —Sí, ___ sé.\" (wiesz FAKT, że jest pisarką). Wstaw zaimek:",
+          options: ["la sé", "lo sé", "le sé"],
+          correctAnswer: 1,
+          explanation:
+            "Nie wiesz „Anę\", tylko FAKT (że jest pisarką) → neutralne „lo\". „La sé\" sugerowałoby, że „znasz Anę\" jak rzecz. Tak samo: „No lo entiendo\", „Lo sabía\".",
+        },
+        {
+          type: "fill",
+          text: "„Nie rozumiem tego\" (całej sytuacji): „No ___ entiendo.\" Wstaw zaimek:",
+          options: null,
+          correctAnswer: "lo",
+          explanation:
+            "„lo\" neutralne zastępuje całą sytuację/ideę, nie męski rzeczownik. „No lo entiendo\" = nie rozumiem tego.",
+        },
+        {
+          type: "abc",
+          text: "„¿Es verdad que Ángela es muy inteligente? —___, pero no lo parece.\" (o Ángeli — kobiecie). Wstaw:",
+          options: ["La es", "Lo es", "Se es"],
+          correctAnswer: 1,
+          explanation:
+            "Po ser powtórzoną cechę zastępujesz przez „lo\", ZAWSZE niezależnie od rodzaju — nawet o kobiecie „Lo es\", nie „la es\". „Lo es\" = jest taka.",
+        },
+        {
+          type: "spot_error",
+          text: "„Ángela es inteligente, pero no se parece.\" — chcę powiedzieć „…ale nie wygląda na taką\". Wskaż błąd:",
+          options: [
+            "OK, „no se parece\" jest poprawne",
+            "BŁĄD — „no se parece\" znaczy „nie jest do nikogo podobna\"; „nie wygląda na taką\" to „no lo parece\"",
+            "powinno być „no la parece\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "parecer + lo neutro („no lo parece\" = nie sprawia takiego wrażenia) to co innego niż parecerse a alguien („se parece a su madre\" = jest podobna do mamy). Tu chodzi o wrażenie → „no lo parece\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Juan y Lola se van a casar. Lo sabía, él se quiere mucho.\" — chcę powiedzieć „…on ją bardzo kocha\". Wskaż błąd:",
+          options: [
+            "OK, „se quiere\" jest poprawne",
+            "BŁĄD — „él se quiere mucho\" = on kocha SAMEGO SIEBIE; „on ją kocha\" to „él la quiere mucho\"",
+            "powinno być „él le quiere mucho\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„se\" zwrotne = kocha siebie. Lola to „kogo kocha?\" (OD) → la → „él la quiere mucho\". „Lo sabía\" na początku jest OK — to neutralne „lo\" (wiedziałam to).",
+        },
+        {
+          type: "fill",
+          text: "„Wiedziałam to\" (cały fakt): „___ sabía.\" Wstaw zaimek:",
+          options: null,
+          correctAnswer: "Lo",
+          explanation:
+            "Neutralne „lo\" dla całego faktu → „Lo sabía\". Tak samo „Lo sé\", „No lo creo\", „No lo entiendo\".",
+        },
+        {
+          type: "open",
+          text: "Wyjaśnij, dlaczego na „¿Sabes que Ana es escritora?\" odpowiadamy „Lo sé\" (nie „la sé\"), a przy „¿Conoces a Ana?\" powiedzielibyśmy „La conozco\".",
+          options: null,
+          correctAnswer:
+            "Bo w „Lo sé\" zastępujesz CAŁY FAKT — to, że Ana jest pisarką — a nie samą Anę; do faktu/idei służy neutralne „lo\", stąd „lo sé\", „no lo entiendo\", „lo sabía\". Natomiast w „¿Conoces a Ana?\" dopełnieniem bliższym jest sama Ana (znasz KOGO? → Anę), więc bierzesz zaimek zgodny z osobą i rodzajem → „la\" → „La conozco\". Krótko: fakt/idea/cecha → lo (neutralne); konkretna osoba/rzecz jako OD → lo/la/los/las wg rodzaju.",
+          explanation:
+            "Klucz: „lo\" neutralne = cały fakt/idea/cecha (Lo sé, Lo es, No lo parece); „la/lo/los/las\" = konkretny rzeczownik lub osoba jako dopełnienie bliższe (La conozco).",
+        },
+      ],
+      salon: {
+        short:
+          "„lo\" neutralne zastępuje CAŁY fakt/ideę/cechę (nie rzeczownik męski): „Lo sé\" (wiem to), „No lo entiendo\", „Lo sabía\", „Lo es\", „No lo parece\".",
+        expand:
+          "Po ser/parecer zawsze „lo\", niezależnie od rodzaju: „¿Ángela es inteligente? —Lo es, pero no lo parece\" (o kobiecie, ale „lo\"). „¿Sabes que Ana es escritora? —Lo sé\" (wiem FAKT, nie „la sé\").",
+        trap:
+          "„No lo parece\" (nie wygląda na taką) ≠ „no se parece\" (nie jest podobna). I „él se quiere\" = kocha SIEBIE; „on ją kocha\" = „él la quiere\".",
+      },
+    },
+  },
 ];
