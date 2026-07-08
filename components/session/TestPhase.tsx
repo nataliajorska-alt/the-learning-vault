@@ -95,6 +95,8 @@ interface TestPhaseProps {
   compact?: boolean;
   /* actions */
   onSubmit: (answer: string | number) => void | Promise<void>;
+  /** „Nie znam odpowiedzi" — odsłania poprawną wersję bez oceny AI (zero tokenów). */
+  onGiveUp: () => void | Promise<void>;
   onAdvance: () => void;
 }
 
@@ -114,6 +116,7 @@ export function TestPhase({
   totalSec,
   compact = false,
   onSubmit,
+  onGiveUp,
   onAdvance,
 }: TestPhaseProps) {
   const sigInfo = vault ? VAULT_SIGIL[vault.slug] : null;
@@ -249,6 +252,7 @@ export function TestPhase({
           setInput={setInput}
           submitting={submitting}
           onSubmit={onSubmit}
+          onGiveUp={onGiveUp}
           onAdvance={onAdvance}
           isLast={isLast}
           attemptAnswer={
@@ -654,6 +658,7 @@ interface BookSpreadProps {
   setInput: (v: string) => void;
   submitting: boolean;
   onSubmit: (answer: string | number) => void | Promise<void>;
+  onGiveUp: () => void | Promise<void>;
   onAdvance: () => void;
   isLast: boolean;
   attemptAnswer: string | null;
@@ -773,6 +778,7 @@ function QuestionPage({
   setInput,
   submitting,
   onSubmit,
+  onGiveUp,
   attemptAnswer,
 }: BookSpreadProps) {
   const trafione = states.slice(0, idx).filter((s) => s === "correct").length;
@@ -952,12 +958,12 @@ function QuestionPage({
         )}
 
         <div
-          className="flex items-center"
-          style={{ marginTop: 28, gap: 8 }}
-          aria-hidden
+          className="flex items-center justify-between flex-wrap"
+          style={{ marginTop: 28, gap: 12 }}
         >
           <span
             className="font-display italic"
+            aria-hidden
             style={{
               fontSize: 13,
               color: "rgba(27,17,8,0.45)",
@@ -970,6 +976,15 @@ function QuestionPage({
               ? "uzupełnij"
               : "wybierz jeden"}
           </span>
+          {/* „Nie znam odpowiedzi" tylko przy polach wpisywanych — tam gdzie
+              inaczej wklepałoby się „nie wiem" i paliło tokeny na ocenę AI.
+              Przy ABC/wskaż-błąd wystarczy klik w opcję, więc pomijamy. */}
+          {(q.type === "fill" ||
+            q.type === "translate" ||
+            q.type === "open") &&
+            state === "pending" && (
+              <GiveUpButton onClick={onGiveUp} disabled={submitting} />
+            )}
         </div>
       </div>
     </div>
@@ -1443,6 +1458,69 @@ function CheckButton({
         aria-hidden
       >
         ↵
+      </span>
+    </button>
+  );
+}
+
+/* ============================================================
+   Give-up — cichy „Nie znam odpowiedzi": odsłania werdykt bez oceny AI
+   (zero tokenów), liczy się jak błąd do powtórki
+   ============================================================ */
+
+function GiveUpButton({
+  onClick,
+  disabled,
+}: {
+  onClick: () => void | Promise<void>;
+  disabled: boolean;
+}) {
+  const [hover, setHover] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => onClick()}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      disabled={disabled}
+      className="inline-flex items-center"
+      title="Odsłania poprawną odpowiedź bez oceny AI — liczy się jak błąd do powtórki"
+      style={{
+        gap: 7,
+        padding: "5px 2px",
+        background: "transparent",
+        border: "none",
+        cursor: disabled ? "default" : "pointer",
+        font: "inherit",
+        opacity: disabled ? 0.4 : 1,
+        transition: "opacity .15s",
+      }}
+    >
+      <span
+        aria-hidden
+        style={{
+          fontSize: 11,
+          color: "rgba(122,74,31,0.7)",
+          lineHeight: 1,
+        }}
+      >
+        ⚐
+      </span>
+      <span
+        className="signature"
+        style={{
+          fontSize: 11.5,
+          fontStyle: "italic",
+          color: hover ? "var(--c-cognac)" : "rgba(122,74,31,0.72)",
+          borderBottom: `0.5px solid ${
+            hover ? "rgba(122,74,31,0.7)" : "rgba(122,74,31,0.3)"
+          }`,
+          paddingBottom: 1,
+          letterSpacing: "0.01em",
+          transition: "color .15s, border-color .15s",
+        }}
+      >
+        Nie znam odpowiedzi
       </span>
     </button>
   );

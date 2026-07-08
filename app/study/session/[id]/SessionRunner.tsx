@@ -441,6 +441,31 @@ export function SessionRunner({
       aiFeedback = await explainWrong(String(answer), current);
     }
 
+    await finalizeAttempt(String(answer), verdict, aiFeedback);
+  }
+
+  /** „Nie znam odpowiedzi" — od razu odsłania poprawną wersję BEZ jakiegokolwiek
+   *  wywołania AI (ani /api/grade, ani /api/wrong-note), żeby świadome
+   *  odpuszczenie nie zjadało tokenów na wpisywane „nie wiem". Liczy się jak
+   *  błąd (SRS + Errata) — bo tego właśnie się nie umie; notatka bibliotekarza
+   *  pokaże poprawną odpowiedź i statyczne q.explanation. */
+  async function giveUp() {
+    if (!current || revealed || submitting) return;
+    if (!user || !topic || !sessionId) return;
+    setSubmitting(true);
+    await finalizeAttempt("", "wrong", null);
+  }
+
+  /** Wspólny „ogon" dla submit() i giveUp(): zapis próby, odsłonięcie werdyktu,
+   *  SRS, Error Vault i efekty sesji. Zakłada, że setSubmitting(true) już
+   *  ustawiono; zdejmuje je w finally. */
+  async function finalizeAttempt(
+    answer: string,
+    verdict: Verdict,
+    aiFeedback: string | null
+  ) {
+    if (!current || !user || !topic || !sessionId) return;
+
     // partial liczymy jako zaliczenie (zielony ptaszek + feedback co dodać),
     // ale w SRS/Error Vault jest traktowany łagodnie — patrz recordAttempt.
     const correct = verdict !== "wrong";
@@ -451,7 +476,7 @@ export function SessionRunner({
     const nextAttempt: Attempt = {
       questionId: current.id,
       correct,
-      answer: String(answer),
+      answer,
       verdict,
       timeTaken,
     };
@@ -471,7 +496,7 @@ export function SessionRunner({
         sessionId,
         topic,
         question: current,
-        answer: String(answer),
+        answer,
         verdict,
         timeTaken,
         vaultName,
@@ -681,6 +706,7 @@ export function SessionRunner({
           totalSec={PHASE_DURATION.test}
           compact={Boolean(questionLimit && questionLimit <= 3)}
           onSubmit={submit}
+          onGiveUp={giveUp}
           onAdvance={next}
         />
       )}
