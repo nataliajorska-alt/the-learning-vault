@@ -11089,4 +11089,356 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 115. Hiszpański: agua, frío y respiración — albercas, baños fríos, relajarse
+  // ============================================================
+  // Zgrupowany wątek z lekcji „Impacto del Clima" (2026-07-08): baseny + kąpiele
+  // zimne + oddech. Kalki: „el agua es calor" → „está caliente"; „es popular
+  // PARA ir" → bez „para".
+  {
+    slug: "es-agua-frio-y-respiracion",
+    vaultSlug: "es",
+    label: "Hiszpański — agua, frío y respiración (alberca climatizada, baños fríos, exhalar despacio)",
+    payload: {
+      title: "Agua, frío y respiración — la alberca climatizada, los baños fríos y relajarse",
+      summary:
+        "Woda, zimno i oddech w jednym: la alberca (MX) = la piscina, climatizada vs al aire libre, „el agua está caliente/fría\" (nie „es calor\"); los baños fríos/de hielo, meterse al agua, relajar los músculos; la respiración — inhalar/exhalar, la exhalación lenta reduce el estrés; el hábito, la disciplina. Kalki: „el agua es calor\" → „está caliente\"; „es popular PARA ir\" → bez „para\".",
+      theory:
+        "BASEN:\n— la alberca = basen (Meksyk); la piscina = basen (ogólnie). To samo, tylko regionalizm. climatizada = z podgrzewaną wodą; al aire libre = odkryty; cubierta / con techo = kryta; tener calefacción.\n— nadar = pływać; meterse al agua = wchodzić do wody; entrar despacio = wchodzić powoli.\n— TEMPERATURA WODY → ESTAR + przymiotnik: „el agua está caliente / fría / tibia\". NIE „el agua es calor\" — „calor\" to rzeczownik (upał), przymiotnik brzmi „caliente\". Uwaga: „agua\" jest żeńskie, ale bierze rodzajnik „el\" (á- na początku) → „el agua fría\".\n\nKĄPIELE ZIMNEM:\n— el baño frío / el baño de hielo = zimna / lodowa kąpiel; la tina = wanna (MX); meterse al agua helada = wejść do lodowatej wody.\n— po co: relajar los músculos = rozluźnić mięśnie; es bueno para la salud mental; la adrenalina.\n\nODDYCHANIE:\n— la respiración = oddychanie; respirar = oddychać; inhalar = wdychać (wdech); exhalar = wydychać (wydech).\n— „la exhalación lenta ayuda a reducir el estrés\" = powolny wydech pomaga zredukować stres; unos exhales/exhalaciones lentos = kilka powolnych wydechów.\n\nNAWYK:\n— el hábito = nawyk; la rutina = rutyna; la disciplina = dyscyplina; „necesitas disciplina para mantener el hábito\".\n\nKALKA — „es popular / es común\" + BEZOKOLICZNIK bez „para\":\n— „En Polonia es popular ir al mar en invierno\" (NIE „es popular PARA ir\"). Po „es popular / común / fácil\" idzie sam bezokolicznik.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„No me gusta cuando el agua es muy calor.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "temperatura wody → ESTAR + przymiotnik: „el agua está muy caliente\" (calor to rzeczownik, nie przymiotnik)",
+            "tylko „muy\" jest zbędne",
+            "powinno być „hace calor\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Temperaturę wody wyraża ESTAR + caliente/fría: „el agua está caliente\". „Calor\" to rzeczownik (upał), więc nie „es calor\".",
+        },
+        {
+          type: "abc",
+          text: "„La alberca\" w Meksyku to to samo co:",
+          options: ["la piscina (basen)", "la playa (plaża)", "el lago (jezioro)"],
+          correctAnswer: 0,
+          explanation:
+            "la alberca (MX) = la piscina = basen. To regionalizm meksykański.",
+        },
+        {
+          type: "fill",
+          text: "„Basen jest podgrzewany\": „La alberca está ___.\" (jeden wyraz)",
+          options: null,
+          correctAnswer: "climatizada",
+          explanation:
+            "climatizada = z podgrzewaną wodą. Odkryty basen to „al aire libre\".",
+        },
+        {
+          type: "abc",
+          text: "„Woda jest zimna\":",
+          options: ["El agua es fría", "El agua está fría", "El agua hace frío"],
+          correctAnswer: 1,
+          explanation:
+            "Temperatura/stan → ESTAR: „el agua está fría\". Rodzajnik „el\", ale przymiotnik żeński „fría\".",
+        },
+        {
+          type: "abc",
+          text: "Które jest poprawne?",
+          options: [
+            "inhalar = wydychać, exhalar = wdychać",
+            "inhalar = wdychać, exhalar = wydychać",
+            "inhalar i exhalar znaczą to samo",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "inhalar = wdech (do środka), exhalar = wydech (na zewnątrz).",
+        },
+        {
+          type: "fill",
+          text: "„Powolny wydech pomaga zredukować stres\": „La exhalación lenta ayuda a reducir el ___.\"",
+          options: null,
+          correctAnswer: "estrés",
+          explanation:
+            "el estrés = stres; „reducir el estrés\" = redukować stres.",
+        },
+        {
+          type: "abc",
+          text: "„Zimne kąpiele rozluźniają mięśnie\":",
+          options: [
+            "Los baños fríos relajan los músculos",
+            "Los baños fríos rompen los músculos",
+            "Los baños fríos levantan los músculos",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "relajar los músculos = rozluźniać mięśnie.",
+        },
+        {
+          type: "spot_error",
+          text: "„En Polonia es popular para ir al mar en invierno.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "bez „para\": „es popular / es común IR al mar\" (po „es popular\" idzie sam bezokolicznik)",
+            "powinno być „es popular de ir\"",
+            "tylko „en invierno\" jest źle",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Po „es popular / es común / es fácil\" idzie bezokolicznik bez przyimka: „es popular ir al mar\", nie „para ir\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wolę baseny podgrzewane, bo nie lubię zimnej wody. Zimne kąpiele rozluźniają mięśnie, a powolny wydech pomaga zredukować stres\".",
+          options: null,
+          correctAnswer:
+            "„Prefiero las albercas (piscinas) climatizadas, porque no me gusta el agua fría. Los baños fríos relajan los músculos, y la exhalación lenta ayuda a reducir el estrés.\"",
+          explanation:
+            "Klucz: „albercas climatizadas\", „el agua fría\" (estar/żeński), „relajan los músculos\", „la exhalación lenta… reducir el estrés\".",
+        },
+      ],
+      salon: {
+        short:
+          "la alberca (MX) = la piscina; climatizada vs al aire libre; „el agua está fría/caliente\". Zimno: baños fríos → relajar los músculos. Oddech: inhalar/exhalar, la exhalación lenta reduce el estrés.",
+        expand:
+          "meterse al agua (helada) despacio, la tina, la adrenalina; el hábito / la disciplina: „necesitas disciplina para mantener el hábito\". „el agua\" bierze rodzajnik męski, ale przymiotnik zostaje żeński („el agua fría\").",
+        trap:
+          "„el agua es calor\" → „el agua está caliente\" (ESTAR + caliente; calor = rzeczownik). „es popular PARA ir\" → „es popular / común IR\" (bezokolicznik bez „para\").",
+      },
+    },
+  },
+
+  // ============================================================
+  // 116. Hiszpański: la casa, las mascotas y la comida — la vida diaria
+  // ============================================================
+  // Zgrupowany wątek z lekcji „Impacto del Clima" (2026-07-08): dom + sprzątanie
+  // ze zwierzętami + jedzenie/śniadanie. Rodzaj „la habitación" + „mucho pelo";
+  // wtręt ang. „guilty pleasure" → „placer culpable".
+  {
+    slug: "es-la-casa-las-mascotas-y-la-comida",
+    vaultSlug: "es",
+    label: "Hiszpański — la casa, las mascotas y la comida (habitaciones, el pelo, pan dulce)",
+    payload: {
+      title: "La casa, las mascotas y la comida — limpiar con pelo de gato y el desayuno mexicano",
+      summary:
+        "Codzienność w domu: la casa (chiquita/grande), los metros cuadrados, de dos plantas, las habitaciones, los baños, la cochera; limpiar/ensuciar, recoger los juguetes, el pelo (→ „mucho pelo\"), estoy agotada. Śniadanie po meksykańsku: el pan dulce, el café descafeinado, el licuado (=smoothie), tomar un café, comer en el restaurante. Błędy: „habitaciones pequeñas\" / „mucho pelo\"; ang. „guilty pleasure\" → „placer culpable\".",
+      theory:
+        "DOM:\n— la casa es chiquita / grande (chiquita = malutka, MX); los metros cuadrados = metry kwadratowe („tiene 300 metros cuadrados\"); de dos plantas / de dos pisos = dwukondygnacyjny.\n— pomieszczenia: la habitación = pokój; el baño = łazienka; la cocina, la sala, el comedor, el pasillo = korytarz; la cochera = garaż (MX).\n\nSPRZĄTANIE Z MASCOTAS:\n— limpiar = sprzątać; ensuciar = brudzić; recoger (los juguetes / la basura) = zbierać (zabawki / śmieci).\n— el pelo = sierść (i włos); NIEPOLICZALNE → „hay mucho pelo\", „limpiar el pelo de los gatos\" (nie „muchos pelos\"). los gatos „destruyen y ensucian\".\n— estar agotada = być wyczerpaną; „nunca terminas\" = nigdy nie kończysz.\n— RODZAJ: „la habitación\" jest ŻEŃSKA → „habitaciones pequeñas\", „muchas habitaciones\".\n\nJEDZENIE (MX):\n— el desayuno = śniadanie; la comida = obiad/główny posiłek (MX, w porze południowej); la cena = kolacja.\n— el pan dulce = słodkie pieczywo; la fruta, el yogur, la avena = owsianka; el licuado = koktajl/smoothie (ES „el batido\").\n— napój: el café descafeinado = kawa bezkofeinowa; la cafeína; tomar un café = pić kawę (o kawie „tomar\", nie „beber\").\n— comer en el restaurante = jeść w restauracji („más barato que el servicio\" = taniej niż catering); „ya no cocino tanto\".\n\nWTRĘTY ANGIELSKIE → HISZPAŃSKI:\n— „guilty pleasure\" → „mi placer culpable\" / „mi debilidad\"; „smoothie\" → „el licuado\".",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Tengo seis habitaciones pequeños y siempre hay muchos pelo.\" — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„habitaciones pequeÑAS\" (la habitación jest żeńska) oraz „MUCHO pelo\" (pelo niepoliczalne, l. poj.)",
+            "tylko „pequeños\" jest źle",
+            "powinno być „los habitaciones\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„la habitación\" jest żeńska → „pequeñas\". „el pelo\" (sierść) jest niepoliczalne → „mucho pelo\", nie „muchos pelos\".",
+        },
+        {
+          type: "abc",
+          text: "„El pelo\" (kotów/psów) to:",
+          options: ["sierść / włos", "skóra", "wełna"],
+          correctAnswer: 0,
+          explanation:
+            "el pelo = sierść, włos. skóra = la piel; wełna = la lana.",
+        },
+        {
+          type: "fill",
+          text: "„Codziennie muszę sprzątać dom\": „Cada día tengo que ___ la casa.\"",
+          options: null,
+          correctAnswer: "limpiar",
+          explanation:
+            "limpiar = sprzątać; ensuciar = brudzić (przeciwieństwo).",
+        },
+        {
+          type: "fill",
+          text: "„Jestem wyczerpana\": „Estoy ___.\" (rodzaj żeński)",
+          options: null,
+          correctAnswer: "agotada",
+          explanation:
+            "estar agotada = być wyczerpaną (stan → ESTAR).",
+        },
+        {
+          type: "abc",
+          text: "„Koktajl / smoothie\" (Meksyk) to:",
+          options: ["el licuado", "el líquido", "la licuadora"],
+          correctAnswer: 0,
+          explanation:
+            "el licuado = koktajl/smoothie (MX); w Hiszpanii „el batido\". la licuadora = blender; el líquido = płyn.",
+        },
+        {
+          type: "spot_error",
+          text: "„El pan dulce es mi guilty pleasure.\" — co poprawić?",
+          options: [
+            "wszystko OK",
+            "po hiszpańsku: „es mi placer culpable\" / „mi debilidad\" (nie angielskie „guilty pleasure\")",
+            "powinno być „es mi placer culpado\"",
+            "powinno być „tengo guilty pleasure\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„guilty pleasure\" po hiszpańsku to „mi placer culpable\" albo potocznie „mi debilidad\".",
+        },
+        {
+          type: "abc",
+          text: "„Kawa bezkofeinowa\":",
+          options: ["el café descafeinado", "el café descafeína", "el café sin cafeinado"],
+          correctAnswer: 0,
+          explanation:
+            "descafeinado = bezkofeinowy; la cafeína = kofeina.",
+        },
+        {
+          type: "abc",
+          text: "„Codziennie muszę zbierać zabawki psów\":",
+          options: [
+            "recoger los juguetes",
+            "recibir los juguetes",
+            "recordar los juguetes",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "recoger = zbierać, sprzątać (recoger los juguetes / la basura). recibir = otrzymywać; recordar = pamiętać.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Mój dom ma dwie kondygnacje; codziennie muszę sprzątać sierść kotów i jestem wyczerpana. Rano jem słodkie pieczywo i piję bezkofeinową kawę\".",
+          options: null,
+          correctAnswer:
+            "„Mi casa es de dos plantas; cada día tengo que limpiar el pelo de los gatos y estoy agotada. En la mañana como pan dulce y tomo un café descafeinado.\"",
+          explanation:
+            "Klucz: „de dos plantas\", „limpiar el pelo\", „estoy agotada\", „como pan dulce\", „tomo un café descafeinado\".",
+        },
+      ],
+      salon: {
+        short:
+          "la casa (chiquita/grande), de dos plantas, habitaciones/baños/cochera; limpiar / recoger los juguetes, el pelo → „mucho pelo\", estoy agotada. Śniadanie: pan dulce, café descafeinado, el licuado.",
+        expand:
+          "los gatos „destruyen y ensucian\"; recoger la basura; comer en el restaurante („más barato que el servicio\"), ya no cocino tanto; tomar un café (nie „beber\"); la comida (MX = obiad).",
+        trap:
+          "„habitaciones pequeñOS\" → „pequeñAS\" (la habitación żeńska); „muchos pelo\" → „mucho pelo\" (niepoliczalne). Ang. „guilty pleasure\" → „placer culpable\"; „smoothie\" → „licuado\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 117. Hiszpański: México — clima, geografía y vacaciones
+  // ============================================================
+  // Zgrupowany wątek z lekcji „Impacto del Clima" (2026-07-08): geografia/klimat
+  // Meksyku + urlopy/prawo pracy (spina je „temporada alta/baja"). KLUCZ:
+  // „hace nieve" → „hay nieve / nieva"; „tener derecho DE" → „derecho A".
+  {
+    slug: "es-mexico-clima-geografia-y-vacaciones",
+    vaultSlug: "es",
+    label: "Hiszpański — México: clima, geografía y vacaciones (hay nieve, volcanes, tener derecho a)",
+    payload: {
+      title: "México: clima, geografía y vacaciones — hay nieve (no „hace nieve\"), volcanes y temporada baja",
+      summary:
+        "Klimat, geografia i urlopy w kontekście Meksyku: la nieve → „nieva\" / „hay nieve\" (NIE „hace nieve\"), nevado, las montañas, los volcanes, estar acostumbrado al calor, sentir el cambio de clima; las vacaciones, tener derecho A X días, cumplir un año, la empresa privada/pública, „te los pagan\", la temporada alta/baja. Błędy: „hace nieve\" → „hay nieve\"; „derecho de\" → „derecho a\".",
+      theory:
+        "ŚNIEG — UWAGA NA CZASOWNIK:\n— „hace calor / frío / sol\" — TAK. ALE śnieg i deszcz to CZASOWNIKI albo „hay\": „nieva\" = pada śnieg (nevar), „llueve\" = pada deszcz (llover), „hay nieve\" = jest/leży śnieg. NIGDY „hace nieve\".\n— nevado = ośnieżony: „está nevado allá arriba\".\n\nGEOGRAFIA:\n— la montaña / las montañas; el volcán → los volcanes (uwaga: akcent graficzny znika w l. mnogiej!); el bosque = las; la carretera = szosa; subir / bajar la montaña.\n— „a 30 minutos de mi casa\" = 30 minut od domu (odległość przez „a … de\"); „aunque no lo creas\" = choć nie uwierzysz.\n\nPRZYZWYCZAJENIE:\n— estar acostumbrado/a a = być przyzwyczajonym do: „están acostumbrados al calor\"; „les bajan 10 grados y tienen frío\"; sentir el cambio de clima = czuć zmianę klimatu (np. przy „bajar la montaña\").\n\nWAKACJE I PRAWO PRACY:\n— las vacaciones (zawsze l. mnoga); tener derecho A X días („derecho a siete días\", nie „de\"!); cumplir un año = przepracować rok (staż); la empresa privada / pública; por ley; tomar vacaciones; „te los pagan\" = płacą ci za (niewykorzystane) dni.\n— la temporada alta / baja = wysoki / niski sezon; „los precios están altos\"; el vuelo = lot. W niski sezon loty są tańsze.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„En las montañas cerca de mi casa hace nieve en invierno.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "śnieg to „HAY nieve\" albo „NIEVA\" — nie „hace nieve\" (choć „hace frío\" jest OK)",
+            "powinno być „tiene nieve\"",
+            "powinno być „es nieve\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„hacer\" idzie z calor/frío/sol, ale nie ze śniegiem: „nieva\" (nevar) albo „hay nieve\". Nie „hace nieve\".",
+        },
+        {
+          type: "abc",
+          text: "„Są przyzwyczajeni do upału\":",
+          options: [
+            "Están acostumbrados al calor",
+            "Son acostumbrados al calor",
+            "Tienen acostumbrado el calor",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "estar acostumbrado a = być przyzwyczajonym do: „están acostumbrados al calor\".",
+        },
+        {
+          type: "abc",
+          text: "„Wulkany\" w liczbie mnogiej:",
+          options: ["los volcanes", "los volcánes", "los volcanos"],
+          correctAnswer: 0,
+          explanation:
+            "el volcán → los volcanes. W l. mnogiej akcent graficzny znika (volcán → volcanes).",
+        },
+        {
+          type: "fill",
+          text: "„Śnieg jest 30 minut od mojego domu\": „Hay nieve a 30 minutos ___ mi casa.\"",
+          options: null,
+          correctAnswer: "de",
+          explanation:
+            "Odległość: „a 30 minutos DE mi casa\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Cuando cumples un año, tienes derecho de siete días de vacaciones.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "„tener derecho A\": „tienes derecho A siete días\" (nie „derecho de\")",
+            "powinno być „cumples de un año\"",
+            "powinno być „tienes derecho por\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Konstrukcja to „tener derecho A algo\": „derecho a siete días\". „cumplir un año\" = przepracować rok.",
+        },
+        {
+          type: "abc",
+          text: "„Wysoki sezon\" (ceny lotów są wysokie) to:",
+          options: ["la temporada alta", "la temporada cara", "el tiempo alto"],
+          correctAnswer: 0,
+          explanation:
+            "la temporada alta = wysoki sezon; niski to „la temporada baja\" (wtedy loty tańsze).",
+        },
+        {
+          type: "fill",
+          text: "„Jeśli nie bierzesz dni, płacą ci za nie\": „Si no tomas los días, te los ___.\"",
+          options: null,
+          correctAnswer: "pagan",
+          explanation:
+            "„te los pagan\" = płacą ci za nie (za niewykorzystane dni urlopu).",
+        },
+        {
+          type: "abc",
+          text: "„Przepracować rok / osiągnąć rok stażu\" to:",
+          options: ["cumplir un año", "tener un año", "hacer un año"],
+          correctAnswer: 0,
+          explanation:
+            "cumplir un año (en el trabajo) = przepracować rok. „tener un año\" = mieć rok (o wieku).",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „W styczniu jest niski sezon, więc loty są tańsze; a choć nie uwierzysz, 30 minut od mojego domu jest śnieg w górach\".",
+          options: null,
+          correctAnswer:
+            "„En enero es temporada baja, así que los vuelos son más baratos; y aunque no lo creas, a 30 minutos de mi casa hay nieve en las montañas.\"",
+          explanation:
+            "Klucz: „es temporada baja\", „los vuelos son más baratos\", „aunque no lo creas\", „hay nieve\" (nie „hace nieve\"), „en las montañas\".",
+        },
+      ],
+      salon: {
+        short:
+          "la nieve → „nieva\" / „hay nieve\" (NIE „hace nieve\"), nevado; los volcanes, las montañas. Urlop: las vacaciones, tener derecho A X días, cumplir un año, la temporada alta/baja.",
+        expand:
+          "estar acostumbrado al calor („están acostumbrados\"), „les bajan 10 grados y tienen frío\", sentir el cambio de clima; la empresa privada/pública, por ley, „te los pagan\", „los precios están altos\", el vuelo.",
+        trap:
+          "„hace nieve\" → „hay nieve / nieva\" (śnieg to czasownik/„hay\", nie „hacer\"). „los volcánes\" → „los volcanes\" (akcent znika w l. mnogiej). „tener derecho DE\" → „tener derecho A\".",
+      },
+    },
+  },
 ];
