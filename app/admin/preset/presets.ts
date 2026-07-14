@@ -11441,4 +11441,166 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 118. Angielski: passive voice (forma, czasy, kiedy używać)
+  // ============================================================
+  {
+    slug: "angielski-passive-voice",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — passive voice (forma, czasy, kiedy używać)",
+    payload: {
+      title: "Passive voice — forma, czasy i kiedy go używać",
+      summary:
+        "Strona bierna: be + III forma (past participle). „The report was sent yesterday.\" Po angielsku używana dużo częściej niż po polsku — gdy wykonawca jest nieznany, oczywisty albo nieistotny, przy procedurach i procesach, i tam, gdzie polski mówi „się\" („faktury wystawia się\" → „invoices are issued\"). Przegląd czasów, zasada „by\" oraz dwa polskie błędy: „It was happened\" (happen nie ma strony biernej) i zgubione „be\".",
+      theory:
+        "PO CO JEST PASSIVE: strona bierna przenosi uwagę z wykonawcy na samą czynność albo jej odbiorcę. Po angielsku używa się jej znacznie częściej niż po polsku — wszędzie tam, gdzie polski sięga po „się\" albo formy bezosobowe: „faktury wystawia się na koniec miesiąca\" → „Invoices are issued at the end of the month.\"\n\nKIEDY — cztery typowe sytuacje:\n— wykonawca NIEZNANY: „My laptop was stolen at the airport.\" (nie wiadomo kto)\n— wykonawca OCZYWISTY albo nieistotny: „The invoice was sent on Monday.\" (wiadomo, że przez księgowość — po co to mówić)\n— PROCESY i procedury: „The data is collected quarterly and stored for five years.\" (opis systemu, nie ludzi)\n— liczy się REZULTAT: „The contract has been signed.\" (ważne, że podpisany — nie kto podpisał)\n\nFORMA: be w odpowiednim czasie + past participle (III forma). Czas „siedzi\" w be, participle się nie zmienia:\n— Present Simple: „Reports are reviewed weekly.\"\n— Present Continuous: „The proposal is being reviewed right now.\" (właśnie teraz, w toku)\n— Present Perfect: „The contract has been signed.\" (już — rezultat)\n— Past Simple: „The meeting was cancelled.\"\n— Past Continuous: „The office was being renovated when I joined.\"\n— Future: „You will be notified by email.\"\n— z going to: „The launch is going to be delayed.\"\n\n„BY + WYKONAWCA\" — dodawaj tylko wtedy, gdy to realna informacja: „The audit was carried out by an external firm.\" (zewnętrzna firma = istotne). Jeśli „by\" nic nie wnosi, pomiń: „English is spoken here\", a nie „...by people\".\n\nCZASOWNIKI NIEPRZECHODNIE NIE MAJĄ PASSIVE — happen, occur, arrive, die, disappear nie mają dopełnienia, więc nie da się ich odwrócić. Top polski błąd: „It was happened\" → „It happened.\" „The problem was occurred\" → „The problem occurred.\"\n\nDRUGI POLSKI BŁĄD — zgubione „be\": „The report sent yesterday\" znaczy co innego (imiesłów: raport wysłany wczoraj) niż „The report WAS sent yesterday\" (raport został wysłany). W passive „be\" jest obowiązkowe.\n\nNIE NADUŻYWAJ: gdy wykonawca jest znany i ważny, strona czynna jest krótsza i jaśniejsza. „The board approved the budget\" bije „The budget was approved by the board\", jeśli mówisz o zarządzie. Passive to narzędzie fokusu, nie domyślny rejestr „na mądrze\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Opis procedury: „Invoices _____ at the end of each month.\"",
+          options: ["are issued", "are issuing", "issue"],
+          correctAnswer: 0,
+          explanation:
+            "Procedura bez wskazywania wykonawcy → Present Simple passive: are + issued. „Are issuing\" to strona czynna (ktoś właśnie wystawia), a samo „issue\" wymagałoby podmiotu-wykonawcy („We issue invoices...\").",
+        },
+        {
+          type: "abc",
+          text: "Dzieje się właśnie teraz: „Your proposal _____ — we'll send feedback by noon.\"",
+          options: ["is being reviewed", "is reviewed", "has been reviewed"],
+          correctAnswer: 0,
+          explanation:
+            "„W toku, właśnie teraz\" → Present Continuous passive: is being + III forma. „Is reviewed\" = rutynowo (np. co tydzień), „has been reviewed\" = już zakończone.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „The contract has already _____ signed by both parties.\"",
+          options: null,
+          correctAnswer: "been",
+          explanation:
+            "Present Perfect passive = has/have + been + III forma: „has been signed\". W czasach perfect „been\" jest obowiązkowe — to w nim siedzi passive.",
+        },
+        {
+          type: "fill",
+          text: "Wstaw III formę: „The decision was _____ (make) by the board, not by me.\"",
+          options: null,
+          correctAnswer: "made",
+          explanation:
+            "Passive = be + past participle: „was made\". Tu „by the board\" zostaje, bo wykonawca jest istotną informacją (decyzja zarządu, nie moja).",
+        },
+        {
+          type: "spot_error",
+          text: "„The outage was happened during last night's migration.\"",
+          options: [
+            "was happened — błąd: happen jest nieprzechodni i nie ma strony biernej → „The outage happened / occurred\"",
+            "during last night's migration — błąd gramatyczny",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Happen, occur, arrive, die nie mają dopełnienia, więc nie mają passive. „It was happened\" to klasyczny polski błąd — poprawnie: „It happened.\"",
+        },
+        {
+          type: "open",
+          text: "Opisz w 2–3 zdaniach, co dzieje się z nową osobą w pierwszym tygodniu w Twojej firmie — w stronie biernej (co jest wysyłane, przyznawane, organizowane).",
+          options: null,
+          correctAnswer:
+            "Przykład: „Before day one, a laptop is sent to the new hire and accounts are set up by IT. During the first week, onboarding sessions are organised and a buddy is assigned. By Friday, access to all key systems has usually been granted.\" Trzy odsłony passive: is sent / are set up (rutyna), are organised (proces), has been granted (rezultat).",
+          explanation:
+            "Opisy procedur to naturalne środowisko passive — nie mówisz, KTO robi, tylko CO się dzieje z nową osobą. Pilnuj be w odpowiednim czasie + III formy.",
+        },
+      ],
+      salon: {
+        short:
+          "Passive = be + III forma: „The report was sent yesterday.\" Używaj, gdy wykonawca jest nieznany, oczywisty albo nieistotny — liczy się czynność i rezultat.",
+        expand:
+          "Czas siedzi w „be\": are issued / is being reviewed / has been signed / was cancelled / will be notified. „By + wykonawca\" tylko gdy to realna informacja. Polskie „się\" (wystawia się, przechowuje się) → angielski passive.",
+        trap:
+          "Nieprzechodnie nie mają passive: „It was happened\" → „It happened\" (tak samo occur, arrive, die). I nie gub „be\": „The report sent\" ≠ „The report WAS sent\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 119. Angielski: passive voice w biznesie (dyplomacja, konstrukcje C1)
+  // ============================================================
+  {
+    slug: "angielski-passive-voice-biznes",
+    vaultSlug: "en",
+    label: "Angielski C1 — passive voice w biznesie (dyplomacja, I was given..., is expected to...)",
+    payload: {
+      title: "Passive voice w biznesie — dyplomacja i konstrukcje C1",
+      summary:
+        "Strona bierna jako narzędzie rejestru w pracy: dyplomatyczne „An error was made\" (problem, nie winny), osoba jako podmiot po give/send/tell/offer („I was given a raise\", „She was offered the role\" — konstrukcja, której polski nie ma), reporting passive do raportów („The merger is expected to close in Q3\", „It is said that...\") i modale („must be signed\"). Do tego potoczne „got promoted\" i zlecanie „have something done\".",
+      theory:
+        "Passive w pracy to przede wszystkim narzędzie REJESTRU — dyplomacja, formalność, raporty. Cztery konstrukcje, które robią różnicę na poziomie C1.\n\nDYPLOMACJA — mówisz o problemie, nie o winnym: „An error was made in the forecast\" zamiast „You made an error\"; „The deadline was missed\", „The wrong file was attached\". Idealne do deeskalacji przy kliencie i w mailach o wpadkach. Granica: nadużyte brzmi wymijająco — słynne polityczne „Mistakes were made\" jest wręcz symbolem uniku. Dyplomacja tak, mgła nie: gdy odpowiedzialność MA znaczenie, wróć do strony czynnej („I made an error and here's the fix\" buduje zaufanie).\n\nOSOBA JAKO PODMIOT — czasowniki z dwoma dopełnieniami (give, send, offer, tell, show, pay, promise) mają DWIE strony bierne: „A raise was given to me\" i — częstsza, naturalniejsza — „I was given a raise\". Po polsku ta druga nie istnieje („zostałam dana podwyżka\"?!), dlatego Polacy jej unikają, a native speakerzy sięgają po nią odruchowo: „She was offered the role\", „We were told about the change\", „You will be sent a confirmation\".\n\nREPORTING PASSIVE (raporty, media, analizy) — dwie formy:\n— bezosobowo: „It is expected that the merger will close in Q3.\" / „It is said that...\", „It is believed that...\", „It is estimated that...\"\n— z podmiotem + to: „The merger is expected to close in Q3.\" / „He is said to be difficult to work with.\" / „Costs are estimated to reach 2 million.\"\nDruga jest zgrabniejsza i bardzo C1. Po polsku odpowiada „mówi się / oczekuje się, że\".\n\nMODALE — modal + be + III forma: „The form must be signed by both parties\", „This should be reviewed before release\", „The data can be exported as CSV\". Po modalu „be\" jest obowiązkowe i nieodmienne.\n\nBONUS — dwaj krewniacy passive:\n— get-passive (potoczny, mówiony): „She got promoted\", „He got fired\", „I got invited\". W rozmowie naturalne, w raporcie zostań przy be.\n— have/get something done (zlecanie): „We had the deck redesigned\", „I'm getting the contract translated\" — nie Ty to robisz, tylko organizujesz. Nie myl z czystym passive: „We had the deck redesigned\" (zleciliśmy) vs „The deck was redesigned\" (zostało zrobione).",
+      questions: [
+        {
+          type: "abc",
+          text: "Klient dostał złą wersję prezentacji. Deeskalujesz: „_____ — please find the corrected one attached.\"",
+          options: [
+            "You sent the wrong version",
+            "The wrong version was sent",
+            "Somebody sent the wrong version",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Passive zdejmuje z komunikatu oskarżenie — mówisz o problemie, nie o winnym. „You sent...\" brzmi jak zarzut, „somebody sent...\" jak szukanie winnego.",
+        },
+        {
+          type: "abc",
+          text: "Gratulujesz koleżance: „I heard you _____ the team lead role!\"",
+          options: ["were offered", "offered", "have offered"],
+          correctAnswer: 0,
+          explanation:
+            "Offer ma dwa dopełnienia (komuś / coś), a angielski lubi OSOBĘ jako podmiot passive: „You were offered the role\" = ktoś Ci ją zaproponował. Samo „you offered\" znaczyłoby, że to ona proponowała.",
+        },
+        {
+          type: "fill",
+          text: "Formalny raport: „The merger is _____ (expect) to close in Q3.\"",
+          options: null,
+          correctAnswer: "expected",
+          explanation:
+            "Reporting passive: podmiot + is expected/said/believed + to + bezokolicznik. „The merger is expected to close\" = oczekuje się, że fuzja się domknie.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „All expenses over 500 euros must _____ approved by a partner.\"",
+          options: null,
+          correctAnswer: "be",
+          explanation:
+            "Modal + be + III forma: must be approved, should be reviewed, can be shared. Po modalu „be\" nigdy nie znika i się nie odmienia.",
+        },
+        {
+          type: "spot_error",
+          text: "„I was said that the meeting had been moved to Friday.\"",
+          options: [
+            "was said — błąd: say nie bierze osoby jako dopełnienia → „I was TOLD that...\" albo „It was said that...\"",
+            "had been moved — błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Say\" mówi się DO kogoś (say TO me), więc osoba nie może być podmiotem jego passive. Osobowo działa tell: „I was told that...\"; bezosobowo: „It was said that...\". Samo „had been moved\" jest poprawne (Past Perfect passive).",
+        },
+        {
+          type: "open",
+          text: "Przeredaguj ten komunikat tak, by był dyplomatyczny (passive zamiast oskarżeń): „You missed the deadline and you sent the client an outdated deck.\"",
+          options: null,
+          correctAnswer:
+            "Przykład: „The deadline was missed and the client was sent an outdated deck. Let's make sure the corrected version goes out today.\" Uwaga na „the client was sent...\" — osoba jako podmiot po send; wersja „an outdated deck was sent to the client\" też poprawna.",
+          explanation:
+            "Dyplomatyczny passive przenosi rozmowę z „kto zawinił\" na „co naprawiamy\". Ale nie twórz mgły: jeśli trzeba wziąć albo wskazać odpowiedzialność, wróć do strony czynnej.",
+        },
+      ],
+      salon: {
+        short:
+          "Dyplomacja: „An error was made\", „The deadline was missed\" — problem, nie winny. Osoba jako podmiot: „I was given a raise\", „She was offered the role\", „We were told about it\".",
+        expand:
+          "Raporty: „The merger is expected to close in Q3\", „It is estimated that...\". Modale: „must be signed\", „should be reviewed\". Potocznie „got promoted\"; zlecanie: „We had the deck redesigned\".",
+        trap:
+          "„I was said that\" → „I was TOLD that\" (say nie bierze osoby; bezosobowo „It was said that\"). Nadmiar passive = mgła — gdy odpowiedzialność ma znaczenie, wróć do strony czynnej.",
+      },
+    },
+  },
 ];
