@@ -11603,4 +11603,113 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 120. Hiszpański: pronombres reflexivos — se mira / mira; kontrast zwrotne vs niezwrotne
+  // ============================================================
+  {
+    slug: "hiszpanski-pronombres-reflexivos",
+    vaultSlug: "es",
+    label: "Hiszpański B1 — pronombres reflexivos (se mira al espejo vs mira; zwrotne vs niezwrotne)",
+    payload: {
+      title: "Los pronombres reflexivos — María se mira al espejo",
+      summary:
+        "Zaimki zwrotne me / te / se / nos / os / se: czynność wraca na wykonawcę. Sedno to KONTRAST — ten sam czasownik z zaimkiem i bez znaczy co innego: „se mira\" (patrzy na siebie) vs „mira\" (patrzy na coś), „nos quemamos\" (poparzyliśmy się) vs „quemamos unos troncos\" (spaliliśmy polana). Reguła: gdy czynność ma inne dopełnienie (a los niños, a tu hermano, unos troncos) — bez zaimka; gdy wraca na wykonawcę — z zaimkiem. Plus higiena codzienna (ducharse, afeitarse, peinarse, pintarse) i pułapka „querer a alguien\".",
+      theory:
+        "CZYM SĄ: pronombres reflexivos (me, te, se, nos, os, se) pokazują, że czynność wykonawcy wraca na niego samego. „(Yo) me lavo\" = myję SIEBIE; „(yo) lavo el coche\" = myję samochód. Czasownik zwrotny w słowniku ma końcówkę -se: lavarse, mirarse, ducharse.\n\nSEDNO — KONTRAST zwrotne vs niezwrotne. Ten sam czasownik zmienia znaczenie w zależności od tego, czy dokleisz zaimek:\n— „María se mira mucho al espejo\" = María dużo patrzy na SIEBIE w lustrze (mirarse). „María mira al espejo\" = patrzy NA lustro jak na przedmiot. Dlatego samo „María mira mucho al espejo\" (Twój błąd) brzmi dziwnie — o siebie w lustrze mówi się „se mira\".\n— „Antonio y yo nos quemamos con unas cerillas\" = Antonio i ja poparzyliśmy SIĘ zapałkami (quemarse — coś stało się nam). „Ayer quemamos unos troncos en la chimenea\" = wczoraj spaliliśmy polana w kominku (quemar algo — czynność na obiekcie). Ta sama forma „quemamos\", ale w pierwszym jest „nos\", bo poszkodowani jesteśmy my; w drugim nie ma, bo palimy drewno.\n\nREGUŁA PRAKTYCZNA — spójrz na dopełnienie. Jeśli po czasowniku stoi INNY obiekt albo osoba (a los niños, a tu hermano, unos troncos, el coche) → czasownik jest niezwrotny, BEZ zaimka. Jeśli innego obiektu nie ma, a czynność dotyka wykonawcy → zaimek zwrotny. Stąd:\n— „Cuando se duchan los niños, hay agua por todo el baño\" — dzieci kąpią SIĘ (ducharse). Bez „se\" („cuando duchan los niños\") wyszłoby, że ktoś kąpie dzieci (duchar a alguien) — Twój błąd.\n— „¿Por qué no quieres a tu hermano?\" — BEZ „te\". Querer a alguien = kochać kogoś, czynność idzie na brata, nie na Ciebie. „No te quieres\" znaczyłoby „nie kochasz samej siebie\".\n\nPUŁAPKA „QUERER\": querer a alguien (kochać kogoś) NIE jest zwrotne — „Quiero a mi hermano\", „¿No quieres a tu hermano?\". Zwrotne „quererse\" = kochać się (samego siebie albo nawzajem): „Se quiere demasiado\" (za bardzo się kocha), „Se quieren\" (kochają się nawzajem).\n\nTRYB ROZKAZUJĄCY: zaimek doczepia się z tyłu w twierdzeniu („Mírate\") i idzie PRZED czasownikiem w przeczeniu: „No te mires tanto al espejo, Saúl\" (nie „no mires\"). Tak samo: „No te afeites hoy\", „No os peinéis aquí\".\n\nHIGIENA I RUTYNA — naturalne środowisko reflexivos (codzienne czynności robimy „na sobie\"): ducharse (brać prysznic), afeitarse (golić się: „te afeitas\" = golisz się), peinarse (czesać się: „os peináis\" = czeszecie się), pintarse (malować się / robić makijaż: „te pintas\"), cortarse (skaleczyć się: „se cortó con el cuchillo\" = skaleczył się nożem).\n\nVER / VERSE + USTED (dwa zdania, których nie rozumiałaś):\n— „¿Qué veis en el espejo?\" = co widzicie w lustrze? (vosotros = wy nieformalnie). Tu „ver\" jest NIEzwrotne, bo pytasz, jaką RZECZ widzą — dopełnieniem jest „qué\", nie oni sami. Dlatego bez „se\".\n— „¿Se ve usted en el espejo?\" = czy widzi się pan/pani w lustrze? (usted = pan/pani, forma grzecznościowa). Tu „verse\" jest zwrotne — chodzi o zobaczenie SIEBIE. Uwaga: usted, choć znaczy „pan/pani\", gramatycznie zachowuje się jak 3. osoba, więc bierze zaimek „se\" (jak on/ona), nie „te\".\n\nSŁÓWKA z tej lekcji: la bata (szlafrok), la cerilla (zapałka), el tronco (polano, kłoda), la chimenea (kominek), el cuchillo (nóż), afeitarse (golić się).",
+      questions: [
+        {
+          type: "abc",
+          text: "„María ___ mucho al espejo\" (María dużo patrzy na siebie w lustrze):",
+          options: ["se mira", "mira", "la mira"],
+          correctAnswer: 0,
+          explanation:
+            "mirarse = patrzeć na SIEBIE (w lustrze) → „se mira\". Samo „mira al espejo\" znaczyłoby, że patrzy na lustro jak na przedmiot. To był Twój błąd („María mira mucho al espejo\").",
+        },
+        {
+          type: "spot_error",
+          text: "Napisałaś: „¿Por qué no te quieres a tu hermano?\"",
+          options: [
+            "OK — „quererse\" jest tu potrzebne",
+            "BŁĄD — querer a alguien NIE jest zwrotne: „¿Por qué no quieres a tu hermano?\" (bez „te\")",
+            "powinno być „no se quiere a\"",
+            "wszystko dobrze",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Querer a alguien = kochać kogoś — czynność idzie na brata, więc bez zaimka. „No te quieres\" znaczyłoby „nie kochasz samej siebie\". Zwrotne „quererse\" = kochać się (np. „se quieren\" = kochają się nawzajem).",
+        },
+        {
+          type: "abc",
+          text: "„Ayer ___ unos troncos en la chimenea\" (wczoraj spaliliśmy polana w kominku):",
+          options: ["quemamos", "nos quemamos", "se quemaron"],
+          correctAnswer: 0,
+          explanation:
+            "quemar algo = spalić coś (los troncos = polana) → bez zaimka: „quemamos unos troncos\". „Nos quemamos\" = poparzyliśmy SIĘ (quemarse), np. „nos quemamos con unas cerillas\" (zapałkami).",
+        },
+        {
+          type: "fill",
+          text: "Tryb rozkazujący, przeczenie: „No ___ mires tanto al espejo, Saúl.\" (wstaw zaimek zwrotny dla „tú\")",
+          options: null,
+          correctAnswer: "te",
+          explanation:
+            "W przeczącym rozkazie zaimek idzie PRZED czasownikiem: „No te mires\". To był Twój błąd („no mires tanto\"). W twierdzeniu doczepiłby się z tyłu: „Mírate\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Cuando duchan los niños, hay agua por todo el baño.\" (chodzi o to, że dzieci się kąpią)",
+          options: [
+            "OK — „duchan\" jest poprawne",
+            "BŁĄD — brakuje „se\": „Cuando se duchan los niños\" (ducharse = kąpać się)",
+            "powinno być „se duchen\"",
+            "wszystko dobrze",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "ducharse = brać prysznic / kąpać się (na sobie) → „los niños se duchan\". Bez „se\" („duchan los niños\") znaczyłoby, że ktoś kąpie dzieci (duchar a alguien). To był Twój błąd.",
+        },
+        {
+          type: "abc",
+          text: "„¿___ usted en el espejo?\" (czy widzi się PAN/PANI w lustrze — usted):",
+          options: ["Se ve", "Ve", "Os veis"],
+          correctAnswer: 0,
+          explanation:
+            "verse = widzieć SIEBIE → zwrotne „se\". Usted (pan/pani) gramatycznie jest 3. osobą, więc bierze „se\", nie „te\": „¿Se ve usted?\". Kontrast: „¿Qué veis en el espejo?\" (vosotros — co WIDZICIE, dopełnieniem jest rzecz) nie jest zwrotne, dlatego bez „se\".",
+        },
+        {
+          type: "fill",
+          text: "„Golisz się codziennie\": „Te ___ todos los días.\" (afeitarse, czas teraźniejszy, „tú\")",
+          options: null,
+          correctAnswer: "afeitas",
+          explanation:
+            "afeitarse = golić się; „(tú) te afeitas\" = golisz się. Bez zaimka „afeitar a alguien\" = golić kogoś (np. u barbera).",
+        },
+        {
+          type: "abc",
+          text: "„Una bata\" to:",
+          options: ["szlafrok", "zapałka (la cerilla)", "nóż (el cuchillo)"],
+          correctAnswer: 0,
+          explanation:
+            "la bata = szlafrok (też: fartuch, kitel lekarza). Przy okazji z tej lekcji: la cerilla = zapałka, el cuchillo = nóż, el tronco = polano, la chimenea = kominek.",
+        },
+        {
+          type: "open",
+          text: "Przetłumacz i wyjaśnij różnicę zaimków: (a) „Antonio y yo nos quemamos con unas cerillas.\" (b) „Ayer quemamos unos troncos en la chimenea.\"",
+          options: null,
+          correctAnswer:
+            "(a) Antonio i ja poparzyliśmy SIĘ zapałkami — quemarse (czynność wraca na nas), „nos\" bo poszkodowani jesteśmy my; las cerillas = zapałki. (b) Wczoraj spaliliśmy polana w kominku — quemar algo (czynność na obiekcie), bez zaimka, bo palimy drewno; los troncos = polana/kłody, la chimenea = kominek.",
+          explanation:
+            "Ta sama forma „quemamos\", a decyduje zaimek: „nos quemamos\" = coś stało się NAM (poparzenie); „quemamos unos troncos\" = my zrobiliśmy coś obiektowi (spaliliśmy drewno).",
+        },
+      ],
+      salon: {
+        short:
+          "Reflexivos me/te/se/nos/os/se — czynność wraca na wykonawcę. Kontrast decyduje o znaczeniu: „se mira\" (na siebie) / „mira\" (na coś); „nos quemamos\" (poparzyliśmy się) / „quemamos troncos\" (spaliliśmy polana).",
+        expand:
+          "Rutyna higieniczna = naturalne reflexivos: ducharse, afeitarse (te afeitas), peinarse (os peináis), pintarse (te pintas), cortarse (se cortó con el cuchillo). Rozkaz przeczący: „No te mires\", „No os peinéis\". Słówka: la bata, la cerilla, el tronco, la chimenea, el cuchillo.",
+        trap:
+          "Po dopełnieniu „a tu hermano / a los niños / unos troncos\" NIE ma zaimka: „quieres a tu hermano\" (nie „te quieres a\"). „¿Qué veis en el espejo?\" (co widzicie — rzecz) vs „¿Se ve usted?\" (czy widzi SIEBIE — usted bierze „se\", nie „te\").",
+      },
+    },
+  },
 ];
