@@ -11712,4 +11712,363 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 121. Hiszpański: fútbol — el árbitro, la falta y la trampa
+  // ============================================================
+  // Z lekcji „fútbol argentino" (2026-07-16). Słownictwo arbitrażu i
+  // oszukiwania — UZUPEŁNIA (nie dubluje) Mundialowe #108–112 (ganar/perder,
+  // fases, apuestas, ser/estar). KLUCZ: sędzia „saca una tarjeta"/„pita una
+  // falta", zawodnik „hace una falta"; „a" osobowe (expulsar/golpear A alguien).
+  {
+    slug: "es-futbol-arbitraje-y-trampa",
+    vaultSlug: "es",
+    label: "Hiszpański — fútbol: el árbitro, la falta, la trampa (VAR, expulsión, hacer trampa, tirarse)",
+    payload: {
+      title: "El árbitro, la falta y la trampa — cuando el fútbol se ensucia",
+      summary:
+        "Słownictwo arbitrażu i oszukiwania w piłce (z rozmowy o Mundialu): el árbitro, el VAR, marcar / pitar una falta, la tarjeta amarilla / roja, sacar una tarjeta, la expulsión, expulsar a alguien, anular un gol, el penal, la fuerza excesiva, golpear a alguien, la cancha; hacer trampa, la trampa, tramposo, tirarse / simular. KLUCZ: sędzia „saca\" kartkę i „pita\" faul, a zawodnik „hace\" faul; „a\" osobowe: „expulsó AL jugador\".",
+      theory:
+        "SĘDZIA I DECYZJE:\n— el árbitro = sędzia; el VAR = powtórka wideo; arbitrar un partido = sędziować.\n— marcar / pitar una falta = odgwizdać faul: „no marcó ninguna falta\" = nie odgwizdał żadnego faulu. UWAGA na kontrast: sędzia „marca / pita\" faul, a zawodnik „hace / comete\" una falta (popełnia).\n— la tarjeta amarilla / roja = żółta / czerwona kartka; sacar una tarjeta = pokazać kartkę (dosł. wyjąć); też „mostrar / dar una tarjeta\". NIE „hacer una tarjeta\".\n— la expulsión = wyrzucenie z gry; expulsar a un jugador = wyrzucić zawodnika; „era una expulsión\" = to była czerwona (należała się).\n— anular un gol = anulować bramkę: „le anularon un gol a Egipto\" (komuś anulować — z zaimkiem „le\").\n— el penal (Ameryka Łac.) / el penalti (Hiszpania) = rzut karny.\n\nFAULE I PRZEMOC:\n— golpear a alguien = uderzyć kogoś („golpeó a un rival en la nuca\" — la nuca = kark); un golpe = uderzenie.\n— la fuerza excesiva = nadmierna siła (żargon VAR: „no existe la intensidad necesaria\" = nie ma wymaganej intensywności, by uznać faul).\n— la cancha (Ameryka Łac.) / el campo (Hiszpania) = boisko; „violencia dentro de la cancha\".\n\nOSZUKIWAĆ:\n— hacer trampa = oszukiwać (zwrot zwykle bez rodzajnika: „hicieron trampa\"); la trampa = oszustwo, podstęp; tramposo/a = oszust. „Hacer trampa\" ≠ engañar a alguien (oszukać konkretną osobę).\n— tirarse / simular = symulować, rzucać się na murawę: „el jugador se tira para que le marquen un penal\"; „se deja caer\" (dosł. daje się upaść = udaje upadek), żeby wymusić rzut karny.\n— la mano de Dios (Maradona, 1986) = „ręka Boga\", słynny gol ręką — przykład oszustwa świętowanego jak coś dobrego.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„El árbitro no expulsó el jugador que golpeó a Bellingham.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "dopełnienie osobowe wymaga „a\": „no expulsó AL jugador\" (a + el = al)",
+            "powinno być „no expulsó del jugador\"",
+            "powinno być „no lo expulsó el jugador\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„a\" osobowe: gdy dopełnieniem jest osoba, dokładamy „a\": „expulsar A alguien\" → „expulsó al jugador\" (a + el = al). Ta sama zasada: „golpear a un rival\", „ayudar a Argentina\".",
+        },
+        {
+          type: "abc",
+          text: "„Sędzia odgwizdał faul\":",
+          options: [
+            "El árbitro pitó una falta",
+            "El árbitro hizo una falta",
+            "El árbitro tuvo una falta",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„pitar\" / „marcar\" una falta = odgwizdać faul (o sędzim). Zawodnik „hace\" / „comete\" una falta (popełnia). „tener una falta\" tu nie pasuje.",
+        },
+        {
+          type: "spot_error",
+          text: "„En el minuto tres el árbitro hizo una tarjeta amarilla a Inglaterra.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "kartkę się „saca\" (albo „muestra / da\"), nie „hace\": „sacó una tarjeta amarilla\"",
+            "powinno być „hizo una amarilla tarjeta\"",
+            "powinno być „tuvo una tarjeta amarilla\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Kolokacja to „sacar una tarjeta\" (dosł. wyjąć) albo „mostrar / dar una tarjeta\". „Hacer\" tu nie pasuje. Zapamiętaj kontrast: zawodnik „hace una falta\", ale sędzia „saca una tarjeta\".",
+        },
+        {
+          type: "abc",
+          text: "„Anulować bramkę\" (np. za spalony albo wcześniejszy faul) to:",
+          options: ["anular un gol", "cancelar un gol", "borrar un gol"],
+          correctAnswer: 0,
+          explanation:
+            "anular un gol = anulować bramkę. Komuś anulować: „le anularon un gol a Egipto\" (z zaimkiem „le\").",
+        },
+        {
+          type: "abc",
+          text: "„Boisko\" po meksykańsku (Ameryka Łac.):",
+          options: ["la cancha", "el campo", "el terreno"],
+          correctAnswer: 0,
+          explanation:
+            "la cancha (Ameryka Łac.) = el campo (Hiszpania) = boisko. „Violencia dentro de la cancha\" = przemoc na boisku.",
+        },
+        {
+          type: "abc",
+          text: "„Oszust\" (ten, kto oszukuje w grze):",
+          options: ["tramposo", "trampero", "engañoso"],
+          correctAnswer: 0,
+          explanation:
+            "tramposo = oszust; „hacer trampa\" = oszukiwać. (trampero = traper/łowca; engañoso = zwodniczy, o rzeczy — „un anuncio engañoso\").",
+        },
+        {
+          type: "fill",
+          text: "„Sędzia nie odgwizdał żadnego faulu, choć zawodnik uderzył rywala\": „El árbitro no marcó ninguna ___ , aunque el jugador golpeó al rival.\"",
+          options: null,
+          correctAnswer: "falta",
+          explanation:
+            "„marcar una falta\" = odgwizdać faul; „ninguna falta\" = żadnego faulu. (Kartkę się „saca\", nie „marca\".)",
+        },
+        {
+          type: "fill",
+          text: "„Oszuści zawsze szukają, jak oszukiwać\": „Los tramposos siempre buscan cómo hacer ___.\"",
+          options: null,
+          correctAnswer: "trampa",
+          explanation:
+            "„hacer trampa\" = oszukiwać (zwrot zwykle bez rodzajnika). la trampa = oszustwo; tramposo = oszust.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Sędzia nie odgwizdał żadnego faulu ani nie pokazał czerwonej kartki, choć zawodnik uderzył rywala i powinien być wyrzucony z boiska\".",
+          options: null,
+          correctAnswer:
+            "„El árbitro no pitó (marcó) ninguna falta ni sacó (mostró) la tarjeta roja, aunque el jugador golpeó a un rival y debería ser expulsado de la cancha.\"",
+          explanation:
+            "Klucz: „pitar / marcar una falta\", „sacar / mostrar una tarjeta\", „golpear A un rival\" (a osobowe), „ser expulsado\", la cancha / el campo.",
+        },
+      ],
+      salon: {
+        short:
+          "el árbitro, el VAR; marcar / pitar una falta, sacar una tarjeta amarilla / roja, la expulsión (expulsar A alguien), anular un gol, el penal.",
+        expand:
+          "hacer trampa (oszukiwać, bez rodzajnika), la trampa, tramposo; tirarse / simular (symulować), golpear A alguien, la fuerza excesiva, la cancha (Ameryka) / el campo (Hiszpania). „la mano de Dios\" = słynne oszustwo Maradony.",
+        trap:
+          "„a\" osobowe: „expulsar / golpear A un jugador\" („expulsó AL jugador\"). Kolokacje: zawodnik „hace / comete una falta\", ale sędzia „saca una tarjeta\" i „pita una falta\" — nie mieszać z „hacer\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 122. Hiszpański: geopolítica — las Malvinas (soberanía, guerra, recursos)
+  // ============================================================
+  // Z tej samej lekcji (2026-07-16): wątek Malwinów/Falklandów. Słownictwo
+  // geopolityczne. Reinforce ser vs estar (#111): przynależność = „ser de\" /
+  // „pertenecer a\", nie „estar\". Para myląca: exploración ≠ explotación.
+  {
+    slug: "es-las-malvinas-soberania-guerra-recursos",
+    vaultSlug: "es",
+    label: "Hiszpański — geopolítica: las Malvinas (la soberanía, la guerra, el conflicto, los recursos)",
+    payload: {
+      title: "Las Malvinas — soberanía, guerra y recursos naturales",
+      summary:
+        "Słownictwo geopolityczne z rozmowy o Malwinach/Falklandach: la isla, la costa, la soberanía, reivindicar, pertenecer a, conquistar, el territorio, el punto estratégico, la base militar; la guerra, el conflicto diplomático, la protesta formal, el comunicado, la provocación, la pancarta / la lona; los recursos naturales, los yacimientos de hidrocarburos, la pesca, la exploración petrolera, el acuerdo (negociar / romper). KLUCZ: przynależność = „ser de\" / „pertenecer a\", nie „estar\".",
+      theory:
+        "KONFLIKT TERYTORIALNY:\n— la isla / las islas = wyspa; la costa = wybrzeże: „cerca de la costa de Argentina\" (zawsze „cerca DE\").\n— la soberanía = suwerenność; reivindicar la soberanía = rościć sobie prawo do suwerenności; „la reivindicación de soberanía\".\n— pertenecer a = należeć do: „las islas pertenecen al Reino Unido\". Alternatywnie „ser de\": „son británicas\", „son del Reino Unido\". UWAGA: przynależność to „ser / pertenecer\", NIE „estar\".\n— conquistar = podbić: „fueron conquistadas por Inglaterra\"; el territorio = terytorium.\n— el punto estratégico = punkt strategiczny; la base militar = baza wojskowa.\n\nWOJNA I DYPLOMACJA:\n— la guerra = wojna („ya hubo una guerra\" = już była wojna); el conflicto (diplomático) = konflikt (dyplomatyczny).\n— la protesta formal = oficjalny protest; presentar / lanzar una protesta = złożyć protest; protestar.\n— el comunicado = komunikat, oświadczenie: „lanzar un comunicado\".\n— la provocación = prowokacja; declarar la guerra = wypowiedzieć wojnę.\n— la pancarta / la lona = transparent, baner: „mostraron una lona: «las Malvinas son argentinas»\".\n\nZASOBY I POROZUMIENIA:\n— los recursos naturales = zasoby naturalne; los yacimientos de hidrocarburos = złoża węglowodorów; el petróleo = ropa; la pesca = rybołówstwo.\n— PARA MYLĄCA: la exploración (petrolera) = poszukiwanie (szukanie złóż) ≠ la explotación = eksploatacja, wydobycie ≠ la explosión = wybuch.\n— el acuerdo (internacional) = porozumienie; negociar / firmar / romper un acuerdo = negocjować / podpisać / zerwać.\n— porównanie z rozmowy: „es lo mismo que Groenlandia y Trump\" — nie można „kupić\" wyspy z jej mieszkańcami wbrew ich woli.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Las islas están del Reino Unido desde hace muchos años.\" (chodzi o to, że NALEŻĄ do UK) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "przynależność wyraża „ser\", nie „estar\": „son del Reino Unido\" (albo „pertenecen al Reino Unido\")",
+            "powinno być „las islas tienen del Reino Unido\"",
+            "powinno być „las islas son al Reino Unido\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przynależność / pochodzenie = „ser de\" („son del Reino Unido\") albo „pertenecer a\" („pertenecen al Reino Unido\"). „estar\" mówiłoby o położeniu / stanie, nie o tym, do kogo należą.",
+        },
+        {
+          type: "spot_error",
+          text: "„Las Malvinas están cerca la costa de Argentina.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "brakuje „de\": „cerca DE la costa\" (a samo „están\" jest tu poprawne — to położenie)",
+            "powinno być „son cerca de la costa\"",
+            "powinno być „están cerca a la costa\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„cerca\" zawsze łączy się z „de\": „cerca DE la costa\". Tutaj akurat „están\" jest dobre, bo mowa o POŁOŻENIU (gdzie leżą) — inaczej niż przynależność, która idzie przez „ser / pertenecer\".",
+        },
+        {
+          type: "abc",
+          text: "„Rościć sobie prawo do suwerenności\":",
+          options: [
+            "reivindicar la soberanía",
+            "reivindicar la soberana",
+            "estar la soberanía",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "la soberanía = suwerenność (rzecz); reivindicar = domagać się, rościć. „la soberana\" = władczyni (co innego).",
+        },
+        {
+          type: "abc",
+          text: "„Złoża węglowodorów\" (ropa, gaz pod dnem morskim):",
+          options: [
+            "los yacimientos de hidrocarburos",
+            "las minas de hidrocarburos",
+            "los pozos de hidrocarburos",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "el yacimiento = złoże → „yacimientos de hidrocarburos\". (la mina = kopalnia, zwykle minerałów stałych; el pozo = szyb / studnia.)",
+        },
+        {
+          type: "abc",
+          text: "„Poszukiwanie ropy\" (samo szukanie złóż, jeszcze nie wydobycie):",
+          options: [
+            "la exploración petrolera",
+            "la explotación petrolera",
+            "la explosión petrolera",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "explorar = poszukiwać, badać (szukać złóż) → la exploración. Nie mylić: la explotación = eksploatacja / wydobycie, la explosión = wybuch.",
+        },
+        {
+          type: "abc",
+          text: "„Zerwać porozumienie\":",
+          options: ["romper un acuerdo", "quebrar un acuerdo", "partir un acuerdo"],
+          correctAnswer: 0,
+          explanation:
+            "romper un acuerdo = zerwać porozumienie. Reszta rodziny: negociar / firmar un acuerdo = negocjować / podpisać porozumienie.",
+        },
+        {
+          type: "fill",
+          text: "„Argentyna i Anglia już toczyły o wyspy wojnę w 1982\": „Argentina e Inglaterra ya tuvieron una ___ por las islas en 1982.\"",
+          options: null,
+          correctAnswer: "guerra",
+          explanation:
+            "la guerra = wojna; „ya hubo una guerra\" / „tuvieron una guerra por las islas\". „por las islas\" = o wyspy.",
+        },
+        {
+          type: "fill",
+          text: "„Jedynym zasobem wysp jest rybołówstwo\": „El único recurso de las islas es la ___.\"",
+          options: null,
+          correctAnswer: "pesca",
+          explanation:
+            "la pesca = rybołówstwo. Inne zasoby z rozmowy: los recursos naturales, los yacimientos de hidrocarburos, el petróleo.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wyspy należą do Wielkiej Brytanii i są punktem strategicznym; Argentyna rości sobie prawo do suwerenności, ale mieszkańcy nie chcą być Argentyńczykami i już była o nie wojna\".",
+          options: null,
+          correctAnswer:
+            "„Las islas pertenecen al Reino Unido (son del Reino Unido) y son un punto estratégico; Argentina reivindica la soberanía, pero los habitantes no quieren ser argentinos y ya hubo una guerra por ellas.\"",
+          explanation:
+            "Klucz: „pertenecer a\" / „ser de\" (nie „estar\"), el punto estratégico, reivindicar la soberanía, „ya hubo una guerra\", „por ellas\" (o nie).",
+        },
+      ],
+      salon: {
+        short:
+          "la isla, la costa, la soberanía (reivindicar la soberanía), pertenecer a / ser de, conquistar, el punto estratégico, la base militar, la guerra, el conflicto diplomático.",
+        expand:
+          "la protesta formal, el comunicado, la provocación, la pancarta / la lona; los recursos naturales, los yacimientos de hidrocarburos, la pesca, la exploración petrolera; el acuerdo — negociar / firmar / romper. Analogia: Groenlandia / Trump.",
+        trap:
+          "Przynależność = „ser de\" / „pertenecer a\", nie „estar\" (islas SON del Reino Unido). „cerca DE la costa\" (zawsze z „de\"). Trójka myląca: exploración (szukanie) ≠ explotación (wydobycie) ≠ explosión (wybuch).",
+      },
+    },
+  },
+
+  // ============================================================
+  // 123. Hiszpański: sensaciones, emociones y actitudes (picar/morder, dar+emoción)
+  // ============================================================
+  // Z tej samej lekcji (2026-07-16): trzy powiązane wątki językowe. (1) picar
+  // vs morder (owady „pican\", pies „muerde\"; morderse las uñas → por. #120).
+  // (2) dar + emocja (rozszerza znane z #110 „me da miedo\"). (3) charakter /
+  // postawy + także/też-nie (también → tampoco). gustar jest w osobnej lekcji —
+  // tu tylko punkt „tampoco\".
+  {
+    slug: "es-sensaciones-emociones-y-actitudes",
+    vaultSlug: "es",
+    label: "Hiszpański — picar vs morder, „me da vergüenza / asco\", actitudes (ego, orgullo, estereotipo) i tampoco",
+    payload: {
+      title: "De «me pican los mosquitos» a «me da vergüenza» — sensaciones, emociones y actitudes",
+      summary:
+        "Trzy powiązane wątki z rozmowy: (1) picar vs morder — owady „pican\", pies „muerde\", a paznokcie się „morderse\" (zwrotne, por. lekcja o pronombres reflexivos); (2) dar + emocja: me da vergüenza / asco / pena / rabia (rozszerzenie znanego „me da miedo\"); (3) charakter i postawy: el ego, arrogante, el orgullo ↔ la vergüenza, el estereotipo, rechazar, „país hermano\". Plus przeczenie: „też nie\" = tampoco (NIE „también\").",
+      theory:
+        "PICAR vs MORDER (gryźć / kłuć):\n— morder = ugryźć zębami (czasownik O→UE: muerdo, muerdes, muerde): „el perro muerde\", „los gatos muerden\", „el perro me mordió\".\n— picar = ukąsić, użądlić (owad, coś kłującego): „me pican los mosquitos\" = komary mnie gryzą — bo mają „piquito\" (kłujkę), a nie zęby. Też: „pica el chile\" = papryczka piecze / szczypie.\n— KALKA DO UNIKNIĘCIA: po polsku komar „gryzie\", ale po hiszpańsku owady „pican\", NIE „muerden\". Zębami gryzie pies / kot → „muerde\".\n— morderse (zwrotne) = gryźć samego siebie: „morderse las uñas\" = obgryzać paznokcie (mechanizm zaimka zwrotnego — patrz lekcja o pronombres reflexivos).\n\nDAR + EMOCJA (coś wywołuje we mnie uczucie):\n— konstrukcja jak „gustar\": me / te / le + da + rzeczownik; podmiotem jest to, co wywołuje uczucie („me da miedo apostar\" = boję się obstawiać — to już znasz).\n— rozszerz na inne emocje: me da vergüenza = wstyd mi; me da asco = brzydzę się, obrzydza mnie; me da pena = przykro / żal mi (w Meksyku też: wstyd mi); me da rabia = wkurza mnie; me da igual = wszystko mi jedno.\n— „Me da vergüenza que digan que México es un país de narcos\" = wstyd mi, że mówią, że Meksyk to kraj narkobiznesu. UWAGA: mówi się „me da vergüenza\", NIE „soy vergüenza\".\n\nCHARAKTER I POSTAWY:\n— el ego = ego; arrogante = arogancki; la arrogancia = arogancja: „tienen un ego enorme\".\n— el orgullo = duma; orgulloso/a DE = dumny z: „están orgullosos de eso\" ↔ la vergüenza = wstyd. Sedno rozmowy: robić coś „con orgullo\" zamiast „con vergüenza\".\n— el estereotipo = stereotyp („el país de narcos\" jako stereotyp); insultar = obrażać; el racismo = rasizm.\n— rechazar = odrzucać: „Argentina rechaza a los demás\"; el país hermano = kraj brat (Ameryka Łac. traktuje się jak jedną rodzinę).\n\nTAKŻE / TEŻ (uwaga przy przeczeniu):\n— también = też (w zdaniu twierdzącym); tampoco = też nie (w przeczeniu). „A mí TAMPOCO me gustan los mosquitos\" — NIE „no me gustan también\". Przy przeczeniu zawsze „tampoco\".",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„No me gustan los mosquitos también.\" (chcesz powiedzieć „mnie też nie podobają się / też nie lubię komarów\") — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "przy przeczeniu „też\" to „tampoco\", nie „también\": „A mí tampoco me gustan los mosquitos\"",
+            "powinno być „yo no gusto los mosquitos también\"",
+            "powinno być „no me gusto los mosquitos tampoco\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„też nie\" = „tampoco\" (nie „también\", które jest tylko w twierdzeniu). Naturalnie: „A mí tampoco me gustan los mosquitos\" — z „gustar\" podmiotem są komary, więc „me gustan\" + „a mí\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Los mosquitos me muerden mucho por la noche.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "owady „pican\", nie „muerden\": „me pican mucho por la noche\"",
+            "powinno być „los mosquitos me pico\"",
+            "powinno być „me muerdo los mosquitos\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Owady kłują (mają „piquito\") → „picar\": „me pican\". „morder\" jest o zębach (pies / kot): „el perro me muerde\".",
+        },
+        {
+          type: "abc",
+          text: "„Pies mnie ugryzł\":",
+          options: [
+            "El perro me mordió",
+            "El perro me picó",
+            "El perro me pica",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Pies gryzie zębami → morder (pretérito: mordió). „picar\" (picó / pica) jest o owadach: „me picó un mosquito\".",
+        },
+        {
+          type: "abc",
+          text: "„Wstyd mi (że tak mówią)\":",
+          options: ["Me da vergüenza", "Soy vergüenza", "Hago vergüenza"],
+          correctAnswer: 0,
+          explanation:
+            "dar + emocja: „me da vergüenza\" = wstyd mi (jak „me da miedo\"). Nie „soy / hago vergüenza\".",
+        },
+        {
+          type: "abc",
+          text: "„Brzydzę się tym / obrzydza mnie to\":",
+          options: ["Me da asco", "Me hace asco", "Estoy asco"],
+          correctAnswer: 0,
+          explanation:
+            "me da asco = obrzydza mnie, brzydzę się. Ta sama konstrukcja co „me da miedo / vergüenza / pena\".",
+        },
+        {
+          type: "abc",
+          text: "„Dumny z czegoś\":",
+          options: ["orgulloso de", "orgulloso por", "orgulloso con"],
+          correctAnswer: 0,
+          explanation:
+            "estar / ser orgulloso DE algo = dumny z czegoś: „están orgullosos de eso\". Przeciwieństwo emocji: la vergüenza (wstyd).",
+        },
+        {
+          type: "fill",
+          text: "„Mnie też nie podobają się komary\": „A mí ___ me gustan los mosquitos.\" (przeczenie!)",
+          options: null,
+          correctAnswer: "tampoco",
+          explanation:
+            "Przy przeczeniu „też\" = „tampoco\": „A mí tampoco me gustan\". „también\" byłoby tylko w zdaniu twierdzącym.",
+        },
+        {
+          type: "fill",
+          text: "„Komary gryzą mnie latem\": „Los mosquitos me ___ mucho en verano.\"",
+          options: null,
+          correctAnswer: "pican",
+          explanation:
+            "Owady „pican\" (kłują), nie „muerden\". „me pican los mosquitos\" = komary mnie gryzą.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wstyd mi, kiedy mówią, że mój kraj to kraj narkobiznesu; ale niektórzy są z tego dumni, zamiast czuć wstyd\".",
+          options: null,
+          correctAnswer:
+            "„Me da vergüenza cuando dicen que mi país es un país de narcos; pero algunos están orgullosos de eso en vez de sentir vergüenza.\"",
+          explanation:
+            "Klucz: „me da vergüenza\", „un país de narcos\", „estar orgulloso de\", „en vez de\" (zamiast), „sentir vergüenza\".",
+        },
+      ],
+      salon: {
+        short:
+          "picar (owady: „me pican los mosquitos\") vs morder (zęby: „el perro muerde\"); morderse las uñas (zwrotne). dar + emocja: me da vergüenza / asco / pena / miedo.",
+        expand:
+          "charakter: el ego, arrogante, la arrogancia; el orgullo / orgulloso DE ↔ la vergüenza; el estereotipo, rechazar, insultar, el racismo, „el país hermano\".",
+        trap:
+          "Owady „pican\", nie „muerden\". Przeczenie: „też nie\" = „tampoco\", nie „también\" („a mí tampoco me gustan\"). Emocje przez „dar\": „me da vergüenza\" (nie „soy vergüenza\").",
+      },
+    },
+  },
 ];
