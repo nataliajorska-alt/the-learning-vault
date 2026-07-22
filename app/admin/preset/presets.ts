@@ -12071,4 +12071,111 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 124. Angielski: past perfect simple (przeszłość przed przeszłością)
+  // ============================================================
+  {
+    slug: "angielski-past-perfect-simple",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — past perfect simple (past before past, sekwencja, backshift)",
+    payload: {
+      title: "Past perfect simple — przeszłość przed przeszłością",
+      summary:
+        "Past perfect (had + III forma) to „przeszłość przed przeszłością\": czynność zakończona ZANIM wydarzyło się coś innego w przeszłości. „By the time I arrived, the meeting had already started.\" Polski nie ma osobnego czasu na tę relację, więc Polacy albo gubią past perfect (wszystko w past simple, ginie kolejność), albo go nadużywają w zwykłej sekwencji. Do tego backshift w mowie zależnej i „had\" skracane do 'd.",
+      theory:
+        "ZNACZENIE: past perfect pokazuje, że jedna czynność w przeszłości wydarzyła się PRZED inną czynnością albo momentem w przeszłości. To „przeszłość przed przeszłością\" — cofasz się o krok głębiej, gdy opowiadasz już w czasie przeszłym. „When I got to the office, the client had left.\" (najpierw wyszedł, potem ja dotarłam).\n\nFORMA: had + past participle (III forma), taka sama dla wszystkich osób. Skrót: had → 'd („I'd finished\", „she'd left\"). Przeczenie: hadn't + III („We hadn't heard back.\"). Pytanie: Had + podmiot + III? („Had you met her before?\").\n\nKIEDY — cztery typowe sytuacje:\n— DWA ZDARZENIA po kolei, wcześniejsze idzie w past perfect: „By the time the board met, the numbers had already leaked.\"\n— gdy KOLEJNOŚĆ w zdaniu nie jest chronologiczna — past perfect ją porządkuje: „She had prepared the deck before the call started.\" (przygotowała wcześniej, choć w zdaniu pada jako druga).\n— MOWA ZALEŻNA / backshift: present perfect i past simple cofają się o krok: „I've sent it\" / „I sent it\" → „She said she had sent it.\"\n— THIRD CONDITIONAL (przeszłość nierealna): „If I had known, I would have called.\" (osobny temat, ale to ten sam „had + III\").\n\nMARKERY, które lubią past perfect: by the time, before, after, already, just, never (...before), until then, when. „I had never seen the full model until then.\"\n\nUWAGA na „WHEN\" — potrafi zmienić sens: „When the guests arrived, she cooked dinner\" (ugotowała PO ich przyjściu) vs „When the guests arrived, she had cooked dinner\" (obiad był gotowy PRZED). To nie ozdobnik — past perfect niesie realną informację o kolejności.\n\nNIE NADUŻYWAJ: gdy dwie czynności dzieją się po prostu po kolei i opowiadasz je w naturalnym porządku, wystarczy past simple. „I woke up, made coffee and left.\" — NIE „I had woken up, had made coffee...\". Past perfect wstawiasz tylko wtedy, gdy naprawdę SIĘGASZ WSTECZ do czegoś wcześniejszego. Przy „after\" i „before\" kolejność jest już jasna, więc past perfect bywa opcjonalny: „After she finished / had finished, she left.\" — oba OK.\n\nTOP POLSKI BŁĄD: gubienie past perfect. Polski oddaje kolejność samym past simple, więc kusi „When I called her, she already signed the contract\" — brzmi, jakby podpisała w momencie telefonu. Poprawnie: „...she had already signed...\". Błąd odwrotny: past perfect wciśnięty w zwykłą sekwencję („I had gone to the gym and had had a shower\" zamiast „went... had...\").\n\nPAST PERFECT vs PRESENT PERFECT (szybko): present perfect = przeszłość przed TERAZ („I have finished\"); past perfect = przeszłość przed WTEDY („I had finished by the time you called\"). Ta sama logika „coś-przed-czymś\", tylko punkt odniesienia przesuwa się z „teraz\" na „wtedy\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Klient wyszedł, zanim dotarłam: „By the time I got to the meeting room, the client _____.\"",
+          options: [
+            "already left",
+            "had already left",
+            "has already left",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wcześniejsze z dwóch przeszłych zdarzeń → past perfect: „had already left\". „Already left\" (past simple) gubi kolejność; „has already left\" to present perfect (przeszłość przed TERAZ, nie przed „got\").",
+        },
+        {
+          type: "abc",
+          text: "Raport był gotowy, ZANIM przyszli audytorzy: „When the auditors arrived, we _____ the report.\"",
+          options: ["finished", "had finished", "were finishing"],
+          correctAnswer: 1,
+          explanation:
+            "„When + had finished\" = skończone przed ich przyjściem. „When we finished\" znaczyłoby, że skończyliśmy dopiero, gdy przyszli. „When\" bywa dwuznaczne — past perfect przesądza kolejność.",
+        },
+        {
+          type: "abc",
+          text: "Które zdanie brzmi naturalnie dla trzech czynności po kolei (bez sięgania wstecz)?",
+          options: [
+            "I had woken up, had made coffee and had left.",
+            "I woke up, made coffee and left.",
+            "I had woken up, made coffee and left.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zwykła chronologiczna sekwencja → sam past simple. Past perfect wstawiasz tylko, gdy cofasz się do czegoś WCZEŚNIEJSZEGO niż główna oś opowieści, nie do każdej czynności z rzędu.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij czasownik posiłkowy past perfect: „By the time the board met, the numbers _____ already leaked.\"",
+          options: null,
+          correctAnswer: "had",
+          explanation:
+            "Past perfect = had + III forma, dla każdej osoby tak samo. Tu „had ... leaked\" — przeciek nastąpił PRZED zebraniem zarządu.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij III formę czasownika: „When I joined the project, the team had already _____ (miss) two deadlines.\"",
+          options: null,
+          correctAnswer: "missed",
+          explanation:
+            "„had + III forma\" → „had missed\". Terminy przepadły ZANIM dołączyłam — dlatego past perfect, nie past simple.",
+        },
+        {
+          type: "spot_error",
+          text: "„When I called the client, she already signed the contract, so it was too late to renegotiate.\"",
+          options: [
+            "already signed — ma być „had already signed\" (podpisała ZANIM zadzwoniłam)",
+            "I called — błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Podpis nastąpił przed telefonem → past perfect: „she had already signed\". Sam past simple („already signed\") sugeruje, że podpisała w momencie rozmowy. To klasyczne polskie gubienie past perfect.",
+        },
+        {
+          type: "spot_error",
+          text: "„Yesterday I had gone to the gym, had had a shower and had cooked dinner.\"",
+          options: [
+            "had gone / had had / had cooked — nadużycie; prosta sekwencja to past simple: went / had / cooked",
+            "had had — jedyny błąd",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Trzy czynności po kolei, nic nie sięga „przed przeszłość\" — więc past simple: „I went to the gym, had a shower and cooked dinner.\" Past perfect tu tylko przeszkadza.",
+        },
+        {
+          type: "open",
+          text: "Napisz 2 zdania o pracy: coś wydarzyło się ZANIM doszło do innego zdarzenia w przeszłości — użyj past perfect (had + III).",
+          options: null,
+          correctAnswer:
+            "Przykład: „By the time I joined the account, the team had already lost two analysts and had missed the first milestone. The client had flagged the delay before we even held our kickoff call.\" Past perfect (had lost / had missed / had flagged) porządkuje: to zdarzyło się PRZED momentem opowiadanym w past simple (joined, held).",
+          explanation:
+            "Klucz: jedna oś opowieści w past simple (joined), a to, co było WCZEŚNIEJ, w past perfect (had + III). Nie wrzucaj past perfect do każdej czynności — tylko do tych naprawdę wcześniejszych.",
+        },
+      ],
+      salon: {
+        short:
+          "Past perfect = „przeszłość przed przeszłością\": had + III forma, gdy coś skończyło się PRZED innym momentem w przeszłości. „By the time I arrived, the meeting had already started.\"",
+        expand:
+          "Markery: by the time, before, after, already, just, never...before, until then. „When\" zmienia sens: „when she had cooked dinner\" (gotowe wcześniej) vs „when she cooked dinner\" (dopiero wtedy). Backshift w mowie zależnej: „I've sent it / I sent it\" → „She said she had sent it.\". Ten sam „had + III\" siedzi w third conditional („If I had known...\").",
+        trap:
+          "Dwa polskie błędy naraz: (1) gubienie past perfect — „when I called, she already signed\" → „had already signed\"; (2) nadużywanie go w zwykłej sekwencji — „I woke up, made coffee and left\", NIE „had woken up, had made...\". Past perfect tylko wtedy, gdy naprawdę sięgasz wstecz.",
+      },
+    },
+  },
 ];
