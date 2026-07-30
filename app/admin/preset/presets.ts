@@ -12178,4 +12178,265 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 125. Hiszpański: salud y educación — público vs privado
+  // ============================================================
+  // Z lekcji 2026-07-30 („Situación social, política y educativa en México\").
+  // Świadomie NIE dubluję clima (#85/#97/#117) ani objawów/zdrowia (#96) —
+  // tu chodzi o SYSTEM: ubezpieczenia, badania przed pracą, szkoła publiczna
+  // vs prywatna. Błąd Nati z rozmowy („antes de trabajo... ir a médico\")
+  // wchodzi jako spot_error.
+  {
+    slug: "es-salud-y-educacion-publico-vs-privado",
+    vaultSlug: "es",
+    label: "Hiszpański — sistema de salud y educación: el seguro médico, el chequeo, escuela pública vs privada",
+    payload: {
+      title: "¿Público o privado? — el seguro médico, el chequeo y la escuela",
+      summary:
+        "Słownictwo do rozmowy o systemie: el seguro médico, el seguro de gastos médicos mayores, contratar un seguro, ir al médico, hacerse un chequeo, la atención pública es deficiente — plus szkoła: la escuela pública/privada, los libros de texto, la calidad ha bajado, enseñar algo A alguien, la lengua indígena vs el idioma oficial. Trzy pułapki: „antes de\" + bezokolicznik, „ir AL médico\" i „la mayoría de la gente VA\" (czasownik w liczbie pojedynczej).",
+      theory:
+        "EL SEGURO MÉDICO (ubezpieczenie):\n— el seguro médico = ubezpieczenie zdrowotne; el seguro de gastos médicos mayores = prywatna polisa zdrowotna (tak się to nazywa w Meksyku).\n— contratar un seguro (por mes / por año) = wykupić ubezpieczenie. NIE „comprar un seguro\" — ubezpieczenia się „contrata\" (zawiera).\n— „la empresa paga tu seguro público\" = firma płaci twoje ubezpieczenie publiczne; el trabajador independiente = osoba samozatrudniona.\n— quitar ALGO A ALGUIEN (zabrać komuś coś) — dopełnienie dalsze: „les quitaron el servicio público a los trabajadores independientes\" (por. lekcja o OD vs OI).\n— pagar ALGO, bez przyimka: „si necesito algo, necesito pagarlo\", „pagar la consulta\".\n\nIR AL MÉDICO (badania):\n— ir AL médico (a + el = al) — zawsze z rodzajnikiem: „antes de empezar a trabajar tienes que ir al médico\".\n— hacerse un chequeo médico / un examen médico = zrobić sobie badania; „te evalúan\" = badają cię / oceniają twój stan; el seguro lo exige = ubezpieczenie tego wymaga.\n— PUŁAPKA: „antes de\" + BEZOKOLICZNIK: „antes de empezar a trabajar\", „antes de firmar el contrato\". Jeśli chcesz rzeczownik, musi być rodzajnik: „antes DEL trabajo\" (= przed pracą). Nigdy „antes de trabajo\".\n\nOCENIĆ SYSTEM — público vs privado:\n— la atención pública / el servicio público es deficiente = publiczna opieka jest kiepska; potocznie i bardzo mocno: „es una porquería\" (badziewie).\n— tan + przymiotnik + QUE: „el servicio es tan malo que la gente prefiere pagar\" = usługa jest tak zła, że ludzie wolą płacić.\n— da igual = wszystko jedno: „no te dan seguro privado, así que da igual\".\n— preferir + bezokolicznik: „muchos prefieren ir al médico privado\"; „si puedes pagar, vas al privado\".\n\nLA ESCUELA:\n— la escuela pública / privada; la calidad de la educación ha bajado (albo: ha disminuido) = jakość edukacji spadła. Czasownik bajar, nie „ser bajada\".\n— los libros de texto = podręczniki (nie „los libros de la escuela\").\n— ENSEÑAR ALGO A ALGUIEN — zawsze z „a\" + osoba i zwykle z le/les: „les enseñan ideología a los niños\", „en la escuela pública me enseñaban muchísimas cosas\".\n— la materia = przedmiot szkolny; „quitaron la mayor parte de las matemáticas\" = usunęli większość matematyki.\n— la lengua indígena = język rdzenny; el idioma oficial = język urzędowy; „el inglés es la base para salir al mundo\".\n— competir CON alguien: „no puedes competir con alguien del extranjero\"; depender DEL sistema = być zależnym od systemu; costar caro: „cuesta caro\" = dużo kosztuje.\n— LICZBA: „la mayoría de la gente VA a escuelas públicas\" — „la mayoría de + rzeczownik zbiorowy\" bierze czasownik w liczbie POJEDYNCZEJ (tak samo „la gente es / la gente va\").",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Antes de trabajo tienes que ir a médico.\" (= przed pracą / przed rozpoczęciem pracy trzeba iść do lekarza) — dwa błędy:",
+          options: [
+            "wszystko OK",
+            "„Antes de\" + bezokolicznik i „al médico\" z rodzajnikiem: „Antes de empezar a trabajar tienes que ir AL médico\"",
+            "powinno być „Antes que trabajas tienes que ir en el médico\"",
+            "powinno być „Antes del trabajar tienes que ir a el médico\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Po „antes de\" idzie bezokolicznik („antes de empezar a trabajar\") albo rzeczownik Z rodzajnikiem („antes del trabajo\"). I zawsze „ir AL médico\" (a + el), nigdy „a médico\".",
+        },
+        {
+          type: "spot_error",
+          text: "„El gobierno quitó el servicio público los trabajadores independientes.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "brakuje „a\" przy osobie (komu zabrali): „les quitó el servicio público A los trabajadores independientes\"",
+            "powinno być „quitó del servicio público de los trabajadores independientes\"",
+            "powinno być „quitó a el servicio público los trabajadores\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "quitar ALGO A ALGUIEN — osoba, której coś zabrano, to dopełnienie dalsze: „a los trabajadores\" + zaimek „les\". Ten sam wzór co „dar algo a alguien\".",
+        },
+        {
+          type: "abc",
+          text: "„Wykupić prywatne ubezpieczenie (na miesiąc albo na rok)\":",
+          options: [
+            "contratar un seguro privado",
+            "comprar un seguro privado",
+            "hacer un seguro privado",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Ubezpieczenie się „contrata\": „puedes contratar un seguro privado por mes o por año\". „comprar / hacer un seguro\" to kalka.",
+        },
+        {
+          type: "abc",
+          text: "„Podręczniki (szkolne)\":",
+          options: [
+            "los libros de texto",
+            "los libros de la escuela",
+            "los cuadernos de texto",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "el libro de texto = podręcznik („los libros de texto que da el gobierno\"). „el cuaderno\" to zeszyt.",
+        },
+        {
+          type: "abc",
+          text: "„Jakość edukacji spadła\":",
+          options: [
+            "La calidad de la educación ha bajado",
+            "La calidad de la educación es bajada",
+            "La calidad de la educación ha bajada",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "bajar w czasie złożonym: „ha bajado\" (imiesłów zawsze na -o, bez uzgadniania rodzaju po „haber\"). Synonim: „ha disminuido\".",
+        },
+        {
+          type: "abc",
+          text: "„Uczą dzieci ideologii\":",
+          options: [
+            "Les enseñan ideología a los niños",
+            "Enseñan los niños ideología",
+            "Enseñan a ideología los niños",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "enseñar ALGO A ALGUIEN: uczony jest dopełnieniem dalszym → „a los niños\" + „les\". Tak samo: „me enseñaban muchísimas cosas\".",
+        },
+        {
+          type: "fill",
+          text: "„Przed rozpoczęciem pracy muszę zrobić sobie badania\": „Antes de empezar a trabajar tengo que hacerme un ___ médico.\"",
+          options: null,
+          correctAnswer: "chequeo",
+          explanation:
+            "un chequeo médico = badania kontrolne (można też „un examen médico\"). Firmy tego wymagają, żeby przyznać ubezpieczenie.",
+        },
+        {
+          type: "fill",
+          text: "„Większość ludzi chodzi do szkół publicznych\": „La mayoría de la gente ___ a escuelas públicas.\"",
+          options: null,
+          correctAnswer: "va",
+          explanation:
+            "„la mayoría de la gente\" + czasownik w liczbie POJEDYNCZEJ: „va\". Tak samo „la gente es / la gente prefiere\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Publiczna służba zdrowia jest tak zła, że kto może, płaci za prywatną. A jeśli chcesz dobrej edukacji, musisz iść do szkoły prywatnej — ale to drogo kosztuje\".",
+          options: null,
+          correctAnswer:
+            "„El servicio público de salud es tan malo que quien puede paga la atención privada. Y si quieres una buena educación, tienes que ir a una escuela privada, pero cuesta caro.\"",
+          explanation:
+            "Klucz: „tan malo QUE\" (tak zły, że), „la atención privada\", „si quieres..., tienes que...\", „cuesta caro\".",
+        },
+      ],
+      salon: {
+        short:
+          "el seguro médico / el seguro de gastos médicos mayores; contratar un seguro; ir AL médico, hacerse un chequeo médico; la atención pública es deficiente („es una porquería\").",
+        expand:
+          "szkoła: la escuela pública vs privada, los libros de texto, la calidad ha bajado, enseñar algo A alguien, la materia, la lengua indígena vs el idioma oficial, competir con alguien del extranjero, depender del sistema, cuesta caro.",
+        trap:
+          "„antes de\" + bezokolicznik („antes de empezar a trabajar\"), nie „antes de trabajo\". Zawsze „ir AL médico\". „quitar algo A alguien\" (dopełnienie dalsze). „La mayoría de la gente VA\" — czasownik w liczbie pojedynczej.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 126. Hiszpański: gobierno, corrupción y propiedad
+  // ============================================================
+  // Druga część lekcji 2026-07-30: polityka, korupcja i głośna w Meksyku
+  // sprawa zajmowania domów. Trzy rzeczy warte złota: „coraje\" = złość
+  // (fałszywy przyjaciel), „mil millones\" = miliard (nie „billón\") oraz
+  // hipoteza „si tuviera... haría\" — dokładnie ten błąd Nati z rozmowy
+  // („si yo tuve... estaba importante\"). Słownictwo opisuje to, co mówiła
+  // rozmówczyni; to materiał językowy, nie teza polityczna.
+  {
+    slug: "es-gobierno-corrupcion-y-propiedad",
+    vaultSlug: "es",
+    label: "Hiszpański — gobierno y corrupción: dictadura, censura, invasión de casas, „me da coraje\", mil millones",
+    payload: {
+      title: "Cuando el gobierno es el enemigo — dictadura, corrupción e invasión de casas",
+      summary:
+        "Ciężkie, ale bardzo użyteczne słownictwo z rozmowy: un gobierno autoritario, la dictadura, censurar las redes, la corrupción, congelar una cuenta, pagar impuestos, invadir una casa, quedarse con todo, la defensa propia, meter a alguien a la cárcel, el activista. Plus trzy mechanizmy: „coraje\" = złość (a nie odwaga!), miliard = „mil millones\" (nie „billón\") i hipoteza „si tuviera..., haría...\".",
+      theory:
+        "GOBIERNO, CONTROL Y CENSURA:\n— el gobierno = rząd; un gobierno autoritario; la dictadura = dyktatura, el dictador = dyktator: „es una dictadura\".\n— controlar los tres poderes = kontrolować trzy władze; el ejército = wojsko; militarizar el país; reprimir la disidencia = tłumić sprzeciw.\n— censurar las redes (sociales) = cenzurować media społecznościowe; controlar el internet / los teléfonos; aprobar una ley = uchwalić ustawę.\n— ESTAR POR + bezokolicznik = zaraz coś zrobić, mieć właśnie zamiar: „el gobierno está por censurar las redes\" = rząd zaraz ocenzuruje sieci. Tak samo pogodowo: „está por llover\".\n\n„TENGO CORAJE, NO MIEDO\" — fałszywy przyjaciel:\n— w Meksyku el coraje = ZŁOŚĆ, wściekłość: „tengo coraje\" = jestem wściekła; „me da coraje que la gente los defienda\" = wkurza mnie, że ludzie ich bronią (konstrukcja dar + emocja, jak „me da vergüenza\").\n— odwaga to el valor / la valentía: „tener valor\", „ser valiente\". Polskie skojarzenie z „kurażem\" myli — po hiszpańsku to gniew, nie brawura.\n\nDINERO, CORRUPCIÓN Y LICZBY:\n— robar = kraść; la corrupción; el funcionario (corrupto) = urzędnik; enriquecerse = wzbogacić się; la fortuna = majątek; multimillonario = multimilioner.\n— volverse + przymiotnik = stać się (nagła zmiana): „¿Cómo te puedes volver multimillonario en seis años?\".\n— MILIARD ≠ „billón\"! Po hiszpańsku miliard = MIL MILLONES: „una fortuna de más de cuatro mil millones de dólares\" = ponad cztery miliardy dolarów. Hiszpańskie „un billón\" to bilion (milion milionów) — angielskie „billion\" i polski „miliard\" to klasyczna pułapka tłumaczeniowa.\n— pagar impuestos = płacić podatki; congelar una cuenta (bancaria) = zablokować konto: „le congelaron la cuenta\" (komu → le).\n— la pobreza = bieda; la desigualdad = nierówność; „hay más pobreza y todo cuesta más\".\n\nCASAS, INVASIÓN Y JUSTICIA:\n— invadir una casa = zająć / zagarnąć dom; la invasión de propiedades; „se metieron en su casa\" = wtargnęli do jej domu.\n— quedarse CON algo = zatrzymać sobie coś, zagarnąć: „se quedaron con todo\".\n— los papeles / los documentos falsos = fałszywe dokumenty; las escrituras = akt własności.\n— defender su casa; la defensa propia = obrona konieczna; meter a alguien a la cárcel = wsadzić kogoś do więzienia (tak mówi się w Meksyku; w Hiszpanii „en la cárcel\"); estar en prisión domiciliaria = mieć areszt domowy.\n— el/la activista, el defensor del medio ambiente = obrońca środowiska; „han matado a cinco activistas\" — pamiętaj o „a\" osobowym przed dopełnieniem-osobą.\n— POR + bezokolicznik = za to, że / z powodu: „la metieron a la cárcel POR defender su casa\", „lo mataron por defender el bosque\". (Uwaga: „para\" + bezokolicznik to cel, nie przyczyna.)\n\nISTNIENIE — HAY, nie „son\":\n— „En Polonia también hay activistas\" = w Polsce też są aktywiści. „Hay\" mówi, że coś/ktoś istnieje. „Son\" tylko przy identyfikacji konkretnych osób: „ellos son activistas\".\n\nHIPOTEZA — SI + IMPERFECTO DE SUBJUNTIVO:\n— nierealne „gdybym\": SI + imperfecto de subjuntivo (tuviera, fuera, pudiera) + CONDICIONAL (haría, sería, daría): „Si yo tuviera mucho dinero, haría algo bueno por la gente\".\n— NIGDY „si\" + condicional („si tendría\") ani „si tuve... estaba\". Forma: bierzesz 3 os. l.mn. pretérito i zamieniasz -ron na -ra: tuvieron → tuviera, fueron → fuera, pudieron → pudiera, hicieron → hiciera.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Si yo tuve mucho dinero, estaba muy importante hacer algo bueno para la gente.\" (= gdybym miała dużo pieniędzy...) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "hipoteza wymaga „si\" + imperfecto de subjuntivo + condicional: „Si yo tuviera mucho dinero, sería muy importante hacer algo bueno por la gente\"",
+            "powinno być „Si yo tendría mucho dinero, sería importante...\"",
+            "powinno być „Si yo tengo mucho dinero, estaría muy importante...\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Nierealne „gdyby\": si + tuviera (imperfecto de subjuntivo) + condicional (sería / haría). Wariant „si tendría\" to najczęstszy błąd — po „si\" NIGDY nie ma condicional.",
+        },
+        {
+          type: "spot_error",
+          text: "„En Polonia ahora son activistas también.\" (= w Polsce też są teraz aktywiści) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "istnienie wyraża „hay\": „En Polonia también hay activistas ahora\"",
+            "powinno być „En Polonia están activistas también\"",
+            "powinno być „En Polonia hay unos activistas son también\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Są\" w sensie „istnieją / zdarzają się\" = hay. „son activistas\" znaczy „oni SĄ aktywistami\" (identyfikacja konkretnych osób) — inne zdanie.",
+        },
+        {
+          type: "abc",
+          text: "Meksykanka mówi: „No tengo miedo, tengo coraje\". Co ma na myśli?",
+          options: [
+            "jest wściekła (el coraje = złość)",
+            "ma odwagę (el coraje = odwaga)",
+            "spieszy się",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "W Meksyku „el coraje\" to złość: „tengo coraje\" = jestem wkurzona, „me da coraje\" = wkurza mnie. Odwaga to „el valor / la valentía\".",
+        },
+        {
+          type: "abc",
+          text: "„Fortuna ponad czterech miliardów dolarów\":",
+          options: [
+            "una fortuna de más de cuatro mil millones de dólares",
+            "una fortuna de más de cuatro billones de dólares",
+            "una fortuna de más de cuatro millardos de dólares",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Miliard po hiszpańsku = „mil millones\". „un billón\" to bilion (milion milionów), a „millardo\" praktycznie się nie używa.",
+        },
+        {
+          type: "abc",
+          text: "„Zablokowali mu konto (bankowe)\":",
+          options: [
+            "Le congelaron la cuenta",
+            "Lo congelaron la cuenta",
+            "Le helaron la cuenta",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "congelar una cuenta = zablokować („zamrozić\") konto; właściciel konta to dopełnienie dalsze → „le\". „helar\" to zamarzać dosłownie (o wodzie).",
+        },
+        {
+          type: "abc",
+          text: "„Wsadzili ją do więzienia za to, że broniła swojego domu\":",
+          options: [
+            "La metieron a la cárcel por defender su casa",
+            "La metieron a la cárcel para defender su casa",
+            "La metieron en cárcel por defendiendo su casa",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "POR + bezokolicznik = z powodu / za to, że. „para defender\" znaczyłoby „po to, żeby bronić\" — inny sens. Po hiszpańsku nie ma „por + gerundio\" w tej roli.",
+        },
+        {
+          type: "fill",
+          text: "„Zagarnęli wszystko (zatrzymali sobie wszystko)\": „Se ___ con todo.\"",
+          options: null,
+          correctAnswer: "quedaron",
+          explanation:
+            "quedarse CON algo = zatrzymać coś dla siebie: „se quedaron con la casa\", „se quedaron con todo\".",
+        },
+        {
+          type: "fill",
+          text: "„Rząd zaraz ocenzuruje media społecznościowe\": „El gobierno está ___ censurar las redes.\"",
+          options: null,
+          correctAnswer: "por",
+          explanation:
+            "estar POR + bezokolicznik = zaraz coś zrobić / mieć właśnie zamiar. „estar para\" ma inne użycia, a „estar a punto de\" to bliski synonim.",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Wyszli rano do pracy, a kiedy wrócili, w ich domu byli obcy ludzie z fałszywymi dokumentami. Wkurza mnie, że rząd nic z tym nie robi\".",
+          options: null,
+          correctAnswer:
+            "„Salieron a trabajar por la mañana y, cuando regresaron, había otras personas en su casa con documentos falsos. Me da coraje que el gobierno no haga nada.\"",
+          explanation:
+            "Klucz: „salir A trabajar\", „había\" (istnienie w przeszłości — imperfecto od „hay\"), „documentos falsos\", „me da coraje QUE + subjuntivo (haga)\".",
+        },
+      ],
+      salon: {
+        short:
+          "un gobierno autoritario, la dictadura, censurar las redes, controlar los tres poderes; la corrupción, robar, enriquecerse, pagar impuestos, congelar una cuenta.",
+        expand:
+          "domy i sądy: invadir una casa, la invasión de propiedades, quedarse con todo, los documentos falsos, defender su casa, la defensa propia, meter a alguien a la cárcel, la prisión domiciliaria, el activista / el defensor del medio ambiente.",
+        trap:
+          "„Tengo coraje\" = jestem wściekła, NIE „mam odwagę\" (odwaga = el valor). Miliard = „mil millones\", nie „billón\". „Hay activistas\", nie „son activistas\". Hipoteza: „Si tuviera dinero, haría...\" — po „si\" nigdy condicional.",
+      },
+    },
+  },
 ];
