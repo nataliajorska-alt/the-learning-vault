@@ -12439,4 +12439,133 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 127. Hiszpański: pronombres personales con preposiciones
+  // ============================================================
+  // Z zadań Natalii (03.08.2026) — z podręcznika, nie z rozmowy.
+  // Rdzeń: po przyimku tylko yo→mí i tú→ti się zmieniają; conmigo/contigo;
+  // sześć wyjątków (entre, excepto, salvo, menos, incluso/hasta, según).
+  // Zbudowane z JEJ czterech zdań: „por ti\" zamiast „por nosotros\",
+  // „para usted\" zamiast „para él\" oraz dwa zdania, których nie rozumiała
+  // („han aprobado todos menos tú\", „se sienta delante de mí\").
+  // Uzupełnia #93 (pronombres sujeto), #92/#113/#114 (OD/OI) i #120
+  // (reflexivos) — świadomie NIE dubluje pozycji zaimków przy czasowniku.
+  {
+    slug: "es-pronombres-con-preposicion",
+    vaultSlug: "es",
+    label: "Hiszpański — pronombres personales con preposiciones (para mí, sin ti, conmigo, entre tú y yo)",
+    payload: {
+      title: "Pronombres con preposición — para mí, sin ti, conmigo, entre tú y yo",
+      summary:
+        "Po przyimku (a, con, de, en, para, por, sin...) zaimki wyglądają inaczej niż przy czasowniku: zmieniają się TYLKO dwie formy — yo → mí, tú → ti; reszta (él, ella, usted, nosotros, vosotros, ellos, ustedes) zostaje bez zmian. Con + mí/ti skleja się w conmigo / contigo. Sześć słów łamie regułę i bierze zaimki podmiotu: entre, excepto, salvo, menos, incluso/hasta, según — stąd „entre tú y yo\" i „todos menos tú\". Lekcja rozbiera też Twoje cztery zdania z zadań: por nosotros, para él, „han aprobado todos menos tú\" i „se sienta delante de mí\".",
+      theory:
+        "CO SIĘ ZMIENIA: zaimki doklejane do czasownika (me, te, lo, la, le, nos) po PRZYIMKU nie działają. Tam wchodzi osobna seria — pronombres preposicionales, zwane też „tónicos\", bo są akcentowane:\n— (yo) → MÍ\n— (tú) → TI\n— él / ella / usted — bez zmian\n— nosotros / nosotras, vosotros / vosotras — bez zmian\n— ellos / ellas / ustedes — bez zmian\nCzyli zmieniają się TYLKO dwie pierwsze osoby liczby pojedynczej; reszta wygląda identycznie jak zaimki podmiotu. Nie istnieje „para yo\", „sin tú\", „de tú\" ani „por nos\".\n\nPRZYIMKI W PRAKTYCE:\n— a: „Se lo dije a él\" (powiedziałam to jemu); „A mí me gusta el café\" (wzmocnienie: a mí / a ti / a ella + me/te/le gusta).\n— con: „Voy con ella\" — ale con + mí/ti → conmigo / contigo.\n— de: „Me acuerdo de ti\" (pamiętam o tobie), „Se ríen de mí\" (śmieją się ze mnie).\n— en: „Pienso en ti\" (myślę o tobie), „Confío en él\" (ufam mu).\n— para: „Este regalo es para mí\", „Tengo algo para usted\".\n— por: „Lo hice por ti\" (zrobiłam to dla ciebie), „Está hecho por nosotros\".\n— sin: „No puedo hacerlo sin ti\".\nWyrażenia złożone kończą się na „de\" albo „a\", więc dalej idzie ta sama forma mocna: delante de mí, detrás de ti, cerca de ella, lejos de nosotros, al lado de ti, encima de mí, debajo de ti, enfrente de ella, junto a mí.\n\nPISOWNIA: „mí\" MA akcent, bo trzeba je odróżnić od „mi\" = mój („mi casa\" = mój dom vs „para mí\" = dla mnie). „Ti\" NIE ma akcentu — nie ma z czym go mylić: „para ti\", „sin ti\", „en ti\".\n\nCONMIGO / CONTIGO: con + mí i con + ti sklejają się w jedno słowo — conmigo (ze mną), contigo (z tobą). Formy „con mí\" i „con ti\" nie istnieją: „¿Vienes conmigo?\", „Quiero hablar contigo\". Trzecia osoba zwrotna: consigo (ze sobą) — „Se llevó el perro consigo\"; ale zwykłe „z nim / z nią\" to po prostu „con él / con ella\".\n\nSZEŚĆ WYJĄTKÓW — po nich wracają YO i TÚ: entre, excepto, salvo, menos, incluso / hasta (w sensie „nawet\"), según.\n— „Entre tú y yo no hay secretos\" (nie: entre ti y mí)\n— „Han aprobado todos menos tú\" / „todos excepto yo\" / „todos salvo yo\"\n— „Incluso yo lo sé\" = „Hasta yo lo sé\" (nawet ja to wiem)\n— „Según tú, ¿qué hacemos?\" (według ciebie), „según yo\"\nSposób na zapamiętanie: te słowa znaczą „między / oprócz / nawet / według\" i traktują osobę jak PODMIOT wyliczenia, więc biorą formę podmiotu.\n\n„DE ÉL\" TO NIE „DEL\": skróty „del\" i „al\" powstają wyłącznie z RODZAJNIKA el, nigdy z zaimka él. „La casa del profesor\" (de + el profesor), ale „la casa de él\" = jego dom. „Vi al señor Carmona\" (a + el señor), ale „Se lo di a él\".\n\nTWOJE CZTERY ZDANIA Z ZADAŃ:\n1. „Esta presentación está hecha por NOSOTROS\" (napisałaś „por ti\"). Po „por\" stoi ten, KTO wykonał czynność — zaimek idzie za sensem, nie za podmiotem zdania: por mí / por ti / por él / por nosotros. „Por ti\" znaczyłoby „przez ciebie\". Przy okazji: imiesłów uzgadnia się z podmiotem — la presentación está hechA, los ejercicios están hechOS, el trabajo está hechO.\n2. „¿Has visto al señor Carmona? Tengo algo para ÉL\" (napisałaś „para usted\"). „Usted\" to osoba, DO której mówisz. Tu mówisz do kogoś innego O panu Carmonie, więc on jest „él\". Gdybyś zwracała się wprost do niego: „Señor Carmona, tengo algo para usted\". Mylące jest to, że „usted\" gramatycznie zachowuje się jak trzecia osoba (para usted, se ve usted, usted tiene) — ale semantycznie to zawsze Twój rozmówca.\n3. „Han aprobado todos menos tú\" = ZDALI WSZYSCY OPRÓCZ CIEBIE. aprobar (un examen) = zdać, zaliczyć; przeciwieństwo: suspender = oblać („He suspendido el examen\"). „Han aprobado\" to pretérito perfecto (świeży, domknięty fakt). „Menos\" = oprócz, czyli wyjątek — dlatego „tú\", nie „ti\".\n4. „Sebastián se sienta delante de mí\" = SEBASTIÁN SIADA (siedzi) PRZEDE MNĄ. sentarse = siadać (czasownik zwrotny); nie myl z „se siente\" (sentirse = czuć się). „Delante de\" = przed w PRZESTRZENI, przeciwieństwo „detrás de\" (za): „se sienta detrás de mí\". Przed w sensie CZASU to „antes de\": „antes de la clase\". W mowie potocznej usłyszysz „delante mío\", ale to forma uznawana za niepoprawną — mów „delante de mí\".",
+      questions: [
+        {
+          type: "spot_error",
+          text: "Miało być „Ta prezentacja jest zrobiona przez NAS\", a napisałaś: „Esta presentación está hecha por ti.\"",
+          options: [
+            "OK — „por ti\" jest poprawne",
+            "BŁĄD — „przez nas\" to „por nosotros\": „Esta presentación está hecha por nosotros\"",
+            "powinno być „por nos\"",
+            "powinno być „para nosotros\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Po „por\" stoi ten, KTO wykonał czynność: por mí / por ti / por él / por nosotros. „Por ti\" znaczy „przez ciebie\". Form skróconych (nos, me, te) po przyimku nie ma nigdy. Pamiętaj też o uzgodnieniu imiesłowu: la presentación está hechA, los ejercicios están hechOS.",
+        },
+        {
+          type: "spot_error",
+          text: "Mówisz do koleżanki, pytając o pana Carmonę: „¿Has visto al señor Carmona? Tengo algo para usted.\"",
+          options: [
+            "OK — do pana Carmony mówi się „usted\"",
+            "BŁĄD — mówisz o nim, nie do niego, więc jest osobą trzecią: „Tengo algo para él\"",
+            "powinno być „Tengo algo para le\"",
+            "powinno być „Tengo algo para se\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Usted\" to osoba, DO której mówisz. Tutaj rozmawiasz z koleżanką O panu Carmonie → „para él\". Gdybyś zwracała się wprost do niego: „Señor Carmona, tengo algo para usted\". Myli to, że „usted\" gramatycznie zachowuje się jak 3. osoba, ale używasz go tylko wtedy, gdy ta osoba jest Twoim rozmówcą.",
+        },
+        {
+          type: "abc",
+          text: "„¿Quieres ir al cine ___?\" (chcesz iść ze mną do kina):",
+          options: ["conmigo", "con mí", "con yo"],
+          correctAnswer: 0,
+          explanation:
+            "con + mí = conmigo, con + ti = contigo — jedno słowo, forma obowiązkowa („con mí\" nie istnieje). W trzeciej osobie już normalnie: con él, con ella, con ustedes. Zwrotne „consigo\" = ze sobą: „Se llevó el perro consigo\".",
+        },
+        {
+          type: "abc",
+          text: "„Między tobą a mną nie ma sekretów\":",
+          options: [
+            "Entre tú y yo no hay secretos",
+            "Entre ti y mí no hay secretos",
+            "Entre te y me no hay secretos",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Entre\" jest jednym z wyjątków — po nim wracają zaimki podmiotu: entre tú y yo. Ta sama grupa: excepto, salvo, menos, incluso, hasta („nawet\") i según — „todos excepto yo\", „según tú\", „hasta yo lo sé\".",
+        },
+        {
+          type: "abc",
+          text: "Co znaczy „Han aprobado todos menos tú\"?",
+          options: [
+            "Zdali (egzamin) wszyscy oprócz ciebie",
+            "Zaakceptowali wszystko oprócz ciebie",
+            "Wszyscy zdali dzięki tobie",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "aprobar (un examen) = zdać, zaliczyć; przeciwieństwo: suspender = oblać. „Han aprobado\" to pretérito perfecto. „Menos\" = oprócz i należy do wyjątków, dlatego „tú\", a nie „ti\".",
+        },
+        {
+          type: "abc",
+          text: "Co znaczy „Sebastián se sienta delante de mí\"?",
+          options: [
+            "Sebastián siada (siedzi) przede mną — np. w klasie",
+            "Sebastián dobrze się przy mnie czuje",
+            "Sebastián siada za mną",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "sentarse = siadać (zwrotny) — „se sienta\"; nie myl z „se siente\" (sentirse = czuć się). „Delante de\" = przed w przestrzeni, „detrás de\" = za. Wyrażenia złożone kończą się na „de\", więc dalej idzie forma mocna: delante de mí, cerca de ti, al lado de ella. Przed w sensie czasu to „antes de\".",
+        },
+        {
+          type: "fill",
+          text: "„Nie chcę iść bez ciebie\": „No quiero ir sin ___.\"",
+          options: null,
+          correctAnswer: "ti",
+          explanation:
+            "sin + ti (nigdy „sin tú\" ani „sin te\"). „Ti\" pisze się BEZ akcentu — akcent ma tylko „mí\", żeby odróżnić je od „mi\" = mój („mi casa\" vs „para mí\").",
+        },
+        {
+          type: "fill",
+          text: "„Według ciebie, co powinniśmy zrobić?\": „Según ___, ¿qué deberíamos hacer?\"",
+          options: null,
+          correctAnswer: "tú",
+          explanation:
+            "„Según\" należy do wyjątków i bierze zaimek podmiotu: según tú, según yo, según él. „Según ti\" jest błędne.",
+        },
+        {
+          type: "open",
+          text: "Przetłumacz: „Ten prezent nie jest dla mnie, jest dla niej. Zrobiliśmy go my (jest zrobiony przez nas) i — między tobą a mną — nikt inny o tym nie wie.\"",
+          options: null,
+          correctAnswer:
+            "„Este regalo no es para mí, es para ella. Está hecho por nosotros y, entre tú y yo, nadie más lo sabe.\"",
+          explanation:
+            "Trzy mechanizmy w jednym zdaniu: para mí / para ella (forma mocna po przyimku, „mí\" z akcentem), „por nosotros\" (sprawca po „por\" — dokładnie Twój błąd z zadania) oraz „entre tú y yo\" (wyjątek, zaimki podmiotu).",
+        },
+      ],
+      salon: {
+        short:
+          "Po przyimku (a, con, de, en, para, por, sin): mí, ti, él, ella, usted, nosotros, vosotros, ellos, ustedes. Zmieniają się tylko dwie formy: yo → mí, tú → ti. „Este regalo es para mí\", „no puedo sin ti\", „pienso en ti\", „me acuerdo de ti\".",
+        expand:
+          "con + mí/ti = conmigo / contigo (jedno słowo; zwrotne: consigo). Wyrażenia złożone kończą się na de/a, więc też biorą formę mocną: delante de mí, detrás de ti, cerca de ella, al lado de nosotros, junto a mí.",
+        trap:
+          "Sześć wyjątków bierze yo/tú: entre, excepto, salvo, menos, incluso/hasta, según — „entre tú y yo\", „todos menos tú\", „según yo\". „Mí\" z akcentem, „ti\" bez. „De él\" (jego) to nie „del\" — skrót powstaje tylko z rodzajnika: „la casa del profesor\" vs „la casa de él\".",
+      },
+    },
+  },
 ];
