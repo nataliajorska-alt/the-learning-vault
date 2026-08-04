@@ -12568,4 +12568,111 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 128. Angielski: past perfect continuous (had been + -ing)
+  // ============================================================
+  // Domyka parę z #124 (past perfect simple): tam rezultat i kolejność,
+  // tu trwanie i przyczyna. Celuje w polskie kalki: „I was waiting for
+  // two hours when...\", „since two hours\" i continuous na czasownikach
+  // stanu („had been knowing\").
+  {
+    slug: "angielski-past-perfect-continuous",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — past perfect continuous (had been + -ing: trwanie i przyczyna)",
+    payload: {
+      title: "Past perfect continuous — had been + -ing",
+      summary:
+        "Past perfect continuous (had been + -ing) odpowiada na pytanie JAK DŁUGO coś trwało DO momentu w przeszłości albo wyjaśnia PRZYCZYNĘ tego, co wtedy było widać. „When the train finally arrived, we had been waiting for two hours.\" / „She was exhausted because she had been working since six.\" Polski oddaje to zwykłym czasem przeszłym („czekałam już dwie godziny\"), więc kusi kalka „I was waiting for two hours\" — i to jest tu główny błąd do wyplenienia. Druga połowa lekcji to kontrast z past perfect simple: proces vs rezultat.",
+      theory:
+        "ZNACZENIE: past perfect continuous pokazuje czynność, która TRWAŁA przez jakiś czas i dobiegała do pewnego momentu w przeszłości. Dwa główne zastosowania:\n— ILE CZASU coś trwało DO tamtego momentu: „When the train finally arrived, we had been waiting for two hours.\"\n— PRZYCZYNA tego, co było wtedy widać: „She was exhausted because she had been working since six.\"\n\nFORMA: had been + czasownik z -ing — identycznie dla wszystkich osób. Trzy klocki: had (past perfect) + been (III forma „be\") + -ing (aspekt ciągły). Skrót: 'd been („I'd been waiting\"). Przeczenie: hadn't been + -ing („We hadn't been talking for long.\"). Pytanie: Had + podmiot + been + -ing? („How long had you been working there?\"). Nigdy „had was\", nigdy „had being\".\n\nMARKERY: for (przez — odcinek czasu), since (od — punkt startu), all morning / all day / all week, how long, before, by the time. „By the time we found the bug, the team had been chasing it for three days.\"\n\nCONTINUOUS vs SIMPLE — najważniejszy kontrast tej lekcji:\n— had been + -ing = PROCES, TRWANIE, „jak długo\": „By lunchtime she had been writing reports all morning.\" (co robiła i jak długo)\n— had + III forma = REZULTAT, LICZBA, czynność domknięta: „By lunchtime she had written three reports.\" (ile skończyła)\nPodobnie: „I had been reading the report\" (czytałam, niekoniecznie do końca) vs „I had read the report\" (przeczytałam całość i wiedziałam, co w niej jest). Liczby, ilości i „how many\" ciągną simple; „how long\", „for\", „since\" ciągną continuous.\n\nvs PAST CONTINUOUS: „I was working when he called\" = pracowałam W TAMTEJ CHWILI (czynność przerwana). „I had been working for three hours when he called\" = pracowałam JUŻ OD TRZECH GODZIN, licząc do tamtej chwili. Past continuous maluje tło w danym momencie, past perfect continuous — odcinek czasu prowadzący DO tego momentu.\n\nPRZYCZYNA I ŚLADY: bardzo częste użycie — wyjaśniasz, skąd wziął się stan rzeczy w przeszłości. „The ground was wet — it had been raining.\", „Her eyes were red; she had been crying.\", „They finally sold the flat: they had been trying for a year.\" Różnica bywa subtelna: „it had rained\" (padało i przestało — suchy fakt) vs „it had been raining\" (padało przez jakiś czas i STĄD mokro).\n\nBACKSHIFT: w mowie zależnej present perfect continuous cofa się o krok. „I've been waiting for an hour\" → „She said she had been waiting for an hour.\" Ta sama logika w narracji: to, co w teraźniejszości brzmi „have been doing\", w opowieści prowadzonej w czasie przeszłym staje się „had been doing\".\n\nCZASOWNIKI STANU NIE MAJĄ FORM CIĄGŁYCH: know, be, have (=posiadać), own, believe, understand, want, need, like, love, hate, seem, mean. „We had KNOWN each other for ten years\" — NIE „had been knowing\". „She had had the same phone since 2019.\" (had + had wygląda dziwnie, ale jest poprawne). Sama długość („for years\") nie zmusza do continuous — decyduje to, czy czasownik opisuje czynność, czy stan.\n\nFOR vs SINCE: for + długość odcinka („for two hours, for three days, for a year\"), since + punkt startu („since 6 a.m., since Monday, since we moved offices\"). Polskie „od dwóch godzin\" to FOR two hours — „since two hours\" nie istnieje.\n\nTOP POLSKI BŁĄD: polski oddaje ten sens zwykłym czasem przeszłym („Czekałam już dwie godziny, kiedy przyjechał pociąg\"), więc pod ręką jest kalka „I was waiting for two hours when the train arrived\" albo „I waited two hours\". Po angielsku odcinek czasu prowadzący DO momentu w przeszłości to had been waiting. Dwa kolejne błędy z tej samej rodziny: „since two hours\" zamiast „for two hours\" i continuous na czasowniku stanu („had been knowing\").\n\nNIE NADUŻYWAJ: jeśli tylko relacjonujesz, co po czym nastąpiło, wystarczy past simple albo past perfect simple. Past perfect continuous wchodzi wtedy, gdy naprawdę chcesz podkreślić TRWANIE albo pokazać PRZYCZYNĘ — nie jako ozdobnik do każdego zdania w opowieści.",
+      questions: [
+        {
+          type: "abc",
+          text: "Czekaliśmy już dwie godziny, gdy pociąg wreszcie przyjechał: „When the train finally arrived, we _____ on the platform for two hours.\"",
+          options: ["waited", "were waiting", "had been waiting"],
+          correctAnswer: 2,
+          explanation:
+            "Odcinek czasu prowadzący DO momentu w przeszłości → past perfect continuous: „had been waiting\". „Were waiting\" opisywałoby tylko tamtą chwilę, a „waited\" gubi sens „już od dwóch godzin\".",
+        },
+        {
+          type: "abc",
+          text: "Chcesz powiedzieć, ILE raportów było gotowych przed lunchem. Które zdanie to robi?",
+          options: [
+            "By lunchtime she had been writing reports all morning.",
+            "By lunchtime she had written three reports.",
+            "By lunchtime she had been writing three reports.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Rezultat i liczba → past perfect simple: „had written three reports\". Continuous („had been writing\") mówi o procesie i czasie trwania („all morning\"), a nie o tym, ile sztuk zostało domkniętych. Trzecia opcja miesza jedno z drugim.",
+        },
+        {
+          type: "abc",
+          text: "„When she was promoted, I _____ her for almost ten years.\"",
+          options: ["had been knowing", "had known", "was knowing"],
+          correctAnswer: 1,
+          explanation:
+            "„Know\" to czasownik stanu — nie wchodzi w formy ciągłe. Mimo że pytamy o długość („for almost ten years\"), zostaje past perfect simple: „had known\".",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „The ground was wet because it _____ been raining all night.\"",
+          options: null,
+          correctAnswer: "had",
+          explanation:
+            "Past perfect continuous = had + been + -ing. „Had been raining\" wyjaśnia PRZYCZYNĘ tego, co było widać w przeszłości (mokra ziemia).",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij formę z -ing: „She was exhausted — she had been _____ (work) since six in the morning.\"",
+          options: null,
+          correctAnswer: "working",
+          explanation:
+            "Po „had been\" idzie czasownik z -ing: „had been working\". „Since six\" wyznacza punkt startu odcinka czasu, który doprowadził do jej zmęczenia (for + długość, since + punkt startu).",
+        },
+        {
+          type: "spot_error",
+          text: "„I was working on the report for three hours when my laptop crashed and I lost everything.\"",
+          options: [
+            "was working — ma być „had been working\" (trzy godziny liczone DO momentu awarii)",
+            "for three hours — ma być „since three hours\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Odcinek czasu prowadzący do zdarzenia w przeszłości → „had been working for three hours\". Past continuous („was working\") pokazuje tylko, co działo się w tamtej chwili, bez tych trzech godzin z tyłu. Przy okazji: „for + długość\" jest poprawne, „since three hours\" nie istnieje.",
+        },
+        {
+          type: "spot_error",
+          text: "„When I joined the board, I had been knowing the CFO for years, so she had been trusting me from day one.\"",
+          options: [
+            "had been knowing / had been trusting — czasowniki stanu nie mają form ciągłych: „had known\" i „trusted\"",
+            "for years — ma być „since years\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Know i trust opisują stan, nie czynność w toku: „I had known the CFO for years, so she trusted me from day one.\" Sama długość („for years\") nie zmusza do continuous — decyduje typ czasownika.",
+        },
+        {
+          type: "open",
+          text: "Napisz 2 zdania o pracy w past perfect continuous: jedno o tym, JAK DŁUGO coś trwało do momentu w przeszłości, drugie wyjaśniające PRZYCZYNĘ jakiegoś stanu w przeszłości.",
+          options: null,
+          correctAnswer:
+            "Przykład: „By the time the client called off the project, we had been working on it for seven months.\" (jak długo — odcinek czasu do momentu w przeszłości) oraz „The whole team looked wrecked on Monday: they had been fixing the migration all weekend.\" (przyczyna — stąd ten stan). W obu had been + -ing, markery: for seven months, all weekend.",
+          explanation:
+            "Klucz: had been + -ing zawsze prowadzi DO jakiegoś punktu w przeszłości — albo mierzysz odcinek („for / since / all weekend\"), albo tłumaczysz, skąd wziął się wtedy dany stan. Jeśli chodzi o rezultat albo liczbę, wracasz do past perfect simple („had finished three tasks\").",
+        },
+      ],
+      salon: {
+        short:
+          "Past perfect continuous = had been + -ing: ile czasu coś trwało DO momentu w przeszłości albo dlaczego wtedy tak było. „When the train arrived, we had been waiting for two hours.\" / „She was exhausted — she had been working since six.\"",
+        expand:
+          "Proces vs rezultat: „had been writing reports all morning\" (jak długo) vs „had written three reports\" (ile). Odróżniaj od past continuous: „I was working when he called\" (w tamtej chwili) vs „I had been working for three hours when he called\" (już od trzech godzin). Backshift: „I've been waiting\" → „She said she had been waiting.\"",
+        trap:
+          "Trzy polskie kalki: (1) „I was waiting for two hours when...\" zamiast „had been waiting\"; (2) „since two hours\" zamiast „for two hours\" (since = punkt startu, for = długość); (3) continuous na czasowniku stanu — „had been knowing\" zamiast „had known\". I nie wciskaj had been + -ing do każdego zdania: zwykła sekwencja to past simple.",
+      },
+    },
+  },
 ];
