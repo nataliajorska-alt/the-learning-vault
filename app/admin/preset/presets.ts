@@ -13073,4 +13073,605 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 132. Ekonomia: skąd bierze się wartość firmy
+  // ============================================================
+  {
+    slug: "econ-wartosc-firmy-i-ryzyko",
+    vaultSlug: "econ",
+    label: "Ekonomia — wartość firmy: wzrost, zwrot, ryzyko",
+    payload: {
+      title: "Skąd bierze się wartość firmy",
+      summary:
+        "Alphabet i wszystkie linie lotnicze świata razem mają niemal identyczne przychody: po ok. 400 mld $. Alphabet jest wart 3 800 mld $, linie razem 210 mld $ — osiemnaście razy mniej. Ta jedna różnica jest całą lekcją o wartości: rynek nie płaci za przychody, płaci za przyszłą gotówkę podzieloną przez ryzyko.",
+      theory:
+        "Dzień szkolenia zaczął się od pytania, po co w ogóle istnieje firma. Pierwsza odpowiedź z sali brzmiała „żeby tworzyć zysk\", a trenerka skwitowała ją „bold of you\" — nie dlatego, że była zła, ale dlatego, że jest jedną czwartą obrazka. Pełna lista ma cztery pozycje: zysk (perspektywa akcjonariusza), wartość dla klienta (widać ją po lojalności, powtórnych zakupach i gotowości do zapłaty — najtańszy wzrost to „pushing against an open door\", czyli sprzedaż komuś, kto już Cię ceni), wpływ społeczny oraz cena akcji jako rynkowe podsumowanie wszystkiego powyżej. Slajd dodawał piąty wymiar: ludzie i ich rozwój. Sala pominęła go w komplecie. Według trenerki pomija go prawie każda sala.\n\nModel, na którym wisi cała reszta: wzrost i zwroty (rentowność plus efektywność wykorzystania kapitału) wyznaczają przyszłe przepływy pieniężne, a ryzyko wyznacza stopę dyskontową, którą te przepływy przeliczasz na dziś. Jedno zdanie do zapamiętania: firma jest warta tyle, ile gotówki wygeneruje w przyszłości, przeliczonej na dziś z uwzględnieniem ryzyka. Nie tyle, ile ma przychodów, i nie tyle, ile ma majątku.\n\nStąd case Alphabet kontra linie lotnicze. Te same ok. 400 mld $ przychodów, kapitalizacja (liczba akcji × cena akcji) 3 800 mld $ wobec 210 mld $. Różnicę robią cztery rzeczy. Wzrost: Alphabet dominuje na rosnących rynkach, linie działają na rynku dojrzałym i nasyconym. Skalowalność: w tech kolejna sprzedaż po pokryciu inwestycji bazowych kosztuje prawie nic, a linia lotnicza z pełnym samolotem, żeby sprzedać jedno miejsce więcej, potrzebuje drugiego samolotu — koszt rośnie skokowo. Koszt zdobycia sprzedaży: w ostrej konkurencji trzeba więcej zainwestować, by klient wybrał właśnie Ciebie. I ryzyko: paliwo, związki zawodowe, pogoda, pandemie i cykl koniunkturalny kontra zmiany technologiczne i regulacje.\n\nRyzyko nie jest miękkim pojęciem — ma cenę. Wchodzi do wyceny przez stopę dyskontową (im wyższe ryzyko, tym większe dyskonto i tym mniej warte są dziś te same przyszłe pieniądze) i widać je w ratingu kredytowym. Skala biegnie od C do AAA, a granica investment grade wypada na BBB. Poniżej BBB firma płaci więcej za dług i dostaje surowsze dyskonto w wycenie. Ciekawostka: ryzyka tech nie są mniejsze, są mniej przewidywalne — dlatego wyceny technologiczne mocniej się wahają i rodzą zarówno spektakularnych zwycięzców, jak i przegranych.\n\nNa koniec rozróżnienie, które wraca przez cały dzień: wzrost i zwrot z kapitału to dwie osobne dźwignie. Na wczesnym etapie życia firmy zwykle prowadzi wzrost, później zwrot. Wpływają na siebie, ale decyzje „pod wzrost\" nie są tymi samymi decyzjami co „pod zwrot\", więc trzeba wiedzieć, co jest priorytetem. Ktoś z zespołu rzucił analogię do Heroes of Might and Magic: najpierw ekonomia, potem armia. Nie było jej na slajdach, a jest najlepszym skrótem całego dnia.",
+      questions: [
+        {
+          type: "abc",
+          text: "Alphabet i wszystkie linie lotnicze mają po ok. 400 mld $ przychodów, ale kapitalizacja różni się 18 razy. Dlaczego?",
+          options: [
+            "Alphabet ma większy majątek trwały w bilansie",
+            "rynek wycenia wzrost, skalowalność i ryzyko, a nie sam top line",
+            "linie lotnicze płacą wyższe podatki",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Przychody mówią tylko, ile firma sprzedała. Wycena dotyczy przyszłej gotówki: czy rynek rośnie, ile kapitału trzeba dołożyć do kolejnej sprzedaży i jak przewidywalne są przepływy.",
+        },
+        {
+          type: "abc",
+          text: "Kapitalizacja (market cap) to:",
+          options: [
+            "wartość majątku firmy z bilansu",
+            "liczba akcji × cena akcji, czyli rynkowa cena całego kapitału własnego",
+            "suma przychodów z ostatnich lat",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "To cena, jaką rynek płaci za kapitał własny firmy — nie wartość księgowa majątku ani skala sprzedaży.",
+        },
+        {
+          type: "fill",
+          text: "Ryzyko wchodzi do wyceny przez stopę _____ (discount rate): im wyższe ryzyko, tym mniej warte są dziś te same przyszłe pieniądze.",
+          options: null,
+          correctAnswer: "dyskontową",
+          explanation:
+            "Dyskonto w wycenie to nie rabat handlowy, tylko przeliczenie przyszłych pieniędzy na dzisiejsze. Wyższe ryzyko = wyższa stopa = niższa wartość dziś.",
+        },
+        {
+          type: "fill",
+          text: "Na skali ratingów od C do AAA granica investment grade wypada na _____ (i wyżej).",
+          options: null,
+          correctAnswer: "BBB",
+          explanation:
+            "BBB i wyżej to investment grade. Poniżej firma staje się ryzykowną propozycją: droższy dług i surowsze dyskonto w wycenie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Podwoiliśmy przychody, więc firma powinna być teraz warta dwa razy więcej.\"",
+          options: [
+            "trzeba poczekać na audyt, wtedy wycena się podwoi",
+            "wycena zależy od przyszłej gotówki: wzrost bez marży, za drogi kapitał albo wyższe ryzyko mogą nie podnieść wartości wcale",
+            "przychody nigdy nie wpływają na wycenę",
+            "wszystko OK",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Większa firma jest więcej warta\" działa tylko przy zysku — duża firma bez zysku robi po prostu większą stratę. Podwojenie przychodów kupione rabatami albo ciężkim kapitałem potrafi obniżyć wycenę.",
+        },
+        {
+          type: "abc",
+          text: "„Linia lotnicza z pełnym samolotem, żeby sprzedać jedno miejsce więcej, potrzebuje drugiego samolotu.\" To ilustracja:",
+          options: [
+            "braku skalowalności: koszt rośnie skokowo, nie liniowo",
+            "wysokiego kosztu zdobycia klienta",
+            "ryzyka regulacyjnego",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "W tech kolejna sprzedaż po pokryciu inwestycji bazowych kosztuje prawie nic. W biznesach kapitałochłonnych każda kolejna porcja sprzedaży wymaga kolejnej porcji majątku — i to widać w wycenie.",
+        },
+        {
+          type: "abc",
+          text: "Na wczesnym etapie życia firmy zwykle prowadzi jedna dźwignia, później druga. Kolejność jest taka:",
+          options: [
+            "najpierw zwrot z kapitału, potem wzrost",
+            "najpierw wzrost, potem zwrot z zainwestowanego kapitału",
+            "obie zawsze równocześnie, nie trzeba wybierać",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Najpierw zdobywasz rynek, potem uczysz się z niego zarabiać. Dźwignie na siebie wpływają, ale decyzje „pod wzrost\" to nie te same decyzje co „pod zwrot\" — dlatego priorytet trzeba nazwać.",
+        },
+        {
+          type: "open",
+          text: "Wytłumacz w kilku zdaniach, jak dwie firmy o identycznych przychodach mogą być wyceniane skrajnie różnie.",
+          options: null,
+          correctAnswer:
+            "Wycena to przyszła gotówka przeliczona na dziś z uwzględnieniem ryzyka, a nie przychody. Różnicę robią: wzrost (rynek rosnący czy dojrzały, zdobywanie udziału czy jego obrona), skalowalność i kapitałochłonność (ile majątku trzeba dołożyć do kolejnej sprzedaży — kolejny użytkownik platformy kontra kolejny samolot), koszt zdobycia sprzedaży w danej konkurencji oraz ryzyko, które przez stopę dyskontową i rating przelicza te same przyszłe pieniądze na mniejszą wartość dziś. Alphabet i wszystkie linie lotnicze mają po ok. 400 mld $ przychodów i 18-krotnie różną kapitalizację.",
+          explanation:
+            "Klucz: rynek wycenia przyszłość (wzrost × zwrot z kapitału) podzieloną przez ryzyko. Przychody to tylko punkt wyjścia.",
+        },
+      ],
+      salon: {
+        short:
+          "Te firmy mają podobne przychody, ale rynek wycenia je zupełnie inaczej, bo różnią się potencjałem wzrostu, kapitałochłonnością i profilem ryzyka.",
+        expand:
+          "Firma jest warta tyle, ile gotówki wygeneruje w przyszłości, przeliczonej na dziś z uwzględnieniem ryzyka. Wzrost i zwroty wyznaczają przyszłe przepływy, ryzyko wyznacza stopę dyskontową. Alphabet: ok. 400 mld $ przychodów i 3 800 mld $ kapitalizacji; wszystkie linie lotnicze: te same 400 mld $ przychodów i 210 mld $ kapitalizacji. Różnica: wzrost rynku, skalowalność, koszt zdobycia sprzedaży, ryzyko. Rating od C do AAA, investment grade od BBB.",
+        trap:
+          "Kapitalizacja to nie wartość majątku ani przychodów, a cena kapitału własnego. „Większa firma = więcej warta\" działa tylko przy zysku. Dyskonto w wycenie to nie rabat handlowy. I mniej strukturalnych ryzyk w tech nie znaczy braku ryzyka — jest mniej przewidywalne, dlatego wyceny mocniej się wahają.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 133. Ekonomia: rachunek zysków i strat, marże i ślad palca branż
+  // ============================================================
+  {
+    slug: "econ-rachunek-zyskow-i-strat-marze",
+    vaultSlug: "econ",
+    label: "Ekonomia — P&L: od top line do bottom line i ślad palca branż",
+    payload: {
+      title: "Rachunek zysków i strat: marże i ślad palca branż",
+      summary:
+        "Dostajesz trzy anonimowe firmy: przychody, marża brutto, marża operacyjna. Bez nazw, bez logo. Sala zgadła bez pudła, która jest Metą, która Amazonem, a która GM — bo sprawozdanie finansowe zdradza model biznesowy jak odcisk palca. Ta lekcja uczy czytać ten odcisk.",
+      theory:
+        "Rachunek zysków i strat (income statement, P&L) to sprawozdanie, które menedżerowie i inwestorzy oglądają najczęściej. Odpowiada na jedno pytanie: czy firma jest dobra w tym, co robi — czy sprzedaje drożej, niż ją to kosztuje, o ile i czy to rozsądny poziom. Dotyczy okresu, nie dnia, a przychody i koszty są przypisane do okresu, w którym powstały (matching). Dla kontrastu: bilans to stan na dzień („co mamy i komu jesteśmy winni\"), a cash flow to film o gotówce.\n\nDrabina schodzi tak, na liczbach Apple za rok obrotowy 2025 (mld $): przychody netto 416,2 (100%) → koszt sprzedaży 221,0 → zysk brutto 195,2 (marża brutto 46,9%) → R&D 34,6 i SG&A 27,6 → zysk operacyjny 133,1 (marża operacyjna 32,0%) → wynik finansowy, pozostałe i podatek 21,0 → zysk netto 112,0 (26,9%).\n\nCo znaczy każdy szczebel. Przychody netto to sprzedaż już po rabatach, upustach i rebatach — wolumen po cenach, po jakich naprawdę sprzedałaś, a nie po cenniku. Koszt sprzedaży to koszty bezpośrednio związane z produktem: materiały, robocizna, fabryka; w firmie doradczej to przede wszystkim koszt ludzi, czyli między innymi Ty. Zysk brutto mówi, ile zostaje po wytworzeniu, zanim zapłacisz za sprzedaż, HR i zarząd. Koszty operacyjne (SG&A, R&D, amortyzacja) muszą się zmieścić w marży brutto. Zysk operacyjny (EBIT) odpowiada, czy zarabiasz na samym rdzeniu działalności. Poniżej siedzą odsetki, pozycje jednorazowe i podatek, a na końcu zysk netto — to, co w teorii należy do inwestorów, czyli dywidenda albo reinwestycja.\n\nAmortyzacja (depreciation) zasługuje na osobne zdanie: to koszt fabryki czy maszyny rozłożony na lata używania, żeby zakup nie zjadł zysku jednego roku. Jest kosztem niegotówkowym — gotówka wyszła wcześniej. Nie myl jej z odpisem zapasów (inventory write-off), czyli utratą wartości towaru.\n\nA teraz odcisk palca. Meta: 201,0 mld $ przychodów, 82,0% marży brutto, 41,4% operacyjnej — produkt cyfrowy, wysoki koszt stały platformy i kolejny użytkownik prawie za darmo. Amazon: 716,9 mld $, 50,3% brutto i tylko 11,2% operacyjnej — detal to ogromny wolumen przy niskiej marży, a rentowność ciągnie AWS (18% przychodów i 57% zysku operacyjnego); typowy dobry detalista ma 3 do 5% marży operacyjnej. GM: 185,0 mld $ i 6,9% marży operacyjnej, a zysk netto to 1,5% przychodów — drogi produkt, presja cenowa, odpisy na EV; przy takim wyniku trudno pokryć nawet koszt finansowania. Apple: marża brutto 46,9%, ale w rozbiciu produkty 36,8% i usługi 75,4% — dlatego cała strategia polega na przypinaniu usług do każdego urządzenia. Mix produktów potrafi zmienić marżę całej firmy bardziej niż jakakolwiek oszczędność.\n\nJedna pułapka, która padła na sali i nikt jej nie sprostował: niższej marży operacyjnej nie tłumaczy dług, bo odsetki są poniżej zysku operacyjnego. Tłumaczyć ją może wyższa amortyzacja po dużych inwestycjach albo wyższe SG&A. Druga: w prawdziwych raportach amortyzacja rzadko jest osobną linią — siedzi w koszcie sprzedaży i w SG&A, dlatego analitycy liczą osobno EBITDA. Trzecia: marże porównuj w obrębie branży i przy tych samych definicjach — Amazon nie wlicza kosztów fulfillmentu do kosztu sprzedaży, więc jego 50,3% nie jest porównywalne 1:1 z klasycznym detalistą.",
+      questions: [
+        {
+          type: "abc",
+          text: "Prawidłowa kolejność szczebli w rachunku zysków i strat:",
+          options: [
+            "przychody netto → zysk brutto → zysk operacyjny → zysk netto",
+            "przychody netto → zysk operacyjny → zysk brutto → zysk netto",
+            "zysk brutto → przychody netto → zysk netto → zysk operacyjny",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Po koszcie sprzedaży masz zysk brutto, po kosztach operacyjnych (SG&A, R&D, amortyzacja) zysk operacyjny, a po odsetkach i podatku zysk netto.",
+        },
+        {
+          type: "fill",
+          text: "Top line to przychody netto, czyli sprzedaż już po _____ i upustach.",
+          options: null,
+          correctAnswer: "rabatach",
+          explanation:
+            "Rabaty schodzą „nad linią sprzedaży\". To wolumen po cenach faktycznie uzyskanych, a nie po cenniku — dlatego rabat od razu obniża top line i marżę.",
+        },
+        {
+          type: "abc",
+          text: "Firma ma 82% marży brutto i 41% marży operacyjnej. Najprawdopodobniej jest to:",
+          options: [
+            "platforma cyfrowa (np. Meta)",
+            "duży detalista",
+            "producent samochodów",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Produkt cyfrowy: wysoki koszt stały platformy, a kolejny użytkownik kosztuje prawie nic. Detal to niska marża przy ogromnym wolumenie (3 do 5% operacyjnie), auta — niskie marże na każdym poziomie.",
+        },
+        {
+          type: "spot_error",
+          text: "„Marża operacyjna tej firmy jest niższa niż u konkurenta, bo firma ma więcej długu i płaci wysokie odsetki.\"",
+          options: [
+            "odsetki są poniżej zysku operacyjnego — marży operacyjnej nie tłumaczy dług; szukaj w amortyzacji, SG&A albo marży brutto",
+            "odsetki zawsze obniżają marżę brutto",
+            "dług nie ma wpływu na żadną marżę",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Dokładnie ten błąd padł na sali przy firmach A i B. Koszty finansowania siedzą poniżej EBIT. Niższą marżę operacyjną tłumaczy zwykle wyższa amortyzacja po dużych inwestycjach albo cięższe SG&A.",
+        },
+        {
+          type: "abc",
+          text: "Amazon ma 50,3% marży brutto, klasyczny detalista znacznie mniej. Co z tego wynika?",
+          options: [
+            "Amazon jest 2 razy rentowniejszy od zwykłego detalisty",
+            "niewiele — Amazon nie wlicza kosztów fulfillmentu do kosztu sprzedaży, więc definicje nie są porównywalne",
+            "marża brutto Amazona jest błędnie raportowana",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Marże porównuj w obrębie branży i przy tych samych definicjach. Marża operacyjna Amazona to 11,2%, a ciągnie ją AWS: 18% przychodów i 57% zysku operacyjnego.",
+        },
+        {
+          type: "fill",
+          text: "Zysk operacyjny to po angielsku operating income, a w skrócie używanym przez analityków: _____.",
+          options: null,
+          correctAnswer: "EBIT",
+          explanation:
+            "EBIT = earnings before interest and taxes. Skoro „before interest\", to odsetki są poniżej — stąd cała pułapka z długiem i marżą operacyjną.",
+        },
+        {
+          type: "abc",
+          text: "Amortyzacja w rachunku zysków i strat to:",
+          options: [
+            "utrata wartości towaru w magazynie",
+            "koszt środka trwałego rozłożony na lata używania, bez wypływu gotówki w danym roku",
+            "wypływ gotówki na zakup fabryki",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Gotówka wyszła raz, przy capex. Amortyzacja tylko przesuwa ten koszt do wyniku, rok po roku. Utrata wartości towaru to odpis zapasów (inventory write-off), zwykle w koszcie sprzedaży.",
+        },
+        {
+          type: "abc",
+          text: "Apple ma 46,9% marży brutto ogółem, ale produkty 36,8%, a usługi 75,4%. Co to mówi o strategii?",
+          options: [
+            "warto zrezygnować z produktów i sprzedawać tylko usługi",
+            "mix produktów podnosi marżę całej firmy — stąd przypinanie usług do każdego urządzenia",
+            "marża brutto nie zależy od mixu",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Urządzenia dają skalę i bazę użytkowników, usługi dają marżę. Ten sam mechanizm u Amazona: detal daje wolumen, AWS daje zysk.",
+        },
+        {
+          type: "open",
+          text: "Klient chwali się na spotkaniu 15-procentowym wzrostem przychodów. Co mówisz?",
+          options: null,
+          correctAnswer:
+            "Zanim pochwalimy wzrost przychodów, sprawdźmy marżę brutto i operacyjną. Wzrost kupiony rabatami obniża przychody netto i marżę, więc może oznaczać więcej sprzedanych sztuk i mniej zarobionych pieniędzy. Pytania: czy marża brutto się utrzymała (czyli wzrost nie jest kupiony ceną), czy koszty operacyjne nie rosły szybciej niż sprzedaż, jak zmienił się mix produktów i czy ten wzrost zamienia się w gotówkę.",
+          explanation:
+            "Rosnące przychody to nie rosnący zysk — rabatem kupujesz wolumen za marżę. A zysk netto to jeszcze nie gotówka (osobna lekcja o cash flow).",
+        },
+      ],
+      salon: {
+        short:
+          "Zanim pochwalimy wzrost przychodów, sprawdźmy marżę brutto i operacyjną. Wzrost kupiony rabatami potrafi niszczyć rentowność.",
+        expand:
+          "Drabina: przychody netto (po rabatach) − koszt sprzedaży = zysk brutto; − SG&A, R&D i amortyzacja = zysk operacyjny (EBIT); − odsetki, jednorazowe i podatek = zysk netto. Apple FY2025: 416,2 → 195,2 (46,9%) → 133,1 (32,0%) → 112,0 mld $. Odcisk palca branż: Meta 82% brutto i 41,4% operacyjnie, Amazon 50,3% i 11,2% (AWS to 18% przychodów i 57% EBIT), GM 6,9% operacyjnie i 1,5% netto. U Apple produkty 36,8%, usługi 75,4% — stąd strategia usług.",
+        trap:
+          "Odsetki są poniżej EBIT, więc dług nie tłumaczy niskiej marży operacyjnej. Amortyzacja w realnych raportach siedzi w COGS i SG&A, dlatego liczy się EBITDA. Marże porównuj w branży i przy tych samych definicjach (fulfillment Amazona). I zysk netto to jeszcze nie gotówka.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 134. Ekonomia: koszty stałe i zmienne, próg rentowności, budować czy zlecać
+  // ============================================================
+  {
+    slug: "econ-koszty-stale-prog-rentownosci",
+    vaultSlug: "econ",
+    label: "Ekonomia — koszty stałe, próg rentowności, budować czy zlecać",
+    payload: {
+      title: "Koszty stałe, próg rentowności i decyzje operacyjne",
+      summary:
+        "Obniżasz cenę z 100 na 90 $, popyt rośnie ze 100 do 130 sztuk, dokupujesz moce i sprzedajesz wszystkie 130. Sukces? Zysk brutto spada z 3 500 do 2 900 $. Więcej sprzedanych sztuk, mniej zarobionych dolarów — i to jest cała lekcja o strukturze kosztów.",
+      theory:
+        "Koszt stały (fixed cost) nie zależy od wolumenu: utrzymanie fabryki kosztuje tyle samo przy 10 i przy 100 sztukach. Koszt zmienny (variable cost) rośnie z każdą wyprodukowaną sztuką. Ćwiczenie z sali: własna fabryka, 100 sztuk po 100 $, koszty stałe 3 000 $, koszty zmienne 35 $ za sztukę. Przychody 10 000, koszty 6 500, zysk brutto 3 500, marża 35%.\n\nZ tych liczb wyciąga się dwie rzeczy. Marża jednostkowa (contribution margin) to cena minus koszt zmienny, tutaj 65 $ — po pokryciu kosztów stałych każda kolejna sztuka dokłada do zysku właśnie 65 $. I próg rentowności: koszty stałe / (cena − koszt zmienny) = 3 000 / 65, czyli ok. 46 sztuk. Wysokie koszty stałe to wysoki próg: długo nic nie zarabiasz, ale powyżej progu zysk rośnie szybko. To dźwignia operacyjna (operating leverage). Usprawnienie procesów obniża koszty stałe, a więc i próg — „dobre zarabianie\" przesuwa się na niższe wolumeny.\n\nDlatego „budować czy zlecać\" nie jest pytaniem o oszczędność, tylko o strategię. Własna fabryka: 2 lata do uruchomienia, duża inwestycja, wysoki koszt stały, niski koszt zmienny, możliwe usprawnienia procesów, dużo zamrożonej gotówki, ale po latach aktywo zostaje w firmie. Kontrakt: rok do uruchomienia, mała inwestycja, niski koszt stały, wysoki koszt zmienny, żadnych usprawnień, mało zamrożonej gotówki i pełna elastyczność, ale po latach nie zostaje nic. Słowami trenerki: chcesz szybko wejść na rynek i zbudować pozycję — bierzesz kontrakt, choć ma mniejszy potencjał zysku; przestawiasz się na maksymalizację rentowności — przechodzisz na własne fabryki i je usprawniasz. Uwaga na dogmat „kontrakt jest zawsze mniej rentowny\": poniżej punktu przecięcia wysoki koszt stały własnej fabryki zjada zysk, więc przy małym albo niepewnym wolumenie wygrywa kontrakt.\n\nMoce produkcyjne to osobna pułapka. Za mało mocy to utracona sprzedaż i rozczarowani klienci, za dużo produkcji to zapasy i zamrożona gotówka, a niewykorzystana fabryka to kapitał, który obniża ROIC. Na krótko reagujesz niższą utylizacją, na dłużej zamykasz fabrykę albo anulujesz kontrakt — fabryki są specyficzne dla branży, nie przeniesiesz ich na inny rynek.\n\nInnowacja z R&D ma trzy zastosowania, które łatwo pomieszać: jakość produktu (trwale podnosi ocenę klientów i popyt — filar strategii premium), jakość procesu (obniża koszty stałe w fabryce, którą posiadasz; popytu nie zmienia, zysk tak — krytyczne przy niskiej cenie) i wejście na nowy rynek (najpierw nakłady, potem sprzedaż). R&D działa z opóźnieniem i z niepewnością, bo część prac się nie udaje: dziś obniża zysk, jutro buduje przewagę.\n\nPo stronie popytu obowiązuje jedno rozróżnienie: cena to decyzja długoterminowa, czyli pozycjonowanie, a rabat to taktyka krótkoterminowa — zejście z zapasów, obrona przed wchodzącym konkurentem — i powinien zwrócić się od razu. Rabat, który nie zwraca się szybko, to po prostu oddana marża. Do tego wydatki na sprzedaż budują markę (koszt w SG&A), a dłuższe terminy płatności dla klientów podnoszą atrakcyjność oferty, ale opóźniają gotówkę. Wszystko działa względem konkurencji: obniżka ceny nic nie da, jeśli wszyscy obniżą, a przy słabo zróżnicowanych produktach klienci kupują po cenie i zaczyna się wojna cenowa.\n\nI liczba, którą warto zapamiętać z ćwiczenia „wolumen to nie zysk\". Cena 100 $ i 100 sztuk: zysk brutto 3 500, marża 35,0%. Cena 90 $, popyt 130, ale bez nowych mocy sprzedajesz 100: zysk 2 500, marża 27,8%. Cena 90 $ plus kontrakt na 30 sztuk (500 $ kosztu stałego, 60 $ na sztukę): sprzedajesz 130, zysk 2 900, marża 24,8%. Pytanie trenerki do zespołów: chcecie rosnąć czy maksymalizować zysk? Czasem świadomie warto się nawet zmniejszyć.",
+      questions: [
+        {
+          type: "fill",
+          text: "Próg rentowności w sztukach = koszty stałe / (cena − koszt _____).",
+          options: null,
+          correctAnswer: "zmienny",
+          explanation:
+            "Mianownik to marża jednostkowa (contribution margin). Każda sztuka powyżej progu dokłada do zysku dokładnie tyle.",
+        },
+        {
+          type: "abc",
+          text: "Koszty stałe 3 000 $, cena 100 $, koszt zmienny 35 $ za sztukę. Próg rentowności to około:",
+          options: ["30 sztuk", "46 sztuk", "86 sztuk"],
+          correctAnswer: 1,
+          explanation:
+            "3 000 / (100 − 35) = 3 000 / 65 ≈ 46 sztuk. Powyżej tego każda sztuka dokłada 65 $ zysku.",
+        },
+        {
+          type: "abc",
+          text: "Wysokie koszty stałe przy niskich kosztach zmiennych oznaczają:",
+          options: [
+            "wyższy próg rentowności, ale szybciej rosnący zysk powyżej progu",
+            "niższy próg rentowności i stabilny zysk",
+            "brak wpływu na próg, zmienia się tylko marża brutto",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "To dźwignia operacyjna (operating leverage): długo nic, a potem zysk rośnie szybko. Usprawnienia procesów obniżają koszty stałe, więc obniżają też próg.",
+        },
+        {
+          type: "spot_error",
+          text: "„Kontrakt z zewnętrznym producentem jest zawsze mniej rentowny niż własna fabryka, bo ma wyższy koszt zmienny.\"",
+          options: [
+            "poniżej punktu przecięcia wysoki koszt stały własnej fabryki zjada zysk — przy małym lub niepewnym wolumenie wygrywa kontrakt",
+            "kontrakt jest zawsze rentowniejszy, bo nie wymaga inwestycji",
+            "koszt zmienny nie ma znaczenia dla rentowności",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Porównujesz dwie struktury kosztów, nie dwie „lepsze i gorsze\" opcje. Kontrakt kupuje szybkość i elastyczność za niższą marżę jednostkową — i przy małym wolumenie po prostu wygrywa.",
+        },
+        {
+          type: "fill",
+          text: "Cena minus koszt zmienny to marża _____ (contribution margin) — tyle dokłada do zysku każda sztuka powyżej progu.",
+          options: null,
+          correctAnswer: "jednostkowa",
+          explanation:
+            "W ćwiczeniu: 100 − 35 = 65 $. Ta liczba rządzi i progiem rentowności, i decyzją, czy warto łapać dodatkowy wolumen.",
+        },
+        {
+          type: "abc",
+          text: "R&D w jakość procesu (a nie produktu):",
+          options: [
+            "podnosi ocenę klientów i popyt",
+            "obniża koszty stałe w fabryce, którą posiadasz — popytu nie zmienia, zysk tak",
+            "otwiera nowy rynek",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Trzy zastosowania R&D: jakość produktu (popyt, strategia premium), jakość procesu (koszty, krytyczne przy niskiej cenie), nowy rynek (najpierw nakłady, potem sprzedaż). Usprawnień procesu nie zrobisz w fabryce, której nie masz.",
+        },
+        {
+          type: "abc",
+          text: "Cena 100 $ dawała 3 500 $ zysku brutto. Po obniżce do 90 $ i dokupieniu mocy sprzedajesz 130 sztuk i masz 2 900 $. Wniosek:",
+          options: [
+            "wolumen to nie zysk — przy ruszaniu ceny patrz na zysk w dolarach, nie na sztuki",
+            "obniżka ceny zawsze niszczy wartość",
+            "trzeba było obniżyć cenę jeszcze bardziej, by zbudować skalę",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Więcej sprzedanych sztuk i mniej zarobionych dolarów (marża spadła z 35,0% do 24,8%). Pytanie brzmi: rosnąć czy maksymalizować zysk? Czasem świadomie warto się zmniejszyć.",
+        },
+        {
+          type: "abc",
+          text: "Czym różni się cena od rabatu jako narzędzie?",
+          options: [
+            "to to samo, rabat jest tylko mniejszy",
+            "cena to decyzja długoterminowa (pozycjonowanie), rabat to taktyka, która ma zwrócić się od razu",
+            "rabat jest długoterminowy, bo przyzwyczaja klientów",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Rabat służy do zejścia z zapasów albo obrony przed wchodzącym konkurentem. Jeśli nie zwraca się szybko, jest po prostu oddaną marżą — a klienci przywykają do niższej ceny.",
+        },
+        {
+          type: "open",
+          text: "Kiedy wybierasz własną fabrykę, a kiedy kontrakt? Uzasadnij liczbami i ryzykiem.",
+          options: null,
+          correctAnswer:
+            "Własna fabryka ma sens, gdy wierzymy w stabilny wolumen wyraźnie powyżej progu rentowności: wysoki koszt stały i niski zmienny dają wtedy najwyższy zysk, można usprawniać procesy (obniżać koszty stałe), a po latach aktywo zostaje w firmie. Kontrakt wybieramy przy niepewnym albo małym popycie i gdy liczy się szybkie wejście na rynek: rok zamiast dwóch, mała inwestycja, mało zamrożonej gotówki, pełna elastyczność — kosztem niższej marży jednostkowej i braku usprawnień. Poniżej punktu przecięcia kontrakt jest wręcz rentowniejszy, bo nie dźwigasz kosztu stałego. Dodatkowe ryzyko własnej fabryki: niewykorzystane moce to zamrożony kapitał, który obniża ROIC, a fabryki nie przeniesiesz na inny rynek.",
+          explanation:
+            "Klucz: to decyzja o strukturze kosztów i elastyczności, a nie o oszczędności. Wolumen powyżej progu premiuje koszt stały, niepewność premiuje koszt zmienny.",
+        },
+      ],
+      salon: {
+        short:
+          "Własna fabryka ma sens, jeśli wierzymy w stabilny wolumen wyraźnie powyżej progu rentowności. Przy niepewnym popycie kontrakt kupuje nam elastyczność kosztem marży.",
+        expand:
+          "Próg rentowności = koszty stałe / (cena − koszt zmienny); w ćwiczeniu 3 000 / 65 ≈ 46 sztuk przy cenie 100 $ i koszcie zmiennym 35 $. Wysokie koszty stałe = wyższy próg i szybciej rosnący zysk powyżej niego (dźwignia operacyjna). Kontrakt: rok, niska inwestycja, wysoki koszt zmienny, zero usprawnień, nic nie zostaje. Fabryka: dwa lata, wysoki koszt stały, usprawnienia możliwe, aktywo zostaje. R&D: jakość produktu, jakość procesu albo nowy rynek. Cena to strategia, rabat to taktyka.",
+        trap:
+          "„Kontrakt jest zawsze mniej rentowny\" — nie poniżej punktu przecięcia. Rabat, który nie zwraca się od razu, to oddana marża. Niewykorzystane moce to zamrożony kapitał obniżający ROIC. I wolumen to nie zysk: 130 sztuk po 90 $ dało mniej niż 100 sztuk po 100 $.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 135. Ekonomia: bilans i cash flow — gdzie leży gotówka
+  // ============================================================
+  {
+    slug: "econ-bilans-i-cash-flow",
+    vaultSlug: "econ",
+    label: "Ekonomia — bilans i cash flow: zysk to opinia, gotówka to fakt",
+    payload: {
+      title: "Bilans i cash flow: gdzie leży gotówka",
+      summary:
+        "Apple siedzi na ok. 132 mld $ gotówki i jednocześnie ma ok. 99 mld $ długu. Brzmi jak błąd w arkuszu, a jest celową decyzją. Ta lekcja pokazuje, jak czytać bilans i rachunek przepływów, żeby wiedzieć, gdzie w firmie utknęła gotówka — i dlaczego rentowna firma potrafi upaść.",
+      theory:
+        "Bilans to zdjęcie, nie film: stan na konkretny dzień. Ma dwie strony (aktywa — co firma posiada; pasywa — komu jest winna, wliczając kapitał własny) i dwa horyzonty, z regułą kciuka: krótkoterminowe jest to, co już jest gotówką albo zamieni się w gotówkę w ciągu roku. Krótkoterminowe aktywa to gotówka, zapasy i należności od klientów; długoterminowe to rzeczowe aktywa trwałe (PP&E), inwestycje i aktywa z tytułu odroczonego podatku. Po stronie pasywów krótko to zobowiązania wobec dostawców i dług do spłaty w ciągu roku, długo to reszta długu plus kapitał własny.\n\nPierwsza zasada higieny: długoterminowe inwestycje finansuj długoterminowo. Fabryka opłacona krótkim długiem, który trzeba co roku odnawiać, to ryzyko strukturalne — wystarczy jeden zły rok na rynku kredytowym. Sygnał ostrzegawczy w bilansie: rosną aktywa trwałe, a finansowania przybywa po stronie krótkoterminowej.\n\nDruga: wartość księgowa netto (net book value) to koszt zakupu minus dotychczasowa amortyzacja, a nie cena rynkowa. Najlepsza intuicja trenerki: to wydatek już poniesiony, który jeszcze przejdzie przez rachunek zysków i strat w kolejnych latach. Komputer zamortyzowany w połowie? Połowa jego kosztu wciąż czeka w bilansie. Amortyzacja w trzech sprawozdaniach na przykładzie fabryki za 8 000 (2 lata budowy, potem 20 lat pracy): w trakcie budowy wynik 0, aktywo rośnie do 8 000, cash flow −4 000 capex rocznie; od trzeciego roku wynik −400 rocznie, aktywo spada o 400, a w gotówce zero. Nie amortyzujesz, dopóki aktywo nie pracuje, i nigdy nie jest to wypływ gotówki — ta wyszła raz, przy capex.\n\nApple na 27.09.2025: gotówka 35,9 + papiery krótkoterminowe 18,8 + długoterminowe 77,7 (razem ok. 132 mld $), aktywa trwałe netto 49,8, aktywa razem 359,2; po drugiej stronie zobowiązania wobec dostawców 69,9, dług krótkoterminowy 20,3, dług długoterminowy 78,3 (razem ok. 99 mld $) i kapitał własny 73,7. Dlaczego gotówka i dług jednocześnie? Bo dług jest tańszy niż kapitał własny — wierzyciel ma pierwszeństwo przed akcjonariuszem przy wypłatach, więc żąda niższego zwrotu, a odsetki obniżają podatek. Apple generuje tyle gotówki, że ryzyko niespłacenia jest znikome, więc pożycza bardzo tanio i może oddawać gotówkę inwestorom. Ogromne zobowiązania wobec dostawców to z kolei siła zakupowa: dostawcy de facto finansują Apple. Uwaga, ten sam objaw u słabszej firmy może znaczyć, że po prostu nie płaci na czas.\n\nTeraz gotówka. Firma może być rentowna i upaść, bo pieniądze przyjdą za późno. Zysk nie jest gotówką z czterech powodów: terminy płatności (sprzedaż jest już w wyniku, ale klient nie zapłacił — rosną należności), zapasy (zapłaciłaś za produkcję, a koszt sprzedaży pojawi się dopiero przy sprzedaży, bo to koszt towarów sprzedanych, nie wyprodukowanych), finansowanie (kredyt to gotówka, ale nie przychód; spłata kapitału to wypływ, ale nie koszt — w wyniku widać tylko odsetki) i amortyzacja (koszt bez wypływu).\n\nPrzepływy dzielimy na trzy koszyki: operacyjne, inwestycyjne (capex, przejęcia, papiery wartościowe) i finansowe (dług, akcje, dywidendy). Gotówka początkowa + CFO + CFI + CFF = gotówka końcowa. Do analizy służy metoda pośrednia, bo pokazuje, dlaczego zysk nie zamienił się w gotówkę: zysk netto + amortyzacja − wzrost należności − wzrost zapasów + wzrost zobowiązań wobec dostawców = CFO. Apple FY2025: 111,5 mld $ przepływów operacyjnych przy 112,0 zysku netto, capex 12,7, a w działalności finansowej oddał 120,7 mld $ (90,7 skup akcji, 15,4 dywidendy, 8,5 spłata długu netto) — i gotówka i tak wzrosła o 6,0.\n\nDwie diagnozy na koniec. Zapasy: wysokie, ale stabilne to jednorazowy kłopot (promocja, chwilowo niższa utylizacja); rosnące rok po roku to problem strukturalny — przy tej konkurencji i tym pozycjonowaniu nie sprzedasz takiego wolumenu, więc trzeba zmniejszyć skalę albo repozycjonować ofertę. I finansowanie: ujemne saldo na koniec okresu to debet, czyli bardzo drogie odsetki i spadek ratingu, bo bank widzi chaos. Zawsze lepiej pożyczyć w sposób zaplanowany. Celem jest bufor, nie skarbiec — za dużo pożyczone to odsetki od gotówki, która leży. I uważaj na procenty: spadek oprocentowania z 3,75% do 2,75% to 1 punkt procentowy, czyli dług tańszy o ok. 27%, a nie „o 1%\".",
+      questions: [
+        {
+          type: "abc",
+          text: "Czym bilans różni się od rachunku zysków i strat oraz cash flow?",
+          options: [
+            "bilans to stan na dzień, pozostałe dwa opisują okres",
+            "bilans opisuje okres, pozostałe dwa stan na dzień",
+            "wszystkie trzy opisują ten sam okres",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Bilans to zdjęcie, P&L i cash flow to film. Dlatego zmianę gotówki w bilansie rok do roku wyjaśnia rachunek przepływów, a zmianę zysków zatrzymanych — rachunek zysków i strat.",
+        },
+        {
+          type: "fill",
+          text: "Kapitał obrotowy = należności + zapasy − zobowiązania wobec _____.",
+          options: null,
+          correctAnswer: "dostawców",
+          explanation:
+            "Working capital. Należności i zapasy zamrażają gotówkę, zobowiązania wobec dostawców ją uwalniają, bo to kredyt kupiecki, którego jeszcze nie oddałaś.",
+        },
+        {
+          type: "abc",
+          text: "Amortyzacja 400 w danym roku pokazuje się tak:",
+          options: [
+            "wynik −400, aktywo trwałe −400, gotówka 0",
+            "wynik −400, aktywo trwałe −400, gotówka −400",
+            "wynik 0, aktywo trwałe −400, gotówka −400",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Gotówka wyszła raz, przy capex. W metodzie pośredniej amortyzację dodaje się z powrotem do zysku netto właśnie dlatego, że nie była wypływem.",
+        },
+        {
+          type: "spot_error",
+          text: "„Wzięliśmy kredyt 5 mln, więc w tym roku wynik będzie lepszy.\"",
+          options: [
+            "kredyt to wpływ gotówki, ale nie przychód — w wyniku widać tylko odsetki, a spłata kapitału to wypływ bez kosztu",
+            "kredyt podnosi przychody, ale obniża marżę brutto",
+            "kredyt w całości trafia do zysku netto w roku otrzymania",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Jedna z czterech przyczyn, dla których zysk to nie gotówka. Kredyt idzie do przepływów finansowych i do bilansu (gotówka + dług), nie do wyniku.",
+        },
+        {
+          type: "fill",
+          text: "Metoda pośrednia: zysk netto + amortyzacja − wzrost należności − wzrost zapasów + wzrost _____ wobec dostawców = przepływy operacyjne.",
+          options: null,
+          correctAnswer: "zobowiązań",
+          explanation:
+            "Dlatego szybki wzrost sprzedaży często pogarsza gotówkę: należności i zapasy rosną szybciej niż zobowiązania, a każda z tych pozycji zjada CFO.",
+        },
+        {
+          type: "abc",
+          text: "Apple trzyma ok. 132 mld $ gotówki i inwestycji, a jednocześnie ok. 99 mld $ długu. Dlaczego to nie jest błąd?",
+          options: [
+            "to wynik złej polityki finansowej, którą rynek karze",
+            "dług jest tańszy od kapitału własnego (pierwszeństwo spłaty i tarcza podatkowa), a przy takiej gotówce ryzyko niespłacenia jest znikome",
+            "spółki giełdowe muszą mieć dług, żeby utrzymać rating",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Wierzyciel stoi przed akcjonariuszem w kolejce do wypłat, więc żąda niższego zwrotu, a odsetki obniżają podatek. Apple pożycza bardzo tanio i oddaje gotówkę inwestorom (FY2025: 90,7 mld $ skupu akcji).",
+        },
+        {
+          type: "abc",
+          text: "W prognozie zapasy rosną rok po roku. Diagnoza:",
+          options: [
+            "jednorazowy kłopot — wystarczy promocja i chwilowo niższa utylizacja",
+            "problem strukturalny — przy tej konkurencji i tym pozycjonowaniu nie sprzedasz takiego wolumenu; trzeba zmniejszyć skalę albo repozycjonować ofertę",
+            "zapasy w cash flow nie są prawdziwymi pieniędzmi",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zapasy wysokie, ale stabilne to jednorazowy kłopot. Rosnące rok po roku to informacja o rynku, nie o magazynie. I to zawsze prawdziwe pieniądze: zapłaciłaś za produkcję, która się nie sprzedała.",
+        },
+        {
+          type: "spot_error",
+          text: "„Oprocentowanie naszego długu spadło z 3,75% do 2,75%, czyli dług jest tańszy o 1%.\"",
+          options: [
+            "to spadek o 1 punkt procentowy, ale koszt długu spada o ok. 27%",
+            "to spadek o 1%, wszystko się zgadza",
+            "to spadek o 100%, bo różnica wynosi jeden punkt",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "1 / 3,75 ≈ 26,7%. Mieszanie punktów procentowych z procentami zmiany to klasyczny błąd w rozmowie o finansowaniu — i potrafi zmienić wnioski o rzędy wielkości.",
+        },
+        {
+          type: "open",
+          text: "Firma rośnie 30% rocznie, jest rentowna, a mimo to prosi bank o kolejny kredyt. Wyjaśnij, co się dzieje i co zrobić najpierw.",
+          options: null,
+          correctAnswer:
+            "Firma nie zamienia zysku na gotówkę, bo pochłania ją kapitał obrotowy: przy szybkim wzroście rosną należności (sprzedaż jest w wyniku, ale klient jeszcze nie zapłacił) i zapasy (zapłacone, jeszcze nie sprzedane), a to obie pozycje zjadające przepływy operacyjne. Zysk jest opinią, gotówka faktem. Zanim sfinansujemy wzrost długiem, warto uwolnić gotówkę z kapitału obrotowego: skrócić terminy płatności klientom albo lepiej je ściągać, zaplanować produkcję pod realny popyt, wynegocjować dłuższe terminy u dostawców (pamiętając, że dostawca może je wliczyć w cenę). Jeśli finansowanie jest potrzebne, lepiej wziąć zaplanowany kredyt lub linię kredytową niż wpaść w debet, bo debet to bardzo drogie odsetki i spadek ratingu.",
+          explanation:
+            "Klucz: rentowność bez konwersji na gotówkę blokuje strategię. Przy 120 dniach terminu w należnościach siedzi ok. jednej trzeciej rocznej sprzedaży, przy 30 dniach ok. 8%.",
+        },
+      ],
+      salon: {
+        short:
+          "Firma jest rentowna, ale nie zamienia zysku na gotówkę, bo pochłaniają ją należności i zapasy. Zanim sfinansujemy wzrost długiem, uwolnijmy gotówkę z kapitału obrotowego.",
+        expand:
+          "Bilans: zdjęcie na dzień, dwie strony i dwa horyzonty (granica roku), długie aktywa finansuj długim finansowaniem. Wartość księgowa netto = koszt − skumulowana amortyzacja, czyli wydatek, który jeszcze przejdzie przez wynik. Cash flow: CFO + CFI + CFF = zmiana gotówki, a metoda pośrednia (zysk netto + amortyzacja − Δ należności − Δ zapasów + Δ zobowiązań) pokazuje, dlaczego zysk nie stał się gotówką. Apple FY2025: CFO 111,5 przy zysku 112,0; 120,7 mld $ oddane inwestorom, a gotówka i tak +6,0.",
+        trap:
+          "Kredyt to nie przychód, a spłata kredytu to nie koszt. Amortyzacja zaczyna się, gdy aktywo pracuje, nie w trakcie budowy. Minus przy zapasach w cash flow znaczy, że zapasy wzrosły i gotówka wyszła. Wysokie zobowiązania wobec dostawców to siła zakupowa albo firma, która nie płaci na czas — sprawdź kontekst. I 3,75% → 2,75% to 1 pp, czyli dług tańszy o ok. 27%.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 136. Ekonomia: ROIC, dźwignie wartości i zasada ROIC > WACC
+  // ============================================================
+  {
+    slug: "econ-roic-i-dzwignie-wartosci",
+    vaultSlug: "econ",
+    label: "Ekonomia — ROIC, dźwignie wartości i zasada ROIC > WACC",
+    payload: {
+      title: "ROIC, dźwignie wartości i złota zasada ROIC > WACC",
+      summary:
+        "Firma B rosła szybciej niż A i sala wybrała B. Wtedy trenerka dołożyła dwie informacje: ten wzrost stoi na jednym influencerze z Instagrama, a B potrzebuje 40 razy więcej kapitału na ten sam zwrot. Nagle wygrała A. ROIC jest właśnie tym drugim pytaniem: ile kapitału musiałaś zamrozić, żeby ten zysk w ogóle mieć.",
+      theory:
+        "Rachunek zysków i strat mówi, jak dobrze zamieniasz sprzedaż na zysk. ROIC dokłada drugie pytanie: ile kapitału trzeba było zamrozić, żeby tę sprzedaż mieć. Łączy wynik z bilansem i jest jednym z podstawowych narzędzi oceny, jak dobrze zarząd prowadzi operacje.\n\nWzór: ROIC = NOPAT / (aktywa trwałe + kapitał obrotowy), gdzie kapitał obrotowy to należności + zapasy − zobowiązania wobec dostawców. Przykład trenerki: zysk 10 mln, aktywa trwałe 70 mln, kapitał obrotowy 30 mln, czyli kapitał zaangażowany 100 mln i ROIC 10%. Czy to dużo? Zależy od branży i od tego, z czym porównujesz.\n\nJedna korekta, którą warto znać, bo na szkoleniu poszło uproszczenie. Trenerka powiedziała, że w liczniku jest zysk netto. Precyzyjnie (i tak liczy McKinsey w „Valuation\") licznikiem jest NOPAT: zysk operacyjny po podatku, ale przed odsetkami, w przybliżeniu EBIT × (1 − stopa podatkowa). Powód jest elegancki: kapitał zaangażowany finansują i wierzyciele, i akcjonariusze, więc licznik musi być liczony przed wypłatą dla obu. Zysk netto jest już po odsetkach, więc firma z długiem wyglądałaby operacyjnie gorzej, choć ma identyczne operacje.\n\nROIC rozkłada się na drzewo, najlepiej wszystko jako procent przychodów, by porównywać się z konkurencją: ROIC = (1 − podatek) × marża operacyjna × przychody / kapitał zaangażowany. Czyli marża po podatku razy rotacja kapitału. Gałąź rentowności: marża brutto, SG&A, R&D, amortyzacja. Gałąź kapitału: aktywa trwałe do przychodów (kapitałochłonność) i kapitał obrotowy do przychodów, rozbity na należności, zapasy i zobowiązania. Zdanie, które warto zapamiętać: drzewo nie daje odpowiedzi, daje lepsze pytania. Firma z ROIC wyższym niż konkurencja i tak dostała cztery: nikt tu nie inwestuje w R&D, więc jak zamierzacie się rozwijać? Niskie SG&A to efektywność czy niedoinwestowany marketing, który z czasem zniszczy markę i marżę? Lekkie aktywa to więcej kontraktów zamiast fabryk — ile marży przez to ucieka? Wysoki kapitał obrotowy: jakie terminy mają klienci i czy produkcja nie jest za duża?\n\nCzego ROIC nie mówi. Firma A ma 56,8%, firma B 49,2% — w którą inwestujesz? Dobra odpowiedź brzmi: potrzebuję więcej danych. Trzeba znać branżę (jaki ROIC jest w niej normalny), ryzyko (bo ono wyznacza koszt kapitału), skalę i wzrost (niższy ROIC na dużej, szybko rosnącej bazie może dać więcej wartości w złotówkach niż wysoki ROIC na małej, stojącej firmie), strukturę kapitału i czas zwrotu — ROIC to miara jednego okresu, więc projekty o różnej długości porównuje się przez NPV, nie przez ROIC. Wniosek trenerki: ROIC to świetna miara sprawności operacyjnej i słabe narzędzie do wyboru inwestycji. Dlatego zawsze czyta się go razem ze wzrostem.\n\nDrzewo dźwigni wartości spina cały dzień. Wartość firmy zależy od wzrostu (wzrost rynku i wzrost udziału — najlepiej rosnący udział w rosnącym rynku), od ROIC (rentowność: koszty, pozycjonowanie cenowe, mix produktów; efektywność kapitałowa: wykorzystanie aktywów, ściąganie należności, warunki z dostawcami, planowanie zapasów) oraz od ryzyka (rating, koszt długu, stopa dyskontowa). Każda inwestycja to to samo pytanie o zwrot, różni je tylko horyzont: rabat ma zwrócić się od razu, terminy płatności szybko, wydatki na sprzedaż i R&D średnio, capex długo, a nowy rynek z nowym produktem najdłużej. I pamiętaj, że rynek płaci za oczekiwania: wycena rośnie, zanim wpłynie pierwsza złotówka — ale działa to też w drugą stronę, jak w zespole, który liczył na monopol w obronności, zobaczył konkurencję i zaliczył załamanie kursu.\n\nZłota zasada, czyli pomost do wyceny. Wartość powstaje, gdy ROIC jest wyższy niż WACC (średni ważony koszt kapitału: koszt kapitału własnego i koszt długu po podatku w proporcjach finansowania). Zysk ekonomiczny = kapitał zaangażowany × (ROIC − WACC). A wzrost tworzy wartość tylko wtedy, gdy zwrot z nowego kapitału (RONIC) przebija WACC. Liczby z tabeli: NOPAT 100, WACC 10%, wzrost 5% rocznie. RONIC 20% (stopa reinwestycji 25%) daje wartość 1 500 zamiast 1 000. RONIC 10% (reinwestycja 50%) daje 1 000, czyli wzrost jest neutralny. RONIC 6,7% (reinwestycja 75%) daje 500 — wzrost niszczy połowę wartości. Wzór: wartość = NOPAT × (1 − g / RONIC) / (WACC − g), gdzie g / RONIC to stopa reinwestycji. Ideał, o którym mówiła trenerka, to „zielone wszędzie\": rosną jednocześnie przychody, marża i rating. W jednej rundzie symulacji udało się to jednej drużynie na osiem — bo dźwignie się ścierają.",
+      questions: [
+        {
+          type: "fill",
+          text: "Precyzyjnie w liczniku ROIC nie stoi zysk netto, a _____ — zysk operacyjny po podatku, ale przed odsetkami.",
+          options: null,
+          correctAnswer: "NOPAT",
+          explanation:
+            "NOPAT ≈ EBIT × (1 − stopa podatkowa). Uproszczenie „zysk netto\" z sali zniekształca porównania między firmami o różnym zadłużeniu.",
+        },
+        {
+          type: "abc",
+          text: "Dlaczego w liczniku ROIC jest NOPAT, a nie zysk netto?",
+          options: [
+            "bo NOPAT jest zawsze wyższy, więc ROIC wygląda lepiej",
+            "bo kapitał zaangażowany finansują i wierzyciele, i akcjonariusze — licznik musi być przed wypłatą dla obu",
+            "bo zysku netto nie znajdziesz w raporcie rocznym",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Zysk netto jest już po odsetkach, więc firma z długiem wyglądałaby operacyjnie gorzej przy identycznych operacjach. ROIC ocenia operacje, nie sposób finansowania.",
+        },
+        {
+          type: "abc",
+          text: "NOPAT 10 mln, aktywa trwałe 70 mln, kapitał obrotowy 30 mln. ROIC wynosi:",
+          options: ["10%", "14%", "33%"],
+          correctAnswer: 0,
+          explanation:
+            "Kapitał zaangażowany = 70 + 30 = 100 mln, więc 10 / 100 = 10%. Czy to dużo, zależy od branży i od konkurencji.",
+        },
+        {
+          type: "spot_error",
+          text: "„Firma A ma ROIC 56,8%, firma B 49,2%. Inwestujemy w A.\"",
+          options: [
+            "sam ROIC nie wystarcza: potrzebna branża, ryzyko (koszt kapitału), skala i wzrost, struktura kapitału oraz horyzont zwrotu",
+            "trzeba wybrać B, bo niższy ROIC oznacza większy potencjał poprawy",
+            "różnica 7 punktów procentowych jest nieistotna statystycznie",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Dobra odpowiedź to „potrzebuję więcej danych\". Niższy ROIC na dużej, szybko rosnącej bazie może dać więcej wartości w złotówkach niż wysoki ROIC na małej, stojącej firmie. ROIC to miara sprawności operacyjnej, nie narzędzie wyboru inwestycji.",
+        },
+        {
+          type: "abc",
+          text: "Wzrost tworzy wartość tylko wtedy, gdy:",
+          options: [
+            "zwrot z nowego kapitału (RONIC) przebija koszt kapitału (WACC)",
+            "przychody rosną szybciej niż rynek",
+            "marża brutto rośnie razem z przychodami",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Przy NOPAT 100 i WACC 10%: RONIC 20% podnosi wartość z 1 000 do 1 500, RONIC 10% zostawia 1 000, a RONIC 6,7% obniża ją do 500. Rośnięcie poniżej kosztu kapitału to rośnięcie na minus.",
+        },
+        {
+          type: "fill",
+          text: "Zysk ekonomiczny = kapitał zaangażowany × (ROIC − _____).",
+          options: null,
+          correctAnswer: "WACC",
+          explanation:
+            "WACC to średni ważony koszt kapitału: koszt kapitału własnego (wyższy, bo akcjonariusz ryzykuje najwięcej) i koszt długu po podatku, w proporcjach finansowania. Dodatni zysk ekonomiczny = tworzenie wartości.",
+        },
+        {
+          type: "abc",
+          text: "Firma ma ROIC wyżej niż konkurencja, zerowe R&D i bardzo niskie SG&A. Jak to czytać?",
+          options: [
+            "wzorowa efektywność, nic więcej nie trzeba sprawdzać",
+            "czerwona lampka: możliwe przejadanie przyszłości — bez R&D i marketingu marka i marża z czasem spadną",
+            "to niemożliwe, brak R&D zawsze obniża ROIC",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Drzewo ROIC nie daje odpowiedzi, daje lepsze pytania. Wysoki ROIC potrafi być efektem niedoinwestowania, a nie sprawności. Podobnie lekkie aktywa: podbijają ROIC, ale mogą oznaczać niższą marżę.",
+        },
+        {
+          type: "abc",
+          text: "Które dwie gałęzie podnoszą ROIC?",
+          options: [
+            "rentowność (koszty, cena, mix) oraz efektywność kapitałowa (wykorzystanie aktywów, kapitał obrotowy)",
+            "wzrost rynku oraz wzrost udziału w rynku",
+            "rating kredytowy oraz stopa dyskontowa",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "ROIC = marża po podatku × rotacja kapitału. Wzrost rynku i udziału to gałąź wzrostu, a rating i stopa dyskontowa to gałąź ryzyka — trzy osobne dźwignie wartości.",
+        },
+        {
+          type: "open",
+          text: "Firma B miała wyższy wzrost i tę samą marżę brutto co A. Dlaczego ostatecznie wygrała A?",
+          options: null,
+          correctAnswer:
+            "Bo wzrost B był ryzykowny i drogi kapitałowo. Opierał się na jednym kanale (współpraca z influencerem), czyli był mało trwały i podnosił ryzyko, a więc i koszt kapitału. Do tego B potrzebowała 40 razy więcej kapitału, żeby osiągnąć ten sam zwrot — jej ROIC był więc dramatycznie niższy, mimo tej samej marży brutto. Wartość powstaje, gdy firma rośnie przy zwrocie z kapitału wyższym niż jego koszt; wzrost, który wymaga ogromnego kapitału przy niepewnym źródle, wartość niszczy, a nie tworzy. Dlatego ROIC i wzrost czyta się razem, nigdy osobno.",
+          explanation:
+            "Klucz: liczy się ryzyko wzrostu i ile kapitału trzeba zamrozić, żeby w ogóle wygenerować sprzedaż. Sama wyższa dynamika przychodów nie mówi nic o wartości.",
+        },
+      ],
+      salon: {
+        short:
+          "ROIC jest wyższy niż u konkurencji, ale w dużej mierze dzięki niskim wydatkom na R&D i marketing. Pytanie, czy to efektywność, czy przejadanie przyszłej pozycji.",
+        expand:
+          "ROIC = NOPAT / (aktywa trwałe + kapitał obrotowy) = (1 − podatek) × marża operacyjna × przychody / kapitał zaangażowany, czyli marża po podatku razy rotacja kapitału. Dźwignie wartości: wzrost (rynku i udziału), ROIC (rentowność i efektywność kapitałowa), ryzyko (rating, koszt długu, stopa dyskontowa). Złota zasada: wartość powstaje przy ROIC > WACC, zysk ekonomiczny = kapitał × (ROIC − WACC), a wzrost tworzy wartość tylko gdy RONIC > WACC. Wartość = NOPAT × (1 − g / RONIC) / (WACC − g).",
+        trap:
+          "W liczniku NOPAT, nie zysk netto. Wysoki ROIC przy zerowym R&D to często przejadanie przyszłości, a lekkie aktywa podbijają ROIC kosztem marży. ROIC to nie IRR — o czasie zwrotu nie mówi nic, więc projekty różnej długości porównuj przez NPV. I ROIC między branżami bez kontekstu wprowadza w błąd.",
+      },
+    },
+  },
 ];
