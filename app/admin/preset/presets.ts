@@ -12940,132 +12940,136 @@ export const PRESETS: Preset[] = [
   },
 
   // ============================================================
-  // 131. Hiszpański: describir a una persona — profesión, origen, creencias
+  // 131. Hiszpański: que / donde — oraciones de relativo (rozdz. 35)
   // ============================================================
-  // Lekcja ze słownictwa z rozdziału podręcznika (nie z rozmowy): abstemio,
-  // obreros, sexto, ateo, canguro („cuida a los niños\"), procede, políglota.
-  // Wszystkie te słowa opisują CZŁOWIEKA — czym się zajmuje, skąd pochodzi,
-  // w co wierzy i czego nie robi — więc idą w jednej lekcji razem z regułą,
-  // która je spina: po „ser\" zawód i tożsamość stoją BEZ rodzajnika.
-  // Nie dubluję ser vs estar z cechami (#111) ani słownictwa ofert pracy (#86).
+  // Z rozdziału 35 „que, donde — Relativos\" z podręcznika gramatyki
+  // (strona teorii + ćwiczenia 35.1–35.5, które Natalia rozwiązała).
+  // Jej odpowiedzi są w ogromnej większości poprawne, więc spot_error NIE
+  // są zmyślonymi jej błędami — biorę dwie pułapki, które sam podręcznik
+  // oznacza jako ATENCIÓN i PERO: znikający zaimek dopełnienia („el cedé
+  // que me LO regaló\") i „donde\" wciśnięte tam, gdzie miejsce jest
+  // dopełnieniem („el hotel que recomienda la guía\").
+  // Słownictwo z ćw. 35.3 (abstemio, obreros, sexto, ateo, canguro,
+  // procede, políglota) wchodzi tam, gdzie stoi w podręczniku — w zdaniach
+  // definiujących „es una persona QUE…\", więc gramatyka i słówka jadą razem.
   {
-    slug: "es-profesion-origen-y-creencias",
+    slug: "es-relativos-que-donde",
     vaultSlug: "es",
-    label: "Hiszpański — describir a una persona: es obrero / es canguro, procede de, ateo y abstemio, políglota, el sexto piso",
+    label: "Hiszpański — oraciones de relativo: que (nieodmienne, bez powtórzonego zaimka) i donde (= en el que)",
     payload: {
-      title: "¿Quién es y de dónde procede? — profesión, origen, creencias y ordinales",
+      title: "Que y donde — las oraciones de relativo",
       summary:
-        "Jak opisać człowieka: zawód po „ser\" bez rodzajnika (es obrero, es canguro), pochodzenie przez „proceder de\", tożsamość i nawyki (ateo, abstemio, políglota) oraz liczebniki porządkowe z „sexto\" na czele. Cztery pułapki: „es UNA canguro\", „abstinente\" zamiast „abstemio\", „cuida los niños\" bez osobowego „a\" i skracanie „sexto\" na wzór „primer / tercer\".",
+        "Zdania względne: „que\" dokleja informację do rzeczownika (ludzie, zwierzęta, rzeczy) i NIE odmienia się jak polskie który/która/którzy. Trzy pułapki z rozdziału: zaimek dopełnienia znika („el cedé que me regaló\", nie „que me LO regaló\"), „donde\" tylko tam, gdzie da się powiedzieć „en el que\" („el hotel QUE recomienda la guía\"), a podmiot w zdaniu względnym idzie PO czasowniku („la pluma que perdió María\"). Plus słownictwo z ćwiczeń, całe zbudowane na definicjach: abstemio, ateo, canguro, políglota, obreros, procede, el sexto.",
       theory:
-        "ZAWÓD PO „SER\" — BEZ RODZAJNIKA:\n— „es obrero\", „es canguro\", „es profesora\", „soy ingeniera\" — po hiszpańsku zawód działa jak przymiotnik, więc rodzajnika NIE ma. Polskie „jest opiekunką\" kusi do „es una canguro\", a to brzmi jak kalka.\n— Rodzajnik WRACA, gdy dochodzi określenie: „es UN obrero buenísimo\", „es UNA profesora excelente\", „es UN canguro de confianza\".\n— TRABAJAR DE / COMO + zawód = pracować jako: „trabaja de canguro\", „trabaja como obrero en una fábrica\". Uwaga: „trabaja como UN canguro\" to już porównanie do kangura.\n\nNAZWY ZAWODÓW — RODZAJ I REGION:\n— el obrero / la obrera = robotnik (praca fizyczna: budowa, fabryka); „los obreros de la construcción\"; la obra = budowa („el edificio está en obras\"); la mano de obra = siła robocza. Przy pracy biurowej mówi się el empleado / la empleada, szerzej el trabajador / la trabajadora.\n— el / la canguro = (Hiszpania, potocznie) opiekun do dzieci: „busco un canguro para el sábado\", „hacer de canguro\". W Meksyku i większości Ameryki Łacińskiej canguro to WYŁĄCZNIE kangur — tam opiekunka to la niñera (albo la nana). Twoja koleżanka z Meksyku nie zrozumie „soy canguro\".\n— Końcówki: -o / -a (obrero / obrera), -or / -ora (profesor / profesora), a formy na -ista i -ante są wspólne: el / la dentista, el / la periodista, el / la estudiante.\n\n„CUIDAR A LOS NIÑOS\" — OSOBOWE „A\":\n— Przy osobach jako dopełnieniu stawia się „a\": „cuida A los niños\", „cuido A mi abuela\". Bez osoby „a\" znika: „cuida la casa\", „cuida las plantas\".\n— Można też „cuidar DE alguien\" („cuida de sus hermanos\") — sens ten sam, ton trochę bardziej opiekuńczy.\n— Rodzina słów: el cuidado, tener cuidado = uważać, „¡Cuidado!\" = uwaga!\n\nPOCHODZENIE — PROCEDER DE:\n— proceder de = pochodzić z (formalnie, o ludziach i o rzeczach): „procede de una familia de obreros\", „esta palabra procede del árabe\", „el vino procede de La Rioja\". Synonim: provenir de.\n— Na co dzień wystarczy ser de / venir de: „es de Guadalajara\", „viene de una familia humilde\".\n— DRUGIE ŻYCIE TEGO CZASOWNIKA: „procede\" = jest zasadne / wypada. W urzędzie i w prawie usłyszysz „no procede\" = nie ma podstaw, nie ma zastosowania; „no procede hacer comentarios\" = nie wypada komentować. Stąd el procedimiento = procedura.\n\nPRZEKONANIA I NAWYKI — TEŻ BEZ RODZAJNIKA:\n— ateo / atea = ateista; creyente = wierzący; agnóstico / agnóstica; practicante = praktykujący. Mówi się „es atea\", nie „es una atea\" (dokładnie jak z zawodem).\n— abstemio / abstemia = niepijący alkoholu: „soy abstemia, no bebo nada de alcohol\". NIE „abstinente\" — la abstinencia to abstynencja w sensie powstrzymywania się w ogóle („el síndrome de abstinencia\" = zespół abstynencyjny). O człowieku przy stole mówi się abstemio.\n— políglota = poliglota — jedna forma dla kobiety i mężczyzny: „ella es políglota\", „él es políglota\" (książkowe „polígloto\" prawie nie występuje). Akcent pada na „í\": po-LÍ-glo-ta. Rodzina: bilingüe, trilingüe, dominar un idioma, hablar con fluidez.\n— Ta sama logika obejmuje vegetariano, fumador / no fumador, deportista: „es vegetariana y no fumadora\".\n\nLOS ORDINALES — I DLACZEGO „SEXTO\" SIĘ NIE SKRACA:\n— primero, segundo, tercero, cuarto, quinto, SEXTO, séptimo, octavo, noveno, décimo.\n— Uzgadniają się z rzeczownikiem: „el sexto piso\", „la sexta vez\", „los primeros días\".\n— Skracają się TYLKO primero → primer i tercero → tercer przed rzeczownikiem rodzaju męskiego: „el primer día\", „el tercer piso\" — ale „el sexto piso\", „el cuarto intento\", „el quinto año\" zostają w całości.\n— Powyżej dziesiątego w mowie zwykle wygrywają zwykłe liczebniki: „el piso doce\", „el siglo veintiuno\".\n— Pisownia: sexto przez „x\" (choć słychać „sesto\"), séptimo i décimo z akcentem graficznym.",
+        "CO ROBI „QUE\":\n— Skleja dwa zdania o tym samym rzeczowniku, żeby nie wymieniać go drugi raz: „Tengo una amiga. Mi amiga vive en Canadá.\" → „Tengo una amiga QUE vive en Canadá\". „Mira los cuadros. Los cuadros los ha pintado Miguel.\" → „Mira los cuadros QUE ha pintado Miguel\".\n— Czasem IDENTYFIKUJE, o kogo/co chodzi: „—¿Quién es Begoña? —Es la chica que está bailando con Pedro\"; „El coche que está delante del banco es el mío\".\n— Czasem DEFINIUJE: „Un carnicero es una persona que vende carne\".\n\n„QUE\" JEST NIEODMIENNE — I NIGDY NIE ZNIKA:\n— Jedna forma na wszystko: el chico que…, la chica que…, las chicas que…, los cuadros que…. Polskie który / która / które / którzy kusi do szukania odpowiednika — nie ma czego szukać, zawsze „que\".\n— Obsługuje ludzi, zwierzęta i rzeczy: „Las chicas que conocimos ayer son de Córdoba\", „El cóndor es un ave que procede de América del Sur\", „No me gusta el libro que estoy leyendo\".\n— W przeciwieństwie do angielskiego („the book I'm reading\") po hiszpańsku „que\" MUSI stać: „el libro que estoy leyendo\".\n— Osobowe „a\" zostaje przy poprzedniku, nie przy „que\": „Conozco A un médico que trabaja en el Hospital Internacional\".\n\nATENCIÓN — ZAIMEK DOPEŁNIENIA WYPADA:\n— „No tengo el cedé. Me LO regaló Antonio.\" → „No tengo el cedé que me regaló Antonio\" — bez „lo\", bo „que\" już zastępuje płytę. Polskie „którą mi dał\" ma to „ją\" w środku i stąd bierze się kalka „que me lo regaló\".\n— Tak samo: „la película que vimos ayer\" (nie „que la vimos\"), „la paella que ha preparado Marisa\", „la lavadora que compré el año pasado\".\n\nDEFINICJE — SCHEMAT Z ĆWICZEŃ (i słownictwo):\n— „es una persona / un animal / un lugar + QUE + czasownik\":\n— Un abstemio es una persona que NO BEBE ALCOHOL (abstemio = niepijący; uwaga: „abstinente\" to co innego).\n— Un ateo es una persona que no cree en Dios (creer EN algo).\n— Un canguro es una persona que cuida niños — „canguro\" w tym znaczeniu to Hiszpania; w Meksyku canguro to kangur, a opiekunka to „la niñera\". Tu „cuida niños\" idzie BEZ „a\", bo chodzi o dzieci w ogóle; gdyby o konkretne — „cuida A los niños\".\n— Un políglota es una persona que habla muchos idiomas (forma ta sama dla kobiety i mężczyzny, akcent na „í\": po-LÍ-glo-ta).\n— Una llama es un animal que procede de los Andes (proceder DE = pochodzić z; tak samo „el cóndor… procede de América del Sur\").\n— Unos obreros que están arreglando la calle (el obrero = robotnik; la obra = budowa).\n— Un chico que vive en el sexto — po hiszpańsku opuszcza się „piso\": „vive en el sexto\" = mieszka na szóstym. Porządkowe: primero, segundo, tercero, cuarto, quinto, sexto, séptimo…\n\n„DONDE\" = EN EL QUE / EN LA QUE:\n— Do miejsc, gdy chodzi o to, co się W nich dzieje: „Ese es el banco donde trabaja Alfonso\", „Hemos visitado el pueblo donde veranea Helga\", „Esa es la casa donde nació Cervantes\", „Esa es la agencia donde compré los billetes\".\n— PERO: jeśli miejsce jest DOPEŁNIENIEM (ktoś je poleca, wynajmuje, buduje), wraca „que\": „Ese es el hotel QUE recomienda la guía\", „Esa es la agencia QUE nos recomendó Juan\", „Vivo en una casa QUE tiene tres pisos\".\n— Test: da się wstawić „en el que\"? → donde. Nie da się (bo to nie „w czymś\", tylko „coś\") → que.\n\nSZYK — PODMIOT PO CZASOWNIKU:\n— Gdy zdanie względne ma swój podmiot, zwykle idzie on ZA czasownikiem: que / donde + czasownik + podmiot.\n— „He encontrado la pluma que perdió María\", „Esa es la casa donde vive Laura\", „la paella que ha preparado Marisa\". „…que María perdió\" nie jest błędem, ale brzmi sztywno — naturalny hiszpański stawia podmiot na końcu.\n\nDROBIAZG Z ĆWICZENIA 35.5 — TRYB ŁĄCZĄCY:\n— „Estamos en un hotel que TIENE cuatro estrellas\" (konkretny, istniejący → indicativo), ale „Quiero un piso que TENGA tres habitaciones\" (jeszcze go nie ma, szukam takiego → subjuntivo). Sam poprzednik decyduje o trybie.",
       questions: [
         {
           type: "spot_error",
-          text: "„Mi hermana es una canguro y cuida los niños los fines de semana.\" (= moja siostra jest opiekunką i pilnuje dzieci w weekendy) — co jest nie tak?",
+          text: "„No tengo el cedé que me lo regaló Antonio.\" (= nie mam płyty, którą dał mi Antonio) — co jest nie tak?",
           options: [
             "wszystko OK",
-            "zawód po „ser\" idzie bez rodzajnika, a przy osobach potrzebne jest „a\": „Mi hermana es canguro y cuida A los niños los fines de semana\"",
-            "powinno być „Mi hermana es una canguro y cuida a los niños los fines de semana\" — rodzajnik jest konieczny",
-            "powinno być „Mi hermana está canguro y cuida los niños los fines de semana\"",
+            "„que\" już zastępuje płytę, więc drugie „lo\" wypada: „No tengo el cedé que me regaló Antonio\"",
+            "powinno być „No tengo el cedé que me lo regaló a mí Antonio\"",
+            "powinno być „No tengo el cedé el que me lo regaló Antonio\"",
           ],
           correctAnswer: 1,
           explanation:
-            "Dwa błędy naraz. „Es canguro\" — goły zawód po ser nie bierze rodzajnika (wraca dopiero z określeniem: „es una canguro estupenda\"). I „cuidar A los niños\", bo dopełnieniem jest osoba; bez „a\" byłoby „cuida la casa\".",
+            "To ATENCIÓN z rozdziału. Polskie „którą mi dał\" trzyma w sobie „ją\", więc ręka sama dopisuje „lo\" — a po hiszpańsku „que\" JEST już tym dopełnieniem. Tak samo: „la película que vimos ayer\", „la lavadora que compré el año pasado\".",
         },
         {
           type: "spot_error",
-          text: "„Mi novio no bebe alcohol: es un abstinente. Tampoco cree en Dios, es un ateo.\" — co jest nie tak?",
+          text: "„Ese es el hotel donde recomienda la guía.\" (= to ten hotel, który poleca przewodnik) — co jest nie tak?",
           options: [
             "wszystko OK",
-            "niepijący to „abstemio\" (nie „abstinente\"), a przy takich określeniach nie stawia się rodzajnika: „es abstemio… es ateo\"",
-            "powinno być „es un abstemio… es un ateo\" — rodzajnik jest tu konieczny",
-            "powinno być „está abstemio… está ateo\", bo to stan, nie cecha",
+            "przewodnik poleca HOTEL, a nie coś „w hotelu\" — więc „Ese es el hotel QUE recomienda la guía\"",
+            "powinno być „Ese es el hotel en donde recomienda la guía\"",
+            "powinno być „Ese es el hotel donde la recomienda la guía\"",
           ],
           correctAnswer: 1,
           explanation:
-            "O alkoholu mówi się abstemio / abstemia; „la abstinencia\" to powstrzymywanie się w ogóle (np. „el síndrome de abstinencia\"). Przekonania i nawyki zachowują się jak zawód: „es ateo\", „es vegetariana\", „es abstemia\" — bez rodzajnika i z ser, bo to tożsamość, nie chwilowy stan.",
+            "„Donde\" działa tylko jako „en el que\" — miejsce, W którym coś się dzieje („el banco donde trabaja Alfonso\"). Tu hotel jest dopełnieniem czasownika recomendar, więc wraca „que\". Ten sam test rozstrzyga parę z ćwiczenia: „la agencia DONDE compré los billetes\" vs „la agencia QUE nos recomendó Juan\".",
         },
         {
           type: "abc",
-          text: "„Ona mówi pięcioma językami — jest poliglotką\":",
+          text: "„Dziewczyny, które poznaliśmy wczoraj, są z Kordoby\":",
           options: [
-            "Ella es políglota",
-            "Ella es poligloto",
-            "Ella está políglota",
+            "Las chicas que conocimos ayer son de Córdoba",
+            "Las chicas quienes conocimos ayer son de Córdoba",
+            "Las chicas las que conocimos ayer son de Córdoba",
           ],
           correctAnswer: 0,
           explanation:
-            "„Políglota\" ma jedną formę dla obu rodzajów (męskie „polígloto\" jest rzadkie i książkowe), akcent graficzny na „í\": po-LÍ-glo-ta. Cecha tożsamości → ser, nigdy estar.",
+            "„Que\" jest nieodmienne — nie ma osobnej formy dla rodzaju żeńskiego ani dla liczby mnogiej, inaczej niż polskie który / która / którzy. „Quienes\" istnieje, ale nie w takim zdaniu określającym bez przyimka.",
         },
         {
           type: "abc",
-          text: "W urzędzie słyszysz o swoim wniosku: „No procede\". Co to znaczy?",
+          text: "Który szyk jest naturalny (i taki podaje podręcznik): „Znalazłam pióro, które zgubiła María\"?",
           options: [
-            "nie ma podstaw, nie zostanie uwzględniony",
-            "jest w trakcie rozpatrywania",
-            "pochodzi z innego urzędu",
+            "He encontrado la pluma que perdió María",
+            "He encontrado la pluma que María perdió",
+            "He encontrado la pluma cual perdió María",
           ],
           correctAnswer: 0,
           explanation:
-            "Proceder to nie tylko „pochodzić\" („procede de Polonia\"), ale też „być zasadnym\": „no procede\" = nie ma zastosowania; „no procede hacer comentarios\" = nie wypada komentować. Stąd el procedimiento = procedura.",
+            "Gdy zdanie względne ma własny podmiot, idzie on PO czasowniku: que / donde + czasownik + podmiot („Esa es la casa donde vive Laura\", „la paella que ha preparado Marisa\"). Wersja „que María perdió\" nie jest błędem gramatycznym, ale brzmi sztywno. „Cual\" bez rodzajnika nie funkcjonuje.",
         },
         {
           type: "abc",
-          text: "„To mój pierwszy dzień w tym budynku; mieszkam na trzecim piętrze, a pracuję na szóstym\":",
+          text: "„Abstynent to osoba, która nie pije alkoholu; poliglota to osoba, która mówi wieloma językami\":",
           options: [
-            "Es mi primer día en este edificio; vivo en el tercer piso y trabajo en el sexto",
-            "Es mi primero día en este edificio; vivo en el tercero piso y trabajo en el sexto",
-            "Es mi primer día en este edificio; vivo en el tres piso y trabajo en el seis",
+            "Un abstemio es una persona que no bebe alcohol; un políglota es una persona que habla muchos idiomas",
+            "Un abstemio es una persona quien no bebe alcohol; un políglota es una persona qué habla muchos idiomas",
+            "Un abstemio es una persona que no bebe alcohol; un políglota es una persona donde habla muchos idiomas",
           ],
           correctAnswer: 0,
           explanation:
-            "Przed rzeczownikiem męskim skracają się TYLKO primero → primer i tercero → tercer. Sexto (a także cuarto, quinto) zostaje w całości: „el sexto piso\". Zwykłe liczebniki („el piso doce\") wchodzą do gry dopiero powyżej dziesiątego.",
+            "Definicja to schemat „es una persona QUE + czasownik\". „Qué\" z akcentem to pytajnik, „donde\" dotyczy wyłącznie miejsc. Słownictwo: abstemio = niepijący alkoholu (nie mylić z „abstinente\"), políglota = poliglota, jedna forma dla obu rodzajów, akcent na „í\".",
         },
         {
           type: "abc",
-          text: "„Jest świetnym robotnikiem\" + „pracuje jako opiekunka do dzieci\":",
+          text: "„To jest budynek, w którym mieszka Hans — mieszka na szóstym piętrze\":",
           options: [
-            "Es un obrero buenísimo / Trabaja de canguro",
-            "Es obrero buenísimo / Trabaja como un canguro",
-            "Es un muy bueno obrero / Trabaja por canguro",
+            "Este es el edificio donde vive Hans: vive en el sexto",
+            "Este es el edificio que vive Hans: vive en el sexto",
+            "Este es el edificio donde Hans vive: vive en el seis",
           ],
           correctAnswer: 0,
           explanation:
-            "Goły zawód idzie bez rodzajnika („es obrero\"), ale z przymiotnikiem rodzajnik wraca: „es un obrero buenísimo\". Pracować jako = trabajar DE / COMO + zawód; „trabaja como UN canguro\" znaczy już „pracuje jak kangur\".",
+            "„Donde\" = en el que → miejsce zamieszkania. Podmiot (Hans) idzie po czasowniku. „Vive en el sexto\" — Hiszpanie opuszczają słowo „piso\"; porządkowe: primero, segundo, tercero, cuarto, quinto, sexto, séptimo.",
         },
         {
           type: "fill",
-          text: "„Mój dziadek pochodzi z rodziny robotniczej\": „Mi abuelo ___ de una familia de obreros.\"",
+          text: "„Kto tak hałasuje? — Robotnicy, którzy naprawiają ulicę\": „¿Quién hace tanto ruido? —Unos obreros ___ están arreglando la calle.\"",
           options: null,
-          correctAnswer: "procede",
+          correctAnswer: "que",
           explanation:
-            "proceder DE = pochodzić z (formalniej niż „ser de\" / „venir de\"), tak samo o rzeczach: „esta palabra procede del árabe\". El obrero / la obrera = robotnik; la mano de obra = siła robocza.",
+            "Zawsze „que\", niezależnie od rodzaju i liczby poprzednika. El obrero / los obreros = robotnik / robotnicy; arreglar = naprawiać.",
         },
         {
           type: "fill",
-          text: "„Winda nie działa, a ja mieszkam na szóstym piętrze\": „El ascensor no funciona y vivo en el ___ piso.\"",
+          text: "„To jest to biuro podróży, w którym kupiłam bilety\": „Esa es la agencia ___ compré los billetes.\"",
           options: null,
-          correctAnswer: "sexto",
+          correctAnswer: "donde",
           explanation:
-            "Sexto — przez „x\", bez skracania (skraca się tylko primer i tercer) i z uzgodnieniem rodzaju: „la sexta vez\", „el sexto piso\".",
+            "Kupiłam bilety W tym biurze → da się wstawić „en la que\", więc „donde\". Dla kontrastu to samo biuro jako dopełnienie: „Esa es la agencia QUE nos recomendó Juan\".",
         },
         {
           type: "open",
-          text: "Powiedz po hiszpańsku: „Moja koleżanka jest poliglotką: pochodzi z rodziny robotniczej, pracuje jako opiekunka i zajmuje się dziećmi rodziny z szóstego piętra. Jest ateistką i nie pije alkoholu\".",
+          text: "Powiedz po hiszpańsku: „«Canguro» to po hiszpańsku także osoba, która opiekuje się dziećmi. Lama to zwierzę, które pochodzi z Andów. A ateista to osoba, która nie wierzy w Boga\".",
           options: null,
           correctAnswer:
-            "„Mi amiga es políglota: procede de una familia de obreros, trabaja de canguro y cuida a los niños de la familia del sexto piso. Es atea y abstemia.\"",
+            "„Un canguro es también una persona que cuida niños. Una llama es un animal que procede de los Andes. Y un ateo es una persona que no cree en Dios.\"",
           explanation:
-            "Klucz: ser + zawód/tożsamość bez rodzajnika (es políglota, trabaja de canguro, es atea, es abstemia), proceder DE, osobowe „a\" przy cuidar, żeńskie końcówki (atea, abstemia) i „el sexto piso\" w pełnej formie.",
+            "Trzy definicje na tym samym schemacie: „es una persona / un animal QUE + czasownik\" — „que\" obsługuje i ludzi, i zwierzęta. „Cuida niños\" bez „a\" (dzieci w ogóle; o konkretnych: „cuida a los niños\"), „proceder DE\" = pochodzić z, „creer EN Dios\".",
         },
       ],
       salon: {
         short:
-          "Es canguro y cuida a los niños. Procede de una familia de obreros. Es atea y abstemia. Vivo en el sexto piso.",
+          "Tengo una amiga que vive en Canadá. Un carnicero es una persona que vende carne. Ese es el banco donde trabaja Alfonso. He encontrado la pluma que perdió María.",
         expand:
-          "zawody: el obrero / la obrera (praca fizyczna), el empleado (biuro), el trabajador; la obra = budowa, „estar en obras\"; la mano de obra; el / la canguro (Hiszpania) = la niñera / la nana (Meksyk); trabajar DE / COMO + zawód. Tożsamość: creyente, practicante, agnóstico, ateo, abstemio, vegetariano, fumador, políglota / bilingüe. Porządkowe: primero, segundo, tercero, cuarto, quinto, sexto, séptimo, octavo, noveno, décimo.",
+          "definicje z ćwiczeń: un abstemio = una persona que no bebe alcohol; un ateo = una persona que no cree en Dios; un canguro (Hiszpania) = una persona que cuida niños (Meksyk: la niñera); un políglota = una persona que habla muchos idiomas; una llama = un animal que procede de los Andes; unos obreros que están arreglando la calle; un chico que vive en el sexto.",
         trap:
-          "„es UNA canguro\" — goły zawód bez rodzajnika (wraca z przymiotnikiem: „es una canguro estupenda\"). „Abstinente\" to nie „niepijący\" — to „abstemio\". „Políglota\" z akcentem na „í\" i w tej samej formie dla obu rodzajów. „Cuidar A los niños\" z osobowym „a\". „Sexto\" nigdy się nie skraca (tylko primer / tercer). W Meksyku „canguro\" to kangur — tam mów „niñera\".",
+          "„el cedé que me LO regaló\" — zaimek dopełnienia wypada, „que\" już nim jest. „Donde\" tylko tam, gdzie pasuje „en el que\": „el hotel QUE recomienda la guía\", ale „el hotel DONDE nos alojamos\". „Que\" się nie odmienia — żadnego która/którzy. Podmiot po czasowniku: „la pluma que perdió María\". I „un piso que TENGA tres habitaciones\" (subjuntivo), gdy takiego mieszkania jeszcze nie ma.",
       },
     },
   },
