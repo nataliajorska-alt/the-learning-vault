@@ -12675,4 +12675,398 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 129. Hiszpański: el viaje — vuelos, escalas y planear las vacaciones
+  // ============================================================
+  // Z lekcji 2026-08-13 („Discusión sobre viajes, visas y situaciones
+  // políticas en pandemia\") — rozmowa o wyjeździe na Bali z mamą.
+  // Świadomie NIE dubluję temporada alta/baja ani „las vacaciones\" w l.mn.
+  // (#117) — tu logistyka podróży. Cztery błędy Nati z rozmowy wchodzą
+  // wprost: „voy a las vacaciones\", „vuelo a las 26\", „pagar para mí\",
+  // „más mejor\".
+  {
+    slug: "es-viaje-vuelos-escalas-y-vacaciones",
+    vaultSlug: "es",
+    label: "Hiszpański — el viaje: irse de vacaciones, el vuelo con escala, el boleto de ida y vuelta, jubilarse",
+    payload: {
+      title: "Me voy de vacaciones — vuelos, escalas y planear el viaje",
+      summary:
+        "Logistyka podróży: irse DE vacaciones, el vuelo directo / con escala, hacer escala en, el boleto de ida y vuelta, el aeropuerto (≠ el puerto!), la diferencia horaria, el equipaje, subir el precio, el presupuesto. Plus praca i emerytura: jubilarse, cubrir a alguien, el suplente, el nómada digital. Cztery pułapki: „ir DE vacaciones\", data „EL 26\" (nie „a las 26\"), „pagar POR mí\" i „mejor\" bez „más\".",
+      theory:
+        "IRSE DE VACACIONES:\n— irse DE vacaciones / estar DE vacaciones / tomarse unas vacaciones. NIGDY „ir a las vacaciones\" — to kalka z polskiego „jechać NA wakacje\": „Mañana me voy de vacaciones con mi madre\", „Están de vacaciones en Bali\".\n— las vacaciones zawsze w liczbie mnogiej: „son sus últimas vacaciones antes de jubilarse\".\n— salir de viaje = wyruszyć w podróż; el viaje = podróż; „¡Buen viaje!\", „Diviértete mucho\" = baw się dobrze; „fuera de Europa\" = poza Europą („nunca ha estado fuera de Europa\", nie „afuera de\").\n\nDATY: EL 26, NIE „A LAS 26\":\n— dzień miesiąca zawsze z rodzajnikiem „el\": „Tengo vuelo el 26\", „Llego a Polonia el 27\", „nos vemos el 2 o 3 de septiembre\".\n— „a las\" mówi tylko o GODZINIE: „llegamos a Qatar a la una\", „a las ocho tenemos otro vuelo\".\n— reszta ram czasowych: en agosto (miesiąc), el año que viene, hace tres semanas = trzy tygodnie temu, dentro de dos semanas = za dwa tygodnie.\n\nEL VUELO, LA ESCALA, EL BOLETO:\n— el vuelo directo vs el vuelo con escala; hacer escala EN: „hago escala en Qatar\", „el vuelo tiene tres escalas\". La conexión = przesiadka/połączenie; perder la conexión = spóźnić się na przesiadkę.\n— el boleto (Meksyk) / el billete (Hiszpania) / el pasaje = bilet. „un boleto de ida y vuelta\" = bilet w obie strony; samo „de ida\" = w jedną stronę.\n— el aeropuerto = lotnisko. UWAGA: el puerto to PORT morski — „estaba en el puerto\" znaczy, że byłaś w porcie, nie na lotnisku.\n— la diferencia horaria / el cambio de horario = różnica czasu: „llego el 27 por la diferencia horaria\".\n— na długiej przesiadce: las cápsulas / las cabinas para dormir = kapsuły do spania (nie „cámaras\" — to komory/aparaty), la sala de espera, estirarse = rozprostować się: „prefiero dormir en el piso porque puedes estirarte\".\n— el equipaje = bagaż („¿Ya tienes listo tu equipaje?\"), hacer la maleta = pakować się, facturar el equipaje = nadać bagaż.\n\nPRECIOS — PORÓWNANIA:\n— más barato / más caro QUE: „volar a Bali es más barato que volar a Belgrado\".\n— mejor i peor to JUŻ stopień wyższy — nigdy „más mejor\" ani „más bueno\": „el precio era mejor\", „fue lo mejor\".\n— przed całym zdaniem z czasownikiem nie „que\", tylko DE LO QUE: „más barato de lo que pensaba\" = tańszy, niż myślałam.\n— subirse / bajar el precio: „de un día a otro te sube el precio\"; hacer un nuevo presupuesto = zrobić nowy budżet; „450 euros no es nada para ir hasta Bali\" = to nic (o cenie); „es una locura\" = to szaleństwo.\n\nPAGAR — Z PRZYIMKIEM I BEZ:\n— pagar ALGO, bez przyimka: „pagar el boleto\", „mi madre lo va a pagar\".\n— pagar POR alguien = zapłacić za kogoś: „mi madre va a pagar por mí\". „pagar PARA mí\" to kalka — „para\" wskazuje cel albo odbiorcę rzeczy, nie osobę, za którą płacisz.\n— ale prezent już przez „para\": „es un regalo para ti\". Po meksykańsku też: „te invito un café\" = stawiam ci kawę.\n\nTRABAJO Y JUBILACIÓN:\n— jubilarse = przejść na emeryturę (tak mówi się w Meksyku); retirarse = to samo, bliżej angielskiego „to retire\"; la jubilación = emerytura: „son sus últimas vacaciones antes de jubilarse\".\n— cubrir a alguien = zastępować kogoś w pracy: „mi hermana la va a cubrir\"; el/la suplente = osoba na zastępstwo: „no tiene suplente\".\n— el/la nómada digital = cyfrowy nomada; trabajar en línea / a distancia / de forma remota: „desde allá puedes trabajar en línea\".\n— no tener prisa = nie spieszyć się; „no tuve tiempo\" = nie miałam czasu; „tengo que organizar todo\" = muszę wszystko zorganizować.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Mañana yo voy a las vacaciones con mi madre.\" (= jutro jadę na wakacje z mamą) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "na wakacje jedzie się „de vacaciones\", a „yo\" jest zbędne: „Mañana me voy de vacaciones con mi madre\"",
+            "powinno być „Mañana voy en las vacaciones con mi madre\"",
+            "powinno być „Mañana yo voy a vacación con mi madre\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Jechać NA wakacje\" = irse DE vacaciones (albo „estar de vacaciones\", gdy już tam jesteś). „ir a las vacaciones\" to kalka z polskiego. Zaimek „yo\" dodajemy tylko dla kontrastu.",
+        },
+        {
+          type: "spot_error",
+          text: "„Tengo vuelo a las 26, pero voy a estar en Polonia 27.\" (= mam lot 26, ale w Polsce będę 27) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "przy dacie dnia zawsze „el\", a „a las\" jest tylko o godzinie: „Tengo vuelo el 26, pero llego a Polonia el 27\"",
+            "powinno być „Tengo vuelo en el 26... en el 27\"",
+            "powinno być „Tengo vuelo a 26... a 27\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Dzień miesiąca: „el 26\", „el 27 de agosto\". „a las\" rezerwujemy dla godzin: „a las ocho\", „a la una\". Stąd „llegamos a Qatar a la una y el 27 ya estoy en Polonia\".",
+        },
+        {
+          type: "abc",
+          text: "„Mama zapłaci za mnie — to prezent dla mnie\":",
+          options: [
+            "Mi madre va a pagar por mí; es un regalo para mí",
+            "Mi madre va a pagar para mí; es un regalo por mí",
+            "Mi madre va a pagar a mí; es un regalo a mí",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "pagar POR alguien = zapłacić za kogoś (zamiast niego). „para\" zostaje przy odbiorcy prezentu: „un regalo para ti\". Samą rzecz płaci się bez przyimka: „pagar el boleto\".",
+        },
+        {
+          type: "abc",
+          text: "„Bilet w obie strony kosztował 450 euro\":",
+          options: [
+            "El boleto de ida y vuelta costó 450 euros",
+            "El boleto para ir y volver costó 450 euros",
+            "El boleto de ir y regresar costó 450 euros",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Utarte wyrażenie: „un boleto de ida y vuelta\" (w Hiszpanii „un billete de ida y vuelta\"). Sam „de ida\" = w jedną stronę.",
+        },
+        {
+          type: "abc",
+          text: "„Lecę z przesiadką w Katarze\":",
+          options: [
+            "Hago escala en Qatar",
+            "Hago una escala a Qatar",
+            "Tengo una conexión de Qatar",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "hacer escala EN + miejsce przesiadki: „hago escala en Qatar\", „el vuelo tiene tres escalas\". Można też „tengo un vuelo con escala en Qatar\".",
+        },
+        {
+          type: "abc",
+          text: "„Cena była lepsza — taniej, niż myślałam\":",
+          options: [
+            "El precio era mejor: más barato de lo que pensaba",
+            "El precio era más mejor: más barato que pensaba",
+            "El precio era más bueno: más barato como pensaba",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„mejor\" samo w sobie znaczy „lepszy\" — „más mejor\" nie istnieje (tak samo „peor\"). A przed całym zdaniem z czasownikiem mówimy „de lo que\": „más barato de lo que pensaba\".",
+        },
+        {
+          type: "fill",
+          text: "„Moja mama przechodzi na emeryturę w przyszłym roku\": „Mi madre se ___ el año que viene.\"",
+          options: null,
+          correctAnswer: "jubila",
+          explanation:
+            "jubilarse = przejść na emeryturę (Meksyk); synonim „retirarse\". Rzeczownik: la jubilación. Stąd „las últimas vacaciones antes de jubilarse\".",
+        },
+        {
+          type: "fill",
+          text: "„Moja siostra ją zastąpi w pracy przez te dwa tygodnie\": „Mi hermana la va a ___ en el trabajo esas dos semanas.\"",
+          options: null,
+          correctAnswer: "cubrir",
+          explanation:
+            "cubrir a alguien = zastępować kogoś w pracy. Osoba na zastępstwo to „el/la suplente\": „mi madre no tiene suplente\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Jutro jadę na wakacje z mamą — to jej ostatnie wakacje przed emeryturą. Lecę z przesiadką w Katarze, czekamy siedem godzin na lotnisku, a ja jeszcze nie mam spakowanego bagażu\".",
+          options: null,
+          correctAnswer:
+            "„Mañana me voy de vacaciones con mi madre; son sus últimas vacaciones antes de jubilarse. Hago escala en Qatar, esperamos siete horas en el aeropuerto y todavía no tengo listo el equipaje.\"",
+          explanation:
+            "Klucz: „irse DE vacaciones\", „antes de\" + bezokolicznik („antes de jubilarse\"), „hacer escala EN\", „el aeropuerto\" (nie „el puerto\"), „el equipaje\".",
+        },
+      ],
+      salon: {
+        short:
+          "irse DE vacaciones, salir de viaje, el vuelo directo / con escala, hacer escala en, la conexión, el boleto de ida y vuelta, el aeropuerto, la diferencia horaria, el equipaje.",
+        expand:
+          "planowanie i praca: subir el precio, hacer un nuevo presupuesto, más barato de lo que pensaba, la cápsula para dormir, estirarse, no tener prisa; jubilarse / la jubilación, cubrir a alguien, el suplente, el nómada digital, trabajar en línea.",
+        trap:
+          "„me voy DE vacaciones\", nie „a las vacaciones\". Data: „el 26\" — „a las\" tylko o godzinie. „pagar POR mí\" (za mnie) vs „un regalo PARA ti\". Nigdy „más mejor\". „el puerto\" = port morski, lotnisko to „el aeropuerto\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 130. Hiszpański: trámites y fronteras — pasaporte, visa y COVID
+  // ============================================================
+  // Druga część lekcji 2026-08-13. Urzędowa strona podróży (paszport, wiza,
+  // ambasada, pieczątki) + słownictwo pandemiczne z opowieści rozmówczyni.
+  // To materiał JĘZYKOWY opisujący jej relację, nie teza o COVID-zie ani
+  // o rządach. Świadomie NIE dubluję polityki z #126 (dictadura, censura,
+  // corrupción) — tu tylko granice, dokumenty i testy. Trzy błędy Nati
+  // wchodzą wprost: „para estar vacinar estaba fácil\", „otro testo\",
+  // „estoy sorpresita\".
+  {
+    slug: "es-tramites-pasaporte-visa-y-fronteras",
+    vaultSlug: "es",
+    label: "Hiszpański — trámites y fronteras: sacar el pasaporte, la cita en la embajada, el sello, la prueba de COVID",
+    payload: {
+      title: "Trámites y fronteras — el pasaporte, la visa y las reglas del COVID",
+      summary:
+        "Urzędowa strona podróży: hacer un trámite, sacar el pasaporte, solicitar/renovar la visa, pedir una cita en la embajada, la visa se venció, sellar el pasaporte, entrar A un país, hacer fila. Plus pandemia: hacerse una prueba de COVID, vacunarse, el certificado de vacunación, la dosis, las vacunas caducadas. Trzy mechanizmy: tardar EN + bezokolicznik, meksykańskie „hasta\" = dopiero, „volver A\" + bezokolicznik = zrobić coś ponownie.",
+      theory:
+        "EL TRÁMITE — PASAPORTE Y VISA:\n— el trámite = urzędowa formalność; hacer un trámite; sacar el pasaporte = wyrobić paszport; renovar la visa / el pasaporte; la renovación.\n— solicitar la visa = złożyć wniosek o wizę; „si no eres apto, te la cancelan\"; VOLVER A + bezokolicznik = zrobić coś ponownie: „tienes que esperar un año para volver a solicitarla\", „volví a probar y sí, ese era el precio\".\n— pedir / sacar / hacer una cita = umówić się na wizytę; la embajada = ambasada: „pedí la cita en octubre\".\n— te toman la foto = robią ci zdjęcie (nie musisz przynosić swoich); llenar un formulario = wypełnić formularz; „te mandan la visa a tu casa\".\n— vencerse / caducar = stracić ważność: „en 2022 se venció mi visa\"; la fecha de vencimiento / de caducidad.\n\nCZAS: TARDAR, „HASTA\", „A LAS DOS SEMANAS\":\n— TARDAR (EN + bezokolicznik) = zajmować czas / zwlekać: „el trámite tarda una hora\", „tardé dos semanas en recibir la visa\", „las citas tardan mucho\". Uwaga: durar = trwać (o wydarzeniu: „la clase duró una hora\").\n— HASTA po meksykańsku znaczy DOPIERO: „pedí la cita en octubre y me la dieron hasta abril\" = dostałam ją dopiero w kwietniu. Dosłowne „aż do\" prowadzi tu na manowce.\n— „a las dos semanas llegó mi visa\" = po dwóch tygodniach; „en dos semanas\" = w ciągu dwóch tygodni.\n— hacer fila (Meksyk) / hacer cola (Hiszpania) = stać w kolejce: „hacían fila desde la noche anterior\".\n\nFRONTERAS Y SELLOS:\n— la frontera = granica. Stan w przeszłości → imperfecto: „las fronteras estaban cerradas\" (nie „fueron cerradas\").\n— entrar A un país (Meksyk) / entrar EN (Hiszpania): „no puedes entrar a Estados Unidos\"; „no te permiten la entrada\"; salir del país.\n— sellar el pasaporte / el sello = pieczątka: „nadie quiere el sello de Cuba en su pasaporte\", „llegas, te sellan el pasaporte y esa es tu visa\".\n— el acta de nacimiento (Meksyk) / la partida de nacimiento = akt urodzenia; una identificación = dokument tożsamości.\n— los estadounidenses = Amerykanie (jedno słowo, nie „los estados unidenses\"); „pueden entrar sin pasaporte, solo con una identificación\".\n\nEL COVID — LA PRUEBA Y LA VACUNA:\n— la prueba / el test de COVID — NIE „el testo\" (takie słowo nie istnieje): hacerse una prueba = zrobić sobie test, „al llegar te hacen otra prueba\", una prueba PCR („es más específica\").\n— vacunar A alguien / vacunarse = zaszczepić (się): „vacunarse era muy fácil\", „no quisieron vacunar a los médicos\"; ponerle la vacuna a alguien = podać komuś szczepionkę.\n— estar vacunado/a; el certificado de vacunación („era importante para viajar\"); la dosis → LAS DOSIS (forma nie zmienia się w liczbie mnogiej): „un frasco para cinco dosis lo dividían en ocho\".\n— las restricciones = obostrzenia: „había muchas restricciones\", „no podías volar a cualquier país\".\n— caducar / expirar = stracić ważność (o lekach, szczepionkach): „las vacunas ya estaban caducadas\"; echarse a perder = zepsuć się: „las vacunas se echaron a perder\".\n\nDROBIAZG — „BYŁAM ZASKOCZONA\":\n— la sorpresa = niespodzianka (rzeczownik), ale uczucie to sorprendido/a: „me quedé muy sorprendida\", „me sorprendió que no tuviera pasaporte\". „sorpresita\" to zdrobniała niespodzianka, nie stan.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„En Polonia para estar vacinar estaba muy fácil.\" (= w Polsce zaszczepić się było bardzo łatwo) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "czasownik to „vacunarse\", bez „para\", a ocena wyrażona przez ser: „En Polonia vacunarse era muy fácil\"",
+            "powinno być „En Polonia para vacunar estaba muy fácil\"",
+            "powinno być „En Polonia estar vacinado fue muy fácil\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "vacunar A alguien / vacunarse (przez „u\": vacuna). Bezokolicznik w roli podmiotu idzie bez „para\": „vacunarse era fácil\". I ocena/cecha to ser → w przeszłości „era\", nie „estaba\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Después del vuelo ellos hacen otro testo en el aeropuerto.\" (= po locie robili nam jeszcze jeden test) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "„el testo\" nie istnieje i lepiej bez „ellos\": „Al llegar te hacían otra prueba (otro test) en el aeropuerto\"",
+            "powinno być „ellos hacen otro testo del COVID en el aeropuerto\"",
+            "powinno być „después el vuelo te hacen otra proba\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Test to „la prueba\" albo „el test\" — nigdy „el testo\". Bezosobowe „te hacen\" wystarczy, „ellos\" brzmi ciężko. O powtarzalnej sytuacji w przeszłości: imperfecto („te hacían\").",
+        },
+        {
+          type: "abc",
+          text: "„W 2022 moja wiza straciła ważność\":",
+          options: [
+            "En 2022 se venció mi visa",
+            "En 2022 mi visa fue terminada",
+            "En 2022 mi visa se acabó de valor",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "vencerse (albo caducar) = stracić ważność: „se venció mi visa\", „mi pasaporte vence en 2027\". Rzeczownik: la fecha de vencimiento.",
+        },
+        {
+          type: "abc",
+          text: "„Szczepionki były już przeterminowane\":",
+          options: [
+            "Las vacunas ya estaban caducadas",
+            "Las vacunas ya estaban terminadas",
+            "Las vacunas ya estaban rotas",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "caducar / expirar = stracić ważność; „la fecha de caducidad\" = data ważności. Potocznie też „se echaron a perder\" = zepsuły się.",
+        },
+        {
+          type: "abc",
+          text: "„Czekałam dwa tygodnie na wizę (tyle to zajęło)\":",
+          options: [
+            "Tardé dos semanas en recibir la visa",
+            "Duré dos semanas para recibir la visa",
+            "Tomé dos semanas de recibir la visa",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "tardar EN + bezokolicznik = zająć tyle a tyle czasu: „tardé dos semanas en recibir la visa\", „el trámite tarda una hora\". „durar\" trwa o wydarzeniu („la clase duró una hora\").",
+        },
+        {
+          type: "abc",
+          text: "Meksykanka mówi: „Pedí la cita en octubre y me la dieron hasta abril\". Co to znaczy?",
+          options: [
+            "dostała termin dopiero w kwietniu",
+            "dawali jej terminy co miesiąc aż do kwietnia",
+            "musiała wykorzystać termin przed kwietniem",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "W meksykańskim hiszpańskim „hasta\" bardzo często znaczy „dopiero\": „llega hasta las ocho\" = przyjdzie dopiero o ósmej. Bez tego zdanie brzmi odwrotnie, niż jest.",
+        },
+        {
+          type: "fill",
+          text: "„Nikt nie chce kubańskiej pieczątki w paszporcie\": „Nadie quiere el ___ de Cuba en su pasaporte.\"",
+          options: null,
+          correctAnswer: "sello",
+          explanation:
+            "el sello = pieczątka; sellar el pasaporte = podbić paszport. „Te sellan el pasaporte y esa es tu visa\".",
+        },
+        {
+          type: "fill",
+          text: "„Musisz czekać rok, żeby złożyć wniosek jeszcze raz\": „Tienes que esperar un año para ___ a solicitarla.\"",
+          options: null,
+          correctAnswer: "volver",
+          explanation:
+            "volver A + bezokolicznik = zrobić coś ponownie: „volver a solicitar la visa\", „volví a probar\". To najzgrabniejszy sposób na polskie „znowu / jeszcze raz\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „W Polsce paszport wyrabia się bardzo szybko, ale na wizę czeka się tygodniami: umawiasz wizytę w ambasadzie, robią ci zdjęcie i po dwóch tygodniach wysyłają wizę do domu\".",
+          options: null,
+          correctAnswer:
+            "„En Polonia el pasaporte se saca muy rápido, pero para la visa hay que esperar semanas: pides una cita en la embajada, te toman la foto y a las dos semanas te mandan la visa a tu casa.\"",
+          explanation:
+            "Klucz: „sacar el pasaporte\" + bezosobowe „se saca\", „hay que\" + bezokolicznik, „pedir una cita en la embajada\", „te toman la foto\" (bez „ellos\"), „a las dos semanas\" = po dwóch tygodniach.",
+        },
+      ],
+      salon: {
+        short:
+          "hacer un trámite, sacar el pasaporte, solicitar / renovar la visa, pedir una cita en la embajada, te toman la foto, se venció mi visa, sellar el pasaporte, entrar A un país, hacer fila.",
+        expand:
+          "pandemia: hacerse una prueba / un test de COVID, vacunarse, estar vacunado, el certificado de vacunación, la dosis → las dosis, las restricciones, las fronteras estaban cerradas, las vacunas caducadas / se echaron a perder.",
+        trap:
+          "„el testo\" nie istnieje — la prueba / el test. „vacunarse\" przez u, i „era fácil\" (ser), nie „estaba\". tardar EN + bezokolicznik. Meksykańskie „hasta abril\" = DOPIERO w kwietniu. „volver a solicitar\" = złożyć wniosek ponownie. „Me quedé sorprendida\", nie „estoy sorpresita\".",
+      },
+    },
+  },
+
+  // ============================================================
+  // 131. Hiszpański: describir a una persona — profesión, origen, creencias
+  // ============================================================
+  // Lekcja ze słownictwa z rozdziału podręcznika (nie z rozmowy): abstemio,
+  // obreros, sexto, ateo, canguro („cuida a los niños\"), procede, políglota.
+  // Wszystkie te słowa opisują CZŁOWIEKA — czym się zajmuje, skąd pochodzi,
+  // w co wierzy i czego nie robi — więc idą w jednej lekcji razem z regułą,
+  // która je spina: po „ser\" zawód i tożsamość stoją BEZ rodzajnika.
+  // Nie dubluję ser vs estar z cechami (#111) ani słownictwa ofert pracy (#86).
+  {
+    slug: "es-profesion-origen-y-creencias",
+    vaultSlug: "es",
+    label: "Hiszpański — describir a una persona: es obrero / es canguro, procede de, ateo y abstemio, políglota, el sexto piso",
+    payload: {
+      title: "¿Quién es y de dónde procede? — profesión, origen, creencias y ordinales",
+      summary:
+        "Jak opisać człowieka: zawód po „ser\" bez rodzajnika (es obrero, es canguro), pochodzenie przez „proceder de\", tożsamość i nawyki (ateo, abstemio, políglota) oraz liczebniki porządkowe z „sexto\" na czele. Cztery pułapki: „es UNA canguro\", „abstinente\" zamiast „abstemio\", „cuida los niños\" bez osobowego „a\" i skracanie „sexto\" na wzór „primer / tercer\".",
+      theory:
+        "ZAWÓD PO „SER\" — BEZ RODZAJNIKA:\n— „es obrero\", „es canguro\", „es profesora\", „soy ingeniera\" — po hiszpańsku zawód działa jak przymiotnik, więc rodzajnika NIE ma. Polskie „jest opiekunką\" kusi do „es una canguro\", a to brzmi jak kalka.\n— Rodzajnik WRACA, gdy dochodzi określenie: „es UN obrero buenísimo\", „es UNA profesora excelente\", „es UN canguro de confianza\".\n— TRABAJAR DE / COMO + zawód = pracować jako: „trabaja de canguro\", „trabaja como obrero en una fábrica\". Uwaga: „trabaja como UN canguro\" to już porównanie do kangura.\n\nNAZWY ZAWODÓW — RODZAJ I REGION:\n— el obrero / la obrera = robotnik (praca fizyczna: budowa, fabryka); „los obreros de la construcción\"; la obra = budowa („el edificio está en obras\"); la mano de obra = siła robocza. Przy pracy biurowej mówi się el empleado / la empleada, szerzej el trabajador / la trabajadora.\n— el / la canguro = (Hiszpania, potocznie) opiekun do dzieci: „busco un canguro para el sábado\", „hacer de canguro\". W Meksyku i większości Ameryki Łacińskiej canguro to WYŁĄCZNIE kangur — tam opiekunka to la niñera (albo la nana). Twoja koleżanka z Meksyku nie zrozumie „soy canguro\".\n— Końcówki: -o / -a (obrero / obrera), -or / -ora (profesor / profesora), a formy na -ista i -ante są wspólne: el / la dentista, el / la periodista, el / la estudiante.\n\n„CUIDAR A LOS NIÑOS\" — OSOBOWE „A\":\n— Przy osobach jako dopełnieniu stawia się „a\": „cuida A los niños\", „cuido A mi abuela\". Bez osoby „a\" znika: „cuida la casa\", „cuida las plantas\".\n— Można też „cuidar DE alguien\" („cuida de sus hermanos\") — sens ten sam, ton trochę bardziej opiekuńczy.\n— Rodzina słów: el cuidado, tener cuidado = uważać, „¡Cuidado!\" = uwaga!\n\nPOCHODZENIE — PROCEDER DE:\n— proceder de = pochodzić z (formalnie, o ludziach i o rzeczach): „procede de una familia de obreros\", „esta palabra procede del árabe\", „el vino procede de La Rioja\". Synonim: provenir de.\n— Na co dzień wystarczy ser de / venir de: „es de Guadalajara\", „viene de una familia humilde\".\n— DRUGIE ŻYCIE TEGO CZASOWNIKA: „procede\" = jest zasadne / wypada. W urzędzie i w prawie usłyszysz „no procede\" = nie ma podstaw, nie ma zastosowania; „no procede hacer comentarios\" = nie wypada komentować. Stąd el procedimiento = procedura.\n\nPRZEKONANIA I NAWYKI — TEŻ BEZ RODZAJNIKA:\n— ateo / atea = ateista; creyente = wierzący; agnóstico / agnóstica; practicante = praktykujący. Mówi się „es atea\", nie „es una atea\" (dokładnie jak z zawodem).\n— abstemio / abstemia = niepijący alkoholu: „soy abstemia, no bebo nada de alcohol\". NIE „abstinente\" — la abstinencia to abstynencja w sensie powstrzymywania się w ogóle („el síndrome de abstinencia\" = zespół abstynencyjny). O człowieku przy stole mówi się abstemio.\n— políglota = poliglota — jedna forma dla kobiety i mężczyzny: „ella es políglota\", „él es políglota\" (książkowe „polígloto\" prawie nie występuje). Akcent pada na „í\": po-LÍ-glo-ta. Rodzina: bilingüe, trilingüe, dominar un idioma, hablar con fluidez.\n— Ta sama logika obejmuje vegetariano, fumador / no fumador, deportista: „es vegetariana y no fumadora\".\n\nLOS ORDINALES — I DLACZEGO „SEXTO\" SIĘ NIE SKRACA:\n— primero, segundo, tercero, cuarto, quinto, SEXTO, séptimo, octavo, noveno, décimo.\n— Uzgadniają się z rzeczownikiem: „el sexto piso\", „la sexta vez\", „los primeros días\".\n— Skracają się TYLKO primero → primer i tercero → tercer przed rzeczownikiem rodzaju męskiego: „el primer día\", „el tercer piso\" — ale „el sexto piso\", „el cuarto intento\", „el quinto año\" zostają w całości.\n— Powyżej dziesiątego w mowie zwykle wygrywają zwykłe liczebniki: „el piso doce\", „el siglo veintiuno\".\n— Pisownia: sexto przez „x\" (choć słychać „sesto\"), séptimo i décimo z akcentem graficznym.",
+      questions: [
+        {
+          type: "spot_error",
+          text: "„Mi hermana es una canguro y cuida los niños los fines de semana.\" (= moja siostra jest opiekunką i pilnuje dzieci w weekendy) — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "zawód po „ser\" idzie bez rodzajnika, a przy osobach potrzebne jest „a\": „Mi hermana es canguro y cuida A los niños los fines de semana\"",
+            "powinno być „Mi hermana es una canguro y cuida a los niños los fines de semana\" — rodzajnik jest konieczny",
+            "powinno być „Mi hermana está canguro y cuida los niños los fines de semana\"",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Dwa błędy naraz. „Es canguro\" — goły zawód po ser nie bierze rodzajnika (wraca dopiero z określeniem: „es una canguro estupenda\"). I „cuidar A los niños\", bo dopełnieniem jest osoba; bez „a\" byłoby „cuida la casa\".",
+        },
+        {
+          type: "spot_error",
+          text: "„Mi novio no bebe alcohol: es un abstinente. Tampoco cree en Dios, es un ateo.\" — co jest nie tak?",
+          options: [
+            "wszystko OK",
+            "niepijący to „abstemio\" (nie „abstinente\"), a przy takich określeniach nie stawia się rodzajnika: „es abstemio… es ateo\"",
+            "powinno być „es un abstemio… es un ateo\" — rodzajnik jest tu konieczny",
+            "powinno być „está abstemio… está ateo\", bo to stan, nie cecha",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "O alkoholu mówi się abstemio / abstemia; „la abstinencia\" to powstrzymywanie się w ogóle (np. „el síndrome de abstinencia\"). Przekonania i nawyki zachowują się jak zawód: „es ateo\", „es vegetariana\", „es abstemia\" — bez rodzajnika i z ser, bo to tożsamość, nie chwilowy stan.",
+        },
+        {
+          type: "abc",
+          text: "„Ona mówi pięcioma językami — jest poliglotką\":",
+          options: [
+            "Ella es políglota",
+            "Ella es poligloto",
+            "Ella está políglota",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Políglota\" ma jedną formę dla obu rodzajów (męskie „polígloto\" jest rzadkie i książkowe), akcent graficzny na „í\": po-LÍ-glo-ta. Cecha tożsamości → ser, nigdy estar.",
+        },
+        {
+          type: "abc",
+          text: "W urzędzie słyszysz o swoim wniosku: „No procede\". Co to znaczy?",
+          options: [
+            "nie ma podstaw, nie zostanie uwzględniony",
+            "jest w trakcie rozpatrywania",
+            "pochodzi z innego urzędu",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Proceder to nie tylko „pochodzić\" („procede de Polonia\"), ale też „być zasadnym\": „no procede\" = nie ma zastosowania; „no procede hacer comentarios\" = nie wypada komentować. Stąd el procedimiento = procedura.",
+        },
+        {
+          type: "abc",
+          text: "„To mój pierwszy dzień w tym budynku; mieszkam na trzecim piętrze, a pracuję na szóstym\":",
+          options: [
+            "Es mi primer día en este edificio; vivo en el tercer piso y trabajo en el sexto",
+            "Es mi primero día en este edificio; vivo en el tercero piso y trabajo en el sexto",
+            "Es mi primer día en este edificio; vivo en el tres piso y trabajo en el seis",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Przed rzeczownikiem męskim skracają się TYLKO primero → primer i tercero → tercer. Sexto (a także cuarto, quinto) zostaje w całości: „el sexto piso\". Zwykłe liczebniki („el piso doce\") wchodzą do gry dopiero powyżej dziesiątego.",
+        },
+        {
+          type: "abc",
+          text: "„Jest świetnym robotnikiem\" + „pracuje jako opiekunka do dzieci\":",
+          options: [
+            "Es un obrero buenísimo / Trabaja de canguro",
+            "Es obrero buenísimo / Trabaja como un canguro",
+            "Es un muy bueno obrero / Trabaja por canguro",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Goły zawód idzie bez rodzajnika („es obrero\"), ale z przymiotnikiem rodzajnik wraca: „es un obrero buenísimo\". Pracować jako = trabajar DE / COMO + zawód; „trabaja como UN canguro\" znaczy już „pracuje jak kangur\".",
+        },
+        {
+          type: "fill",
+          text: "„Mój dziadek pochodzi z rodziny robotniczej\": „Mi abuelo ___ de una familia de obreros.\"",
+          options: null,
+          correctAnswer: "procede",
+          explanation:
+            "proceder DE = pochodzić z (formalniej niż „ser de\" / „venir de\"), tak samo o rzeczach: „esta palabra procede del árabe\". El obrero / la obrera = robotnik; la mano de obra = siła robocza.",
+        },
+        {
+          type: "fill",
+          text: "„Winda nie działa, a ja mieszkam na szóstym piętrze\": „El ascensor no funciona y vivo en el ___ piso.\"",
+          options: null,
+          correctAnswer: "sexto",
+          explanation:
+            "Sexto — przez „x\", bez skracania (skraca się tylko primer i tercer) i z uzgodnieniem rodzaju: „la sexta vez\", „el sexto piso\".",
+        },
+        {
+          type: "open",
+          text: "Powiedz po hiszpańsku: „Moja koleżanka jest poliglotką: pochodzi z rodziny robotniczej, pracuje jako opiekunka i zajmuje się dziećmi rodziny z szóstego piętra. Jest ateistką i nie pije alkoholu\".",
+          options: null,
+          correctAnswer:
+            "„Mi amiga es políglota: procede de una familia de obreros, trabaja de canguro y cuida a los niños de la familia del sexto piso. Es atea y abstemia.\"",
+          explanation:
+            "Klucz: ser + zawód/tożsamość bez rodzajnika (es políglota, trabaja de canguro, es atea, es abstemia), proceder DE, osobowe „a\" przy cuidar, żeńskie końcówki (atea, abstemia) i „el sexto piso\" w pełnej formie.",
+        },
+      ],
+      salon: {
+        short:
+          "Es canguro y cuida a los niños. Procede de una familia de obreros. Es atea y abstemia. Vivo en el sexto piso.",
+        expand:
+          "zawody: el obrero / la obrera (praca fizyczna), el empleado (biuro), el trabajador; la obra = budowa, „estar en obras\"; la mano de obra; el / la canguro (Hiszpania) = la niñera / la nana (Meksyk); trabajar DE / COMO + zawód. Tożsamość: creyente, practicante, agnóstico, ateo, abstemio, vegetariano, fumador, políglota / bilingüe. Porządkowe: primero, segundo, tercero, cuarto, quinto, sexto, séptimo, octavo, noveno, décimo.",
+        trap:
+          "„es UNA canguro\" — goły zawód bez rodzajnika (wraca z przymiotnikiem: „es una canguro estupenda\"). „Abstinente\" to nie „niepijący\" — to „abstemio\". „Políglota\" z akcentem na „í\" i w tej samej formie dla obu rodzajów. „Cuidar A los niños\" z osobowym „a\". „Sexto\" nigdy się nie skraca (tylko primer / tercer). W Meksyku „canguro\" to kangur — tam mów „niñera\".",
+      },
+    },
+  },
 ];
