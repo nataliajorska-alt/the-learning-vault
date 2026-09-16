@@ -13674,4 +13674,245 @@ export const PRESETS: Preset[] = [
       },
     },
   },
+
+  // ============================================================
+  // 137. Angielski: phrasal verbs — mechanika (separable vs inseparable)
+  // ============================================================
+  // Oś lekcji to błąd ze zrzutu z apki („Can you pick up him from school?\"):
+  // przy czasowniku rozdzielnym ZAIMEK idzie do środka — „pick him up\".
+  // Nie dubluje #24 (prepositions po czasownikach: depend on / consist of),
+  // bo tam chodzi o kolokacje z przyimkiem, tu o partykułę i szyk.
+  {
+    slug: "angielski-phrasal-verbs-mechanika",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — phrasal verbs: mechanika (separable vs inseparable, zaimek w środku)",
+    payload: {
+      title: "Phrasal verbs — mechanika: rozdzielne, nierozdzielne i „pick him up\"",
+      summary:
+        "Phrasal verb to czasownik + partykuła, którego znaczenia nie da się złożyć z części („put off\" = odłożyć w czasie, nie „położyć z dala\"). Największy problem to nie słownictwo, tylko SZYK. Zasada numer jeden tej lekcji: przy czasowniku rozdzielnym rzeczownik może stać po obu stronach partykuły („pick up the kids\" / „pick the kids up\"), ale ZAIMEK (him, her, it, them, us, me) MUSI wejść do środka: „Can you pick him up from school?\" — nigdy „pick up him\". Druga połowa lekcji: które czasowniki w ogóle wolno rozdzielać, a które nigdy.",
+      theory:
+        "CO TO JEST PHRASAL VERB: czasownik + partykuła (up, off, out, down, on, in, away, back, over), których znaczenie jest idiomatyczne — nie wynika z sumy części. „Put off\" to nie „położyć z dala\", tylko odłożyć w czasie. „Give up\" to nie „dać w górę\", tylko poddać się. Dlatego tłumaczenie po kawałku zawsze zawodzi — phrasal verb zapamiętuje się w całości, razem z jego szykiem.\n\nTO NIE TO SAMO CO VERB + PREPOSITION: „depend on\", „consist of\", „focus on\" to kolokacje z przyimkiem (patrz lekcja „prepositions po czasownikach\") — przyimek jest tam przyklejony do dopełnienia i nic się nie rozdziela. W phrasal verb partykuła należy do CZASOWNIKA i w wielu wypadkach może się od niego oderwać. Praktyczny test wymowy: w phrasal verb akcent pada na partykułę („turn it OFF\", „give UP\"), w verb + preposition na czasownik („dePEND on\").\n\nCZTERY TYPY — to jest cała mechanika:\n\n1) NIEPRZECHODNIE (bez dopełnienia): break down, show up, turn up, get by, take off (o samolocie), come back, work out (=skończyć się jakoś), give in, grow up, hang on. „My car broke down on the motorway.\", „She didn't show up.\", „The plane took off on time.\" Nie da się ich rozdzielić, bo nie ma czego wstawić do środka.\n\n2) PRZECHODNIE ROZDZIELNE (separable) — to tu dzieje się cała zabawa: pick up, turn off / turn on, put off, call off, throw away, fill in, bring up, work out (=rozwiązać), look up (=sprawdzić w słowniku), set up, hand in, take on, turn down, write down, sort out, figure out, back up, cut off. Rzeczownik może stać PO OBU stronach partykuły — obie wersje są poprawne:\n— „Can you pick up the kids?\" = „Can you pick the kids up?\"\n— „Turn off the lights.\" = „Turn the lights off.\"\n\n3) PRZECHODNIE NIEROZDZIELNE (inseparable): look after (=opiekować się), look for (=szukać), look into (=zbadać), run into (=wpaść na kogoś), get over (=otrząsnąć się / wyleczyć), take after (=być podobnym do), come across (=natknąć się), deal with, go through, count on. Tych NIGDY się nie rozdziela — ani rzeczownikiem, ani zaimkiem: „look after the children\" / „look after them\", ale NIGDY „look the children after\" ani „look them after\".\n\n4) TRZYCZŁONOWE (verb + particle + preposition) — zawsze nierozdzielne: put up with (=znosić), look forward to (=nie móc się doczekać), get on with, come up with (=wymyślić), run out of (=skończyć się komuś), cut down on (=ograniczyć), catch up on (=nadrobić), get out of, keep up with, make up for. Dopełnienie idzie zawsze na koniec: „I can't put up with it.\", „We ran out of time.\"\n\nZASADA NUMER JEDEN — ZAIMEK IDZIE DO ŚRODKA:\nPrzy czasownikach ROZDZIELNYCH rzeczownik ma wybór, ale zaimek (him, her, it, them, me, us, you) NIE MA: musi stanąć MIĘDZY czasownikiem a partykułą.\n— „Can you pick him up from school?\" ✔ — „Can you pick up him from school?\" ✘\n— „Turn it off.\" ✔ — „Turn off it.\" ✘\n— „Throw them away.\" ✔ — „Throw away them.\" ✘\n— „They called it off.\" ✔ — „They called off it.\" ✘\nDlaczego: zaimek to informacja STARA i nieakcentowana — angielski nie zostawia takiej informacji na końcu zdania, gdzie pada akcent. Naturalnie wpycha ją do środka. Stąd prosta reguła kciuka: rozdzielny + zaimek = zawsze rozdzielasz, bez wyjątku.\n\nALE PRZY NIEROZDZIELNYCH ODWROTNIE: tam zaimek idzie na koniec, bo rozdzielić się nie da. „I look after him.\" ✔ / „I look him after.\" ✘. „I ran into her yesterday.\" ✔. „I can't put up with it.\" ✔ / „I can't put it up with.\" ✘. Czyli sam fakt, że masz zaimek, nie przesądza szyku — najpierw musisz wiedzieć, do której grupy należy czasownik.\n\nDŁUGIE DOPEŁNIENIE IDZIE NA KONIEC: nawet przy rozdzielnym czasowniku nie wciskaj do środka wielowyrazowej frazy. „She turned down the offer that had been on the table for months.\" ✔ brzmi normalnie; „She turned the offer that had been on the table for months down.\" jest gramatyczne, ale nikt tak nie mówi. Zasada: im krótsze dopełnienie, tym chętniej ląduje w środku; zaimek (najkrótszy) — zawsze.\n\nSKĄD WIEM, KTÓRY JEST KTÓRY: ze słownika, z zapisu przy haśle. „pick sth/sb up\" (sth między słowami = rozdzielny), „look after sb\" (sb na końcu = nierozdzielny), „put up with sth\" (nierozdzielny trzyczłonowy). Reguła kciuka na szybko: partykuły przysłówkowe (up, off, down, out, away, back, in, on) zwykle dają czasowniki rozdzielne; typowe przyimki (after, for, into, with, across, through) — nierozdzielne. Wyjątki są, więc nowy phrasal verb zapisuj od razu z przykładowym zdaniem, a nie w formie hasłowej.\n\nLOOK — jedna rodzina, pięć znaczeń: look for = szukać („I'm looking for my keys\"), look after = opiekować się („She looks after her mother\"), look up = sprawdzić w słowniku/bazie (rozdzielny: „look it up\"), look into = zbadać sprawę („We'll look into the issue\"), look forward to = nie móc się doczekać. Do tego look out = uważaj. Sam czasownik ten sam, znaczenia nie mają ze sobą nic wspólnego.\n\nLOOK FORWARD TO + -ING: to „to\" jest PRZYIMKIEM, nie bezokolicznikiem, więc po nim idzie forma z -ing. „I'm looking forward to meeting you next week.\" ✔ / „I look forward to meet you.\" ✘. Ta sama pułapka: „get used to doing\", „be committed to doing\", „object to doing\".\n\nSTRONA BIERNA I FORMA -ING: phrasal verby normalnie wchodzą w passive — wtedy części wracają razem: „The meeting was called off.\", „The project has been put off until Q3.\", „New rules are being brought in.\" I tak samo w gerundium: „Calling off the launch was the right decision.\"\n\nREJESTR: phrasal verb to wersja naturalna i mówiona, jednowyrazowy czasownik pochodzenia łacińskiego — formalna. postpone / put off, tolerate / put up with, investigate / look into, cancel / call off, submit / hand in, reduce / cut down on, discover / find out, continue / carry on, increase / go up. Polacy odruchowo wybierają wersję łacińską (bo podobna do polskiego), przez co brzmią sztywno w rozmowie. W mailu do klienta „We will investigate the issue\" jest w porządku, ale na callu naturalniej wypadnie „We'll look into it\".\n\nTOP POLSKIE BŁĘDY: (1) „pick up him / turn off it\" — zaimek wyrzucony na koniec przy czasowniku rozdzielnym; (2) „look forward to meet you\" zamiast „to meeting you\"; (3) rozdzielanie czasownika nierozdzielnego („look him after\", „I can't put it up with\"); (4) tłumaczenie po kawałku — „make a photo\" zamiast „take a photo\", „open the light\" zamiast „turn the light on\".",
+      questions: [
+        {
+          type: "abc",
+          text: "„Can you _____ from school at four?\" (= odebrać go ze szkoły) — która wersja jest poprawna?",
+          options: ["pick up him", "pick him up", "pick up he"],
+          correctAnswer: 1,
+          explanation:
+            "„Pick up\" jest rozdzielny, a przy czasownikach rozdzielnych ZAIMEK zawsze wchodzi MIĘDZY czasownik a partykułę: „pick him up\". „Pick up him\" to najczęstszy polski błąd w phrasal verbach. Z rzeczownikiem wybór jest wolny: „pick up the kids\" = „pick the kids up\".",
+        },
+        {
+          type: "abc",
+          text: "Które zdanie jest NIEMOŻLIWE po angielsku?",
+          options: [
+            "She turned down the offer.",
+            "She turned the offer down.",
+            "She turned down it.",
+          ],
+          correctAnswer: 2,
+          explanation:
+            "Rzeczownik („the offer\") może stać po obu stronach partykuły, ale zaimek („it\") nigdy nie ląduje za partykułą. Poprawnie: „She turned it down.\"",
+        },
+        {
+          type: "abc",
+          text: "Mama jest chora — opiekuję się nią. Jak to powiedzieć?",
+          options: ["I'm looking her after.", "I'm looking after her.", "I'm looking for her."],
+          correctAnswer: 1,
+          explanation:
+            "„Look after\" (=opiekować się) jest NIEROZDZIELNY, więc zaimek idzie na koniec: „looking after her\". „Look for\" to szukać — inne znaczenie. Uwaga: to lustrzane odbicie zasady z „pick him up\" — dlatego najpierw trzeba wiedzieć, czy czasownik jest rozdzielny.",
+        },
+        {
+          type: "abc",
+          text: "Chcesz napisać w mailu, że nie możesz się doczekać spotkania w przyszłym tygodniu.",
+          options: [
+            "I'm looking forward to meet you next week.",
+            "I'm looking forward to meeting you next week.",
+            "I'm looking forward meeting you next week.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "W „look forward to\" końcowe „to\" jest PRZYIMKIEM, nie bezokolicznikiem — po nim idzie forma z -ing: „to meeting you\". Ta sama pułapka w „get used to doing\" i „be committed to doing\".",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „The meeting was called _____ because half the team was sick.\" (= odwołane)",
+          options: null,
+          correctAnswer: "off",
+          explanation:
+            "„Call off\" = odwołać. W stronie biernej części wracają razem: „was called off\". Aktywnie z zaimkiem byłoby „they called it off\" — nigdy „called off it\".",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „Sorry, I can't put _____ with this noise any more.\" (= znosić)",
+          options: null,
+          correctAnswer: "up",
+          explanation:
+            "„Put up with\" = znosić, wytrzymywać — czasownik trzyczłonowy, zawsze nierozdzielny. Dopełnienie idzie na koniec: „I can't put up with it.\", nigdy „put it up with\".",
+        },
+        {
+          type: "spot_error",
+          text: "„I'll pick up you at seven and then we can drop off the keys at Anna's.\"",
+          options: [
+            "pick up you — ma być „pick you up\" (zaimek wchodzi do środka; „drop off the keys\" jest OK, bo to rzeczownik)",
+            "drop off the keys — ma być „drop the keys off\", bo ten czasownik zawsze się rozdziela",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Oba czasowniki są rozdzielne, ale tylko zaimek ma przymus: „pick YOU up\". Rzeczownik ma wybór — „drop off the keys\" i „drop the keys off\" są równie dobre.",
+        },
+        {
+          type: "spot_error",
+          text: "„She's very good with clients, so I'm sure she can deal it with, but I can't put up with this deadline.\"",
+          options: [
+            "deal it with — „deal with\" jest nierozdzielny: „she can deal with it\"",
+            "put up with this deadline — ma być „put this deadline up with\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Deal with\" nie rozdziela się nigdy — zaimek idzie na koniec: „deal with it\". „Put up with this deadline\" jest poprawne, bo trzyczłonowe phrasal verby też zostają w całości.",
+        },
+        {
+          type: "open",
+          text: "Napisz 3 zdania z zaimkiem jako dopełnieniem: jedno z czasownikiem rozdzielnym (pick up / turn off / call off), jedno z nierozdzielnym (look after / deal with / run into) i jedno z trzyczłonowym (put up with / come up with). Zaznacz, gdzie zaimek musi stać.",
+          options: null,
+          correctAnswer:
+            "Przykład: (1) rozdzielny — „I'll pick her up after the meeting.\" (zaimek MIĘDZY czasownikiem a partykułą, nigdy „pick up her\"); (2) nierozdzielny — „Don't worry, I'll deal with it tomorrow.\" (zaimek na KOŃCU, bo tego czasownika nie da się rozdzielić); (3) trzyczłonowy — „We finally came up with it during the workshop.\" (całość zostaje razem, zaimek na końcu).",
+          explanation:
+            "Klucz: sam zaimek nie przesądza szyku — decyduje typ czasownika. Rozdzielny + zaimek = obowiązkowo do środka; nierozdzielny i trzyczłonowy = zaimek na końcu, bo nie ma czego rozrywać. Przy rzeczowniku w grupie rozdzielnej masz wolny wybór, a długie dopełnienie i tak idzie na koniec („turned down the offer we had waited for\").",
+        },
+      ],
+      salon: {
+        short:
+          "Phrasal verb = czasownik + partykuła o idiomatycznym znaczeniu (put off = odłożyć w czasie). Kluczowa zasada szyku: przy czasowniku rozdzielnym rzeczownik może stać po obu stronach („pick up the kids\" = „pick the kids up\"), ale zaimek MUSI wejść do środka: „pick him up\", „turn it off\", „call it off\".",
+        expand:
+          "Cztery typy: nieprzechodnie (break down, show up), przechodnie rozdzielne (pick up, turn off, call off, fill in), przechodnie nierozdzielne (look after, run into, deal with, get over) i trzyczłonowe (put up with, look forward to, come up with, run out of) — te dwa ostatnie typy zawsze trzymają zaimek na końcu: „look after him\", „put up with it\". Akcent zdradza typ: w phrasal verbie pada na partykułę („turn it OFF\"), w verb + preposition na czasownik („dePEND on\"). Rejestr: put off / postpone, look into / investigate, call off / cancel — wersja z partykułą jest ta naturalna w mowie.",
+        trap:
+          "Trzy polskie błędy: (1) „pick up him\", „turn off it\" — zaimek wyrzucony za partykułę przy czasowniku rozdzielnym; (2) „look forward to meet you\" — tam „to\" jest przyimkiem, więc „to meeting you\"; (3) rozdzielanie nierozdzielnych („look him after\", „deal it with\"). I nie wciskaj do środka długiej frazy — „She turned down the offer that had been on the table for months\" zostaje w tym szyku.",
+      },
+    },
+  },
+
+  // ============================================================
+  // 138. Angielski: phrasal verbs w praktyce (codzienne + biznesowe)
+  // ============================================================
+  // Druga połowa pary z #137: tam mechanika i szyk, tu zestaw, który
+  // realnie wchodzi do rozmowy i maila, plus czasowniki wieloznaczne
+  // (pick up, take off, make up) i kalki z polskiego.
+  {
+    slug: "angielski-phrasal-verbs-w-praktyce",
+    vaultSlug: "en",
+    label: "Angielski B2/C1 — phrasal verbs w praktyce: codzienne, biznesowe i wieloznaczne",
+    payload: {
+      title: "Phrasal verbs w praktyce — codzienne, biznesowe i wieloznaczne",
+      summary:
+        "Zestaw phrasal verbów, które realnie wchodzą do rozmowy i maila, pogrupowany według rodzin partykuł (up = domknięcie, off = odcięcie, out = do końca / na zewnątrz, down = redukcja, on = kontynuacja). Do tego czasowniki wieloznaczne, które mylą najbardziej — pick up, take off, make up, bring up, work out, turn down — i typowe polskie kalki: „wpaść na pomysł\" = come up with, „odebrać telefon\" = pick up, „nadrobić\" = catch up on. Szyk i rozdzielność — patrz lekcja o mechanice phrasal verbów.",
+      theory:
+        "RODZINY PARTYKUŁ — znaczenie nie jest zupełnie przypadkowe:\n— UP = domknięcie, do końca, w całości: eat up (zjeść do końca), use up (zużyć), finish up, fill up, wrap up (domknąć spotkanie), sum up (podsumować), back up (zrobić kopię / poprzeć kogoś), set up (założyć, zorganizować), speak up (mówić głośniej / zabrać głos).\n— OFF = odcięcie, oderwanie, start: call off (odwołać), put off (przełożyć), take off (wystartować; też: rozkręcić się), lay off (zwolnić z pracy z powodu redukcji), cut off (odciąć), sign off on (zatwierdzić), kick off (rozpocząć).\n— OUT = na zewnątrz albo do wyczerpania: find out (dowiedzieć się), sort out / figure out (rozwikłać), point out (zwrócić uwagę na coś), carry out (przeprowadzić — badanie, plan), run out of (skończyć się komuś), rule out (wykluczyć), stand out (wyróżniać się), eat out (jeść na mieście).\n— DOWN = w dół, redukcja, zapis: turn down (odrzucić; też: ściszyć), cut down on (ograniczyć), write down (zapisać), break down (zepsuć się; też: rozbić na części), slow down.\n— ON = kontynuacja i nakładanie: carry on / keep on (kontynuować), get on with (dogadywać się / brać się do), take on (przyjąć — pracownika, obowiązek), hold on (poczekać), move on (iść dalej).\n— OVER / THROUGH / BACK: go over (przejrzeć, omówić), take over (przejąć), get over (otrząsnąć się, wyzdrowieć), go through (przejść przez coś, przeanalizować), get back to (odezwać się do kogoś z odpowiedzią), push back (przesunąć termin; też: postawić się).\n\nCODZIENNE MINIMUM: get up, wake up, work out (ćwiczyć), hang out (spędzać czas), chill out, eat out, drop by / drop in (wpaść), show up / turn up (pojawić się), run into (wpaść na kogoś przypadkiem), catch up with sb (nadrobić zaległości towarzysko), catch up ON sth (nadrobić zaległości w czymś: sleep, emails), give up (poddać się), put on / take off (ubrać / zdjąć ubranie), throw away, tidy up, run out of, look up (sprawdzić).\n\nBIZNESOWE MINIMUM: set up a meeting / a company, kick off a project, follow up on sth (dopilnować, wrócić do tematu), get back to sb (odpisać, dać znać), look into sth (zbadać), carry out an analysis, roll out (wdrożyć na szeroką skalę), scale up, take on a new client / more work, hand over (przekazać obowiązki), hand in (oddać, złożyć), call off (odwołać), push back a deadline, bring forward a meeting (przyspieszyć), sign off on the budget (zatwierdzić), run sth by sb (skonsultować z kimś), touch base with sb (odezwać się na chwilę), lay sb off (zwolnić przy redukcji), back up the data, cut down on costs, go over the numbers, come up with a solution.\n\nJEDEN CZASOWNIK, KILKA ZNACZEŃ — to jest główne źródło nieporozumień:\n— PICK UP: odebrać kogoś („I'll pick you up at seven\"), podnieść coś, odebrać telefon („pick up the phone\"), nauczyć się mimochodem („she picked up Spanish in Mexico\"), nabierać tempa („sales are picking up\").\n— TAKE OFF: samolot startuje, zdjąć ubranie, wziąć wolne („take two days off\"), a w biznesie: rozkręcić się („the product really took off\").\n— MAKE UP: wymyślić / zmyślić („he made up an excuse\"), pogodzić się („they made up after the argument\"), stanowić („women make up 60% of the team\"). „Makeup\" jako rzeczownik to kosmetyki.\n— BRING UP: poruszyć temat („she brought it up in the meeting\") albo wychować dziecko („he was brought up in Kraków\").\n— WORK OUT: ćwiczyć na siłowni, rozwiązać / wyliczyć („let's work out the numbers\"), skończyć się dobrze („it worked out in the end\").\n— TURN DOWN: odrzucić (ofertę, kandydata) albo ściszyć (muzykę, ogrzewanie).\n— GET OVER: wyleczyć się z czegoś („get over the flu\") albo otrząsnąć się po czymś („get over the breakup\").\n— RUN INTO: wpaść na kogoś przypadkiem albo napotkać problem („we ran into a few issues\").\n\nPOLSKIE KALKI — czego szukać zamiast tłumaczenia dosłownego:\n— „wpaść na pomysł\" = come up with an idea (nie „fall on an idea\").\n— „odebrać telefon\" = pick up / answer the phone (nie „take the phone\" — to raczej wziąć telefon do ręki).\n— „nadrobić zaległości\" = catch up on (emails, sleep, work).\n— „przełożyć spotkanie\" = put off / push back / reschedule (nie „move the meeting for later\").\n— „zająć się czymś\" = deal with / take care of / handle (nie „occupy myself with\", które znaczy „zabijać czas\").\n— „zwolnić kogoś\" = lay sb off (redukcja etatów) vs fire sb (za przewinienie) vs let sb go (eufemizm).\n— „zrezygnować z czegoś\" = give sth up (nałóg, plan) vs turn sth down (odrzucić ofertę) vs opt out of sth.\n— „włączyć / wyłączyć światło\" = turn the light on / off (nigdy „open / close the light\").\n— „skończyło mi się mleko\" = I've run out of milk (nie „the milk finished\").\n\nZ CZYM UWAŻAĆ W MAILU: phrasal verby są naturalne, ale część brzmi zbyt potocznie w formalnym piśmie — „chill out\", „hang out\", „mess up\", „screw up\" zostaw do rozmowy. Bezpieczny środek w mailu: look into, follow up on, get back to, carry out, set up, hand over, roll out, go over. Formalne odpowiedniki na bardzo oficjalne pisma: investigate, postpone, submit, cancel, implement, review.\n\nRZECZOWNIKI OD PHRASAL VERBÓW: część zastyga w rzeczownik i wtedy pisze się je razem albo z łącznikiem — a breakdown, a takeover, a handover, feedback, a setup, a backup, the turnout, a follow-up, a kick-off. Uwaga na różnicę: „We need to back up the files\" (czasownik, osobno) vs „Do you have a backup?\" (rzeczownik, razem).",
+      questions: [
+        {
+          type: "abc",
+          text: "„Sprzedaż zaczyna nabierać tempa po słabym kwartale\" — które zdanie to oddaje?",
+          options: [
+            "Sales are picking up after a weak quarter.",
+            "Sales are taking off the weak quarter.",
+            "Sales are looking up the weak quarter.",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "„Pick up\" to także „nabierać tempa, poprawiać się\" (o sprzedaży, pogodzie, gospodarce). „Take off\" znaczy gwałtownie wystrzelić w górę i nie łączy się tak z dopełnieniem, a „look up\" w tym sensie („things are looking up\") jest nieprzechodnie.",
+        },
+        {
+          type: "abc",
+          text: "Na spotkaniu chcesz powiedzieć, że wrócisz do kogoś z odpowiedzią do piątku.",
+          options: [
+            "I'll return to you by Friday.",
+            "I'll get back to you by Friday.",
+            "I'll come back to you on Friday with the answer, but I will check it out before.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "Standardowa formuła to „get back to sb\" = odezwać się z odpowiedzią. „Return to you\" brzmi jak fizyczny powrót do osoby. („Come back to you\" usłyszysz w brytyjskim biurze, ale „get back to you\" jest neutralne i bezpieczne.)",
+        },
+        {
+          type: "abc",
+          text: "„They had to _____ the launch because the supplier failed.\" (= odwołać premierę)",
+          options: ["call off", "put on", "take off"],
+          correctAnswer: 0,
+          explanation:
+            "„Call off\" = odwołać coś zaplanowanego. Gdyby chodziło o przesunięcie na później, byłoby „put off\" albo „push back\". Z zaimkiem: „they called it off\".",
+        },
+        {
+          type: "abc",
+          text: "Które zdanie znaczy, że zespół WYMYŚLIŁ rozwiązanie?",
+          options: [
+            "The team made up a solution.",
+            "The team came up with a solution.",
+            "The team came across a solution.",
+          ],
+          correctAnswer: 1,
+          explanation:
+            "„Come up with\" = wpaść na pomysł, wymyślić rozwiązanie. „Make up\" sugeruje zmyślenie (nieprawdę), a „come across\" to natknąć się na coś przypadkiem.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „We've run _____ of time — let's finish this tomorrow.\"",
+          options: null,
+          correctAnswer: "out",
+          explanation:
+            "„Run out of sth\" = skończyć się komuś (czas, mleko, cierpliwość). Polskie „skończył mi się czas\" ma podmiot odwrotny niż angielskie — to MY „run out of time\", nie czas się kończy.",
+        },
+        {
+          type: "fill",
+          text: "Uzupełnij jednym słowem: „I need to catch _____ on my emails after the holiday.\" (= nadrobić zaległości)",
+          options: null,
+          correctAnswer: "up",
+          explanation:
+            "„Catch up ON sth\" = nadrobić zaległości w czymś (mailach, śnie, pracy). Z osobą jest inny przyimek: „catch up WITH someone\" = spotkać się i nadrobić towarzysko.",
+        },
+        {
+          type: "spot_error",
+          text: "„Can you open the light? And please don't forget to make a photo of the whiteboard before we leave.\"",
+          options: [
+            "open the light / make a photo — ma być „turn the light on\" i „take a photo\"",
+            "don't forget to make — ma być „don't forget making\"",
+            "wszystko OK",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Dwie klasyczne kalki: światło się „turns on / off\", a zdjęcie się „takes\", nie „makes\". Phrasal verbów nie da się złożyć z polskiego po kawałku — trzeba znać całą frazę.",
+        },
+        {
+          type: "spot_error",
+          text: "„The client turned down our offer, so we had to put off the kick-off and lay some people off — but we'll get over it.\"",
+          options: [
+            "wszystko OK — turn down (odrzucić), put off (przełożyć), lay off (zwolnić przy redukcji) i get over (otrząsnąć się) są użyte poprawnie",
+            "turned down — ma być „turned off our offer\"",
+            "lay some people off — nie wolno rozdzielać tego czasownika",
+          ],
+          correctAnswer: 0,
+          explanation:
+            "Wszystkie cztery są na swoim miejscu. „Lay off\" jest rozdzielny, więc „lay some people off\" i „lay off some people\" są równie dobre — a z zaimkiem obowiązkowo „lay them off\". „Turn off\" znaczyłoby wyłączyć urządzenie.",
+        },
+        {
+          type: "open",
+          text: "Napisz krótkiego maila (3–4 zdania) o przesuniętym projekcie, używając co najmniej czterech phrasal verbów z listy biznesowej (np. follow up on, get back to, look into, push back, set up, go over, come up with).",
+          options: null,
+          correctAnswer:
+            "Przykład: „Hi Marta, I'm following up on yesterday's call. We've had to push back the deadline to 15 October because the supplier ran out of components. I'm looking into alternative options and I'll get back to you by Friday — in the meantime, could we set up a short call to go over the revised budget? Best, Natalia\". Cztery phrasal verby w naturalnych miejscach: follow up on, push back, look into, get back to, plus set up i go over.",
+          explanation:
+            "Klucz: w mailu roboczym phrasal verby brzmią naturalniej niż ich łacińskie odpowiedniki (look into > investigate, set up > arrange, go over > review). Do bardzo formalnych pism zostaw wersje łacińskie, a potoczne („chill out\", „mess up\") trzymaj poza mailem.",
+        },
+      ],
+      salon: {
+        short:
+          "Partykuły mają swoją logikę: UP = domknięcie (wrap up, sum up, use up), OFF = odcięcie i start (call off, take off, kick off), OUT = do końca lub na zewnątrz (find out, run out of, carry out), DOWN = redukcja i zapis (turn down, cut down on, write down), ON = kontynuacja (carry on, take on, get on with).",
+        expand:
+          "Biznesowe minimum: follow up on, get back to, look into, carry out, set up, roll out, hand over, hand in, push back, bring forward, sign off on, run sth by sb, take on, lay off, back up, go over, come up with. Wieloznaczne: pick up (odebrać kogoś / odebrać telefon / nauczyć się mimochodem / nabierać tempa), take off (wystartować / zdjąć / wziąć wolne / rozkręcić się), make up (zmyślić / pogodzić się / stanowić procent), work out (ćwiczyć / wyliczyć / skończyć się dobrze), bring up (poruszyć temat / wychować).",
+        trap:
+          "Kalki: „wpaść na pomysł\" = come up with (nie „fall on\"), „odebrać telefon\" = pick up, „włączyć światło\" = turn the light on (nigdy „open the light\"), „zrobić zdjęcie\" = take a photo, „skończyło mi się X\" = I've run out of X. Uwaga na rejestr: „chill out\", „hang out\", „screw up\" są tylko do rozmowy. I na pisownię rzeczowników: „back up the files\" (czasownik, osobno) vs „a backup\" (rzeczownik, razem) — tak samo breakdown, takeover, handover, follow-up.",
+      },
+    },
+  },
 ];
